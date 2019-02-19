@@ -67,7 +67,9 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.AreaDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaDensityUnit BaseUnit => AreaDensityUnit.KilogramPerSquareMeter;
+        public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MaxValue => new AreaDensity(double.MaxValue, BaseUnit);
+        public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MinValue => new AreaDensity(double.MinValue, BaseUnit);
+        public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.AreaDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
 
         /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
-        public static AreaDensity Zero => new AreaDensity(0, BaseUnit);
+        public static AreaDensity Zero { get; } = new AreaDensity(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -462,6 +474,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((AreaDensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

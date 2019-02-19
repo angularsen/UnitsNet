@@ -70,7 +70,9 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            Info = new QuantityInfo(QuantityType.LuminousIntensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Candela.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit => LuminousIntensityUnit.Candela;
+        public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
 
         /// <summary>
         /// Represents the largest possible value of LuminousIntensity
         /// </summary>
-        public static LuminousIntensity MaxValue => new LuminousIntensity(double.MaxValue, BaseUnit);
+        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousIntensity
         /// </summary>
-        public static LuminousIntensity MinValue => new LuminousIntensity(double.MinValue, BaseUnit);
+        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.LuminousIntensity;
+        public static QuantityType QuantityType { get; } = QuantityType.LuminousIntensity;
 
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Candela.
         /// </summary>
-        public static LuminousIntensity Zero => new LuminousIntensity(0, BaseUnit);
+        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -465,6 +477,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((LuminousIntensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

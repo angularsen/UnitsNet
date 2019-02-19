@@ -67,7 +67,9 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.Pressure, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Pascal.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
-        public static PressureUnit BaseUnit => PressureUnit.Pascal;
+        public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
         /// Represents the largest possible value of Pressure
         /// </summary>
-        public static Pressure MaxValue => new Pressure(double.MaxValue, BaseUnit);
+        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Pressure
         /// </summary>
-        public static Pressure MinValue => new Pressure(double.MinValue, BaseUnit);
+        public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Pressure;
+        public static QuantityType QuantityType { get; } = QuantityType.Pressure;
 
         /// <summary>
         ///     All units of measurement for the Pressure quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure Zero => new Pressure(0, BaseUnit);
+        public static Pressure Zero { get; } = new Pressure(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -1077,6 +1089,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PressureUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

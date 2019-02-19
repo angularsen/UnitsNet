@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Luminous_flux
     /// </remarks>
-    public partial struct LuminousFlux : IQuantity<LuminousFluxUnit>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>
+    public partial struct LuminousFlux : IQuantity<LuminousFluxUnit>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -67,6 +67,7 @@ namespace UnitsNet
         static LuminousFlux()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -74,7 +75,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LuminousFlux(double numericValue, LuminousFluxUnit unit)
         {
@@ -87,6 +87,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LuminousFluxUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -95,22 +98,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousFlux, which is Lumen. All conversions go via this value.
         /// </summary>
-        public static LuminousFluxUnit BaseUnit => LuminousFluxUnit.Lumen;
+        public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
 
         /// <summary>
         /// Represents the largest possible value of LuminousFlux
         /// </summary>
-        public static LuminousFlux MaxValue => new LuminousFlux(double.MaxValue, BaseUnit);
+        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousFlux
         /// </summary>
-        public static LuminousFlux MinValue => new LuminousFlux(double.MinValue, BaseUnit);
+        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.LuminousFlux;
+        public static QuantityType QuantityType { get; } = QuantityType.LuminousFlux;
 
         /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
@@ -120,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lumen.
         /// </summary>
-        public static LuminousFlux Zero => new LuminousFlux(0, BaseUnit);
+        public static LuminousFlux Zero { get; } = new LuminousFlux(0, BaseUnit);
 
         #endregion
 
@@ -131,10 +134,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LuminousFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LuminousFluxUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -411,12 +422,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(LuminousFlux left, LuminousFlux right)	
+        public static bool operator ==(LuminousFlux left, LuminousFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LuminousFlux left, LuminousFlux right)	
+        public static bool operator !=(LuminousFlux left, LuminousFlux right)
         {
             return !(left == right);
         }
@@ -429,7 +440,6 @@ namespace UnitsNet
             return CompareTo(objLuminousFlux);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(LuminousFlux other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -512,6 +522,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((LuminousFluxUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,6 +537,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LuminousFluxUnit) unit);
+
         /// <summary>
         ///     Converts this LuminousFlux to another LuminousFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -534,6 +548,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new LuminousFlux(convertedValue, unit);
         }
+
+        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -633,5 +651,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(LuminousFlux)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(LuminousFlux)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(LuminousFlux)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(LuminousFlux))
+                return this;
+            else if(conversionType == typeof(LuminousFluxUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return LuminousFlux.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return LuminousFlux.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(LuminousFlux)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

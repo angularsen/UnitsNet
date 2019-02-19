@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
-    public partial struct ElectricResistance : IQuantity<ElectricResistanceUnit>, IEquatable<ElectricResistance>, IComparable, IComparable<ElectricResistance>
+    public partial struct ElectricResistance : IQuantity<ElectricResistanceUnit>, IEquatable<ElectricResistance>, IComparable, IComparable<ElectricResistance>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static ElectricResistance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            Info = new QuantityInfo<ElectricResistanceUnit>(QuantityType.ElectricResistance, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricResistance(double numericValue, ElectricResistanceUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ElectricResistanceUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit => ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MaxValue => new ElectricResistance(double.MaxValue, BaseUnit);
+        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MinValue => new ElectricResistance(double.MinValue, BaseUnit);
+        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricResistance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero => new ElectricResistance(0, BaseUnit);
+        public static ElectricResistance Zero { get; } = new ElectricResistance(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ElectricResistanceUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -464,12 +475,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(ElectricResistance left, ElectricResistance right)	
+        public static bool operator ==(ElectricResistance left, ElectricResistance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricResistance left, ElectricResistance right)	
+        public static bool operator !=(ElectricResistance left, ElectricResistance right)
         {
             return !(left == right);
         }
@@ -482,7 +493,6 @@ namespace UnitsNet
             return CompareTo(objElectricResistance);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricResistance other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -565,6 +575,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((ElectricResistanceUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -578,6 +590,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricResistanceUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricResistance to another ElectricResistance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -587,6 +601,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new ElectricResistance(convertedValue, unit);
         }
+
+        IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(ElectricResistanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricResistanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -694,5 +712,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(ElectricResistance))
+                return this;
+            else if(conversionType == typeof(ElectricResistanceUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricResistance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricResistance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
-    public partial struct RotationalStiffness : IQuantity<RotationalStiffnessUnit>, IEquatable<RotationalStiffness>, IComparable, IComparable<RotationalStiffness>
+    public partial struct RotationalStiffness : IQuantity<RotationalStiffnessUnit>, IEquatable<RotationalStiffness>, IComparable, IComparable<RotationalStiffness>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static RotationalStiffness()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<RotationalStiffnessUnit>(QuantityType.RotationalStiffness, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RotationalStiffness(double numericValue, RotationalStiffnessUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<RotationalStiffnessUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffness, which is NewtonMeterPerRadian. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessUnit BaseUnit => RotationalStiffnessUnit.NewtonMeterPerRadian;
+        public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MaxValue => new RotationalStiffness(double.MaxValue, BaseUnit);
+        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MinValue => new RotationalStiffness(double.MinValue, BaseUnit);
+        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalStiffness;
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffness;
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffness quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadian.
         /// </summary>
-        public static RotationalStiffness Zero => new RotationalStiffness(0, BaseUnit);
+        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -436,12 +447,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(RotationalStiffness left, RotationalStiffness right)	
+        public static bool operator ==(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(RotationalStiffness left, RotationalStiffness right)	
+        public static bool operator !=(RotationalStiffness left, RotationalStiffness right)
         {
             return !(left == right);
         }
@@ -454,7 +465,6 @@ namespace UnitsNet
             return CompareTo(objRotationalStiffness);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(RotationalStiffness other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -537,6 +547,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((RotationalStiffnessUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -550,6 +562,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RotationalStiffnessUnit) unit);
+
         /// <summary>
         ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -559,6 +573,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new RotationalStiffness(convertedValue, unit);
         }
+
+        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -662,5 +680,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(RotationalStiffness)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(RotationalStiffness)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(RotationalStiffness)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(RotationalStiffness))
+                return this;
+            else if(conversionType == typeof(RotationalStiffnessUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return RotationalStiffness.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return RotationalStiffness.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(RotationalStiffness)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

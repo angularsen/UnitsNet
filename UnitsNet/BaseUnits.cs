@@ -25,9 +25,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-#if !WINDOWS_UWP
     public sealed partial class BaseUnits : IEquatable<BaseUnits> { }
-#endif
 
     /// <summary>
     ///     Represents the base units for a quantity. All quantities, both base and derived, can be
@@ -72,9 +70,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public bool Equals(BaseUnits other)
         {
             if(other is null)
@@ -94,8 +89,6 @@ namespace UnitsNet
         {
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
         }
-
-#if !WINDOWS_UWP
 
         /// <summary>
         /// Checks if this instance is equal to another.
@@ -120,8 +113,6 @@ namespace UnitsNet
         {
             return !(left == right);
         }
-
-#endif
 
         /// <inheritdoc />
         public override string ToString()

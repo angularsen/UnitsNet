@@ -67,7 +67,9 @@ namespace UnitsNet
         static ElectricCurrent()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.ElectricCurrent, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Ampere.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit => ElectricCurrentUnit.Ampere;
+        public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MaxValue => new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MinValue => new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricCurrent;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero => new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -567,6 +579,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricCurrentUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

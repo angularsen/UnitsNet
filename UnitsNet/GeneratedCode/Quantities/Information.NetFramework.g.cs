@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
-    public partial struct Information : IQuantity<InformationUnit>, IEquatable<Information>, IComparable, IComparable<Information>
+    public partial struct Information : IQuantity<InformationUnit>, IEquatable<Information>, IComparable, IComparable<Information>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static Information()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<InformationUnit>(QuantityType.Information, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Information(decimal numericValue, InformationUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<InformationUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit => InformationUnit.Bit;
+        public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
-        public static Information MaxValue => new Information(decimal.MaxValue, BaseUnit);
+        public static Information MaxValue { get; } = new Information(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
-        public static Information MinValue => new Information(decimal.MinValue, BaseUnit);
+        public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Information;
+        public static QuantityType QuantityType { get; } = QuantityType.Information;
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero => new Information(0, BaseUnit);
+        public static Information Zero { get; } = new Information(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<InformationUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -758,12 +769,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(Information left, Information right)	
+        public static bool operator ==(Information left, Information right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Information left, Information right)	
+        public static bool operator !=(Information left, Information right)
         {
             return !(left == right);
         }
@@ -776,7 +787,6 @@ namespace UnitsNet
             return CompareTo(objInformation);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Information other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -859,6 +869,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((InformationUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -872,6 +884,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((InformationUnit) unit);
+
         /// <summary>
         ///     Converts this Information to another Information with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -881,6 +895,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new Information(convertedValue, unit);
         }
+
+        IQuantity<InformationUnit> IQuantity<InformationUnit>.ToUnit(InformationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((InformationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -1030,5 +1048,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Information)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Information)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Information)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(Information))
+                return this;
+            else if(conversionType == typeof(InformationUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Information.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Information.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Information)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

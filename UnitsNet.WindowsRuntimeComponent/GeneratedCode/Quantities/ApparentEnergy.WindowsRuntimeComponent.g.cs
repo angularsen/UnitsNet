@@ -67,7 +67,9 @@ namespace UnitsNet
         static ApparentEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.ApparentEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit VoltampereHour.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentEnergy, which is VoltampereHour. All conversions go via this value.
         /// </summary>
-        public static ApparentEnergyUnit BaseUnit => ApparentEnergyUnit.VoltampereHour;
+        public static ApparentEnergyUnit BaseUnit { get; } = ApparentEnergyUnit.VoltampereHour;
 
         /// <summary>
         /// Represents the largest possible value of ApparentEnergy
         /// </summary>
-        public static ApparentEnergy MaxValue => new ApparentEnergy(double.MaxValue, BaseUnit);
+        public static ApparentEnergy MaxValue { get; } = new ApparentEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ApparentEnergy
         /// </summary>
-        public static ApparentEnergy MinValue => new ApparentEnergy(double.MinValue, BaseUnit);
+        public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ApparentEnergy;
+        public static QuantityType QuantityType { get; } = QuantityType.ApparentEnergy;
 
         /// <summary>
         ///     All units of measurement for the ApparentEnergy quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereHour.
         /// </summary>
-        public static ApparentEnergy Zero => new ApparentEnergy(0, BaseUnit);
+        public static ApparentEnergy Zero { get; } = new ApparentEnergy(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ApparentEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -492,6 +504,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ApparentEnergyUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

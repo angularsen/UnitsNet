@@ -70,7 +70,9 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo(QuantityType.BitRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit => BitRateUnit.BitPerSecond;
+        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
-        public static BitRate MaxValue => new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
-        public static BitRate MinValue => new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.BitRate;
+        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero => new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -840,6 +852,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((BitRateUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

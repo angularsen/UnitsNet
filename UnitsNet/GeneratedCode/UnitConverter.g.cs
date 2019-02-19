@@ -47,7 +47,6 @@ namespace UnitsNet
     {
         public static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-#if !WINDOWS_UWP
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.CentimeterPerSecondSquared, (q) => ((Acceleration)q).ToUnit(AccelerationUnit.CentimeterPerSecondSquared));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.CentimeterPerSecondSquared, Acceleration.BaseUnit, (q) => ((Acceleration)q).ToBaseUnit());
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.DecimeterPerSecondSquared, (q) => ((Acceleration)q).ToUnit(AccelerationUnit.DecimeterPerSecondSquared));
@@ -726,9 +725,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiance>(Irradiance.BaseUnit, IrradianceUnit.WattPerSquareCentimeter, (q) => ((Irradiance)q).ToUnit(IrradianceUnit.WattPerSquareCentimeter));
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareCentimeter, Irradiance.BaseUnit, (q) => ((Irradiance)q).ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiance>(Irradiance.BaseUnit, Irradiance.BaseUnit, (q) => q);
+            unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.JoulePerSquareCentimeter, (q) => ((Irradiation)q).ToUnit(IrradiationUnit.JoulePerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareCentimeter, Irradiation.BaseUnit, (q) => ((Irradiation)q).ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, Irradiation.BaseUnit, (q) => q);
             unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.JoulePerSquareMillimeter, (q) => ((Irradiation)q).ToUnit(IrradiationUnit.JoulePerSquareMillimeter));
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMillimeter, Irradiation.BaseUnit, (q) => ((Irradiation)q).ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.KilojoulePerSquareMeter, (q) => ((Irradiation)q).ToUnit(IrradiationUnit.KilojoulePerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilojoulePerSquareMeter, Irradiation.BaseUnit, (q) => ((Irradiation)q).ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.KilowattHourPerSquareMeter, (q) => ((Irradiation)q).ToUnit(IrradiationUnit.KilowattHourPerSquareMeter));
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilowattHourPerSquareMeter, Irradiation.BaseUnit, (q) => ((Irradiation)q).ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.WattHourPerSquareMeter, (q) => ((Irradiation)q).ToUnit(IrradiationUnit.WattHourPerSquareMeter));
@@ -870,6 +873,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlow.BaseUnit, (q) => ((MassFlow)q).ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.GramPerDay, (q) => ((MassFlow)q).ToUnit(MassFlowUnit.GramPerDay));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlow.BaseUnit, (q) => ((MassFlow)q).ToBaseUnit());
+            unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.GramPerHour, (q) => ((MassFlow)q).ToUnit(MassFlowUnit.GramPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlow.BaseUnit, (q) => ((MassFlow)q).ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlow.BaseUnit, (q) => q);
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.HectogramPerDay, (q) => ((MassFlow)q).ToUnit(MassFlowUnit.HectogramPerDay));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlow.BaseUnit, (q) => ((MassFlow)q).ToBaseUnit());
@@ -1732,7 +1737,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerMinute, VolumeFlow.BaseUnit, (q) => ((VolumeFlow)q).ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UsGallonPerSecond, (q) => ((VolumeFlow)q).ToUnit(VolumeFlowUnit.UsGallonPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerSecond, VolumeFlow.BaseUnit, (q) => ((VolumeFlow)q).ToBaseUnit());
-#endif
         }
     }
 }

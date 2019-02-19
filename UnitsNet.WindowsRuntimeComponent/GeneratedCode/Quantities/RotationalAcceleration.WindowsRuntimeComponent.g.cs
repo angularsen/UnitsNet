@@ -67,7 +67,9 @@ namespace UnitsNet
         static RotationalAcceleration()
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.RotationalAcceleration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit RadianPerSecondSquared.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalAcceleration, which is RadianPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static RotationalAccelerationUnit BaseUnit => RotationalAccelerationUnit.RadianPerSecondSquared;
+        public static RotationalAccelerationUnit BaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
 
         /// <summary>
         /// Represents the largest possible value of RotationalAcceleration
         /// </summary>
-        public static RotationalAcceleration MaxValue => new RotationalAcceleration(double.MaxValue, BaseUnit);
+        public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalAcceleration
         /// </summary>
-        public static RotationalAcceleration MinValue => new RotationalAcceleration(double.MinValue, BaseUnit);
+        public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalAcceleration;
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalAcceleration;
 
         /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecondSquared.
         /// </summary>
-        public static RotationalAcceleration Zero => new RotationalAcceleration(0, BaseUnit);
+        public static RotationalAcceleration Zero { get; } = new RotationalAcceleration(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public RotationalAccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -492,6 +504,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((RotationalAccelerationUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

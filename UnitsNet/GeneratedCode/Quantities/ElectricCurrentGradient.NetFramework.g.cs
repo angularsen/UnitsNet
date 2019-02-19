@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In electromagnetism, the current gradient describes how the current changes in time.
     /// </summary>
-    public partial struct ElectricCurrentGradient : IQuantity<ElectricCurrentGradientUnit>, IEquatable<ElectricCurrentGradient>, IComparable, IComparable<ElectricCurrentGradient>
+    public partial struct ElectricCurrentGradient : IQuantity<ElectricCurrentGradientUnit>, IEquatable<ElectricCurrentGradient>, IComparable, IComparable<ElectricCurrentGradient>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static ElectricCurrentGradient()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricCurrentGradient(double numericValue, ElectricCurrentGradientUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ElectricCurrentGradientUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit => ElectricCurrentGradientUnit.AmperePerSecond;
+        public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MaxValue => new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MinValue => new ElectricCurrentGradient(double.MinValue, BaseUnit);
+        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricCurrentGradient;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSecond.
         /// </summary>
-        public static ElectricCurrentGradient Zero => new ElectricCurrentGradient(0, BaseUnit);
+        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -408,12 +419,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return !(left == right);
         }
@@ -426,7 +437,6 @@ namespace UnitsNet
             return CompareTo(objElectricCurrentGradient);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricCurrentGradient other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -509,6 +519,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((ElectricCurrentGradientUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -522,6 +534,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricCurrentGradientUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -531,6 +545,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new ElectricCurrentGradient(convertedValue, unit);
         }
+
+        IQuantity<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.ToUnit(ElectricCurrentGradientUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentGradientUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -630,5 +648,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(ElectricCurrentGradient))
+                return this;
+            else if(conversionType == typeof(ElectricCurrentGradientUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricCurrentGradient.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricCurrentGradient.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

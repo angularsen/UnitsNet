@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
-    public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>
+    public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static PowerRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public PowerRatio(double numericValue, PowerRatioUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<PowerRatioUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit => PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
         /// Represents the largest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MaxValue => new PowerRatio(double.MaxValue, BaseUnit);
+        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MinValue => new PowerRatio(double.MinValue, BaseUnit);
+        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.PowerRatio;
+        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
 
         /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelWatt.
         /// </summary>
-        public static PowerRatio Zero => new PowerRatio(0, BaseUnit);
+        public static PowerRatio Zero { get; } = new PowerRatio(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<PowerRatioUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -430,12 +441,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(PowerRatio left, PowerRatio right)	
+        public static bool operator ==(PowerRatio left, PowerRatio right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PowerRatio left, PowerRatio right)	
+        public static bool operator !=(PowerRatio left, PowerRatio right)
         {
             return !(left == right);
         }
@@ -448,7 +459,6 @@ namespace UnitsNet
             return CompareTo(objPowerRatio);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(PowerRatio other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -531,6 +541,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((PowerRatioUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -544,6 +556,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PowerRatioUnit) unit);
+
         /// <summary>
         ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -553,6 +567,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new PowerRatio(convertedValue, unit);
         }
+
+        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PowerRatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -654,5 +672,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerRatio)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerRatio)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerRatio)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(PowerRatio))
+                return this;
+            else if(conversionType == typeof(PowerRatioUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return PowerRatio.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return PowerRatio.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(PowerRatio)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

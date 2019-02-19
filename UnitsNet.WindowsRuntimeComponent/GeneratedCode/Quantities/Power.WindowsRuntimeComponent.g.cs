@@ -67,7 +67,9 @@ namespace UnitsNet
         static Power()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.Power, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Watt.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit => PowerUnit.Watt;
+        public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
 
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
-        public static Power MaxValue => new Power(decimal.MaxValue, BaseUnit);
+        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>
-        public static Power MinValue => new Power(decimal.MinValue, BaseUnit);
+        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Power;
+        public static QuantityType QuantityType { get; } = QuantityType.Power;
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero => new Power(0, BaseUnit);
+        public static Power Zero { get; } = new Power(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -747,6 +759,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PowerUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

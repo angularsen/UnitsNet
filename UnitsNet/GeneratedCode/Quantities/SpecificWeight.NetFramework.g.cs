@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Specificweight
     /// </remarks>
-    public partial struct SpecificWeight : IQuantity<SpecificWeightUnit>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>
+    public partial struct SpecificWeight : IQuantity<SpecificWeightUnit>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -67,6 +67,7 @@ namespace UnitsNet
         static SpecificWeight()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<SpecificWeightUnit>(QuantityType.SpecificWeight, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -74,7 +75,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SpecificWeight(double numericValue, SpecificWeightUnit unit)
         {
@@ -87,6 +87,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<SpecificWeightUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -95,22 +98,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit => SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MaxValue => new SpecificWeight(double.MaxValue, BaseUnit);
+        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MinValue => new SpecificWeight(double.MinValue, BaseUnit);
+        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.SpecificWeight;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
@@ -120,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight Zero => new SpecificWeight(0, BaseUnit);
+        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
 
         #endregion
 
@@ -131,10 +134,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -635,12 +646,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(SpecificWeight left, SpecificWeight right)	
+        public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SpecificWeight left, SpecificWeight right)	
+        public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             return !(left == right);
         }
@@ -653,7 +664,6 @@ namespace UnitsNet
             return CompareTo(objSpecificWeight);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(SpecificWeight other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -736,6 +746,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((SpecificWeightUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -749,6 +761,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((SpecificWeightUnit) unit);
+
         /// <summary>
         ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -758,6 +772,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new SpecificWeight(convertedValue, unit);
         }
+
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -889,5 +907,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(SpecificWeight))
+                return this;
+            else if(conversionType == typeof(SpecificWeightUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return SpecificWeight.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return SpecificWeight.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

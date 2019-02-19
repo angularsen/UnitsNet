@@ -1,14 +1,6 @@
 ﻿using module ".\Types.psm1"
 
-class GeneratorArgs
-{
-    [Quantity]$Quantity
-    [Unit]$BaseUnit
-    [string]$UnitEnumName
-    [boolean]$TargetIsWindowsRuntimeComponent
-}
-
-function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$target)
+function GenerateQuantitySourceCode([Quantity]$quantity)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
@@ -17,8 +9,6 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
     $baseUnitSingularName = $baseUnit.SingularName
     $baseUnitPluralName = $baseUnit.PluralName
     $unitEnumName = "$quantityName" + "Unit"
-    $wrc = $target -eq "WindowsRuntimeComponent"
-    $privateAccessModifierIfWrc = if ($wrc) { "private" } else { "public" }
 
     $baseDimensions = $quantity.BaseDimensions;
     $isDimensionless = $baseDimensions -eq $null -or ( $baseDimensions.Length -eq 0 -and $baseDimensions.Mass -eq 0 -and $baseDimensions.Time -eq 0 -and $baseDimensions.ElectricCurrent -eq 0 -and $baseDimensions.Temperature -eq 0 -and $baseDimensions.AmountOfSubstance -eq 0 -and $baseDimensions.LuminousIntensity -eq 0 )
@@ -27,7 +17,6 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
       Quantity = $quantity;
       BaseUnit = $baseUnit;
       UnitEnumName = $unitEnumName;
-      TargetIsWindowsRuntimeComponent = $wrc;
     }
     # $genArgs | fl | out-string | write-host -foreground yellow
 @"
@@ -84,7 +73,8 @@ $obsoleteAttribute = GetObsoleteAttribute($quantity);
 if ($obsoleteAttribute)
 {
   $obsoleteAttribute = "`r`n    " + $obsoleteAttribute; # apply padding to conformance with code format in this section
-}@"
+}
+@"
     /// <summary>
     ///     $($quantity.XmlDocSummary)
     /// </summary>
@@ -92,15 +82,8 @@ if ($obsoleteAttribute)
     /// <remarks>
     ///     $($quantity.XmlDocRemarks)
     /// </remarks>
-"@; }
-    if($wrc) {@"
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class $quantityName : IQuantity
-"@; } else {@"
-    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>
 "@; }@"
+    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -114,39 +97,21 @@ if ($obsoleteAttribute)
 
         static $quantityName()
         {
-"@; if($isDimensionless)
-    {@"
+"@; if($isDimensionless) {@"
             BaseDimensions = BaseDimensions.Dimensionless;
-"@; }
-    else
-    {@"
+"@; } else {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
-"@; }
-@"
+"@; }@"
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
         }
-"@; # Windows Runtime Component requires a default constructor
-    if ($wrc) {@"
-        /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit $baseUnitSingularName.
-        /// </summary>
-        /// <remarks>
-        ///     Windows Runtime Component requires a default constructor.
-        /// </remarks>
-        public $quantityName()
-        {
-            _value = 0;
-            _unit = BaseUnit;
-        }
-"@; } @"
 
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        $privateAccessModifierIfWrc $quantityName($valueType numericValue, $unitEnumName unit)
+        public $quantityName($valueType numericValue, $unitEnumName unit)
         {
             if(unit == $unitEnumName.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
@@ -185,17 +150,9 @@ if ($obsoleteAttribute)
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-"@; # Windows Runtime Component does not support IFormatProvider type
-    if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString([CanBeNull] string cultureName)
-        {
-            var provider = cultureName;
-"@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-"@; }@"
             return ToString(provider, 2);
         }
 
@@ -204,17 +161,9 @@ if ($obsoleteAttribute)
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-"@; # Windows Runtime Component does not support IFormatProvider type
-    if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString(string cultureName, int significantDigitsAfterRadix)
-        {
-            var provider = cultureName;
-"@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-"@; }@"
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
             return ToString(provider, format);
@@ -226,17 +175,9 @@ if ($obsoleteAttribute)
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-"@; # Windows Runtime Component does not support IFormatProvider type
-    if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
-        {
-            var provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
-"@; }@"
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
@@ -248,14 +189,104 @@ if ($obsoleteAttribute)
         }
 
         #endregion
-"@; if ($wrc) {@"
 
-        private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
         {
-            return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
+            return TypeCode.Object;
         }
-"@; } else {@"
-"@; }@"
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof($quantityName)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof($quantityName)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof($quantityName)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof($quantityName))
+                return this;
+            else if(conversionType == typeof($unitEnumName))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return $quantityName.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return $quantityName.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof($quantityName)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }
 "@;
@@ -271,6 +302,9 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<$unitEnumName> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -279,22 +313,22 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
         /// <summary>
         ///     The base unit of $quantityName, which is $baseUnitSingularName. All conversions go via this value.
         /// </summary>
-        public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
+        public static $unitEnumName BaseUnit { get; } = $unitEnumName.$baseUnitSingularName;
 
         /// <summary>
         /// Represents the largest possible value of $quantityName
         /// </summary>
-        public static $quantityName MaxValue => new $quantityName($valueType.MaxValue, BaseUnit);
+        public static $quantityName MaxValue { get; } = new $quantityName($valueType.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of $quantityName
         /// </summary>
-        public static $quantityName MinValue => new $quantityName($valueType.MinValue, BaseUnit);
+        public static $quantityName MinValue { get; } = new $quantityName($valueType.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.$quantityName;
+        public static QuantityType QuantityType { get; } = QuantityType.$quantityName;
 
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
@@ -304,7 +338,7 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit $baseUnitSingularName.
         /// </summary>
-        public static $quantityName Zero => new $quantityName(0, BaseUnit);
+        public static $quantityName Zero { get; } = new $quantityName(0, BaseUnit);
 
         #endregion
 "@;
@@ -316,7 +350,6 @@ function GenerateProperties([GeneratorArgs]$genArgs)
   $unitEnumName = $genArgs.UnitEnumName
   $baseUnitSingularName = $genArgs.BaseUnit.SingularName
   $valueType = $genArgs.Quantity.BaseType
-  $wrc = $genArgs.TargetIsWindowsRuntimeComponent
 @"
 
         #region Properties
@@ -324,18 +357,20 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-"@; # Windows Runtime Component does not support decimal
-        if ($wrc) {@"
-        public double Value => Convert.ToDouble(_value);
-"@; } else {@"
         public $valueType Value => _value;
-"@; }
-@"
+
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
 
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<$unitEnumName> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -402,17 +437,9 @@ function GenerateStaticMethods([GeneratorArgs]$genArgs)
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-"@; # Windows Runtime Component does not support IFormatProvider type
-if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation($unitEnumName unit, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static string GetAbbreviation($unitEnumName unit, [CanBeNull] IFormatProvider provider)
         {
-"@; }@"
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
@@ -426,7 +453,6 @@ function GenerateStaticFactoryMethods([GeneratorArgs]$genArgs)
   $unitEnumName = $genArgs.UnitEnumName
   $units = $genArgs.Quantity.Units
   $valueType = $genArgs.Quantity.BaseType
-  $wrc = $genArgs.TargetIsWindowsRuntimeComponent
 @"
 
         #region Static Factory Methods
@@ -443,13 +469,7 @@ function GenerateStaticFactoryMethods([GeneratorArgs]$genArgs)
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>$($obsoleteAttribute)
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-"@; # Windows Runtime Component does not support overloads with same number of parameters
-  if ($wrc) {@"
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static $quantityName From$($unit.PluralName)(double $valueParamName)
-"@; } else {@"
         public static $quantityName From$($unit.PluralName)(QuantityValue $valueParamName)
-"@; }@"
         {
             $valueType value = ($valueType) $valueParamName;
             return new $quantityName(value, $unitEnumName.$($unit.SingularName));
@@ -462,14 +482,7 @@ function GenerateStaticFactoryMethods([GeneratorArgs]$genArgs)
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>$quantityName unit value.</returns>
-"@; # Windows Runtime Component does not support parameters named 'value'
-if ($wrc) {@"
-        // Fix name conflict with parameter "value"
-        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static $quantityName From(double value, $unitEnumName fromUnit)
-"@; } else {@"
         public static $quantityName From(QuantityValue value, $unitEnumName fromUnit)
-"@; }@"
         {
             return new $quantityName(($valueType)value, fromUnit);
         }
@@ -486,7 +499,6 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
   $baseUnitPluralName = $genArgs.BaseUnit.PluralName
   $units = $genArgs.Quantity.Units
   $valueType = $genArgs.Quantity.BaseType
-  $wrc = $genArgs.TargetIsWindowsRuntimeComponent
 @"
 
         #region Static Parse Methods
@@ -540,17 +552,9 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-"@; # Windows Runtime Component does not support IFormatProvider type
-if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static $quantityName Parse(string str, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static $quantityName Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-"@; }@"
             return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(
                 str,
                 provider,
@@ -579,17 +583,9 @@ if ($wrc) {@"
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-"@; # Windows Runtime Component does not support IFormatProvider type
-if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out $quantityName result)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out $quantityName result)
         {
-"@; }@"
             return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(
                 str,
                 provider,
@@ -620,17 +616,9 @@ if ($wrc) {@"
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-"@; # Windows Runtime Component does not support IFormatProvider type
-if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static $unitEnumName ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static $unitEnumName ParseUnit(string str, IFormatProvider provider = null)
         {
-"@; }@"
             return UnitParser.Default.Parse<$unitEnumName>(str, provider);
         }
 
@@ -648,17 +636,9 @@ if ($wrc) {@"
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-"@; # Windows Runtime Component does not support IFormatProvider type
-if ($wrc) {@"
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out $unitEnumName unit)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-"@; } else {@"
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out $unitEnumName unit)
         {
-"@; }@"
             return UnitParser.Default.TryParse<$unitEnumName>(str, provider, out unit);
         }
 
@@ -670,7 +650,6 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
 {
   $quantityName = $genArgs.Quantity.Name
   $valueType = $genArgs.Quantity.BaseType
-  $wrc = $genArgs.TargetIsWindowsRuntimeComponent
   $scalingFactor = $genArgs.Quantity.LogarithmicScalingFactor
   # Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to use 20 instead.
   $x = 10 * $scalingFactor;
@@ -727,8 +706,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
 
 function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 {
-  # Windows Runtime Component does not support operator overloads
-  if ($wrc -or (-not $quantity.GenerateArithmetic)) { return }
+  if (-not $quantity.GenerateArithmetic) { return }
 
   # Logarithmic units required different arithmetic
   if ($quantity.Logarithmic) {
@@ -785,13 +763,10 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
 {
   $quantityName = $genArgs.Quantity.Name
-  $wrc = $genArgs.TargetIsWindowsRuntimeComponent
 @"
 
         #region Equality / IComparable
 
-"@; # Windows Runtime Component does not support operator overloads
-    if (-not $wrc) {@"
         public static bool operator <=($quantityName left, $quantityName right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
@@ -812,17 +787,16 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==($quantityName left, $quantityName right)	
+        public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=($quantityName left, $quantityName right)	
+        public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }
 
-"@; }@"
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -831,18 +805,11 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return CompareTo(obj$quantityName);
         }
 
-"@; # Windows Runtime Component does not support overloads with same number of parameters
-$accessModifier = if ($wrc) { "internal" } else { "public" } @"
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        $accessModifier int CompareTo($quantityName other)
+        public int CompareTo($quantityName other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
-"@;
- if ($wrc) {@"
-        [Windows.Foundation.Metadata.DefaultOverload]
-"@; }@"
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is $quantityName obj$quantityName))
@@ -929,6 +896,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As(($unitEnumName)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -942,6 +911,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As(($unitEnumName) unit);
+
         /// <summary>
         ///     Converts this $quantityName to another $quantityName with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -951,6 +922,10 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             var convertedValue = GetValueAs(unit);
             return new $quantityName(convertedValue, unit);
         }
+
+        IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

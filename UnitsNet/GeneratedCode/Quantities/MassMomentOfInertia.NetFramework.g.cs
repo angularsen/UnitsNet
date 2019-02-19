@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     A property of body reflects how its mass is distributed with regard to an axis.
     /// </summary>
-    public partial struct MassMomentOfInertia : IQuantity<MassMomentOfInertiaUnit>, IEquatable<MassMomentOfInertia>, IComparable, IComparable<MassMomentOfInertia>
+    public partial struct MassMomentOfInertia : IQuantity<MassMomentOfInertiaUnit>, IEquatable<MassMomentOfInertia>, IComparable, IComparable<MassMomentOfInertia>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static MassMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassMomentOfInertia(double numericValue, MassMomentOfInertiaUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MassMomentOfInertiaUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassMomentOfInertiaUnit BaseUnit => MassMomentOfInertiaUnit.KilogramSquareMeter;
+        public static MassMomentOfInertiaUnit BaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassMomentOfInertia
         /// </summary>
-        public static MassMomentOfInertia MaxValue => new MassMomentOfInertia(double.MaxValue, BaseUnit);
+        public static MassMomentOfInertia MaxValue { get; } = new MassMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassMomentOfInertia
         /// </summary>
-        public static MassMomentOfInertia MinValue => new MassMomentOfInertia(double.MinValue, BaseUnit);
+        public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassMomentOfInertia;
+        public static QuantityType QuantityType { get; } = QuantityType.MassMomentOfInertia;
 
         /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramSquareMeter.
         /// </summary>
-        public static MassMomentOfInertia Zero => new MassMomentOfInertia(0, BaseUnit);
+        public static MassMomentOfInertia Zero { get; } = new MassMomentOfInertia(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MassMomentOfInertiaUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -786,12 +797,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(MassMomentOfInertia left, MassMomentOfInertia right)	
+        public static bool operator ==(MassMomentOfInertia left, MassMomentOfInertia right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassMomentOfInertia left, MassMomentOfInertia right)	
+        public static bool operator !=(MassMomentOfInertia left, MassMomentOfInertia right)
         {
             return !(left == right);
         }
@@ -804,7 +815,6 @@ namespace UnitsNet
             return CompareTo(objMassMomentOfInertia);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MassMomentOfInertia other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -887,6 +897,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MassMomentOfInertiaUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -900,6 +912,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassMomentOfInertiaUnit) unit);
+
         /// <summary>
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -909,6 +923,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new MassMomentOfInertia(convertedValue, unit);
         }
+
+        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -1062,5 +1080,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(MassMomentOfInertia))
+                return this;
+            else if(conversionType == typeof(MassMomentOfInertiaUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MassMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MassMomentOfInertia.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

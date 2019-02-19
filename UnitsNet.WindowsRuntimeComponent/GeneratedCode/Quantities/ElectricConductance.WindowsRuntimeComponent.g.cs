@@ -70,7 +70,9 @@ namespace UnitsNet
         static ElectricConductance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.ElectricConductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Siemens.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricConductance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricConductanceUnit BaseUnit => ElectricConductanceUnit.Siemens;
+        public static ElectricConductanceUnit BaseUnit { get; } = ElectricConductanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MaxValue => new ElectricConductance(double.MaxValue, BaseUnit);
+        public static ElectricConductance MaxValue { get; } = new ElectricConductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MinValue => new ElectricConductance(double.MinValue, BaseUnit);
+        public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricConductance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductance;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricConductance Zero => new ElectricConductance(0, BaseUnit);
+        public static ElectricConductance Zero { get; } = new ElectricConductance(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricConductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -495,6 +507,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricConductanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

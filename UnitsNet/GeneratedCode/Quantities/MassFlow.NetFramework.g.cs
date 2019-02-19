@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
-    public partial struct MassFlow : IQuantity<MassFlowUnit>, IEquatable<MassFlow>, IComparable, IComparable<MassFlow>
+    public partial struct MassFlow : IQuantity<MassFlowUnit>, IEquatable<MassFlow>, IComparable, IComparable<MassFlow>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static MassFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo<MassFlowUnit>(QuantityType.MassFlow, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassFlow(double numericValue, MassFlowUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MassFlowUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit => MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of MassFlow
         /// </summary>
-        public static MassFlow MaxValue => new MassFlow(double.MaxValue, BaseUnit);
+        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlow
         /// </summary>
-        public static MassFlow MinValue => new MassFlow(double.MinValue, BaseUnit);
+        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassFlow;
+        public static QuantityType QuantityType { get; } = QuantityType.MassFlow;
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero => new MassFlow(0, BaseUnit);
+        public static MassFlow Zero { get; } = new MassFlow(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MassFlowUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -181,6 +192,11 @@ namespace UnitsNet
         ///     Get MassFlow in GramsPerDay.
         /// </summary>
         public double GramsPerDay => As(MassFlowUnit.GramPerDay);
+
+        /// <summary>
+        ///     Get MassFlow in GramsPerHour.
+        /// </summary>
+        public double GramsPerHour => As(MassFlowUnit.GramPerHour);
 
         /// <summary>
         ///     Get MassFlow in GramsPerSecond.
@@ -388,6 +404,15 @@ namespace UnitsNet
         {
             double value = (double) gramsperday;
             return new MassFlow(value, MassFlowUnit.GramPerDay);
+        }
+        /// <summary>
+        ///     Get MassFlow from GramsPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlow FromGramsPerHour(QuantityValue gramsperhour)
+        {
+            double value = (double) gramsperhour;
+            return new MassFlow(value, MassFlowUnit.GramPerHour);
         }
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
@@ -814,12 +839,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(MassFlow left, MassFlow right)	
+        public static bool operator ==(MassFlow left, MassFlow right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassFlow left, MassFlow right)	
+        public static bool operator !=(MassFlow left, MassFlow right)
         {
             return !(left == right);
         }
@@ -832,7 +857,6 @@ namespace UnitsNet
             return CompareTo(objMassFlow);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MassFlow other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -915,6 +939,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MassFlowUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -928,6 +954,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassFlowUnit) unit);
+
         /// <summary>
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -937,6 +965,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new MassFlow(convertedValue, unit);
         }
+
+        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassFlowUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -954,6 +986,7 @@ namespace UnitsNet
                 case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
                 case MassFlowUnit.GramPerDay: return _value/86400;
+                case MassFlowUnit.GramPerHour: return _value/3600;
                 case MassFlowUnit.GramPerSecond: return _value;
                 case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
@@ -1009,6 +1042,7 @@ namespace UnitsNet
                 case MassFlowUnit.DecigramPerDay: return (baseUnitValue*86400) / 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
                 case MassFlowUnit.GramPerDay: return baseUnitValue*86400;
+                case MassFlowUnit.GramPerHour: return baseUnitValue*3600;
                 case MassFlowUnit.GramPerSecond: return baseUnitValue;
                 case MassFlowUnit.HectogramPerDay: return (baseUnitValue*86400) / 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
@@ -1094,5 +1128,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassFlow)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassFlow)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(MassFlow)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(MassFlow))
+                return this;
+            else if(conversionType == typeof(MassFlowUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MassFlow.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MassFlow.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MassFlow)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

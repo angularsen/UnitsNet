@@ -67,7 +67,9 @@ namespace UnitsNet
         static VitaminA()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo(QuantityType.VitaminA, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit BaseUnit => VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
         /// Represents the largest possible value of VitaminA
         /// </summary>
-        public static VitaminA MaxValue => new VitaminA(double.MaxValue, BaseUnit);
+        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VitaminA
         /// </summary>
-        public static VitaminA MinValue => new VitaminA(double.MinValue, BaseUnit);
+        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.VitaminA;
+        public static QuantityType QuantityType { get; } = QuantityType.VitaminA;
 
         /// <summary>
         ///     All units of measurement for the VitaminA quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero => new VitaminA(0, BaseUnit);
+        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -462,6 +474,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((VitaminAUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

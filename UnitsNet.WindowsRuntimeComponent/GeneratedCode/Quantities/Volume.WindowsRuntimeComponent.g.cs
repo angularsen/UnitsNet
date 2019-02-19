@@ -67,7 +67,9 @@ namespace UnitsNet
         static Volume()
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
         /// </summary>
-        public static VolumeUnit BaseUnit => VolumeUnit.CubicMeter;
+        public static VolumeUnit BaseUnit { get; } = VolumeUnit.CubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Volume
         /// </summary>
-        public static Volume MaxValue => new Volume(double.MaxValue, BaseUnit);
+        public static Volume MaxValue { get; } = new Volume(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Volume
         /// </summary>
-        public static Volume MinValue => new Volume(double.MinValue, BaseUnit);
+        public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Volume;
+        public static QuantityType QuantityType { get; } = QuantityType.Volume;
 
         /// <summary>
         ///     All units of measurement for the Volume quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume Zero => new Volume(0, BaseUnit);
+        public static Volume Zero { get; } = new Volume(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -1122,6 +1134,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((VolumeUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

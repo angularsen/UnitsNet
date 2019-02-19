@@ -67,7 +67,9 @@ namespace UnitsNet
         static MassFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.MassFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit => MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of MassFlow
         /// </summary>
-        public static MassFlow MaxValue => new MassFlow(double.MaxValue, BaseUnit);
+        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlow
         /// </summary>
-        public static MassFlow MinValue => new MassFlow(double.MinValue, BaseUnit);
+        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassFlow;
+        public static QuantityType QuantityType { get; } = QuantityType.MassFlow;
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero => new MassFlow(0, BaseUnit);
+        public static MassFlow Zero { get; } = new MassFlow(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -195,6 +207,11 @@ namespace UnitsNet
         ///     Get MassFlow in GramsPerDay.
         /// </summary>
         public double GramsPerDay => As(MassFlowUnit.GramPerDay);
+
+        /// <summary>
+        ///     Get MassFlow in GramsPerHour.
+        /// </summary>
+        public double GramsPerHour => As(MassFlowUnit.GramPerHour);
 
         /// <summary>
         ///     Get MassFlow in GramsPerSecond.
@@ -410,6 +427,16 @@ namespace UnitsNet
         {
             double value = (double) gramsperday;
             return new MassFlow(value, MassFlowUnit.GramPerDay);
+        }
+        /// <summary>
+        ///     Get MassFlow from GramsPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromGramsPerHour(double gramsperhour)
+        {
+            double value = (double) gramsperhour;
+            return new MassFlow(value, MassFlowUnit.GramPerHour);
         }
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
@@ -898,6 +925,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(object unit) => As((MassFlowUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -937,6 +966,7 @@ namespace UnitsNet
                 case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
                 case MassFlowUnit.GramPerDay: return _value/86400;
+                case MassFlowUnit.GramPerHour: return _value/3600;
                 case MassFlowUnit.GramPerSecond: return _value;
                 case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
@@ -992,6 +1022,7 @@ namespace UnitsNet
                 case MassFlowUnit.DecigramPerDay: return (baseUnitValue*86400) / 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
                 case MassFlowUnit.GramPerDay: return baseUnitValue*86400;
+                case MassFlowUnit.GramPerHour: return baseUnitValue*3600;
                 case MassFlowUnit.GramPerSecond: return baseUnitValue;
                 case MassFlowUnit.HectogramPerDay: return (baseUnitValue*86400) / 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;

@@ -67,7 +67,9 @@ namespace UnitsNet
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.VolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
+        public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of VolumeFlow
         /// </summary>
-        public static VolumeFlow MaxValue => new VolumeFlow(double.MaxValue, BaseUnit);
+        public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumeFlow
         /// </summary>
-        public static VolumeFlow MinValue => new VolumeFlow(double.MinValue, BaseUnit);
+        public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.VolumeFlow;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumeFlow;
 
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
+        public static VolumeFlow Zero { get; } = new VolumeFlow(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -1167,6 +1179,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((VolumeFlowUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
-    public partial struct Level : IQuantity<LevelUnit>, IEquatable<Level>, IComparable, IComparable<Level>
+    public partial struct Level : IQuantity<LevelUnit>, IEquatable<Level>, IComparable, IComparable<Level>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static Level()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<LevelUnit>(QuantityType.Level, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Level(double numericValue, LevelUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LevelUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Level, which is Decibel. All conversions go via this value.
         /// </summary>
-        public static LevelUnit BaseUnit => LevelUnit.Decibel;
+        public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
         /// Represents the largest possible value of Level
         /// </summary>
-        public static Level MaxValue => new Level(double.MaxValue, BaseUnit);
+        public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Level
         /// </summary>
-        public static Level MinValue => new Level(double.MinValue, BaseUnit);
+        public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Level;
+        public static QuantityType QuantityType { get; } = QuantityType.Level;
 
         /// <summary>
         ///     All units of measurement for the Level quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Decibel.
         /// </summary>
-        public static Level Zero => new Level(0, BaseUnit);
+        public static Level Zero { get; } = new Level(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -430,12 +441,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(Level left, Level right)	
+        public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Level left, Level right)	
+        public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
@@ -448,7 +459,6 @@ namespace UnitsNet
             return CompareTo(objLevel);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Level other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -531,6 +541,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((LevelUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -544,6 +556,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LevelUnit) unit);
+
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -553,6 +567,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new Level(convertedValue, unit);
         }
+
+        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -654,5 +672,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Level)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Level)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Level)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(Level))
+                return this;
+            else if(conversionType == typeof(LevelUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Level.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Level.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Level)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

@@ -50,7 +50,6 @@ namespace UnitsNet
     {
         public static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-#if !WINDOWS_UWP
 "@;
 foreach ($quantity in $quantities)
 {
@@ -77,7 +76,6 @@ foreach ($quantity in $quantities)
     }
 }
 @"
-#endif
         }
     }
 }

@@ -70,7 +70,9 @@ namespace UnitsNet
         static Illuminance()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+            Info = new QuantityInfo(QuantityType.Illuminance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Lux.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit BaseUnit => IlluminanceUnit.Lux;
+        public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
 
         /// <summary>
         /// Represents the largest possible value of Illuminance
         /// </summary>
-        public static Illuminance MaxValue => new Illuminance(double.MaxValue, BaseUnit);
+        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Illuminance
         /// </summary>
-        public static Illuminance MinValue => new Illuminance(double.MinValue, BaseUnit);
+        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Illuminance;
+        public static QuantityType QuantityType { get; } = QuantityType.Illuminance;
 
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero => new Illuminance(0, BaseUnit);
+        public static Illuminance Zero { get; } = new Illuminance(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public IlluminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -510,6 +522,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((IlluminanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

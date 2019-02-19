@@ -70,7 +70,9 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.ElectricResistivity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit => ElectricResistivityUnit.OhmMeter;
+        public static ElectricResistivityUnit BaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MaxValue => new ElectricResistivity(double.MaxValue, BaseUnit);
+        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MinValue => new ElectricResistivity(double.MinValue, BaseUnit);
+        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricResistivity;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistivity;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero => new ElectricResistivity(0, BaseUnit);
+        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -660,6 +672,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricResistivityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

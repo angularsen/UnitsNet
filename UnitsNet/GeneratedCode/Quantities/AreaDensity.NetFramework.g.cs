@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
-    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>
+    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AreaDensity(double numericValue, AreaDensityUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<AreaDensityUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaDensityUnit BaseUnit => AreaDensityUnit.KilogramPerSquareMeter;
+        public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MaxValue => new AreaDensity(double.MaxValue, BaseUnit);
+        public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MinValue => new AreaDensity(double.MinValue, BaseUnit);
+        public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.AreaDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
 
         /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
-        public static AreaDensity Zero => new AreaDensity(0, BaseUnit);
+        public static AreaDensity Zero { get; } = new AreaDensity(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<AreaDensityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -408,12 +419,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(AreaDensity left, AreaDensity right)	
+        public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AreaDensity left, AreaDensity right)	
+        public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             return !(left == right);
         }
@@ -426,7 +437,6 @@ namespace UnitsNet
             return CompareTo(objAreaDensity);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AreaDensity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -509,6 +519,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((AreaDensityUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -522,6 +534,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AreaDensityUnit) unit);
+
         /// <summary>
         ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -531,6 +545,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new AreaDensity(convertedValue, unit);
         }
+
+        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -630,5 +648,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(AreaDensity))
+                return this;
+            else if(conversionType == typeof(AreaDensityUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return AreaDensity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return AreaDensity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(AreaDensity)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

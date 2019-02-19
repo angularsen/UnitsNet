@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
     /// </summary>
-    public partial struct Temperature : IQuantity<TemperatureUnit>, IEquatable<Temperature>, IComparable, IComparable<Temperature>
+    public partial struct Temperature : IQuantity<TemperatureUnit>, IEquatable<Temperature>, IComparable, IComparable<Temperature>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,6 +64,7 @@ namespace UnitsNet
         static Temperature()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -71,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Temperature(double numericValue, TemperatureUnit unit)
         {
@@ -84,6 +84,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<TemperatureUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -92,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureUnit BaseUnit => TemperatureUnit.Kelvin;
+        public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
 
         /// <summary>
         /// Represents the largest possible value of Temperature
         /// </summary>
-        public static Temperature MaxValue => new Temperature(double.MaxValue, BaseUnit);
+        public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Temperature
         /// </summary>
-        public static Temperature MinValue => new Temperature(double.MinValue, BaseUnit);
+        public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Temperature;
+        public static QuantityType QuantityType { get; } = QuantityType.Temperature;
 
         /// <summary>
         ///     All units of measurement for the Temperature quantity.
@@ -117,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature Zero => new Temperature(0, BaseUnit);
+        public static Temperature Zero { get; } = new Temperature(0, BaseUnit);
 
         #endregion
 
@@ -128,10 +131,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public TemperatureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<TemperatureUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -467,12 +478,12 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(Temperature left, Temperature right)	
+        public static bool operator ==(Temperature left, Temperature right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Temperature left, Temperature right)	
+        public static bool operator !=(Temperature left, Temperature right)
         {
             return !(left == right);
         }
@@ -485,7 +496,6 @@ namespace UnitsNet
             return CompareTo(objTemperature);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Temperature other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
@@ -568,6 +578,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((TemperatureUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -581,6 +593,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((TemperatureUnit) unit);
+
         /// <summary>
         ///     Converts this Temperature to another Temperature with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -590,6 +604,10 @@ namespace UnitsNet
             var convertedValue = GetValueAs(unit);
             return new Temperature(convertedValue, unit);
         }
+
+        IQuantity<TemperatureUnit> IQuantity<TemperatureUnit>.ToUnit(TemperatureUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -703,5 +721,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Temperature)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Temperature)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(Temperature)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(Temperature))
+                return this;
+            else if(conversionType == typeof(TemperatureUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Temperature.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Temperature.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Temperature)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }
