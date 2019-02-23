@@ -88,7 +88,7 @@
       "PluralName": "WattHours",
       "FromUnitToBaseFunc": "x*3600d",
       "FromBaseToUnitFunc": "x/3600d",
-      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

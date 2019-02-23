@@ -339,6 +339,8 @@ namespace UnitsNet
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Megajoule, new string[]{"MJ"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MWh"}),
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MВт/ч"}),
+                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.TerawattHour, new string[]{"TWh"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.TerawattHour, new string[]{"TВт/ч"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"th (E.C.)"}),
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"Европейский терм"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermImperial, new string[]{"th (imp.)"}),
