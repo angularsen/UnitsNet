@@ -55,21 +55,17 @@ namespace UnitsNet
             RegisterDefaultConversions(Default);
         }
 
-        public UnitConverter()
+        public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction conversionFunction)
+            where TQuantity : IQuantity
         {
+            SetConversionFunction(typeof(TQuantity), from, typeof(TQuantity), to, conversionFunction);
         }
 
-        public void SetConversionFunction<QuantityType>(Enum from, Enum to, ConversionFunction conversionFunction)
-            where QuantityType : IQuantity
+        public void SetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, ConversionFunction conversionFunction)
+            where TQuantityFrom : IQuantity
+            where TQuantityTo : IQuantity
         {
-            SetConversionFunction(typeof(QuantityType), from, typeof(QuantityType), to, conversionFunction);
-        }
-
-        public void SetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to, ConversionFunction conversionFunction)
-            where SourceQuantity : IQuantity
-            where TargetQuantity : IQuantity
-        {
-            SetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to, conversionFunction);
+            SetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, conversionFunction);
         }
 
         public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
@@ -88,11 +84,11 @@ namespace UnitsNet
             return GetConversionFunction(typeof(T), from, typeof(T), to);
         }
 
-        public ConversionFunction GetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to)
-            where SourceQuantity : IQuantity
-            where TargetQuantity : IQuantity
+        public ConversionFunction GetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to)
+            where TQuantityFrom : IQuantity
+            where TQuantityTo : IQuantity
         {
-            return GetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to);
+            return GetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to);
         }
 
         public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
@@ -111,11 +107,11 @@ namespace UnitsNet
             return TryGetConversionFunction(typeof(T), from, typeof(T), to, out conversionFunction);
         }
 
-        public bool TryGetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to, out ConversionFunction conversionFunction)
-            where SourceQuantity : IQuantity
-            where TargetQuantity : IQuantity
+        public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, out ConversionFunction conversionFunction)
+            where TQuantityFrom : IQuantity
+            where TQuantityTo : IQuantity
         {
-            return TryGetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to, out conversionFunction);
+            return TryGetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, out conversionFunction);
         }
 
         public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
@@ -527,3 +523,4 @@ namespace UnitsNet
         }
     }
 }
+
