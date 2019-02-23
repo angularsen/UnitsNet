@@ -72,8 +72,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void NumberOfParticlesInTwoMolesIsDoubleAvogadroConstant()
         {
-            var oneMole = AmountOfSubstance.FromMoles(2);
-            var numberOfParticles = oneMole.NumberOfParticles();
+            var twoMoles = AmountOfSubstance.FromMoles(2);
+            var numberOfParticles = twoMoles.NumberOfParticles();
             Assert.Equal(AmountOfSubstance.AvogadroConstant * 2, numberOfParticles);
         }
     }
