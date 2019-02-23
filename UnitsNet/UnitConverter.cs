@@ -35,6 +35,9 @@ namespace UnitsNet
 
     public delegate IQuantity ConversionFunction(IQuantity inputValue);
 
+    public delegate TQuantity ConversionFunction<TQuantity>(TQuantity inputValue)
+        where TQuantity : IQuantity;
+
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
@@ -68,10 +71,12 @@ namespace UnitsNet
             RegisterDefaultConversions(Default);
         }
 
-        public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction conversionFunction)
+        public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction<TQuantity> conversionFunction)
             where TQuantity : IQuantity
         {
-            SetConversionFunction(typeof(TQuantity), from, typeof(TQuantity), to, conversionFunction);
+            var quantityType = typeof(TQuantity);
+            var conversionLookup = new ConversionFunctionLookup(quantityType, from, quantityType, to);
+            SetConversionFunction(conversionLookup, conversionFunction);
         }
 
         public void SetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, ConversionFunction conversionFunction)
@@ -90,6 +95,14 @@ namespace UnitsNet
         public void SetConversionFunction(ConversionFunctionLookup conversionLookup, ConversionFunction conversionFunction)
         {
             _conversionFunctions[conversionLookup] = conversionFunction;
+        }
+
+        public void SetConversionFunction<TQuantity>(ConversionFunctionLookup conversionLookup, ConversionFunction<TQuantity> conversionFunction)
+            where TQuantity : IQuantity
+        {
+            IQuantity TypelessConversionFunction(IQuantity quantity) => conversionFunction((TQuantity) quantity);
+
+            _conversionFunctions[conversionLookup] = TypelessConversionFunction;
         }
 
         public ConversionFunction GetConversionFunction<T>(Enum from, Enum to) where T : IQuantity

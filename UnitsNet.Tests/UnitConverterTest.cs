@@ -29,10 +29,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void CustomConversionWithSameQuantityType()
         {
-            ConversionFunction conversionFunction = (from) => Length.FromInches(18);
+            ConversionFunction<Length> conversionFunction = (from) => Length.FromInches(18);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, conversionFunction);
+            unitConverter.SetConversionFunction(LengthUnit.Meter, LengthUnit.Inch, conversionFunction);
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch);
             var converted = foundConversionFunction(Length.FromMeters(1.0));
@@ -57,10 +57,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryCustomConversionForOilBarrelsToUsGallons()
         {
-            ConversionFunction conversionFunction = (from) => Volume.FromUsGallons(from.Value * 42);
+            ConversionFunction<Volume> conversionFunction = (from) => Volume.FromUsGallons(from.Value * 42);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction);
+            unitConverter.SetConversionFunction(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction);
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon);
             var converted = foundConversionFunction(Volume.FromOilBarrels(1));
