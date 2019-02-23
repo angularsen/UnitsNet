@@ -27,6 +27,11 @@ namespace UnitsNet
 {
     public partial struct AmountOfSubstance
     {
+        /// <summary>
+        ///     The Avogadro constant is the number of constituent particles, usually molecules, 
+        ///     atoms or ions that are contained in the amount of substance given by one mole. It is the proportionality factor that relates 
+        ///     the molar mass of a substance to the mass of a sample, is designated with the symbol NA or L[1], and has the value 
+        ///     6.02214085774e23 mol−1 in the International System of Units (SI).
         public static double AvogadroConstant { get; } = 6.02214076e23;
 
         /// <summary>
