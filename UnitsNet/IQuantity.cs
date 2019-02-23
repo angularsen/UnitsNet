@@ -28,7 +28,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents a quantity.
     /// </summary>
-    public partial interface IQuantity
+    public interface IQuantity
     {
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -57,6 +57,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
         /// </summary>
         Enum Unit { get; }
+
+        /// <summary>
+        ///     The value this quantity was constructed with. Should be seen in combination with <see cref="Unit"/>.
+        /// </summary>
+        double Value { get; }
 
         /// <summary>
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
