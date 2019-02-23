@@ -57,7 +57,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryCustomConversionForOilBarrelsToUsGallons()
         {
-            ConversionFunction conversionFunction = (from) => Volume.FromUsGallons(((Volume)from).Value * 42);
+            ConversionFunction conversionFunction = (from) => Volume.FromUsGallons(from.Value * 42);
 
             var unitConverter = new UnitConverter();
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction);
