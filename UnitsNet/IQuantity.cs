@@ -58,6 +58,9 @@ namespace UnitsNet
         /// </summary>
         Enum Unit { get; }
 
+        /// <summary>
+        ///     The value this quantity was constructed with. Should be seen in combination with <see cref="Unit"/>.
+        /// </summary>
         double Value { get; }
 
         /// <summary>
