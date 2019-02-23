@@ -45,12 +45,25 @@ namespace UnitsNet
 
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).Wrap().Assembly;
+        private static readonly TypeWrapper TypeOfIQuantity;
+        private static readonly Type[] QuantityTypes;
+        private static readonly Type[] UnitTypes;
 
         private readonly Dictionary<ConversionFunctionLookup, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookup, ConversionFunction>();
 
         static UnitConverter()
         {
             Default = new UnitConverter();
+            TypeOfIQuantity = typeof(IQuantity).Wrap();
+
+            QuantityTypes = UnitsNetAssembly.GetTypes()
+                .Where(TypeOfIQuantity.IsAssignableFrom)
+                .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
+                .ToArray();
+
+            UnitTypes = UnitsNetAssembly.GetTypes()
+                .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
+                .ToArray();
 
             RegisterDefaultConversions(Default);
         }
@@ -124,17 +137,6 @@ namespace UnitsNet
         {
             return _conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
         }
-
-        private static readonly TypeWrapper TypeOfIQuantity = typeof(IQuantity).Wrap();
-
-        private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(TypeOfIQuantity.IsAssignableFrom)
-            .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
-            .ToArray();
-
-        private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
-            .ToArray();
 
         /// <summary>
         ///     Convert between any two quantity units given a numeric value and two unit enum values.
