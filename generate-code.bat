@@ -1,5 +1,4 @@
 @echo off
 SET scriptdir=%~dp0
-pushd "%scriptdir%UnitsNet\Scripts\
-powershell -ExecutionPolicy Bypass -NoProfile -File ".\GenerateUnits.ps1"
-popd
+powershell -ExecutionPolicy Bypass -NoProfile -File "%scriptdir%UnitsNet/Scripts/GenerateUnits.ps1"
+powershell -ExecutionPolicy Bypass -NoProfile -File "%scriptdir%UnitsNet.WindowsRuntimeComponent./Scripts/GenerateUnits.ps1"
