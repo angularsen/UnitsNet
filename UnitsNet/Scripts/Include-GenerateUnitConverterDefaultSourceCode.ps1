@@ -63,14 +63,14 @@ foreach ($quantity in $quantities)
         if( $quantity.BaseUnit -eq $enumValue )
         {
 @"
-            unitConverter.SetConversionFunction<$quantityName>($quantityName.BaseUnit, $quantityName.BaseUnit, (q) => q);
+            unitConverter.SetConversionFunction<$quantityName>($quantityName.BaseUnit, $quantityName.BaseUnit, q => q);
 "@;
         }
         else
         {
 @"
-            unitConverter.SetConversionFunction<$quantityName>($quantityName.BaseUnit, $unitEnumName.$enumValue, (q) => (($quantityName)q).ToUnit($unitEnumName.$enumValue));
-            unitConverter.SetConversionFunction<$quantityName>($unitEnumName.$enumValue, $quantityName.BaseUnit, (q) => (($quantityName)q).ToBaseUnit());
+            unitConverter.SetConversionFunction<$quantityName>($quantityName.BaseUnit, $unitEnumName.$enumValue, q => q.ToUnit($unitEnumName.$enumValue));
+            unitConverter.SetConversionFunction<$quantityName>($unitEnumName.$enumValue, $quantityName.BaseUnit, q => q.ToBaseUnit());
 "@;
         }
     }
