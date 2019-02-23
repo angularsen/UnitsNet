@@ -125,8 +125,10 @@ namespace UnitsNet
             return _conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
         }
 
+        private static readonly TypeWrapper TypeOfIQuantity = typeof(IQuantity).Wrap();
+
         private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(typeof(IQuantity).Wrap().IsAssignableFrom)
+            .Where(TypeOfIQuantity.IsAssignableFrom)
             .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
             .ToArray();
 
