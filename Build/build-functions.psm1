@@ -19,18 +19,22 @@ function Remove-ArtifactsDir {
 
 function Update-GeneratedCode {
   # Regenerate source code since it occasionally happens that merged pull requests did not include all the regenerated code
-  write-host -foreground blue "Generate code...`n---"
-  write-host "$root\UnitsNet\Scripts\GenerateUnits.ps1"
+  $genScriptDotNet = "$root/UnitsNet/Scripts/GenerateUnits.ps1"
+  $genScriptWrc = "$root/UnitsNet.WindowsRuntimeComponent/Scripts/GenerateUnits.ps1"
 
-  & "$root\UnitsNet\Scripts\GenerateUnits.ps1"
+  write-host -foreground blue "Generate code for .NET...`n---"
+  write-host $genScriptDotNet
+  & $genScriptDotNet
   if ($lastexitcode -ne 0) { exit 1 }
 
-  if (-not $IncludeWindowsRuntimeComponent) {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent code regen."
-  } else {
-    & "$root\UnitsNet.WindowsRuntimeComponent\Scripts\GenerateUnits.ps1"
-    if ($lastexitcode -ne 0) { exit 1 }
-  }
+  # Regenerate WRC code even if we are not building that target.
+  # The reason is that build.bat will skip WRC build since most people don't have that dependency installed.
+  # AppVeyor build server would still regen and build WRC regardless, but this way we also get the changes
+  # into pull requests so they are visible and master branch is kept up-to-date.
+  write-host -foreground blue "Generate code for Windows Runtime Component...`n---"
+  write-host $genScriptWrc
+  & $genScriptWrc
+  if ($lastexitcode -ne 0) { exit 1 }
 
   write-host -foreground blue "Generate code...END`n"
 }
