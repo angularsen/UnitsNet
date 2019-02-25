@@ -235,7 +235,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out var unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
             var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
@@ -320,7 +320,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out var unitType))
                 return false;
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
             if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnitValue)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;

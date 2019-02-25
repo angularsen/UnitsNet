@@ -30,7 +30,7 @@ namespace UnitsNet
         /// Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
         /// </summary>
         /// <param name="unitAbbreviation"></param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
         [PublicAPI]
@@ -48,7 +48,7 @@ namespace UnitsNet
         ///     <see cref="LengthUnit.Meter" /> respectively.
         /// </param>
         /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
@@ -97,7 +97,7 @@ namespace UnitsNet
         /// Try to parse a unit abbreviation.
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
         /// <param name="unitType">Type of unit enum.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]

@@ -61,10 +61,10 @@ namespace UnitsNet.Tests
             [Fact]
             public void ReturnsTheOriginalValueAndUnit()
             {
-                var oldCulture = GlobalConfiguration.DefaultCulture;
+                var oldCulture = CultureInfo.CurrentUICulture;
                 try
                 {
-                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
+                    CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                     Assert.Equal("5 kg", Mass.FromKilograms(5).ToString());
                     Assert.Equal("5,000 g", Mass.FromGrams(5000).ToString());
                     Assert.Equal("1e-04 long tn", Mass.FromLongTons(1e-4).ToString());
@@ -77,17 +77,17 @@ namespace UnitsNet.Tests
                 }
                 finally
                 {
-                    GlobalConfiguration.DefaultCulture = oldCulture;
+                    CultureInfo.CurrentUICulture = oldCulture;
                 }
             }
 
             [Fact]
             public void ConvertsToTheGivenUnit()
             {
-                var oldCulture = GlobalConfiguration.DefaultCulture;
+                var oldCulture = CultureInfo.CurrentUICulture;
                 try
                 {
-                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
+                    CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                     Assert.Equal("5,000 g", Mass.FromKilograms(5).ToUnit(MassUnit.Gram).ToString());
                     Assert.Equal("5 kg", Mass.FromGrams(5000).ToUnit(MassUnit.Kilogram).ToString());
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString());
@@ -95,41 +95,41 @@ namespace UnitsNet.Tests
                 }
                 finally
                 {
-                    GlobalConfiguration.DefaultCulture = oldCulture;
+                    CultureInfo.CurrentUICulture = oldCulture;
                 }
             }
 
             [Fact]
             public void FormatsNumberUsingGivenCulture()
             {
-                var oldCulture = GlobalConfiguration.DefaultCulture;
+                var oldCulture = CultureInfo.CurrentUICulture;
                 try
                 {
-                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
+                    CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(null));
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
                     Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
                 }
                 finally
                 {
-                    GlobalConfiguration.DefaultCulture = oldCulture;
+                    CultureInfo.CurrentUICulture = oldCulture;
                 }
             }
 
             [Fact]
             public void FormatsNumberUsingGivenDigitsAfterRadix()
             {
-                var oldCulture = GlobalConfiguration.DefaultCulture;
+                var oldCulture = CultureInfo.CurrentUICulture;
                 try
                 {
-                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
+                    CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(null, 4));
                     Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 2));
                     Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 4));
                 }
                 finally
                 {
-                    GlobalConfiguration.DefaultCulture = oldCulture;
+                    CultureInfo.CurrentUICulture = oldCulture;
                 }
             }
         }

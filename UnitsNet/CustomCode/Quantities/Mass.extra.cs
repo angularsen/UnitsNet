@@ -93,7 +93,7 @@ namespace UnitsNet
 
         public string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
-            cultureInfo = cultureInfo ?? GlobalConfiguration.DefaultCulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
 
             var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
             var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);

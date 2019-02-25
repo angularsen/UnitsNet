@@ -173,7 +173,7 @@ namespace UnitsNet
 
         public string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
-            cultureInfo = cultureInfo ?? GlobalConfiguration.DefaultCulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
 
             var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
             var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);
