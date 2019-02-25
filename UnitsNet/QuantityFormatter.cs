@@ -30,7 +30,7 @@ namespace UnitsNet
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            var digits = 0;
+            var number = 0;
             var formatString = format;
 
             if(string.IsNullOrEmpty(formatString))
@@ -40,7 +40,7 @@ namespace UnitsNet
 
             if(formatString.StartsWith("A") || formatString.StartsWith("S"))
             {
-                if(formatString.Length > 1 && !int.TryParse(formatString.Substring(1), out digits))
+                if(formatString.Length > 1 && !int.TryParse(formatString.Substring(1), out number))
                     throw new FormatException($"The {format} format string is not supported.");
 
                 formatString = formatString.Substring(0, 1);
@@ -52,7 +52,7 @@ namespace UnitsNet
                     return quantity.ToString(formatProvider, 2);
                 case "A":
                     var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
-                    return abbreviations[digits];
+                    return abbreviations[number];
                 case "V":
                     return quantity.Value.ToString(formatProvider);
                 case "U":
@@ -60,7 +60,7 @@ namespace UnitsNet
                 case "Q":
                     return quantity.QuantityInfo.Name;
                 case "S":
-                    return quantity.ToString(formatProvider, digits);
+                    return quantity.ToString(formatProvider, number);
                 default:
                     throw new FormatException($"The {format} format string is not supported.");
             }
