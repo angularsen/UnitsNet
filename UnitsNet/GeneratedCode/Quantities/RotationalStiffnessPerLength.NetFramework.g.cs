@@ -685,42 +685,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
-
-            int digits = 0;
-            string formatString = format;
-
-            if(string.IsNullOrEmpty(formatString))
-                formatString = "G";
-
-            formatString = formatString.ToUpperInvariant();
-
-            if(formatString.StartsWith("A") || formatString.StartsWith("S"))
-            {
-                if(formatString.Length > 1 && !int.TryParse(formatString.Substring(1), out digits))
-                    throw new FormatException($"The {format} format string is not supported.");
-
-                formatString = formatString.Substring(0, 1);
-            }
-
-            switch(formatString)
-            {
-                case "G":
-                    return ToString(formatProvider, 2);
-                case "A":
-                    var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations<RotationalStiffnessPerLengthUnit>(Unit, formatProvider);
-                    return abbreviations[digits];
-                case "V":
-                    return Value.ToString(formatProvider);
-                case "U":
-                    return Unit.ToString();
-                case "Q":
-                    return Info.Name;
-                case "S":
-                    return ToString(formatProvider, digits);
-                default:
-                    throw new FormatException($"The {format} format string is not supported.");
-            }
+            return QuantityFormatter.Format<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(this, format, formatProvider);
         }
 
         #endregion
