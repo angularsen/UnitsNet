@@ -66,6 +66,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
             Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, new UnitInfo<FrequencyUnit>[] {
+                new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
                 new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
                 new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
                 new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
