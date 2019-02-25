@@ -7,13 +7,12 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public sealed partial class BaseUnits : IEquatable<BaseUnits> { }
-
+    /// <inheritdoc />
     /// <summary>
     ///     Represents the base units for a quantity. All quantities, both base and derived, can be
     ///     represented by a combination of these seven base units.
     /// </summary>
-    public sealed partial class BaseUnits
+    public sealed class BaseUnits: IEquatable<BaseUnits>
     {
         /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
