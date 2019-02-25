@@ -40,5 +40,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CyclesPerMinuteInOneHertz => 60;
 
         protected override double RadiansPerSecondInOneHertz => 2*Math.PI;
+
+        protected override double BeatsPerMinuteInOneHertz => 60;
     }
 }
