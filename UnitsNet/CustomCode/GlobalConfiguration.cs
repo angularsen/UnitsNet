@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using System.Threading;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -11,18 +12,17 @@ namespace UnitsNet
     ///     Global configuration for culture, used as default culture in methods like <see cref="Length.ToString()" /> and
     ///     <see cref="Length.Parse(string)" />.
     /// </summary>
-    [Obsolete("The only property DefaultCulture is now deprecated. Manipulate CultureInfo.CurrentUICulture instead.")]
+    [Obsolete("The only property DefaultCulture is now deprecated. Manipulate Thread.CurrentThread.CurrentUICulture instead.")]
     public sealed class GlobalConfiguration
     {
         /// <summary>
-        ///     Defaults to <see cref="CultureInfo.CurrentUICulture" /> when creating an instance with no culture provided.
-        ///     Can be overridden, but note that this is static and will affect all subsequent usages.
+        ///     Wrapper for <see cref="Thread.CurrentUICulture"/>.
         /// </summary>
-        [Obsolete("Manipulate CultureInfo.CurrentUICulture instead, this property will be removed.")]
+        [Obsolete("Manipulate Thread.CurrentThread.CurrentUICulture instead, this property will be removed.")]
         public static IFormatProvider DefaultCulture
         {
-            get => CultureInfo.CurrentUICulture;
-            set => CultureInfo.CurrentUICulture = (CultureInfo) value;
+            get => Thread.CurrentThread.CurrentUICulture;
+            set => Thread.CurrentThread.CurrentUICulture = (CultureInfo) value;
         }
     }
 }
