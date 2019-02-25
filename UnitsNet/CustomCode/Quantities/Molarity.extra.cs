@@ -27,9 +27,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="density"></param>
         /// <param name="molecularWeight"></param>
+        [Obsolete("Use Density / Mass operator overload instead.")]
         public static Molarity FromDensity(Density density, Mass molecularWeight)
         {
-            return new Molarity(density, molecularWeight);
+            return density / molecularWeight;
         }
 
         #endregion
