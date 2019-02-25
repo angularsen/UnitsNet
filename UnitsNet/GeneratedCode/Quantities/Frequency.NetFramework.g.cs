@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Frequency in BeatsPerMinute.
+        /// </summary>
+        public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
+
+        /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
@@ -253,6 +258,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Frequency from BeatsPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromBeatsPerMinute(QuantityValue beatsperminute)
+        {
+            double value = (double) beatsperminute;
+            return new Frequency(value, FrequencyUnit.BeatPerMinute);
+        }
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>
@@ -683,6 +697,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case FrequencyUnit.BeatPerMinute: return _value/60;
                 case FrequencyUnit.CyclePerHour: return _value/3600;
                 case FrequencyUnit.CyclePerMinute: return _value/60;
                 case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
@@ -705,6 +720,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case FrequencyUnit.BeatPerMinute: return baseUnitValue*60;
                 case FrequencyUnit.CyclePerHour: return baseUnitValue*3600;
                 case FrequencyUnit.CyclePerMinute: return baseUnitValue*60;
                 case FrequencyUnit.Gigahertz: return (baseUnitValue) / 1e9d;

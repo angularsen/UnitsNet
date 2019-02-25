@@ -175,6 +175,8 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        double IQuantity.Value => (double) _value;
+
         /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 

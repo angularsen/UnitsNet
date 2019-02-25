@@ -377,8 +377,8 @@ function GenerateProperties([GeneratorArgs]$genArgs)
 {
   $quantityName = $genArgs.Quantity.Name
   $unitEnumName = $genArgs.UnitEnumName
-  $baseUnitSingularName = $genArgs.BaseUnit.SingularName
   $valueType = $genArgs.Quantity.BaseType
+  [bool]$isDoubleValueType = $valueType -eq "double"
 @"
 
         #region Properties
@@ -388,6 +388,10 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         /// </summary>
         public $valueType Value => _value;
 
+"@; if (-not $isDoubleValueType) { @"
+        double IQuantity.Value => (double) _value;
+
+"@; } @"
         /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
