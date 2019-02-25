@@ -402,6 +402,7 @@ namespace UnitsNet
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MillinewtonPerMeter, new string[]{"mN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NanonewtonPerMeter, new string[]{"nN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NewtonPerMeter, new string[]{"N/m"}),
+                ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.BeatPerMinute, new string[]{"bpm"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerHour, new string[]{"cph"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerMinute, new string[]{"cpm"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Gigahertz, new string[]{"GHz"}),

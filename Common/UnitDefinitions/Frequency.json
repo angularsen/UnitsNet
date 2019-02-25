@@ -55,6 +55,18 @@
           "Abbreviations": [ "cph" ]
         }
       ]
+    },
+    {
+      "SingularName": "BeatPerMinute",
+      "PluralName": "BeatsPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bpm" ]
+        }
+      ]
     }
   ]
 }
