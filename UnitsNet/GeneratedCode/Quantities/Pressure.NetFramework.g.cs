@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PressureUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -892,6 +891,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PressureUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PressureUnit)"/>
         public static bool TryParseUnit(string str, out PressureUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -916,36 +916,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Pressure operator -(Pressure right)
         {
             return new Pressure(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from adding two <see cref="Pressure"/>.</summary>
         public static Pressure operator +(Pressure left, Pressure right)
         {
             return new Pressure(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from subtracting two <see cref="Pressure"/>.</summary>
         public static Pressure operator -(Pressure left, Pressure right)
         {
             return new Pressure(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
         public static Pressure operator *(double left, Pressure right)
         {
             return new Pressure(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
         public static Pressure operator *(Pressure left, double right)
         {
             return new Pressure(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from dividing <see cref="Pressure"/> by value.</summary>
         public static Pressure operator /(Pressure left, double right)
         {
             return new Pressure(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Pressure"/> by <see cref="Pressure"/>.</summary>
         public static double operator /(Pressure left, Pressure right)
         {
             return left.Pascals / right.Pascals;
@@ -955,36 +962,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Pressure left, Pressure right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Pressure left, Pressure right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Pressure left, Pressure right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Pressure left, Pressure right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Pressure left, Pressure right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Pressure left, Pressure right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -993,11 +1009,14 @@ namespace UnitsNet
             return CompareTo(objPressure);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Pressure other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Pressure objPressure))
@@ -1006,6 +1025,8 @@ namespace UnitsNet
             return Equals(objPressure);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Pressure other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -1090,6 +1111,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PressureUnit) unit);
 
         /// <summary>
@@ -1104,6 +1126,7 @@ namespace UnitsNet
 
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             var density = Density.FromKilogramsPerCubicMeter(60.02);
             var mw = Mass.FromGrams(58.443);
-            var molarity = Molarity.FromDensity(density, mw).MolesPerCubicMeter;
+            var molarity = (density / mw).MolesPerCubicMeter;
             AssertEx.EqualTolerance(1026.98355, molarity, MolesPerCubicMeterTolerance);
         }
 

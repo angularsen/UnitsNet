@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SpeedUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -752,6 +751,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SpeedUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpeedUnit)"/>
         public static bool TryParseUnit(string str, out SpeedUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -776,36 +776,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Speed operator -(Speed right)
         {
             return new Speed(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from adding two <see cref="Speed"/>.</summary>
         public static Speed operator +(Speed left, Speed right)
         {
             return new Speed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from subtracting two <see cref="Speed"/>.</summary>
         public static Speed operator -(Speed left, Speed right)
         {
             return new Speed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
         public static Speed operator *(double left, Speed right)
         {
             return new Speed(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
         public static Speed operator *(Speed left, double right)
         {
             return new Speed(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from dividing <see cref="Speed"/> by value.</summary>
         public static Speed operator /(Speed left, double right)
         {
             return new Speed(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Speed"/> by <see cref="Speed"/>.</summary>
         public static double operator /(Speed left, Speed right)
         {
             return left.MetersPerSecond / right.MetersPerSecond;
@@ -815,36 +822,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Speed left, Speed right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Speed left, Speed right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Speed left, Speed right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Speed left, Speed right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Speed left, Speed right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Speed left, Speed right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -853,11 +869,14 @@ namespace UnitsNet
             return CompareTo(objSpeed);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Speed other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Speed objSpeed))
@@ -866,6 +885,8 @@ namespace UnitsNet
             return Equals(objSpeed);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Speed other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -950,6 +971,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SpeedUnit) unit);
 
         /// <summary>
@@ -964,6 +986,7 @@ namespace UnitsNet
 
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
 
         /// <summary>

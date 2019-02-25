@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The heat transfer coefficient or film coefficient, or film effectiveness, in thermodynamics and in mechanics is the proportionality constant between the heat flux and the thermodynamic driving force for the flow of heat (i.e., the temperature difference, ΔT)
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public HeatTransferCoefficientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<HeatTransferCoefficientUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -332,6 +331,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<HeatTransferCoefficientUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.HeatTransferCoefficientUnit)"/>
         public static bool TryParseUnit(string str, out HeatTransferCoefficientUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -356,36 +356,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static HeatTransferCoefficient operator -(HeatTransferCoefficient right)
         {
             return new HeatTransferCoefficient(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from adding two <see cref="HeatTransferCoefficient"/>.</summary>
         public static HeatTransferCoefficient operator +(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return new HeatTransferCoefficient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from subtracting two <see cref="HeatTransferCoefficient"/>.</summary>
         public static HeatTransferCoefficient operator -(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return new HeatTransferCoefficient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from multiplying value and <see cref="HeatTransferCoefficient"/>.</summary>
         public static HeatTransferCoefficient operator *(double left, HeatTransferCoefficient right)
         {
             return new HeatTransferCoefficient(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from multiplying value and <see cref="HeatTransferCoefficient"/>.</summary>
         public static HeatTransferCoefficient operator *(HeatTransferCoefficient left, double right)
         {
             return new HeatTransferCoefficient(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from dividing <see cref="HeatTransferCoefficient"/> by value.</summary>
         public static HeatTransferCoefficient operator /(HeatTransferCoefficient left, double right)
         {
             return new HeatTransferCoefficient(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="HeatTransferCoefficient"/> by <see cref="HeatTransferCoefficient"/>.</summary>
         public static double operator /(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.WattsPerSquareMeterKelvin / right.WattsPerSquareMeterKelvin;
@@ -395,36 +402,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(HeatTransferCoefficient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(HeatTransferCoefficient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -433,11 +449,14 @@ namespace UnitsNet
             return CompareTo(objHeatTransferCoefficient);
         }
 
+        /// <inheritdoc />
         public int CompareTo(HeatTransferCoefficient other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(HeatTransferCoefficient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is HeatTransferCoefficient objHeatTransferCoefficient))
@@ -446,6 +465,8 @@ namespace UnitsNet
             return Equals(objHeatTransferCoefficient);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(HeatTransferCoefficient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(HeatTransferCoefficient other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -530,6 +551,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((HeatTransferCoefficientUnit) unit);
 
         /// <summary>
@@ -544,6 +566,7 @@ namespace UnitsNet
 
         IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(HeatTransferCoefficientUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((HeatTransferCoefficientUnit) unit);
 
         /// <summary>

@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public RotationalSpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<RotationalSpeedUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -486,6 +485,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<RotationalSpeedUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RotationalSpeedUnit)"/>
         public static bool TryParseUnit(string str, out RotationalSpeedUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -510,36 +510,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static RotationalSpeed operator -(RotationalSpeed right)
         {
             return new RotationalSpeed(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalSpeed"/> from adding two <see cref="RotationalSpeed"/>.</summary>
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
             return new RotationalSpeed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalSpeed"/> from subtracting two <see cref="RotationalSpeed"/>.</summary>
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
             return new RotationalSpeed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalSpeed"/> from multiplying value and <see cref="RotationalSpeed"/>.</summary>
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
         {
             return new RotationalSpeed(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalSpeed"/> from multiplying value and <see cref="RotationalSpeed"/>.</summary>
         public static RotationalSpeed operator *(RotationalSpeed left, double right)
         {
             return new RotationalSpeed(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalSpeed"/> from dividing <see cref="RotationalSpeed"/> by value.</summary>
         public static RotationalSpeed operator /(RotationalSpeed left, double right)
         {
             return new RotationalSpeed(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="RotationalSpeed"/> by <see cref="RotationalSpeed"/>.</summary>
         public static double operator /(RotationalSpeed left, RotationalSpeed right)
         {
             return left.RadiansPerSecond / right.RadiansPerSecond;
@@ -549,36 +556,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -587,11 +603,14 @@ namespace UnitsNet
             return CompareTo(objRotationalSpeed);
         }
 
+        /// <inheritdoc />
         public int CompareTo(RotationalSpeed other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is RotationalSpeed objRotationalSpeed))
@@ -600,6 +619,8 @@ namespace UnitsNet
             return Equals(objRotationalSpeed);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(RotationalSpeed other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -684,6 +705,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((RotationalSpeedUnit) unit);
 
         /// <summary>
@@ -698,6 +720,7 @@ namespace UnitsNet
 
         IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(RotationalSpeedUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((RotationalSpeedUnit) unit);
 
         /// <summary>

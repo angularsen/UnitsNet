@@ -40,13 +40,16 @@ namespace UnitsNet.Tests
         {
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
-
-            var lengthUnits = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
-            Assert.Equal(lengthUnits, quantityInfo.Units);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
+            var lengthUnits = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
             var lengthUnitNames = lengthUnits.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(lengthUnits, quantityInfo.Units);
             Assert.Equal(lengthUnitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
     }
 }

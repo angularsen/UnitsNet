@@ -28,6 +28,8 @@ namespace UnitsNet
     /// </summary>
     public enum QuantityType
     {
+// Missing XML comment for public type or member
+#pragma warning disable CS1591
         Undefined = 0,
         Acceleration,
         AmountOfSubstance,
@@ -119,5 +121,7 @@ namespace UnitsNet
         VitaminA,
         Volume,
         VolumeFlow,
+// Missing XML comment for public type or member
+#pragma warning restore CS1591
     }
 }

@@ -9,12 +9,25 @@ using UnitsNet.Units;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
+    /// <summary>
+    ///     Parses units given a unit abbreviations cache.
+    ///     The static instance <see cref="Default"/> is used internally to parse quantities and units using the
+    ///     default abbreviations cache for all units and abbreviations defined in the library.
+    /// </summary>
     public sealed class UnitParser
     {
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
+        /// <summary>
+        ///     The default static instance used internally to parse quantities and units using the
+        ///     default abbreviations cache for all units and abbreviations defined in the library.
+        /// </summary>
         public static UnitParser Default { get; }
 
+        /// <summary>
+        ///     Create a parser using the given unit abbreviations cache.
+        /// </summary>
+        /// <param name="unitAbbreviationsCache"></param>
         public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;

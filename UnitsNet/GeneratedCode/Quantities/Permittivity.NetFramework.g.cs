@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In electromagnetism, permittivity is the measure of resistance that is encountered when forming an electric field in a particular medium.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PermittivityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -321,6 +320,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PermittivityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PermittivityUnit)"/>
         public static bool TryParseUnit(string str, out PermittivityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -345,36 +345,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Permittivity operator -(Permittivity right)
         {
             return new Permittivity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Permittivity"/> from adding two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator +(Permittivity left, Permittivity right)
         {
             return new Permittivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Permittivity"/> from subtracting two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator -(Permittivity left, Permittivity right)
         {
             return new Permittivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
         public static Permittivity operator *(double left, Permittivity right)
         {
             return new Permittivity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
         public static Permittivity operator *(Permittivity left, double right)
         {
             return new Permittivity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Permittivity"/> from dividing <see cref="Permittivity"/> by value.</summary>
         public static Permittivity operator /(Permittivity left, double right)
         {
             return new Permittivity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Permittivity"/> by <see cref="Permittivity"/>.</summary>
         public static double operator /(Permittivity left, Permittivity right)
         {
             return left.FaradsPerMeter / right.FaradsPerMeter;
@@ -384,36 +391,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Permittivity left, Permittivity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Permittivity left, Permittivity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Permittivity left, Permittivity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Permittivity left, Permittivity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Permittivity left, Permittivity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Permittivity left, Permittivity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -422,11 +438,14 @@ namespace UnitsNet
             return CompareTo(objPermittivity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Permittivity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Permittivity objPermittivity))
@@ -435,6 +454,8 @@ namespace UnitsNet
             return Equals(objPermittivity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Permittivity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -519,6 +540,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PermittivityUnit) unit);
 
         /// <summary>
@@ -533,6 +555,7 @@ namespace UnitsNet
 
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PermittivityUnit) unit);
 
         /// <summary>

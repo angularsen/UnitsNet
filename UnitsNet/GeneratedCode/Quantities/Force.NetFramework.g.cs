@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ForceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -486,6 +485,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ForceUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ForceUnit)"/>
         public static bool TryParseUnit(string str, out ForceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -510,36 +510,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Force operator -(Force right)
         {
             return new Force(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Force"/> from adding two <see cref="Force"/>.</summary>
         public static Force operator +(Force left, Force right)
         {
             return new Force(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Force"/> from subtracting two <see cref="Force"/>.</summary>
         public static Force operator -(Force left, Force right)
         {
             return new Force(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
         public static Force operator *(double left, Force right)
         {
             return new Force(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
         public static Force operator *(Force left, double right)
         {
             return new Force(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Force"/> from dividing <see cref="Force"/> by value.</summary>
         public static Force operator /(Force left, double right)
         {
             return new Force(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Force"/> by <see cref="Force"/>.</summary>
         public static double operator /(Force left, Force right)
         {
             return left.Newtons / right.Newtons;
@@ -549,36 +556,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Force left, Force right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Force left, Force right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Force left, Force right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Force left, Force right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Force left, Force right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Force left, Force right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -587,11 +603,14 @@ namespace UnitsNet
             return CompareTo(objForce);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Force other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Force objForce))
@@ -600,6 +619,8 @@ namespace UnitsNet
             return Equals(objForce);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Force other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -684,6 +705,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ForceUnit) unit);
 
         /// <summary>
@@ -698,6 +720,7 @@ namespace UnitsNet
 
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ForceUnit) unit);
 
         /// <summary>

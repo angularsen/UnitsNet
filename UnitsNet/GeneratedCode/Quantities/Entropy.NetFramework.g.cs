@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<EntropyUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -402,6 +401,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<EntropyUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EntropyUnit)"/>
         public static bool TryParseUnit(string str, out EntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -426,36 +426,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Entropy operator -(Entropy right)
         {
             return new Entropy(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Entropy"/> from adding two <see cref="Entropy"/>.</summary>
         public static Entropy operator +(Entropy left, Entropy right)
         {
             return new Entropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Entropy"/> from subtracting two <see cref="Entropy"/>.</summary>
         public static Entropy operator -(Entropy left, Entropy right)
         {
             return new Entropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
         public static Entropy operator *(double left, Entropy right)
         {
             return new Entropy(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
         public static Entropy operator *(Entropy left, double right)
         {
             return new Entropy(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Entropy"/> from dividing <see cref="Entropy"/> by value.</summary>
         public static Entropy operator /(Entropy left, double right)
         {
             return new Entropy(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Entropy"/> by <see cref="Entropy"/>.</summary>
         public static double operator /(Entropy left, Entropy right)
         {
             return left.JoulesPerKelvin / right.JoulesPerKelvin;
@@ -465,36 +472,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Entropy left, Entropy right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Entropy left, Entropy right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Entropy left, Entropy right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Entropy left, Entropy right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Entropy left, Entropy right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Entropy left, Entropy right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -503,11 +519,14 @@ namespace UnitsNet
             return CompareTo(objEntropy);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Entropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Entropy objEntropy))
@@ -516,6 +535,8 @@ namespace UnitsNet
             return Equals(objEntropy);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Entropy other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -600,6 +621,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((EntropyUnit) unit);
 
         /// <summary>
@@ -614,6 +636,7 @@ namespace UnitsNet
 
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((EntropyUnit) unit);
 
         /// <summary>

@@ -17,6 +17,9 @@ namespace UnitsNet
     /// </remarks>
     public class UnitInfo
     {
+        /// <summary>Creates an instance from a unit enum value.</summary>
+        /// <param name="value">The unit enum value.</param>
+        /// <example>new UnitInfo(LengthUnit.Meter)</example>
         public UnitInfo(Enum value)
         {
             Value = value;
@@ -27,7 +30,7 @@ namespace UnitsNet
         /// The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
         /// <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
-        public Enum Value;
+        public Enum Value { get; }
 
         /// <summary>
         /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
@@ -45,11 +48,13 @@ namespace UnitsNet
     public class UnitInfo<TUnit> : UnitInfo
         where TUnit : Enum
     {
+        /// <inheritdoc />
         public UnitInfo(TUnit value) : base(value)
         {
             Value = value;
         }
 
+        /// <inheritdoc cref="UnitInfo.Value"/>
         public new TUnit Value { get; }
     }
 }
