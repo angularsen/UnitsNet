@@ -264,6 +264,11 @@ namespace UnitsNet
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Get Energy in TerawattHours.
+        /// </summary>
+        public double TerawattHours => As(EnergyUnit.TerawattHour);
+
+        /// <summary>
         ///     Get Energy in ThermsEc.
         /// </summary>
         public double ThermsEc => As(EnergyUnit.ThermEc);
@@ -492,6 +497,16 @@ namespace UnitsNet
         {
             double value = (double) megawatthours;
             return new Energy(value, EnergyUnit.MegawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from TerawattHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromTerawattHours(double terawatthours)
+        {
+            double value = (double) terawatthours;
+            return new Energy(value, EnergyUnit.TerawattHour);
         }
         /// <summary>
         ///     Get Energy from ThermsEc.
@@ -842,6 +857,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
                 case EnergyUnit.ThermUs: return _value*1.054804e8;
@@ -878,6 +894,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
                 case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
