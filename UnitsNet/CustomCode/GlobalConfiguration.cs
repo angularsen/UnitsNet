@@ -19,6 +19,10 @@ namespace UnitsNet
         ///     Can be overridden, but note that this is static and will affect all subsequent usages.
         /// </summary>
         [Obsolete("Manipulate CultureInfo.CurrentUICulture instead, this property will be removed.")]
-        public static IFormatProvider DefaultCulture { get; set; } = CultureInfo.CurrentUICulture;
+        public static IFormatProvider DefaultCulture
+        {
+            get => CultureInfo.CurrentUICulture;
+            set => CultureInfo.CurrentUICulture = (CultureInfo) value;
+        }
     }
 }
