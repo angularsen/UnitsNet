@@ -25,8 +25,7 @@ namespace UnitsNet
 {
     public class QuantityFormatter
     {
-        public static string Format<TQuantity, TUnitType>(TQuantity quantity, string format, IFormatProvider formatProvider)
-            where TQuantity : IQuantity<TUnitType>
+        public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
             where TUnitType : Enum
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;

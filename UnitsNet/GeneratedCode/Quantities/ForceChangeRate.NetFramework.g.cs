@@ -36,7 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -813,7 +812,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<ForceChangeRate, ForceChangeRateUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<ForceChangeRateUnit>(this, format, formatProvider);
         }
 
         #endregion

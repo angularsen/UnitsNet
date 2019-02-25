@@ -36,7 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -656,7 +655,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<ElectricField, ElectricFieldUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<ElectricFieldUnit>(this, format, formatProvider);
         }
 
         #endregion

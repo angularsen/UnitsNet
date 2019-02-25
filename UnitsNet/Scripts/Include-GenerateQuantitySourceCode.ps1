@@ -58,7 +58,6 @@ function GenerateQuantitySourceCode([Quantity]$quantity)
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -206,7 +205,7 @@ if ($obsoleteAttribute)
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<$quantityName, $unitEnumName>(this, format, formatProvider);
+            return QuantityFormatter.Format<$unitEnumName>(this, format, formatProvider);
         }
 
         #endregion
