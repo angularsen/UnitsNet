@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andreas Gullberg Larsen")]
 [assembly: AssemblyProduct("Units.NET")]
-[assembly: AssemblyCopyright("Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com)")]
+[assembly: AssemblyCopyright("Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
