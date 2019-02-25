@@ -1277,7 +1277,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("G");
+            return ToString("g");
         }
 
         /// <summary>

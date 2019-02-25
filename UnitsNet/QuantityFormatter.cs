@@ -34,11 +34,9 @@ namespace UnitsNet
             var formatString = format;
 
             if(string.IsNullOrEmpty(formatString))
-                formatString = "G";
+                formatString = "g";
 
-            formatString = formatString.ToUpperInvariant();
-
-            if(formatString.StartsWith("A") || formatString.StartsWith("S"))
+            if(formatString.StartsWith("a") || formatString.StartsWith("s"))
             {
                 if(formatString.Length > 1 && !int.TryParse(formatString.Substring(1), out number))
                     throw new FormatException($"The {format} format string is not supported.");
@@ -48,18 +46,18 @@ namespace UnitsNet
 
             switch(formatString)
             {
-                case "G":
+                case "g":
                     return quantity.ToString(formatProvider, 2);
-                case "A":
+                case "a":
                     var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
                     return abbreviations[number];
-                case "V":
+                case "v":
                     return quantity.Value.ToString(formatProvider);
-                case "U":
+                case "u":
                     return quantity.Unit.ToString();
-                case "Q":
+                case "q":
                     return quantity.QuantityInfo.Name;
-                case "S":
+                case "s":
                     return quantity.ToString(formatProvider, number);
                 default:
                     throw new FormatException($"The {format} format string is not supported.");
