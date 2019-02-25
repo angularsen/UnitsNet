@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, new UnitInfo<SolidAngleUnit>[] {
-                new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle,
+                new UnitInfo<SolidAngleUnit>[] {
+                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<PermeabilityUnit>(QuantityType.Permeability, new UnitInfo<PermeabilityUnit>[] {
-                new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<PermeabilityUnit>(QuantityType.Permeability,
+                new UnitInfo<PermeabilityUnit>[] {
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

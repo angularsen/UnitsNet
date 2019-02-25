@@ -65,21 +65,23 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ForceUnit>(QuantityType.Force, new UnitInfo<ForceUnit>[] {
-                new UnitInfo<ForceUnit>(ForceUnit.Decanewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Dyn, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.KiloPond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Meganewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Micronewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Millinewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Newton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.OunceForce, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.Poundal, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.PoundForce, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ForceUnit>(ForceUnit.TonneForce, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ForceUnit>(QuantityType.Force,
+                new UnitInfo<ForceUnit>[] {
+                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Dyn, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.KiloPond, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Newton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.OunceForce, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.PoundForce, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.TonneForce, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

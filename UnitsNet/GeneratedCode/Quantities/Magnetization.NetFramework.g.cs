@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, new UnitInfo<MagnetizationUnit>[] {
-                new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization,
+                new UnitInfo<MagnetizationUnit>[] {
+                    new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

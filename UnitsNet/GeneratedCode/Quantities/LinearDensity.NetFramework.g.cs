@@ -68,11 +68,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity, new UnitInfo<LinearDensityUnit>[] {
-                new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity,
+                new UnitInfo<LinearDensityUnit>[] {
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

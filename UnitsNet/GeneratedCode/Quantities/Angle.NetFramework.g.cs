@@ -65,22 +65,24 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle, new UnitInfo<AngleUnit>[] {
-                new UnitInfo<AngleUnit>(AngleUnit.Arcminute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Centiradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Deciradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Degree, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Gradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Microdegree, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Microradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Millidegree, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Milliradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Radian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AngleUnit>(AngleUnit.Revolution, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle,
+                new UnitInfo<AngleUnit>[] {
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Degree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Radian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

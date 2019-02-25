@@ -65,11 +65,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ApparentEnergyUnit>(QuantityType.ApparentEnergy, new UnitInfo<ApparentEnergyUnit>[] {
-                new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ApparentEnergyUnit>(QuantityType.ApparentEnergy,
+                new UnitInfo<ApparentEnergyUnit>[] {
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, BaseUnits.Undefined),
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, BaseUnits.Undefined),
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

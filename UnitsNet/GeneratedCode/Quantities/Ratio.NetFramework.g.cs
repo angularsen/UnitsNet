@@ -65,14 +65,16 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio, new UnitInfo<RatioUnit>[] {
-                new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<RatioUnit>(RatioUnit.Percent, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio,
+                new UnitInfo<RatioUnit>[] {
+                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.Percent, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

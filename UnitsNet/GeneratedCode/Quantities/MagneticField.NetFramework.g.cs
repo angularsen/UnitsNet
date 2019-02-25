@@ -68,12 +68,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField, new UnitInfo<MagneticFieldUnit>[] {
-                new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField,
+                new UnitInfo<MagneticFieldUnit>[] {
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

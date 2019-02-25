@@ -33,6 +33,9 @@ namespace UnitsNet
     /// </summary>
     public sealed partial class BaseUnits
     {
+        /// <summary>
+        /// Represents BaseUnits that have not been defined.
+        /// </summary>
         public static BaseUnits Undefined { get; } = new BaseUnits();
 
         /// <summary>

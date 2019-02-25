@@ -65,29 +65,31 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque, new UnitInfo<TorqueUnit>[] {
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque,
+                new UnitInfo<TorqueUnit>[] {
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

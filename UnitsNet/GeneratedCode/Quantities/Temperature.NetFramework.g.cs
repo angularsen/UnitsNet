@@ -65,16 +65,18 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature, new UnitInfo<TemperatureUnit>[] {
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeCelsius, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeDelisle, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeNewton, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRankine, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeReaumur, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRoemer, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature,
+                new UnitInfo<TemperatureUnit>[] {
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeCelsius, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeDelisle, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeNewton, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRankine, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeReaumur, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRoemer, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

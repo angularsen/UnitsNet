@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity, new UnitInfo<ElectricChargeDensityUnit>[] {
-                new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity,
+                new UnitInfo<ElectricChargeDensityUnit>[] {
+                    new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

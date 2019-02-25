@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricCurrentDensityUnit>(QuantityType.ElectricCurrentDensity, new UnitInfo<ElectricCurrentDensityUnit>[] {
-                new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricCurrentDensityUnit>(QuantityType.ElectricCurrentDensity,
+                new UnitInfo<ElectricCurrentDensityUnit>[] {
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

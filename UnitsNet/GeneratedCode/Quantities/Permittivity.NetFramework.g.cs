@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity, new UnitInfo<PermittivityUnit>[] {
-                new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity,
+                new UnitInfo<PermittivityUnit>[] {
+                    new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

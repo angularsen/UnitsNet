@@ -65,17 +65,19 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, new UnitInfo<FrequencyUnit>[] {
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency,
+                new UnitInfo<FrequencyUnit>[] {
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

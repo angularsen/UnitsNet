@@ -65,15 +65,17 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy, new UnitInfo<EntropyUnit>[] {
-                new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy,
+                new UnitInfo<EntropyUnit>[] {
+                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

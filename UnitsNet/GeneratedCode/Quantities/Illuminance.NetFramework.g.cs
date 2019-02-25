@@ -68,12 +68,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
-            Info = new QuantityInfo<IlluminanceUnit>(QuantityType.Illuminance, new UnitInfo<IlluminanceUnit>[] {
-                new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<IlluminanceUnit>(QuantityType.Illuminance,
+                new UnitInfo<IlluminanceUnit>[] {
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

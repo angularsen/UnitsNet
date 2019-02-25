@@ -193,15 +193,7 @@ function Add-PrefixUnits {
                 $prefixUnit = New-Object PsObject -Property @{
                     SingularName=$prefix + $(ToCamelCase $unit.SingularName)
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
-                    BaseUnits = @{
-                      Length = "LengthUnit.Undefined"
-                      Mass = "MassUnit.Undefined"
-                      Time = "DurationUnit.Undefined"
-                      ElectricCurrent = "ElectricCurrentUnit.Undefined"
-                      Temperature = "TemperatureUnit.Undefined"
-                      AmountOfSubstance = "AmountOfSubstanceUnit.Undefined"
-                      LuminousIntensity = "LuminousIntensityUnit.Undefined"
-                    }
+                    BaseUnits = $null
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
 
@@ -296,7 +288,7 @@ $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
           [Unit]@{
             SingularName = $_.SingularName
             PluralName = $_.PluralName
-            BaseUnits = @{
+            BaseUnits = Ternary $_.BaseUnits @{
               # $_ | fl | out-string | Write-Host -ForegroundColor green
               Length = Ternary $_.BaseUnits.L "LengthUnit.$($_.BaseUnits.L)" "LengthUnit.Undefined"
               Mass = Ternary $_.BaseUnits.M "MassUnit.$($_.BaseUnits.M)" "MassUnit.Undefined"
@@ -305,7 +297,7 @@ $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
               Temperature = Ternary $_.BaseUnits.Θ "TemperatureUnit.$($_.BaseUnits.Θ)" "TemperatureUnit.Undefined"
               AmountOfSubstance = Ternary $_.BaseUnits.N "AmountOfSubstanceUnit.$($_.BaseUnits.N)" "AmountOfSubstanceUnit.Undefined"
               LuminousIntensity = Ternary $_.BaseUnits.J "LuminousIntensityUnit.$($_.BaseUnits.J)" "LuminousIntensityUnit.Undefined"
-            }
+            } $null
             XmlDocSummary = $_.XmlDocSummary
             XmlDocRemarks = $_.XmlDocRemarks
             FromUnitToBaseFunc = $_.FromUnitToBaseFunc

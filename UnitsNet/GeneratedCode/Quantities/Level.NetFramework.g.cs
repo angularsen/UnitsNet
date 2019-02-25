@@ -65,10 +65,12 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<LevelUnit>(QuantityType.Level, new UnitInfo<LevelUnit>[] {
-                new UnitInfo<LevelUnit>(LevelUnit.Decibel, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LevelUnit>(LevelUnit.Neper, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<LevelUnit>(QuantityType.Level,
+                new UnitInfo<LevelUnit>[] {
+                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, BaseUnits.Undefined),
+                    new UnitInfo<LevelUnit>(LevelUnit.Neper, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

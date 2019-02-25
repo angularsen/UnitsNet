@@ -65,9 +65,11 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA, new UnitInfo<VitaminAUnit>[] {
-                new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA,
+                new UnitInfo<VitaminAUnit>[] {
+                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

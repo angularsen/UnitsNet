@@ -65,22 +65,24 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance, new UnitInfo<IrradianceUnit>[] {
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance,
+                new UnitInfo<IrradianceUnit>[] {
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

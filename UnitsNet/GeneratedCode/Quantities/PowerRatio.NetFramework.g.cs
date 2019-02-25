@@ -65,10 +65,12 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, new UnitInfo<PowerRatioUnit>[] {
-                new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio,
+                new UnitInfo<PowerRatioUnit>[] {
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

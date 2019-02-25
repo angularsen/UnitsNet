@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricFieldUnit>(QuantityType.ElectricField, new UnitInfo<ElectricFieldUnit>[] {
-                new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricFieldUnit>(QuantityType.ElectricField,
+                new UnitInfo<ElectricFieldUnit>[] {
+                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

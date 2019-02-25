@@ -68,14 +68,16 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, new UnitInfo<IrradiationUnit>[] {
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation,
+                new UnitInfo<IrradiationUnit>[] {
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

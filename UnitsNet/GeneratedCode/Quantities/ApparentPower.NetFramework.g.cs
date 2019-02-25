@@ -65,12 +65,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ApparentPowerUnit>(QuantityType.ApparentPower, new UnitInfo<ApparentPowerUnit>[] {
-                new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ApparentPowerUnit>(QuantityType.ApparentPower,
+                new UnitInfo<ApparentPowerUnit>[] {
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

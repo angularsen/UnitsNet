@@ -65,21 +65,23 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AreaUnit>(QuantityType.Area, new UnitInfo<AreaUnit>[] {
-                new UnitInfo<AreaUnit>(AreaUnit.Acre, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.Hectare, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, new BaseUnits(LengthUnit.Centimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, new BaseUnits(LengthUnit.Decimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, new BaseUnits(LengthUnit.Foot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareInch, new BaseUnits(LengthUnit.Inch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, new BaseUnits(LengthUnit.Kilometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, new BaseUnits(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, new BaseUnits(LengthUnit.Micrometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareMile, new BaseUnits(LengthUnit.Mile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, new BaseUnits(LengthUnit.Millimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.SquareYard, new BaseUnits(LengthUnit.Yard, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, new BaseUnits(LengthUnit.UsSurveyFoot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<AreaUnit>(QuantityType.Area,
+                new UnitInfo<AreaUnit>[] {
+                    new UnitInfo<AreaUnit>(AreaUnit.Acre, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, new BaseUnits(LengthUnit.Centimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, new BaseUnits(LengthUnit.Decimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, new BaseUnits(LengthUnit.Foot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, new BaseUnits(LengthUnit.Inch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, new BaseUnits(LengthUnit.Kilometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, new BaseUnits(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, new BaseUnits(LengthUnit.Micrometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, new BaseUnits(LengthUnit.Mile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, new BaseUnits(LengthUnit.Millimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, new BaseUnits(LengthUnit.Yard, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, new BaseUnits(LengthUnit.UsSurveyFoot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -68,14 +68,16 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity, new UnitInfo<DynamicViscosityUnit>[] {
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity,
+                new UnitInfo<DynamicViscosityUnit>[] {
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

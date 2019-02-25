@@ -65,21 +65,23 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, new UnitInfo<AccelerationUnit>[] {
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration,
+                new UnitInfo<AccelerationUnit>[] {
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

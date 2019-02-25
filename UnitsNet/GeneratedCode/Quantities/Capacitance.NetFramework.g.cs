@@ -68,15 +68,17 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance, new UnitInfo<CapacitanceUnit>[] {
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance,
+                new UnitInfo<CapacitanceUnit>[] {
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

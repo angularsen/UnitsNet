@@ -65,11 +65,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
 
-            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy, new UnitInfo<MolarEnergyUnit>[] {
-                new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy,
+                new UnitInfo<MolarEnergyUnit>[] {
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

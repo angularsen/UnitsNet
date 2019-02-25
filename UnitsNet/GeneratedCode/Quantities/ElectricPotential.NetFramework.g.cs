@@ -65,13 +65,15 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricPotentialUnit>(QuantityType.ElectricPotential, new UnitInfo<ElectricPotentialUnit>[] {
-                new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricPotentialUnit>(QuantityType.ElectricPotential,
+                new UnitInfo<ElectricPotentialUnit>[] {
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

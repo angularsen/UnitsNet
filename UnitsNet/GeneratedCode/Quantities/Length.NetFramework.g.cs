@@ -65,30 +65,32 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, new UnitInfo<LengthUnit>[] {
-                new UnitInfo<LengthUnit>(LengthUnit.Centimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Decimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(LengthUnit.DtpPica, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(LengthUnit.DtpPoint, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(LengthUnit.Fathom, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(LengthUnit.Foot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(LengthUnit.Inch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Kilometer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(LengthUnit.Microinch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Micrometer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(LengthUnit.Mil, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(LengthUnit.Mile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Millimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Nanometer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(LengthUnit.NauticalMile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(LengthUnit.PrinterPica, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(LengthUnit.PrinterPoint, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(LengthUnit.Shackle, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(LengthUnit.Twip, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(LengthUnit.UsSurveyFoot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(LengthUnit.Yard, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
+                new UnitInfo<LengthUnit>[] {
+                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(LengthUnit.DtpPica, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(LengthUnit.DtpPoint, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(LengthUnit.Fathom, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(LengthUnit.Foot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(LengthUnit.Inch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(LengthUnit.Microinch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(LengthUnit.Mil, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(LengthUnit.Mile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(LengthUnit.NauticalMile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(LengthUnit.PrinterPica, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(LengthUnit.PrinterPoint, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(LengthUnit.Shackle, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(LengthUnit.Twip, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(LengthUnit.UsSurveyFoot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(LengthUnit.Yard, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

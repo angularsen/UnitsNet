@@ -68,16 +68,18 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
-            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity, new UnitInfo<MolarityUnit>[] {
-                new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity,
+                new UnitInfo<MolarityUnit>[] {
+                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, new UnitInfo<MagneticFluxUnit>[] {
-                new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux,
+                new UnitInfo<MagneticFluxUnit>[] {
+                    new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -65,9 +65,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, new UnitInfo<AreaDensityUnit>[] {
-                new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity,
+                new UnitInfo<AreaDensityUnit>[] {
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

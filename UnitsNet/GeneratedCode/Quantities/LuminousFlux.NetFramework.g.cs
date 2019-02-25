@@ -68,9 +68,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
-            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux, new UnitInfo<LuminousFluxUnit>[] {
-                new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux,
+                new UnitInfo<LuminousFluxUnit>[] {
+                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

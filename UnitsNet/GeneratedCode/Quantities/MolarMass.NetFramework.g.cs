@@ -65,20 +65,22 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
-            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, new UnitInfo<MolarMassUnit>[] {
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass,
+                new UnitInfo<MolarMassUnit>[] {
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -65,9 +65,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, new UnitInfo<LapseRateUnit>[] {
-                new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate,
+                new UnitInfo<LapseRateUnit>[] {
+                    new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

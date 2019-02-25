@@ -103,11 +103,18 @@ if ($obsoleteAttribute)
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }@"
 
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, new UnitInfo<$unitEnumName>[] {
-"@; foreach ($unit in $units) {@"
-                new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), new BaseUnits($($unit.BaseUnits.Length), $($unit.BaseUnits.Mass), $($unit.BaseUnits.Time), $($unit.BaseUnits.ElectricCurrent), $($unit.BaseUnits.Temperature), $($unit.BaseUnits.AmountOfSubstance), $($unit.BaseUnits.LuminousIntensity))),
-"@; }@"
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName,
+                new UnitInfo<$unitEnumName>[] {
+"@; foreach ($unit in $units) {
+      if($unit.BaseUnits -eq $null){@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), BaseUnits.Undefined),
+"@;   }
+      else{@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), new BaseUnits($($unit.BaseUnits.Length), $($unit.BaseUnits.Mass), $($unit.BaseUnits.Time), $($unit.BaseUnits.ElectricCurrent), $($unit.BaseUnits.Temperature), $($unit.BaseUnits.AmountOfSubstance), $($unit.BaseUnits.LuminousIntensity))),
+"@;   }
+    }@"
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

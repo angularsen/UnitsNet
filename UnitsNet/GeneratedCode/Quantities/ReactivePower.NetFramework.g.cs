@@ -65,12 +65,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ReactivePowerUnit>(QuantityType.ReactivePower, new UnitInfo<ReactivePowerUnit>[] {
-                new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
-                }, BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo<ReactivePowerUnit>(QuantityType.ReactivePower,
+                new UnitInfo<ReactivePowerUnit>[] {
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
