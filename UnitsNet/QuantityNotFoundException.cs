@@ -11,14 +11,17 @@ namespace UnitsNet
     /// </summary>
     public class QuantityNotFoundException : UnitsNetException
     {
+        /// <inheritdoc />
         public QuantityNotFoundException()
         {
         }
 
+        /// <inheritdoc />
         public QuantityNotFoundException(string message) : base(message)
         {
         }
 
+        /// <inheritdoc />
         public QuantityNotFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }

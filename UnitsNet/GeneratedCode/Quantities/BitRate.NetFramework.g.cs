@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.
     /// </summary>
@@ -118,14 +119,12 @@ namespace UnitsNet
 
         double IQuantity.Value => (double) _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<BitRateUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -673,6 +672,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<BitRateUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.BitRateUnit)"/>
         public static bool TryParseUnit(string str, out BitRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -697,36 +697,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static BitRate operator -(BitRate right)
         {
             return new BitRate(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="BitRate"/> from adding two <see cref="BitRate"/>.</summary>
         public static BitRate operator +(BitRate left, BitRate right)
         {
             return new BitRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="BitRate"/> from subtracting two <see cref="BitRate"/>.</summary>
         public static BitRate operator -(BitRate left, BitRate right)
         {
             return new BitRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="BitRate"/> from multiplying value and <see cref="BitRate"/>.</summary>
         public static BitRate operator *(decimal left, BitRate right)
         {
             return new BitRate(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="BitRate"/> from multiplying value and <see cref="BitRate"/>.</summary>
         public static BitRate operator *(BitRate left, decimal right)
         {
             return new BitRate(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="BitRate"/> from dividing <see cref="BitRate"/> by value.</summary>
         public static BitRate operator /(BitRate left, decimal right)
         {
             return new BitRate(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="BitRate"/> by <see cref="BitRate"/>.</summary>
         public static double operator /(BitRate left, BitRate right)
         {
             return left.BitsPerSecond / right.BitsPerSecond;
@@ -736,36 +743,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(BitRate left, BitRate right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(BitRate left, BitRate right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(BitRate left, BitRate right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(BitRate left, BitRate right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -774,11 +790,14 @@ namespace UnitsNet
             return CompareTo(objBitRate);
         }
 
+        /// <inheritdoc />
         public int CompareTo(BitRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is BitRate objBitRate))
@@ -787,6 +806,8 @@ namespace UnitsNet
             return Equals(objBitRate);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(BitRate other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -871,6 +892,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((BitRateUnit) unit);
 
         /// <summary>
@@ -885,6 +907,7 @@ namespace UnitsNet
 
         IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
 
         /// <summary>

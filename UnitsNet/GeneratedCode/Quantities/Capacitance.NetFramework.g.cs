@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Capacitance is the ability of a body to store an electric charge.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public CapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -405,6 +404,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<CapacitanceUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.CapacitanceUnit)"/>
         public static bool TryParseUnit(string str, out CapacitanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -429,36 +429,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Capacitance operator -(Capacitance right)
         {
             return new Capacitance(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Capacitance"/> from adding two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator +(Capacitance left, Capacitance right)
         {
             return new Capacitance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Capacitance"/> from subtracting two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator -(Capacitance left, Capacitance right)
         {
             return new Capacitance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
         public static Capacitance operator *(double left, Capacitance right)
         {
             return new Capacitance(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
         public static Capacitance operator *(Capacitance left, double right)
         {
             return new Capacitance(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Capacitance"/> from dividing <see cref="Capacitance"/> by value.</summary>
         public static Capacitance operator /(Capacitance left, double right)
         {
             return new Capacitance(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Capacitance"/> by <see cref="Capacitance"/>.</summary>
         public static double operator /(Capacitance left, Capacitance right)
         {
             return left.Farads / right.Farads;
@@ -468,36 +475,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Capacitance left, Capacitance right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Capacitance left, Capacitance right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Capacitance left, Capacitance right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Capacitance left, Capacitance right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Capacitance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Capacitance left, Capacitance right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Capacitance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Capacitance left, Capacitance right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -506,11 +522,14 @@ namespace UnitsNet
             return CompareTo(objCapacitance);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Capacitance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Capacitance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Capacitance objCapacitance))
@@ -519,6 +538,8 @@ namespace UnitsNet
             return Equals(objCapacitance);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Capacitance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Capacitance other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -603,6 +624,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((CapacitanceUnit) unit);
 
         /// <summary>
@@ -617,6 +639,7 @@ namespace UnitsNet
 
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((CapacitanceUnit) unit);
 
         /// <summary>

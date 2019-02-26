@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<VolumeFlowUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -976,6 +975,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<VolumeFlowUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumeFlowUnit)"/>
         public static bool TryParseUnit(string str, out VolumeFlowUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -1000,36 +1000,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static VolumeFlow operator -(VolumeFlow right)
         {
             return new VolumeFlow(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from adding two <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator +(VolumeFlow left, VolumeFlow right)
         {
             return new VolumeFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from subtracting two <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator -(VolumeFlow left, VolumeFlow right)
         {
             return new VolumeFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from multiplying value and <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator *(double left, VolumeFlow right)
         {
             return new VolumeFlow(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from multiplying value and <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator *(VolumeFlow left, double right)
         {
             return new VolumeFlow(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from dividing <see cref="VolumeFlow"/> by value.</summary>
         public static VolumeFlow operator /(VolumeFlow left, double right)
         {
             return new VolumeFlow(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="VolumeFlow"/> by <see cref="VolumeFlow"/>.</summary>
         public static double operator /(VolumeFlow left, VolumeFlow right)
         {
             return left.CubicMetersPerSecond / right.CubicMetersPerSecond;
@@ -1039,36 +1046,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumeFlow left, VolumeFlow right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumeFlow left, VolumeFlow right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumeFlow left, VolumeFlow right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumeFlow left, VolumeFlow right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(VolumeFlow left, VolumeFlow right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(VolumeFlow left, VolumeFlow right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -1077,11 +1093,14 @@ namespace UnitsNet
             return CompareTo(objVolumeFlow);
         }
 
+        /// <inheritdoc />
         public int CompareTo(VolumeFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is VolumeFlow objVolumeFlow))
@@ -1090,6 +1109,8 @@ namespace UnitsNet
             return Equals(objVolumeFlow);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumeFlow other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -1174,6 +1195,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((VolumeFlowUnit) unit);
 
         /// <summary>
@@ -1188,6 +1210,7 @@ namespace UnitsNet
 
         IQuantity<VolumeFlowUnit> IQuantity<VolumeFlowUnit>.ToUnit(VolumeFlowUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((VolumeFlowUnit) unit);
 
         /// <summary>

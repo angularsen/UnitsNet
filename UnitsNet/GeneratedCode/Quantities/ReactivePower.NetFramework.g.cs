@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ReactivePowerUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -360,6 +359,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ReactivePowerUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ReactivePowerUnit)"/>
         public static bool TryParseUnit(string str, out ReactivePowerUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -384,36 +384,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ReactivePower operator -(ReactivePower right)
         {
             return new ReactivePower(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ReactivePower"/> from adding two <see cref="ReactivePower"/>.</summary>
         public static ReactivePower operator +(ReactivePower left, ReactivePower right)
         {
             return new ReactivePower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ReactivePower"/> from subtracting two <see cref="ReactivePower"/>.</summary>
         public static ReactivePower operator -(ReactivePower left, ReactivePower right)
         {
             return new ReactivePower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
         public static ReactivePower operator *(double left, ReactivePower right)
         {
             return new ReactivePower(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
         public static ReactivePower operator *(ReactivePower left, double right)
         {
             return new ReactivePower(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ReactivePower"/> from dividing <see cref="ReactivePower"/> by value.</summary>
         public static ReactivePower operator /(ReactivePower left, double right)
         {
             return new ReactivePower(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ReactivePower"/> by <see cref="ReactivePower"/>.</summary>
         public static double operator /(ReactivePower left, ReactivePower right)
         {
             return left.VoltamperesReactive / right.VoltamperesReactive;
@@ -423,36 +430,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ReactivePower left, ReactivePower right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ReactivePower left, ReactivePower right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ReactivePower left, ReactivePower right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ReactivePower left, ReactivePower right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ReactivePower left, ReactivePower right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ReactivePower left, ReactivePower right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -461,11 +477,14 @@ namespace UnitsNet
             return CompareTo(objReactivePower);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ReactivePower other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ReactivePower objReactivePower))
@@ -474,6 +493,8 @@ namespace UnitsNet
             return Equals(objReactivePower);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ReactivePower other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -558,6 +579,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ReactivePowerUnit) unit);
 
         /// <summary>
@@ -572,6 +594,7 @@ namespace UnitsNet
 
         IQuantity<ReactivePowerUnit> IQuantity<ReactivePowerUnit>.ToUnit(ReactivePowerUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ReactivePowerUnit) unit);
 
         /// <summary>

@@ -7,7 +7,11 @@ using System.Globalization;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public sealed class GlobalConfiguration
+    /// <summary>
+    ///     Global configuration for culture, used as default culture in methods like <see cref="Length.ToString()" /> and
+    ///     <see cref="Length.Parse(string)" />.
+    /// </summary>
+    public static class GlobalConfiguration
     {
         /// <summary>
         ///     Defaults to <see cref="CultureInfo.CurrentUICulture" /> when creating an instance with no culture provided.

@@ -14,6 +14,10 @@ using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, Unit
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
+    /// <summary>
+    ///     Cache of the mapping between unit enum values and unit abbreviation strings for one or more cultures.
+    ///     A static instance <see cref="Default"/> is used internally for ToString() and Parse() of quantities and units.
+    /// </summary>
     public sealed partial class UnitAbbreviationsCache
     {
         private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
@@ -29,8 +33,14 @@ namespace UnitsNet
         /// </example>
         private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
 
+        /// <summary>
+        ///     The static instance used internally for ToString() and Parse() of quantities and units.
+        /// </summary>
         public static UnitAbbreviationsCache Default { get; }
 
+        /// <summary>
+        ///     Create an instance of the cache and load all the abbreviations defined in the library.
+        /// </summary>
         public UnitAbbreviationsCache()
         {
             _lookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();

@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In electromagnetism, permeability is the measure of the ability of a material to support the formation of a magnetic field within itself.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PermeabilityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -321,6 +320,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PermeabilityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PermeabilityUnit)"/>
         public static bool TryParseUnit(string str, out PermeabilityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -345,36 +345,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Permeability operator -(Permeability right)
         {
             return new Permeability(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Permeability"/> from adding two <see cref="Permeability"/>.</summary>
         public static Permeability operator +(Permeability left, Permeability right)
         {
             return new Permeability(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Permeability"/> from subtracting two <see cref="Permeability"/>.</summary>
         public static Permeability operator -(Permeability left, Permeability right)
         {
             return new Permeability(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
         public static Permeability operator *(double left, Permeability right)
         {
             return new Permeability(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
         public static Permeability operator *(Permeability left, double right)
         {
             return new Permeability(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Permeability"/> from dividing <see cref="Permeability"/> by value.</summary>
         public static Permeability operator /(Permeability left, double right)
         {
             return new Permeability(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Permeability"/> by <see cref="Permeability"/>.</summary>
         public static double operator /(Permeability left, Permeability right)
         {
             return left.HenriesPerMeter / right.HenriesPerMeter;
@@ -384,36 +391,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Permeability left, Permeability right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Permeability left, Permeability right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Permeability left, Permeability right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Permeability left, Permeability right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Permeability left, Permeability right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Permeability left, Permeability right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -422,11 +438,14 @@ namespace UnitsNet
             return CompareTo(objPermeability);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Permeability other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Permeability objPermeability))
@@ -435,6 +454,8 @@ namespace UnitsNet
             return Equals(objPermeability);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Permeability other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -519,6 +540,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PermeabilityUnit) unit);
 
         /// <summary>
@@ -533,6 +555,7 @@ namespace UnitsNet
 
         IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PermeabilityUnit) unit);
 
         /// <summary>

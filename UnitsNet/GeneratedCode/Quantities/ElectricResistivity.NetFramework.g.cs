@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Electrical resistivity (also known as resistivity, specific electrical resistance, or volume resistivity) is a fundamental property that quantifies how strongly a given material opposes the flow of electric current.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -503,6 +502,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ElectricResistivityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricResistivityUnit)"/>
         public static bool TryParseUnit(string str, out ElectricResistivityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -527,36 +527,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ElectricResistivity operator -(ElectricResistivity right)
         {
             return new ElectricResistivity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricResistivity"/> from adding two <see cref="ElectricResistivity"/>.</summary>
         public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
         {
             return new ElectricResistivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricResistivity"/> from subtracting two <see cref="ElectricResistivity"/>.</summary>
         public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
         {
             return new ElectricResistivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
         public static ElectricResistivity operator *(double left, ElectricResistivity right)
         {
             return new ElectricResistivity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
         public static ElectricResistivity operator *(ElectricResistivity left, double right)
         {
             return new ElectricResistivity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricResistivity"/> from dividing <see cref="ElectricResistivity"/> by value.</summary>
         public static ElectricResistivity operator /(ElectricResistivity left, double right)
         {
             return new ElectricResistivity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ElectricResistivity"/> by <see cref="ElectricResistivity"/>.</summary>
         public static double operator /(ElectricResistivity left, ElectricResistivity right)
         {
             return left.OhmMeters / right.OhmMeters;
@@ -566,36 +573,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -604,11 +620,14 @@ namespace UnitsNet
             return CompareTo(objElectricResistivity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ElectricResistivity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ElectricResistivity objElectricResistivity))
@@ -617,6 +636,8 @@ namespace UnitsNet
             return Equals(objElectricResistivity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricResistivity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -701,6 +722,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ElectricResistivityUnit) unit);
 
         /// <summary>
@@ -715,6 +737,7 @@ namespace UnitsNet
 
         IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricResistivityUnit) unit);
 
         /// <summary>

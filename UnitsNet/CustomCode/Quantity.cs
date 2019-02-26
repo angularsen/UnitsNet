@@ -60,6 +60,10 @@ namespace UnitsNet
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }
 
+        /// <summary>
+        ///     Get a list of quantities that has the given base dimensions.
+        /// </summary>
+        /// <param name="baseDimensions">The base dimensions to match.</param>
         public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
         {
             return InfosLazy.Value.Where(info => info.BaseDimensions.Equals(baseDimensions));

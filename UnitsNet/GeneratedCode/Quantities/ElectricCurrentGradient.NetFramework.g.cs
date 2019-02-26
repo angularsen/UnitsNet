@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In electromagnetism, the current gradient describes how the current changes in time.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -318,6 +317,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ElectricCurrentGradientUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricCurrentGradientUnit)"/>
         public static bool TryParseUnit(string str, out ElectricCurrentGradientUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -342,36 +342,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ElectricCurrentGradient operator -(ElectricCurrentGradient right)
         {
             return new ElectricCurrentGradient(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from adding two <see cref="ElectricCurrentGradient"/>.</summary>
         public static ElectricCurrentGradient operator +(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return new ElectricCurrentGradient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from subtracting two <see cref="ElectricCurrentGradient"/>.</summary>
         public static ElectricCurrentGradient operator -(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return new ElectricCurrentGradient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from multiplying value and <see cref="ElectricCurrentGradient"/>.</summary>
         public static ElectricCurrentGradient operator *(double left, ElectricCurrentGradient right)
         {
             return new ElectricCurrentGradient(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from multiplying value and <see cref="ElectricCurrentGradient"/>.</summary>
         public static ElectricCurrentGradient operator *(ElectricCurrentGradient left, double right)
         {
             return new ElectricCurrentGradient(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from dividing <see cref="ElectricCurrentGradient"/> by value.</summary>
         public static ElectricCurrentGradient operator /(ElectricCurrentGradient left, double right)
         {
             return new ElectricCurrentGradient(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ElectricCurrentGradient"/> by <see cref="ElectricCurrentGradient"/>.</summary>
         public static double operator /(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.AmperesPerSecond / right.AmperesPerSecond;
@@ -381,36 +388,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentGradient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentGradient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -419,11 +435,14 @@ namespace UnitsNet
             return CompareTo(objElectricCurrentGradient);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ElectricCurrentGradient other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentGradient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ElectricCurrentGradient objElectricCurrentGradient))
@@ -432,6 +451,8 @@ namespace UnitsNet
             return Equals(objElectricCurrentGradient);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentGradient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricCurrentGradient other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -516,6 +537,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ElectricCurrentGradientUnit) unit);
 
         /// <summary>
@@ -530,6 +552,7 @@ namespace UnitsNet
 
         IQuantity<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.ToUnit(ElectricCurrentGradientUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentGradientUnit) unit);
 
         /// <summary>

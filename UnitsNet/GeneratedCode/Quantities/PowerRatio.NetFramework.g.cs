@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PowerRatioUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -332,6 +331,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PowerRatioUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerRatioUnit)"/>
         public static bool TryParseUnit(string str, out PowerRatioUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -356,11 +356,13 @@ namespace UnitsNet
 
         #region Logarithmic Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static PowerRatio operator -(PowerRatio right)
         {
             return new PowerRatio(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="PowerRatio"/> from logarithmic addition of two <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator +(PowerRatio left, PowerRatio right)
         {
             // Logarithmic addition
@@ -368,6 +370,7 @@ namespace UnitsNet
             return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator -(PowerRatio left, PowerRatio right)
         {
             // Logarithmic subtraction
@@ -375,24 +378,28 @@ namespace UnitsNet
             return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator *(double left, PowerRatio right)
         {
             // Logarithmic multiplication = addition
             return new PowerRatio(left + right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator *(PowerRatio left, double right)
         {
             // Logarithmic multiplication = addition
             return new PowerRatio(left.Value + (double)right, left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerRatio"/> from logarithmic division of <see cref="PowerRatio"/> by value.</summary>
         public static PowerRatio operator /(PowerRatio left, double right)
         {
             // Logarithmic division = subtraction
             return new PowerRatio(left.Value - (double)right, left.Unit);
         }
 
+        /// <summary>Get ratio value from logarithmic division of <see cref="PowerRatio"/> by <see cref="PowerRatio"/>.</summary>
         public static double operator /(PowerRatio left, PowerRatio right)
         {
             // Logarithmic division = subtraction
@@ -403,36 +410,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PowerRatio left, PowerRatio right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PowerRatio left, PowerRatio right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(PowerRatio left, PowerRatio right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PowerRatio left, PowerRatio right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(PowerRatio left, PowerRatio right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(PowerRatio left, PowerRatio right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -441,11 +457,14 @@ namespace UnitsNet
             return CompareTo(objPowerRatio);
         }
 
+        /// <inheritdoc />
         public int CompareTo(PowerRatio other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is PowerRatio objPowerRatio))
@@ -454,6 +473,8 @@ namespace UnitsNet
             return Equals(objPowerRatio);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(PowerRatio other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -538,6 +559,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PowerRatioUnit) unit);
 
         /// <summary>
@@ -552,6 +574,7 @@ namespace UnitsNet
 
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerRatioUnit) unit);
 
         /// <summary>

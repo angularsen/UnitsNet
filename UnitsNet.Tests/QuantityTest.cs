@@ -52,10 +52,13 @@ namespace UnitsNet.Tests
 
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
+            // Obsolete members
+#pragma warning disable 618
             Assert.Superset(knownLengthUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownLengthUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(lengthUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(lengthUnitCount, quantityInfo.Units.Length);
+#pragma warning restore 618
             Assert.Equal(typeof(LengthUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Length), quantityInfo.ValueType);
             Assert.Equal(Length.Zero, quantityInfo.Zero);
@@ -72,10 +75,13 @@ namespace UnitsNet.Tests
 
             Assert.Equal("Mass", quantityInfo.Name);
             Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
+            // Obsolete members
+#pragma warning disable 618
             Assert.Superset(knownMassUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownMassUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(massUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(massUnitCount, quantityInfo.Units.Length);
+#pragma warning restore 618
             Assert.Equal(typeof(MassUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Mass), quantityInfo.ValueType);
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
