@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, BaseUnits.Undefined),
