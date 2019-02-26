@@ -2,16 +2,16 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>4.10.0</Version>
+    <Version>4.11.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
-    <Copyright>Copyright (c) 2013 Andreas Gullberg Larsen</Copyright>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
   </PropertyGroup>
@@ -20,9 +20,9 @@
   <PropertyGroup>
     <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>7.3</LangVersion>
-    <NoWarn>CS1701;CS1702;CS1705;CS0618;CS0809;CS1591</NoWarn>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- SourceLink -->

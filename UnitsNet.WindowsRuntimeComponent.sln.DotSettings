@@ -4,23 +4,5 @@
 	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForBuiltInTypes/@EntryValue">UseVarWhenEvident</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForOtherTypes/@EntryValue">UseVarWhenEvident</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForSimpleTypes/@EntryValue">UseVarWhenEvident</s:String>
-	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Copyright(c) 2007 Andreas Gullberg Larsen&#xD;
-https://github.com/angularsen/UnitsNet&#xD;
-&#xD;
-Permission is hereby granted, free of charge, to any person obtaining a copy&#xD;
-of this software and associated documentation files (the "Software"), to deal&#xD;
-in the Software without restriction, including without limitation the rights&#xD;
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell&#xD;
-copies of the Software, and to permit persons to whom the Software is&#xD;
-furnished to do so, subject to the following conditions:&#xD;
-&#xD;
-The above copyright notice and this permission notice shall be included in&#xD;
-all copies or substantial portions of the Software.&#xD;
-&#xD;
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR&#xD;
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,&#xD;
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE&#xD;
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER&#xD;
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&#xD;
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN&#xD;
-THE SOFTWARE.</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Licensed under MIT No Attribution, see LICENSE file at the root.&#xD;Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.</s:String>
+</wpf:ResourceDictionary>

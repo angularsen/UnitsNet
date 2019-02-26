@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -46,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
@@ -118,20 +101,30 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
         public Speed(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+            _unit = GetUnitFor(unitSystem.BaseUnits);
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="BaseUnits"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="baseUnits">The base units to create the quantity with.</param>
         public Speed(double numericValue, BaseUnits baseUnits)
         {
             if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(baseUnits);
+            _unit = GetUnitFor(baseUnits);
         }
 
         #region Static Properties
@@ -183,14 +176,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SpeedUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -822,6 +813,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SpeedUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpeedUnit)"/>
         public static bool TryParseUnit(string str, out SpeedUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -846,36 +838,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Speed operator -(Speed right)
         {
             return new Speed(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from adding two <see cref="Speed"/>.</summary>
         public static Speed operator +(Speed left, Speed right)
         {
             return new Speed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from subtracting two <see cref="Speed"/>.</summary>
         public static Speed operator -(Speed left, Speed right)
         {
             return new Speed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
         public static Speed operator *(double left, Speed right)
         {
             return new Speed(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
         public static Speed operator *(Speed left, double right)
         {
             return new Speed(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Speed"/> from dividing <see cref="Speed"/> by value.</summary>
         public static Speed operator /(Speed left, double right)
         {
             return new Speed(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Speed"/> by <see cref="Speed"/>.</summary>
         public static double operator /(Speed left, Speed right)
         {
             return left.MetersPerSecond / right.MetersPerSecond;
@@ -885,36 +884,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Speed left, Speed right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Speed left, Speed right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Speed left, Speed right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Speed left, Speed right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Speed left, Speed right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Speed left, Speed right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -923,11 +931,14 @@ namespace UnitsNet
             return CompareTo(objSpeed);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Speed other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Speed objSpeed))
@@ -936,6 +947,8 @@ namespace UnitsNet
             return Equals(objSpeed);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Speed other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -1020,6 +1033,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SpeedUnit) unit);
 
         /// <summary>
@@ -1034,6 +1048,7 @@ namespace UnitsNet
 
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
 
         /// <summary>
@@ -1128,7 +1143,25 @@ namespace UnitsNet
             }
         }
 
-        public static SpeedUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        /// <summary>
+        /// Gets the unit for this quantity compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to get the compatible units for.</param>
+        /// <returns>The unit for this quantity compatible with the given  <see cref="UnitSystem"/></returns>
+        public static SpeedUnit GetUnitFor(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            return GetUnitFor(unitSystem.BaseUnits);
+        }
+
+        /// <summary>
+        /// Gets the unit for this quantity compatible with the given <see cref="BaseUnits"/>.
+        /// </summary>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> to get the compatible units for.</param>
+        /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
+        public static SpeedUnit GetUnitFor(BaseUnits baseUnits)
         {
             var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
             if(unit == null)

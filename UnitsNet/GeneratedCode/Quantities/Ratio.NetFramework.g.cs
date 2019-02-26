@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -46,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as "a to b" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).
     /// </summary>
@@ -92,20 +75,30 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
         public Ratio(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+            _unit = GetUnitFor(unitSystem.BaseUnits);
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="BaseUnits"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="baseUnits">The base units to create the quantity with.</param>
         public Ratio(double numericValue, BaseUnits baseUnits)
         {
             if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(baseUnits);
+            _unit = GetUnitFor(baseUnits);
         }
 
         #region Static Properties
@@ -157,14 +150,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<RatioUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -432,6 +423,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<RatioUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RatioUnit)"/>
         public static bool TryParseUnit(string str, out RatioUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -456,36 +448,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Ratio operator -(Ratio right)
         {
             return new Ratio(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from adding two <see cref="Ratio"/>.</summary>
         public static Ratio operator +(Ratio left, Ratio right)
         {
             return new Ratio(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from subtracting two <see cref="Ratio"/>.</summary>
         public static Ratio operator -(Ratio left, Ratio right)
         {
             return new Ratio(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
         public static Ratio operator *(double left, Ratio right)
         {
             return new Ratio(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
         public static Ratio operator *(Ratio left, double right)
         {
             return new Ratio(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Ratio"/> from dividing <see cref="Ratio"/> by value.</summary>
         public static Ratio operator /(Ratio left, double right)
         {
             return new Ratio(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Ratio"/> by <see cref="Ratio"/>.</summary>
         public static double operator /(Ratio left, Ratio right)
         {
             return left.DecimalFractions / right.DecimalFractions;
@@ -495,36 +494,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Ratio left, Ratio right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Ratio left, Ratio right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Ratio left, Ratio right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Ratio left, Ratio right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Ratio left, Ratio right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Ratio left, Ratio right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -533,11 +541,14 @@ namespace UnitsNet
             return CompareTo(objRatio);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Ratio other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Ratio objRatio))
@@ -546,6 +557,8 @@ namespace UnitsNet
             return Equals(objRatio);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Ratio other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -630,6 +643,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((RatioUnit) unit);
 
         /// <summary>
@@ -644,6 +658,7 @@ namespace UnitsNet
 
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((RatioUnit) unit);
 
         /// <summary>
@@ -686,7 +701,25 @@ namespace UnitsNet
             }
         }
 
-        public static RatioUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        /// <summary>
+        /// Gets the unit for this quantity compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to get the compatible units for.</param>
+        /// <returns>The unit for this quantity compatible with the given  <see cref="UnitSystem"/></returns>
+        public static RatioUnit GetUnitFor(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            return GetUnitFor(unitSystem.BaseUnits);
+        }
+
+        /// <summary>
+        /// Gets the unit for this quantity compatible with the given <see cref="BaseUnits"/>.
+        /// </summary>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> to get the compatible units for.</param>
+        /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
+        public static RatioUnit GetUnitFor(BaseUnits baseUnits)
         {
             var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
             if(unit == null)

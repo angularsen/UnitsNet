@@ -1,27 +1,8 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -48,11 +29,23 @@ namespace UnitsNet
             .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="quantityType"></param>
+        /// <param name="unitInfos"></param>
+        /// <param name="baseUnit"></param>
+        /// <param name="zero"></param>
+        /// <param name="baseDimensions"></param>
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
+            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
+            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
+
+#pragma warning disable 618
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
@@ -64,6 +57,7 @@ namespace UnitsNet
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             ValueType = zero.GetType();
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
+#pragma warning restore 618
         }
 
         /// <summary>
@@ -76,6 +70,9 @@ namespace UnitsNet
         /// </summary>
         public QuantityType QuantityType { get; }
 
+        /// <summary>
+        ///     The units for this quantity.
+        /// </summary>
         public UnitInfo[] UnitInfos { get; }
 
         /// <summary>
@@ -91,6 +88,9 @@ namespace UnitsNet
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
         public Enum[] Units { get; }
 
+        /// <summary>
+        ///     The base unit of this quantity.
+        /// </summary>
         public UnitInfo BaseUnitInfo { get; }
 
         /// <summary>
@@ -130,14 +130,17 @@ namespace UnitsNet
     public class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
+        /// <inheritdoc />
         public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
             : base(quantityType, unitInfos, baseUnit, zero, baseDimensions)
         {
+#pragma warning disable 618
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             BaseUnit = BaseUnitInfo.Value;
+#pragma warning restore 618
         }
 
         /// <inheritdoc cref="QuantityInfo.UnitInfos" />
