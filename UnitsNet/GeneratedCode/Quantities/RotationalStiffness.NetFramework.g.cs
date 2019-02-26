@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
@@ -45,6 +27,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
@@ -130,14 +113,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -363,6 +344,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<RotationalStiffnessUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RotationalStiffnessUnit)"/>
         public static bool TryParseUnit(string str, out RotationalStiffnessUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -387,36 +369,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static RotationalStiffness operator -(RotationalStiffness right)
         {
             return new RotationalStiffness(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalStiffness"/> from adding two <see cref="RotationalStiffness"/>.</summary>
         public static RotationalStiffness operator +(RotationalStiffness left, RotationalStiffness right)
         {
             return new RotationalStiffness(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalStiffness"/> from subtracting two <see cref="RotationalStiffness"/>.</summary>
         public static RotationalStiffness operator -(RotationalStiffness left, RotationalStiffness right)
         {
             return new RotationalStiffness(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalStiffness"/> from multiplying value and <see cref="RotationalStiffness"/>.</summary>
         public static RotationalStiffness operator *(double left, RotationalStiffness right)
         {
             return new RotationalStiffness(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalStiffness"/> from multiplying value and <see cref="RotationalStiffness"/>.</summary>
         public static RotationalStiffness operator *(RotationalStiffness left, double right)
         {
             return new RotationalStiffness(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="RotationalStiffness"/> from dividing <see cref="RotationalStiffness"/> by value.</summary>
         public static RotationalStiffness operator /(RotationalStiffness left, double right)
         {
             return new RotationalStiffness(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="RotationalStiffness"/> by <see cref="RotationalStiffness"/>.</summary>
         public static double operator /(RotationalStiffness left, RotationalStiffness right)
         {
             return left.NewtonMetersPerRadian / right.NewtonMetersPerRadian;
@@ -426,36 +415,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RotationalStiffness, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RotationalStiffness, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(RotationalStiffness left, RotationalStiffness right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -464,11 +462,14 @@ namespace UnitsNet
             return CompareTo(objRotationalStiffness);
         }
 
+        /// <inheritdoc />
         public int CompareTo(RotationalStiffness other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RotationalStiffness, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is RotationalStiffness objRotationalStiffness))
@@ -477,6 +478,8 @@ namespace UnitsNet
             return Equals(objRotationalStiffness);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RotationalStiffness, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(RotationalStiffness other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -561,6 +564,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((RotationalStiffnessUnit) unit);
 
         /// <summary>
@@ -575,6 +579,7 @@ namespace UnitsNet
 
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
 
         /// <summary>

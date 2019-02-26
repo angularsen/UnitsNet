@@ -1,23 +1,5 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using UnitsNet.Units;
@@ -35,6 +17,9 @@ namespace UnitsNet
     /// </remarks>
     public class UnitInfo
     {
+        /// <summary>Creates an instance from a unit enum value.</summary>
+        /// <param name="value">The unit enum value.</param>
+        /// <example>new UnitInfo(LengthUnit.Meter)</example>
         public UnitInfo(Enum value)
         {
             Value = value;
@@ -45,7 +30,7 @@ namespace UnitsNet
         /// The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
         /// <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
-        public Enum Value;
+        public Enum Value { get; }
 
         /// <summary>
         /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
@@ -63,11 +48,13 @@ namespace UnitsNet
     public class UnitInfo<TUnit> : UnitInfo
         where TUnit : Enum
     {
+        /// <inheritdoc />
         public UnitInfo(TUnit value) : base(value)
         {
             Value = value;
         }
 
+        /// <inheritdoc cref="UnitInfo.Value"/>
         public new TUnit Value { get; }
     }
 }

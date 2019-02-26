@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
@@ -45,6 +27,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
@@ -130,14 +113,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<AmplitudeRatioUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -377,6 +358,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<AmplitudeRatioUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AmplitudeRatioUnit)"/>
         public static bool TryParseUnit(string str, out AmplitudeRatioUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -401,11 +383,13 @@ namespace UnitsNet
 
         #region Logarithmic Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static AmplitudeRatio operator -(AmplitudeRatio right)
         {
             return new AmplitudeRatio(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic addition of two <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic addition
@@ -413,6 +397,7 @@ namespace UnitsNet
             return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
         }
 
+        /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic subtraction
@@ -420,24 +405,28 @@ namespace UnitsNet
             return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
         }
 
+        /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
         {
             // Logarithmic multiplication = addition
             return new AmplitudeRatio(left + right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
         {
             // Logarithmic multiplication = addition
             return new AmplitudeRatio(left.Value + (double)right, left.Unit);
         }
 
+        /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
         public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
         {
             // Logarithmic division = subtraction
             return new AmplitudeRatio(left.Value - (double)right, left.Unit);
         }
 
+        /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
         public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic division = subtraction
@@ -448,36 +437,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AmplitudeRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AmplitudeRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -486,11 +484,14 @@ namespace UnitsNet
             return CompareTo(objAmplitudeRatio);
         }
 
+        /// <inheritdoc />
         public int CompareTo(AmplitudeRatio other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(AmplitudeRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is AmplitudeRatio objAmplitudeRatio))
@@ -499,6 +500,8 @@ namespace UnitsNet
             return Equals(objAmplitudeRatio);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(AmplitudeRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(AmplitudeRatio other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -583,6 +586,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((AmplitudeRatioUnit) unit);
 
         /// <summary>
@@ -597,6 +601,7 @@ namespace UnitsNet
 
         IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((AmplitudeRatioUnit) unit);
 
         /// <summary>
