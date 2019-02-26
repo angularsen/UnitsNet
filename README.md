@@ -4,9 +4,11 @@
 
 ## Units.NET
 
-Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
+Add strongly typed quantities to your code and merrily get on with your life. 
 
-Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested.
+No more magic constants found on StackOverflow, no second-guessing the unit of that `double length` variable.
+
+Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested. If you have read this far, it is exactly what you are looking for and then some.
 
 ### Upgrading from 3.x to 4.x?
 See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-3.x-to-4.x).
@@ -16,7 +18,6 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * .NET Standard 2.0
 * .NET 4.0
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
-
 
 ### Overview
 
