@@ -30,13 +30,15 @@ namespace UnitsNet
             .ToArray();
 
         /// <summary>
-        /// 
+        ///     Constructs an instance.
         /// </summary>
-        /// <param name="quantityType"></param>
-        /// <param name="unitInfos"></param>
-        /// <param name="baseUnit"></param>
-        /// <param name="zero"></param>
-        /// <param name="baseDimensions"></param>
+        /// <param name="quantityType">The quantity enum value.</param>
+        /// <param name="unitInfos">The information about the units for this quantity.</param>
+        /// <param name="baseUnit">The base unit enum value.</param>
+        /// <param name="zero">The zero quantity.</param>
+        /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+        /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
+        /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
