@@ -61,10 +61,10 @@ namespace UnitsNet
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, new BaseUnits(amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

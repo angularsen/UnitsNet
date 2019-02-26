@@ -50,7 +50,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricCurrentUnit>(QuantityType.ElectricCurrent,
                 new UnitInfo<ElectricCurrentUnit>[] {
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Ampere, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, new BaseUnits(current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, BaseUnits.Undefined),

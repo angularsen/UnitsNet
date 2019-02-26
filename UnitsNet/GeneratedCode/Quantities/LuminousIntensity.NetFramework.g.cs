@@ -53,7 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity,
                 new UnitInfo<LuminousIntensityUnit>[] {
-                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela)),
+                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

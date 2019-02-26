@@ -290,13 +290,13 @@ $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
             PluralName = $_.PluralName
             BaseUnits = Ternary $_.BaseUnits @{
               # $_ | fl | out-string | Write-Host -ForegroundColor green
-              Length = Ternary $_.BaseUnits.L "LengthUnit.$($_.BaseUnits.L)" "LengthUnit.Undefined"
-              Mass = Ternary $_.BaseUnits.M "MassUnit.$($_.BaseUnits.M)" "MassUnit.Undefined"
-              Time = Ternary $_.BaseUnits.T "DurationUnit.$($_.BaseUnits.T)" "DurationUnit.Undefined"
-              ElectricCurrent = Ternary $_.BaseUnits.I "ElectricCurrentUnit.$($_.BaseUnits.I)" "ElectricCurrentUnit.Undefined"
-              Temperature = Ternary $_.BaseUnits.Θ "TemperatureUnit.$($_.BaseUnits.Θ)" "TemperatureUnit.Undefined"
-              AmountOfSubstance = Ternary $_.BaseUnits.N "AmountOfSubstanceUnit.$($_.BaseUnits.N)" "AmountOfSubstanceUnit.Undefined"
-              LuminousIntensity = Ternary $_.BaseUnits.J "LuminousIntensityUnit.$($_.BaseUnits.J)" "LuminousIntensityUnit.Undefined"
+              Length = Ternary $_.BaseUnits.L "length: LengthUnit.$($_.BaseUnits.L)" $null
+              Mass = Ternary $_.BaseUnits.M "mass: MassUnit.$($_.BaseUnits.M)" $null
+              Time = Ternary $_.BaseUnits.T "time: DurationUnit.$($_.BaseUnits.T)" $null
+              ElectricCurrent = Ternary $_.BaseUnits.I "current: ElectricCurrentUnit.$($_.BaseUnits.I)" $null
+              Temperature = Ternary $_.BaseUnits.Θ "temperature: TemperatureUnit.$($_.BaseUnits.Θ)" $null
+              AmountOfSubstance = Ternary $_.BaseUnits.N "amount: AmountOfSubstanceUnit.$($_.BaseUnits.N)" $null
+              LuminousIntensity = Ternary $_.BaseUnits.J "luminousIntensity: LuminousIntensityUnit.$($_.BaseUnits.J)" $null
             } $null
             XmlDocSummary = $_.XmlDocSummary
             XmlDocRemarks = $_.XmlDocRemarks
