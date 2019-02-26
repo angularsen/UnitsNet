@@ -92,6 +92,19 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ExistsInWorksCorrectly()
+        {
+            Assert.False(BaseUnits.Undefined.ExistsIn(siBaseUnits));
+            Assert.False(siBaseUnits.ExistsIn(BaseUnits.Undefined));
+
+            var meterBaseUnits = new BaseUnits(LengthUnit.Meter);
+            Assert.True(meterBaseUnits.ExistsIn(siBaseUnits));
+
+            // Not all units in siBaseUnits will exist in meterBaseUnits
+            Assert.False(siBaseUnits.ExistsIn(meterBaseUnits));
+        }
+
+        [Fact]
         public void ToStringGivesExpectedResult()
         {
             var siBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,

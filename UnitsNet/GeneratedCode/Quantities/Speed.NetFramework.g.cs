@@ -1163,7 +1163,7 @@ namespace UnitsNet
         /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
         public static SpeedUnit GetUnitFor(BaseUnits baseUnits)
         {
-            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.ExistsIn(baseUnits)).FirstOrDefault();
             if(unit == null)
                 throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 

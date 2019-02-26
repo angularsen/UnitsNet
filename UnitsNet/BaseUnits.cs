@@ -73,25 +73,26 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Checks if this base unit equals or overlaps another, ignoring undefined base units.
+        /// Checks if the base units exist in other. Undefined base units are ignored.
         /// </summary>
-        /// <param name="other">The other instance to check if equal to ignoring undefined base units.</param>
-        /// <returns>True if equal while ignoring undefined base units, otherwise false.</returns>
-        public bool EqualsIgnoreUndefined(BaseUnits other)
+        /// <param name="other">The other <see cref="BaseUnits"/> to check for existance in.</param>
+        /// <returns>True if the base units exist in other, otherwise false.</returns>
+        public bool ExistsIn(BaseUnits other)
         {
             if(other is null)
                 return false;
 
-            if(Equals(Undefined) || other.Equals(Undefined))
+            // If everything is undefined, there's nothing to exist in other.
+            if(Equals(Undefined))
                 return false;
 
-            return (Length == other.Length || Length == LengthUnit.Undefined || other.Length == LengthUnit.Undefined) &&
-                (Mass == other.Mass || Mass == MassUnit.Undefined || other.Mass == MassUnit.Undefined) &&
-                (Time == other.Time || Time == DurationUnit.Undefined || other.Time == DurationUnit.Undefined) &&
-                (Current == other.Current || Current == ElectricCurrentUnit.Undefined || other.Current == ElectricCurrentUnit.Undefined) &&
-                (Temperature == other.Temperature || Temperature == TemperatureUnit.Undefined || other.Temperature == TemperatureUnit.Undefined) &&
-                (Amount == other.Amount || Amount == AmountOfSubstanceUnit.Undefined || other.Amount == AmountOfSubstanceUnit.Undefined) &&
-                (LuminousIntensity == other.LuminousIntensity || LuminousIntensity == LuminousIntensityUnit.Undefined || other.LuminousIntensity == LuminousIntensityUnit.Undefined);
+            return (Length == LengthUnit.Undefined || Length == other.Length) &&
+                (Mass == MassUnit.Undefined || Mass == other.Mass) &&
+                (Time == DurationUnit.Undefined || Time == other.Time) &&
+                (Current == ElectricCurrentUnit.Undefined || Current == other.Current) &&
+                (Temperature == TemperatureUnit.Undefined || Temperature == other.Temperature) &&
+                (Amount == AmountOfSubstanceUnit.Undefined || Amount == other.Amount) &&
+                (LuminousIntensity == LuminousIntensityUnit.Undefined || LuminousIntensity == other.LuminousIntensity);
         }
 
         /// <inheritdoc />
