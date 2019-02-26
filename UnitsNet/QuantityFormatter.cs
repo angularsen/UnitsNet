@@ -36,6 +36,16 @@ namespace UnitsNet
         /// <param name="quantity">The quantity to format.</param>
         /// <param name="format">The format string.</param>
         /// <param name="formatProvider">The format provider to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <remarks>
+        /// The valid format strings are as follows:
+        /// "g": The quantity formatted as the value with 2 significant digits after the radix, and abbreviation. For example: 1.23 m
+        /// "a": The default abbreviation for the quantity's unit.
+        /// "a0", "a1", "a2", etc.: The abbreviation with index where multiple abbreviations exist. "a0" is the same as "a" or the default abbreviation.
+        /// "v": The quantity's value outputted as a string using the default representation.
+        /// "u": The quantity's unit
+        /// "q": The quantity's name.
+        /// "s1", "s4", etc.: The quantity formatted as the value with n significant digits after the radix, and abbreviation. For example, "s4" would give: 1.2345 m
+        /// </remarks>
         /// <returns>The string representation.</returns>
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
             where TUnitType : Enum

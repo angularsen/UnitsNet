@@ -6,7 +6,7 @@ namespace UnitsNet.Tests
 {
     public class QuantityIFormattableTests
     {
-        private static Length length = Length.FromFeet(3.0);
+        private static Length length = Length.FromFeet(1.2345678);
 
         [Fact]
         public void GFormatStringEqualsToString()
@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SFormatEqualsSignificantDigits()
         {
-            Assert.Equal(length.ToString(null, 1), length.ToString("s"));
+            Assert.Equal(length.ToString(null, 0), length.ToString("s"));
             Assert.Equal(length.ToString(null, 1), length.ToString("s1"));
             Assert.Equal(length.ToString(null, 2), length.ToString("s2"));
             Assert.Equal(length.ToString(null, 3), length.ToString("s3"));
