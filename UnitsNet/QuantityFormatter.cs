@@ -20,11 +20,23 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
+    /// <summary>
+    /// The QuantityFormatter class is responsible for formatting a quantity using the given format string.
+    /// </summary>
     public class QuantityFormatter
     {
+        /// <summary>
+        /// Formats the given quantity using the given format string and format provider.
+        /// </summary>
+        /// <typeparam name="TUnitType">The quantity's unit type, for example <see cref="LengthUnit"/>.</typeparam>
+        /// <param name="quantity">The quantity to format.</param>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">The format provider to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
             where TUnitType : Enum
         {
