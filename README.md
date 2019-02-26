@@ -15,7 +15,7 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 
 * .NET Standard 2.0
 * .NET 4.0
-* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
+* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 
 ### Overview
