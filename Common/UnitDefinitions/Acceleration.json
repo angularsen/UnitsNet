@@ -10,6 +10,10 @@
     {
       "SingularName": "MeterPerSecondSquared",
       "PluralName": "MetersPerSecondSquared",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
@@ -23,8 +27,12 @@
     {
       "SingularName": "InchPerSecondSquared",
       "PluralName": "InchesPerSecondSquared",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x*0.0254",
-      "FromBaseToUnitFunc": "x/0.0254", 
+      "FromBaseToUnitFunc": "x/0.0254",
       "Localization": [
         {
           "Culture": "en-US",
@@ -35,6 +43,10 @@
     {
       "SingularName": "FootPerSecondSquared",
       "PluralName": "FeetPerSecondSquared",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x*0.304800",
       "FromBaseToUnitFunc": "x/0.304800",
       "Localization": [
@@ -47,6 +59,10 @@
     {
       "SingularName": "KnotPerSecond",
       "PluralName": "KnotsPerSecond",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x*0.5144444444444",
       "FromBaseToUnitFunc": "x/0.5144444444444",
       "Localization": [
@@ -59,6 +75,10 @@
     {
       "SingularName": "KnotPerMinute",
       "PluralName": "KnotsPerMinute",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "x*0.5144444444444/60",
       "FromBaseToUnitFunc": "x/0.5144444444444*60",
       "Localization": [
@@ -71,6 +91,10 @@
     {
       "SingularName": "KnotPerHour",
       "PluralName": "KnotsPerHour",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "x*0.5144444444444/3600",
       "FromBaseToUnitFunc": "x/0.5144444444444*3600",
       "Localization": [
@@ -83,6 +107,10 @@
     {
       "SingularName": "StandardGravity",
       "PluralName": "StandardGravity",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x*9.80665",
       "FromBaseToUnitFunc": "x/9.80665",
       "Localization": [
