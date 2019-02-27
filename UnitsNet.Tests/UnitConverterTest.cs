@@ -78,13 +78,6 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(1, "UnknownQuantity", "m", "cm")]
-        public void ConvertByAbbreviation_ThrowsQuantityNotFoundExceptionOnUnknownQuantity(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
-        {
-            Assert.Throws<QuantityNotFoundException>(() => UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
-        }
-
-        [Theory]
         [InlineData(1, "Length", "UnknownFromUnit", "cm")]
         [InlineData(1, "Length", "m", "UnknownToUnit")]
         public void ConvertByAbbreviation_ThrowsUnitNotFoundExceptionOnUnknownFromOrToUnitAbbreviation(double inputValue, string quantityTypeName, string fromUnit, string toUnit)

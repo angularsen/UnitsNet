@@ -4,9 +4,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -17,18 +15,6 @@ namespace UnitsNet
     [PublicAPI]
     public static class UnitConverter
     {
-        private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
-        private static readonly Assembly UnitsNetAssembly = typeof(Length).Wrap().Assembly;
-
-        private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(typeof(IQuantity).Wrap().IsAssignableFrom)
-            .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
-            .ToArray();
-
-        private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
-            .ToArray();
-
         /// <summary>
         ///     Convert between any two quantity units given a numeric value and two unit enum values.
         /// </summary>
@@ -54,7 +40,7 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;
+            if (!Quantity.TryFrom(fromValue, fromUnitValue, out var from)) return false;
 
             try
             {
@@ -99,17 +85,17 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
-            if (!TryGetUnitType(quantityName, out Type unitType))
+            if (!TryGetUnitType(quantityName, out var unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
             {
                 var e = new UnitNotFoundException($"Unit not found [{fromUnit}].");
                 e.Data["unitName"] = fromUnit;
                 throw e;
             }
 
-            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
             {
                 var e = new UnitNotFoundException($"Unit not found [{toUnit}].");
                 e.Data["unitName"] = toUnit;
@@ -229,24 +215,16 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
-            if (!TryGetQuantityType(quantityName, out var quantityType))
-                throw new QuantityNotFoundException($"The given quantity name was not found: {quantityName}");
-
             if (!TryGetUnitType(quantityName, out var unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
 
             var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var fromResult = Quantity.From(fromValue, fromUnitValue);
+
             var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
-
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
-
-            var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
-
-            return (double) asResult;
+            return fromResult.As(toUnitValue);
         }
 
         /// <summary>
@@ -314,9 +292,6 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetQuantityType(quantityName, out var quantityType))
-                return false;
-
             if (!TryGetUnitType(quantityName, out var unitType))
                 return false;
 
@@ -328,57 +303,11 @@ namespace UnitsNet
             if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
-
-            var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
-
-            result = (double) asResult;
-            return true;
-        }
-
-        private static MethodInfo GetAsMethod(Type quantityType, Type unitType)
-        {
-            // Only a single As() method as of this writing, but let's safe-guard a bit for future-proofing
-            // ex: double result = quantity.As(LengthUnit outputUnit);
-            return quantityType.Wrap().GetDeclaredMethods()
-                .Single(m => m.Name == "As" &&
-                             !m.IsStatic &&
-                             m.IsPublic &&
-                             HasParameterTypes(m, unitType) &&
-                             m.ReturnType == typeof(double));
-        }
-
-        private static MethodInfo GetStaticFromMethod(Type quantityType, Type unitType)
-        {
-            // Want to match: Length l = UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            // Do NOT match : Length? UnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
-            return quantityType.Wrap().GetDeclaredMethods()
-                .Single(m => m.Name == "From" &&
-                             m.IsStatic &&
-                             m.IsPublic &&
-                             HasParameterTypes(m, typeof(QuantityValue), unitType) &&
-                             m.ReturnType == quantityType);
-        }
-
-        private static bool HasParameterTypes(MethodInfo methodInfo, params Type[] expectedTypes)
-        {
-            var parameters = methodInfo.GetParameters();
-            if (parameters.Length != expectedTypes.Length)
-                throw new ArgumentException($"The number of parameters {parameters.Length} did not match the number of types {expectedTypes.Length}.");
-
-            for (var i = 0; i < parameters.Length; i++)
-            {
-                var p = parameters[i];
-                var t = expectedTypes[i];
-                if (p.ParameterType != t)
-                    return false;
-            }
+            var fromResult = Quantity.From(fromValue, fromUnitValue);
+            result = fromResult.As(toUnitValue);
 
             return true;
         }
-
 
         /// <summary>
         ///     Parse a unit by the unit enum type <paramref name="unitType" /> and a unit enum value <paramref name="unitName" />>
@@ -402,19 +331,10 @@ namespace UnitsNet
 
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            var unitTypeName = quantityName + "Unit"; // ex. LengthUnit
+            var quantityInfo = Quantity.Infos.FirstOrDefault((info) => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
-            unitType = UnitTypes.FirstOrDefault(x =>
-                x.Name.Equals(unitTypeName, StringComparison.OrdinalIgnoreCase));
-
-            return unitType != null;
-        }
-
-        private static bool TryGetQuantityType(string quantityName, out Type quantityType)
-        {
-            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
-
-            return quantityType != null;
+            unitType = quantityInfo?.UnitType;
+            return quantityInfo != null;
         }
     }
 }
