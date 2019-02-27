@@ -117,8 +117,8 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
                 Value = quantity.Value,
-                Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"
-            });
+                Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}" // Example: "MassUnit.Kilogram"
+            } );
         }
 
         /// <summary>

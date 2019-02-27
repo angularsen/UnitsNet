@@ -40,12 +40,12 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out var from)) return false;
+            if (!Quantity.TryFrom(fromValue, fromUnitValue, out var fromQuantity)) return false;
 
             try
             {
                 // We're not going to implement TryAs() in all quantities, so let's just try-catch here
-                convertedValue = from.As(toUnitValue);
+                convertedValue = fromQuantity.As(toUnitValue);
                 return true;
             }
             catch
@@ -220,11 +220,11 @@ namespace UnitsNet
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
 
-            var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            var fromResult = Quantity.From(fromValue, fromUnitValue);
+            var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var fromQuantity = Quantity.From(fromValue, fromUnit);
 
-            var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
-            return fromResult.As(toUnitValue);
+            var toUnit = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            return fromQuantity.As(toUnit);
         }
 
         /// <summary>
@@ -297,14 +297,14 @@ namespace UnitsNet
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
 
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnitValue)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            var fromResult = Quantity.From(fromValue, fromUnitValue);
-            result = fromResult.As(toUnitValue);
+            var fromQuantity = Quantity.From(fromValue, fromUnit);
+            result = fromQuantity.As(toUnit);
 
             return true;
         }
