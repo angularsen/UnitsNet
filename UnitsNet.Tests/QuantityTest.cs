@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -170,6 +170,20 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
             Assert.Equal(QuantityCount, types.Length);
+        }
+
+        [Fact]
+        public void GetUnitForUnitSystemTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((UnitSystem)null));
+            Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void GetUnitForBaseUnitsTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((BaseUnits)null));
+            Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
         }
     }
 }

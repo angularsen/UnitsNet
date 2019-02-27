@@ -823,6 +823,9 @@ namespace UnitsNet
         /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
         public static MolarMassUnit GetUnitFor(BaseUnits baseUnits)
         {
+            if(baseUnits == null)
+                throw new ArgumentNullException(nameof(baseUnits));
+
             var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.ExistsIn(baseUnits)).FirstOrDefault();
             if(unit == null)
                 throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
