@@ -117,30 +117,30 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(1, "1.1 m")]
-        [InlineData(2, "1.12 m")]
-        [InlineData(3, "1.123 m")]
-        [InlineData(4, "1.1235 m")]
-        [InlineData(5, "1.12346 m")]
-        [InlineData(6, "1.123457 m")]
-        public void CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix, string expected)
+        [InlineData("s1", "1.1 m")]
+        [InlineData("s2", "1.12 m")]
+        [InlineData("s3", "1.123 m")]
+        [InlineData("s4", "1.1235 m")]
+        [InlineData("s5", "1.12346 m")]
+        [InlineData("s6", "1.123457 m")]
+        public void CustomNumberOfSignificantDigitsAfterRadixFormatting(string significantDigitsAfterRadixFormatString, string expected)
         {
-            string actual = Length.FromMeters(1.123456789).ToUnit(LengthUnit.Meter).ToString(AmericanCulture, significantDigitsAfterRadix);
+            string actual = Length.FromMeters(1.123456789).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
-        [InlineData(0.819999999999, 2, "0.82 m")]
-        [InlineData(0.819999999999, 4, "0.82 m")]
-        [InlineData(0.00299999999, 2, "0.003 m")]
-        [InlineData(0.00299999999, 4, "0.003 m")]
-        [InlineData(0.0003000001, 2, "3e-04 m")]
-        [InlineData(0.0003000001, 4, "3e-04 m")]
+        [InlineData(0.819999999999, "s2", "0.82 m")]
+        [InlineData(0.819999999999, "s4", "0.82 m")]
+        [InlineData(0.00299999999, "s2", "0.003 m")]
+        [InlineData(0.00299999999, "s4", "0.003 m")]
+        [InlineData(0.0003000001, "s2", "3e-04 m")]
+        [InlineData(0.0003000001, "s4", "3e-04 m")]
         public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
-            int maxSignificantDigitsAfterRadix, string expected)
+            string significantDigitsAfterRadixFormatString, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture, maxSignificantDigitsAfterRadix);
+            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
             Assert.Equal(expected, actual);
         }
 

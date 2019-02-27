@@ -781,7 +781,7 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get default string representation of value and unit.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
@@ -790,13 +790,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(provider, 2);
+            return ToString("g", provider);
         }
 
         /// <summary>
@@ -805,6 +805,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -819,6 +820,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -831,42 +833,24 @@ namespace UnitsNet
             return string.Format(provider, format, formatArgs);
         }
 
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using <see cref="GlobalConfiguration.DefaultCulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
-        /// <remarks>
-        /// The valid format strings are as follows:
-        /// "g": The quantity formatted as the value with 2 significant digits after the radix, and abbreviation. For example: 1.23 m
-        /// "a": The default abbreviation for the quantity's unit.
-        /// "a0", "a1", "a2", etc.: The abbreviation with index where multiple abbreviations exist. "a0" is the same as "a" or the default abbreviation.
-        /// "v": The quantity's value outputted as a string using the default representation.
-        /// "u": The quantity's unit
-        /// "q": The quantity's name.
-        /// "s1", "s4", etc.: The quantity formatted as the value with n significant digits after the radix, and abbreviation. For example, "s4" would give: 1.2345 m
-        /// </remarks>
         public string ToString(string format)
         {
             return ToString(format, GlobalConfiguration.DefaultCulture);
         }
 
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="GlobalConfiguration.DefaultCulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        /// <remarks>
-        /// The valid format strings are as follows:
-        /// "g": The quantity formatted as the value with 2 significant digits after the radix, and abbreviation. For example: 1.23 m
-        /// "a": The default abbreviation for the quantity's unit.
-        /// "a0", "a1", "a2", etc.: The abbreviation with index where multiple abbreviations exist. "a0" is the same as "a" or the default abbreviation.
-        /// "v": The quantity's value outputted as a string using the default representation.
-        /// "u": The quantity's unit
-        /// "q": The quantity's name.
-        /// "s1", "s4", etc.: The quantity formatted as the value with n significant digits after the radix, and abbreviation. For example, "s4" would give: 1.2345 m
-        /// </remarks>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             return QuantityFormatter.Format<ForceUnit>(this, format, formatProvider);
@@ -938,7 +922,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider provider)
         {
-            return ToString(provider);
+            return ToString("g", provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

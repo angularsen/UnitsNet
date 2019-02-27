@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void SFormatEqualsSignificantDigits()
         {
-            Assert.Equal(length.ToString(null, 0), length.ToString("s"));
-            Assert.Equal(length.ToString(null, 1), length.ToString("s1"));
-            Assert.Equal(length.ToString(null, 2), length.ToString("s2"));
-            Assert.Equal(length.ToString(null, 3), length.ToString("s3"));
-            Assert.Equal(length.ToString(null, 4), length.ToString("s4"));
-            Assert.Equal(length.ToString(null, 5), length.ToString("s5"));
+            Assert.Equal("1 ft", length.ToString("s"));
+            Assert.Equal("1.2 ft", length.ToString("s1"));
+            Assert.Equal("1.23 ft", length.ToString("s2"));
+            Assert.Equal("1.235 ft", length.ToString("s3"));
+            Assert.Equal("1.2346 ft", length.ToString("s4"));
+            Assert.Equal("1.23457 ft", length.ToString("s5"));
         }
 
         [Fact]

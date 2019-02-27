@@ -124,9 +124,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(null, 4));
-                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 2));
-                    Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 4));
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString("s4"));
+                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s2"));
+                    Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s4"));
                 }
                 finally
                 {
