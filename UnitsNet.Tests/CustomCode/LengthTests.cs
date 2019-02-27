@@ -3,6 +3,7 @@
 
 using Xunit;
 using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -155,8 +156,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void LengthCreatedInSISystem()
         {
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (BaseUnits)null));
+
             var length = new Length(1.0, UnitSystem.SI);
             Assert.Equal(LengthUnit.Meter, length.Unit);
+
+            var length2 = new Length(1.0, UnitSystem.SI.BaseUnits);
+            Assert.Equal(LengthUnit.Meter, length2.Unit);
         }
     }
 }
