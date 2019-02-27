@@ -94,6 +94,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ExistsInWorksCorrectly()
         {
+            Assert.False(siBaseUnits.ExistsIn(null));
+
             Assert.False(BaseUnits.Undefined.ExistsIn(siBaseUnits));
             Assert.False(siBaseUnits.ExistsIn(BaseUnits.Undefined));
 
