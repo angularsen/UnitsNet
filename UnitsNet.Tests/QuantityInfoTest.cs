@@ -22,15 +22,17 @@ namespace UnitsNet.Tests
 
             var info = new QuantityInfo(expectedQuantityType, expectedUnitInfos, expectedBaseUnit, expectedZero, expectedBaseDimensions);
 
-#pragma warning disable 618
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
-            Assert.Equal(expectedBaseUnit, info.BaseUnit);
-            Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
-#pragma warning restore 618
             Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal( expectedBaseUnit, info.BaseUnit );
+            Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
+#pragma warning restore 618
         }
 
         [Fact]
@@ -44,15 +46,17 @@ namespace UnitsNet.Tests
 
             var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnitInfos, expectedBaseUnit, expectedZero, expectedBaseDimensions);
 
-#pragma warning disable 618
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
-            Assert.Equal(expectedBaseUnit, info.BaseUnit);
-            Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
-#pragma warning restore 618
             Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal( expectedBaseUnit, info.BaseUnit );
+            Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
+#pragma warning restore 618
         }
 
         [Fact]

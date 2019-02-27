@@ -51,28 +51,5 @@ namespace UnitsNet.Tests
             Assert.Equal(lengthUnitNames, quantityInfo.UnitNames);
 #pragma warning restore 618
         }
-
-        [Fact]
-        public void TestGenericMultiplication()
-        {
-            var length1 = Length.FromInches(2.0);
-            var length2 = Length.FromMeters(2.0);
-
-            var calculated = Multiply(length1, length2);
-            Assert.Equal(length1 * length2, calculated);
-        }
-
-        private IQuantity Multiply(IQuantity left, IQuantity right)
-        {
-            var multipliedBaseDimensions = left.Dimensions * right.Dimensions;
-            var multipliedQuantityInfo = Quantity.Infos.Where(info => info.BaseDimensions == multipliedBaseDimensions).First();
-
-            var lhsBaseUnits = left.QuantityInfo.UnitInfos.First((unitInfo) => unitInfo.Value.Equals(left.Unit));
-            var areaUnit = Area.GetUnitFor(lhsBaseUnits.BaseUnits);
-            // var areaUnit = multipliedQuantityInfo.UnitBaseUnits.Where(BaseUnits => baseUnit == lhsBaseUnits);
-
-            var multipliedValue = left.As(left.Unit) * right.As(left.Unit);
-            return Quantity.From(multipliedValue, areaUnit);
-        }
     }
 }

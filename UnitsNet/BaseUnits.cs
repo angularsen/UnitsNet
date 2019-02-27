@@ -30,9 +30,13 @@ namespace UnitsNet
         /// <param name="temperature">The temperature unit (Θ).</param>
         /// <param name="amount">The amount of substance unit (N).</param>
         /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
-        public BaseUnits(LengthUnit length = LengthUnit.Undefined, MassUnit mass = MassUnit.Undefined,
-            DurationUnit time = DurationUnit.Undefined, ElectricCurrentUnit current = ElectricCurrentUnit.Undefined,
-            TemperatureUnit temperature = TemperatureUnit.Undefined, AmountOfSubstanceUnit amount = AmountOfSubstanceUnit.Undefined,
+        public BaseUnits(
+            LengthUnit length = LengthUnit.Undefined,
+            MassUnit mass = MassUnit.Undefined,
+            DurationUnit time = DurationUnit.Undefined,
+            ElectricCurrentUnit current = ElectricCurrentUnit.Undefined,
+            TemperatureUnit temperature = TemperatureUnit.Undefined,
+            AmountOfSubstanceUnit amount = AmountOfSubstanceUnit.Undefined,
             LuminousIntensityUnit luminousIntensity = LuminousIntensityUnit.Undefined)
         {
             Length = length;

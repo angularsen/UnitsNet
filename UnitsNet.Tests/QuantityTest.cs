@@ -173,16 +173,26 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetUnitForUnitSystemTest()
+        public void GetUnitFor_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((UnitSystem)null));
+        }
+
+        [Fact]
+        public void GetUnitFor_UnitSystem_SIUsesSIUnits()
+        {
             Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI));
         }
 
         [Fact]
-        public void GetUnitForBaseUnitsTest()
+        public void GetUnitFor_BaseUnits_ThrowsArgumentNullExceptionIfNull()
         {
             Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((BaseUnits)null));
+        }
+
+        [Fact]
+        public void GetUnitFor_BaseUnits_SIBaseUnitsUsesSIUnits()
+        {
             Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
         }
     }
