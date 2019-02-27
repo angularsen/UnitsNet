@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -22,7 +23,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
-        public UnitInfo(Enum value, BaseUnits baseUnits)
+        public UnitInfo([NotNull] Enum value, [NotNull] BaseUnits baseUnits)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();
