@@ -80,7 +80,6 @@ namespace UnitsNet
         /// </param>
         /// <example>double centimeters = ConvertByName(5, "Length", "Meter", "Centimeter"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnit" />.</returns>
-        /// <exception cref="QuantityNotFoundException">No quantities were found that match <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
@@ -207,7 +206,6 @@ namespace UnitsNet
         /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        /// <exception cref="QuantityNotFoundException">No quantity types match the <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">
         ///     No unit types match the prefix of <paramref name="quantityName" /> or no units
         ///     are mapped to the abbreviation.
