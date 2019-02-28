@@ -55,7 +55,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WattHoursInOneJoule => 0.000277777778;
 
         [Fact]
-        public void Constructor_UnitSystem_SIUsesSIUnits()
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
             var energy = new Energy(1.0, UnitSystem.SI);
             Assert.Equal(EnergyUnit.Joule, energy.Unit);

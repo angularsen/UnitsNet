@@ -85,7 +85,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void Constructor_UnitSystem_SIUsesSIUnits()
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
             var area = new Area(1.0, UnitSystem.SI);
             Assert.Equal(AreaUnit.SquareMeter, area.Unit);

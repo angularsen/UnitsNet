@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetUnitFor_BaseUnits_SIBaseUnitsUsesSIUnits()
+        public void GetUnitFor_BaseUnitsSI_AssignsSIBaseUnits()
         {
             Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
         }
