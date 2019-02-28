@@ -2,11 +2,15 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Text;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
+    /// <summary>
+    ///     A unit system defined by a combination of base units.
+    ///     This is typically used to define the "working units" for consistently creating and presenting quantities in the selected base units,
+    ///     such as <see cref="SI"/> to use SI base units such as meters, kilograms and seconds.
+    /// </summary>
     public sealed class UnitSystem : IEquatable<UnitSystem>
     {
         /// <summary>
@@ -45,6 +49,7 @@ namespace UnitsNet
             return Equals((UnitSystem)obj);
         }
 
+        /// <inheritdoc />
         public bool Equals(UnitSystem other)
         {
             if(other is null)
@@ -83,6 +88,9 @@ namespace UnitsNet
             return new {BaseUnits}.GetHashCode();
         }
 
+        /// <summary>
+        ///     The base units of this unit system.
+        /// </summary>
         public BaseUnits BaseUnits{ get; }
 
         private static readonly BaseUnits SIBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
@@ -91,6 +99,6 @@ namespace UnitsNet
         /// <summary>
         /// Gets the SI unit system.
         /// </summary>
-        public static UnitSystem SI{ get; } = new UnitSystem(SIBaseUnits);
+        public static UnitSystem SI { get; } = new UnitSystem(SIBaseUnits);
     }
 }

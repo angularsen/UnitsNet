@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<TemperatureChangeRateUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -444,6 +443,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<TemperatureChangeRateUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TemperatureChangeRateUnit)"/>
         public static bool TryParseUnit(string str, out TemperatureChangeRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -468,36 +468,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static TemperatureChangeRate operator -(TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from adding two <see cref="TemperatureChangeRate"/>.</summary>
         public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from subtracting two <see cref="TemperatureChangeRate"/>.</summary>
         public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
         public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
         public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
         {
             return new TemperatureChangeRate(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from dividing <see cref="TemperatureChangeRate"/> by value.</summary>
         public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
         {
             return new TemperatureChangeRate(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="TemperatureChangeRate"/> by <see cref="TemperatureChangeRate"/>.</summary>
         public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
@@ -507,36 +514,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -545,11 +561,14 @@ namespace UnitsNet
             return CompareTo(objTemperatureChangeRate);
         }
 
+        /// <inheritdoc />
         public int CompareTo(TemperatureChangeRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is TemperatureChangeRate objTemperatureChangeRate))
@@ -558,6 +577,8 @@ namespace UnitsNet
             return Equals(objTemperatureChangeRate);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(TemperatureChangeRate other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -642,6 +663,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((TemperatureChangeRateUnit) unit);
 
         /// <summary>
@@ -656,6 +678,7 @@ namespace UnitsNet
 
         IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureChangeRateUnit) unit);
 
         /// <summary>

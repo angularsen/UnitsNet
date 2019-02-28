@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ElectricPotentialUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ElectricPotentialUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -374,6 +373,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ElectricPotentialUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricPotentialUnit)"/>
         public static bool TryParseUnit(string str, out ElectricPotentialUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -398,36 +398,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ElectricPotential operator -(ElectricPotential right)
         {
             return new ElectricPotential(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from adding two <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
         {
             return new ElectricPotential(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from subtracting two <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
         {
             return new ElectricPotential(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from multiplying value and <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator *(double left, ElectricPotential right)
         {
             return new ElectricPotential(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from multiplying value and <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator *(ElectricPotential left, double right)
         {
             return new ElectricPotential(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from dividing <see cref="ElectricPotential"/> by value.</summary>
         public static ElectricPotential operator /(ElectricPotential left, double right)
         {
             return new ElectricPotential(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ElectricPotential"/> by <see cref="ElectricPotential"/>.</summary>
         public static double operator /(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts / right.Volts;
@@ -437,36 +444,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricPotential left, ElectricPotential right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricPotential left, ElectricPotential right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricPotential left, ElectricPotential right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricPotential left, ElectricPotential right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ElectricPotential left, ElectricPotential right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ElectricPotential left, ElectricPotential right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -475,11 +491,14 @@ namespace UnitsNet
             return CompareTo(objElectricPotential);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ElectricPotential other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ElectricPotential objElectricPotential))
@@ -488,6 +507,8 @@ namespace UnitsNet
             return Equals(objElectricPotential);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricPotential other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -572,6 +593,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ElectricPotentialUnit) unit);
 
         /// <summary>
@@ -586,6 +608,7 @@ namespace UnitsNet
 
         IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(ElectricPotentialUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricPotentialUnit) unit);
 
         /// <summary>

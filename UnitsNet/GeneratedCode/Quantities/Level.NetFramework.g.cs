@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<LevelUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -332,6 +331,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<LevelUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LevelUnit)"/>
         public static bool TryParseUnit(string str, out LevelUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -356,11 +356,13 @@ namespace UnitsNet
 
         #region Logarithmic Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Level operator -(Level right)
         {
             return new Level(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Level"/> from logarithmic addition of two <see cref="Level"/>.</summary>
         public static Level operator +(Level left, Level right)
         {
             // Logarithmic addition
@@ -368,6 +370,7 @@ namespace UnitsNet
             return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
         }
 
+        /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
         public static Level operator -(Level left, Level right)
         {
             // Logarithmic subtraction
@@ -375,24 +378,28 @@ namespace UnitsNet
             return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
         }
 
+        /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
         public static Level operator *(double left, Level right)
         {
             // Logarithmic multiplication = addition
             return new Level(left + right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
         public static Level operator *(Level left, double right)
         {
             // Logarithmic multiplication = addition
             return new Level(left.Value + (double)right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
         public static Level operator /(Level left, double right)
         {
             // Logarithmic division = subtraction
             return new Level(left.Value - (double)right, left.Unit);
         }
 
+        /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
         public static double operator /(Level left, Level right)
         {
             // Logarithmic division = subtraction
@@ -403,36 +410,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Level left, Level right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Level left, Level right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Level left, Level right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Level left, Level right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Level, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Level, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -441,11 +457,14 @@ namespace UnitsNet
             return CompareTo(objLevel);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Level other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Level, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Level objLevel))
@@ -454,6 +473,8 @@ namespace UnitsNet
             return Equals(objLevel);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Level, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Level other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -538,6 +559,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((LevelUnit) unit);
 
         /// <summary>
@@ -552,6 +574,7 @@ namespace UnitsNet
 
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>

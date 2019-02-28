@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In geometry, a solid angle is the two-dimensional angle in three-dimensional space that an object subtends at a point.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -321,6 +320,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SolidAngleUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SolidAngleUnit)"/>
         public static bool TryParseUnit(string str, out SolidAngleUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -345,36 +345,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static SolidAngle operator -(SolidAngle right)
         {
             return new SolidAngle(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SolidAngle"/> from adding two <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator +(SolidAngle left, SolidAngle right)
         {
             return new SolidAngle(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SolidAngle"/> from subtracting two <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator -(SolidAngle left, SolidAngle right)
         {
             return new SolidAngle(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator *(double left, SolidAngle right)
         {
             return new SolidAngle(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator *(SolidAngle left, double right)
         {
             return new SolidAngle(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="SolidAngle"/> from dividing <see cref="SolidAngle"/> by value.</summary>
         public static SolidAngle operator /(SolidAngle left, double right)
         {
             return new SolidAngle(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="SolidAngle"/> by <see cref="SolidAngle"/>.</summary>
         public static double operator /(SolidAngle left, SolidAngle right)
         {
             return left.Steradians / right.Steradians;
@@ -384,36 +391,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SolidAngle left, SolidAngle right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SolidAngle left, SolidAngle right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(SolidAngle left, SolidAngle right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SolidAngle left, SolidAngle right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SolidAngle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(SolidAngle left, SolidAngle right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SolidAngle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(SolidAngle left, SolidAngle right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -422,11 +438,14 @@ namespace UnitsNet
             return CompareTo(objSolidAngle);
         }
 
+        /// <inheritdoc />
         public int CompareTo(SolidAngle other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SolidAngle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is SolidAngle objSolidAngle))
@@ -435,6 +454,8 @@ namespace UnitsNet
             return Equals(objSolidAngle);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SolidAngle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SolidAngle other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -519,6 +540,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SolidAngleUnit) unit);
 
         /// <summary>
@@ -533,6 +555,7 @@ namespace UnitsNet
 
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SolidAngleUnit) unit);
 
         /// <summary>

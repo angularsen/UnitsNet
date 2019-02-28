@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
@@ -115,14 +116,12 @@ namespace UnitsNet
 
         double IQuantity.Value => (double) _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PowerUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -586,6 +585,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PowerUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerUnit)"/>
         public static bool TryParseUnit(string str, out PowerUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -610,36 +610,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Power operator -(Power right)
         {
             return new Power(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Power"/> from adding two <see cref="Power"/>.</summary>
         public static Power operator +(Power left, Power right)
         {
             return new Power(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Power"/> from subtracting two <see cref="Power"/>.</summary>
         public static Power operator -(Power left, Power right)
         {
             return new Power(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
         public static Power operator *(decimal left, Power right)
         {
             return new Power(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
         public static Power operator *(Power left, decimal right)
         {
             return new Power(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Power"/> from dividing <see cref="Power"/> by value.</summary>
         public static Power operator /(Power left, decimal right)
         {
             return new Power(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Power"/> by <see cref="Power"/>.</summary>
         public static double operator /(Power left, Power right)
         {
             return left.Watts / right.Watts;
@@ -649,36 +656,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Power left, Power right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Power left, Power right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Power left, Power right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Power left, Power right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Power left, Power right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Power left, Power right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -687,11 +703,14 @@ namespace UnitsNet
             return CompareTo(objPower);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Power other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Power objPower))
@@ -700,6 +719,8 @@ namespace UnitsNet
             return Equals(objPower);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Power other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -784,6 +805,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PowerUnit) unit);
 
         /// <summary>
@@ -798,6 +820,7 @@ namespace UnitsNet
 
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerUnit) unit);
 
         /// <summary>

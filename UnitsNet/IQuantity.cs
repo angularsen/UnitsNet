@@ -36,7 +36,7 @@ namespace UnitsNet
         double As(Enum unit);
 
         /// <summary>
-        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
+        ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
 
@@ -77,6 +77,14 @@ namespace UnitsNet
         string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
+    /// <summary>
+    ///     A stronger typed interface where the unit enum type is known, to avoid passing in the
+    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
+    /// </summary>
+    /// <example>
+    ///     IQuantity{LengthUnit} length;
+    ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
+    /// </example>
     public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
     {
         /// <summary>

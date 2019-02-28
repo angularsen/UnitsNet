@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public MolarMassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<MolarMassUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -472,6 +471,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<MolarMassUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarMassUnit)"/>
         public static bool TryParseUnit(string str, out MolarMassUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -496,36 +496,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static MolarMass operator -(MolarMass right)
         {
             return new MolarMass(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from adding two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
             return new MolarMass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from subtracting two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
             return new MolarMass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
         public static MolarMass operator *(double left, MolarMass right)
         {
             return new MolarMass(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
         public static MolarMass operator *(MolarMass left, double right)
         {
             return new MolarMass(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from dividing <see cref="MolarMass"/> by value.</summary>
         public static MolarMass operator /(MolarMass left, double right)
         {
             return new MolarMass(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="MolarMass"/> by <see cref="MolarMass"/>.</summary>
         public static double operator /(MolarMass left, MolarMass right)
         {
             return left.KilogramsPerMole / right.KilogramsPerMole;
@@ -535,36 +542,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarMass left, MolarMass right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarMass left, MolarMass right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarMass left, MolarMass right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarMass left, MolarMass right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(MolarMass left, MolarMass right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(MolarMass left, MolarMass right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -573,11 +589,14 @@ namespace UnitsNet
             return CompareTo(objMolarMass);
         }
 
+        /// <inheritdoc />
         public int CompareTo(MolarMass other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is MolarMass objMolarMass))
@@ -586,6 +605,8 @@ namespace UnitsNet
             return Equals(objMolarMass);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MolarMass other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -670,6 +691,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((MolarMassUnit) unit);
 
         /// <summary>
@@ -684,6 +706,7 @@ namespace UnitsNet
 
         IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarMassUnit) unit);
 
         /// <summary>

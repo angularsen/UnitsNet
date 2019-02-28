@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Irradiance is the intensity of ultraviolet (UV) or visible light incident on a surface.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public IrradianceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<IrradianceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -500,6 +499,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<IrradianceUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IrradianceUnit)"/>
         public static bool TryParseUnit(string str, out IrradianceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -524,36 +524,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Irradiance operator -(Irradiance right)
         {
             return new Irradiance(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Irradiance"/> from adding two <see cref="Irradiance"/>.</summary>
         public static Irradiance operator +(Irradiance left, Irradiance right)
         {
             return new Irradiance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Irradiance"/> from subtracting two <see cref="Irradiance"/>.</summary>
         public static Irradiance operator -(Irradiance left, Irradiance right)
         {
             return new Irradiance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Irradiance"/> from multiplying value and <see cref="Irradiance"/>.</summary>
         public static Irradiance operator *(double left, Irradiance right)
         {
             return new Irradiance(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Irradiance"/> from multiplying value and <see cref="Irradiance"/>.</summary>
         public static Irradiance operator *(Irradiance left, double right)
         {
             return new Irradiance(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Irradiance"/> from dividing <see cref="Irradiance"/> by value.</summary>
         public static Irradiance operator /(Irradiance left, double right)
         {
             return new Irradiance(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Irradiance"/> by <see cref="Irradiance"/>.</summary>
         public static double operator /(Irradiance left, Irradiance right)
         {
             return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
@@ -563,36 +570,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Irradiance left, Irradiance right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Irradiance left, Irradiance right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Irradiance left, Irradiance right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Irradiance left, Irradiance right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Irradiance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Irradiance left, Irradiance right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Irradiance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Irradiance left, Irradiance right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -601,11 +617,14 @@ namespace UnitsNet
             return CompareTo(objIrradiance);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Irradiance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Irradiance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Irradiance objIrradiance))
@@ -614,6 +633,8 @@ namespace UnitsNet
             return Equals(objIrradiance);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Irradiance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Irradiance other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -698,6 +719,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((IrradianceUnit) unit);
 
         /// <summary>
@@ -712,6 +734,7 @@ namespace UnitsNet
 
         IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((IrradianceUnit) unit);
 
         /// <summary>

@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<MolarityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -419,6 +418,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<MolarityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarityUnit)"/>
         public static bool TryParseUnit(string str, out MolarityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -443,36 +443,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Molarity operator -(Molarity right)
         {
             return new Molarity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Molarity"/> from adding two <see cref="Molarity"/>.</summary>
         public static Molarity operator +(Molarity left, Molarity right)
         {
             return new Molarity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Molarity"/> from subtracting two <see cref="Molarity"/>.</summary>
         public static Molarity operator -(Molarity left, Molarity right)
         {
             return new Molarity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
         public static Molarity operator *(double left, Molarity right)
         {
             return new Molarity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
         public static Molarity operator *(Molarity left, double right)
         {
             return new Molarity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Molarity"/> from dividing <see cref="Molarity"/> by value.</summary>
         public static Molarity operator /(Molarity left, double right)
         {
             return new Molarity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Molarity"/> by <see cref="Molarity"/>.</summary>
         public static double operator /(Molarity left, Molarity right)
         {
             return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
@@ -482,36 +489,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Molarity left, Molarity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Molarity left, Molarity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Molarity left, Molarity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Molarity left, Molarity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Molarity left, Molarity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Molarity left, Molarity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -520,11 +536,14 @@ namespace UnitsNet
             return CompareTo(objMolarity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Molarity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Molarity objMolarity))
@@ -533,6 +552,8 @@ namespace UnitsNet
             return Equals(objMolarity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Molarity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -617,6 +638,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((MolarityUnit) unit);
 
         /// <summary>
@@ -631,6 +653,7 @@ namespace UnitsNet
 
         IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarityUnit) unit);
 
         /// <summary>

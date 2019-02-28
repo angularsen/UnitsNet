@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -486,6 +485,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<AccelerationUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AccelerationUnit)"/>
         public static bool TryParseUnit(string str, out AccelerationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -510,36 +510,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Acceleration operator -(Acceleration right)
         {
             return new Acceleration(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Acceleration"/> from adding two <see cref="Acceleration"/>.</summary>
         public static Acceleration operator +(Acceleration left, Acceleration right)
         {
             return new Acceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Acceleration"/> from subtracting two <see cref="Acceleration"/>.</summary>
         public static Acceleration operator -(Acceleration left, Acceleration right)
         {
             return new Acceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
         public static Acceleration operator *(double left, Acceleration right)
         {
             return new Acceleration(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
         public static Acceleration operator *(Acceleration left, double right)
         {
             return new Acceleration(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Acceleration"/> from dividing <see cref="Acceleration"/> by value.</summary>
         public static Acceleration operator /(Acceleration left, double right)
         {
             return new Acceleration(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Acceleration"/> by <see cref="Acceleration"/>.</summary>
         public static double operator /(Acceleration left, Acceleration right)
         {
             return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
@@ -549,36 +556,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Acceleration left, Acceleration right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Acceleration left, Acceleration right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Acceleration left, Acceleration right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Acceleration left, Acceleration right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Acceleration left, Acceleration right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Acceleration left, Acceleration right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -587,11 +603,14 @@ namespace UnitsNet
             return CompareTo(objAcceleration);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Acceleration other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Acceleration objAcceleration))
@@ -600,6 +619,8 @@ namespace UnitsNet
             return Equals(objAcceleration);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Acceleration other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -684,6 +705,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((AccelerationUnit) unit);
 
         /// <summary>
@@ -698,6 +720,7 @@ namespace UnitsNet
 
         IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
 
         /// <summary>

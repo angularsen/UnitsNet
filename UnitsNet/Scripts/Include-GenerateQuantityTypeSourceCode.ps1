@@ -31,11 +31,15 @@ namespace UnitsNet
     /// </summary>
     public enum QuantityType
     {
+// Missing XML comment for public type or member
+#pragma warning disable CS1591
         Undefined = 0,
 "@; foreach ($quantity in $quantities) {
 @"
         $($quantity.Name),
 "@; }@"
+// Missing XML comment for public type or member
+#pragma warning restore CS1591
     }
 }
 "@;

@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<AreaDensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -318,6 +317,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<AreaDensityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AreaDensityUnit)"/>
         public static bool TryParseUnit(string str, out AreaDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -342,36 +342,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static AreaDensity operator -(AreaDensity right)
         {
             return new AreaDensity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from adding two <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
             return new AreaDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from subtracting two <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
             return new AreaDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator *(double left, AreaDensity right)
         {
             return new AreaDensity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator *(AreaDensity left, double right)
         {
             return new AreaDensity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from dividing <see cref="AreaDensity"/> by value.</summary>
         public static AreaDensity operator /(AreaDensity left, double right)
         {
             return new AreaDensity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="AreaDensity"/> by <see cref="AreaDensity"/>.</summary>
         public static double operator /(AreaDensity left, AreaDensity right)
         {
             return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
@@ -381,36 +388,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AreaDensity left, AreaDensity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AreaDensity left, AreaDensity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(AreaDensity left, AreaDensity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AreaDensity left, AreaDensity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -419,11 +435,14 @@ namespace UnitsNet
             return CompareTo(objAreaDensity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(AreaDensity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is AreaDensity objAreaDensity))
@@ -432,6 +451,8 @@ namespace UnitsNet
             return Equals(objAreaDensity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(AreaDensity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -516,6 +537,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((AreaDensityUnit) unit);
 
         /// <summary>
@@ -530,6 +552,7 @@ namespace UnitsNet
 
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
 
         /// <summary>

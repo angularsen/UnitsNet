@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SpecificEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SpecificEntropyUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -416,6 +415,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SpecificEntropyUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificEntropyUnit)"/>
         public static bool TryParseUnit(string str, out SpecificEntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -440,36 +440,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static SpecificEntropy operator -(SpecificEntropy right)
         {
             return new SpecificEntropy(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificEntropy"/> from adding two <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator +(SpecificEntropy left, SpecificEntropy right)
         {
             return new SpecificEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificEntropy"/> from subtracting two <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator -(SpecificEntropy left, SpecificEntropy right)
         {
             return new SpecificEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificEntropy"/> from multiplying value and <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator *(double left, SpecificEntropy right)
         {
             return new SpecificEntropy(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificEntropy"/> from multiplying value and <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator *(SpecificEntropy left, double right)
         {
             return new SpecificEntropy(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificEntropy"/> from dividing <see cref="SpecificEntropy"/> by value.</summary>
         public static SpecificEntropy operator /(SpecificEntropy left, double right)
         {
             return new SpecificEntropy(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="SpecificEntropy"/> by <see cref="SpecificEntropy"/>.</summary>
         public static double operator /(SpecificEntropy left, SpecificEntropy right)
         {
             return left.JoulesPerKilogramKelvin / right.JoulesPerKilogramKelvin;
@@ -479,36 +486,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(SpecificEntropy left, SpecificEntropy right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -517,11 +533,14 @@ namespace UnitsNet
             return CompareTo(objSpecificEntropy);
         }
 
+        /// <inheritdoc />
         public int CompareTo(SpecificEntropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is SpecificEntropy objSpecificEntropy))
@@ -530,6 +549,8 @@ namespace UnitsNet
             return Equals(objSpecificEntropy);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificEntropy other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -614,6 +635,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SpecificEntropyUnit) unit);
 
         /// <summary>
@@ -628,6 +650,7 @@ namespace UnitsNet
 
         IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(SpecificEntropyUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificEntropyUnit) unit);
 
         /// <summary>

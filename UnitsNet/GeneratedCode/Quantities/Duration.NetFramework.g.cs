@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<DurationUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -444,6 +443,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<DurationUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DurationUnit)"/>
         public static bool TryParseUnit(string str, out DurationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -468,36 +468,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Duration operator -(Duration right)
         {
             return new Duration(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Duration"/> from adding two <see cref="Duration"/>.</summary>
         public static Duration operator +(Duration left, Duration right)
         {
             return new Duration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Duration"/> from subtracting two <see cref="Duration"/>.</summary>
         public static Duration operator -(Duration left, Duration right)
         {
             return new Duration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
         public static Duration operator *(double left, Duration right)
         {
             return new Duration(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
         public static Duration operator *(Duration left, double right)
         {
             return new Duration(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Duration"/> from dividing <see cref="Duration"/> by value.</summary>
         public static Duration operator /(Duration left, double right)
         {
             return new Duration(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Duration"/> by <see cref="Duration"/>.</summary>
         public static double operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
@@ -507,36 +514,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Duration left, Duration right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Duration left, Duration right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Duration left, Duration right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Duration left, Duration right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Duration left, Duration right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Duration left, Duration right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -545,11 +561,14 @@ namespace UnitsNet
             return CompareTo(objDuration);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Duration other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Duration objDuration))
@@ -558,6 +577,8 @@ namespace UnitsNet
             return Equals(objDuration);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Duration other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -642,6 +663,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((DurationUnit) unit);
 
         /// <summary>
@@ -656,6 +678,7 @@ namespace UnitsNet
 
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((DurationUnit) unit);
 
         /// <summary>

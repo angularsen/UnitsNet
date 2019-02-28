@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Thermal conductivity is the property of a material to conduct heat.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -335,6 +334,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ThermalConductivityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ThermalConductivityUnit)"/>
         public static bool TryParseUnit(string str, out ThermalConductivityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -359,36 +359,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ThermalConductivity operator -(ThermalConductivity right)
         {
             return new ThermalConductivity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ThermalConductivity"/> from adding two <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator +(ThermalConductivity left, ThermalConductivity right)
         {
             return new ThermalConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ThermalConductivity"/> from subtracting two <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator -(ThermalConductivity left, ThermalConductivity right)
         {
             return new ThermalConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator *(double left, ThermalConductivity right)
         {
             return new ThermalConductivity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator *(ThermalConductivity left, double right)
         {
             return new ThermalConductivity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ThermalConductivity"/> from dividing <see cref="ThermalConductivity"/> by value.</summary>
         public static ThermalConductivity operator /(ThermalConductivity left, double right)
         {
             return new ThermalConductivity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ThermalConductivity"/> by <see cref="ThermalConductivity"/>.</summary>
         public static double operator /(ThermalConductivity left, ThermalConductivity right)
         {
             return left.WattsPerMeterKelvin / right.WattsPerMeterKelvin;
@@ -398,36 +405,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ThermalConductivity left, ThermalConductivity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -436,11 +452,14 @@ namespace UnitsNet
             return CompareTo(objThermalConductivity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ThermalConductivity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ThermalConductivity objThermalConductivity))
@@ -449,6 +468,8 @@ namespace UnitsNet
             return Equals(objThermalConductivity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ThermalConductivity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -533,6 +554,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ThermalConductivityUnit) unit);
 
         /// <summary>
@@ -547,6 +569,7 @@ namespace UnitsNet
 
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ThermalConductivityUnit) unit);
 
         /// <summary>

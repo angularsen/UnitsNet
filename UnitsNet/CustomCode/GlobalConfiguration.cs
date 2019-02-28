@@ -13,7 +13,7 @@ namespace UnitsNet
     ///     <see cref="Length.Parse(string)" />.
     /// </summary>
     [Obsolete("The only property DefaultCulture is now deprecated. Manipulate Thread.CurrentThread.CurrentUICulture instead.")]
-    public sealed class GlobalConfiguration
+    public static class GlobalConfiguration
     {
         /// <summary>
         ///     Wrapper for <see cref="Thread.CurrentUICulture"/>.

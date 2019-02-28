@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<AngleUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -500,6 +499,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<AngleUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AngleUnit)"/>
         public static bool TryParseUnit(string str, out AngleUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -524,36 +524,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Angle operator -(Angle right)
         {
             return new Angle(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Angle"/> from adding two <see cref="Angle"/>.</summary>
         public static Angle operator +(Angle left, Angle right)
         {
             return new Angle(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Angle"/> from subtracting two <see cref="Angle"/>.</summary>
         public static Angle operator -(Angle left, Angle right)
         {
             return new Angle(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Angle"/> from multiplying value and <see cref="Angle"/>.</summary>
         public static Angle operator *(double left, Angle right)
         {
             return new Angle(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Angle"/> from multiplying value and <see cref="Angle"/>.</summary>
         public static Angle operator *(Angle left, double right)
         {
             return new Angle(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Angle"/> from dividing <see cref="Angle"/> by value.</summary>
         public static Angle operator /(Angle left, double right)
         {
             return new Angle(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Angle"/> by <see cref="Angle"/>.</summary>
         public static double operator /(Angle left, Angle right)
         {
             return left.Degrees / right.Degrees;
@@ -563,36 +570,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Angle left, Angle right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Angle left, Angle right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Angle left, Angle right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Angle left, Angle right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Angle left, Angle right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Angle left, Angle right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -601,11 +617,14 @@ namespace UnitsNet
             return CompareTo(objAngle);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Angle other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Angle objAngle))
@@ -614,6 +633,8 @@ namespace UnitsNet
             return Equals(objAngle);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Angle other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -698,6 +719,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((AngleUnit) unit);
 
         /// <summary>
@@ -712,6 +734,7 @@ namespace UnitsNet
 
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((AngleUnit) unit);
 
         /// <summary>

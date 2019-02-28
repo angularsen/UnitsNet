@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In physics, specifically electromagnetism, the magnetic flux through a surface is the surface integral of the normal component of the magnetic field B passing through that surface.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<MagneticFluxUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -321,6 +320,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<MagneticFluxUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MagneticFluxUnit)"/>
         public static bool TryParseUnit(string str, out MagneticFluxUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -345,36 +345,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static MagneticFlux operator -(MagneticFlux right)
         {
             return new MagneticFlux(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MagneticFlux"/> from adding two <see cref="MagneticFlux"/>.</summary>
         public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
         {
             return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MagneticFlux"/> from subtracting two <see cref="MagneticFlux"/>.</summary>
         public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
         {
             return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
         public static MagneticFlux operator *(double left, MagneticFlux right)
         {
             return new MagneticFlux(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
         public static MagneticFlux operator *(MagneticFlux left, double right)
         {
             return new MagneticFlux(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="MagneticFlux"/> from dividing <see cref="MagneticFlux"/> by value.</summary>
         public static MagneticFlux operator /(MagneticFlux left, double right)
         {
             return new MagneticFlux(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="MagneticFlux"/> by <see cref="MagneticFlux"/>.</summary>
         public static double operator /(MagneticFlux left, MagneticFlux right)
         {
             return left.Webers / right.Webers;
@@ -384,36 +391,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MagneticFlux left, MagneticFlux right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MagneticFlux left, MagneticFlux right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(MagneticFlux left, MagneticFlux right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MagneticFlux left, MagneticFlux right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(MagneticFlux left, MagneticFlux right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(MagneticFlux left, MagneticFlux right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -422,11 +438,14 @@ namespace UnitsNet
             return CompareTo(objMagneticFlux);
         }
 
+        /// <inheritdoc />
         public int CompareTo(MagneticFlux other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is MagneticFlux objMagneticFlux))
@@ -435,6 +454,8 @@ namespace UnitsNet
             return Equals(objMagneticFlux);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MagneticFlux other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -519,6 +540,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((MagneticFluxUnit) unit);
 
         /// <summary>
@@ -533,6 +555,7 @@ namespace UnitsNet
 
         IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((MagneticFluxUnit) unit);
 
         /// <summary>

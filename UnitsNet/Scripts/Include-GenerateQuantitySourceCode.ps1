@@ -57,6 +57,7 @@ if ($obsoleteAttribute)
   $obsoleteAttribute = "`r`n    " + $obsoleteAttribute; # apply padding to conformance with code format in this section
 }
 @"
+    /// <inheritdoc />
     /// <summary>
     ///     $($quantity.XmlDocSummary)
     /// </summary>
@@ -345,14 +346,12 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         double IQuantity.Value => (double) _value;
 
 "@; } @"
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<$unitEnumName> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -608,6 +607,7 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
             return UnitParser.Default.Parse<$unitEnumName>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.$unitEnumName)"/>
         public static bool TryParseUnit(string str, out $unitEnumName unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -643,11 +643,13 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
 
         #region Logarithmic Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static $quantityName operator -($quantityName right)
         {
             return new $quantityName(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic addition of two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
             // Logarithmic addition
@@ -655,6 +657,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
             return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic subtraction of two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
             // Logarithmic subtraction
@@ -662,24 +665,28 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
             return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic multiplication of value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($valueType left, $quantityName right)
         {
             // Logarithmic multiplication = addition
             return new $quantityName(left + right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic multiplication of value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($quantityName left, double right)
         {
             // Logarithmic multiplication = addition
             return new $quantityName(left.Value + ($valueType)right, left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic division of <see cref="$quantityName"/> by value.</summary>
         public static $quantityName operator /($quantityName left, double right)
         {
             // Logarithmic division = subtraction
             return new $quantityName(left.Value - ($valueType)right, left.Unit);
         }
 
+        /// <summary>Get ratio value from logarithmic division of <see cref="$quantityName"/> by <see cref="$quantityName"/>.</summary>
         public static double operator /($quantityName left, $quantityName right)
         {
             // Logarithmic division = subtraction
@@ -707,36 +714,43 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static $quantityName operator -($quantityName right)
         {
             return new $quantityName(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from adding two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
             return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from subtracting two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
             return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from multiplying value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($valueType left, $quantityName right)
         {
             return new $quantityName(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from multiplying value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($quantityName left, $valueType right)
         {
             return new $quantityName(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from dividing <see cref="$quantityName"/> by value.</summary>
         public static $quantityName operator /($quantityName left, $valueType right)
         {
             return new $quantityName(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="$quantityName"/> by <see cref="$quantityName"/>.</summary>
         public static double operator /($quantityName left, $quantityName right)
         {
             return left.$baseUnitPluralName / right.$baseUnitPluralName;
@@ -753,36 +767,45 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=($quantityName left, $quantityName right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=($quantityName left, $quantityName right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <($quantityName left, $quantityName right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >($quantityName left, $quantityName right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -791,11 +814,14 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return CompareTo(obj$quantityName);
         }
 
+        /// <inheritdoc />
         public int CompareTo($quantityName other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is $quantityName obj$quantityName))
@@ -804,6 +830,8 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return Equals(obj$quantityName);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals($quantityName other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -897,6 +925,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As(($unitEnumName) unit);
 
         /// <summary>
@@ -911,6 +940,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
 
         /// <summary>

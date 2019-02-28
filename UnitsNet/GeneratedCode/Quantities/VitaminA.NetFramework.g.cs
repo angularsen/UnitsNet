@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<VitaminAUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -318,6 +317,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<VitaminAUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VitaminAUnit)"/>
         public static bool TryParseUnit(string str, out VitaminAUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -342,36 +342,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static VitaminA operator -(VitaminA right)
         {
             return new VitaminA(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="VitaminA"/> from adding two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator +(VitaminA left, VitaminA right)
         {
             return new VitaminA(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="VitaminA"/> from subtracting two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator -(VitaminA left, VitaminA right)
         {
             return new VitaminA(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
         public static VitaminA operator *(double left, VitaminA right)
         {
             return new VitaminA(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
         public static VitaminA operator *(VitaminA left, double right)
         {
             return new VitaminA(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="VitaminA"/> from dividing <see cref="VitaminA"/> by value.</summary>
         public static VitaminA operator /(VitaminA left, double right)
         {
             return new VitaminA(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="VitaminA"/> by <see cref="VitaminA"/>.</summary>
         public static double operator /(VitaminA left, VitaminA right)
         {
             return left.InternationalUnits / right.InternationalUnits;
@@ -381,36 +388,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VitaminA left, VitaminA right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VitaminA left, VitaminA right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(VitaminA left, VitaminA right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VitaminA left, VitaminA right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(VitaminA left, VitaminA right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(VitaminA left, VitaminA right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -419,11 +435,14 @@ namespace UnitsNet
             return CompareTo(objVitaminA);
         }
 
+        /// <inheritdoc />
         public int CompareTo(VitaminA other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is VitaminA objVitaminA))
@@ -432,6 +451,8 @@ namespace UnitsNet
             return Equals(objVitaminA);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VitaminA other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -516,6 +537,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((VitaminAUnit) unit);
 
         /// <summary>
@@ -530,6 +552,7 @@ namespace UnitsNet
 
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((VitaminAUnit) unit);
 
         /// <summary>

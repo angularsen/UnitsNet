@@ -5,6 +5,7 @@ namespace UnitsNet
 {
     public partial struct DynamicViscosity
     {
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="DynamicViscosity"/> divided by <see cref="Density"/>.</summary>
         public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)
         {
             return KinematicViscosity.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);

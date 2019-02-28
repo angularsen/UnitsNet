@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In electromagnetism, charge density is a measure of the amount of electric charge per unit length, surface area, or volume.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public ElectricChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<ElectricChargeDensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -321,6 +320,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<ElectricChargeDensityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricChargeDensityUnit)"/>
         public static bool TryParseUnit(string str, out ElectricChargeDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -345,36 +345,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static ElectricChargeDensity operator -(ElectricChargeDensity right)
         {
             return new ElectricChargeDensity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from adding two <see cref="ElectricChargeDensity"/>.</summary>
         public static ElectricChargeDensity operator +(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return new ElectricChargeDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from subtracting two <see cref="ElectricChargeDensity"/>.</summary>
         public static ElectricChargeDensity operator -(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return new ElectricChargeDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from multiplying value and <see cref="ElectricChargeDensity"/>.</summary>
         public static ElectricChargeDensity operator *(double left, ElectricChargeDensity right)
         {
             return new ElectricChargeDensity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from multiplying value and <see cref="ElectricChargeDensity"/>.</summary>
         public static ElectricChargeDensity operator *(ElectricChargeDensity left, double right)
         {
             return new ElectricChargeDensity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from dividing <see cref="ElectricChargeDensity"/> by value.</summary>
         public static ElectricChargeDensity operator /(ElectricChargeDensity left, double right)
         {
             return new ElectricChargeDensity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="ElectricChargeDensity"/> by <see cref="ElectricChargeDensity"/>.</summary>
         public static double operator /(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.CoulombsPerCubicMeter / right.CoulombsPerCubicMeter;
@@ -384,36 +391,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -422,11 +438,14 @@ namespace UnitsNet
             return CompareTo(objElectricChargeDensity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(ElectricChargeDensity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is ElectricChargeDensity objElectricChargeDensity))
@@ -435,6 +454,8 @@ namespace UnitsNet
             return Equals(objElectricChargeDensity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricChargeDensity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -519,6 +540,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((ElectricChargeDensityUnit) unit);
 
         /// <summary>
@@ -533,6 +555,7 @@ namespace UnitsNet
 
         IQuantity<ElectricChargeDensityUnit> IQuantity<ElectricChargeDensityUnit>.ToUnit(ElectricChargeDensityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricChargeDensityUnit) unit);
 
         /// <summary>

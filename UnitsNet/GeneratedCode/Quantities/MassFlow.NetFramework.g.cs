@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<MassFlowUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -738,6 +737,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<MassFlowUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFlowUnit)"/>
         public static bool TryParseUnit(string str, out MassFlowUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -762,36 +762,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static MassFlow operator -(MassFlow right)
         {
             return new MassFlow(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from adding two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
             return new MassFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from subtracting two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
             return new MassFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from multiplying value and <see cref="MassFlow"/>.</summary>
         public static MassFlow operator *(double left, MassFlow right)
         {
             return new MassFlow(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from multiplying value and <see cref="MassFlow"/>.</summary>
         public static MassFlow operator *(MassFlow left, double right)
         {
             return new MassFlow(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from dividing <see cref="MassFlow"/> by value.</summary>
         public static MassFlow operator /(MassFlow left, double right)
         {
             return new MassFlow(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="MassFlow"/> by <see cref="MassFlow"/>.</summary>
         public static double operator /(MassFlow left, MassFlow right)
         {
             return left.GramsPerSecond / right.GramsPerSecond;
@@ -801,36 +808,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MassFlow left, MassFlow right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MassFlow left, MassFlow right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(MassFlow left, MassFlow right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MassFlow left, MassFlow right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -839,11 +855,14 @@ namespace UnitsNet
             return CompareTo(objMassFlow);
         }
 
+        /// <inheritdoc />
         public int CompareTo(MassFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is MassFlow objMassFlow))
@@ -852,6 +871,8 @@ namespace UnitsNet
             return Equals(objMassFlow);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MassFlow other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -936,6 +957,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((MassFlowUnit) unit);
 
         /// <summary>
@@ -950,6 +972,7 @@ namespace UnitsNet
 
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((MassFlowUnit) unit);
 
         /// <summary>

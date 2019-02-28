@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SpecificVolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SpecificVolumeUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -346,6 +345,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SpecificVolumeUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificVolumeUnit)"/>
         public static bool TryParseUnit(string str, out SpecificVolumeUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -370,36 +370,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static SpecificVolume operator -(SpecificVolume right)
         {
             return new SpecificVolume(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from adding two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
         {
             return new SpecificVolume(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from subtracting two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
         {
             return new SpecificVolume(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator *(double left, SpecificVolume right)
         {
             return new SpecificVolume(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator *(SpecificVolume left, double right)
         {
             return new SpecificVolume(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificVolume"/> from dividing <see cref="SpecificVolume"/> by value.</summary>
         public static SpecificVolume operator /(SpecificVolume left, double right)
         {
             return new SpecificVolume(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="SpecificVolume"/> by <see cref="SpecificVolume"/>.</summary>
         public static double operator /(SpecificVolume left, SpecificVolume right)
         {
             return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
@@ -409,36 +416,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificVolume left, SpecificVolume right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificVolume left, SpecificVolume right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificVolume left, SpecificVolume right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificVolume left, SpecificVolume right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificVolume, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(SpecificVolume left, SpecificVolume right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificVolume, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(SpecificVolume left, SpecificVolume right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -447,11 +463,14 @@ namespace UnitsNet
             return CompareTo(objSpecificVolume);
         }
 
+        /// <inheritdoc />
         public int CompareTo(SpecificVolume other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificVolume, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is SpecificVolume objSpecificVolume))
@@ -460,6 +479,8 @@ namespace UnitsNet
             return Equals(objSpecificVolume);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificVolume, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificVolume other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -544,6 +565,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SpecificVolumeUnit) unit);
 
         /// <summary>
@@ -558,6 +580,7 @@ namespace UnitsNet
 
         IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(SpecificVolumeUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificVolumeUnit) unit);
 
         /// <summary>

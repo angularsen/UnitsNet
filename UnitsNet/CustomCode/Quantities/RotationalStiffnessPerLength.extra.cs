@@ -6,6 +6,7 @@ namespace UnitsNet
 {
     public partial struct RotationalStiffnessPerLength
     {
+        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessPerLength"/> times <see cref="Length"/>.</summary>
         public static RotationalStiffness operator *(RotationalStiffnessPerLength rotationalStiffness, Length length)
         {
             return RotationalStiffness.FromNewtonMetersPerRadian(rotationalStiffness.NewtonMetersPerRadianPerMeter * length.Meters);

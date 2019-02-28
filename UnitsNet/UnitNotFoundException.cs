@@ -11,14 +11,17 @@ namespace UnitsNet
     /// </summary>
     public class UnitNotFoundException : UnitsNetException
     {
+        /// <inheritdoc />
         public UnitNotFoundException()
         {
         }
 
+        /// <inheritdoc />
         public UnitNotFoundException(string message) : base(message)
         {
         }
 
+        /// <inheritdoc />
         public UnitNotFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }

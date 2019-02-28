@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -430,6 +429,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<FrequencyUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.FrequencyUnit)"/>
         public static bool TryParseUnit(string str, out FrequencyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -454,36 +454,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Frequency operator -(Frequency right)
         {
             return new Frequency(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Frequency"/> from adding two <see cref="Frequency"/>.</summary>
         public static Frequency operator +(Frequency left, Frequency right)
         {
             return new Frequency(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Frequency"/> from subtracting two <see cref="Frequency"/>.</summary>
         public static Frequency operator -(Frequency left, Frequency right)
         {
             return new Frequency(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
         public static Frequency operator *(double left, Frequency right)
         {
             return new Frequency(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
         public static Frequency operator *(Frequency left, double right)
         {
             return new Frequency(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Frequency"/> from dividing <see cref="Frequency"/> by value.</summary>
         public static Frequency operator /(Frequency left, double right)
         {
             return new Frequency(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Frequency"/> by <see cref="Frequency"/>.</summary>
         public static double operator /(Frequency left, Frequency right)
         {
             return left.Hertz / right.Hertz;
@@ -493,36 +500,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Frequency left, Frequency right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Frequency left, Frequency right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Frequency left, Frequency right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Frequency left, Frequency right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Frequency left, Frequency right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Frequency left, Frequency right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -531,11 +547,14 @@ namespace UnitsNet
             return CompareTo(objFrequency);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Frequency other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Frequency objFrequency))
@@ -544,6 +563,8 @@ namespace UnitsNet
             return Equals(objFrequency);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Frequency other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -628,6 +649,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((FrequencyUnit) unit);
 
         /// <summary>
@@ -642,6 +664,7 @@ namespace UnitsNet
 
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((FrequencyUnit) unit);
 
         /// <summary>

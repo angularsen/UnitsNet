@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The amount of power in a volume.
     /// </summary>
@@ -113,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -920,6 +919,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<PowerDensityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerDensityUnit)"/>
         public static bool TryParseUnit(string str, out PowerDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -944,36 +944,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static PowerDensity operator -(PowerDensity right)
         {
             return new PowerDensity(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="PowerDensity"/> from adding two <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator +(PowerDensity left, PowerDensity right)
         {
             return new PowerDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerDensity"/> from subtracting two <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator -(PowerDensity left, PowerDensity right)
         {
             return new PowerDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator *(double left, PowerDensity right)
         {
             return new PowerDensity(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator *(PowerDensity left, double right)
         {
             return new PowerDensity(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="PowerDensity"/> from dividing <see cref="PowerDensity"/> by value.</summary>
         public static PowerDensity operator /(PowerDensity left, double right)
         {
             return new PowerDensity(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="PowerDensity"/> by <see cref="PowerDensity"/>.</summary>
         public static double operator /(PowerDensity left, PowerDensity right)
         {
             return left.WattsPerCubicMeter / right.WattsPerCubicMeter;
@@ -983,36 +990,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PowerDensity left, PowerDensity right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PowerDensity left, PowerDensity right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(PowerDensity left, PowerDensity right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PowerDensity left, PowerDensity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(PowerDensity left, PowerDensity right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(PowerDensity left, PowerDensity right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -1021,11 +1037,14 @@ namespace UnitsNet
             return CompareTo(objPowerDensity);
         }
 
+        /// <inheritdoc />
         public int CompareTo(PowerDensity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is PowerDensity objPowerDensity))
@@ -1034,6 +1053,8 @@ namespace UnitsNet
             return Equals(objPowerDensity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(PowerDensity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -1118,6 +1139,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((PowerDensityUnit) unit);
 
         /// <summary>
@@ -1132,6 +1154,7 @@ namespace UnitsNet
 
         IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerDensityUnit) unit);
 
         /// <summary>

@@ -24,9 +24,12 @@ namespace UnitsNet.Tests
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
+            // Obsolete members
+#pragma warning disable 618
             Assert.Equal(expectedUnits, info.Units);
             Assert.Equal(expectedBaseUnit, info.BaseUnit);
             Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
+#pragma warning restore 618
             Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
         }
@@ -44,9 +47,12 @@ namespace UnitsNet.Tests
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
+            // Obsolete members
+#pragma warning disable 618
             Assert.Equal(expectedUnits, info.Units);
             Assert.Equal(expectedBaseUnit, info.BaseUnit);
             Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
+#pragma warning restore 618
             Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
         }

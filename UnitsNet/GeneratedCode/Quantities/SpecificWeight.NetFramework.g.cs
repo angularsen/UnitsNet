@@ -28,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.
     /// </summary>
@@ -116,14 +117,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -545,6 +544,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse<SpecificWeightUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificWeightUnit)"/>
         public static bool TryParseUnit(string str, out SpecificWeightUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -569,36 +569,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static SpecificWeight operator -(SpecificWeight right)
         {
             return new SpecificWeight(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from adding two <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
         {
             return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from subtracting two <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
         {
             return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator *(double left, SpecificWeight right)
         {
             return new SpecificWeight(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator *(SpecificWeight left, double right)
         {
             return new SpecificWeight(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from dividing <see cref="SpecificWeight"/> by value.</summary>
         public static SpecificWeight operator /(SpecificWeight left, double right)
         {
             return new SpecificWeight(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="SpecificWeight"/> by <see cref="SpecificWeight"/>.</summary>
         public static double operator /(SpecificWeight left, SpecificWeight right)
         {
             return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
@@ -608,36 +615,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificWeight left, SpecificWeight right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificWeight left, SpecificWeight right)
         {
             return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificWeight left, SpecificWeight right)
         {
             return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificWeight left, SpecificWeight right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -646,11 +662,14 @@ namespace UnitsNet
             return CompareTo(objSpecificWeight);
         }
 
+        /// <inheritdoc />
         public int CompareTo(SpecificWeight other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is SpecificWeight objSpecificWeight))
@@ -659,6 +678,8 @@ namespace UnitsNet
             return Equals(objSpecificWeight);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificWeight other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
@@ -743,6 +764,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((SpecificWeightUnit) unit);
 
         /// <summary>
@@ -757,6 +779,7 @@ namespace UnitsNet
 
         IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
 
         /// <summary>
