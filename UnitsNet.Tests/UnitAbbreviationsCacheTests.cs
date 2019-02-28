@@ -116,19 +116,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1.111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
-        [Theory]
-        [InlineData("s1", "1.1 m")]
-        [InlineData("s2", "1.12 m")]
-        [InlineData("s3", "1.123 m")]
-        [InlineData("s4", "1.1235 m")]
-        [InlineData("s5", "1.12346 m")]
-        [InlineData("s6", "1.123457 m")]
-        public void CustomNumberOfSignificantDigitsAfterRadixFormatting(string significantDigitsAfterRadixFormatString, string expected)
-        {
-            string actual = Length.FromMeters(1.123456789).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
-            Assert.Equal(expected, actual);
-        }
-
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
         [InlineData(0.819999999999, "s2", "0.82 m")]

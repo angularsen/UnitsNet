@@ -49,15 +49,17 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.Info.Name, length.ToString("q"));
         }
 
-        [Fact]
-        public void SFormatEqualsSignificantDigits()
+        [Theory]
+        [InlineData("s", "1 ft")]
+        [InlineData("s1", "1.2 ft")]
+        [InlineData("s2", "1.23 ft")]
+        [InlineData("s3", "1.235 ft")]
+        [InlineData("s4", "1.2346 ft")]
+        [InlineData("s5", "1.23457 ft")]
+        [InlineData("s6", "1.234568 ft")]
+        public void SFormatEqualsSignificantDigits(string sFormatString, string expected)
         {
-            Assert.Equal("1 ft", length.ToString("s"));
-            Assert.Equal("1.2 ft", length.ToString("s1"));
-            Assert.Equal("1.23 ft", length.ToString("s2"));
-            Assert.Equal("1.235 ft", length.ToString("s3"));
-            Assert.Equal("1.2346 ft", length.ToString("s4"));
-            Assert.Equal("1.23457 ft", length.ToString("s5"));
+            Assert.Equal(expected, length.ToString(sFormatString));
         }
 
         [Fact]
