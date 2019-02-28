@@ -77,18 +77,20 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Checks if the base units exist in other. Undefined base units are ignored.
+        /// Checks if the base units are a subset of another. Undefined base units are ignored.
+        /// If all base united are undefined (equal to <see cref="BaseUnits.Undefined"/>),
+        /// IsSubsetOf will return true only if other is also equal to <see cref="BaseUnits.Undefined"/>.
         /// </summary>
-        /// <param name="other">The other <see cref="BaseUnits"/> to check for existance in.</param>
-        /// <returns>True if the base units exist in other, otherwise false.</returns>
-        public bool ExistsIn(BaseUnits other)
+        /// <param name="other">The other <see cref="BaseUnits"/> to compare to.</param>
+        /// <returns>True if the base units are a subset of other, otherwise false.</returns>
+        public bool IsSubsetOf(BaseUnits other)
         {
             if(other is null)
                 return false;
 
-            // If everything is undefined, there's nothing to exist in other.
+            // If all base units are undefined, can only be a subset of another where all base units are undefined.
             if(Equals(Undefined))
-                return false;
+                return other.Equals(Undefined);
 
             return (Length == LengthUnit.Undefined || Length == other.Length) &&
                 (Mass == MassUnit.Undefined || Mass == other.Mass) &&

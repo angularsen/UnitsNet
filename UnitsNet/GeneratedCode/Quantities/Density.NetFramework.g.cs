@@ -1288,7 +1288,7 @@ namespace UnitsNet
             if(baseUnits == null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.ExistsIn(baseUnits)).FirstOrDefault();
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits)).FirstOrDefault();
             if(unit == null)
                 throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
