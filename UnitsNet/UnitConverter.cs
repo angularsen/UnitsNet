@@ -40,7 +40,7 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out var fromQuantity)) return false;
+            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity fromQuantity)) return false;
 
             try
             {
@@ -85,17 +85,17 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
             {
                 var e = new UnitNotFoundException($"Unit not found [{fromUnit}].");
                 e.Data["unitName"] = fromUnit;
                 throw e;
             }
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
             {
                 var e = new UnitNotFoundException($"Unit not found [{toUnit}].");
                 e.Data["unitName"] = toUnit;
@@ -136,13 +136,13 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
                 return false;
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
                 return false;
 
             result = Convert(inputValue, fromUnitValue, toUnitValue);
@@ -215,7 +215,7 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
@@ -292,15 +292,15 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
 
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
             var fromQuantity = Quantity.From(fromValue, fromUnit);

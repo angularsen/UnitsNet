@@ -39,20 +39,20 @@ namespace UnitsNet.Serialization.JsonNet
             if (reader.ValueType != null)
                 return reader.Value;
 
-            var obj = TryDeserializeIComparable(reader, serializer);
+            object obj = TryDeserializeIComparable(reader, serializer);
             // A null System.Nullable value or a comparable type was deserialized so return this
             if (!(obj is ValueUnit vu))
                 return obj;
 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            var unitEnumTypeName = vu.Unit.Split('.')[0];
-            var unitEnumValue = vu.Unit.Split('.')[1];
+            string unitEnumTypeName = vu.Unit.Split('.')[0];
+            string unitEnumValue = vu.Unit.Split('.')[1];
 
             // "UnitsNet.Units.MassUnit,UnitsNet"
-            var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+            string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
 
             // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            var unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+            Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
             if (unitEnumType == null)
             {
                 var ex = new UnitsNetException("Unable to find enum type.");
@@ -60,18 +60,18 @@ namespace UnitsNet.Serialization.JsonNet
                 throw ex;
             }
 
-            var value = vu.Value;
-            var unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
+            double value = vu.Value;
+            Enum unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
 
             return Quantity.From(value, unitValue);
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
-            var token = JToken.Load(reader);
+            JToken token = JToken.Load(reader);
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
-                var localSerializer = new JsonSerializer()
+                JsonSerializer localSerializer = new JsonSerializer()
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
@@ -96,22 +96,22 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
         {
-            var quantityType = obj.GetType();
+            Type quantityType = obj.GetType();
 
             // ValueUnit should be written as usual (but read in a custom way)
             if(quantityType == typeof(ValueUnit))
             {
-                var localSerializer = new JsonSerializer()
+                JsonSerializer localSerializer = new JsonSerializer()
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
-                var t = JToken.FromObject(obj, localSerializer);
+                JToken t = JToken.FromObject(obj, localSerializer);
 
                 t.WriteTo(writer);
                 return;
             }
 
-            var quantity = obj as IQuantity;
+            IQuantity quantity = obj as IQuantity;
 
             serializer.Serialize(writer, new ValueUnit
             {
