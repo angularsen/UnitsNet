@@ -123,6 +123,25 @@ namespace UnitsNet
         ///     The <see cref="BaseDimensions" /> for a quantity.
         /// </summary>
         public BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        /// Gets the <see cref="UnitInfo"/> which has <see cref="BaseUnits"/> that are a subset of the given <see cref="BaseUnits"/>.
+        /// </summary>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
+        /// <returns>The UnitInfo that has BaseUnits that are a subset.</returns>
+        public UnitInfo GetUnitInfoForBaseUnitsSubset(BaseUnits baseUnits)
+        {
+            if(baseUnits == null)
+                throw new ArgumentNullException(nameof(baseUnits));
+
+            var matchingUnitInfos = UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
+            if(!matchingUnitInfos.Any())
+                throw new NotImplementedException("No units were found that are a subset of the given BaseUnits.");
+            else if(matchingUnitInfos.Skip(1).Any())
+                throw new InvalidOperationException("More than one unit was found that is a subset of the given BaseUnits.");
+
+            return matchingUnitInfos.First();
+        }
     }
 
     /// <inheritdoc cref="QuantityInfo" />
@@ -169,5 +188,12 @@ namespace UnitsNet
 
         /// <inheritdoc cref="QuantityInfo.UnitType" />
         public new TUnit UnitType { get; }
+
+        /// <inheritdoc cref="QuantityInfo.GetUnitInfoForBaseUnitsSubset" />
+        public new UnitInfo<TUnit> GetUnitInfoForBaseUnitsSubset(BaseUnits baseUnits)
+        {
+            var unitInfo = base.GetUnitInfoForBaseUnitsSubset(baseUnits);
+            return (UnitInfo<TUnit>)unitInfo;
+        }
     }
 }

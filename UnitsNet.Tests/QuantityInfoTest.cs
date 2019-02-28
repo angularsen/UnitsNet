@@ -119,5 +119,17 @@ namespace UnitsNet.Tests
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
         }
+
+        //[Fact]
+        //public void GetUnitFor_BaseUnits_ThrowsArgumentNullExceptionIfNull()
+        //{
+        //    Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((BaseUnits)null));
+        //}
+
+        //[Fact]
+        //public void GetUnitFor_BaseUnitsSI_AssignsSIBaseUnits()
+        //{
+        //    Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
+        //}
     }
 }

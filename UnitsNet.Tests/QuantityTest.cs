@@ -171,29 +171,5 @@ namespace UnitsNet.Tests
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
             Assert.Equal(QuantityCount, types.Length);
         }
-
-        [Fact]
-        public void GetUnitFor_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((UnitSystem)null));
-        }
-
-        [Fact]
-        public void GetUnitFor_UnitSystem_SIUsesSIUnits()
-        {
-            Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI));
-        }
-
-        [Fact]
-        public void GetUnitFor_BaseUnits_ThrowsArgumentNullExceptionIfNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((BaseUnits)null));
-        }
-
-        [Fact]
-        public void GetUnitFor_BaseUnitsSI_AssignsSIBaseUnits()
-        {
-            Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
-        }
     }
 }

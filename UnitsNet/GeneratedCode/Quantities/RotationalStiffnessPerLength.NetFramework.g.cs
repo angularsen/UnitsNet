@@ -82,20 +82,7 @@ namespace UnitsNet
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitFor(unitSystem.BaseUnits);
-        }
-
-        /// <summary>
-        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="BaseUnits"/>.
-        /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="baseUnits">The base units to create the quantity with.</param>
-        public RotationalStiffnessPerLength(double numericValue, BaseUnits baseUnits)
-        {
-            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitFor(baseUnits);
+            _unit = Info.GetUnitInfoForBaseUnitsSubset(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties
@@ -648,36 +635,6 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
-        }
-
-        /// <summary>
-        /// Gets the unit for this quantity compatible with the given <see cref="UnitSystem"/>.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to get the compatible units for.</param>
-        /// <returns>The unit for this quantity compatible with the given  <see cref="UnitSystem"/></returns>
-        public static RotationalStiffnessPerLengthUnit GetUnitFor(UnitSystem unitSystem)
-        {
-            if(unitSystem == null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            return GetUnitFor(unitSystem.BaseUnits);
-        }
-
-        /// <summary>
-        /// Gets the unit for this quantity compatible with the given <see cref="BaseUnits"/>.
-        /// </summary>
-        /// <param name="baseUnits">The <see cref="BaseUnits"/> to get the compatible units for.</param>
-        /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
-        public static RotationalStiffnessPerLengthUnit GetUnitFor(BaseUnits baseUnits)
-        {
-            if(baseUnits == null)
-                throw new ArgumentNullException(nameof(baseUnits));
-
-            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits)).FirstOrDefault();
-            if(unit == null)
-                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
-
-            return unit.Value;
         }
 
         #endregion

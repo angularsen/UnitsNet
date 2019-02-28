@@ -154,7 +154,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void Constructor_UnitSystem_NullThrowsArgumentNullException()
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
         }
@@ -164,19 +164,6 @@ namespace UnitsNet.Tests.CustomCode
         {
             var length = new Length(1.0, UnitSystem.SI);
             Assert.Equal(LengthUnit.Meter, length.Unit);
-        }
-
-        [ Fact]
-        public void Constructor_BaseUnits_NullThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (BaseUnits)null));
-        }
-
-        [Fact]
-        public void Constructor_BaseUnitsSI_AssignsSIBaseUnits()
-        {
-            var length2 = new Length(1.0, UnitSystem.SI.BaseUnits);
-            Assert.Equal(LengthUnit.Meter, length2.Unit);
         }
     }
 }

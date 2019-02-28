@@ -135,24 +135,7 @@ if ($obsoleteAttribute)
 "@; } else {@"
             _value = numericValue;
 "@; }@"
-            _unit = GetUnitFor(unitSystem.BaseUnits);
-        }
-
-        /// <summary>
-        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="BaseUnits"/>.
-        /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="baseUnits">The base units to create the quantity with.</param>
-        public $quantityName($valueType numericValue, BaseUnits baseUnits)
-        {
-            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
-
-"@; if ($quantity.BaseType -eq "double") {@"
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-"@; } else {@"
-            _value = numericValue;
-"@; }@"
-            _unit = GetUnitFor(baseUnits);
+            _unit = Info.GetUnitInfoForBaseUnitsSubset(unitSystem.BaseUnits).Value;
         }
 "@;
     GenerateStaticProperties $genArgs
@@ -1025,36 +1008,6 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
-        }
-
-        /// <summary>
-        /// Gets the unit for this quantity compatible with the given <see cref="UnitSystem"/>.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to get the compatible units for.</param>
-        /// <returns>The unit for this quantity compatible with the given  <see cref="UnitSystem"/></returns>
-        public static $unitEnumName GetUnitFor(UnitSystem unitSystem)
-        {
-            if(unitSystem == null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            return GetUnitFor(unitSystem.BaseUnits);
-        }
-
-        /// <summary>
-        /// Gets the unit for this quantity compatible with the given <see cref="BaseUnits"/>.
-        /// </summary>
-        /// <param name="baseUnits">The <see cref="BaseUnits"/> to get the compatible units for.</param>
-        /// <returns>The unit for this quantity compatible with the given  <see cref="BaseUnits"/></returns>
-        public static $unitEnumName GetUnitFor(BaseUnits baseUnits)
-        {
-            if(baseUnits == null)
-                throw new ArgumentNullException(nameof(baseUnits));
-
-            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits)).FirstOrDefault();
-            if(unit == null)
-                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
-
-            return unit.Value;
         }
 
         #endregion
