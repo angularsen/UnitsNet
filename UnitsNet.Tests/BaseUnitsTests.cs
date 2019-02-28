@@ -92,18 +92,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UndefinedIsSubsetOfUndefined()
+        {
+            Assert.True(BaseUnits.Undefined.IsSubsetOf(BaseUnits.Undefined));
+        }
+
+        [Fact]
         public void ExistsInWorksCorrectly()
         {
-            Assert.False(siBaseUnits.ExistsIn(null));
+            Assert.False(siBaseUnits.IsSubsetOf(null));
 
-            Assert.False(BaseUnits.Undefined.ExistsIn(siBaseUnits));
-            Assert.False(siBaseUnits.ExistsIn(BaseUnits.Undefined));
+            Assert.False(BaseUnits.Undefined.IsSubsetOf( siBaseUnits));
+            Assert.False(siBaseUnits.IsSubsetOf( BaseUnits.Undefined));
 
             var meterBaseUnits = new BaseUnits(LengthUnit.Meter);
-            Assert.True(meterBaseUnits.ExistsIn(siBaseUnits));
+            Assert.True(meterBaseUnits.IsSubsetOf( siBaseUnits));
 
             // Not all units in siBaseUnits will exist in meterBaseUnits
-            Assert.False(siBaseUnits.ExistsIn(meterBaseUnits));
+            Assert.False(siBaseUnits.IsSubsetOf( meterBaseUnits));
         }
 
         [Fact]
