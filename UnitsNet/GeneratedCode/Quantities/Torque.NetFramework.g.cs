@@ -263,7 +263,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(TorqueUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -527,7 +527,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Torque Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<Torque, TorqueUnit>(
@@ -558,7 +558,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Torque result)
         {
             return QuantityParser.Default.TryParse<Torque, TorqueUnit>(
@@ -591,7 +591,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static TorqueUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<TorqueUnit>(str, provider);
@@ -612,7 +612,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out TorqueUnit unit)
         {
             return UnitParser.Default.TryParse<TorqueUnit>(str, provider, out unit);
@@ -922,7 +922,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
             return ToString(provider, 2);
@@ -933,7 +933,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -947,13 +947,13 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);

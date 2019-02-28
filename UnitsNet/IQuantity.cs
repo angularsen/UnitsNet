@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -56,7 +57,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         string ToString([CanBeNull] IFormatProvider provider);
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix);
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
