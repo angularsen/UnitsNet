@@ -92,24 +92,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UndefinedHasAllBaseUnitsAsUndefined()
+        {
+            Assert.Equal(LengthUnit.Undefined, BaseUnits.Undefined.Length);
+            Assert.Equal(MassUnit.Undefined, BaseUnits.Undefined.Mass);
+            Assert.Equal(DurationUnit.Undefined, BaseUnits.Undefined.Time);
+            Assert.Equal(ElectricCurrentUnit.Undefined, BaseUnits.Undefined.Current);
+            Assert.Equal(TemperatureUnit.Undefined, BaseUnits.Undefined.Temperature);
+            Assert.Equal(AmountOfSubstanceUnit.Undefined, BaseUnits.Undefined.Amount);
+            Assert.Equal(LuminousIntensityUnit.Undefined, BaseUnits.Undefined.LuminousIntensity);
+        }
+
+        [Fact]
         public void UndefinedIsSubsetOfUndefined()
         {
             Assert.True(BaseUnits.Undefined.IsSubsetOf(BaseUnits.Undefined));
         }
 
         [Fact]
-        public void ExistsInWorksCorrectly()
+        public void IsSubsetOfReturnsFalseWithNull()
         {
             Assert.False(siBaseUnits.IsSubsetOf(null));
+        }
 
-            Assert.False(BaseUnits.Undefined.IsSubsetOf( siBaseUnits));
-            Assert.False(siBaseUnits.IsSubsetOf( BaseUnits.Undefined));
+        [Fact]
+        public void ExistsInWorksCorrectly()
+        {
+            Assert.False(BaseUnits.Undefined.IsSubsetOf(siBaseUnits));
+            Assert.False(siBaseUnits.IsSubsetOf(BaseUnits.Undefined));
 
             var meterBaseUnits = new BaseUnits(LengthUnit.Meter);
-            Assert.True(meterBaseUnits.IsSubsetOf( siBaseUnits));
+            Assert.True(meterBaseUnits.IsSubsetOf(siBaseUnits));
 
             // Not all units in siBaseUnits will exist in meterBaseUnits
-            Assert.False(siBaseUnits.IsSubsetOf( meterBaseUnits));
+            Assert.False(siBaseUnits.IsSubsetOf(meterBaseUnits));
         }
 
         [Fact]
