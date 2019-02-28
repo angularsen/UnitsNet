@@ -23,6 +23,7 @@ function GenerateStaticQuantitySourceCode([Quantity[]]$quantities, [string]$targ
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
