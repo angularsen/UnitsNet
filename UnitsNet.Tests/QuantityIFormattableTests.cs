@@ -32,6 +32,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AFormatWithInvalidIndexThrowsFormatException()
+        {
+            Assert.Throws<FormatException>(() => length.ToString("a100"));
+        }
+
+        [Fact]
         public void VFormatEqualsValueToString()
         {
             Assert.Equal(length.Value.ToString(), length.ToString("v"));
