@@ -372,13 +372,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VitaminA"/> from adding two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator +(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VitaminA(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from subtracting two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator -(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VitaminA(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
@@ -412,25 +412,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VitaminA left, VitaminA right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VitaminA left, VitaminA right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VitaminA left, VitaminA right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VitaminA left, VitaminA right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VitaminA other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -476,7 +476,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VitaminA other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -554,7 +554,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -567,7 +567,7 @@ namespace UnitsNet
         /// <returns>A VitaminA with the specified unit.</returns>
         public VitaminA ToUnit(VitaminAUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new VitaminA(convertedValue, unit);
         }
 
@@ -581,7 +581,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -591,12 +591,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(VitaminAUnit unit)
+        private double GetValueAs(VitaminAUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

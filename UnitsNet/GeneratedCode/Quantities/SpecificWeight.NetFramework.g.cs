@@ -615,13 +615,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="SpecificWeight"/> from adding two <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new SpecificWeight(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from subtracting two <see cref="SpecificWeight"/>.</summary>
         public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new SpecificWeight(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
@@ -655,25 +655,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificWeight left, SpecificWeight right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificWeight left, SpecificWeight right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificWeight left, SpecificWeight right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificWeight left, SpecificWeight right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -702,7 +702,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(SpecificWeight other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -719,7 +719,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificWeight other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -797,7 +797,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <returns>A SpecificWeight with the specified unit.</returns>
         public SpecificWeight ToUnit(SpecificWeightUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new SpecificWeight(convertedValue, unit);
         }
 
@@ -824,7 +824,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -850,12 +850,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(SpecificWeightUnit unit)
+        private double GetValueAs(SpecificWeightUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

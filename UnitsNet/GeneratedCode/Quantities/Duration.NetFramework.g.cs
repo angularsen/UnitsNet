@@ -507,13 +507,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from adding two <see cref="Duration"/>.</summary>
         public static Duration operator +(Duration left, Duration right)
         {
-            return new Duration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Duration(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from subtracting two <see cref="Duration"/>.</summary>
         public static Duration operator -(Duration left, Duration right)
         {
-            return new Duration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Duration(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
@@ -547,25 +547,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Duration left, Duration right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Duration left, Duration right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Duration left, Duration right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Duration left, Duration right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -594,7 +594,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Duration other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -611,7 +611,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Duration other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -689,7 +689,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -702,7 +702,7 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public Duration ToUnit(DurationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Duration(convertedValue, unit);
         }
 
@@ -716,7 +716,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -735,12 +735,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(DurationUnit unit)
+        private double GetValueAs(DurationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

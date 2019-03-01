@@ -375,13 +375,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Permittivity"/> from adding two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator +(Permittivity left, Permittivity right)
         {
-            return new Permittivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Permittivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from subtracting two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator -(Permittivity left, Permittivity right)
         {
-            return new Permittivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Permittivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
@@ -415,25 +415,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Permittivity left, Permittivity right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Permittivity left, Permittivity right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Permittivity left, Permittivity right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Permittivity left, Permittivity right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -462,7 +462,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Permittivity other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -479,7 +479,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Permittivity other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -557,7 +557,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <returns>A Permittivity with the specified unit.</returns>
         public Permittivity ToUnit(PermittivityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Permittivity(convertedValue, unit);
         }
 
@@ -584,7 +584,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -594,12 +594,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(PermittivityUnit unit)
+        private double GetValueAs(PermittivityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

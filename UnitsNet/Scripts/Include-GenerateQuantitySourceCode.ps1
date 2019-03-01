@@ -713,7 +713,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
         {
             // Logarithmic addition
             // Formula: $x*log10(10^(x/$x) + 10^(y/$x))
-            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
+            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
         /// <summary>Get <see cref="$quantityName"/> from logarithmic subtraction of two <see cref="$quantityName"/>.</summary>
@@ -721,7 +721,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
         {
             // Logarithmic subtraction
             // Formula: $x*log10(10^(x/$x) - 10^(y/$x))
-            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
+            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
         /// <summary>Get <see cref="$quantityName"/> from logarithmic multiplication of value and <see cref="$quantityName"/>.</summary>
@@ -749,7 +749,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
         public static double operator /($quantityName left, $quantityName right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
         }
 
         #endregion
@@ -782,13 +782,13 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
         /// <summary>Get <see cref="$quantityName"/> from adding two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new $quantityName(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="$quantityName"/> from subtracting two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new $quantityName(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="$quantityName"/> from multiplying value and <see cref="$quantityName"/>.</summary>
@@ -829,25 +829,25 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=($quantityName left, $quantityName right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=($quantityName left, $quantityName right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <($quantityName left, $quantityName right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >($quantityName left, $quantityName right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -876,7 +876,7 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
         /// <inheritdoc />
         public int CompareTo($quantityName other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -893,7 +893,7 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
         /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals($quantityName other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -980,7 +980,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -993,7 +993,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         /// <returns>A $quantityName with the specified unit.</returns>
         public $quantityName ToUnit($unitEnumName unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new $quantityName(convertedValue, unit);
         }
 
@@ -1007,7 +1007,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private $valueType AsBaseUnit()
+        private $valueType GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -1020,12 +1020,12 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             }
         }
 
-        private $valueType AsBaseNumericType($unitEnumName unit)
+        private $valueType GetValueAs($unitEnumName unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

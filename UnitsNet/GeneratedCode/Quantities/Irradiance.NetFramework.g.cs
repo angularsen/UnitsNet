@@ -567,13 +567,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Irradiance"/> from adding two <see cref="Irradiance"/>.</summary>
         public static Irradiance operator +(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Irradiance(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiance"/> from subtracting two <see cref="Irradiance"/>.</summary>
         public static Irradiance operator -(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Irradiance(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiance"/> from multiplying value and <see cref="Irradiance"/>.</summary>
@@ -607,25 +607,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Irradiance left, Irradiance right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Irradiance left, Irradiance right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Irradiance left, Irradiance right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Irradiance left, Irradiance right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Irradiance other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -671,7 +671,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Irradiance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Irradiance other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -749,7 +749,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -762,7 +762,7 @@ namespace UnitsNet
         /// <returns>A Irradiance with the specified unit.</returns>
         public Irradiance ToUnit(IrradianceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Irradiance(convertedValue, unit);
         }
 
@@ -776,7 +776,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -799,12 +799,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(IrradianceUnit unit)
+        private double GetValueAs(IrradianceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

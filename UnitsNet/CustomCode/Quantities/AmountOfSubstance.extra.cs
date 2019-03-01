@@ -30,7 +30,7 @@ namespace UnitsNet
         /// <returns>The number of particles (atoms or molecules) in this amount of substance.</returns>
         public double NumberOfParticles()
         {
-            var moles = AsBaseNumericType(AmountOfSubstanceUnit.Mole);
+            var moles = GetValueAs(AmountOfSubstanceUnit.Mole);
             return AvogadroConstant * moles;
         }
     }
