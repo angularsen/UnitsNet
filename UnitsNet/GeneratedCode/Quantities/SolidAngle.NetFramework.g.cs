@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((SolidAngleUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((SolidAngleUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is SolidAngleUnit unitAsSolidAngleUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
+
+            return As(unitAsSolidAngleUnit);
+        }
 
         /// <summary>
         ///     Converts this SolidAngle to another SolidAngle with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new SolidAngle(convertedValue, unit);
         }
 
-        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is SolidAngleUnit unitAsSolidAngleUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSolidAngleUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((SolidAngleUnit) unit);
+        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

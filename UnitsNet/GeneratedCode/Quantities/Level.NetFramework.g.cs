@@ -566,8 +566,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LevelUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -582,7 +580,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((LevelUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LevelUnit unitAsLevelUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
+
+            return As(unitAsLevelUnit);
+        }
 
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
@@ -594,10 +598,17 @@ namespace UnitsNet
             return new Level(convertedValue, unit);
         }
 
-        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LevelUnit unitAsLevelUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLevelUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
+        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

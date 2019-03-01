@@ -678,8 +678,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((DurationUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -694,7 +692,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((DurationUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is DurationUnit unitAsDurationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
+
+            return As(unitAsDurationUnit);
+        }
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -706,10 +710,17 @@ namespace UnitsNet
             return new Duration(convertedValue, unit);
         }
 
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is DurationUnit unitAsDurationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsDurationUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((DurationUnit) unit);
+        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

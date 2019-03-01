@@ -588,8 +588,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricAdmittanceUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -604,7 +602,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricAdmittanceUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricAdmittanceUnit unitAsElectricAdmittanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricAdmittanceUnit);
+        }
 
         /// <summary>
         ///     Converts this ElectricAdmittance to another ElectricAdmittance with the unit representation <paramref name="unit" />.
@@ -616,10 +620,17 @@ namespace UnitsNet
             return new ElectricAdmittance(convertedValue, unit);
         }
 
-        IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricAdmittanceUnit unitAsElectricAdmittanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricAdmittanceUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricAdmittanceUnit) unit);
+        IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

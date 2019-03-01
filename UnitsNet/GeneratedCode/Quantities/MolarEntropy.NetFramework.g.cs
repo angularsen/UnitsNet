@@ -573,8 +573,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MolarEntropyUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -589,7 +587,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((MolarEntropyUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MolarEntropyUnit unitAsMolarEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
+
+            return As(unitAsMolarEntropyUnit);
+        }
 
         /// <summary>
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new MolarEntropy(convertedValue, unit);
         }
 
-        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MolarEntropyUnit unitAsMolarEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMolarEntropyUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
+        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

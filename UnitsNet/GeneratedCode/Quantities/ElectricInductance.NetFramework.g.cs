@@ -591,8 +591,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricInductanceUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -607,7 +605,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricInductanceUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricInductanceUnit);
+        }
 
         /// <summary>
         ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
@@ -619,10 +623,17 @@ namespace UnitsNet
             return new ElectricInductance(convertedValue, unit);
         }
 
-        IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(ElectricInductanceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricInductanceUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricInductanceUnit) unit);
+        IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(ElectricInductanceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

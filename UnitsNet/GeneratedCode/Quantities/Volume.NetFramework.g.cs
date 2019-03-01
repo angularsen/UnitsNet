@@ -1203,8 +1203,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((VolumeUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1219,7 +1217,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((VolumeUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is VolumeUnit unitAsVolumeUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
+
+            return As(unitAsVolumeUnit);
+        }
 
         /// <summary>
         ///     Converts this Volume to another Volume with the unit representation <paramref name="unit" />.
@@ -1231,10 +1235,17 @@ namespace UnitsNet
             return new Volume(convertedValue, unit);
         }
 
-        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is VolumeUnit unitAsVolumeUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumeUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((VolumeUnit) unit);
+        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -723,8 +723,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((RotationalSpeedUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -739,7 +737,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((RotationalSpeedUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is RotationalSpeedUnit unitAsRotationalSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
+
+            return As(unitAsRotationalSpeedUnit);
+        }
 
         /// <summary>
         ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
@@ -751,10 +755,17 @@ namespace UnitsNet
             return new RotationalSpeed(convertedValue, unit);
         }
 
-        IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(RotationalSpeedUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is RotationalSpeedUnit unitAsRotationalSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRotationalSpeedUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalSpeedUnit) unit);
+        IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(RotationalSpeedUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

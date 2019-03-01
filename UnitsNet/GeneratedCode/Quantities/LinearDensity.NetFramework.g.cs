@@ -576,8 +576,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LinearDensityUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -592,7 +590,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((LinearDensityUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LinearDensityUnit unitAsLinearDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
+
+            return As(unitAsLinearDensityUnit);
+        }
 
         /// <summary>
         ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" />.
@@ -604,10 +608,17 @@ namespace UnitsNet
             return new LinearDensity(convertedValue, unit);
         }
 
-        IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LinearDensityUnit unitAsLinearDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLinearDensityUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LinearDensityUnit) unit);
+        IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

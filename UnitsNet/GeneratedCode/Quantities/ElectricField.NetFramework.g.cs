@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricFieldUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricFieldUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricFieldUnit);
+        }
 
         /// <summary>
         ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new ElectricField(convertedValue, unit);
         }
 
-        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricFieldUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricFieldUnit) unit);
+        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

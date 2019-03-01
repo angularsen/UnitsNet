@@ -573,8 +573,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((RotationalStiffnessPerLengthUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -589,7 +587,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((RotationalStiffnessPerLengthUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
+
+            return As(unitAsRotationalStiffnessPerLengthUnit);
+        }
 
         /// <summary>
         ///     Converts this RotationalStiffnessPerLength to another RotationalStiffnessPerLength with the unit representation <paramref name="unit" />.
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new RotationalStiffnessPerLength(convertedValue, unit);
         }
 
-        IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRotationalStiffnessPerLengthUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessPerLengthUnit) unit);
+        IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

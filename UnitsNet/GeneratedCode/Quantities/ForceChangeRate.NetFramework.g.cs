@@ -693,8 +693,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ForceChangeRateUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -709,7 +707,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ForceChangeRateUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(unitAsForceChangeRateUnit);
+        }
 
         /// <summary>
         ///     Converts this ForceChangeRate to another ForceChangeRate with the unit representation <paramref name="unit" />.
@@ -721,10 +725,17 @@ namespace UnitsNet
             return new ForceChangeRate(convertedValue, unit);
         }
 
-        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForceChangeRateUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ForceChangeRateUnit) unit);
+        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

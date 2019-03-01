@@ -603,8 +603,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricPotentialUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -619,7 +617,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricPotentialUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricPotentialUnit unitAsElectricPotentialUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricPotentialUnit);
+        }
 
         /// <summary>
         ///     Converts this ElectricPotential to another ElectricPotential with the unit representation <paramref name="unit" />.
@@ -631,10 +635,17 @@ namespace UnitsNet
             return new ElectricPotential(convertedValue, unit);
         }
 
-        IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(ElectricPotentialUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricPotentialUnit unitAsElectricPotentialUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricPotentialUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricPotentialUnit) unit);
+        IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(ElectricPotentialUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

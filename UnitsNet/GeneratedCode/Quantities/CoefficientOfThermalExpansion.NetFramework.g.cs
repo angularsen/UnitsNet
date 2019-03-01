@@ -573,8 +573,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((CoefficientOfThermalExpansionUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -589,7 +587,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((CoefficientOfThermalExpansionUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
+
+            return As(unitAsCoefficientOfThermalExpansionUnit);
+        }
 
         /// <summary>
         ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(convertedValue, unit);
         }
 
-        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsCoefficientOfThermalExpansionUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((CoefficientOfThermalExpansionUnit) unit);
+        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

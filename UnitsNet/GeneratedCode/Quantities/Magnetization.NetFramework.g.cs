@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MagnetizationUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((MagnetizationUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MagnetizationUnit unitAsMagnetizationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
+
+            return As(unitAsMagnetizationUnit);
+        }
 
         /// <summary>
         ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new Magnetization(convertedValue, unit);
         }
 
-        IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MagnetizationUnit unitAsMagnetizationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMagnetizationUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MagnetizationUnit) unit);
+        IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

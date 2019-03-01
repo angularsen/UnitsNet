@@ -738,8 +738,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((IrradianceUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -754,7 +752,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((IrradianceUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is IrradianceUnit unitAsIrradianceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsIrradianceUnit);
+        }
 
         /// <summary>
         ///     Converts this Irradiance to another Irradiance with the unit representation <paramref name="unit" />.
@@ -766,10 +770,17 @@ namespace UnitsNet
             return new Irradiance(convertedValue, unit);
         }
 
-        IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is IrradianceUnit unitAsIrradianceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsIrradianceUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((IrradianceUnit) unit);
+        IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

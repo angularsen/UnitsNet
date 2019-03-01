@@ -920,8 +920,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((InformationUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -936,7 +934,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((InformationUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is InformationUnit unitAsInformationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
+
+            return As(unitAsInformationUnit);
+        }
 
         /// <summary>
         ///     Converts this Information to another Information with the unit representation <paramref name="unit" />.
@@ -948,10 +952,17 @@ namespace UnitsNet
             return new Information(convertedValue, unit);
         }
 
-        IQuantity<InformationUnit> IQuantity<InformationUnit>.ToUnit(InformationUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is InformationUnit unitAsInformationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsInformationUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((InformationUnit) unit);
+        IQuantity<InformationUnit> IQuantity<InformationUnit>.ToUnit(InformationUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

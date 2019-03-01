@@ -558,8 +558,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MassFluxUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -574,7 +572,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((MassFluxUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
+
+            return As(unitAsMassFluxUnit);
+        }
 
         /// <summary>
         ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
@@ -586,10 +590,17 @@ namespace UnitsNet
             return new MassFlux(convertedValue, unit);
         }
 
-        IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMassFluxUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MassFluxUnit) unit);
+        IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

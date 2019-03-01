@@ -858,8 +858,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LengthUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -874,7 +872,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((LengthUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LengthUnit unitAsLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+
+            return As(unitAsLengthUnit);
+        }
 
         /// <summary>
         ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
@@ -886,10 +890,17 @@ namespace UnitsNet
             return new Length(convertedValue, unit);
         }
 
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LengthUnit unitAsLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLengthUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LengthUnit) unit);
+        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

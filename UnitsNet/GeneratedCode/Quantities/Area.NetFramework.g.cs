@@ -723,8 +723,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AreaUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -739,7 +737,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((AreaUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AreaUnit unitAsAreaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return As(unitAsAreaUnit);
+        }
 
         /// <summary>
         ///     Converts this Area to another Area with the unit representation <paramref name="unit" />.
@@ -751,10 +755,17 @@ namespace UnitsNet
             return new Area(convertedValue, unit);
         }
 
-        IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(AreaUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AreaUnit unitAsAreaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsAreaUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AreaUnit) unit);
+        IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(AreaUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

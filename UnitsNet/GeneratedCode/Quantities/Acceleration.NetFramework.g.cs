@@ -723,8 +723,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AccelerationUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -739,7 +737,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((AccelerationUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AccelerationUnit unitAsAccelerationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
+
+            return As(unitAsAccelerationUnit);
+        }
 
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
@@ -751,10 +755,17 @@ namespace UnitsNet
             return new Acceleration(convertedValue, unit);
         }
 
-        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AccelerationUnit unitAsAccelerationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsAccelerationUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
+        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

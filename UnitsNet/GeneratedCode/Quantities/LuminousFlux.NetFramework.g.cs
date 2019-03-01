@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LuminousFluxUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((LuminousFluxUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LuminousFluxUnit unitAsLuminousFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
+
+            return As(unitAsLuminousFluxUnit);
+        }
 
         /// <summary>
         ///     Converts this LuminousFlux to another LuminousFlux with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new LuminousFlux(convertedValue, unit);
         }
 
-        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LuminousFluxUnit unitAsLuminousFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLuminousFluxUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousFluxUnit) unit);
+        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

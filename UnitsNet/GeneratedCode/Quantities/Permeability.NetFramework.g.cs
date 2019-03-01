@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PermeabilityUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((PermeabilityUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PermeabilityUnit unitAsPermeabilityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPermeabilityUnit);
+        }
 
         /// <summary>
         ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new Permeability(convertedValue, unit);
         }
 
-        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PermeabilityUnit unitAsPermeabilityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPermeabilityUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PermeabilityUnit) unit);
+        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

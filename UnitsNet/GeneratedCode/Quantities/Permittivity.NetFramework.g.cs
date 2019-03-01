@@ -546,8 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PermittivityUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -562,7 +560,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((PermittivityUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PermittivityUnit unitAsPermittivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPermittivityUnit);
+        }
 
         /// <summary>
         ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new Permittivity(convertedValue, unit);
         }
 
-        IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PermittivityUnit unitAsPermittivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPermittivityUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PermittivityUnit) unit);
+        IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

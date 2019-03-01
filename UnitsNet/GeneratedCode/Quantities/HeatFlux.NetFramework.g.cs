@@ -798,8 +798,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((HeatFluxUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -814,7 +812,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((HeatFluxUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is HeatFluxUnit unitAsHeatFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
+
+            return As(unitAsHeatFluxUnit);
+        }
 
         /// <summary>
         ///     Converts this HeatFlux to another HeatFlux with the unit representation <paramref name="unit" />.
@@ -826,10 +830,17 @@ namespace UnitsNet
             return new HeatFlux(convertedValue, unit);
         }
 
-        IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(HeatFluxUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is HeatFluxUnit unitAsHeatFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsHeatFluxUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((HeatFluxUnit) unit);
+        IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(HeatFluxUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

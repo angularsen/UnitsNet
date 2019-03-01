@@ -588,8 +588,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ApparentPowerUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -604,7 +602,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((ApparentPowerUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ApparentPowerUnit unitAsApparentPowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
+
+            return As(unitAsApparentPowerUnit);
+        }
 
         /// <summary>
         ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
@@ -616,10 +620,17 @@ namespace UnitsNet
             return new ApparentPower(convertedValue, unit);
         }
 
-        IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ApparentPowerUnit unitAsApparentPowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsApparentPowerUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ApparentPowerUnit) unit);
+        IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

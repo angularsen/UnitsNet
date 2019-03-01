@@ -648,8 +648,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((TemperatureDeltaUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -664,7 +662,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public double As(Enum unit) => As((TemperatureDeltaUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
+
+            return As(unitAsTemperatureDeltaUnit);
+        }
 
         /// <summary>
         ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
@@ -676,10 +680,17 @@ namespace UnitsNet
             return new TemperatureDelta(convertedValue, unit);
         }
 
-        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsTemperatureDeltaUnit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureDeltaUnit) unit);
+        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
