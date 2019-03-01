@@ -505,13 +505,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarMass"/> from adding two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarMass(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from subtracting two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarMass(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
@@ -545,25 +545,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarMass left, MolarMass right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarMass left, MolarMass right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarMass left, MolarMass right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarMass left, MolarMass right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -592,7 +592,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MolarMass other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -609,7 +609,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MolarMass other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -687,7 +687,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -700,7 +700,7 @@ namespace UnitsNet
         /// <returns>A MolarMass with the specified unit.</returns>
         public MolarMass ToUnit(MolarMassUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MolarMass(convertedValue, unit);
         }
 
@@ -714,7 +714,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -735,12 +735,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(MolarMassUnit unit)
+        private double GetValueAs(MolarMassUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

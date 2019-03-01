@@ -407,13 +407,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricPotential"/> from adding two <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricPotential(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from subtracting two <see cref="ElectricPotential"/>.</summary>
         public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricPotential(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from multiplying value and <see cref="ElectricPotential"/>.</summary>
@@ -447,25 +447,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricPotential left, ElectricPotential right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricPotential left, ElectricPotential right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricPotential left, ElectricPotential right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricPotential left, ElectricPotential right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -494,7 +494,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricPotential other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricPotential other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -589,7 +589,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -602,7 +602,7 @@ namespace UnitsNet
         /// <returns>A ElectricPotential with the specified unit.</returns>
         public ElectricPotential ToUnit(ElectricPotentialUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricPotential(convertedValue, unit);
         }
 
@@ -616,7 +616,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -630,12 +630,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(ElectricPotentialUnit unit)
+        private double GetValueAs(ElectricPotentialUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

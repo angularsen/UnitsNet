@@ -396,13 +396,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MagneticField"/> from adding two <see cref="MagneticField"/>.</summary>
         public static MagneticField operator +(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticField(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from subtracting two <see cref="MagneticField"/>.</summary>
         public static MagneticField operator -(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticField(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
@@ -436,25 +436,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MagneticField left, MagneticField right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MagneticField left, MagneticField right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MagneticField left, MagneticField right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MagneticField left, MagneticField right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MagneticField other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -500,7 +500,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MagneticField other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -591,7 +591,7 @@ namespace UnitsNet
         /// <returns>A MagneticField with the specified unit.</returns>
         public MagneticField ToUnit(MagneticFieldUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MagneticField(convertedValue, unit);
         }
 
@@ -605,7 +605,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -618,12 +618,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(MagneticFieldUnit unit)
+        private double GetValueAs(MagneticFieldUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

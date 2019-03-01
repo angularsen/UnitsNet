@@ -785,13 +785,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Speed"/> from adding two <see cref="Speed"/>.</summary>
         public static Speed operator +(Speed left, Speed right)
         {
-            return new Speed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Speed(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from subtracting two <see cref="Speed"/>.</summary>
         public static Speed operator -(Speed left, Speed right)
         {
-            return new Speed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Speed(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
@@ -825,25 +825,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Speed left, Speed right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Speed left, Speed right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Speed left, Speed right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Speed left, Speed right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -872,7 +872,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Speed other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -889,7 +889,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Speed other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -967,7 +967,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -980,7 +980,7 @@ namespace UnitsNet
         /// <returns>A Speed with the specified unit.</returns>
         public Speed ToUnit(SpeedUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Speed(convertedValue, unit);
         }
 
@@ -994,7 +994,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -1035,12 +1035,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(SpeedUnit unit)
+        private double GetValueAs(SpeedUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

@@ -1009,13 +1009,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VolumeFlow"/> from adding two <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator +(VolumeFlow left, VolumeFlow right)
         {
-            return new VolumeFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VolumeFlow(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlow"/> from subtracting two <see cref="VolumeFlow"/>.</summary>
         public static VolumeFlow operator -(VolumeFlow left, VolumeFlow right)
         {
-            return new VolumeFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VolumeFlow(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlow"/> from multiplying value and <see cref="VolumeFlow"/>.</summary>
@@ -1049,25 +1049,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumeFlow left, VolumeFlow right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumeFlow left, VolumeFlow right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumeFlow left, VolumeFlow right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumeFlow left, VolumeFlow right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1096,7 +1096,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VolumeFlow other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -1113,7 +1113,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumeFlow other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1191,7 +1191,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -1204,7 +1204,7 @@ namespace UnitsNet
         /// <returns>A VolumeFlow with the specified unit.</returns>
         public VolumeFlow ToUnit(VolumeFlowUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new VolumeFlow(convertedValue, unit);
         }
 
@@ -1218,7 +1218,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -1275,12 +1275,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(VolumeFlowUnit unit)
+        private double GetValueAs(VolumeFlowUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

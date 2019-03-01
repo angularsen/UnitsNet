@@ -393,13 +393,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ApparentPower"/> from adding two <see cref="ApparentPower"/>.</summary>
         public static ApparentPower operator +(ApparentPower left, ApparentPower right)
         {
-            return new ApparentPower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ApparentPower(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from subtracting two <see cref="ApparentPower"/>.</summary>
         public static ApparentPower operator -(ApparentPower left, ApparentPower right)
         {
-            return new ApparentPower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ApparentPower(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
@@ -433,25 +433,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ApparentPower left, ApparentPower right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ApparentPower left, ApparentPower right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ApparentPower left, ApparentPower right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ApparentPower left, ApparentPower right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ApparentPower other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -497,7 +497,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ApparentPower other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -575,7 +575,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -588,7 +588,7 @@ namespace UnitsNet
         /// <returns>A ApparentPower with the specified unit.</returns>
         public ApparentPower ToUnit(ApparentPowerUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ApparentPower(convertedValue, unit);
         }
 
@@ -602,7 +602,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -615,12 +615,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(ApparentPowerUnit unit)
+        private double GetValueAs(ApparentPowerUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

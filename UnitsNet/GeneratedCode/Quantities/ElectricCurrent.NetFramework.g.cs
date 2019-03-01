@@ -449,13 +449,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricCurrent"/> from adding two <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
         {
-            return new ElectricCurrent(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricCurrent(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from subtracting two <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
         {
-            return new ElectricCurrent(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricCurrent(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
@@ -489,25 +489,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -536,7 +536,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCurrent other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -553,7 +553,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricCurrent other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -631,7 +631,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -644,7 +644,7 @@ namespace UnitsNet
         /// <returns>A ElectricCurrent with the specified unit.</returns>
         public ElectricCurrent ToUnit(ElectricCurrentUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricCurrent(convertedValue, unit);
         }
 
@@ -658,7 +658,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -675,12 +675,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(ElectricCurrentUnit unit)
+        private double GetValueAs(ElectricCurrentUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

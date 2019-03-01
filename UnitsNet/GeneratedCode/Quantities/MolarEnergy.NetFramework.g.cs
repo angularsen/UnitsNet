@@ -379,13 +379,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarEnergy"/> from adding two <see cref="MolarEnergy"/>.</summary>
         public static MolarEnergy operator +(MolarEnergy left, MolarEnergy right)
         {
-            return new MolarEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarEnergy(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEnergy"/> from subtracting two <see cref="MolarEnergy"/>.</summary>
         public static MolarEnergy operator -(MolarEnergy left, MolarEnergy right)
         {
-            return new MolarEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarEnergy(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEnergy"/> from multiplying value and <see cref="MolarEnergy"/>.</summary>
@@ -419,25 +419,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarEnergy left, MolarEnergy right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarEnergy left, MolarEnergy right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarEnergy left, MolarEnergy right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarEnergy left, MolarEnergy right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MolarEnergy other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MolarEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MolarEnergy other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -574,7 +574,7 @@ namespace UnitsNet
         /// <returns>A MolarEnergy with the specified unit.</returns>
         public MolarEnergy ToUnit(MolarEnergyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MolarEnergy(convertedValue, unit);
         }
 
@@ -588,7 +588,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -600,12 +600,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(MolarEnergyUnit unit)
+        private double GetValueAs(MolarEnergyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

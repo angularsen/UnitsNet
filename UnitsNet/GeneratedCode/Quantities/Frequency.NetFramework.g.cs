@@ -463,13 +463,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Frequency"/> from adding two <see cref="Frequency"/>.</summary>
         public static Frequency operator +(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Frequency(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from subtracting two <see cref="Frequency"/>.</summary>
         public static Frequency operator -(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Frequency(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
@@ -503,25 +503,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Frequency left, Frequency right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Frequency left, Frequency right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Frequency left, Frequency right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Frequency left, Frequency right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -550,7 +550,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Frequency other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -567,7 +567,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Frequency other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -645,7 +645,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -658,7 +658,7 @@ namespace UnitsNet
         /// <returns>A Frequency with the specified unit.</returns>
         public Frequency ToUnit(FrequencyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Frequency(convertedValue, unit);
         }
 
@@ -672,7 +672,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -690,12 +690,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(FrequencyUnit unit)
+        private double GetValueAs(FrequencyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

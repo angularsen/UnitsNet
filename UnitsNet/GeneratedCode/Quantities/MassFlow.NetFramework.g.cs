@@ -771,13 +771,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlow"/> from adding two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MassFlow(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from subtracting two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MassFlow(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from multiplying value and <see cref="MassFlow"/>.</summary>
@@ -811,25 +811,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MassFlow left, MassFlow right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MassFlow left, MassFlow right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MassFlow left, MassFlow right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MassFlow left, MassFlow right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -858,7 +858,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MassFlow other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -875,7 +875,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MassFlow other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -953,7 +953,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -966,7 +966,7 @@ namespace UnitsNet
         /// <returns>A MassFlow with the specified unit.</returns>
         public MassFlow ToUnit(MassFlowUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MassFlow(convertedValue, unit);
         }
 
@@ -980,7 +980,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -1020,12 +1020,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(MassFlowUnit unit)
+        private double GetValueAs(MassFlowUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

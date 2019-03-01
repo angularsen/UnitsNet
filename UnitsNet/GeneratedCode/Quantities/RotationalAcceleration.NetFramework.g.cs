@@ -379,13 +379,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="RotationalAcceleration"/> from adding two <see cref="RotationalAcceleration"/>.</summary>
         public static RotationalAcceleration operator +(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return new RotationalAcceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new RotationalAcceleration(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from subtracting two <see cref="RotationalAcceleration"/>.</summary>
         public static RotationalAcceleration operator -(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return new RotationalAcceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new RotationalAcceleration(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from multiplying value and <see cref="RotationalAcceleration"/>.</summary>
@@ -419,25 +419,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(RotationalAcceleration other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(RotationalAcceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(RotationalAcceleration other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -574,7 +574,7 @@ namespace UnitsNet
         /// <returns>A RotationalAcceleration with the specified unit.</returns>
         public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new RotationalAcceleration(convertedValue, unit);
         }
 
@@ -588,7 +588,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -600,12 +600,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(RotationalAccelerationUnit unit)
+        private double GetValueAs(RotationalAccelerationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {
