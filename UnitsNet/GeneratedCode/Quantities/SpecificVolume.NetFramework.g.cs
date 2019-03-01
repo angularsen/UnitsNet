@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
     /// </summary>
-    public partial struct SpecificVolume : IQuantity<SpecificVolumeUnit>, IEquatable<SpecificVolume>, IComparable, IComparable<SpecificVolume>, IConvertible
+    public partial struct SpecificVolume : IQuantity<SpecificVolumeUnit>, IEquatable<SpecificVolume>, IComparable<SpecificVolume>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -734,11 +734,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

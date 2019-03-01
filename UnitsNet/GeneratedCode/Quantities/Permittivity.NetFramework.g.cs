@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
-    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible
+    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable<Permittivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -705,11 +705,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

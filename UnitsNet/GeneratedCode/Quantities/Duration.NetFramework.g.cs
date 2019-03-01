@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
-    public partial struct Duration : IQuantity<DurationUnit>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible
+    public partial struct Duration : IQuantity<DurationUnit>, IEquatable<Duration>, IComparable<Duration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -846,11 +846,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

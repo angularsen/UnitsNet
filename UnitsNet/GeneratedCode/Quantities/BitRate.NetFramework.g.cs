@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
-    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible
+    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable<BitRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1107,11 +1107,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

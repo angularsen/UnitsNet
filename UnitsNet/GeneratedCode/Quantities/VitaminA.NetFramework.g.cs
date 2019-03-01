@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
-    public partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>, IConvertible
+    public partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable<VitaminA>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -702,11 +702,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

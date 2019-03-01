@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
-    public partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible
+    public partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable<LapseRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -702,11 +702,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

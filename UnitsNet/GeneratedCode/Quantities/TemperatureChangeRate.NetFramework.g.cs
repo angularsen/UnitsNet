@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
-    public partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRateUnit>, IEquatable<TemperatureChangeRate>, IComparable, IComparable<TemperatureChangeRate>, IConvertible
+    public partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRateUnit>, IEquatable<TemperatureChangeRate>, IComparable<TemperatureChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -846,11 +846,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

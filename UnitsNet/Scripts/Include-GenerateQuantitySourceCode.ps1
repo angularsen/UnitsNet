@@ -66,7 +66,7 @@ if ($obsoleteAttribute)
     ///     $($quantity.XmlDocRemarks)
     /// </remarks>
 "@; }@"
-    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>, IConvertible
+    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable<$quantityName>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -233,11 +233,6 @@ if ($obsoleteAttribute)
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

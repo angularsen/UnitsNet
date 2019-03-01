@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     The amount of power in a volume.
     /// </summary>
-    public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible
+    public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable<PowerDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1390,11 +1390,6 @@ namespace UnitsNet
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(_value);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

@@ -11,7 +11,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents a quantity.
     /// </summary>
-    public interface IQuantity
+    public interface IQuantity : IComparable, IConvertible
     {
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -47,18 +47,11 @@ namespace UnitsNet
         double Value { get; }
 
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="object.ToString()"/>.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>A new quantity with the given unit as default unit representation.</returns>
         IQuantity ToUnit(Enum unit);
-
-        /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        string ToString([CanBeNull] IFormatProvider provider);
 
         /// <summary>
         ///     Get string representation of value and unit.
@@ -101,7 +94,7 @@ namespace UnitsNet
         new QuantityInfo<TUnitType> QuantityInfo { get; }
 
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="object.ToString()"/>.
         /// </summary>
         /// <param name="unit"></param>
         /// <returns></returns>
