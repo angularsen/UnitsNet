@@ -37,6 +37,13 @@ namespace UnitsNet
         double As(Enum unit);
 
         /// <summary>
+        ///     Converts the quantity value into units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
+        /// <returns>The converted value with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        double As(UnitSystem unitSystem);
+
+        /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
@@ -52,6 +59,13 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>A new quantity with the given unit as default unit representation.</returns>
         IQuantity ToUnit(Enum unit);
+
+        /// <summary>
+        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        IQuantity ToUnit(UnitSystem unitSystem);
 
         /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
@@ -108,5 +122,12 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <returns></returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
+
+        /// <summary>
+        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
     }
 }

@@ -60,5 +60,19 @@ namespace UnitsNet.Tests.CustomCode
             var energy = new Energy(1.0, UnitSystem.SI);
             Assert.Equal(EnergyUnit.Joule, energy.Unit);
         }
+
+        [Fact]
+        public void As_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        {
+            var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(2110.11170524, imperialEnergy.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void ToUnit_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        {
+            var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(Energy.FromJoules(2110.11170524), imperialEnergy.ToUnit(UnitSystem.SI));
+        }
     }
 }

@@ -634,6 +634,20 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <summary>
+        ///     Converts the quantity value into units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
+        /// <returns>The converted value with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
@@ -662,8 +676,28 @@ namespace UnitsNet
             return ToUnit(unitAsDynamicViscosityUnit);
         }
 
+        /// <summary>
+        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        public DynamicViscosity ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

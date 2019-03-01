@@ -17,10 +17,38 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_GivenNullUnitSystem_ThrowsArgumentNullException()
+        {
+            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem)null));
+        }
+
+        [Fact]
+        public void As_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        {
+            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, imperialLengthQuantity.As(UnitSystem.SI));
+        }
+
+        [Fact]
         public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
         {
             IQuantity length = Length.FromMeters(1.2345);
             Assert.Throws<ArgumentException>(() => length.ToUnit(MassUnit.Kilogram));
+        }
+
+        [Fact]
+        public void ToUnit_GivenNullUnitSystem_ThrowsArgumentNullException()
+        {
+            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem)null));
+        }
+
+        [Fact]
+        public void ToUnit_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        {
+            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(Length.FromMeters(0.0508), imperialLengthQuantity.ToUnit(UnitSystem.SI));
         }
     }
 }
