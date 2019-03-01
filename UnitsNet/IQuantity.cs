@@ -57,18 +57,19 @@ namespace UnitsNet
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
-        /// <returns>A new quantity with the given unit as default unit representation.</returns>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity ToUnit(Enum unit);
 
         /// <summary>
-        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     The unit is determined as the single unit matching the given <see cref="UnitSystem"/>.
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
-        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        /// <returns>A new quantity with a unit determined by the <see cref="UnitSystem"/>.</returns>
         IQuantity ToUnit(UnitSystem unitSystem);
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the string representation of value and unit. Uses two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
@@ -120,14 +121,15 @@ namespace UnitsNet
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
         /// <param name="unit"></param>
-        /// <returns></returns>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
 
         /// <summary>
-        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     The unit is determined as the single unit matching the given <see cref="UnitSystem"/>.
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
-        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        /// <returns>A new quantity with a unit determined by the <see cref="UnitSystem"/>.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
     }
 }
