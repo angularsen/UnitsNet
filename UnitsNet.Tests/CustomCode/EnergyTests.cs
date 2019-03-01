@@ -62,14 +62,14 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void As_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        public void As_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
         {
             var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
             Assert.Equal(2110.11170524, imperialEnergy.As(UnitSystem.SI));
         }
 
         [Fact]
-        public void ToUnit_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        public void ToUnit_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
         {
             var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
             Assert.Equal(Energy.FromJoules(2110.11170524), imperialEnergy.ToUnit(UnitSystem.SI));
