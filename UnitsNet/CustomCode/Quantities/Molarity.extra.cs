@@ -1,9 +1,15 @@
-﻿using UnitsNet.Units;
+﻿using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Molarity
     {
+        /// <summary>
+        ///     Construct from <see cref="Density"/> divided by <see cref="Mass"/>.
+        /// </summary>
+        /// <seealso cref="Density.op_Division(UnitsNet.Density,UnitsNet.Mass)"/>
+        [Obsolete("This constructor will be removed in favor of operator overload Density.op_Division(UnitsNet.Density,UnitsNet.Mass).")]
         public Molarity(Density density, Mass molecularWeight)
             : this()
         {
@@ -27,9 +33,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="density"></param>
         /// <param name="molecularWeight"></param>
+        [Obsolete("Use Density / Mass operator overload instead.")]
         public static Molarity FromDensity(Density density, Mass molecularWeight)
         {
-            return new Molarity(density, molecularWeight);
+            return density / molecularWeight;
         }
 
         #endregion

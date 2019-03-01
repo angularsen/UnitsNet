@@ -45,6 +45,10 @@ namespace UnitsNet
 {
     public sealed partial class UnitConverter
     {
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         public static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.CentimeterPerSecondSquared, q => q.ToUnit(AccelerationUnit.CentimeterPerSecondSquared));
@@ -503,6 +507,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megajoule, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.MegawattHour, q => q.ToUnit(EnergyUnit.MegawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattHour, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.TerawattHour, q => q.ToUnit(EnergyUnit.TerawattHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattHour, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.ThermEc, q => q.ToUnit(EnergyUnit.ThermEc));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermEc, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.ThermImperial, q => q.ToUnit(EnergyUnit.ThermImperial));
@@ -587,6 +593,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.NanonewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.NanonewtonPerMeter));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLength.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.BeatPerMinute, q => q.ToUnit(FrequencyUnit.BeatPerMinute));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.CyclePerHour, q => q.ToUnit(FrequencyUnit.CyclePerHour));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerHour, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.CyclePerMinute, q => q.ToUnit(FrequencyUnit.CyclePerMinute));

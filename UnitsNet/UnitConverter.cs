@@ -1,40 +1,30 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-
 
 namespace UnitsNet
 {
     using ConversionFunctionLookup = ValueTuple<Type, Enum, Type, Enum>;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="inputValue"></param>
+    /// <returns></returns>
     public delegate IQuantity ConversionFunction(IQuantity inputValue);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TQuantity"></typeparam>
+    /// <param name="inputValue"></param>
+    /// <returns></returns>
     public delegate TQuantity ConversionFunction<TQuantity>(TQuantity inputValue)
         where TQuantity : IQuantity;
 
@@ -44,33 +34,26 @@ namespace UnitsNet
     [PublicAPI]
     public sealed partial class UnitConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static UnitConverter Default { get; }
-
-        private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
-        private static readonly Assembly UnitsNetAssembly = typeof(Length).Wrap().Assembly;
-        private static readonly TypeWrapper TypeOfIQuantity;
-        private static readonly Type[] QuantityTypes;
-        private static readonly Type[] UnitTypes;
 
         private readonly Dictionary<ConversionFunctionLookup, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookup, ConversionFunction>();
 
         static UnitConverter()
         {
             Default = new UnitConverter();
-            TypeOfIQuantity = typeof(IQuantity).Wrap();
-
-            QuantityTypes = UnitsNetAssembly.GetTypes()
-                .Where(TypeOfIQuantity.IsAssignableFrom)
-                .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
-                .ToArray();
-
-            UnitTypes = UnitsNetAssembly.GetTypes()
-                .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
-                .ToArray();
-
             RegisterDefaultConversions(Default);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantity"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
         public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction<TQuantity> conversionFunction)
             where TQuantity : IQuantity
         {
@@ -79,6 +62,14 @@ namespace UnitsNet
             SetConversionFunction(conversionLookup, conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantityFrom"></typeparam>
+        /// <typeparam name="TQuantityTo"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
         public void SetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, ConversionFunction conversionFunction)
             where TQuantityFrom : IQuantity
             where TQuantityTo : IQuantity
@@ -86,17 +77,36 @@ namespace UnitsNet
             SetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fromType"></param>
+        /// <param name="from"></param>
+        /// <param name="toType"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
         public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
             SetConversionFunction(conversionLookup, conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conversionLookup"></param>
+        /// <param name="conversionFunction"></param>
         public void SetConversionFunction(ConversionFunctionLookup conversionLookup, ConversionFunction conversionFunction)
         {
             _conversionFunctions[conversionLookup] = conversionFunction;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantity"></typeparam>
+        /// <param name="conversionLookup"></param>
+        /// <param name="conversionFunction"></param>
         public void SetConversionFunction<TQuantity>(ConversionFunctionLookup conversionLookup, ConversionFunction<TQuantity> conversionFunction)
             where TQuantity : IQuantity
         {
@@ -105,11 +115,26 @@ namespace UnitsNet
             _conversionFunctions[conversionLookup] = TypelessConversionFunction;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public ConversionFunction GetConversionFunction<T>(Enum from, Enum to) where T : IQuantity
         {
             return GetConversionFunction(typeof(T), from, typeof(T), to);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantityFrom"></typeparam>
+        /// <typeparam name="TQuantityTo"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public ConversionFunction GetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to)
             where TQuantityFrom : IQuantity
             where TQuantityTo : IQuantity
@@ -117,22 +142,52 @@ namespace UnitsNet
             return GetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fromType"></param>
+        /// <param name="from"></param>
+        /// <param name="toType"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
             return GetConversionFunction(conversionLookup);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conversionLookup"></param>
+        /// <returns></returns>
         public ConversionFunction GetConversionFunction(ConversionFunctionLookup conversionLookup)
         {
             return _conversionFunctions[conversionLookup];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
+        /// <returns></returns>
         public bool TryGetConversionFunction<T>(Enum from, Enum to, out ConversionFunction conversionFunction) where T : IQuantity
         {
             return TryGetConversionFunction(typeof(T), from, typeof(T), to, out conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantityFrom"></typeparam>
+        /// <typeparam name="TQuantityTo"></typeparam>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
+        /// <returns></returns>
         public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, out ConversionFunction conversionFunction)
             where TQuantityFrom : IQuantity
             where TQuantityTo : IQuantity
@@ -140,12 +195,27 @@ namespace UnitsNet
             return TryGetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, out conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fromType"></param>
+        /// <param name="from"></param>
+        /// <param name="toType"></param>
+        /// <param name="to"></param>
+        /// <param name="conversionFunction"></param>
+        /// <returns></returns>
         public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
             return TryGetConversionFunction(conversionLookup, out conversionFunction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conversionLookup"></param>
+        /// <param name="conversionFunction"></param>
+        /// <returns></returns>
         public bool TryGetConversionFunction(ConversionFunctionLookup conversionLookup, out ConversionFunction conversionFunction)
         {
             return _conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
@@ -176,12 +246,12 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;
+            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity fromQuantity)) return false;
 
             try
             {
                 // We're not going to implement TryAs() in all quantities, so let's just try-catch here
-                convertedValue = from.As(toUnitValue);
+                convertedValue = fromQuantity.As(toUnitValue);
                 return true;
             }
             catch
@@ -216,7 +286,6 @@ namespace UnitsNet
         /// </param>
         /// <example>double centimeters = ConvertByName(5, "Length", "Meter", "Centimeter"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnit" />.</returns>
-        /// <exception cref="QuantityNotFoundException">No quantities were found that match <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
@@ -272,13 +341,13 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
                 return false;
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
                 return false;
 
             result = Convert(inputValue, fromUnitValue, toUnitValue);
@@ -343,7 +412,6 @@ namespace UnitsNet
         /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        /// <exception cref="QuantityNotFoundException">No quantity types match the <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">
         ///     No unit types match the prefix of <paramref name="quantityName" /> or no units
         ///     are mapped to the abbreviation.
@@ -351,24 +419,16 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
-            if (!TryGetQuantityType(quantityName, out var quantityType))
-                throw new QuantityNotFoundException($"The given quantity name was not found: {quantityName}");
-
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
-            var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var fromQuantity = Quantity.From(fromValue, fromUnit);
 
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
-
-            var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
-
-            return (double) asResult;
+            var toUnit = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            return fromQuantity.As(toUnit);
         }
 
         /// <summary>
@@ -436,71 +496,22 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetQuantityType(quantityName, out var quantityType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
+
+            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
-
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnitValue)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
-                return false;
-
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
-
-            var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
-
-            result = (double) asResult;
-            return true;
-        }
-
-        private static MethodInfo GetAsMethod(Type quantityType, Type unitType)
-        {
-            // Only a single As() method as of this writing, but let's safe-guard a bit for future-proofing
-            // ex: double result = quantity.As(LengthUnit outputUnit);
-            return quantityType.Wrap().GetDeclaredMethods()
-                .Single(m => m.Name == "As" &&
-                             !m.IsStatic &&
-                             m.IsPublic &&
-                             HasParameterTypes(m, unitType) &&
-                             m.ReturnType == typeof(double));
-        }
-
-        private static MethodInfo GetStaticFromMethod(Type quantityType, Type unitType)
-        {
-            // Want to match: Length l = UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            // Do NOT match : Length? UnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
-            return quantityType.Wrap().GetDeclaredMethods()
-                .Single(m => m.Name == "From" &&
-                             m.IsStatic &&
-                             m.IsPublic &&
-                             HasParameterTypes(m, typeof(QuantityValue), unitType) &&
-                             m.ReturnType == quantityType);
-        }
-
-        private static bool HasParameterTypes(MethodInfo methodInfo, params Type[] expectedTypes)
-        {
-            var parameters = methodInfo.GetParameters();
-            if (parameters.Length != expectedTypes.Length)
-                throw new ArgumentException($"The number of parameters {parameters.Length} did not match the number of types {expectedTypes.Length}.");
-
-            for (var i = 0; i < parameters.Length; i++)
-            {
-                var p = parameters[i];
-                var t = expectedTypes[i];
-                if (p.ParameterType != t)
-                    return false;
-            }
+            var fromQuantity = Quantity.From(fromValue, fromUnit);
+            result = fromQuantity.As(toUnit);
 
             return true;
         }
-
 
         /// <summary>
         ///     Parse a unit by the unit enum type <paramref name="unitType" /> and a unit enum value <paramref name="unitName" />>
@@ -524,19 +535,10 @@ namespace UnitsNet
 
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            var unitTypeName = quantityName + "Unit"; // ex. LengthUnit
+            var quantityInfo = Quantity.Infos.FirstOrDefault((info) => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
-            unitType = UnitTypes.FirstOrDefault(x =>
-                x.Name.Equals(unitTypeName, StringComparison.OrdinalIgnoreCase));
-
-            return unitType != null;
-        }
-
-        private static bool TryGetQuantityType(string quantityName, out Type quantityType)
-        {
-            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
-
-            return quantityType != null;
+            unitType = quantityInfo?.UnitType;
+            return quantityInfo != null;
         }
     }
 }

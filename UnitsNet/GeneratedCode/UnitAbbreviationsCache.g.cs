@@ -14,33 +14,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using UnitsNet.Units;
 
 // ReSharper disable RedundantCommaInArrayInitializer
 // ReSharper disable once CheckNamespace
-
 namespace UnitsNet
 {
     public partial class UnitAbbreviationsCache
@@ -328,17 +309,19 @@ namespace UnitsNet
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.FootPound, new string[]{"ft·lb"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigabritishThermalUnit, new string[]{"GBTU"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GWh"}),
-                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GВт/ч"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GВт/ч"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Joule, new string[]{"J"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilobritishThermalUnit, new string[]{"kBTU"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Kilocalorie, new string[]{"kcal"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Kilojoule, new string[]{"kJ"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilowattHour, new string[]{"kWh"}),
-                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilowattHour, new string[]{"kВт/ч"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.KilowattHour, new string[]{"kВт/ч"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegabritishThermalUnit, new string[]{"MBTU"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Megajoule, new string[]{"MJ"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MWh"}),
-                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MВт/ч"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MВт/ч"}),
+                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.TerawattHour, new string[]{"TWh"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.TerawattHour, new string[]{"TВт/ч"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"th (E.C.)"}),
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"Европейский терм"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermImperial, new string[]{"th (imp.)"}),
@@ -346,7 +329,7 @@ namespace UnitsNet
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermUs, new string[]{"th (U.S.)"}),
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermUs, new string[]{"Американский терм"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.WattHour, new string[]{"Wh"}),
-                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.WattHour, new string[]{"Вт/ч"}),
+                ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.WattHour, new string[]{"Вт/ч"}),
                 ("en-US", typeof(EntropyUnit), (int)EntropyUnit.CaloriePerKelvin, new string[]{"cal/K"}),
                 ("en-US", typeof(EntropyUnit), (int)EntropyUnit.JoulePerDegreeCelsius, new string[]{"J/C"}),
                 ("en-US", typeof(EntropyUnit), (int)EntropyUnit.JoulePerKelvin, new string[]{"J/K"}),
@@ -400,6 +383,7 @@ namespace UnitsNet
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MillinewtonPerMeter, new string[]{"mN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NanonewtonPerMeter, new string[]{"nN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NewtonPerMeter, new string[]{"N/m"}),
+                ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.BeatPerMinute, new string[]{"bpm"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerHour, new string[]{"cph"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerMinute, new string[]{"cpm"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Gigahertz, new string[]{"GHz"}),

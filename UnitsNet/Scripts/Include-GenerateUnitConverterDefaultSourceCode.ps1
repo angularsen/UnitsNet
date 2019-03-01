@@ -48,6 +48,10 @@ namespace UnitsNet
 {
     public sealed partial class UnitConverter
     {
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         public static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
 "@;

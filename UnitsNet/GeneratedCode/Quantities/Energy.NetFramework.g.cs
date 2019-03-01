@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -46,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
@@ -131,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<EnergyUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -249,6 +230,11 @@ namespace UnitsNet
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Get Energy in TerawattHours.
+        /// </summary>
+        public double TerawattHours => As(EnergyUnit.TerawattHour);
+
+        /// <summary>
         ///     Get Energy in ThermsEc.
         /// </summary>
         public double ThermsEc => As(EnergyUnit.ThermEc);
@@ -287,7 +273,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -460,6 +446,15 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegawattHour);
         }
         /// <summary>
+        ///     Get Energy from TerawattHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromTerawattHours(QuantityValue terawatthours)
+        {
+            double value = (double) terawatthours;
+            return new Energy(value, EnergyUnit.TerawattHour);
+        }
+        /// <summary>
         ///     Get Energy from ThermsEc.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -560,7 +555,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Energy Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<Energy, EnergyUnit>(
@@ -591,7 +586,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Energy result)
         {
             return QuantityParser.Default.TryParse<Energy, EnergyUnit>(
@@ -624,12 +619,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static EnergyUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<EnergyUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.EnergyUnit)"/>
         public static bool TryParseUnit(string str, out EnergyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -644,7 +640,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out EnergyUnit unit)
         {
             return UnitParser.Default.TryParse<EnergyUnit>(str, provider, out unit);
@@ -654,36 +650,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Energy operator -(Energy right)
         {
             return new Energy(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Energy"/> from adding two <see cref="Energy"/>.</summary>
         public static Energy operator +(Energy left, Energy right)
         {
             return new Energy(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Energy"/> from subtracting two <see cref="Energy"/>.</summary>
         public static Energy operator -(Energy left, Energy right)
         {
             return new Energy(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
         public static Energy operator *(double left, Energy right)
         {
             return new Energy(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
         public static Energy operator *(Energy left, double right)
         {
             return new Energy(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Energy"/> from dividing <see cref="Energy"/> by value.</summary>
         public static Energy operator /(Energy left, double right)
         {
             return new Energy(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Energy"/> by <see cref="Energy"/>.</summary>
         public static double operator /(Energy left, Energy right)
         {
             return left.Joules / right.Joules;
@@ -693,36 +696,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Energy left, Energy right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Energy left, Energy right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Energy left, Energy right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Energy left, Energy right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Energy left, Energy right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Energy left, Energy right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -731,11 +743,14 @@ namespace UnitsNet
             return CompareTo(objEnergy);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Energy other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Energy objEnergy))
@@ -744,6 +759,8 @@ namespace UnitsNet
             return Equals(objEnergy);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Energy other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
@@ -828,6 +845,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((EnergyUnit) unit);
 
         /// <summary>
@@ -842,6 +860,7 @@ namespace UnitsNet
 
         IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(EnergyUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((EnergyUnit) unit);
 
         /// <summary>
@@ -871,6 +890,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
                 case EnergyUnit.ThermUs: return _value*1.054804e8;
@@ -918,6 +938,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
                 case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
@@ -944,7 +965,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
             return ToString(provider, 2);
@@ -955,7 +976,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -969,13 +990,13 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);

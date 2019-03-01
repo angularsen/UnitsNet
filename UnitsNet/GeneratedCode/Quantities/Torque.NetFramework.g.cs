@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -46,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.
     /// </summary>
@@ -131,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public TorqueUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<TorqueUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -282,7 +263,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(TorqueUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -546,7 +527,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Torque Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<Torque, TorqueUnit>(
@@ -577,7 +558,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Torque result)
         {
             return QuantityParser.Default.TryParse<Torque, TorqueUnit>(
@@ -610,12 +591,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static TorqueUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<TorqueUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TorqueUnit)"/>
         public static bool TryParseUnit(string str, out TorqueUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -630,7 +612,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out TorqueUnit unit)
         {
             return UnitParser.Default.TryParse<TorqueUnit>(str, provider, out unit);
@@ -640,36 +622,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Torque operator -(Torque right)
         {
             return new Torque(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Torque"/> from adding two <see cref="Torque"/>.</summary>
         public static Torque operator +(Torque left, Torque right)
         {
             return new Torque(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Torque"/> from subtracting two <see cref="Torque"/>.</summary>
         public static Torque operator -(Torque left, Torque right)
         {
             return new Torque(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Torque"/> from multiplying value and <see cref="Torque"/>.</summary>
         public static Torque operator *(double left, Torque right)
         {
             return new Torque(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Torque"/> from multiplying value and <see cref="Torque"/>.</summary>
         public static Torque operator *(Torque left, double right)
         {
             return new Torque(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Torque"/> from dividing <see cref="Torque"/> by value.</summary>
         public static Torque operator /(Torque left, double right)
         {
             return new Torque(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Torque"/> by <see cref="Torque"/>.</summary>
         public static double operator /(Torque left, Torque right)
         {
             return left.NewtonMeters / right.NewtonMeters;
@@ -679,36 +668,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Torque left, Torque right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Torque left, Torque right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Torque left, Torque right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Torque left, Torque right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Torque, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Torque left, Torque right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Torque, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Torque left, Torque right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -717,11 +715,14 @@ namespace UnitsNet
             return CompareTo(objTorque);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Torque other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Torque, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Torque objTorque))
@@ -730,6 +731,8 @@ namespace UnitsNet
             return Equals(objTorque);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Torque, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Torque other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
@@ -814,6 +817,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((TorqueUnit) unit);
 
         /// <summary>
@@ -828,6 +832,7 @@ namespace UnitsNet
 
         IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(TorqueUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((TorqueUnit) unit);
 
         /// <summary>
@@ -928,7 +933,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
             return ToString(provider, 2);
@@ -939,7 +944,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -953,13 +958,13 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);

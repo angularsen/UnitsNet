@@ -36,26 +36,8 @@ function GenerateQuantitySourceCode([Quantity]$quantity)
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -75,6 +57,7 @@ if ($obsoleteAttribute)
   $obsoleteAttribute = "`r`n    " + $obsoleteAttribute; # apply padding to conformance with code format in this section
 }
 @"
+    /// <inheritdoc />
     /// <summary>
     ///     $($quantity.XmlDocSummary)
     /// </summary>
@@ -150,7 +133,7 @@ if ($obsoleteAttribute)
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
             return ToString(provider, 2);
@@ -161,7 +144,7 @@ if ($obsoleteAttribute)
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -175,13 +158,13 @@ if ($obsoleteAttribute)
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
@@ -363,14 +346,12 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         double IQuantity.Value => (double) _value;
 
 "@; } @"
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<$unitEnumName> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -441,7 +422,7 @@ function GenerateStaticMethods([GeneratorArgs]$genArgs)
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation($unitEnumName unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -556,7 +537,7 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static $quantityName Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(
@@ -587,7 +568,7 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out $quantityName result)
         {
             return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(
@@ -620,12 +601,13 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static $unitEnumName ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<$unitEnumName>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.$unitEnumName)"/>
         public static bool TryParseUnit(string str, out $unitEnumName unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -640,7 +622,7 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out $unitEnumName unit)
         {
             return UnitParser.Default.TryParse<$unitEnumName>(str, provider, out unit);
@@ -661,11 +643,13 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
 
         #region Logarithmic Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static $quantityName operator -($quantityName right)
         {
             return new $quantityName(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic addition of two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
             // Logarithmic addition
@@ -673,6 +657,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
             return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic subtraction of two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
             // Logarithmic subtraction
@@ -680,24 +665,28 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
             return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic multiplication of value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($valueType left, $quantityName right)
         {
             // Logarithmic multiplication = addition
             return new $quantityName(left + right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic multiplication of value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($quantityName left, double right)
         {
             // Logarithmic multiplication = addition
             return new $quantityName(left.Value + ($valueType)right, left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from logarithmic division of <see cref="$quantityName"/> by value.</summary>
         public static $quantityName operator /($quantityName left, double right)
         {
             // Logarithmic division = subtraction
             return new $quantityName(left.Value - ($valueType)right, left.Unit);
         }
 
+        /// <summary>Get ratio value from logarithmic division of <see cref="$quantityName"/> by <see cref="$quantityName"/>.</summary>
         public static double operator /($quantityName left, $quantityName right)
         {
             // Logarithmic division = subtraction
@@ -725,36 +714,43 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static $quantityName operator -($quantityName right)
         {
             return new $quantityName(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from adding two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
             return new $quantityName(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from subtracting two <see cref="$quantityName"/>.</summary>
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
             return new $quantityName(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from multiplying value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($valueType left, $quantityName right)
         {
             return new $quantityName(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from multiplying value and <see cref="$quantityName"/>.</summary>
         public static $quantityName operator *($quantityName left, $valueType right)
         {
             return new $quantityName(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="$quantityName"/> from dividing <see cref="$quantityName"/> by value.</summary>
         public static $quantityName operator /($quantityName left, $valueType right)
         {
             return new $quantityName(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="$quantityName"/> by <see cref="$quantityName"/>.</summary>
         public static double operator /($quantityName left, $quantityName right)
         {
             return left.$baseUnitPluralName / right.$baseUnitPluralName;
@@ -771,36 +767,45 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=($quantityName left, $quantityName right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=($quantityName left, $quantityName right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <($quantityName left, $quantityName right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >($quantityName left, $quantityName right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -809,11 +814,14 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return CompareTo(obj$quantityName);
         }
 
+        /// <inheritdoc />
         public int CompareTo($quantityName other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is $quantityName obj$quantityName))
@@ -822,6 +830,8 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return Equals(obj$quantityName);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals($quantityName, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals($quantityName other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
@@ -915,6 +925,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As(($unitEnumName) unit);
 
         /// <summary>
@@ -929,6 +940,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
 
         /// <summary>

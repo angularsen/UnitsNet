@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -46,6 +28,7 @@ using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
@@ -131,14 +114,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -192,7 +173,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(MolarEntropyUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -294,7 +275,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MolarEntropy Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<MolarEntropy, MolarEntropyUnit>(
@@ -325,7 +306,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MolarEntropy result)
         {
             return QuantityParser.Default.TryParse<MolarEntropy, MolarEntropyUnit>(
@@ -358,12 +339,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MolarEntropyUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<MolarEntropyUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarEntropyUnit)"/>
         public static bool TryParseUnit(string str, out MolarEntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -378,7 +360,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out MolarEntropyUnit unit)
         {
             return UnitParser.Default.TryParse<MolarEntropyUnit>(str, provider, out unit);
@@ -388,36 +370,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static MolarEntropy operator -(MolarEntropy right)
         {
             return new MolarEntropy(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MolarEntropy"/> from adding two <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
         {
             return new MolarEntropy(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarEntropy"/> from subtracting two <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
         {
             return new MolarEntropy(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator *(double left, MolarEntropy right)
         {
             return new MolarEntropy(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator *(MolarEntropy left, double right)
         {
             return new MolarEntropy(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="MolarEntropy"/> from dividing <see cref="MolarEntropy"/> by value.</summary>
         public static MolarEntropy operator /(MolarEntropy left, double right)
         {
             return new MolarEntropy(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="MolarEntropy"/> by <see cref="MolarEntropy"/>.</summary>
         public static double operator /(MolarEntropy left, MolarEntropy right)
         {
             return left.JoulesPerMoleKelvin / right.JoulesPerMoleKelvin;
@@ -427,36 +416,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarEntropy left, MolarEntropy right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarEntropy left, MolarEntropy right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarEntropy left, MolarEntropy right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarEntropy left, MolarEntropy right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(MolarEntropy left, MolarEntropy right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(MolarEntropy left, MolarEntropy right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -465,11 +463,14 @@ namespace UnitsNet
             return CompareTo(objMolarEntropy);
         }
 
+        /// <inheritdoc />
         public int CompareTo(MolarEntropy other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is MolarEntropy objMolarEntropy))
@@ -478,6 +479,8 @@ namespace UnitsNet
             return Equals(objMolarEntropy);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MolarEntropy other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
@@ -562,6 +565,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc />
         public double As(Enum unit) => As((MolarEntropyUnit) unit);
 
         /// <summary>
@@ -576,6 +580,7 @@ namespace UnitsNet
 
         IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
 
+        /// <inheritdoc />
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
 
         /// <summary>
@@ -640,7 +645,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
             return ToString(provider, 2);
@@ -651,7 +656,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -665,13 +670,13 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
