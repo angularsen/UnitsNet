@@ -948,7 +948,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MassMomentOfInertiaUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MassMomentOfInertiaUnit))
+                throw new ArgumentException("The given unit is not of type MassMomentOfInertiaUnit.", nameof(unit));
+
+            return As((MassMomentOfInertiaUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -963,9 +970,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((MassMomentOfInertiaUnit) unit);
-
         /// <summary>
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -976,10 +980,17 @@ namespace UnitsNet
             return new MassMomentOfInertia(convertedValue, unit);
         }
 
-        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MassMomentOfInertiaUnit))
+                throw new ArgumentException("The given unit is not of type MassMomentOfInertiaUnit.", nameof(unit));
+
+            return ToUnit((MassMomentOfInertiaUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MassMomentOfInertiaUnit) unit);
+        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

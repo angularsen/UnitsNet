@@ -546,7 +546,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricChargeUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricChargeUnit))
+                throw new ArgumentException("The given unit is not of type ElectricChargeUnit.", nameof(unit));
+
+            return As((ElectricChargeUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -561,9 +568,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricChargeUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new ElectricCharge(convertedValue, unit);
         }
 
-        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricChargeUnit))
+                throw new ArgumentException("The given unit is not of type ElectricChargeUnit.", nameof(unit));
+
+            return ToUnit((ElectricChargeUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricChargeUnit) unit);
+        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

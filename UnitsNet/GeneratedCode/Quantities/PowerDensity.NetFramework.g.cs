@@ -1188,7 +1188,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PowerDensityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PowerDensityUnit))
+                throw new ArgumentException("The given unit is not of type PowerDensityUnit.", nameof(unit));
+
+            return As((PowerDensityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -1203,9 +1210,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((PowerDensityUnit) unit);
-
         /// <summary>
         ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1216,10 +1220,17 @@ namespace UnitsNet
             return new PowerDensity(convertedValue, unit);
         }
 
-        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PowerDensityUnit))
+                throw new ArgumentException("The given unit is not of type PowerDensityUnit.", nameof(unit));
+
+            return ToUnit((PowerDensityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PowerDensityUnit) unit);
+        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

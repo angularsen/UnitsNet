@@ -596,7 +596,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AmplitudeRatioUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AmplitudeRatioUnit))
+                throw new ArgumentException("The given unit is not of type AmplitudeRatioUnit.", nameof(unit));
+
+            return As((AmplitudeRatioUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -611,9 +618,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((AmplitudeRatioUnit) unit);
-
         /// <summary>
         ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -624,10 +628,17 @@ namespace UnitsNet
             return new AmplitudeRatio(convertedValue, unit);
         }
 
-        IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AmplitudeRatioUnit))
+                throw new ArgumentException("The given unit is not of type AmplitudeRatioUnit.", nameof(unit));
+
+            return ToUnit((AmplitudeRatioUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AmplitudeRatioUnit) unit);
+        IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

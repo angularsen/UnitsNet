@@ -546,7 +546,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LuminousIntensityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LuminousIntensityUnit))
+                throw new ArgumentException("The given unit is not of type LuminousIntensityUnit.", nameof(unit));
+
+            return As((LuminousIntensityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -561,9 +568,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((LuminousIntensityUnit) unit);
-
         /// <summary>
         ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new LuminousIntensity(convertedValue, unit);
         }
 
-        IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(LuminousIntensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LuminousIntensityUnit))
+                throw new ArgumentException("The given unit is not of type LuminousIntensityUnit.", nameof(unit));
+
+            return ToUnit((LuminousIntensityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousIntensityUnit) unit);
+        IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(LuminousIntensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -573,7 +573,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ApparentEnergyUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ApparentEnergyUnit))
+                throw new ArgumentException("The given unit is not of type ApparentEnergyUnit.", nameof(unit));
+
+            return As((ApparentEnergyUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -588,9 +595,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ApparentEnergyUnit) unit);
-
         /// <summary>
         ///     Converts this ApparentEnergy to another ApparentEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new ApparentEnergy(convertedValue, unit);
         }
 
-        IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ApparentEnergyUnit))
+                throw new ArgumentException("The given unit is not of type ApparentEnergyUnit.", nameof(unit));
+
+            return ToUnit((ApparentEnergyUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ApparentEnergyUnit) unit);
+        IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -591,7 +591,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((IlluminanceUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is IlluminanceUnit))
+                throw new ArgumentException("The given unit is not of type IlluminanceUnit.", nameof(unit));
+
+            return As((IlluminanceUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -606,9 +613,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((IlluminanceUnit) unit);
-
         /// <summary>
         ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -619,10 +623,17 @@ namespace UnitsNet
             return new Illuminance(convertedValue, unit);
         }
 
-        IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is IlluminanceUnit))
+                throw new ArgumentException("The given unit is not of type IlluminanceUnit.", nameof(unit));
+
+            return ToUnit((IlluminanceUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((IlluminanceUnit) unit);
+        IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

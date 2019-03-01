@@ -1158,7 +1158,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PressureUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PressureUnit))
+                throw new ArgumentException("The given unit is not of type PressureUnit.", nameof(unit));
+
+            return As((PressureUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -1173,9 +1180,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((PressureUnit) unit);
-
         /// <summary>
         ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1186,10 +1190,17 @@ namespace UnitsNet
             return new Pressure(convertedValue, unit);
         }
 
-        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PressureUnit))
+                throw new ArgumentException("The given unit is not of type PressureUnit.", nameof(unit));
+
+            return ToUnit((PressureUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
+        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

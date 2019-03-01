@@ -573,7 +573,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((CoefficientOfThermalExpansionUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit))
+                throw new ArgumentException("The given unit is not of type CoefficientOfThermalExpansionUnit.", nameof(unit));
+
+            return As((CoefficientOfThermalExpansionUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -588,9 +595,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((CoefficientOfThermalExpansionUnit) unit);
-
         /// <summary>
         ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(convertedValue, unit);
         }
 
-        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit))
+                throw new ArgumentException("The given unit is not of type CoefficientOfThermalExpansionUnit.", nameof(unit));
+
+            return ToUnit((CoefficientOfThermalExpansionUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((CoefficientOfThermalExpansionUnit) unit);
+        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -573,7 +573,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MolarEnergyUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MolarEnergyUnit))
+                throw new ArgumentException("The given unit is not of type MolarEnergyUnit.", nameof(unit));
+
+            return As((MolarEnergyUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -588,9 +595,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((MolarEnergyUnit) unit);
-
         /// <summary>
         ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new MolarEnergy(convertedValue, unit);
         }
 
-        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MolarEnergyUnit))
+                throw new ArgumentException("The given unit is not of type MolarEnergyUnit.", nameof(unit));
+
+            return ToUnit((MolarEnergyUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEnergyUnit) unit);
+        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

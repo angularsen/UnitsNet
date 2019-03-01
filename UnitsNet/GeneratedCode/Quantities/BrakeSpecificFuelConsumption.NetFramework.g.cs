@@ -573,7 +573,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((BrakeSpecificFuelConsumptionUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is BrakeSpecificFuelConsumptionUnit))
+                throw new ArgumentException("The given unit is not of type BrakeSpecificFuelConsumptionUnit.", nameof(unit));
+
+            return As((BrakeSpecificFuelConsumptionUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -588,9 +595,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((BrakeSpecificFuelConsumptionUnit) unit);
-
         /// <summary>
         ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(convertedValue, unit);
         }
 
-        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is BrakeSpecificFuelConsumptionUnit))
+                throw new ArgumentException("The given unit is not of type BrakeSpecificFuelConsumptionUnit.", nameof(unit));
+
+            return ToUnit((BrakeSpecificFuelConsumptionUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((BrakeSpecificFuelConsumptionUnit) unit);
+        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

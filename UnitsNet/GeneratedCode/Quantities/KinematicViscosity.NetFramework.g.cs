@@ -651,7 +651,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((KinematicViscosityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is KinematicViscosityUnit))
+                throw new ArgumentException("The given unit is not of type KinematicViscosityUnit.", nameof(unit));
+
+            return As((KinematicViscosityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -666,9 +673,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((KinematicViscosityUnit) unit);
-
         /// <summary>
         ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -679,10 +683,17 @@ namespace UnitsNet
             return new KinematicViscosity(convertedValue, unit);
         }
 
-        IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is KinematicViscosityUnit))
+                throw new ArgumentException("The given unit is not of type KinematicViscosityUnit.", nameof(unit));
+
+            return ToUnit((KinematicViscosityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((KinematicViscosityUnit) unit);
+        IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

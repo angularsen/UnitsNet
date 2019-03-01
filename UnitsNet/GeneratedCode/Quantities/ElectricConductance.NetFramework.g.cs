@@ -576,7 +576,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricConductanceUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricConductanceUnit))
+                throw new ArgumentException("The given unit is not of type ElectricConductanceUnit.", nameof(unit));
+
+            return As((ElectricConductanceUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -591,9 +598,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricConductanceUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -604,10 +608,17 @@ namespace UnitsNet
             return new ElectricConductance(convertedValue, unit);
         }
 
-        IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricConductanceUnit))
+                throw new ArgumentException("The given unit is not of type ElectricConductanceUnit.", nameof(unit));
+
+            return ToUnit((ElectricConductanceUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricConductanceUnit) unit);
+        IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

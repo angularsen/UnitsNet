@@ -678,7 +678,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((TemperatureChangeRateUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is TemperatureChangeRateUnit))
+                throw new ArgumentException("The given unit is not of type TemperatureChangeRateUnit.", nameof(unit));
+
+            return As((TemperatureChangeRateUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -693,9 +700,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((TemperatureChangeRateUnit) unit);
-
         /// <summary>
         ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -706,10 +710,17 @@ namespace UnitsNet
             return new TemperatureChangeRate(convertedValue, unit);
         }
 
-        IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is TemperatureChangeRateUnit))
+                throw new ArgumentException("The given unit is not of type TemperatureChangeRateUnit.", nameof(unit));
+
+            return ToUnit((TemperatureChangeRateUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureChangeRateUnit) unit);
+        IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -923,7 +923,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((BitRateUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is BitRateUnit))
+                throw new ArgumentException("The given unit is not of type BitRateUnit.", nameof(unit));
+
+            return As((BitRateUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -938,9 +945,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((BitRateUnit) unit);
-
         /// <summary>
         ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -951,10 +955,17 @@ namespace UnitsNet
             return new BitRate(convertedValue, unit);
         }
 
-        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is BitRateUnit))
+                throw new ArgumentException("The given unit is not of type BitRateUnit.", nameof(unit));
+
+            return ToUnit((BitRateUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
+        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -708,7 +708,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MolarMassUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MolarMassUnit))
+                throw new ArgumentException("The given unit is not of type MolarMassUnit.", nameof(unit));
+
+            return As((MolarMassUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -723,9 +730,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((MolarMassUnit) unit);
-
         /// <summary>
         ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -736,10 +740,17 @@ namespace UnitsNet
             return new MolarMass(convertedValue, unit);
         }
 
-        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MolarMassUnit))
+                throw new ArgumentException("The given unit is not of type MolarMassUnit.", nameof(unit));
+
+            return ToUnit((MolarMassUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarMassUnit) unit);
+        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

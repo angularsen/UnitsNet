@@ -723,7 +723,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AccelerationUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AccelerationUnit))
+                throw new ArgumentException("The given unit is not of type AccelerationUnit.", nameof(unit));
+
+            return As((AccelerationUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -738,9 +745,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((AccelerationUnit) unit);
-
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -751,10 +755,17 @@ namespace UnitsNet
             return new Acceleration(convertedValue, unit);
         }
 
-        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AccelerationUnit))
+                throw new ArgumentException("The given unit is not of type AccelerationUnit.", nameof(unit));
+
+            return ToUnit((AccelerationUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
+        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

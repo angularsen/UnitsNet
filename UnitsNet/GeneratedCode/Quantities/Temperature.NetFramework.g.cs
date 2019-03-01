@@ -602,7 +602,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((TemperatureUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is TemperatureUnit))
+                throw new ArgumentException("The given unit is not of type TemperatureUnit.", nameof(unit));
+
+            return As((TemperatureUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -617,9 +624,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((TemperatureUnit) unit);
-
         /// <summary>
         ///     Converts this Temperature to another Temperature with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -630,10 +634,17 @@ namespace UnitsNet
             return new Temperature(convertedValue, unit);
         }
 
-        IQuantity<TemperatureUnit> IQuantity<TemperatureUnit>.ToUnit(TemperatureUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is TemperatureUnit))
+                throw new ArgumentException("The given unit is not of type TemperatureUnit.", nameof(unit));
+
+            return ToUnit((TemperatureUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureUnit) unit);
+        IQuantity<TemperatureUnit> IQuantity<TemperatureUnit>.ToUnit(TemperatureUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

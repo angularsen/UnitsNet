@@ -1008,7 +1008,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((SpeedUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is SpeedUnit))
+                throw new ArgumentException("The given unit is not of type SpeedUnit.", nameof(unit));
+
+            return As((SpeedUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -1023,9 +1030,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((SpeedUnit) unit);
-
         /// <summary>
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1036,10 +1040,17 @@ namespace UnitsNet
             return new Speed(convertedValue, unit);
         }
 
-        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is SpeedUnit))
+                throw new ArgumentException("The given unit is not of type SpeedUnit.", nameof(unit));
+
+            return ToUnit((SpeedUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
+        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

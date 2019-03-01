@@ -786,7 +786,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((SpecificWeightUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is SpecificWeightUnit))
+                throw new ArgumentException("The given unit is not of type SpecificWeightUnit.", nameof(unit));
+
+            return As((SpecificWeightUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -801,9 +808,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((SpecificWeightUnit) unit);
-
         /// <summary>
         ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -814,10 +818,17 @@ namespace UnitsNet
             return new SpecificWeight(convertedValue, unit);
         }
 
-        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is SpecificWeightUnit))
+                throw new ArgumentException("The given unit is not of type SpecificWeightUnit.", nameof(unit));
+
+            return ToUnit((SpecificWeightUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

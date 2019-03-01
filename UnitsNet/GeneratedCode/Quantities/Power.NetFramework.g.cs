@@ -830,7 +830,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PowerUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PowerUnit))
+                throw new ArgumentException("The given unit is not of type PowerUnit.", nameof(unit));
+
+            return As((PowerUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -845,9 +852,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((PowerUnit) unit);
-
         /// <summary>
         ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -858,10 +862,17 @@ namespace UnitsNet
             return new Power(convertedValue, unit);
         }
 
-        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PowerUnit))
+                throw new ArgumentException("The given unit is not of type PowerUnit.", nameof(unit));
+
+            return ToUnit((PowerUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PowerUnit) unit);
+        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

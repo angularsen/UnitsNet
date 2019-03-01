@@ -618,7 +618,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AreaMomentOfInertiaUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AreaMomentOfInertiaUnit))
+                throw new ArgumentException("The given unit is not of type AreaMomentOfInertiaUnit.", nameof(unit));
+
+            return As((AreaMomentOfInertiaUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -633,9 +640,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((AreaMomentOfInertiaUnit) unit);
-
         /// <summary>
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -646,10 +650,17 @@ namespace UnitsNet
             return new AreaMomentOfInertia(convertedValue, unit);
         }
 
-        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AreaMomentOfInertiaUnit))
+                throw new ArgumentException("The given unit is not of type AreaMomentOfInertiaUnit.", nameof(unit));
+
+            return ToUnit((AreaMomentOfInertiaUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AreaMomentOfInertiaUnit) unit);
+        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

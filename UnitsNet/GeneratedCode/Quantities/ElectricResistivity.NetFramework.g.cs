@@ -741,7 +741,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricResistivityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricResistivityUnit))
+                throw new ArgumentException("The given unit is not of type ElectricResistivityUnit.", nameof(unit));
+
+            return As((ElectricResistivityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -756,9 +763,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricResistivityUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricResistivity to another ElectricResistivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -769,10 +773,17 @@ namespace UnitsNet
             return new ElectricResistivity(convertedValue, unit);
         }
 
-        IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricResistivityUnit))
+                throw new ArgumentException("The given unit is not of type ElectricResistivityUnit.", nameof(unit));
+
+            return ToUnit((ElectricResistivityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricResistivityUnit) unit);
+        IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

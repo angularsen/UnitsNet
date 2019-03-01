@@ -723,7 +723,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ForceUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ForceUnit))
+                throw new ArgumentException("The given unit is not of type ForceUnit.", nameof(unit));
+
+            return As((ForceUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -738,9 +745,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ForceUnit) unit);
-
         /// <summary>
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -751,10 +755,17 @@ namespace UnitsNet
             return new Force(convertedValue, unit);
         }
 
-        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ForceUnit))
+                throw new ArgumentException("The given unit is not of type ForceUnit.", nameof(unit));
+
+            return ToUnit((ForceUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ForceUnit) unit);
+        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

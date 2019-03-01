@@ -561,7 +561,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ThermalConductivityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ThermalConductivityUnit))
+                throw new ArgumentException("The given unit is not of type ThermalConductivityUnit.", nameof(unit));
+
+            return As((ThermalConductivityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -576,9 +583,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ThermalConductivityUnit) unit);
-
         /// <summary>
         ///     Converts this ThermalConductivity to another ThermalConductivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -589,10 +593,17 @@ namespace UnitsNet
             return new ThermalConductivity(convertedValue, unit);
         }
 
-        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ThermalConductivityUnit))
+                throw new ArgumentException("The given unit is not of type ThermalConductivityUnit.", nameof(unit));
+
+            return ToUnit((ThermalConductivityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ThermalConductivityUnit) unit);
+        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

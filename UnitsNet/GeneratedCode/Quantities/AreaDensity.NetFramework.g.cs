@@ -543,7 +543,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((AreaDensityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AreaDensityUnit))
+                throw new ArgumentException("The given unit is not of type AreaDensityUnit.", nameof(unit));
+
+            return As((AreaDensityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -558,9 +565,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((AreaDensityUnit) unit);
-
         /// <summary>
         ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -571,10 +575,17 @@ namespace UnitsNet
             return new AreaDensity(convertedValue, unit);
         }
 
-        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is AreaDensityUnit))
+                throw new ArgumentException("The given unit is not of type AreaDensityUnit.", nameof(unit));
+
+            return ToUnit((AreaDensityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
+        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

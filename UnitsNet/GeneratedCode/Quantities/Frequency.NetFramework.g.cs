@@ -663,7 +663,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((FrequencyUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is FrequencyUnit))
+                throw new ArgumentException("The given unit is not of type FrequencyUnit.", nameof(unit));
+
+            return As((FrequencyUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -678,9 +685,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((FrequencyUnit) unit);
-
         /// <summary>
         ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -691,10 +695,17 @@ namespace UnitsNet
             return new Frequency(convertedValue, unit);
         }
 
-        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is FrequencyUnit))
+                throw new ArgumentException("The given unit is not of type FrequencyUnit.", nameof(unit));
+
+            return ToUnit((FrequencyUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((FrequencyUnit) unit);
+        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

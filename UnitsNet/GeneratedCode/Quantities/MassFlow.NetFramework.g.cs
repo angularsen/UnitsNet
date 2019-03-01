@@ -993,7 +993,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((MassFlowUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MassFlowUnit))
+                throw new ArgumentException("The given unit is not of type MassFlowUnit.", nameof(unit));
+
+            return As((MassFlowUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -1008,9 +1015,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((MassFlowUnit) unit);
-
         /// <summary>
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1021,10 +1025,17 @@ namespace UnitsNet
             return new MassFlow(convertedValue, unit);
         }
 
-        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is MassFlowUnit))
+                throw new ArgumentException("The given unit is not of type MassFlowUnit.", nameof(unit));
+
+            return ToUnit((MassFlowUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((MassFlowUnit) unit);
+        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

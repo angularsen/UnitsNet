@@ -546,7 +546,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((ElectricCurrentDensityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricCurrentDensityUnit))
+                throw new ArgumentException("The given unit is not of type ElectricCurrentDensityUnit.", nameof(unit));
+
+            return As((ElectricCurrentDensityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -561,9 +568,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((ElectricCurrentDensityUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -574,10 +578,17 @@ namespace UnitsNet
             return new ElectricCurrentDensity(convertedValue, unit);
         }
 
-        IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ElectricCurrentDensityUnit))
+                throw new ArgumentException("The given unit is not of type ElectricCurrentDensityUnit.", nameof(unit));
+
+            return ToUnit((ElectricCurrentDensityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentDensityUnit) unit);
+        IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

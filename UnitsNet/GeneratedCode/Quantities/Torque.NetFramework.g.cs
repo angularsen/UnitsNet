@@ -843,7 +843,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((TorqueUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is TorqueUnit))
+                throw new ArgumentException("The given unit is not of type TorqueUnit.", nameof(unit));
+
+            return As((TorqueUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -858,9 +865,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((TorqueUnit) unit);
-
         /// <summary>
         ///     Converts this Torque to another Torque with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -871,10 +875,17 @@ namespace UnitsNet
             return new Torque(convertedValue, unit);
         }
 
-        IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(TorqueUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is TorqueUnit))
+                throw new ArgumentException("The given unit is not of type TorqueUnit.", nameof(unit));
+
+            return ToUnit((TorqueUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((TorqueUnit) unit);
+        IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(TorqueUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

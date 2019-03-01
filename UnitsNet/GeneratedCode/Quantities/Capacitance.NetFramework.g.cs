@@ -636,7 +636,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((CapacitanceUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is CapacitanceUnit))
+                throw new ArgumentException("The given unit is not of type CapacitanceUnit.", nameof(unit));
+
+            return As((CapacitanceUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -651,9 +658,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((CapacitanceUnit) unit);
-
         /// <summary>
         ///     Converts this Capacitance to another Capacitance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -664,10 +668,17 @@ namespace UnitsNet
             return new Capacitance(convertedValue, unit);
         }
 
-        IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is CapacitanceUnit))
+                throw new ArgumentException("The given unit is not of type CapacitanceUnit.", nameof(unit));
+
+            return ToUnit((CapacitanceUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((CapacitanceUnit) unit);
+        IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

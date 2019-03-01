@@ -621,7 +621,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((DynamicViscosityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is DynamicViscosityUnit))
+                throw new ArgumentException("The given unit is not of type DynamicViscosityUnit.", nameof(unit));
+
+            return As((DynamicViscosityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -636,9 +643,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((DynamicViscosityUnit) unit);
-
         /// <summary>
         ///     Converts this DynamicViscosity to another DynamicViscosity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -649,10 +653,17 @@ namespace UnitsNet
             return new DynamicViscosity(convertedValue, unit);
         }
 
-        IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is DynamicViscosityUnit))
+                throw new ArgumentException("The given unit is not of type DynamicViscosityUnit.", nameof(unit));
+
+            return ToUnit((DynamicViscosityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((DynamicViscosityUnit) unit);
+        IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

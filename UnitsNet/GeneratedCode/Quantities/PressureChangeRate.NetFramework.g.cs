@@ -633,7 +633,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PressureChangeRateUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PressureChangeRateUnit))
+                throw new ArgumentException("The given unit is not of type PressureChangeRateUnit.", nameof(unit));
+
+            return As((PressureChangeRateUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -648,9 +655,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((PressureChangeRateUnit) unit);
-
         /// <summary>
         ///     Converts this PressureChangeRate to another PressureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -661,10 +665,17 @@ namespace UnitsNet
             return new PressureChangeRate(convertedValue, unit);
         }
 
-        IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PressureChangeRateUnit))
+                throw new ArgumentException("The given unit is not of type PressureChangeRateUnit.", nameof(unit));
+
+            return ToUnit((PressureChangeRateUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PressureChangeRateUnit) unit);
+        IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

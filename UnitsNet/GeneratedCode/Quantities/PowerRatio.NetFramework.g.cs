@@ -566,7 +566,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PowerRatioUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PowerRatioUnit))
+                throw new ArgumentException("The given unit is not of type PowerRatioUnit.", nameof(unit));
+
+            return As((PowerRatioUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -581,9 +588,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((PowerRatioUnit) unit);
-
         /// <summary>
         ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -594,10 +598,17 @@ namespace UnitsNet
             return new PowerRatio(convertedValue, unit);
         }
 
-        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PowerRatioUnit))
+                throw new ArgumentException("The given unit is not of type PowerRatioUnit.", nameof(unit));
+
+            return ToUnit((PowerRatioUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PowerRatioUnit) unit);
+        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

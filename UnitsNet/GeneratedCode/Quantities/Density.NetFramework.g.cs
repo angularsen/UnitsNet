@@ -1116,7 +1116,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((DensityUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is DensityUnit))
+                throw new ArgumentException("The given unit is not of type DensityUnit.", nameof(unit));
+
+            return As((DensityUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -1131,9 +1138,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((DensityUnit) unit);
-
         /// <summary>
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1144,10 +1148,17 @@ namespace UnitsNet
             return new Density(convertedValue, unit);
         }
 
-        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is DensityUnit))
+                throw new ArgumentException("The given unit is not of type DensityUnit.", nameof(unit));
+
+            return ToUnit((DensityUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((DensityUnit) unit);
+        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

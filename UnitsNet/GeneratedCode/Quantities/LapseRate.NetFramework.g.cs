@@ -543,7 +543,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((LapseRateUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LapseRateUnit))
+                throw new ArgumentException("The given unit is not of type LapseRateUnit.", nameof(unit));
+
+            return As((LapseRateUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -558,9 +565,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((LapseRateUnit) unit);
-
         /// <summary>
         ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -571,10 +575,17 @@ namespace UnitsNet
             return new LapseRate(convertedValue, unit);
         }
 
-        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is LapseRateUnit))
+                throw new ArgumentException("The given unit is not of type LapseRateUnit.", nameof(unit));
+
+            return ToUnit((LapseRateUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((LapseRateUnit) unit);
+        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

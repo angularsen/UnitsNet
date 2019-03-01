@@ -573,7 +573,14 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((RotationalStiffnessUnit)unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is RotationalStiffnessUnit))
+                throw new ArgumentException("The given unit is not of type RotationalStiffnessUnit.", nameof(unit));
+
+            return As((RotationalStiffnessUnit)unit);
+        }
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -588,9 +595,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <inheritdoc />
-        public double As(Enum unit) => As((RotationalStiffnessUnit) unit);
-
         /// <summary>
         ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,10 +605,17 @@ namespace UnitsNet
             return new RotationalStiffness(convertedValue, unit);
         }
 
-        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is RotationalStiffnessUnit))
+                throw new ArgumentException("The given unit is not of type RotationalStiffnessUnit.", nameof(unit));
+
+            return ToUnit((RotationalStiffnessUnit)unit);
+        }
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
+        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
