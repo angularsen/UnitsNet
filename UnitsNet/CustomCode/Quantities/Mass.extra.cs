@@ -3,6 +3,7 @@
 
 using System;
 using System.Threading;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -124,7 +125,7 @@ namespace UnitsNet
         /// </param>
         public string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
-            cultureInfo = cultureInfo ?? GlobalConfiguration.DefaultCulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
 
             var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
             var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);

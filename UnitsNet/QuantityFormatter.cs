@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using UnitsNet.Units;
 
@@ -37,7 +38,7 @@ namespace UnitsNet
         /// <param name="quantity">The quantity to format.</param>
         /// <param name="format">The format string.</param>
         /// <param name="formatProvider">The format provider to use for localization and number formatting. Defaults to
-        /// <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <remarks>
         /// The valid format strings are as follows:
         /// "g": The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".
@@ -54,7 +55,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
             where TUnitType : Enum
         {
-            formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
+            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
 
             var number = 0;
             var formatString = format;

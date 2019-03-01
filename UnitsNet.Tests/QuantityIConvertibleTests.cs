@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
@@ -115,10 +116,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToStringTest()
         {
-            string expected = length.ToString(GlobalConfiguration.DefaultCulture);
-            Assert.Equal(expected, lengthAsIConvertible.ToString(GlobalConfiguration.DefaultCulture));
-            Assert.Equal(expected, Convert.ToString(length, GlobalConfiguration.DefaultCulture));
-            Assert.Equal(expected, Convert.ChangeType(length, typeof(string), GlobalConfiguration.DefaultCulture));
+            string expected = length.ToString(CultureInfo.CurrentUICulture);
+            Assert.Equal(expected, lengthAsIConvertible.ToString(CultureInfo.CurrentUICulture));
+            Assert.Equal(expected, Convert.ToString(length, CultureInfo.CurrentUICulture));
+            Assert.Equal(expected, Convert.ChangeType(length, typeof(string), CultureInfo.CurrentUICulture));
         }
 
         [Fact]
