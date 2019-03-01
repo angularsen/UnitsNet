@@ -90,7 +90,7 @@ namespace UnitsNet
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = Info.GetUnitInfoForBaseUnitsSubset(unitSystem.BaseUnits).Value;
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

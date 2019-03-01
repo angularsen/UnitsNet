@@ -135,7 +135,7 @@ if ($obsoleteAttribute)
 "@; } else {@"
             _value = numericValue;
 "@; }@"
-            _unit = Info.GetUnitInfoForBaseUnitsSubset(unitSystem.BaseUnits).Value;
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 "@;
     GenerateStaticProperties $genArgs

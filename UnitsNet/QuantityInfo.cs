@@ -129,7 +129,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
         /// <returns>The UnitInfo that has BaseUnits that are a subset.</returns>
-        public UnitInfo GetUnitInfoForBaseUnitsSubset(BaseUnits baseUnits)
+        public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
             if(baseUnits == null)
                 throw new ArgumentNullException(nameof(baseUnits));
@@ -189,11 +189,10 @@ namespace UnitsNet
         /// <inheritdoc cref="QuantityInfo.UnitType" />
         public new TUnit UnitType { get; }
 
-        /// <inheritdoc cref="QuantityInfo.GetUnitInfoForBaseUnitsSubset" />
-        public new UnitInfo<TUnit> GetUnitInfoForBaseUnitsSubset(BaseUnits baseUnits)
+        /// <inheritdoc cref="QuantityInfo.GetUnitInfoFor" />
+        public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)
         {
-            var unitInfo = base.GetUnitInfoForBaseUnitsSubset(baseUnits);
-            return (UnitInfo<TUnit>)unitInfo;
+            return (UnitInfo<TUnit>)base.GetUnitInfoFor(baseUnits);
         }
     }
 }
