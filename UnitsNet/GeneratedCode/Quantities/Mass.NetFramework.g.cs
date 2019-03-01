@@ -47,7 +47,34 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassUnit>(QuantityType.Mass,
+                new UnitInfo<MassUnit>[] {
+                    new UnitInfo<MassUnit>(MassUnit.Centigram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Decagram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Decigram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Grain, new BaseUnits(mass: MassUnit.Grain)),
+                    new UnitInfo<MassUnit>(MassUnit.Gram, new BaseUnits(mass: MassUnit.Gram)),
+                    new UnitInfo<MassUnit>(MassUnit.Hectogram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Kilogram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Kilopound, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.LongHundredweight, new BaseUnits(mass: MassUnit.LongHundredweight)),
+                    new UnitInfo<MassUnit>(MassUnit.LongTon, new BaseUnits(mass: MassUnit.LongTon)),
+                    new UnitInfo<MassUnit>(MassUnit.Megapound, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Megatonne, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Microgram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Milligram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Nanogram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Ounce, new BaseUnits(mass: MassUnit.Ounce)),
+                    new UnitInfo<MassUnit>(MassUnit.Pound, new BaseUnits(mass: MassUnit.Pound)),
+                    new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, new BaseUnits(mass: MassUnit.ShortHundredweight)),
+                    new UnitInfo<MassUnit>(MassUnit.ShortTon, new BaseUnits(mass: MassUnit.ShortTon)),
+                    new UnitInfo<MassUnit>(MassUnit.Slug, new BaseUnits(mass: MassUnit.Slug)),
+                    new UnitInfo<MassUnit>(MassUnit.Stone, new BaseUnits(mass: MassUnit.Stone)),
+                    new UnitInfo<MassUnit>(MassUnit.Tonne, new BaseUnits(mass: MassUnit.Tonne)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +90,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Mass(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

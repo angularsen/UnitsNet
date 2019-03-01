@@ -50,7 +50,15 @@ namespace UnitsNet
         static MagneticField()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
-            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField,
+                new UnitInfo<MagneticFieldUnit>[] {
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -66,6 +74,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public MagneticField(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

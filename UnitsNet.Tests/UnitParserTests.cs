@@ -6,7 +6,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection( nameof( UnitAbbreviationsCacheFixture ) )]
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitParserTests
     {
         [Theory]

@@ -47,7 +47,24 @@ namespace UnitsNet
         static Area()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaUnit>(QuantityType.Area, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<AreaUnit>(QuantityType.Area,
+                new UnitInfo<AreaUnit>[] {
+                    new UnitInfo<AreaUnit>(AreaUnit.Acre, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, new BaseUnits(length: LengthUnit.Centimeter)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, new BaseUnits(length: LengthUnit.Decimeter)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, new BaseUnits(length: LengthUnit.Foot)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, new BaseUnits(length: LengthUnit.Inch)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, new BaseUnits(length: LengthUnit.Kilometer)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, new BaseUnits(length: LengthUnit.Meter)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, new BaseUnits(length: LengthUnit.Micrometer)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, new BaseUnits(length: LengthUnit.Mile)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, new BaseUnits(length: LengthUnit.Millimeter)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, new BaseUnits(length: LengthUnit.Yard)),
+                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +80,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Area(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

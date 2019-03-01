@@ -47,7 +47,33 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
+                new UnitInfo<LengthUnit>[] {
+                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(length: LengthUnit.Fathom)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(length: LengthUnit.Microinch)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(length: LengthUnit.Mil)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(length: LengthUnit.Mile)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(length: LengthUnit.NauticalMile)),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(length: LengthUnit.PrinterPica)),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(length: LengthUnit.PrinterPoint)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(length: LengthUnit.Shackle)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(length: LengthUnit.Twip)),
+                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(length: LengthUnit.Yard)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +89,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Length(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

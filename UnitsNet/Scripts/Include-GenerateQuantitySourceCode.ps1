@@ -85,7 +85,21 @@ if ($obsoleteAttribute)
 "@; } else {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }@"
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName,
+                new UnitInfo<$unitEnumName>[] {
+"@; foreach ($unit in $units) {
+      if($unit.BaseUnits -eq $null){@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), BaseUnits.Undefined),
+"@;   } else{
+          $baseUnitsArray = @($unit.BaseUnits.Length, $unit.BaseUnits.Mass, $unit.BaseUnits.Time, $unit.BaseUnits.ElectricCurrent, $unit.BaseUnits.Temperature, $unit.BaseUnits.AmountOfSubstance, $unit.BaseUnits.LuminousIntensity)
+          $baseUnitsArrayFiltered = $baseUnitsArray | Where-Object {$_ -ne ""}
+          $baseUnitsConstructorString = $baseUnitsArrayFiltered -join ', ';@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), new BaseUnits($baseUnitsConstructorString)),
+"@;   }
+    }@"
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -105,6 +119,26 @@ if ($obsoleteAttribute)
             _value = numericValue;
 "@; }@"
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public $quantityName($valueType numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+"@; if ($quantity.BaseType -eq "double") {@"
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+"@; } else {@"
+            _value = numericValue;
+"@; }@"
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 "@;
     GenerateStaticProperties $genArgs

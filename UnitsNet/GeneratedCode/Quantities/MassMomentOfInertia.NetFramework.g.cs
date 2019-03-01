@@ -47,7 +47,39 @@ namespace UnitsNet
         static MassMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia,
+                new UnitInfo<MassMomentOfInertiaUnit>[] {
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +95,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public MassMomentOfInertia(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

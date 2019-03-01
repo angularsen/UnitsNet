@@ -47,7 +47,24 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration,
+                new UnitInfo<AccelerationUnit>[] {
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +80,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Acceleration(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

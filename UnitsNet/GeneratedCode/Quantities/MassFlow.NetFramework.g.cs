@@ -47,7 +47,42 @@ namespace UnitsNet
         static MassFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassFlowUnit>(QuantityType.MassFlow, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassFlowUnit>(QuantityType.MassFlow,
+                new UnitInfo<MassFlowUnit>[] {
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +98,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public MassFlow(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

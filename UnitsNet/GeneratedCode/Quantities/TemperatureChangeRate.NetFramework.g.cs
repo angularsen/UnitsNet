@@ -47,7 +47,21 @@ namespace UnitsNet
         static TemperatureChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate,
+                new UnitInfo<TemperatureChangeRateUnit>[] {
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +77,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public TemperatureChangeRate(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

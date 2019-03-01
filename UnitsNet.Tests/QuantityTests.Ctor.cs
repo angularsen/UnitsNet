@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 using Xunit;
@@ -102,6 +103,12 @@ namespace UnitsNet.Tests
                 var level = new Level(5, LevelUnit.Neper);
                 Assert.Equal(5, level.Value);
                 Assert.Equal(LevelUnit.Neper, level.Unit);
+            }
+
+            [Fact]
+            public void Constructor_UnitSystemGivenNull_ThrowsArgumentNullException()
+            {
+                Assert.Throws<ArgumentNullException>(() => new Length(1.0, null));
             }
         }
     }

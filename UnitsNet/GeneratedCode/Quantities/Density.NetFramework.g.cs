@@ -50,7 +50,50 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<DensityUnit>(QuantityType.Density, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<DensityUnit>(QuantityType.Density,
+                new UnitInfo<DensityUnit>[] {
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerImperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerUSGallon, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -66,6 +109,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Density(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

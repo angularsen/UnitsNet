@@ -47,7 +47,43 @@ namespace UnitsNet
         static Speed()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed,
+                new UnitInfo<SpeedUnit>[] {
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +99,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Speed(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

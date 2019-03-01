@@ -47,7 +47,29 @@ namespace UnitsNet
         static HeatFlux()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<HeatFluxUnit>(QuantityType.HeatFlux, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<HeatFluxUnit>(QuantityType.HeatFlux,
+                new UnitInfo<HeatFluxUnit>[] {
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +85,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public HeatFlux(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

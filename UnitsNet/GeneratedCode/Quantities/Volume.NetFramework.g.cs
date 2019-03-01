@@ -47,7 +47,56 @@ namespace UnitsNet
         static Volume()
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<VolumeUnit>(QuantityType.Volume, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<VolumeUnit>(QuantityType.Volume,
+                new UnitInfo<VolumeUnit>[] {
+                    new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Deciliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Hectoliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialBeerBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Kiloliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.KilousGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Liter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MegacubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MegaimperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Megaliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MegausGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MetricCup, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MetricTeaspoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.OilBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UkTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsBeerBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsCustomaryCup, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsGallon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsLegalCup, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsOunce, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsPint, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsQuart, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +112,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Volume(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

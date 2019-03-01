@@ -47,7 +47,25 @@ namespace UnitsNet
         static Angle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle,
+                new UnitInfo<AngleUnit>[] {
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Degree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Radian, BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +81,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Angle(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

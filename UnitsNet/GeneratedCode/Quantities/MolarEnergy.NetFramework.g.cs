@@ -47,7 +47,14 @@ namespace UnitsNet
         static MolarEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
-            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy,
+                new UnitInfo<MolarEnergyUnit>[] {
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +70,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public MolarEnergy(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

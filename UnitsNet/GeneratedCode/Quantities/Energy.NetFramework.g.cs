@@ -47,7 +47,34 @@ namespace UnitsNet
         static Energy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<EnergyUnit>(QuantityType.Energy, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<EnergyUnit>(QuantityType.Energy,
+                new UnitInfo<EnergyUnit>[] {
+                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +90,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Energy(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

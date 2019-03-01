@@ -47,7 +47,20 @@ namespace UnitsNet
         static Frequency()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency,
+                new UnitInfo<FrequencyUnit>[] {
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +76,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Frequency(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

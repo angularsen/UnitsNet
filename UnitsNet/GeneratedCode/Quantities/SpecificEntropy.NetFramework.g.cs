@@ -47,7 +47,19 @@ namespace UnitsNet
         static SpecificEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
-            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy,
+                new UnitInfo<SpecificEntropyUnit>[] {
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramKelvin, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilocaloriePerGramKelvin, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +75,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public SpecificEntropy(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

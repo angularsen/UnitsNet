@@ -47,7 +47,55 @@ namespace UnitsNet
         static PowerDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<PowerDensityUnit>(QuantityType.PowerDensity, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<PowerDensityUnit>(QuantityType.PowerDensity,
+                new UnitInfo<PowerDensityUnit>[] {
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +111,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public PowerDensity(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

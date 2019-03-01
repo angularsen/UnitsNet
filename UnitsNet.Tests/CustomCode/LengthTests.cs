@@ -3,6 +3,7 @@
 
 using Xunit;
 using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -150,6 +151,19 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(-2.0, feetInches.Feet);
             Assert.Equal(-1.0, feetInches.Inches);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
         }
     }
 }

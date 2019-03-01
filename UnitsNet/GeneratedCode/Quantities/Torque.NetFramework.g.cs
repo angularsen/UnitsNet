@@ -47,7 +47,32 @@ namespace UnitsNet
         static Torque()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque,
+                new UnitInfo<TorqueUnit>[] {
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +88,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Torque(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

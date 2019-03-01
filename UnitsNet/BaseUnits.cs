@@ -15,6 +15,11 @@ namespace UnitsNet
     public sealed class BaseUnits: IEquatable<BaseUnits>
     {
         /// <summary>
+        /// Represents BaseUnits that have not been defined.
+        /// </summary>
+        public static BaseUnits Undefined { get; } = new BaseUnits();
+
+        /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
         /// All quantities, both base and derived, can be represented by a combination of these seven base units.
         /// </summary>
@@ -25,8 +30,14 @@ namespace UnitsNet
         /// <param name="temperature">The temperature unit (Θ).</param>
         /// <param name="amount">The amount of substance unit (N).</param>
         /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
-        public BaseUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
-            TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
+        public BaseUnits(
+            LengthUnit length = LengthUnit.Undefined,
+            MassUnit mass = MassUnit.Undefined,
+            DurationUnit time = DurationUnit.Undefined,
+            ElectricCurrentUnit current = ElectricCurrentUnit.Undefined,
+            TemperatureUnit temperature = TemperatureUnit.Undefined,
+            AmountOfSubstanceUnit amount = AmountOfSubstanceUnit.Undefined,
+            LuminousIntensityUnit luminousIntensity = LuminousIntensityUnit.Undefined)
         {
             Length = length;
             Mass = mass;
@@ -63,6 +74,31 @@ namespace UnitsNet
                 Temperature == other.Temperature &&
                 Amount == other.Amount &&
                 LuminousIntensity == other.LuminousIntensity;
+        }
+
+        /// <summary>
+        /// Checks if the base units are a subset of another. Undefined base units are ignored.
+        /// If all base united are undefined (equal to <see cref="BaseUnits.Undefined"/>),
+        /// IsSubsetOf will return true only if other is also equal to <see cref="BaseUnits.Undefined"/>.
+        /// </summary>
+        /// <param name="other">The other <see cref="BaseUnits"/> to compare to.</param>
+        /// <returns>True if the base units are a subset of other, otherwise false.</returns>
+        public bool IsSubsetOf(BaseUnits other)
+        {
+            if(other is null)
+                return false;
+
+            // If all base units are undefined, can only be a subset of another where all base units are undefined.
+            if(Equals(Undefined))
+                return other.Equals(Undefined);
+
+            return (Length == LengthUnit.Undefined || Length == other.Length) &&
+                (Mass == MassUnit.Undefined || Mass == other.Mass) &&
+                (Time == DurationUnit.Undefined || Time == other.Time) &&
+                (Current == ElectricCurrentUnit.Undefined || Current == other.Current) &&
+                (Temperature == TemperatureUnit.Undefined || Temperature == other.Temperature) &&
+                (Amount == AmountOfSubstanceUnit.Undefined || Amount == other.Amount) &&
+                (LuminousIntensity == LuminousIntensityUnit.Undefined || LuminousIntensity == other.LuminousIntensity);
         }
 
         /// <inheritdoc />

@@ -47,7 +47,31 @@ namespace UnitsNet
         static Power()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<PowerUnit>(QuantityType.Power, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<PowerUnit>(QuantityType.Power,
+                new UnitInfo<PowerUnit>[] {
+                    new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Decawatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Megawatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Microwatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Petawatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Picowatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Terawatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Watt, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +87,22 @@ namespace UnitsNet
 
             _value = numericValue;
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Power(decimal numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = numericValue;
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

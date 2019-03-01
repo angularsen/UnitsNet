@@ -47,7 +47,23 @@ namespace UnitsNet
         static MolarMass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass,
+                new UnitInfo<MolarMassUnit>[] {
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, BaseUnits.Undefined),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +79,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public MolarMass(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

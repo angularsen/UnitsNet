@@ -47,7 +47,59 @@ namespace UnitsNet
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow,
+                new UnitInfo<VolumeFlowUnit>[] {
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonsPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +115,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public VolumeFlow(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

@@ -50,7 +50,28 @@ namespace UnitsNet
         static SpecificWeight()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpecificWeightUnit>(QuantityType.SpecificWeight, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SpecificWeightUnit>(QuantityType.SpecificWeight,
+                new UnitInfo<SpecificWeightUnit>[] {
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.MeganewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -66,6 +87,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public SpecificWeight(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

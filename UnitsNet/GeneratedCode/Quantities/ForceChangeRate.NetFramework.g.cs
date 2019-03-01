@@ -47,7 +47,22 @@ namespace UnitsNet
         static ForceChangeRate()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<ForceChangeRateUnit>(QuantityType.ForceChangeRate, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<ForceChangeRateUnit>(QuantityType.ForceChangeRate,
+                new UnitInfo<ForceChangeRateUnit>[] {
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +78,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public ForceChangeRate(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

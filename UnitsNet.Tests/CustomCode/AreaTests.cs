@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -81,6 +82,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var area = new Area(1.0, UnitSystem.SI);
+            Assert.Equal(AreaUnit.SquareMeter, area.Unit);
         }
     }
 }

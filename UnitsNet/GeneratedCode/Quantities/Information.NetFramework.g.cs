@@ -47,7 +47,37 @@ namespace UnitsNet
         static Information()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<InformationUnit>(QuantityType.Information,
+                new UnitInfo<InformationUnit>[] {
+                    new UnitInfo<InformationUnit>(InformationUnit.Bit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Byte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exabit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exabyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exbibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gibibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gigabit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kibibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kilobit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Mebibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Megabit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Megabyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Pebibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Petabit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Petabyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Tebibit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Terabit, BaseUnits.Undefined),
+                    new UnitInfo<InformationUnit>(InformationUnit.Terabyte, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +93,22 @@ namespace UnitsNet
 
             _value = numericValue;
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Information(decimal numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = numericValue;
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

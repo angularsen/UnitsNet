@@ -47,7 +47,24 @@ namespace UnitsNet
         static RotationalSpeed()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalSpeedUnit>(QuantityType.RotationalSpeed, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<RotationalSpeedUnit>(QuantityType.RotationalSpeed,
+                new UnitInfo<RotationalSpeedUnit>[] {
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicrodegreePerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicroradianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MillidegreePerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MilliradianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanodegreePerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanoradianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +80,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public RotationalSpeed(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

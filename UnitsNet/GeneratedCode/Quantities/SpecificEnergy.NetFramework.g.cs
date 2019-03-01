@@ -50,7 +50,20 @@ namespace UnitsNet
         static SpecificEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy,
+                new UnitInfo<SpecificEnergyUnit>[] {
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.JoulePerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilocaloriePerGram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilojoulePerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegajoulePerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -66,6 +79,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public SpecificEnergy(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

@@ -47,7 +47,25 @@ namespace UnitsNet
         static Irradiance()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance,
+                new UnitInfo<IrradianceUnit>[] {
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +81,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Irradiance(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties

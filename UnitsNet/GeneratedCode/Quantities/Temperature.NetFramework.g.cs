@@ -47,7 +47,19 @@ namespace UnitsNet
         static Temperature()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature,
+                new UnitInfo<TemperatureUnit>[] {
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, new BaseUnits(temperature: TemperatureUnit.DegreeNewton)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, new BaseUnits(temperature: TemperatureUnit.DegreeRankine)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, new BaseUnits(temperature: TemperatureUnit.DegreeReaumur)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, new BaseUnits(temperature: TemperatureUnit.DegreeRoemer)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, new BaseUnits(temperature: TemperatureUnit.Kelvin)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +75,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Temperature(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties
