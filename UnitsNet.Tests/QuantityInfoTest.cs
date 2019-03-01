@@ -137,16 +137,30 @@ namespace UnitsNet.Tests
                 Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
         }
 
-        //[Fact]
-        //public void GetUnitFor_BaseUnits_ThrowsArgumentNullExceptionIfNull()
-        //{
-        //    Assert.Throws<ArgumentNullException>(() => Length.GetUnitFor((BaseUnits)null));
-        //}
+        [Fact]
+        public void GetUnitInfoFor_GivenNullAsBaseUnits_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => Length.Info.GetUnitInfoFor(null));
+        }
 
-        //[Fact]
-        //public void GetUnitFor_BaseUnitsSI_AssignsSIBaseUnits()
-        //{
-        //    Assert.Equal(LengthUnit.Meter, Length.GetUnitFor(UnitSystem.SI.BaseUnits));
-        //}
+        [Fact]
+        public void GetUnitInfoFor_GivenBaseUnitsWithNoMatch_ThrowsInvalidOperationException()
+        {
+            var baseUnitsWithNoMatch = new BaseUnits(mass: MassUnit.Kilogram);
+            Assert.Throws<InvalidOperationException>(() => Length.Info.GetUnitInfoFor(baseUnitsWithNoMatch));
+        }
+
+        [Fact]
+        public void GetUnitInfoFor_GivenBaseUnitsWithMultipleMatches_ThrowsInvalidOperationException()
+        {
+            var baseUnits = new BaseUnits(LengthUnit.Meter);
+
+            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length, new UnitInfo<LengthUnit>[]{
+                new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
+                new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits)
+            }, LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
+
+            Assert.Throws<InvalidOperationException>(() => quantityInfo.GetUnitInfoFor(baseUnits));
+        }
     }
 }

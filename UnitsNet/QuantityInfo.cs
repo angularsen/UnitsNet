@@ -129,18 +129,27 @@ namespace UnitsNet
         /// </summary>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
         /// <returns>The UnitInfo that has BaseUnits that are a subset.</returns>
+        /// <exception cref="ArgumentNullException">The baseUnits parameter is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found that is a subset of the given BaseUnits.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of the given BaseUnits.</exception>
         public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
             if(baseUnits == null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            var matchingUnitInfos = UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
-            if(!matchingUnitInfos.Any())
-                throw new NotImplementedException("No units were found that are a subset of the given BaseUnits.");
-            else if(matchingUnitInfos.Skip(1).Any())
+            var matchingUnitInfos = UnitInfos
+                .Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits))
+                .Take(2)
+                .ToArray();
+
+            var firstUnitInfo = matchingUnitInfos.FirstOrDefault();
+            if (firstUnitInfo == null)
+                throw new InvalidOperationException("No unit was found that is a subset of the given BaseUnits.");
+
+            if (matchingUnitInfos.Length > 1)
                 throw new InvalidOperationException("More than one unit was found that is a subset of the given BaseUnits.");
 
-            return matchingUnitInfos.First();
+            return firstUnitInfo;
         }
     }
 
