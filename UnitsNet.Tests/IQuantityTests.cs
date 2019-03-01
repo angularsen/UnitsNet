@@ -24,7 +24,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        public void As_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
             Assert.Equal(0.0508, imperialLengthQuantity.As(UnitSystem.SI));
@@ -45,7 +45,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnit_ImperialQuantityGivenSIUnitSysten_ReturnsSIValue()
+        public void ToUnit_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
             Assert.Equal(Length.FromMeters(0.0508), imperialLengthQuantity.ToUnit(UnitSystem.SI));
