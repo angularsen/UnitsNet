@@ -678,15 +678,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is DurationUnit))
-                throw new ArgumentException("The given unit is not of type DurationUnit.", nameof(unit));
-
-            return As((DurationUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -698,6 +689,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is DurationUnit unitAsDurationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
+
+            return As(unitAsDurationUnit);
         }
 
         /// <summary>
@@ -713,10 +713,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is DurationUnit))
-                throw new ArgumentException("The given unit is not of type DurationUnit.", nameof(unit));
+            if(!(unit is DurationUnit unitAsDurationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
-            return ToUnit((DurationUnit)unit);
+            return ToUnit(unitAsDurationUnit);
         }
 
         /// <inheritdoc />

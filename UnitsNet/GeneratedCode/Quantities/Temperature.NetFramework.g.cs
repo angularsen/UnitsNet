@@ -602,15 +602,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is TemperatureUnit))
-                throw new ArgumentException("The given unit is not of type TemperatureUnit.", nameof(unit));
-
-            return As((TemperatureUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -622,6 +613,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is TemperatureUnit unitAsTemperatureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
+
+            return As(unitAsTemperatureUnit);
         }
 
         /// <summary>
@@ -637,10 +637,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is TemperatureUnit))
-                throw new ArgumentException("The given unit is not of type TemperatureUnit.", nameof(unit));
+            if(!(unit is TemperatureUnit unitAsTemperatureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
 
-            return ToUnit((TemperatureUnit)unit);
+            return ToUnit(unitAsTemperatureUnit);
         }
 
         /// <inheritdoc />

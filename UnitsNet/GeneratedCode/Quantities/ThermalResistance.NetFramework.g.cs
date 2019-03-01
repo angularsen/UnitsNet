@@ -603,15 +603,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is ThermalResistanceUnit))
-                throw new ArgumentException("The given unit is not of type ThermalResistanceUnit.", nameof(unit));
-
-            return As((ThermalResistanceUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -623,6 +614,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsThermalResistanceUnit);
         }
 
         /// <summary>
@@ -638,10 +638,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ThermalResistanceUnit))
-                throw new ArgumentException("The given unit is not of type ThermalResistanceUnit.", nameof(unit));
+            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit((ThermalResistanceUnit)unit);
+            return ToUnit(unitAsThermalResistanceUnit);
         }
 
         /// <inheritdoc />

@@ -546,15 +546,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is ElectricFieldUnit))
-                throw new ArgumentException("The given unit is not of type ElectricFieldUnit.", nameof(unit));
-
-            return As((ElectricFieldUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -566,6 +557,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricFieldUnit);
         }
 
         /// <summary>
@@ -581,10 +581,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricFieldUnit))
-                throw new ArgumentException("The given unit is not of type ElectricFieldUnit.", nameof(unit));
+            if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
 
-            return ToUnit((ElectricFieldUnit)unit);
+            return ToUnit(unitAsElectricFieldUnit);
         }
 
         /// <inheritdoc />

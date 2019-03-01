@@ -723,15 +723,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is RotationalSpeedUnit))
-                throw new ArgumentException("The given unit is not of type RotationalSpeedUnit.", nameof(unit));
-
-            return As((RotationalSpeedUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -743,6 +734,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is RotationalSpeedUnit unitAsRotationalSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
+
+            return As(unitAsRotationalSpeedUnit);
         }
 
         /// <summary>
@@ -758,10 +758,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is RotationalSpeedUnit))
-                throw new ArgumentException("The given unit is not of type RotationalSpeedUnit.", nameof(unit));
+            if(!(unit is RotationalSpeedUnit unitAsRotationalSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
 
-            return ToUnit((RotationalSpeedUnit)unit);
+            return ToUnit(unitAsRotationalSpeedUnit);
         }
 
         /// <inheritdoc />

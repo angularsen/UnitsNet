@@ -723,15 +723,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is AreaUnit))
-                throw new ArgumentException("The given unit is not of type AreaUnit.", nameof(unit));
-
-            return As((AreaUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -743,6 +734,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AreaUnit unitAsAreaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return As(unitAsAreaUnit);
         }
 
         /// <summary>
@@ -758,10 +758,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is AreaUnit))
-                throw new ArgumentException("The given unit is not of type AreaUnit.", nameof(unit));
+            if(!(unit is AreaUnit unitAsAreaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
 
-            return ToUnit((AreaUnit)unit);
+            return ToUnit(unitAsAreaUnit);
         }
 
         /// <inheritdoc />

@@ -1158,15 +1158,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is PressureUnit))
-                throw new ArgumentException("The given unit is not of type PressureUnit.", nameof(unit));
-
-            return As((PressureUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1178,6 +1169,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PressureUnit unitAsPressureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPressureUnit);
         }
 
         /// <summary>
@@ -1193,10 +1193,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is PressureUnit))
-                throw new ArgumentException("The given unit is not of type PressureUnit.", nameof(unit));
+            if(!(unit is PressureUnit unitAsPressureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
-            return ToUnit((PressureUnit)unit);
+            return ToUnit(unitAsPressureUnit);
         }
 
         /// <inheritdoc />

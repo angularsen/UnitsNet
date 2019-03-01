@@ -558,15 +558,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is MassFluxUnit))
-                throw new ArgumentException("The given unit is not of type MassFluxUnit.", nameof(unit));
-
-            return As((MassFluxUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -578,6 +569,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
+
+            return As(unitAsMassFluxUnit);
         }
 
         /// <summary>
@@ -593,10 +593,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is MassFluxUnit))
-                throw new ArgumentException("The given unit is not of type MassFluxUnit.", nameof(unit));
+            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
 
-            return ToUnit((MassFluxUnit)unit);
+            return ToUnit(unitAsMassFluxUnit);
         }
 
         /// <inheritdoc />

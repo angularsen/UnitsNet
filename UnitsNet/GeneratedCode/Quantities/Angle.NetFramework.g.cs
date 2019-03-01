@@ -738,15 +738,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is AngleUnit))
-                throw new ArgumentException("The given unit is not of type AngleUnit.", nameof(unit));
-
-            return As((AngleUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -758,6 +749,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AngleUnit unitAsAngleUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
+
+            return As(unitAsAngleUnit);
         }
 
         /// <summary>
@@ -773,10 +773,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is AngleUnit))
-                throw new ArgumentException("The given unit is not of type AngleUnit.", nameof(unit));
+            if(!(unit is AngleUnit unitAsAngleUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
-            return ToUnit((AngleUnit)unit);
+            return ToUnit(unitAsAngleUnit);
         }
 
         /// <inheritdoc />

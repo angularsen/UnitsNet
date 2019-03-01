@@ -969,15 +969,6 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is $unitEnumName))
-                throw new ArgumentException("The given unit is not of type $unitEnumName.", nameof(unit));
-
-            return As(($unitEnumName)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -989,6 +980,15 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is $unitEnumName unitAs$unitEnumName))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof($unitEnumName)} is supported.", nameof(unit));
+
+            return As(unitAs$unitEnumName);
         }
 
         /// <summary>
@@ -1004,10 +1004,10 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is $unitEnumName))
-                throw new ArgumentException("The given unit is not of type $unitEnumName.", nameof(unit));
+            if(!(unit is $unitEnumName unitAs$unitEnumName))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof($unitEnumName)} is supported.", nameof(unit));
 
-            return ToUnit(($unitEnumName)unit);
+            return ToUnit(unitAs$unitEnumName);
         }
 
         /// <inheritdoc />

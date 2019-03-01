@@ -588,15 +588,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is ReactivePowerUnit))
-                throw new ArgumentException("The given unit is not of type ReactivePowerUnit.", nameof(unit));
-
-            return As((ReactivePowerUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -608,6 +599,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ReactivePowerUnit unitAsReactivePowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
+
+            return As(unitAsReactivePowerUnit);
         }
 
         /// <summary>
@@ -623,10 +623,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ReactivePowerUnit))
-                throw new ArgumentException("The given unit is not of type ReactivePowerUnit.", nameof(unit));
+            if(!(unit is ReactivePowerUnit unitAsReactivePowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
 
-            return ToUnit((ReactivePowerUnit)unit);
+            return ToUnit(unitAsReactivePowerUnit);
         }
 
         /// <inheritdoc />

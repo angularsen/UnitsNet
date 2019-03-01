@@ -830,15 +830,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is PowerUnit))
-                throw new ArgumentException("The given unit is not of type PowerUnit.", nameof(unit));
-
-            return As((PowerUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -850,6 +841,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PowerUnit unitAsPowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPowerUnit);
         }
 
         /// <summary>
@@ -865,10 +865,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is PowerUnit))
-                throw new ArgumentException("The given unit is not of type PowerUnit.", nameof(unit));
+            if(!(unit is PowerUnit unitAsPowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
-            return ToUnit((PowerUnit)unit);
+            return ToUnit(unitAsPowerUnit);
         }
 
         /// <inheritdoc />

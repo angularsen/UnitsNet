@@ -591,15 +591,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is IlluminanceUnit))
-                throw new ArgumentException("The given unit is not of type IlluminanceUnit.", nameof(unit));
-
-            return As((IlluminanceUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -611,6 +602,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is IlluminanceUnit unitAsIlluminanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsIlluminanceUnit);
         }
 
         /// <summary>
@@ -626,10 +626,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is IlluminanceUnit))
-                throw new ArgumentException("The given unit is not of type IlluminanceUnit.", nameof(unit));
+            if(!(unit is IlluminanceUnit unitAsIlluminanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit((IlluminanceUnit)unit);
+            return ToUnit(unitAsIlluminanceUnit);
         }
 
         /// <inheritdoc />

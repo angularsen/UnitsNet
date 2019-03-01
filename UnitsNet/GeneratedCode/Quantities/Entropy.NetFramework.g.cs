@@ -633,15 +633,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is EntropyUnit))
-                throw new ArgumentException("The given unit is not of type EntropyUnit.", nameof(unit));
-
-            return As((EntropyUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -653,6 +644,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is EntropyUnit unitAsEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return As(unitAsEntropyUnit);
         }
 
         /// <summary>
@@ -668,10 +668,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is EntropyUnit))
-                throw new ArgumentException("The given unit is not of type EntropyUnit.", nameof(unit));
+            if(!(unit is EntropyUnit unitAsEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
-            return ToUnit((EntropyUnit)unit);
+            return ToUnit(unitAsEntropyUnit);
         }
 
         /// <inheritdoc />

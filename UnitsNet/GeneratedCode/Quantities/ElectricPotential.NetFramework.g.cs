@@ -603,15 +603,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is ElectricPotentialUnit))
-                throw new ArgumentException("The given unit is not of type ElectricPotentialUnit.", nameof(unit));
-
-            return As((ElectricPotentialUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -623,6 +614,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricPotentialUnit unitAsElectricPotentialUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricPotentialUnit);
         }
 
         /// <summary>
@@ -638,10 +638,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricPotentialUnit))
-                throw new ArgumentException("The given unit is not of type ElectricPotentialUnit.", nameof(unit));
+            if(!(unit is ElectricPotentialUnit unitAsElectricPotentialUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
 
-            return ToUnit((ElectricPotentialUnit)unit);
+            return ToUnit(unitAsElectricPotentialUnit);
         }
 
         /// <inheritdoc />

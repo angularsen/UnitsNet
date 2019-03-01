@@ -566,15 +566,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is LevelUnit))
-                throw new ArgumentException("The given unit is not of type LevelUnit.", nameof(unit));
-
-            return As((LevelUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -586,6 +577,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is LevelUnit unitAsLevelUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
+
+            return As(unitAsLevelUnit);
         }
 
         /// <summary>
@@ -601,10 +601,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is LevelUnit))
-                throw new ArgumentException("The given unit is not of type LevelUnit.", nameof(unit));
+            if(!(unit is LevelUnit unitAsLevelUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
 
-            return ToUnit((LevelUnit)unit);
+            return ToUnit(unitAsLevelUnit);
         }
 
         /// <inheritdoc />

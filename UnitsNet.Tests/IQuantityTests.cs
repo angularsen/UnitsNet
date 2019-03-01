@@ -12,15 +12,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_GivenWrongUnitType_ThrowsArgumentException()
         {
-            IQuantity quantity = Length.FromMeters(1.2345);
-            Assert.Throws<ArgumentException>(() => quantity.As(MassUnit.Kilogram));
+            IQuantity length = Length.FromMeters(1.2345);
+            Assert.Throws<ArgumentException>(() => length.As(MassUnit.Kilogram));
         }
 
         [Fact]
         public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
         {
-            IQuantity quantity = Length.FromMeters(1.2345);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(MassUnit.Kilogram));
+            IQuantity length = Length.FromMeters(1.2345);
+            Assert.Throws<ArgumentException>(() => length.ToUnit(MassUnit.Kilogram));
         }
     }
 }

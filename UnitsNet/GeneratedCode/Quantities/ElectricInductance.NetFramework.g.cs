@@ -591,15 +591,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is ElectricInductanceUnit))
-                throw new ArgumentException("The given unit is not of type ElectricInductanceUnit.", nameof(unit));
-
-            return As((ElectricInductanceUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -611,6 +602,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsElectricInductanceUnit);
         }
 
         /// <summary>
@@ -626,10 +626,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricInductanceUnit))
-                throw new ArgumentException("The given unit is not of type ElectricInductanceUnit.", nameof(unit));
+            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit((ElectricInductanceUnit)unit);
+            return ToUnit(unitAsElectricInductanceUnit);
         }
 
         /// <inheritdoc />

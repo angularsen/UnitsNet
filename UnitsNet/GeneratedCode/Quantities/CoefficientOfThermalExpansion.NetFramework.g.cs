@@ -573,15 +573,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is CoefficientOfThermalExpansionUnit))
-                throw new ArgumentException("The given unit is not of type CoefficientOfThermalExpansionUnit.", nameof(unit));
-
-            return As((CoefficientOfThermalExpansionUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -593,6 +584,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
+
+            return As(unitAsCoefficientOfThermalExpansionUnit);
         }
 
         /// <summary>
@@ -608,10 +608,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is CoefficientOfThermalExpansionUnit))
-                throw new ArgumentException("The given unit is not of type CoefficientOfThermalExpansionUnit.", nameof(unit));
+            if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
 
-            return ToUnit((CoefficientOfThermalExpansionUnit)unit);
+            return ToUnit(unitAsCoefficientOfThermalExpansionUnit);
         }
 
         /// <inheritdoc />

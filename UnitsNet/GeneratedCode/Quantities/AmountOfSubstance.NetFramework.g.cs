@@ -753,15 +753,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if(!(unit is AmountOfSubstanceUnit))
-                throw new ArgumentException("The given unit is not of type AmountOfSubstanceUnit.", nameof(unit));
-
-            return As((AmountOfSubstanceUnit)unit);
-        }
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -773,6 +764,15 @@ namespace UnitsNet
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is AmountOfSubstanceUnit unitAsAmountOfSubstanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
+
+            return As(unitAsAmountOfSubstanceUnit);
         }
 
         /// <summary>
@@ -788,10 +788,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is AmountOfSubstanceUnit))
-                throw new ArgumentException("The given unit is not of type AmountOfSubstanceUnit.", nameof(unit));
+            if(!(unit is AmountOfSubstanceUnit unitAsAmountOfSubstanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit((AmountOfSubstanceUnit)unit);
+            return ToUnit(unitAsAmountOfSubstanceUnit);
         }
 
         /// <inheritdoc />
