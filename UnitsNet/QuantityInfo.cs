@@ -125,13 +125,13 @@ namespace UnitsNet
         public BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        /// Gets the <see cref="UnitInfo"/> which has <see cref="BaseUnits"/> that are a subset of the given <see cref="BaseUnits"/>.
+        /// Gets the <see cref="UnitInfo"/> that has <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.
         /// </summary>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
-        /// <returns>The UnitInfo that has BaseUnits that are a subset.</returns>
-        /// <exception cref="ArgumentNullException">The baseUnits parameter is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found that is a subset of the given BaseUnits.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of the given BaseUnits.</exception>
+        /// <returns>The <see cref="UnitInfo"/> that has <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
         public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
             if(baseUnits == null)
@@ -144,10 +144,10 @@ namespace UnitsNet
 
             var firstUnitInfo = matchingUnitInfos.FirstOrDefault();
             if (firstUnitInfo == null)
-                throw new InvalidOperationException("No unit was found that is a subset of the given BaseUnits.");
+                throw new InvalidOperationException($"No unit was found that is a subset of {nameof(baseUnits)}");
 
             if (matchingUnitInfos.Length > 1)
-                throw new InvalidOperationException("More than one unit was found that is a subset of the given BaseUnits.");
+                throw new InvalidOperationException($"More than one unit was found that is a subset of {nameof(baseUnits)}");
 
             return firstUnitInfo;
         }
