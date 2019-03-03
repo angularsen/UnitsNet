@@ -22,7 +22,7 @@ namespace UnitsNet
             if(baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            if(!baseUnits.AreAllBaseUnitsDefined())
+            if(!baseUnits.IsFullyDefined)
                 throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
 
             BaseUnits = baseUnits;
