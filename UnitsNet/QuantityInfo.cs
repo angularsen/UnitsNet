@@ -125,8 +125,9 @@ namespace UnitsNet
         public BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        /// Gets the <see cref="UnitInfo"/> that has <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.
+        /// Gets the <see cref="UnitInfo"/> whose <see cref="BaseUnits"/> is a subset of <paramref name="baseUnits"/>.
         /// </summary>
+        /// <example>Length.Info.GetUnitInfoFor(unitSystemWithFootAsLengthUnit) returns <see cref="UnitInfo" /> for <see cref="LengthUnit.Foot" />.</example>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
         /// <returns>The <see cref="UnitInfo"/> that has <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
