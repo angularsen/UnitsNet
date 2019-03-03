@@ -101,6 +101,21 @@ namespace UnitsNet
                 (LuminousIntensity == LuminousIntensityUnit.Undefined || LuminousIntensity == other.LuminousIntensity);
         }
 
+        /// <summary>
+        /// Checks if all of the base units are defined.
+        /// </summary>
+        /// <returns>True if all of the base units are defined, otherwise false.</returns>
+        public bool AreAllBaseUnitsDefined()
+        {
+            return Length != LengthUnit.Undefined &&
+                Mass != MassUnit.Undefined &&
+                Time != DurationUnit.Undefined &&
+                Current != ElectricCurrentUnit.Undefined &&
+                Temperature != TemperatureUnit.Undefined &&
+                Amount != AmountOfSubstanceUnit.Undefined &&
+                LuminousIntensity != LuminousIntensityUnit.Undefined;
+        }
+
         /// <inheritdoc />
         public override int GetHashCode()
         {
