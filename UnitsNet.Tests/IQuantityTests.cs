@@ -24,10 +24,10 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(0.0508, imperialLengthQuantity.As(UnitSystem.SI));
+            IQuantity inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -45,10 +45,14 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnit_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(Length.FromMeters(0.0508), imperialLengthQuantity.ToUnit(UnitSystem.SI));
+            IQuantity inches = new Length(2.0, LengthUnit.Inch);
+
+            IQuantity inSI = inches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
     }
 }
