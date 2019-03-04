@@ -50,12 +50,12 @@ namespace UnitsNet
 
             Info = new QuantityInfo<AreaMomentOfInertiaUnit>(QuantityType.AreaMomentOfInertia,
                 new UnitInfo<AreaMomentOfInertiaUnit>[] {
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, BaseUnits.Undefined),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, BaseUnits.Undefined),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, BaseUnits.Undefined),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, BaseUnits.Undefined),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, BaseUnits.Undefined),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, BaseUnits.Undefined),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new BaseUnits(length: LengthUnit.Centimeter)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new BaseUnits(length: LengthUnit.Decimeter)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, new BaseUnits(length: LengthUnit.Foot)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, new BaseUnits(length: LengthUnit.Inch)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, new BaseUnits(length: LengthUnit.Meter)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new BaseUnits(length: LengthUnit.Millimeter)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

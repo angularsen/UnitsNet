@@ -9,6 +9,9 @@
     {
       "SingularName": "MeterToTheFourth",
       "PluralName": "MetersToTheFourth",
+      "BaseUnits": {
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
@@ -21,6 +24,9 @@
     {
       "SingularName": "DecimeterToTheFourth",
       "PluralName": "DecimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
       "FromUnitToBaseFunc": "x/1e4",
       "FromBaseToUnitFunc": "x*1e4",
       "Localization": [
@@ -33,6 +39,9 @@
     {
       "SingularName": "CentimeterToTheFourth",
       "PluralName": "CentimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
       "FromUnitToBaseFunc": "x/1e8",
       "FromBaseToUnitFunc": "x*1e8",
       "Localization": [
@@ -45,6 +54,9 @@
     {
       "SingularName": "MillimeterToTheFourth",
       "PluralName": "MillimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Millimeter"
+      },
       "FromUnitToBaseFunc": "x/1e12",
       "FromBaseToUnitFunc": "x*1e12",
       "Localization": [
@@ -57,6 +69,9 @@
     {
       "SingularName": "FootToTheFourth",
       "PluralName": "FeetToTheFourth",
+      "BaseUnits": {
+        "L": "Foot"
+      },
       "FromUnitToBaseFunc": "x*Math.Pow(0.3048, 4)",
       "FromBaseToUnitFunc": "x/Math.Pow(0.3048, 4)",
       "Localization": [
@@ -69,6 +84,9 @@
     {
       "SingularName": "InchToTheFourth",
       "PluralName": "InchesToTheFourth",
+      "BaseUnits": {
+        "L": "Inch"
+      },
       "FromUnitToBaseFunc": "x*Math.Pow(2.54e-2, 4)",
       "FromBaseToUnitFunc": "x/Math.Pow(2.54e-2, 4)",
       "Localization": [

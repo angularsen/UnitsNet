@@ -50,9 +50,9 @@ namespace UnitsNet
 
             Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion,
                 new UnitInfo<CoefficientOfThermalExpansionUnit>[] {
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, BaseUnits.Undefined),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, BaseUnits.Undefined),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, BaseUnits.Undefined),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
