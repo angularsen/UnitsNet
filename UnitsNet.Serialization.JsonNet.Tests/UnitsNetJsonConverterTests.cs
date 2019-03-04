@@ -9,22 +9,22 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public class UnitsNetJsonConverterTests
     {
-        private readonly JsonSerializerSettings _jsonSerializerSettings;
+        private JsonSerializerSettings JsonSerializerSettings { get; }
 
         protected UnitsNetJsonConverterTests()
         {
-            _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+            JsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
+            JsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
         }
 
         private string SerializeObject(object obj)
         {
-            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
+            return JsonConvert.SerializeObject(obj, JsonSerializerSettings).Replace("\r\n", "\n");
         }
 
         private T DeserializeObject<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
         }
 
         public class Serialize : UnitsNetJsonConverterTests

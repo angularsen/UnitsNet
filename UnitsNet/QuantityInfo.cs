@@ -20,9 +20,9 @@ namespace UnitsNet
     /// </remarks>
     public class QuantityInfo
     {
-        private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
+        private static string UnitEnumNamespace { get; } = typeof(LengthUnit).Namespace;
 
-        private static readonly Type[] UnitEnumTypes = typeof(Length)
+        private static Type[] UnitEnumTypes { get; } = typeof(Length)
             .Wrap()
             .Assembly
             .GetExportedTypes()

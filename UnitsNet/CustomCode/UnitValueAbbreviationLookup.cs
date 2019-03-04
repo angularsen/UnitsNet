@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -12,13 +12,13 @@ namespace UnitsNet
 {
     internal class UnitValueAbbreviationLookup
     {
-        private readonly UnitToAbbreviationMap unitToAbbreviationMap = new UnitToAbbreviationMap();
-        private readonly AbbreviationToUnitMap abbreviationToUnitMap = new AbbreviationToUnitMap();
-        private readonly AbbreviationToUnitMap lowerCaseAbbreviationToUnitMap = new AbbreviationToUnitMap();
+        private UnitToAbbreviationMap UnitToAbbreviationMap { get; } = new UnitToAbbreviationMap();
+        private AbbreviationToUnitMap AbbreviationToUnitMap { get; } = new AbbreviationToUnitMap();
+        private AbbreviationToUnitMap LowerCaseAbbreviationToUnitMap { get; } = new AbbreviationToUnitMap();
 
         internal string[] GetAllUnitAbbreviationsForQuantity()
         {
-            return unitToAbbreviationMap.Values.SelectMany((abbreviations) =>
+            return UnitToAbbreviationMap.Values.SelectMany((abbreviations) =>
             {
                 return abbreviations;
             } ).Distinct().ToArray();
@@ -31,8 +31,8 @@ namespace UnitsNet
 
         internal List<string> GetAbbreviationsForUnit(int unit)
         {
-            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
-                unitToAbbreviationMap[unit] = abbreviations = new List<string>();
+            if(!UnitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
+                UnitToAbbreviationMap[unit] = abbreviations = new List<string>();
 
             return abbreviations.Distinct().ToList();
         }
@@ -41,7 +41,7 @@ namespace UnitsNet
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
             var key = ignoreCase ? lowerCaseAbbreviation : abbreviation;
-            var map = ignoreCase ? lowerCaseAbbreviationToUnitMap : abbreviationToUnitMap;
+            var map = ignoreCase ? LowerCaseAbbreviationToUnitMap : AbbreviationToUnitMap;
 
             if(!map.TryGetValue(key, out List<int> units))
                 map[key] = units = new List<int>();
@@ -53,14 +53,14 @@ namespace UnitsNet
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
 
-            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
-                abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
+            if(!UnitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
+                abbreviationsForUnit = UnitToAbbreviationMap[unit] = new List<string>();
 
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
-                abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+            if(!AbbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
+                AbbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
-            if(!lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
-                lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
+            if(!LowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
+                LowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
 
             unitsForLowerCaseAbbreviation.Remove(unit);
             unitsForLowerCaseAbbreviation.Add(unit);

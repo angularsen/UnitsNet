@@ -7,7 +7,7 @@ namespace UnitsNet
 {
     public partial class Quantity
     {
-        private static readonly Lazy<QuantityInfo[]> InfosLazy;
+        private static Lazy<QuantityInfo[]> InfosLazy { get; }
 
         static Quantity()
         {

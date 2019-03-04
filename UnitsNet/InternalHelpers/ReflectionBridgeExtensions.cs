@@ -22,31 +22,31 @@ namespace UnitsNet.InternalHelpers
 {
     internal struct TypeWrapper
     {
-        private readonly Type _type;
+        private Type Type { get; }
 
         public TypeWrapper(Type type)
         {
-            _type = type;
+            Type = type;
         }
 
-        internal Assembly Assembly => _type.ToUniformType().Assembly;
-        internal bool IsEnum => _type.ToUniformType().IsEnum;
-        internal bool IsClass => _type.ToUniformType().IsClass;
-        internal bool IsAssignableFrom(Type other) => _type.ToUniformType().IsAssignableFrom(other.ToUniformType());
-        internal bool IsValueType => _type.ToUniformType().IsValueType;
+        internal Assembly Assembly => Type.ToUniformType().Assembly;
+        internal bool IsEnum => Type.ToUniformType().IsEnum;
+        internal bool IsClass => Type.ToUniformType().IsClass;
+        internal bool IsAssignableFrom(Type other) => Type.ToUniformType().IsAssignableFrom(other.ToUniformType());
+        internal bool IsValueType => Type.ToUniformType().IsValueType;
 
         internal PropertyInfo GetProperty(string name)
         {
 #if NET40 || NET35 || NET20 || SILVERLIGHT
-            return _type.GetProperty(name);
+            return Type.GetProperty(name);
 #else
-            return _type.GetTypeInfo().GetDeclaredProperty(name);
+            return Type.GetTypeInfo().GetDeclaredProperty(name);
 #endif
         }
 
         internal IEnumerable<MethodInfo> GetDeclaredMethods()
         {
-            var t = _type.ToUniformType();
+            var t = Type.ToUniformType();
             while (t != null)
             {
 #if NET40 || NET35 || NET20 || SILVERLIGHT

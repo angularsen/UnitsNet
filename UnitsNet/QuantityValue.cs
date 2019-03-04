@@ -25,25 +25,25 @@ namespace UnitsNet
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
         ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal"/>.
         /// </summary>
-        private readonly double? _value;
+        private double? Value { get; }
 
         /// <summary>
         ///     Value assigned when implicitly casting from <see cref="decimal" /> type, since it has a greater precision than
         ///     <see cref="double"/> and we want to preserve that when constructing quantities that use <see cref="decimal"/>
         ///     as their value type.
         /// </summary>
-        private readonly decimal? _valueDecimal;
+        private decimal? ValueDecimal { get; }
 
         private QuantityValue(double val)
         {
-            _value = Guard.EnsureValidNumber(val, nameof(val));
-            _valueDecimal = null;
+            Value = Guard.EnsureValidNumber(val, nameof(val));
+            ValueDecimal = null;
         }
 
         private QuantityValue(decimal val)
         {
-            _valueDecimal = val;
-            _value = null;
+            ValueDecimal = val;
+            Value = null;
         }
 
         #region To QuantityValue
@@ -76,7 +76,7 @@ namespace UnitsNet
         public static explicit operator double(QuantityValue number)
         {
             // double -> decimal -> zero (since we can't implement the default struct ctor)
-            return number._value ?? (double) number._valueDecimal.GetValueOrDefault();
+            return number.Value ?? (double) number.ValueDecimal.GetValueOrDefault();
         }
 
         #endregion
@@ -87,7 +87,7 @@ namespace UnitsNet
         public static explicit operator decimal(QuantityValue number)
         {
             // decimal -> double -> zero (since we can't implement the default struct ctor)
-            return number._valueDecimal ?? (decimal) number._value.GetValueOrDefault();
+            return number.ValueDecimal ?? (decimal) number.Value.GetValueOrDefault();
         }
 
         #endregion
@@ -95,7 +95,7 @@ namespace UnitsNet
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
         {
-            return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
+            return Value.HasValue ? Value.ToString() : ValueDecimal.ToString();
         }
     }
 }

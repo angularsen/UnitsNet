@@ -24,15 +24,15 @@ namespace UnitsNet
         /// </summary>
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
-        private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
-        private UnitParser _unitParser;
+        private UnitAbbreviationsCache UnitAbbreviationsCache { get; }
+        private UnitParser UnitParser { get; }
 
         public static QuantityParser Default { get; }
 
         public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
-            _unitParser = new UnitParser(_unitAbbreviationsCache);
+            UnitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            UnitParser = new UnitParser(UnitAbbreviationsCache);
         }
 
         static QuantityParser()
@@ -124,7 +124,7 @@ namespace UnitsNet
             bool matchEntireString = true)
             where TUnitType : Enum
         {
-            var unitAbbreviations = _unitAbbreviationsCache.GetUnitAbbreviations(unit, formatProvider);
+            var unitAbbreviations = UnitAbbreviationsCache.GetUnitAbbreviations(unit, formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
             return matchEntireString ? $"^{pattern}$" : pattern;
         }
@@ -152,7 +152,7 @@ namespace UnitsNet
             where TUnitType : Enum
         {
             var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
-            var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
+            var parsedUnit = UnitParser.Parse<TUnitType>(unitString, formatProvider);
             return fromDelegate(value, parsedUnit);
         }
 
@@ -173,7 +173,7 @@ namespace UnitsNet
             if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
                     return false;
 
-            if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
+            if (!UnitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
                     return false;
 
             result = fromDelegate(value, parsedUnit);
@@ -201,7 +201,7 @@ namespace UnitsNet
 
         private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider formatProvider) where TUnitType : Enum
         {
-            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
+            var unitAbbreviations = UnitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
 
             // Match entire string exactly

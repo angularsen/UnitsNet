@@ -17,7 +17,7 @@ namespace UnitsNet
     /// </summary>
     public sealed class UnitParser
     {
-        private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
+        private UnitAbbreviationsCache UnitAbbreviationsCache { get; }
 
         /// <summary>
         ///     The default static instance used internally to parse quantities and units using the
@@ -31,7 +31,7 @@ namespace UnitsNet
         /// <param name="unitAbbreviationsCache"></param>
         public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            UnitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
         }
 
         static UnitParser()
@@ -72,7 +72,7 @@ namespace UnitsNet
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if(!UnitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
@@ -160,7 +160,7 @@ namespace UnitsNet
             unitAbbreviation = unitAbbreviation.Trim();
             unit = default;
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if(!UnitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);

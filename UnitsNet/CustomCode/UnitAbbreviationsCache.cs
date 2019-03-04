@@ -20,7 +20,7 @@ namespace UnitsNet
     /// </summary>
     public sealed partial class UnitAbbreviationsCache
     {
-        private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
+        private Dictionary<IFormatProvider, UnitTypeToLookup> LookupsForCulture { get; }
 
         /// <summary>
         ///     Fallback culture used by <see cref="GetUnitAbbreviations{TUnitType}" /> and <see cref="GetDefaultAbbreviation{TUnitType}" />
@@ -31,7 +31,7 @@ namespace UnitsNet
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
-        private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
+        private static CultureInfo FallbackCulture { get; } = new CultureInfo("en-US");
 
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
@@ -43,7 +43,7 @@ namespace UnitsNet
         /// </summary>
         public UnitAbbreviationsCache()
         {
-            _lookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
+            LookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
 
             LoadGeneratedAbbreviations();
         }
@@ -171,8 +171,8 @@ namespace UnitsNet
 
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
 
-            if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
+            if (!LookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+                quantitiesForProvider = LookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
             if (!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
@@ -306,7 +306,7 @@ namespace UnitsNet
 
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
 
-            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            if(!LookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
 
             if(!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))

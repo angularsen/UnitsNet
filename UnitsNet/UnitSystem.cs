@@ -93,7 +93,7 @@ namespace UnitsNet
         /// </summary>
         public BaseUnits BaseUnits{ get; }
 
-        private static readonly BaseUnits SIBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+        private static BaseUnits SIBaseUnits { get; } = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
             ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
 
         /// <summary>
