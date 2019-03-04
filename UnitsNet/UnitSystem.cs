@@ -81,12 +81,46 @@ namespace UnitsNet
         /// </summary>
         public BaseUnits BaseUnits{ get; }
 
-        private static readonly BaseUnits SIBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-            ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
-
         /// <summary>
         /// Gets the SI unit system.
         /// </summary>
-        public static UnitSystem SI { get; } = new UnitSystem(SIBaseUnits);
+        public static UnitSystem SI { get; } = new UnitSystem(new BaseUnits(
+            LengthUnit.Meter,
+            MassUnit.Kilogram,
+            DurationUnit.Second,
+            ElectricCurrentUnit.Ampere,
+            TemperatureUnit.Kelvin,
+            AmountOfSubstanceUnit.Mole,
+            LuminousIntensityUnit.Candela));
+
+        // TODO Figure out the undefined ones
+        // https://no.wikipedia.org/wiki/CGS-systemet
+        /// <summary>
+        /// Gets the centimeter-gram-second system.
+        /// https://www.sizes.com/units/sys_cgs_em.htm
+        /// </summary>
+        public static UnitSystem CGS { get; } = new UnitSystem(new BaseUnits(
+            LengthUnit.Centimeter,
+            MassUnit.Gram,
+            DurationUnit.Second,
+            ElectricCurrentUnit.Undefined,      // TODO Add Abampere (abA): https://www.sizes.com/units/abampere.htm
+            TemperatureUnit.Undefined,          // TODO Whaaaa?
+            AmountOfSubstanceUnit.Undefined,
+            LuminousIntensityUnit.Undefined));
+
+        // TODO Figure out the undefined ones
+        /// <summary>
+        /// Gets the foot-pound-second system.
+        /// https://www.sizes.com/units/sys_ftlbsec.htm
+        /// https://en.wikipedia.org/wiki/Foot%E2%80%93pound%E2%80%93second_system
+        /// </summary>
+        public static UnitSystem FPS { get; } = new UnitSystem(new BaseUnits(
+            LengthUnit.Foot,
+            MassUnit.Pound,
+            DurationUnit.Second,
+            ElectricCurrentUnit.Undefined,     // TODO 1 fpsm unit = 117.581866 cgsm unit (Biot-second) from wiki
+            TemperatureUnit.Undefined,         // TODO Is it Fahrenheit??
+            AmountOfSubstanceUnit.Undefined,   // TODO Add PoundMole (lb-mol) = 273.16e24
+            LuminousIntensityUnit.Undefined)); // TODO Add FootCandle?
     }
 }
