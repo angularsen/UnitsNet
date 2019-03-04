@@ -53,7 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance,
                 new UnitInfo<CapacitanceUnit>[] {
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, BaseUnits.Undefined),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, BaseUnits.Undefined),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, BaseUnits.Undefined),
