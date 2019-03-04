@@ -193,6 +193,10 @@
     {
       "SingularName": "KilogramPerLiter",
       "PluralName": "KilogramsPerLiter",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x*1e3",
       "FromBaseToUnitFunc": "x/1e3",
       "Localization": [

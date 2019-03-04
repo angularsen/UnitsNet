@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram)),
                     new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, BaseUnits.Undefined),
