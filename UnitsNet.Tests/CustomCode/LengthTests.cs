@@ -167,17 +167,21 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void As_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var imperialLength = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(0.0508, imperialLength.As(UnitSystem.SI));
+            var inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
         }
 
         [Fact]
-        public void ToUnit_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var imperialLength = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(Length.FromMeters(0.0508), imperialLength.ToUnit(UnitSystem.SI));
+            var inches = new Length(2.0, LengthUnit.Inch);
+
+            var inSI = inches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
     }
 }
