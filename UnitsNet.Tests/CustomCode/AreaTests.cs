@@ -92,17 +92,21 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void As_ImperialGivenSIUnitSystem_ReturnsSIValue()
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var imperialArea = new Area(2.0, AreaUnit.SquareInch);
-            Assert.Equal(0.00129032, imperialArea.As(UnitSystem.SI));
+            var squareInches = new Area(2.0, AreaUnit.SquareInch);
+            Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
         }
 
         [Fact]
-        public void ToUnit_ImperialGivenSIUnitSystem_ReturnsSIValue()
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var imperialArea = new Area(2.0, AreaUnit.SquareInch);
-            Assert.Equal(Area.FromSquareMeters(0.00129032), imperialArea.ToUnit(UnitSystem.SI));
+            var squareInches = new Area(2.0, AreaUnit.SquareInch);
+
+            var inSI = squareInches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.00129032, inSI.Value);
+            Assert.Equal(AreaUnit.SquareMeter, inSI.Unit);
         }
     }
 }

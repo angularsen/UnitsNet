@@ -62,17 +62,21 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void As_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
-            Assert.Equal(2110.11170524, imperialEnergy.As(UnitSystem.SI));
+            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
         }
 
         [Fact]
-        public void ToUnit_ImperialQuantityGivenSIUnitSystem_ReturnsSIValue()
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var imperialEnergy = new Energy(2.0, EnergyUnit.BritishThermalUnit);
-            Assert.Equal(Energy.FromJoules(2110.11170524), imperialEnergy.ToUnit(UnitSystem.SI));
+            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+
+            var inSI = btus.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(2110.11170524, inSI.Value);
+            Assert.Equal(EnergyUnit.Joule, inSI.Unit);
         }
     }
 }
