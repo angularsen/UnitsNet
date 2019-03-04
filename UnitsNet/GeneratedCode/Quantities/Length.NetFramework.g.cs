@@ -871,11 +871,7 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        /// <summary>
-        ///     Converts the quantity value into units compatible with the given <see cref="UnitSystem"/>.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
-        /// <returns>The converted value with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
@@ -913,11 +909,7 @@ namespace UnitsNet
             return ToUnit(unitAsLengthUnit);
         }
 
-        /// <summary>
-        ///     Converts the quantity into a quantity which has units compatible with the given <see cref="UnitSystem"/>.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
-        /// <returns>A new quantity with units compatible with the given <see cref="UnitSystem"/>.</returns>
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Length ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
