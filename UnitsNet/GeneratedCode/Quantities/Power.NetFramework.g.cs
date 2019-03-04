@@ -843,6 +843,16 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
@@ -871,8 +881,24 @@ namespace UnitsNet
             return ToUnit(unitAsPowerUnit);
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Power ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

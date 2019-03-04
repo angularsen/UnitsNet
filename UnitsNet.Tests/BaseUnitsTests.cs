@@ -136,5 +136,45 @@ namespace UnitsNet.Tests
 
             Assert.Equal("[Length]: m, [Mass]: kg, [Time]: s, [Current]: A, [Temperature]: K, [Amount]: mol, [LuminousIntensity]: cd", siBaseUnits.ToString());
         }
+
+        [Fact]
+        public void IsFullyDefined_TrueIfAllBaseUnitDefined()
+        {
+            Assert.True(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
+                LuminousIntensityUnit.Candela).IsFullyDefined);
+        }
+    
+        [Fact]
+        public void IsFullyDefined_FalseIfAnyBaseUnitIsUndefined()
+        {
+            Assert.False(new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole
+                ).IsFullyDefined);
+        }
     }
 }

@@ -556,6 +556,16 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
@@ -584,8 +594,24 @@ namespace UnitsNet
             return ToUnit(unitAsLapseRateUnit);
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public LapseRate ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

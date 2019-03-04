@@ -22,19 +22,7 @@ namespace UnitsNet
             if(baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            if(baseUnits.Length == LengthUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.Mass == MassUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.Time == DurationUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.Current == ElectricCurrentUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.Temperature == TemperatureUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.Amount == AmountOfSubstanceUnit.Undefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
-            if(baseUnits.LuminousIntensity == LuminousIntensityUnit.Undefined)
+            if(!baseUnits.IsFullyDefined)
                 throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
 
             BaseUnits = baseUnits;

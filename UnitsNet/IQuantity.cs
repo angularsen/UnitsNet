@@ -29,7 +29,7 @@ namespace UnitsNet
         QuantityInfo QuantityInfo { get; }
 
         /// <summary>
-        ///     Dynamically convert to another unit representation.
+        ///     Gets the value in the given unit.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
@@ -37,24 +37,38 @@ namespace UnitsNet
         double As(Enum unit);
 
         /// <summary>
+        ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
+        /// <returns>The converted value.</returns>
+        double As(UnitSystem unitSystem);
+
+        /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
 
         /// <summary>
-        ///     The value this quantity was constructed with. Should be seen in combination with <see cref="Unit"/>.
+        ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
         double Value { get; }
 
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     Converts to a quantity with the given unit representation, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
-        /// <returns>A new quantity with the given unit as default unit representation.</returns>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity ToUnit(Enum unit);
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with the determined unit.</returns>
+        IQuantity ToUnit(UnitSystem unitSystem);
+
+        /// <summary>
+        ///     Gets the string representation of value and unit. Uses two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
@@ -103,10 +117,17 @@ namespace UnitsNet
         new QuantityInfo<TUnitType> QuantityInfo { get; }
 
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     Converts to a quantity with the given unit representation, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
-        /// <param name="unit"></param>
-        /// <returns></returns>
+        /// <param name="unit">The unit enum value.</param>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
+
+        /// <summary>
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with the determined unit.</returns>
+        new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
     }
 }

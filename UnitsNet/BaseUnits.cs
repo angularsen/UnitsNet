@@ -46,6 +46,14 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
+
+            IsFullyDefined = Length != LengthUnit.Undefined &&
+                Mass != MassUnit.Undefined &&
+                Time != DurationUnit.Undefined &&
+                Current != ElectricCurrentUnit.Undefined &&
+                Temperature != TemperatureUnit.Undefined &&
+                Amount != AmountOfSubstanceUnit.Undefined &&
+                LuminousIntensity != LuminousIntensityUnit.Undefined;
         }
 
         /// <inheritdoc />
@@ -181,5 +189,10 @@ namespace UnitsNet
         /// Gets the luminous intensity unit (J).
         /// </summary>
         public LuminousIntensityUnit LuminousIntensity{ get; }
+
+        /// <summary>
+        /// Gets whether or not all of the base units are defined.
+        /// </summary>
+        public bool IsFullyDefined { get; }
     }
 }
