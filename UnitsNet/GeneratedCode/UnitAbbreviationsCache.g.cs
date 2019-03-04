@@ -492,6 +492,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"дюйм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"km"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"км"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.LinearFeet, new string[]{"LF"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Meter, new string[]{"m"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Meter, new string[]{"м"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Microinch, new string[]{"µin"}),

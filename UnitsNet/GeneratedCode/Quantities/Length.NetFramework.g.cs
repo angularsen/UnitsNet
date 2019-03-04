@@ -58,6 +58,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.LinearFeet, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(length: LengthUnit.Microinch)),
                     new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
@@ -220,6 +221,11 @@ namespace UnitsNet
         ///     Get Length in Kilometers.
         /// </summary>
         public double Kilometers => As(LengthUnit.Kilometer);
+
+        /// <summary>
+        ///     Get Length in LinearFeets.
+        /// </summary>
+        public double LinearFeets => As(LengthUnit.LinearFeet);
 
         /// <summary>
         ///     Get Length in Meters.
@@ -391,6 +397,15 @@ namespace UnitsNet
         {
             double value = (double) kilometers;
             return new Length(value, LengthUnit.Kilometer);
+        }
+        /// <summary>
+        ///     Get Length from LinearFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromLinearFeets(QuantityValue linearfeets)
+        {
+            double value = (double) linearfeets;
+            return new Length(value, LengthUnit.LinearFeet);
         }
         /// <summary>
         ///     Get Length from Meters.
@@ -919,6 +934,7 @@ namespace UnitsNet
                 case LengthUnit.Foot: return _value*0.3048;
                 case LengthUnit.Inch: return _value*2.54e-2;
                 case LengthUnit.Kilometer: return (_value) * 1e3d;
+                case LengthUnit.LinearFeet: return _value*0.3048;
                 case LengthUnit.Meter: return _value;
                 case LengthUnit.Microinch: return _value*2.54e-8;
                 case LengthUnit.Micrometer: return (_value) * 1e-6d;
@@ -955,6 +971,7 @@ namespace UnitsNet
                 case LengthUnit.Foot: return baseUnitValue/0.3048;
                 case LengthUnit.Inch: return baseUnitValue/2.54e-2;
                 case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
+                case LengthUnit.LinearFeet: return baseUnitValue/0.3048;
                 case LengthUnit.Meter: return baseUnitValue;
                 case LengthUnit.Microinch: return baseUnitValue/2.54e-8;
                 case LengthUnit.Micrometer: return (baseUnitValue) / 1e-6d;

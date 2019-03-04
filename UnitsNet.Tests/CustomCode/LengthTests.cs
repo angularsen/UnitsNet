@@ -28,6 +28,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilometersInOneMeter => 1E-3;
 
+        protected override double LinearFeetsInOneMeter => 3.280839895013123;
+
         protected override double MetersInOneMeter => 1;
 
         protected override double MicroinchesInOneMeter => 39370078.74015748;

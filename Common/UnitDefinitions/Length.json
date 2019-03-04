@@ -279,6 +279,18 @@
           "Abbreviations": [ "twip" ]
         }
       ]
+    },
+    {
+      "SingularName": "LinearFeet",
+      "PluralName": "LinearFeets",
+      "FromUnitToBaseFunc": "x*0.3048",
+      "FromBaseToUnitFunc": "x/0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "LF" ]
+        }
+      ]
     }
   ]
 }

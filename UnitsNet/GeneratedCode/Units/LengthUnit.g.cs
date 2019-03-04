@@ -34,6 +34,7 @@ namespace UnitsNet.Units
         Foot,
         Inch,
         Kilometer,
+        LinearFeet,
         Meter,
         Microinch,
         Micrometer,

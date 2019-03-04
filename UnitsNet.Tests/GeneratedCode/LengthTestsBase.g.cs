@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double FeetInOneMeter { get; }
         protected abstract double InchesInOneMeter { get; }
         protected abstract double KilometersInOneMeter { get; }
+        protected abstract double LinearFeetsInOneMeter { get; }
         protected abstract double MetersInOneMeter { get; }
         protected abstract double MicroinchesInOneMeter { get; }
         protected abstract double MicrometersInOneMeter { get; }
@@ -66,6 +67,7 @@ namespace UnitsNet.Tests
         protected virtual double FeetTolerance { get { return 1e-5; } }
         protected virtual double InchesTolerance { get { return 1e-5; } }
         protected virtual double KilometersTolerance { get { return 1e-5; } }
+        protected virtual double LinearFeetsTolerance { get { return 1e-5; } }
         protected virtual double MetersTolerance { get { return 1e-5; } }
         protected virtual double MicroinchesTolerance { get { return 1e-5; } }
         protected virtual double MicrometersTolerance { get { return 1e-5; } }
@@ -113,6 +115,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetInOneMeter, meter.Feet, FeetTolerance);
             AssertEx.EqualTolerance(InchesInOneMeter, meter.Inches, InchesTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
+            AssertEx.EqualTolerance(LinearFeetsInOneMeter, meter.LinearFeets, LinearFeetsTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.Meters, MetersTolerance);
             AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.Microinches, MicroinchesTolerance);
             AssertEx.EqualTolerance(MicrometersInOneMeter, meter.Micrometers, MicrometersTolerance);
@@ -140,6 +143,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.LinearFeet).LinearFeets, LinearFeetsTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
@@ -181,6 +185,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
             AssertEx.EqualTolerance(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
+            AssertEx.EqualTolerance(LinearFeetsInOneMeter, meter.As(LengthUnit.LinearFeet), LinearFeetsTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
             AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), MicroinchesTolerance);
             AssertEx.EqualTolerance(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), MicrometersTolerance);
@@ -233,6 +238,10 @@ namespace UnitsNet.Tests
             var kilometerQuantity = meter.ToUnit(LengthUnit.Kilometer);
             AssertEx.EqualTolerance(KilometersInOneMeter, (double)kilometerQuantity.Value, KilometersTolerance);
             Assert.Equal(LengthUnit.Kilometer, kilometerQuantity.Unit);
+
+            var linearfeetQuantity = meter.ToUnit(LengthUnit.LinearFeet);
+            AssertEx.EqualTolerance(LinearFeetsInOneMeter, (double)linearfeetQuantity.Value, LinearFeetsTolerance);
+            Assert.Equal(LengthUnit.LinearFeet, linearfeetQuantity.Unit);
 
             var meterQuantity = meter.ToUnit(LengthUnit.Meter);
             AssertEx.EqualTolerance(MetersInOneMeter, (double)meterQuantity.Value, MetersTolerance);
@@ -303,6 +312,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
             AssertEx.EqualTolerance(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
             AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromLinearFeets(meter.LinearFeets).Meters, LinearFeetsTolerance);
             AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
             AssertEx.EqualTolerance(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
             AssertEx.EqualTolerance(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
