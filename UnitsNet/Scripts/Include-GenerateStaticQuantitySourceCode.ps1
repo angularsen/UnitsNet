@@ -36,6 +36,12 @@ namespace UnitsNet
     /// </summary>
     public static partial class Quantity
     {
+        /// <summary>
+        /// Dynamically constructs a quantity of the given <see cref="QuantityType"/> with the value in the quantity's base units.
+        /// </summary>
+        /// <param name="quantityType">The <see cref="QuantityType"/> of the quantity to create.</param>
+        /// <param name="value">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
         public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
         {
             switch(quantityType)
@@ -133,14 +139,17 @@ namespace UnitsNet
 
             var parser = QuantityParser.Default;
 
+            switch(quantityType)
+            {
 "@; foreach ($quantity in $quantities) {
   $quantityName = $quantity.Name;@"
-            if (quantityType == typeof($quantityName))
-                return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
-
+                case Type _ when quantityType == typeof($quantityName):
+                    return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
 "@; }@"
-            throw new ArgumentException(
-                $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+            default:
+                throw new ArgumentException(
+                    $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+            }
         }
 
         /// <summary>
