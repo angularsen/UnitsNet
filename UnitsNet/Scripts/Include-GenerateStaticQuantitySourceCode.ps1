@@ -146,9 +146,9 @@ namespace UnitsNet
                 case Type _ when quantityType == typeof($quantityName):
                     return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
 "@; }@"
-            default:
-                throw new ArgumentException(
-                    $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+                default:
+                    throw new ArgumentException(
+                        $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
             }
         }
 

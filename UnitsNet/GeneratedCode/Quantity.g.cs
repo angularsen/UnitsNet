@@ -753,9 +753,9 @@ namespace UnitsNet
                     return parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
-            default:
-                throw new ArgumentException(
-                    $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+                default:
+                    throw new ArgumentException(
+                        $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
             }
         }
 
