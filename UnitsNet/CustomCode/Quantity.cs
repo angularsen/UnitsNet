@@ -15,17 +15,9 @@ namespace UnitsNet
             Types = quantityTypes;
             Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
 
-            // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
-            InfosLazy = new Lazy<QuantityInfo[]>(() => typeof(Length)
-                .Wrap()
-                .Assembly
-                .GetExportedTypes()
-                .Where(typeof(IQuantity).IsAssignableFrom)
-                .Where(t => t.Wrap().IsClass || t.Wrap().IsValueType) // Future-proofing: Considering changing quantities from struct to class
-                .Select(Activator.CreateInstance)
-                .Cast<IQuantity>()
-                .Select(q => q.QuantityInfo)
-                .OrderBy(q => q.Name)
+            InfosLazy = new Lazy<QuantityInfo[]>(() => Types
+                .Select(quantityType => FromQuantityType(quantityType, 0.0).QuantityInfo)
+                .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
         }
 

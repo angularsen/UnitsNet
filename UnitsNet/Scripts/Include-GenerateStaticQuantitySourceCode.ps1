@@ -36,6 +36,20 @@ namespace UnitsNet
     /// </summary>
     public static partial class Quantity
     {
+        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
+        {
+            switch(quantityType)
+            {
+"@; foreach ($quantity in $quantities) {
+        $quantityName = $quantity.Name;@"
+                case QuantityType.$quantityName`:
+                    return $quantityName.From(value, $quantityName.BaseUnit);
+"@; }@"
+                default:
+                    return null;
+            }
+        }
+
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
         public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
         {
