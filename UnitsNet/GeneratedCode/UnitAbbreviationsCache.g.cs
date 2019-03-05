@@ -180,6 +180,7 @@ namespace UnitsNet
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMeter, new string[]{"kg/m³"}),
                 ("ru-RU", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMeter, new string[]{"kг/м³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMillimeter, new string[]{"kg/mm³"}),
+                ("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerLiter, new string[]{"kg/l"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.KilopoundPerCubicFoot, new string[]{"kip/ft³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.KilopoundPerCubicInch, new string[]{"kip/in³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.MicrogramPerCubicMeter, new string[]{"µg/m³"}),
