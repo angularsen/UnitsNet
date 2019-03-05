@@ -24,7 +24,6 @@ function GenerateStaticQuantitySourceCode([Quantity[]]$quantities, [string]$targ
 
 using System;
 using System.Globalization;
-using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +35,24 @@ namespace UnitsNet
     /// </summary>
     public static partial class Quantity
     {
-        /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
+        /// <summary>
+        /// Dynamically constructs a quantity of the given <see cref="QuantityType"/> with the value in the quantity's base units.
+        /// </summary>
+        /// <param name="quantityType">The <see cref="QuantityType"/> of the quantity to create.</param>
+        /// <param name="value">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
+        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
         {
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
+            switch(quantityType)
             {
-                quantity = default(IQuantity);
-                return false;
+"@; foreach ($quantity in $quantities) {
+        $quantityName = $quantity.Name;@"
+                case QuantityType.$quantityName`:
+                    return $quantityName.From(value, $quantityName.BaseUnit);
+"@; }@"
+                default:
+                    throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
-
-            return TryFrom((QuantityValue) value, unit, out quantity);
         }
 
         /// <summary>
@@ -77,31 +82,6 @@ namespace UnitsNet
             }
         }
 
-        /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-        public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
-
-        /// <summary>
-        ///     Dynamically parse a quantity string representation.
-        /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
-        /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
-        /// <returns>The parsed quantity.</returns>
-        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
-        {
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
-
-            throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
-        }
-
-        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
-
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
@@ -119,24 +99,16 @@ namespace UnitsNet
 
             var parser = QuantityParser.Default;
 
+            switch(quantityType)
+            {
 "@; foreach ($quantity in $quantities) {
   $quantityName = $quantity.Name;@"
-            if (quantityType == typeof($quantityName))
-                return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
-
+                case Type _ when quantityType == typeof($quantityName):
+                    return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
 "@; }@"
-            throw new ArgumentException(
-                $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
-        }
-
-        /// <summary>
-        ///     Get information about the given quantity type.
-        /// </summary>
-        /// <param name="quantityType">The quantity type enum value.</param>
-        /// <returns>Information about the quantity and its units.</returns>
-        public static QuantityInfo GetInfo(QuantityType quantityType)
-        {
-            return Infos.First(qi => qi.QuantityType == quantityType);
+                default:
+                    return false;
+            }
         }
     }
 }
