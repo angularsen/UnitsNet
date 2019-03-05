@@ -187,6 +187,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FromQuantityType_GivenInvalidQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType((QuantityType)(-1), 0.0));
+        }
+
+        [Fact]
         public void FromQuantityType_GivenLengthQuantityType_ReturnsLengthQuantity()
         {
             var fromQuantity = Quantity.FromQuantityType(QuantityType.Length, 0.0);
