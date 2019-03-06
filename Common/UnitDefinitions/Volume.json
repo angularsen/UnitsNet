@@ -60,6 +60,9 @@
     {
       "SingularName": "CubicHectometer",
       "PluralName": "CubicHectometers",
+      "BaseUnits": {
+        "L": "Hectometer"
+      },
       "FromUnitToBaseFunc": "x*1e6",
       "FromBaseToUnitFunc": "x/1e6",
       "Localization": [
