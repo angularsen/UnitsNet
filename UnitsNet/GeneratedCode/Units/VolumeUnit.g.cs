@@ -46,6 +46,7 @@ namespace UnitsNet.Units
         ImperialBeerBarrel,
         ImperialGallon,
         ImperialOunce,
+        ImperialPint,
         KilocubicFoot,
         KilocubicMeter,
         KiloimperialGallon,

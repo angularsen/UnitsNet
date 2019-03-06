@@ -90,7 +90,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegalitersInOneCubicMeter => 0.001;
 
-        [Fact]
+        protected override double ImperialPintsInOneCubicMeter => 1.7597539863927023e3;
+
+        [ Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
             Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);

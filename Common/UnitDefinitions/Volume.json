@@ -459,6 +459,21 @@
           "Abbreviations": [ "ac-ft", "acre-foot", "acre-feet" ]
         }
       ]
+    },
+    {
+      "SingularName": "ImperialPint",
+      "PluralName": "ImperialPints",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x * 5.6826125e-4",
+      "FromBaseToUnitFunc": "x / 5.6826125e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pt (imp.)", "UK pt", "pt", "p" ]
+        }
+      ]
     }
   ]
 }
