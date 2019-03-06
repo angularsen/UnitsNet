@@ -220,6 +220,8 @@ namespace UnitsNet
                     return Volume.From(value, Volume.BaseUnit);
                 case QuantityType.VolumeFlow:
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case QuantityType.VolumePerLength:
+                    return VolumePerLength.From(value, VolumePerLength.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
@@ -277,9 +279,6 @@ namespace UnitsNet
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
-                    return true;
-                case DrillStringCapacityUnit drillStringCapacityUnit:
-                    quantity = DrillStringCapacity.From(value, drillStringCapacityUnit);
                     return true;
                 case DurationUnit durationUnit:
                     quantity = Duration.From(value, durationUnit);
@@ -509,6 +508,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumePerLengthUnit volumePerLengthUnit:
+                    quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -564,8 +566,6 @@ namespace UnitsNet
                     return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
                 case Type _ when quantityType == typeof(Density):
                     return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
-                case Type _ when quantityType == typeof(DrillStringCapacity):
-                    return parser.TryParse<DrillStringCapacity, DrillStringCapacityUnit>(quantityString, formatProvider, DrillStringCapacity.From, out quantity);
                 case Type _ when quantityType == typeof(Duration):
                     return parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity);
                 case Type _ when quantityType == typeof(DynamicViscosity):
@@ -718,6 +718,8 @@ namespace UnitsNet
                     return parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+                case Type _ when quantityType == typeof(VolumePerLength):
+                    return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
                 default:
                     return false;
             }

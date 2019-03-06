@@ -14,42 +14,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     The capacity of drill string is an essential issue in oil well control. The capacity of drillpipe, drill collars or hole is the volume of fluid that can be contained within them. https://en.wikipedia.org/wiki/Oil_well_control#Capacity
+    ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
-    public partial struct DrillStringCapacity : IQuantity<DrillStringCapacityUnit>, IEquatable<DrillStringCapacity>, IComparable, IComparable<DrillStringCapacity>, IConvertible
+    public partial struct VolumePerLength : IQuantity<VolumePerLengthUnit>, IEquatable<VolumePerLength>, IComparable, IComparable<VolumePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -59,12 +42,19 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly DrillStringCapacityUnit? _unit;
+        private readonly VolumePerLengthUnit? _unit;
 
-        static DrillStringCapacity()
+        static VolumePerLength()
         {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<DrillStringCapacityUnit>(QuantityType.DrillStringCapacity, Units, BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+
+            Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
+                new UnitInfo<VolumePerLengthUnit>[] {
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -72,21 +62,36 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public DrillStringCapacity(double numericValue, DrillStringCapacityUnit unit)
+        public VolumePerLength(double numericValue, VolumePerLengthUnit unit)
         {
-            if(unit == DrillStringCapacityUnit.Undefined)
+            if(unit == VolumePerLengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public VolumePerLength(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DrillStringCapacityUnit> Info { get; }
+        public static QuantityInfo<VolumePerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -94,34 +99,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of DrillStringCapacity, which is OilBarrelPerFoot. All conversions go via this value.
+        ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static DrillStringCapacityUnit BaseUnit { get; } = DrillStringCapacityUnit.OilBarrelPerFoot;
+        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of DrillStringCapacity
+        /// Represents the largest possible value of VolumePerLength
         /// </summary>
-        public static DrillStringCapacity MaxValue { get; } = new DrillStringCapacity(double.MaxValue, BaseUnit);
+        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of DrillStringCapacity
+        /// Represents the smallest possible value of VolumePerLength
         /// </summary>
-        public static DrillStringCapacity MinValue { get; } = new DrillStringCapacity(double.MinValue, BaseUnit);
+        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.DrillStringCapacity;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
 
         /// <summary>
-        ///     All units of measurement for the DrillStringCapacity quantity.
+        ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
-        public static DrillStringCapacityUnit[] Units { get; } = Enum.GetValues(typeof(DrillStringCapacityUnit)).Cast<DrillStringCapacityUnit>().Except(new DrillStringCapacityUnit[]{ DrillStringCapacityUnit.Undefined }).ToArray();
+        public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit OilBarrelPerFoot.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static DrillStringCapacity Zero { get; } = new DrillStringCapacity(0, BaseUnit);
+        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
 
         #endregion
 
@@ -132,15 +137,13 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
-        public DrillStringCapacityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        /// <inheritdoc />
+        public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<DrillStringCapacityUnit> QuantityInfo => Info;
+        /// <inheritdoc />
+        public QuantityInfo<VolumePerLengthUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -148,26 +151,31 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => DrillStringCapacity.QuantityType;
+        public QuantityType Type => VolumePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => DrillStringCapacity.BaseDimensions;
+        public BaseDimensions Dimensions => VolumePerLength.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get DrillStringCapacity in LitersPerMeter.
+        ///     Get VolumePerLength in CubicMetersPerMeter.
         /// </summary>
-        public double LitersPerMeter => As(DrillStringCapacityUnit.LiterPerMeter);
+        public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Get DrillStringCapacity in OilBarrelsPerFoot.
+        ///     Get VolumePerLength in LitersPerMeter.
         /// </summary>
-        public double OilBarrelsPerFoot => As(DrillStringCapacityUnit.OilBarrelPerFoot);
+        public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
+
+        /// <summary>
+        ///     Get VolumePerLength in OilBarrelsPerFoot.
+        /// </summary>
+        public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         #endregion
 
@@ -178,7 +186,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(DrillStringCapacityUnit unit)
+        public static string GetAbbreviation(VolumePerLengthUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -188,8 +196,8 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(DrillStringCapacityUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static string GetAbbreviation(VolumePerLengthUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -199,33 +207,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get DrillStringCapacity from LitersPerMeter.
+        ///     Get VolumePerLength from CubicMetersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DrillStringCapacity FromLitersPerMeter(QuantityValue literspermeter)
+        public static VolumePerLength FromCubicMetersPerMeter(QuantityValue cubicmeterspermeter)
         {
-            double value = (double) literspermeter;
-            return new DrillStringCapacity(value, DrillStringCapacityUnit.LiterPerMeter);
+            double value = (double) cubicmeterspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
         }
         /// <summary>
-        ///     Get DrillStringCapacity from OilBarrelsPerFoot.
+        ///     Get VolumePerLength from LitersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DrillStringCapacity FromOilBarrelsPerFoot(QuantityValue oilbarrelsperfoot)
+        public static VolumePerLength FromLitersPerMeter(QuantityValue literspermeter)
+        {
+            double value = (double) literspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
+        }
+        /// <summary>
+        ///     Get VolumePerLength from OilBarrelsPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumePerLength FromOilBarrelsPerFoot(QuantityValue oilbarrelsperfoot)
         {
             double value = (double) oilbarrelsperfoot;
-            return new DrillStringCapacity(value, DrillStringCapacityUnit.OilBarrelPerFoot);
+            return new VolumePerLength(value, VolumePerLengthUnit.OilBarrelPerFoot);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="DrillStringCapacityUnit" /> to <see cref="DrillStringCapacity" />.
+        ///     Dynamically convert from value and unit enum <see cref="VolumePerLengthUnit" /> to <see cref="VolumePerLength" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>DrillStringCapacity unit value.</returns>
-        public static DrillStringCapacity From(QuantityValue value, DrillStringCapacityUnit fromUnit)
+        /// <returns>VolumePerLength unit value.</returns>
+        public static VolumePerLength From(QuantityValue value, VolumePerLengthUnit fromUnit)
         {
-            return new DrillStringCapacity((double)value, fromUnit);
+            return new VolumePerLength((double)value, fromUnit);
         }
 
         #endregion
@@ -254,7 +271,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static DrillStringCapacity Parse(string str)
+        public static VolumePerLength Parse(string str)
         {
             return Parse(str, null);
         }
@@ -281,10 +298,10 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static DrillStringCapacity Parse(string str, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static VolumePerLength Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<DrillStringCapacity, DrillStringCapacityUnit>(
+            return QuantityParser.Default.Parse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From);
@@ -298,7 +315,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out DrillStringCapacity result)
+        public static bool TryParse([CanBeNull] string str, out VolumePerLength result)
         {
             return TryParse(str, null, out result);
         }
@@ -312,10 +329,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out DrillStringCapacity result)
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out VolumePerLength result)
         {
-            return QuantityParser.Default.TryParse<DrillStringCapacity, DrillStringCapacityUnit>(
+            return QuantityParser.Default.TryParse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From,
@@ -331,7 +348,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static DrillStringCapacityUnit ParseUnit(string str)
+        public static VolumePerLengthUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -345,13 +362,14 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static DrillStringCapacityUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static VolumePerLengthUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return UnitParser.Default.Parse<DrillStringCapacityUnit>(str, provider);
+            return UnitParser.Default.Parse<VolumePerLengthUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out DrillStringCapacityUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumePerLengthUnit)"/>
+        public static bool TryParseUnit(string str, out VolumePerLengthUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -365,115 +383,135 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out DrillStringCapacityUnit unit)
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out VolumePerLengthUnit unit)
         {
-            return UnitParser.Default.TryParse<DrillStringCapacityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<VolumePerLengthUnit>(str, provider, out unit);
         }
 
         #endregion
 
         #region Arithmetic Operators
 
-        public static DrillStringCapacity operator -(DrillStringCapacity right)
+        /// <summary>Negate the value.</summary>
+        public static VolumePerLength operator -(VolumePerLength right)
         {
-            return new DrillStringCapacity(-right.Value, right.Unit);
+            return new VolumePerLength(-right.Value, right.Unit);
         }
 
-        public static DrillStringCapacity operator +(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Get <see cref="VolumePerLength"/> from adding two <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator +(VolumePerLength left, VolumePerLength right)
         {
-            return new DrillStringCapacity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        public static DrillStringCapacity operator -(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Get <see cref="VolumePerLength"/> from subtracting two <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator -(VolumePerLength left, VolumePerLength right)
         {
-            return new DrillStringCapacity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        public static DrillStringCapacity operator *(double left, DrillStringCapacity right)
+        /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator *(double left, VolumePerLength right)
         {
-            return new DrillStringCapacity(left * right.Value, right.Unit);
+            return new VolumePerLength(left * right.Value, right.Unit);
         }
 
-        public static DrillStringCapacity operator *(DrillStringCapacity left, double right)
+        /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator *(VolumePerLength left, double right)
         {
-            return new DrillStringCapacity(left.Value * right, left.Unit);
+            return new VolumePerLength(left.Value * right, left.Unit);
         }
 
-        public static DrillStringCapacity operator /(DrillStringCapacity left, double right)
+        /// <summary>Get <see cref="VolumePerLength"/> from dividing <see cref="VolumePerLength"/> by value.</summary>
+        public static VolumePerLength operator /(VolumePerLength left, double right)
         {
-            return new DrillStringCapacity(left.Value / right, left.Unit);
+            return new VolumePerLength(left.Value / right, left.Unit);
         }
 
-        public static double operator /(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Get ratio value from dividing <see cref="VolumePerLength"/> by <see cref="VolumePerLength"/>.</summary>
+        public static double operator /(VolumePerLength left, VolumePerLength right)
         {
-            return left.OilBarrelsPerFoot / right.OilBarrelsPerFoot;
+            return left.CubicMetersPerMeter / right.CubicMetersPerMeter;
         }
 
         #endregion
 
         #region Equality / IComparable
 
-        public static bool operator <=(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if less or equal to.</summary>
+        public static bool operator <=(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
-        public static bool operator >=(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if greater than or equal to.</summary>
+        public static bool operator >=(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
-        public static bool operator <(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if less than.</summary>
+        public static bool operator <(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
-        public static bool operator >(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if greater than.</summary>
+        public static bool operator >(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
-        public static bool operator ==(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(VolumePerLength left, VolumePerLength right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(DrillStringCapacity left, DrillStringCapacity right)
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(VolumePerLength left, VolumePerLength right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is DrillStringCapacity objDrillStringCapacity)) throw new ArgumentException("Expected type DrillStringCapacity.", nameof(obj));
+            if(!(obj is VolumePerLength objVolumePerLength)) throw new ArgumentException("Expected type VolumePerLength.", nameof(obj));
 
-            return CompareTo(objDrillStringCapacity);
+            return CompareTo(objVolumePerLength);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        public int CompareTo(DrillStringCapacity other)
+        /// <inheritdoc />
+        public int CompareTo(VolumePerLength other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is DrillStringCapacity objDrillStringCapacity))
+            if(obj is null || !(obj is VolumePerLength objVolumePerLength))
                 return false;
 
-            return Equals(objDrillStringCapacity);
+            return Equals(objVolumePerLength);
         }
 
-        public bool Equals(DrillStringCapacity other)
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(VolumePerLength other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another DrillStringCapacity within the given absolute or relative tolerance.
+        ///     Compare equality to another VolumePerLength within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -511,7 +549,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(DrillStringCapacity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VolumePerLength other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -525,7 +563,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current DrillStringCapacity.</returns>
+        /// <returns>A hash code for the current VolumePerLength.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -535,64 +573,105 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((DrillStringCapacityUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DrillStringCapacityUnit unit)
+        public double As(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((DrillStringCapacityUnit) unit);
-
-        /// <summary>
-        ///     Converts this DrillStringCapacity to another DrillStringCapacity with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A DrillStringCapacity with the specified unit.</returns>
-        public DrillStringCapacity ToUnit(DrillStringCapacityUnit unit)
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
         {
-            var convertedValue = AsBaseNumericType(unit);
-            return new DrillStringCapacity(convertedValue, unit);
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
         }
 
-        IQuantity<DrillStringCapacityUnit> IQuantity<DrillStringCapacityUnit>.ToUnit(DrillStringCapacityUnit unit) => ToUnit(unit);
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-        public IQuantity ToUnit(Enum unit) => ToUnit((DrillStringCapacityUnit) unit);
+            return As(unitAsVolumePerLengthUnit);
+        }
+
+        /// <summary>
+        ///     Converts this VolumePerLength to another VolumePerLength with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A VolumePerLength with the specified unit.</returns>
+        public VolumePerLength ToUnit(VolumePerLengthUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new VolumePerLength(convertedValue, unit);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumePerLengthUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public VolumePerLength ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case DrillStringCapacityUnit.LiterPerMeter: return _value/521.61089238;
-                case DrillStringCapacityUnit.OilBarrelPerFoot: return _value;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return _value;
+                case VolumePerLengthUnit.LiterPerMeter: return _value/1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return _value/1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(DrillStringCapacityUnit unit)
+        private double GetValueAs(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {
-                case DrillStringCapacityUnit.LiterPerMeter: return baseUnitValue*521.61089238;
-                case DrillStringCapacityUnit.OilBarrelPerFoot: return baseUnitValue;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return baseUnitValue;
+                case VolumePerLengthUnit.LiterPerMeter: return baseUnitValue*1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return baseUnitValue*1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -603,22 +682,22 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get default string representation of value and unit.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString("g");
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(provider, 2);
+            return ToString("g", provider);
         }
 
         /// <summary>
@@ -626,7 +705,8 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -640,17 +720,41 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<VolumePerLengthUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -664,7 +768,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(DrillStringCapacity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -674,12 +778,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(DrillStringCapacity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(DrillStringCapacity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -719,21 +823,21 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider provider)
         {
-            return ToString(provider);
+            return ToString("g", provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(DrillStringCapacity))
+            if(conversionType == typeof(VolumePerLength))
                 return this;
-            else if(conversionType == typeof(DrillStringCapacityUnit))
+            else if(conversionType == typeof(VolumePerLengthUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return DrillStringCapacity.QuantityType;
+                return VolumePerLength.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return DrillStringCapacity.BaseDimensions;
+                return VolumePerLength.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(DrillStringCapacity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

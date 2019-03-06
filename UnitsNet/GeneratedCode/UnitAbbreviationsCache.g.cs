@@ -207,8 +207,6 @@ namespace UnitsNet
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicCentimeter, new string[]{"t/cm³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMeter, new string[]{"t/m³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMillimeter, new string[]{"t/mm³"}),
-                ("en-US", typeof(DrillStringCapacityUnit), (int)DrillStringCapacityUnit.LiterPerMeter, new string[]{"l/m"}),
-                ("en-US", typeof(DrillStringCapacityUnit), (int)DrillStringCapacityUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"d", "day", "days"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"д"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"h", "hr", "hrs", "hour", "hours"}),
@@ -1138,6 +1136,9 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerHour, new string[]{"gal (U.S.)/h"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerMinute, new string[]{"gal (U.S.)/min", "GPM"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerSecond, new string[]{"gal (U.S.)/s"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicMeterPerMeter, new string[]{"m³/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.LiterPerMeter, new string[]{"l/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
             };
     }
 }
