@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         DtpPoint,
         Fathom,
         Foot,
+        Hand,
         Inch,
         Kilometer,
         Meter,

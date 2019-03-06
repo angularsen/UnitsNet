@@ -279,6 +279,21 @@
           "Abbreviations": [ "twip" ]
         }
       ]
+    },
+    {
+      "SingularName": "Hand",
+      "PluralName": "Hands",
+      "BaseUnits": {
+        "L": "Hand"
+      },
+      "FromUnitToBaseFunc": "x * 1.016e-1",
+      "FromBaseToUnitFunc": "x / 1.016e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "h", "hh" ]
+        }
+      ]
     }
   ]
 }

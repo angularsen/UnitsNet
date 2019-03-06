@@ -53,7 +53,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
-        [Fact]
+        protected override double HandsInOneMeter => 9.8425196850393701;
+
+        [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
             Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);

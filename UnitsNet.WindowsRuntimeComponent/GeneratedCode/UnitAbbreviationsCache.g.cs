@@ -489,6 +489,7 @@ namespace UnitsNet
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Fathom, new string[]{"fathom"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"ft", "'", "′"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"фут"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.Hand, new string[]{"h", "hh"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"in", "\"", "″"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"дюйм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"km"}),
