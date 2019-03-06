@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialBeerBarrel, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, BaseUnits.Undefined),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, new BaseUnits(length: LengthUnit.Decimeter)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, BaseUnits.Undefined),

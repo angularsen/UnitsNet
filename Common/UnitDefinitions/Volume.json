@@ -463,6 +463,9 @@
     {
       "SingularName": "ImperialPint",
       "PluralName": "ImperialPints",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
       "FromUnitToBaseFunc": "x * 5.6826125e-4",
       "FromBaseToUnitFunc": "x / 5.6826125e-4",
       "Localization": [
