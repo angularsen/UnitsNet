@@ -19,66 +19,41 @@ function GenerateStaticQuantitySourceCode([Quantity[]]$quantities, [string]$targ
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Linq;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-
-#if WINDOWS_UWP
-using FromValue = System.Double;
-#else
-using FromValue = UnitsNet.QuantityValue;
-#endif
 
 namespace UnitsNet
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
     /// </summary>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    static partial class Quantity
+    public static partial class Quantity
     {
-#if !WINDOWS_UWP
-        /// <inheritdoc cref="TryFrom(FromValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
+        /// <summary>
+        /// Dynamically constructs a quantity of the given <see cref="QuantityType"/> with the value in the quantity's base units.
+        /// </summary>
+        /// <param name="quantityType">The <see cref="QuantityType"/> of the quantity to create.</param>
+        /// <param name="value">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
+        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
         {
-            // Implicit cast to FromValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
+            switch(quantityType)
             {
-                quantity = default(IQuantity);
-                return false;
+"@; foreach ($quantity in $quantities) {
+        $quantityName = $quantity.Name;@"
+                case QuantityType.$quantityName`:
+                    return $quantityName.From(value, $quantityName.BaseUnit);
+"@; }@"
+                default:
+                    throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
-
-            return TryFrom((FromValue) value, unit, out quantity);
         }
-#endif
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -87,12 +62,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-         static bool TryFrom(FromValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
         {
             switch (unit)
             {
@@ -112,60 +82,15 @@ namespace UnitsNet
             }
         }
 
-        /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
-
-        /// <summary>
-        ///     Dynamically parse a quantity string representation.
-        /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
-        /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
-        /// <returns>The parsed quantity.</returns>
-        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
-        {
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
-
-            throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
-        }
-
-        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
-
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
+        public static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
         {
             quantity = default(IQuantity);
 
@@ -174,27 +99,17 @@ namespace UnitsNet
 
             var parser = QuantityParser.Default;
 
+            switch(quantityType)
+            {
 "@; foreach ($quantity in $quantities) {
   $quantityName = $quantity.Name;@"
-            if (quantityType == typeof($quantityName))
-                return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
-
+                case Type _ when quantityType == typeof($quantityName):
+                    return parser.TryParse<$quantityName, $($quantityName)Unit>(quantityString, formatProvider, $quantityName.From, out quantity);
 "@; }@"
-            throw new ArgumentException(
-                $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+                default:
+                    return false;
+            }
         }
-
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get information about the given quantity type.
-        /// </summary>
-        /// <param name="quantityType">The quantity type enum value.</param>
-        /// <returns>Information about the quantity and its units.</returns>
-        public static QuantityInfo GetInfo(QuantityType quantityType)
-        {
-            return Infos.First(qi => qi.QuantityType == quantityType);
-        }
-#endif
     }
 }
 "@;

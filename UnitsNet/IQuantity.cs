@@ -1,25 +1,8 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -28,7 +11,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents a quantity.
     /// </summary>
-    public partial interface IQuantity
+    public interface IQuantity : IFormattable
     {
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -40,54 +23,55 @@ namespace UnitsNet
         /// </summary>
         BaseDimensions Dimensions { get; }
 
-#if !WINDOWS_UWP
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>
         QuantityInfo QuantityInfo { get; }
-#endif
 
         /// <summary>
-        ///     Dynamically convert to another unit representation.
+        ///     Gets the value in the given unit.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-#if WINDOWS_UWP
-        double As(object unit);
-#else
         double As(Enum unit);
-#endif
 
         /// <summary>
-        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
+        ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>.
         /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
+        /// <returns>The converted value.</returns>
+        double As(UnitSystem unitSystem);
 
-#if WINDOWS_UWP
-        object Unit { get; }
-#else
-        Enum Unit { get; }
-#endif
-
-#if !WINDOWS_UWP
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
+        /// </summary>
+        Enum Unit { get; }
+
+        /// <summary>
+        ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
+        /// </summary>
+        double Value { get; }
+
+        /// <summary>
+        ///     Converts to a quantity with the given unit representation, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
-        /// <returns>A new quantity with the given unit as default unit representation.</returns>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity ToUnit(Enum unit);
-#endif
-    }
 
-#if !WINDOWS_UWP
-
-    public partial interface IQuantity
-    {
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with the determined unit.</returns>
+        IQuantity ToUnit(UnitSystem unitSystem);
+
+        /// <summary>
+        ///     Gets the string representation of value and unit. Uses two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         string ToString([CanBeNull] IFormatProvider provider);
 
         /// <summary>
@@ -95,7 +79,8 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix);
 
         /// <summary>
@@ -104,42 +89,19 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
-#else
-
-    public partial interface IQuantity
-    {
-        /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString([CanBeNull] string cultureName);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString(string cultureName, int significantDigitsAfterRadix);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args);
-    }
-
-#endif
-
-#if !WINDOWS_UWP
+    /// <summary>
+    ///     A stronger typed interface where the unit enum type is known, to avoid passing in the
+    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
+    /// </summary>
+    /// <example>
+    ///     IQuantity{LengthUnit} length;
+    ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
+    /// </example>
     public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
     {
         /// <summary>
@@ -155,11 +117,17 @@ namespace UnitsNet
         new QuantityInfo<TUnitType> QuantityInfo { get; }
 
         /// <summary>
-        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     Converts to a quantity with the given unit representation, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
-        /// <param name="unit"></param>
-        /// <returns></returns>
+        /// <param name="unit">The unit enum value.</param>
+        /// <returns>A new quantity with the given unit.</returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
+
+        /// <summary>
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with the determined unit.</returns>
+        new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
     }
-#endif
 }

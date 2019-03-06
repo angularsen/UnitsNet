@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -72,6 +54,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerSquareMeter.
         /// </summary>
@@ -102,7 +85,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -174,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareCentimeter.
+        /// </summary>
+        public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Irradiation in JoulesPerSquareMeter.
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
@@ -182,6 +172,11 @@ namespace UnitsNet
         ///     Get Irradiation in JoulesPerSquareMillimeter.
         /// </summary>
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Get Irradiation in KilojoulesPerSquareMeter.
+        /// </summary>
+        public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
@@ -224,6 +219,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Irradiation from JoulesPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromJoulesPerSquareCentimeter(double joulespersquarecentimeter)
+        {
+            double value = (double) joulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
+        }
+        /// <summary>
         ///     Get Irradiation from JoulesPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -242,6 +247,16 @@ namespace UnitsNet
         {
             double value = (double) joulespersquaremillimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Irradiation from KilojoulesPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromKilojoulesPerSquareMeter(double kilojoulespersquaremeter)
+        {
+            double value = (double) kilojoulespersquaremeter;
+            return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
         /// <summary>
         ///     Get Irradiation from KilowattHoursPerSquareMeter.
@@ -554,8 +569,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return _value*1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return _value;
                 case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
@@ -572,8 +589,10 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return baseUnitValue/1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
                 case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:
@@ -645,6 +664,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

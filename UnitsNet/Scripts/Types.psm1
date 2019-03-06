@@ -1,4 +1,4 @@
-class Quantity
+﻿class Quantity
 {
   [string]$Name
   [string]$XmlDocSummary
@@ -18,10 +18,22 @@ class Unit
   [string]$PluralName
   [string]$XmlDocSummary
   [string]$XmlDocRemarks
+  [BaseUnits]$BaseUnits
   [string]$FromUnitToBaseFunc
   [string]$FromBaseToUnitFunc
   [string[]]$Prefixes = @()
   [Localization[]]$Localization = @()
+}
+
+class BaseUnits
+{
+    [string]$Length
+    [string]$Mass
+    [string]$Time
+    [string]$ElectricCurrent
+    [string]$Temperature
+    [string]$AmountOfSubstance
+    [string]$LuminousIntensity
 }
 
 class Localization
@@ -40,4 +52,11 @@ class BaseDimensions
     [int]$Temperature = 0
     [int]$AmountOfSubstance = 0
     [int]$LuminousIntensity = 0
+}
+
+class GeneratorArgs
+{
+    [Quantity]$Quantity
+    [Unit]$BaseUnit
+    [string]$UnitEnumName
 }

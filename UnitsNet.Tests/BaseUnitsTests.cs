@@ -1,23 +1,5 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using UnitsNet.Units;
@@ -110,12 +92,89 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UndefinedHasAllBaseUnitsAsUndefined()
+        {
+            Assert.Equal(LengthUnit.Undefined, BaseUnits.Undefined.Length);
+            Assert.Equal(MassUnit.Undefined, BaseUnits.Undefined.Mass);
+            Assert.Equal(DurationUnit.Undefined, BaseUnits.Undefined.Time);
+            Assert.Equal(ElectricCurrentUnit.Undefined, BaseUnits.Undefined.Current);
+            Assert.Equal(TemperatureUnit.Undefined, BaseUnits.Undefined.Temperature);
+            Assert.Equal(AmountOfSubstanceUnit.Undefined, BaseUnits.Undefined.Amount);
+            Assert.Equal(LuminousIntensityUnit.Undefined, BaseUnits.Undefined.LuminousIntensity);
+        }
+
+        [Fact]
+        public void UndefinedIsSubsetOfUndefined()
+        {
+            Assert.True(BaseUnits.Undefined.IsSubsetOf(BaseUnits.Undefined));
+        }
+
+        [Fact]
+        public void IsSubsetOfReturnsFalseWithNull()
+        {
+            Assert.False(siBaseUnits.IsSubsetOf(null));
+        }
+
+        [Fact]
+        public void ExistsInWorksCorrectly()
+        {
+            Assert.False(BaseUnits.Undefined.IsSubsetOf(siBaseUnits));
+            Assert.False(siBaseUnits.IsSubsetOf(BaseUnits.Undefined));
+
+            var meterBaseUnits = new BaseUnits(LengthUnit.Meter);
+            Assert.True(meterBaseUnits.IsSubsetOf(siBaseUnits));
+
+            // Not all units in siBaseUnits will exist in meterBaseUnits
+            Assert.False(siBaseUnits.IsSubsetOf(meterBaseUnits));
+        }
+
+        [Fact]
         public void ToStringGivesExpectedResult()
         {
             var siBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
                 ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
 
             Assert.Equal("[Length]: m, [Mass]: kg, [Time]: s, [Current]: A, [Temperature]: K, [Amount]: mol, [LuminousIntensity]: cd", siBaseUnits.ToString());
+        }
+
+        [Fact]
+        public void IsFullyDefined_TrueIfAllBaseUnitDefined()
+        {
+            Assert.True(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
+                LuminousIntensityUnit.Candela).IsFullyDefined);
+        }
+    
+        [Fact]
+        public void IsFullyDefined_FalseIfAnyBaseUnitIsUndefined()
+        {
+            Assert.False(new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, amount: AmountOfSubstanceUnit.Mole,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin,
+                luminousIntensity: LuminousIntensityUnit.Candela).IsFullyDefined);
+
+            Assert.False(new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second,
+                current: ElectricCurrentUnit.Ampere, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole
+                ).IsFullyDefined);
         }
     }
 }

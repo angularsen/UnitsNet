@@ -13,20 +13,19 @@ function ToCamelCase($str)
 }
 
 function ValueOrDefault($value, $defaultValue){
-  if ($value -ne $null) { $value } else { $defaultValue }
+  if ($null -ne $value) { $value } else { $defaultValue }
+}
+
+function Ternary($value, $one, $two){
+  if ($value -ne $null) { $one } else { $two }
 }
 
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
-    GenerateQuantitySourceCode $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity .NET(OK) "
-
-    $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
-    GenerateQuantitySourceCode $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
-    if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity WRC(OK) "
+    Write-Host -NoNewline "quantity(OK) "
 }
 
 function GenerateUnitTestBaseClass([Quantity]$quantity, $outDir)
@@ -194,6 +193,7 @@ function Add-PrefixUnits {
                 $prefixUnit = New-Object PsObject -Property @{
                     SingularName=$prefix + $(ToCamelCase $unit.SingularName)
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
+                    BaseUnits = $null
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
 
@@ -288,6 +288,16 @@ $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
           [Unit]@{
             SingularName = $_.SingularName
             PluralName = $_.PluralName
+            BaseUnits = Ternary $_.BaseUnits @{
+              # $_ | fl | out-string | Write-Host -ForegroundColor green
+              Length = Ternary $_.BaseUnits.L "length: LengthUnit.$($_.BaseUnits.L)" $null
+              Mass = Ternary $_.BaseUnits.M "mass: MassUnit.$($_.BaseUnits.M)" $null
+              Time = Ternary $_.BaseUnits.T "time: DurationUnit.$($_.BaseUnits.T)" $null
+              ElectricCurrent = Ternary $_.BaseUnits.I "current: ElectricCurrentUnit.$($_.BaseUnits.I)" $null
+              Temperature = Ternary $_.BaseUnits.Θ "temperature: TemperatureUnit.$($_.BaseUnits.Θ)" $null
+              AmountOfSubstance = Ternary $_.BaseUnits.N "amount: AmountOfSubstanceUnit.$($_.BaseUnits.N)" $null
+              LuminousIntensity = Ternary $_.BaseUnits.J "luminousIntensity: LuminousIntensityUnit.$($_.BaseUnits.J)" $null
+            } $null
             XmlDocSummary = $_.XmlDocSummary
             XmlDocRemarks = $_.XmlDocRemarks
             FromUnitToBaseFunc = $_.FromUnitToBaseFunc

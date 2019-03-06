@@ -1,23 +1,5 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -134,31 +116,18 @@ namespace UnitsNet.Tests
             Assert.Equal("1.111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
-        [Theory]
-        [InlineData(1, "1.1 m")]
-        [InlineData(2, "1.12 m")]
-        [InlineData(3, "1.123 m")]
-        [InlineData(4, "1.1235 m")]
-        [InlineData(5, "1.12346 m")]
-        [InlineData(6, "1.123457 m")]
-        public void CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix, string expected)
-        {
-            string actual = Length.FromMeters(1.123456789).ToUnit(LengthUnit.Meter).ToString(AmericanCulture, significantDigitsAfterRadix);
-            Assert.Equal(expected, actual);
-        }
-
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
-        [InlineData(0.819999999999, 2, "0.82 m")]
-        [InlineData(0.819999999999, 4, "0.82 m")]
-        [InlineData(0.00299999999, 2, "0.003 m")]
-        [InlineData(0.00299999999, 4, "0.003 m")]
-        [InlineData(0.0003000001, 2, "3e-04 m")]
-        [InlineData(0.0003000001, 4, "3e-04 m")]
+        [InlineData(0.819999999999, "s2", "0.82 m")]
+        [InlineData(0.819999999999, "s4", "0.82 m")]
+        [InlineData(0.00299999999, "s2", "0.003 m")]
+        [InlineData(0.00299999999, "s4", "0.003 m")]
+        [InlineData(0.0003000001, "s2", "3e-04 m")]
+        [InlineData(0.0003000001, "s4", "3e-04 m")]
         public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
-            int maxSignificantDigitsAfterRadix, string expected)
+            string significantDigitsAfterRadixFormatString, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture, maxSignificantDigitsAfterRadix);
+            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
             Assert.Equal(expected, actual);
         }
 

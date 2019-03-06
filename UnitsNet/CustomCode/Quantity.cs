@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Reflection;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
-
-#if WINDOWS_UWP
-    using FromValue = System.Double;
-#else
-    using FromValue = UnitsNet.QuantityValue;
-#endif
 
 namespace UnitsNet
 {
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-    partial class Quantity
+    public partial class Quantity
     {
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
 
@@ -27,20 +17,10 @@ namespace UnitsNet
             Types = quantityTypes;
             Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
 
-#if !WINDOWS_UWP
-            // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
-            InfosLazy = new Lazy<QuantityInfo[]>(() => typeof(Length)
-                .Wrap()
-                .Assembly
-                .GetExportedTypes()
-                .Where(typeof(IQuantity).IsAssignableFrom)
-                .Where(t => t.Wrap().IsClass || t.Wrap().IsValueType) // Future-proofing: Considering changing quantities from struct to class
-                .Select(Activator.CreateInstance)
-                .Cast<IQuantity>()
-                .Select(q => q.QuantityInfo)
-                .OrderBy(q => q.Name)
+            InfosLazy = new Lazy<QuantityInfo[]>(() => Types
+                .Select(quantityType => FromQuantityType(quantityType, 0.0).QuantityInfo)
+                .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
-#endif
         }
 
         /// <summary>
@@ -53,12 +33,10 @@ namespace UnitsNet
         /// </summary>
         public static string[] Names { get; }
 
-#if !WINDOWS_UWP
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
         public static QuantityInfo[] Infos => InfosLazy.Value;
-#endif
 
         /// <summary>
         ///     Dynamically construct a quantity.
@@ -67,11 +45,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-#if WINDOWS_UWP
-        internal static IQuantity From(FromValue value, Enum unit)
-#else
-        public static IQuantity From(FromValue value, Enum unit)
-#endif
+        public static IQuantity From(QuantityValue value, Enum unit)
         {
             if (TryFrom(value, unit, out IQuantity quantity))
                 return quantity;
@@ -80,6 +54,59 @@ namespace UnitsNet
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }
 
+        /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
+        public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
+        {
+            // Implicit cast to QuantityValue would prevent TryFrom from being called,
+            // so we need to explicitly check this here for double arguments.
+            if (double.IsNaN(value) || double.IsInfinity(value))
+            {
+                quantity = default(IQuantity);
+                return false;
+            }
+
+            return TryFrom((QuantityValue)value, unit, out quantity);
+        }
+
+        /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
+        public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
+
+        /// <summary>
+        ///     Dynamically parse a quantity string representation.
+        /// </summary>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
+        /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
+        /// <returns>The parsed quantity.</returns>
+        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
+        public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
+        {
+            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
+
+            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
+
+            throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
+        }
+
+        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
+        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
+            TryParse(null, quantityType, quantityString, out quantity);
+
+        /// <summary>
+        ///     Get information about the given quantity type.
+        /// </summary>
+        /// <param name="quantityType">The quantity type enum value.</param>
+        /// <returns>Information about the quantity and its units.</returns>
+        public static QuantityInfo GetInfo(QuantityType quantityType)
+        {
+            return Infos.First(qi => qi.QuantityType == quantityType);
+        }
+
+        /// <summary>
+        ///     Get a list of quantities that has the given base dimensions.
+        /// </summary>
+        /// <param name="baseDimensions">The base dimensions to match.</param>
         public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
         {
             return InfosLazy.Value.Where(info => info.BaseDimensions.Equals(baseDimensions));

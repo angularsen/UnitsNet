@@ -14,45 +14,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.
     /// </summary>
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
-    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible
+    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -67,7 +50,51 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<DensityUnit>(QuantityType.Density, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<DensityUnit>(QuantityType.Density,
+                new UnitInfo<DensityUnit>[] {
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound)),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound)),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerImperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerUSGallon, BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicFoot, new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug)),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicCentimeter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne)),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -75,7 +102,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Density(double numericValue, DensityUnit unit)
         {
@@ -84,6 +110,22 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Density(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
         }
 
         #region Static Properties
@@ -135,14 +177,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        /// <inheritdoc cref="IQuantity.Unit"/>
         Enum IQuantity.Unit => Unit;
 
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
+        /// <inheritdoc />
         public DensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <inheritdoc />
         public QuantityInfo<DensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -236,6 +276,11 @@ namespace UnitsNet
         ///     Get Density in KilogramsPerCubicMillimeter.
         /// </summary>
         public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get Density in KilogramsPerLiter.
+        /// </summary>
+        public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
         ///     Get Density in KilopoundsPerCubicFoot.
@@ -376,7 +421,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(DensityUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -520,6 +565,15 @@ namespace UnitsNet
         {
             double value = (double) kilogramspercubicmillimeter;
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
+        }
+        /// <summary>
+        ///     Get Density from KilogramsPerLiter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilogramsPerLiter(QuantityValue kilogramsperliter)
+        {
+            double value = (double) kilogramsperliter;
+            return new Density(value, DensityUnit.KilogramPerLiter);
         }
         /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
@@ -802,7 +856,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Density Parse(string str, [CanBeNull] IFormatProvider provider)
         {
             return QuantityParser.Default.Parse<Density, DensityUnit>(
@@ -833,7 +887,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Density result)
         {
             return QuantityParser.Default.TryParse<Density, DensityUnit>(
@@ -866,12 +920,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static DensityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             return UnitParser.Default.Parse<DensityUnit>(str, provider);
         }
 
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DensityUnit)"/>
         public static bool TryParseUnit(string str, out DensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -886,7 +941,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out DensityUnit unit)
         {
             return UnitParser.Default.TryParse<DensityUnit>(str, provider, out unit);
@@ -896,36 +951,43 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        /// <summary>Negate the value.</summary>
         public static Density operator -(Density right)
         {
             return new Density(-right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Density"/> from adding two <see cref="Density"/>.</summary>
         public static Density operator +(Density left, Density right)
         {
-            return new Density(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Density(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Density"/> from subtracting two <see cref="Density"/>.</summary>
         public static Density operator -(Density left, Density right)
         {
-            return new Density(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Density(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
+        /// <summary>Get <see cref="Density"/> from multiplying value and <see cref="Density"/>.</summary>
         public static Density operator *(double left, Density right)
         {
             return new Density(left * right.Value, right.Unit);
         }
 
+        /// <summary>Get <see cref="Density"/> from multiplying value and <see cref="Density"/>.</summary>
         public static Density operator *(Density left, double right)
         {
             return new Density(left.Value * right, left.Unit);
         }
 
+        /// <summary>Get <see cref="Density"/> from dividing <see cref="Density"/> by value.</summary>
         public static Density operator /(Density left, double right)
         {
             return new Density(left.Value / right, left.Unit);
         }
 
+        /// <summary>Get ratio value from dividing <see cref="Density"/> by <see cref="Density"/>.</summary>
         public static double operator /(Density left, Density right)
         {
             return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
@@ -935,36 +997,45 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Density left, Density right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Density left, Density right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if less than.</summary>
         public static bool operator <(Density left, Density right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Density left, Density right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator ==(Density left, Density right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public static bool operator !=(Density left, Density right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -973,12 +1044,14 @@ namespace UnitsNet
             return CompareTo(objDensity);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <inheritdoc />
         public int CompareTo(Density other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Density objDensity))
@@ -987,9 +1060,11 @@ namespace UnitsNet
             return Equals(objDensity);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Density other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1056,8 +1131,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((DensityUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1067,11 +1140,28 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((DensityUnit) unit);
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is DensityUnit unitAsDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
+
+            return As(unitAsDensityUnit);
+        }
 
         /// <summary>
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
@@ -1079,20 +1169,44 @@ namespace UnitsNet
         /// <returns>A Density with the specified unit.</returns>
         public Density ToUnit(DensityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Density(convertedValue, unit);
         }
 
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is DensityUnit unitAsDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsDensityUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Density ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
 
-        public IQuantity ToUnit(Enum unit) => ToUnit((DensityUnit) unit);
+        /// <inheritdoc />
+        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
@@ -1111,6 +1225,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
                 case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
                 case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
+                case DensityUnit.KilogramPerLiter: return _value*1e3;
                 case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
                 case DensityUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
@@ -1140,12 +1255,12 @@ namespace UnitsNet
             }
         }
 
-        private double AsBaseNumericType(DensityUnit unit)
+        private double GetValueAs(DensityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {
@@ -1164,6 +1279,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
                 case DensityUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
                 case DensityUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
+                case DensityUnit.KilogramPerLiter: return baseUnitValue/1e3;
                 case DensityUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
                 case DensityUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
@@ -1198,22 +1314,22 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get default string representation of value and unit.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString("g");
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(provider, 2);
+            return ToString("g", provider);
         }
 
         /// <summary>
@@ -1221,7 +1337,8 @@ namespace UnitsNet
         /// </summary>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -1235,17 +1352,41 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<DensityUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -1314,7 +1455,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider provider)
         {
-            return ToString(provider);
+            return ToString("g", provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

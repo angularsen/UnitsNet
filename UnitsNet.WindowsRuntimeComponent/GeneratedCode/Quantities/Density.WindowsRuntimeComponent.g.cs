@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -72,6 +54,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Density, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
@@ -102,7 +85,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -247,6 +232,11 @@ namespace UnitsNet
         ///     Get Density in KilogramsPerCubicMillimeter.
         /// </summary>
         public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get Density in KilogramsPerLiter.
+        /// </summary>
+        public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
         ///     Get Density in KilopoundsPerCubicFoot.
@@ -547,6 +537,16 @@ namespace UnitsNet
         {
             double value = (double) kilogramspercubicmillimeter;
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
+        }
+        /// <summary>
+        ///     Get Density from KilogramsPerLiter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Density FromKilogramsPerLiter(double kilogramsperliter)
+        {
+            double value = (double) kilogramsperliter;
+            return new Density(value, DensityUnit.KilogramPerLiter);
         }
         /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
@@ -1094,6 +1094,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
                 case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
                 case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
+                case DensityUnit.KilogramPerLiter: return _value*1e3;
                 case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
                 case DensityUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
@@ -1147,6 +1148,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
                 case DensityUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
                 case DensityUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
+                case DensityUnit.KilogramPerLiter: return baseUnitValue/1e3;
                 case DensityUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
                 case DensityUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
@@ -1240,6 +1242,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

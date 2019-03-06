@@ -18,7 +18,6 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
     <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
-    <NoWarn>CS1701;CS1702;CS1705;CS0618;CS0809;CS1591</NoWarn>
     <LangVersion>7.3</LangVersion>
 
     <!-- SourceLink -->
@@ -104,21 +103,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GeneratedCode\**\*.cs" />
+    <Compile Include="**\*.cs;" Exclude="**\obj\**" />
     <None Include="UnitsNet.WindowsRuntimeComponent.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Common\**\*.cs;" Exclude="**\obj\**">
+    <None Include="Scripts\**\*.*" />
+    <None Include="..\Common\**\*">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-    <None Include="..\Common\**\*" Exclude="**\obj\**;**\*.cs">
-      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\*NetFramework*.cs;**\obj\**">
-      <Link>UnitsNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-    <None Include="..\UnitsNet\Scripts\**\*.*">
-      <Link>UnitsNet\Scripts\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

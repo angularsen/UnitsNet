@@ -1,26 +1,9 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
 using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -168,6 +151,37 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(-2.0, feetInches.Feet);
             Assert.Equal(-1.0, feetInches.Inches);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+
+            var inSI = inches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
     }
 }

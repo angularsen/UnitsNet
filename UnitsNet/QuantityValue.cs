@@ -1,29 +1,8 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
-// Operator overloads not supported in Windows Runtime Components, we use 'double' type instead
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.InternalHelpers;
 
-#if !WINDOWS_UWP
 namespace UnitsNet
 {
     /// <summary>
@@ -73,12 +52,19 @@ namespace UnitsNet
         // Prefer double for integer types, since most quantities use that type as of now and
         // that avoids unnecessary casts back and forth.
         // If we later change to use decimal more, we should revisit this.
+        /// <summary>Implicit cast from <see cref="byte"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(byte val) => new QuantityValue((double) val);
+        /// <summary>Implicit cast from <see cref="short"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(short val) => new QuantityValue((double) val);
+        /// <summary>Implicit cast from <see cref="int"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(int val) => new QuantityValue((double) val);
+        /// <summary>Implicit cast from <see cref="long"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(long val) => new QuantityValue((double) val);
+        /// <summary>Implicit cast from <see cref="float"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(float val) => new QuantityValue(val); // double
+        /// <summary>Implicit cast from <see cref="double"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(double val) => new QuantityValue(val); // double
+        /// <summary>Implicit cast from <see cref="decimal"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(decimal val) => new QuantityValue(val); // decimal
 #pragma warning restore 618
 
@@ -86,6 +72,7 @@ namespace UnitsNet
 
         #region To double
 
+        /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
         public static explicit operator double(QuantityValue number)
         {
             // double -> decimal -> zero (since we can't implement the default struct ctor)
@@ -96,6 +83,7 @@ namespace UnitsNet
 
         #region To decimal
 
+        /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
         public static explicit operator decimal(QuantityValue number)
         {
             // decimal -> double -> zero (since we can't implement the default struct ctor)
@@ -104,10 +92,10 @@ namespace UnitsNet
 
         #endregion
 
+        /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
         {
             return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
         }
     }
 }
-#endif

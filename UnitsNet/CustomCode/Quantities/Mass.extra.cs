@@ -1,46 +1,17 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Threading;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Mass
-#else
     public partial struct Mass
-#endif
     {
+        /// <summary>Get <see cref="Mass"/> from <see cref="Force"/> of gravity.</summary>
         public static Mass FromGravitationalForce(Force f)
         {
             return new Mass(f.KilogramsForce, MassUnit.Kilogram);
@@ -76,66 +47,92 @@ namespace UnitsNet
             return FromPounds(StonesInOnePound*stone + pounds);
         }
 
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="TimeSpan"/>.</summary>
         public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
         {
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
         }
 
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="Duration"/>.</summary>
         public static MassFlow operator /(Mass mass, Duration duration)
         {
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Density"/> from <see cref="MassFlow"/> divided by <see cref="Volume"/>.</summary>
         public static Density operator /(Mass mass, Volume volume)
         {
             return Density.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
         }
 
+        /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> divided by <see cref="Density"/>.</summary>
         public static Volume operator /(Mass mass, Density density)
         {
             return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
         }
 
+        /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
         public static Force operator *(Mass mass, Acceleration acceleration)
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
 
+        /// <summary>Get <see cref="Force"/> from <see cref="Acceleration"/> times <see cref="Mass"/>.</summary>
         public static Force operator *(Acceleration acceleration, Mass mass)
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
-#endif
     }
 
+    /// <summary>
+    ///     Representation of stone and pounds, used to preserve the original values when constructing <see cref="Mass"/> by
+    ///     <see cref="Mass.FromStonePounds"/> and later output them unaltered with <see cref="ToString()"/>.
+    /// </summary>
     public sealed class StonePounds
     {
+        /// <summary>
+        ///     Construct from stone and pounds.
+        /// </summary>
         public StonePounds(double stone, double pounds)
         {
             Stone = stone;
             Pounds = pounds;
         }
 
+        /// <summary>
+        ///     The stone value it was created with.
+        /// </summary>
         public double Stone { get; }
+
+        /// <summary>
+        ///     The pounds value it was created with.
+        /// </summary>
         public double Pounds { get; }
 
+        /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()
         {
             return ToString(null);
         }
 
-        public string ToString([CanBeNull] Culture cultureInfo)
+        /// <summary>
+        ///     Outputs stone and pounds on the format: {stoneValue} {stoneUnit} {poundsValue} {poundsUnit}
+        /// </summary>
+        /// <example>Mass.FromStonePounds(3,2).StonePounds.ToString() outputs: "3 st 2 lb"</example>
+        /// <param name="cultureInfo">
+        ///     Optional culture to format number and localize unit abbreviations.
+        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        /// </param>
+        public string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+
+            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
+            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);
+
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
-
-            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone);
-            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound);
-
-            return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}",
-                Stone, stoneUnit, Math.Round(Pounds), poundUnit);
+            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }
 }

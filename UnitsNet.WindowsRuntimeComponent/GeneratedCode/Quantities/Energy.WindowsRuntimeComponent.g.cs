@@ -14,26 +14,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
@@ -69,6 +51,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Energy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Joule.
         /// </summary>
@@ -99,7 +82,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -259,6 +244,11 @@ namespace UnitsNet
         ///     Get Energy in MegawattHours.
         /// </summary>
         public double MegawattHours => As(EnergyUnit.MegawattHour);
+
+        /// <summary>
+        ///     Get Energy in TerawattHours.
+        /// </summary>
+        public double TerawattHours => As(EnergyUnit.TerawattHour);
 
         /// <summary>
         ///     Get Energy in ThermsEc.
@@ -489,6 +479,16 @@ namespace UnitsNet
         {
             double value = (double) megawatthours;
             return new Energy(value, EnergyUnit.MegawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from TerawattHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromTerawattHours(double terawatthours)
+        {
+            double value = (double) terawatthours;
+            return new Energy(value, EnergyUnit.TerawattHour);
         }
         /// <summary>
         ///     Get Energy from ThermsEc.
@@ -839,6 +839,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
                 case EnergyUnit.ThermUs: return _value*1.054804e8;
@@ -875,6 +876,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
                 case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
@@ -948,6 +950,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

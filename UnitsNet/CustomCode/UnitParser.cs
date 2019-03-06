@@ -1,25 +1,8 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -27,12 +10,25 @@ using UnitsNet.Units;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
+    /// <summary>
+    ///     Parses units given a unit abbreviations cache.
+    ///     The static instance <see cref="Default"/> is used internally to parse quantities and units using the
+    ///     default abbreviations cache for all units and abbreviations defined in the library.
+    /// </summary>
     public sealed class UnitParser
     {
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
+        /// <summary>
+        ///     The default static instance used internally to parse quantities and units using the
+        ///     default abbreviations cache for all units and abbreviations defined in the library.
+        /// </summary>
         public static UnitParser Default { get; }
 
+        /// <summary>
+        ///     Create a parser using the given unit abbreviations cache.
+        /// </summary>
+        /// <param name="unitAbbreviationsCache"></param>
         public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
@@ -48,16 +44,11 @@ namespace UnitsNet
         /// Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
         /// </summary>
         /// <param name="unitAbbreviation"></param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
+        public TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType));
         }
@@ -71,17 +62,12 @@ namespace UnitsNet
         ///     <see cref="LengthUnit.Meter" /> respectively.
         /// </param>
         /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        Enum Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
+        public Enum Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
@@ -116,13 +102,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
+        public bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
         {
             return TryParse(unitAbbreviation, null, out unit);
         }
@@ -131,18 +111,12 @@ namespace UnitsNet
         /// Try to parse a unit abbreviation.
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
+        public bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
         {
             unit = default;
 
@@ -161,12 +135,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -176,16 +145,11 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
         /// <param name="unitType">Type of unit enum.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out Enum unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out Enum unit)
         {
             if (unitAbbreviation == null)
             {

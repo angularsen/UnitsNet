@@ -1,23 +1,5 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Text;
@@ -25,16 +7,18 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-#if !WINDOWS_UWP
-    public sealed partial class BaseUnits : IEquatable<BaseUnits> { }
-#endif
-
+    /// <inheritdoc />
     /// <summary>
     ///     Represents the base units for a quantity. All quantities, both base and derived, can be
     ///     represented by a combination of these seven base units.
     /// </summary>
-    public sealed partial class BaseUnits
+    public sealed class BaseUnits: IEquatable<BaseUnits>
     {
+        /// <summary>
+        /// Represents BaseUnits that have not been defined.
+        /// </summary>
+        public static BaseUnits Undefined { get; } = new BaseUnits();
+
         /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
         /// All quantities, both base and derived, can be represented by a combination of these seven base units.
@@ -46,8 +30,14 @@ namespace UnitsNet
         /// <param name="temperature">The temperature unit (Θ).</param>
         /// <param name="amount">The amount of substance unit (N).</param>
         /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
-        public BaseUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
-            TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
+        public BaseUnits(
+            LengthUnit length = LengthUnit.Undefined,
+            MassUnit mass = MassUnit.Undefined,
+            DurationUnit time = DurationUnit.Undefined,
+            ElectricCurrentUnit current = ElectricCurrentUnit.Undefined,
+            TemperatureUnit temperature = TemperatureUnit.Undefined,
+            AmountOfSubstanceUnit amount = AmountOfSubstanceUnit.Undefined,
+            LuminousIntensityUnit luminousIntensity = LuminousIntensityUnit.Undefined)
         {
             Length = length;
             Mass = mass;
@@ -56,6 +46,14 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
+
+            IsFullyDefined = Length != LengthUnit.Undefined &&
+                Mass != MassUnit.Undefined &&
+                Time != DurationUnit.Undefined &&
+                Current != ElectricCurrentUnit.Undefined &&
+                Temperature != TemperatureUnit.Undefined &&
+                Amount != AmountOfSubstanceUnit.Undefined &&
+                LuminousIntensity != LuminousIntensityUnit.Undefined;
         }
 
         /// <inheritdoc />
@@ -72,9 +70,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public bool Equals(BaseUnits other)
         {
             if(other is null)
@@ -89,13 +84,36 @@ namespace UnitsNet
                 LuminousIntensity == other.LuminousIntensity;
         }
 
+        /// <summary>
+        /// Checks if the base units are a subset of another. Undefined base units are ignored.
+        /// If all base united are undefined (equal to <see cref="BaseUnits.Undefined"/>),
+        /// IsSubsetOf will return true only if other is also equal to <see cref="BaseUnits.Undefined"/>.
+        /// </summary>
+        /// <param name="other">The other <see cref="BaseUnits"/> to compare to.</param>
+        /// <returns>True if the base units are a subset of other, otherwise false.</returns>
+        public bool IsSubsetOf(BaseUnits other)
+        {
+            if(other is null)
+                return false;
+
+            // If all base units are undefined, can only be a subset of another where all base units are undefined.
+            if(Equals(Undefined))
+                return other.Equals(Undefined);
+
+            return (Length == LengthUnit.Undefined || Length == other.Length) &&
+                (Mass == MassUnit.Undefined || Mass == other.Mass) &&
+                (Time == DurationUnit.Undefined || Time == other.Time) &&
+                (Current == ElectricCurrentUnit.Undefined || Current == other.Current) &&
+                (Temperature == TemperatureUnit.Undefined || Temperature == other.Temperature) &&
+                (Amount == AmountOfSubstanceUnit.Undefined || Amount == other.Amount) &&
+                (LuminousIntensity == LuminousIntensityUnit.Undefined || LuminousIntensity == other.LuminousIntensity);
+        }
+
         /// <inheritdoc />
         public override int GetHashCode()
         {
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
         }
-
-#if !WINDOWS_UWP
 
         /// <summary>
         /// Checks if this instance is equal to another.
@@ -120,8 +138,6 @@ namespace UnitsNet
         {
             return !(left == right);
         }
-
-#endif
 
         /// <inheritdoc />
         public override string ToString()
@@ -173,5 +189,10 @@ namespace UnitsNet
         /// Gets the luminous intensity unit (J).
         /// </summary>
         public LuminousIntensityUnit LuminousIntensity{ get; }
+
+        /// <summary>
+        /// Gets whether or not all of the base units are defined.
+        /// </summary>
+        public bool IsFullyDefined { get; }
     }
 }

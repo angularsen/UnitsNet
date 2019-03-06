@@ -13,10 +13,23 @@
       "PluralName": "JoulesPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "J/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "JoulePerSquareCentimeter",
+      "PluralName": "JoulesPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x*1e4",
+      "FromBaseToUnitFunc": "x/1e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/cm²" ]
         }
       ]
     },
