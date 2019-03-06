@@ -186,6 +186,11 @@ namespace UnitsNet
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
+        ///     Get Length in Hands.
+        /// </summary>
+        public double Hands => As(LengthUnit.Hand);
+
+        /// <summary>
         ///     Get Length in Inches.
         /// </summary>
         public double Inches => As(LengthUnit.Inch);
@@ -354,6 +359,16 @@ namespace UnitsNet
         {
             double value = (double) feet;
             return new Length(value, LengthUnit.Foot);
+        }
+        /// <summary>
+        ///     Get Length from Hands.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Length FromHands(double hands)
+        {
+            double value = (double) hands;
+            return new Length(value, LengthUnit.Hand);
         }
         /// <summary>
         ///     Get Length from Inches.
@@ -812,6 +827,7 @@ namespace UnitsNet
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
                 case LengthUnit.Fathom: return _value*1.8288;
                 case LengthUnit.Foot: return _value*0.3048;
+                case LengthUnit.Hand: return _value * 1.016e-1;
                 case LengthUnit.Inch: return _value*2.54e-2;
                 case LengthUnit.Kilometer: return (_value) * 1e3d;
                 case LengthUnit.Meter: return _value;
@@ -848,6 +864,7 @@ namespace UnitsNet
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
                 case LengthUnit.Fathom: return baseUnitValue/1.8288;
                 case LengthUnit.Foot: return baseUnitValue/0.3048;
+                case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
                 case LengthUnit.Inch: return baseUnitValue/2.54e-2;
                 case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
                 case LengthUnit.Meter: return baseUnitValue;
