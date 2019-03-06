@@ -58,6 +58,22 @@
       ]
     },
     {
+      "SingularName": "CubicHectometer",
+      "PluralName": "CubicHectometers",
+      "FromUnitToBaseFunc": "x*1e6",
+      "FromBaseToUnitFunc": "x/1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "hm³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "гм³" ]
+        }
+      ]
+    },    
+    {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
       "FromUnitToBaseFunc": "x/1e3",
