@@ -1036,6 +1036,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialGallon, new string[]{"Английский галлон"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"oz (imp.)"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"Английская унция"}),
+                ("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialPint, new string[]{"pt (imp.)", "UK pt", "pt", "p"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kft³"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kфут³"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicMeter, new string[]{"km³"}),
