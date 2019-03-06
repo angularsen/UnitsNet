@@ -4,6 +4,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark
 {
+    [MemoryDiagnoser]
     public class UnitsNetBenchmarks
     {
         private Length length = Length.FromMeters(3.0);
