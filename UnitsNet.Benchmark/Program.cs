@@ -7,12 +7,13 @@ namespace UnitsNet.Benchmark
     public class UnitsNetBenchmarks
     {
         private Length length = Length.FromMeters(3.0);
+        private IQuantity lengthIQuantity = Length.FromMeters(3.0);
 
         [Benchmark]
         public Length Constructor() => new Length(3.0, LengthUnit.Meter);
 
         [Benchmark]
-        public Length FromMethod() => Length.FromMeters( 3.0 );
+        public Length FromMethod() => Length.FromMeters(3.0);
 
         [Benchmark]
         public double ToProperty() => length.Centimeters;
@@ -21,7 +22,7 @@ namespace UnitsNet.Benchmark
         public double As() => length.As(LengthUnit.Centimeter);
 
         [Benchmark]
-        public Length ToUnit() => length.ToUnit( LengthUnit.Centimeter );
+        public Length ToUnit() => length.ToUnit(LengthUnit.Centimeter);
 
         [Benchmark]
         public string ToStringTest() => length.ToString();
@@ -30,18 +31,27 @@ namespace UnitsNet.Benchmark
         public Length Parse() => Length.Parse("3.0 m");
 
         [Benchmark]
-        public bool TryParseValid() => Length.TryParse( "3.0 m", out var l );
+        public bool TryParseValid() => Length.TryParse("3.0 m", out var l);
 
         [Benchmark]
-        public bool TryParseInvalid() => Length.TryParse( "3.0 zoom", out var l );
+        public bool TryParseInvalid() => Length.TryParse("3.0 zoom", out var l);
 
         [Benchmark]
-        public IQuantity QuantityFrom() => Quantity.From( 3.0, LengthUnit.Meter );
+        public IQuantity QuantityFrom() => Quantity.From(3.0, LengthUnit.Meter);
+
+        [Benchmark]
+        public double IQuantity_As() => lengthIQuantity.As(LengthUnit.Centimeter);
+
+        [Benchmark]
+        public IQuantity IQuantity_ToUnit() => lengthIQuantity.ToUnit(LengthUnit.Centimeter);
+
+        [Benchmark]
+        public string IQuantity_ToStringTest() => lengthIQuantity.ToString();
     }
 
     class Program
     {
-        static void Main( string[] args )
+        static void Main(string[] args)
         {
             var summary = BenchmarkRunner.Run<UnitsNetBenchmarks>();
         }
