@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
             Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
-            Assert.True(Quantity.TryParse(typeof(Pressure), "3.0 Mbar", out IQuantity parsedPressure));
+            Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity parsedPressure));
             Assert.Equal(Pressure.FromMegabars(3), parsedPressure);
         }
 
