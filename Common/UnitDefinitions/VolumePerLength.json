@@ -9,6 +9,9 @@
     {
       "SingularName": "CubicMeterPerMeter",
       "PluralName": "CubicMetersPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [],
@@ -22,6 +25,9 @@
     {
       "SingularName": "LiterPerMeter",
       "PluralName": "LitersPerMeter",
+      "BaseUnits": {
+        "L": "Decimeter",
+      },
       "FromUnitToBaseFunc": "x/1000",
       "FromBaseToUnitFunc": "x*1000",
       "Prefixes": [],
