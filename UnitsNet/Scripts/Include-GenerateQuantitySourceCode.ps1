@@ -133,12 +133,15 @@ if ($obsoleteAttribute)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
 "@; if ($quantity.BaseType -eq "double") {@"
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
 "@; } else {@"
             _value = numericValue;
 "@; }@"
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 "@;
     GenerateStaticProperties $genArgs
@@ -988,8 +991,13 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1026,8 +1034,13 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />

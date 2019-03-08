@@ -169,6 +169,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
+        {
+            var unitSystemWithNoMatchingBaseUnits = new UnitSystem(new BaseUnits(mass: MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Length(1.0, unitSystemWithNoMatchingBaseUnits));
+        }
+
+        [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var inches = new Length(2.0, LengthUnit.Inch);

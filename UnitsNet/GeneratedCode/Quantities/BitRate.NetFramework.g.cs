@@ -110,8 +110,11 @@ namespace UnitsNet
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
             _value = numericValue;
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -942,8 +945,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -980,8 +988,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
