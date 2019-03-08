@@ -10,7 +10,7 @@
       "SingularName": "CubicMeterPerMeter",
       "PluralName": "CubicMetersPerMeter",
       "BaseUnits": {
-        "L": "Meter",
+        "L": "Meter"
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
@@ -26,7 +26,7 @@
       "SingularName": "LiterPerMeter",
       "PluralName": "LitersPerMeter",
       "BaseUnits": {
-        "L": "Decimeter",
+        "L": "Decimeter"
       },
       "FromUnitToBaseFunc": "x/1000",
       "FromBaseToUnitFunc": "x*1000",
