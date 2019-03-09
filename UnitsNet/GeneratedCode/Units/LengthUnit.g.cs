@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         Fathom,
         Foot,
         Hectometer,
+        Hand,
         Inch,
         Kilometer,
         Meter,

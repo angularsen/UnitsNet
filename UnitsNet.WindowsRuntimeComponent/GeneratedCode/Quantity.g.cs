@@ -311,6 +311,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumePerLengthUnit volumePerLengthUnit:
+                    quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -630,6 +633,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumeFlow))
                 return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+
+            if (quantityType == typeof(VolumePerLength))
+                return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
 
             throw new ArgumentException(
                 $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");

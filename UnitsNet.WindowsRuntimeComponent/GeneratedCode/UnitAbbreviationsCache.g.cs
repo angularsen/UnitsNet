@@ -491,6 +491,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"фут"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Hectometer, new string[]{"hm"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Hectometer, new string[]{"гм"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.Hand, new string[]{"h", "hh"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"in", "\"", "″"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"дюйм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"km"}),
@@ -1040,6 +1041,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialGallon, new string[]{"Английский галлон"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"oz (imp.)"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"Английская унция"}),
+                ("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialPint, new string[]{"pt (imp.)", "UK pt", "pt", "p"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kft³"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kфут³"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicMeter, new string[]{"km³"}),
@@ -1140,6 +1142,9 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerHour, new string[]{"gal (U.S.)/h"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerMinute, new string[]{"gal (U.S.)/min", "GPM"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerSecond, new string[]{"gal (U.S.)/s"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicMeterPerMeter, new string[]{"m³/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.LiterPerMeter, new string[]{"l/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
             };
     }
 }

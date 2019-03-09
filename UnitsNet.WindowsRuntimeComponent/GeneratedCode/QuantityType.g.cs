@@ -119,5 +119,6 @@ namespace UnitsNet
         VitaminA,
         Volume,
         VolumeFlow,
+        VolumePerLength,
     }
 }

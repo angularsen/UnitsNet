@@ -30,9 +30,9 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
+    ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
-    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
+    public partial struct VolumePerLength : IQuantity<VolumePerLengthUnit>, IEquatable<VolumePerLength>, IComparable, IComparable<VolumePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -42,38 +42,17 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly LengthUnit? _unit;
+        private readonly VolumePerLengthUnit? _unit;
 
-        static Length()
+        static VolumePerLength()
         {
-            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
-                new UnitInfo<LengthUnit>[] {
-                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(length: LengthUnit.Fathom)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hand, new BaseUnits(length: LengthUnit.Hand)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(length: LengthUnit.Microinch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(length: LengthUnit.Mil)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(length: LengthUnit.NauticalMile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(length: LengthUnit.PrinterPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(length: LengthUnit.PrinterPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(length: LengthUnit.Shackle)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(length: LengthUnit.Twip)),
-                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(length: LengthUnit.Yard)),
+            Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
+                new UnitInfo<VolumePerLengthUnit>[] {
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -84,9 +63,9 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Length(double numericValue, LengthUnit unit)
+        public VolumePerLength(double numericValue, VolumePerLengthUnit unit)
         {
-            if(unit == LengthUnit.Undefined)
+            if(unit == VolumePerLengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -101,7 +80,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(double numericValue, UnitSystem unitSystem)
+        public VolumePerLength(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -112,7 +91,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LengthUnit> Info { get; }
+        public static QuantityInfo<VolumePerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -120,34 +99,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Length, which is Meter. All conversions go via this value.
+        ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
+        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Length
+        /// Represents the largest possible value of VolumePerLength
         /// </summary>
-        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
+        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Length
+        /// Represents the smallest possible value of VolumePerLength
         /// </summary>
-        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Length;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
 
         /// <summary>
-        ///     All units of measurement for the Length quantity.
+        ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
-        public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
+        public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, BaseUnit);
+        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
 
         #endregion
 
@@ -161,10 +140,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LengthUnit> QuantityInfo => Info;
+        public QuantityInfo<VolumePerLengthUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -172,135 +151,31 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Length.QuantityType;
+        public QuantityType Type => VolumePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Length.BaseDimensions;
+        public BaseDimensions Dimensions => VolumePerLength.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Length in Centimeters.
+        ///     Get VolumePerLength in CubicMetersPerMeter.
         /// </summary>
-        public double Centimeters => As(LengthUnit.Centimeter);
+        public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Get Length in Decimeters.
+        ///     Get VolumePerLength in LitersPerMeter.
         /// </summary>
-        public double Decimeters => As(LengthUnit.Decimeter);
+        public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
-        ///     Get Length in DtpPicas.
+        ///     Get VolumePerLength in OilBarrelsPerFoot.
         /// </summary>
-        public double DtpPicas => As(LengthUnit.DtpPica);
-
-        /// <summary>
-        ///     Get Length in DtpPoints.
-        /// </summary>
-        public double DtpPoints => As(LengthUnit.DtpPoint);
-
-        /// <summary>
-        ///     Get Length in Fathoms.
-        /// </summary>
-        public double Fathoms => As(LengthUnit.Fathom);
-
-        /// <summary>
-        ///     Get Length in Feet.
-        /// </summary>
-        public double Feet => As(LengthUnit.Foot);
-
-        /// <summary>
-        ///     Get Length in Hectometers.
-        /// </summary>
-        public double Hectometers => As(LengthUnit.Hectometer);
-
-        ///     Get Length in Hands.
-        /// </summary>
-        public double Hands => As(LengthUnit.Hand);
-
-        /// <summary>
-        ///     Get Length in Inches.
-        /// </summary>
-        public double Inches => As(LengthUnit.Inch);
-
-        /// <summary>
-        ///     Get Length in Kilometers.
-        /// </summary>
-        public double Kilometers => As(LengthUnit.Kilometer);
-
-        /// <summary>
-        ///     Get Length in Meters.
-        /// </summary>
-        public double Meters => As(LengthUnit.Meter);
-
-        /// <summary>
-        ///     Get Length in Microinches.
-        /// </summary>
-        public double Microinches => As(LengthUnit.Microinch);
-
-        /// <summary>
-        ///     Get Length in Micrometers.
-        /// </summary>
-        public double Micrometers => As(LengthUnit.Micrometer);
-
-        /// <summary>
-        ///     Get Length in Mils.
-        /// </summary>
-        public double Mils => As(LengthUnit.Mil);
-
-        /// <summary>
-        ///     Get Length in Miles.
-        /// </summary>
-        public double Miles => As(LengthUnit.Mile);
-
-        /// <summary>
-        ///     Get Length in Millimeters.
-        /// </summary>
-        public double Millimeters => As(LengthUnit.Millimeter);
-
-        /// <summary>
-        ///     Get Length in Nanometers.
-        /// </summary>
-        public double Nanometers => As(LengthUnit.Nanometer);
-
-        /// <summary>
-        ///     Get Length in NauticalMiles.
-        /// </summary>
-        public double NauticalMiles => As(LengthUnit.NauticalMile);
-
-        /// <summary>
-        ///     Get Length in PrinterPicas.
-        /// </summary>
-        public double PrinterPicas => As(LengthUnit.PrinterPica);
-
-        /// <summary>
-        ///     Get Length in PrinterPoints.
-        /// </summary>
-        public double PrinterPoints => As(LengthUnit.PrinterPoint);
-
-        /// <summary>
-        ///     Get Length in Shackles.
-        /// </summary>
-        public double Shackles => As(LengthUnit.Shackle);
-
-        /// <summary>
-        ///     Get Length in Twips.
-        /// </summary>
-        public double Twips => As(LengthUnit.Twip);
-
-        /// <summary>
-        ///     Get Length in UsSurveyFeet.
-        /// </summary>
-        public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
-
-        /// <summary>
-        ///     Get Length in Yards.
-        /// </summary>
-        public double Yards => As(LengthUnit.Yard);
+        public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         #endregion
 
@@ -311,7 +186,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(LengthUnit unit)
+        public static string GetAbbreviation(VolumePerLengthUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -322,7 +197,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(LengthUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(VolumePerLengthUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -332,229 +207,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Length from Centimeters.
+        ///     Get VolumePerLength from CubicMetersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromCentimeters(QuantityValue centimeters)
+        public static VolumePerLength FromCubicMetersPerMeter(QuantityValue cubicmeterspermeter)
         {
-            double value = (double) centimeters;
-            return new Length(value, LengthUnit.Centimeter);
+            double value = (double) cubicmeterspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
         }
         /// <summary>
-        ///     Get Length from Decimeters.
+        ///     Get VolumePerLength from LitersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDecimeters(QuantityValue decimeters)
+        public static VolumePerLength FromLitersPerMeter(QuantityValue literspermeter)
         {
-            double value = (double) decimeters;
-            return new Length(value, LengthUnit.Decimeter);
+            double value = (double) literspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
         }
         /// <summary>
-        ///     Get Length from DtpPicas.
+        ///     Get VolumePerLength from OilBarrelsPerFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPicas(QuantityValue dtppicas)
+        public static VolumePerLength FromOilBarrelsPerFoot(QuantityValue oilbarrelsperfoot)
         {
-            double value = (double) dtppicas;
-            return new Length(value, LengthUnit.DtpPica);
-        }
-        /// <summary>
-        ///     Get Length from DtpPoints.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPoints(QuantityValue dtppoints)
-        {
-            double value = (double) dtppoints;
-            return new Length(value, LengthUnit.DtpPoint);
-        }
-        /// <summary>
-        ///     Get Length from Fathoms.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFathoms(QuantityValue fathoms)
-        {
-            double value = (double) fathoms;
-            return new Length(value, LengthUnit.Fathom);
-        }
-        /// <summary>
-        ///     Get Length from Feet.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFeet(QuantityValue feet)
-        {
-            double value = (double) feet;
-            return new Length(value, LengthUnit.Foot);
-        }
-        /// <summary>
-        ///     Get Length from Hectometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHectometers(QuantityValue hectometers)
-        {
-            double value = (double) hectometers;
-            return new Length(value, LengthUnit.Hectometer);
-        ///     Get Length from Hands.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHands(QuantityValue hands)
-        {
-            double value = (double) hands;
-            return new Length(value, LengthUnit.Hand);
-        }
-        /// <summary>
-        ///     Get Length from Inches.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromInches(QuantityValue inches)
-        {
-            double value = (double) inches;
-            return new Length(value, LengthUnit.Inch);
-        }
-        /// <summary>
-        ///     Get Length from Kilometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKilometers(QuantityValue kilometers)
-        {
-            double value = (double) kilometers;
-            return new Length(value, LengthUnit.Kilometer);
-        }
-        /// <summary>
-        ///     Get Length from Meters.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMeters(QuantityValue meters)
-        {
-            double value = (double) meters;
-            return new Length(value, LengthUnit.Meter);
-        }
-        /// <summary>
-        ///     Get Length from Microinches.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicroinches(QuantityValue microinches)
-        {
-            double value = (double) microinches;
-            return new Length(value, LengthUnit.Microinch);
-        }
-        /// <summary>
-        ///     Get Length from Micrometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicrometers(QuantityValue micrometers)
-        {
-            double value = (double) micrometers;
-            return new Length(value, LengthUnit.Micrometer);
-        }
-        /// <summary>
-        ///     Get Length from Mils.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMils(QuantityValue mils)
-        {
-            double value = (double) mils;
-            return new Length(value, LengthUnit.Mil);
-        }
-        /// <summary>
-        ///     Get Length from Miles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMiles(QuantityValue miles)
-        {
-            double value = (double) miles;
-            return new Length(value, LengthUnit.Mile);
-        }
-        /// <summary>
-        ///     Get Length from Millimeters.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMillimeters(QuantityValue millimeters)
-        {
-            double value = (double) millimeters;
-            return new Length(value, LengthUnit.Millimeter);
-        }
-        /// <summary>
-        ///     Get Length from Nanometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNanometers(QuantityValue nanometers)
-        {
-            double value = (double) nanometers;
-            return new Length(value, LengthUnit.Nanometer);
-        }
-        /// <summary>
-        ///     Get Length from NauticalMiles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNauticalMiles(QuantityValue nauticalmiles)
-        {
-            double value = (double) nauticalmiles;
-            return new Length(value, LengthUnit.NauticalMile);
-        }
-        /// <summary>
-        ///     Get Length from PrinterPicas.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPicas(QuantityValue printerpicas)
-        {
-            double value = (double) printerpicas;
-            return new Length(value, LengthUnit.PrinterPica);
-        }
-        /// <summary>
-        ///     Get Length from PrinterPoints.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPoints(QuantityValue printerpoints)
-        {
-            double value = (double) printerpoints;
-            return new Length(value, LengthUnit.PrinterPoint);
-        }
-        /// <summary>
-        ///     Get Length from Shackles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromShackles(QuantityValue shackles)
-        {
-            double value = (double) shackles;
-            return new Length(value, LengthUnit.Shackle);
-        }
-        /// <summary>
-        ///     Get Length from Twips.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromTwips(QuantityValue twips)
-        {
-            double value = (double) twips;
-            return new Length(value, LengthUnit.Twip);
-        }
-        /// <summary>
-        ///     Get Length from UsSurveyFeet.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromUsSurveyFeet(QuantityValue ussurveyfeet)
-        {
-            double value = (double) ussurveyfeet;
-            return new Length(value, LengthUnit.UsSurveyFoot);
-        }
-        /// <summary>
-        ///     Get Length from Yards.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromYards(QuantityValue yards)
-        {
-            double value = (double) yards;
-            return new Length(value, LengthUnit.Yard);
+            double value = (double) oilbarrelsperfoot;
+            return new VolumePerLength(value, VolumePerLengthUnit.OilBarrelPerFoot);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
+        ///     Dynamically convert from value and unit enum <see cref="VolumePerLengthUnit" /> to <see cref="VolumePerLength" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Length unit value.</returns>
-        public static Length From(QuantityValue value, LengthUnit fromUnit)
+        /// <returns>VolumePerLength unit value.</returns>
+        public static VolumePerLength From(QuantityValue value, VolumePerLengthUnit fromUnit)
         {
-            return new Length((double)value, fromUnit);
+            return new VolumePerLength((double)value, fromUnit);
         }
 
         #endregion
@@ -583,7 +271,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Length Parse(string str)
+        public static VolumePerLength Parse(string str)
         {
             return Parse(str, null);
         }
@@ -611,9 +299,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Length Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static VolumePerLength Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Length, LengthUnit>(
+            return QuantityParser.Default.Parse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From);
@@ -627,7 +315,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Length result)
+        public static bool TryParse([CanBeNull] string str, out VolumePerLength result)
         {
             return TryParse(str, null, out result);
         }
@@ -642,9 +330,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Length result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out VolumePerLength result)
         {
-            return QuantityParser.Default.TryParse<Length, LengthUnit>(
+            return QuantityParser.Default.TryParse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From,
@@ -660,7 +348,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static LengthUnit ParseUnit(string str)
+        public static VolumePerLengthUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -675,13 +363,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static LengthUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static VolumePerLengthUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return UnitParser.Default.Parse<LengthUnit>(str, provider);
+            return UnitParser.Default.Parse<VolumePerLengthUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LengthUnit)"/>
-        public static bool TryParseUnit(string str, out LengthUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumePerLengthUnit)"/>
+        public static bool TryParseUnit(string str, out VolumePerLengthUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -696,9 +384,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out LengthUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider provider, out VolumePerLengthUnit unit)
         {
-            return UnitParser.Default.TryParse<LengthUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<VolumePerLengthUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -706,45 +394,45 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Length operator -(Length right)
+        public static VolumePerLength operator -(VolumePerLength right)
         {
-            return new Length(-right.Value, right.Unit);
+            return new VolumePerLength(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from adding two <see cref="Length"/>.</summary>
-        public static Length operator +(Length left, Length right)
+        /// <summary>Get <see cref="VolumePerLength"/> from adding two <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator +(VolumePerLength left, VolumePerLength right)
         {
-            return new Length(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from subtracting two <see cref="Length"/>.</summary>
-        public static Length operator -(Length left, Length right)
+        /// <summary>Get <see cref="VolumePerLength"/> from subtracting two <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator -(VolumePerLength left, VolumePerLength right)
         {
-            return new Length(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(double left, Length right)
+        /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator *(double left, VolumePerLength right)
         {
-            return new Length(left * right.Value, right.Unit);
+            return new VolumePerLength(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Length left, double right)
+        /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
+        public static VolumePerLength operator *(VolumePerLength left, double right)
         {
-            return new Length(left.Value * right, left.Unit);
+            return new VolumePerLength(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from dividing <see cref="Length"/> by value.</summary>
-        public static Length operator /(Length left, double right)
+        /// <summary>Get <see cref="VolumePerLength"/> from dividing <see cref="VolumePerLength"/> by value.</summary>
+        public static VolumePerLength operator /(VolumePerLength left, double right)
         {
-            return new Length(left.Value / right, left.Unit);
+            return new VolumePerLength(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Length"/> by <see cref="Length"/>.</summary>
-        public static double operator /(Length left, Length right)
+        /// <summary>Get ratio value from dividing <see cref="VolumePerLength"/> by <see cref="VolumePerLength"/>.</summary>
+        public static double operator /(VolumePerLength left, VolumePerLength right)
         {
-            return left.Meters / right.Meters;
+            return left.CubicMetersPerMeter / right.CubicMetersPerMeter;
         }
 
         #endregion
@@ -752,39 +440,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Length left, Length right)
+        public static bool operator <=(VolumePerLength left, VolumePerLength right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Length left, Length right)
+        public static bool operator >=(VolumePerLength left, VolumePerLength right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Length left, Length right)
+        public static bool operator <(VolumePerLength left, VolumePerLength right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Length left, Length right)
+        public static bool operator >(VolumePerLength left, VolumePerLength right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Length left, Length right)
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(VolumePerLength left, VolumePerLength right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Length left, Length right)
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(VolumePerLength left, VolumePerLength right)
         {
             return !(left == right);
         }
@@ -793,37 +481,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
+            if(!(obj is VolumePerLength objVolumePerLength)) throw new ArgumentException("Expected type VolumePerLength.", nameof(obj));
 
-            return CompareTo(objLength);
+            return CompareTo(objVolumePerLength);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Length other)
+        public int CompareTo(VolumePerLength other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Length objLength))
+            if(obj is null || !(obj is VolumePerLength objVolumePerLength))
                 return false;
 
-            return Equals(objLength);
+            return Equals(objVolumePerLength);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Length other)
+        /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(VolumePerLength other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Length within the given absolute or relative tolerance.
+        ///     Compare equality to another VolumePerLength within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -861,7 +549,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Length other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VolumePerLength other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -875,7 +563,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Length.</returns>
+        /// <returns>A hash code for the current VolumePerLength.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -889,7 +577,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LengthUnit unit)
+        public double As(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -911,33 +599,33 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+            if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLengthUnit);
+            return As(unitAsVolumePerLengthUnit);
         }
 
         /// <summary>
-        ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
+        ///     Converts this VolumePerLength to another VolumePerLength with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Length with the specified unit.</returns>
-        public Length ToUnit(LengthUnit unit)
+        /// <returns>A VolumePerLength with the specified unit.</returns>
+        public VolumePerLength ToUnit(VolumePerLengthUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Length(convertedValue, unit);
+            return new VolumePerLength(convertedValue, unit);
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+            if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLengthUnit);
+            return ToUnit(unitAsVolumePerLengthUnit);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Length ToUnit(UnitSystem unitSystem)
+        public VolumePerLength ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -950,10 +638,10 @@ namespace UnitsNet
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <inheritdoc />
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
+        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -964,36 +652,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LengthUnit.Centimeter: return (_value) * 1e-2d;
-                case LengthUnit.Decimeter: return (_value) * 1e-1d;
-                case LengthUnit.DtpPica: return _value/236.220472441;
-                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
-                case LengthUnit.Fathom: return _value*1.8288;
-                case LengthUnit.Foot: return _value*0.3048;
-                case LengthUnit.Hectometer: return (_value) * 1e2d;
-                case LengthUnit.Hand: return _value * 1.016e-1;
-                case LengthUnit.Inch: return _value*2.54e-2;
-                case LengthUnit.Kilometer: return (_value) * 1e3d;
-                case LengthUnit.Meter: return _value;
-                case LengthUnit.Microinch: return _value*2.54e-8;
-                case LengthUnit.Micrometer: return (_value) * 1e-6d;
-                case LengthUnit.Mil: return _value*2.54e-5;
-                case LengthUnit.Mile: return _value*1609.34;
-                case LengthUnit.Millimeter: return (_value) * 1e-3d;
-                case LengthUnit.Nanometer: return (_value) * 1e-9d;
-                case LengthUnit.NauticalMile: return _value*1852;
-                case LengthUnit.PrinterPica: return _value/237.106301584;
-                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
-                case LengthUnit.Shackle: return _value*27.432;
-                case LengthUnit.Twip: return _value/56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
-                case LengthUnit.Yard: return _value*0.9144;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return _value;
+                case VolumePerLengthUnit.LiterPerMeter: return _value/1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return _value/1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(LengthUnit unit)
+        private double GetValueAs(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -1002,30 +669,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
-                case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
-                case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
-                case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
-                case LengthUnit.Fathom: return baseUnitValue/1.8288;
-                case LengthUnit.Foot: return baseUnitValue/0.3048;
-                case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
-                case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
-                case LengthUnit.Inch: return baseUnitValue/2.54e-2;
-                case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
-                case LengthUnit.Meter: return baseUnitValue;
-                case LengthUnit.Microinch: return baseUnitValue/2.54e-8;
-                case LengthUnit.Micrometer: return (baseUnitValue) / 1e-6d;
-                case LengthUnit.Mil: return baseUnitValue/2.54e-5;
-                case LengthUnit.Mile: return baseUnitValue/1609.34;
-                case LengthUnit.Millimeter: return (baseUnitValue) / 1e-3d;
-                case LengthUnit.Nanometer: return (baseUnitValue) / 1e-9d;
-                case LengthUnit.NauticalMile: return baseUnitValue/1852;
-                case LengthUnit.PrinterPica: return baseUnitValue*237.106301584;
-                case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
-                case LengthUnit.Shackle: return baseUnitValue/27.432;
-                case LengthUnit.Twip: return baseUnitValue*56692.913385826;
-                case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
-                case LengthUnit.Yard: return baseUnitValue/0.9144;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return baseUnitValue;
+                case VolumePerLengthUnit.LiterPerMeter: return baseUnitValue*1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return baseUnitValue*1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -1108,7 +754,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<LengthUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<VolumePerLengthUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -1122,7 +768,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -1132,12 +778,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1182,16 +828,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Length))
+            if(conversionType == typeof(VolumePerLength))
                 return this;
-            else if(conversionType == typeof(LengthUnit))
+            else if(conversionType == typeof(VolumePerLengthUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Length.QuantityType;
+                return VolumePerLength.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Length.BaseDimensions;
+                return VolumePerLength.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Length)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(VolumePerLength)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
