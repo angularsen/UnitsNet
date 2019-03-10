@@ -371,8 +371,9 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromHectometers(double hectometers)
         {
-            double value = (double) hectometers;
+            double value = (double)hectometers;
             return new Length(value, LengthUnit.Hectometer);
+        }
         ///     Get Length from Hands.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
