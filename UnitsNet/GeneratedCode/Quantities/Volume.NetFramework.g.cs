@@ -56,6 +56,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicHectometer, new BaseUnits(length: LengthUnit.Hectometer)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, BaseUnits.Undefined),
@@ -234,6 +235,11 @@ namespace UnitsNet
         ///     Get Volume in CubicFeet.
         /// </summary>
         public double CubicFeet => As(VolumeUnit.CubicFoot);
+
+        /// <summary>
+        ///     Get Volume in CubicHectometers.
+        /// </summary>
+        public double CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
         ///     Get Volume in CubicInches.
@@ -517,6 +523,15 @@ namespace UnitsNet
         {
             double value = (double) cubicfeet;
             return new Volume(value, VolumeUnit.CubicFoot);
+        }
+        /// <summary>
+        ///     Get Volume from CubicHectometers.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromCubicHectometers(QuantityValue cubichectometers)
+        {
+            double value = (double) cubichectometers;
+            return new Volume(value, VolumeUnit.CubicHectometer);
         }
         /// <summary>
         ///     Get Volume from CubicInches.
@@ -1303,6 +1318,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
                 case VolumeUnit.CubicFoot: return _value*0.0283168;
+                case VolumeUnit.CubicHectometer: return _value*1e6;
                 case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
                 case VolumeUnit.CubicKilometer: return _value*1e9;
                 case VolumeUnit.CubicMeter: return _value;
@@ -1363,6 +1379,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
                 case VolumeUnit.CubicFoot: return baseUnitValue/0.0283168;
+                case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
                 case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
                 case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
                 case VolumeUnit.CubicMeter: return baseUnitValue;

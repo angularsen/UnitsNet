@@ -56,6 +56,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
                     new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(length: LengthUnit.Fathom)),
                     new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Hand, new BaseUnits(length: LengthUnit.Hand)),
                     new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
@@ -213,6 +214,10 @@ namespace UnitsNet
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
+        ///     Get Length in Hectometers.
+        /// </summary>
+        public double Hectometers => As(LengthUnit.Hectometer);
+
         ///     Get Length in Hands.
         /// </summary>
         public double Hands => As(LengthUnit.Hand);
@@ -381,6 +386,13 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Foot);
         }
         /// <summary>
+        ///     Get Length from Hectometers.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromHectometers(QuantityValue hectometers)
+        {
+            double value = (double) hectometers;
+            return new Length(value, LengthUnit.Hectometer);
         ///     Get Length from Hands.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -958,6 +970,7 @@ namespace UnitsNet
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
                 case LengthUnit.Fathom: return _value*1.8288;
                 case LengthUnit.Foot: return _value*0.3048;
+                case LengthUnit.Hectometer: return (_value) * 1e2d;
                 case LengthUnit.Hand: return _value * 1.016e-1;
                 case LengthUnit.Inch: return _value*2.54e-2;
                 case LengthUnit.Kilometer: return (_value) * 1e3d;
@@ -995,6 +1008,7 @@ namespace UnitsNet
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
                 case LengthUnit.Fathom: return baseUnitValue/1.8288;
                 case LengthUnit.Foot: return baseUnitValue/0.3048;
+                case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
                 case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
                 case LengthUnit.Inch: return baseUnitValue/2.54e-2;
                 case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;

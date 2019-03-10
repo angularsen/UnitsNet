@@ -21,6 +21,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double FeetInOneMeter => 3.28084;
 
+        protected override double HectometersInOneMeter => 1E-2;
+
         protected override double TwipsInOneMeter => 56692.913386;
         protected override double UsSurveyFeetInOneMeter => 3.280833333333333;
 
