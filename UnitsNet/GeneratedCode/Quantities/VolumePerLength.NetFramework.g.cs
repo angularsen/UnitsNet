@@ -50,8 +50,8 @@ namespace UnitsNet
 
             Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
                 new UnitInfo<VolumePerLengthUnit>[] {
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, new BaseUnits(length: LengthUnit.Meter)),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, new BaseUnits(length: LengthUnit.Decimeter)),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
