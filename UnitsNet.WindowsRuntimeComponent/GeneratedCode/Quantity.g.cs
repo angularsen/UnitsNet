@@ -134,6 +134,9 @@ namespace UnitsNet
                 case ElectricResistivityUnit electricResistivityUnit:
                     quantity = ElectricResistivity.From(value, electricResistivityUnit);
                     return true;
+                case ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit:
+                    quantity = ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit);
+                    return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
@@ -456,6 +459,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ElectricResistivity))
                 return parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity);
+
+            if (quantityType == typeof(ElectricSurfaceChargeDensity))
+                return parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity);
 
             if (quantityType == typeof(Energy))
                 return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
