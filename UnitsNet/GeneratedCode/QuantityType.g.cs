@@ -62,6 +62,7 @@ namespace UnitsNet
         ElectricPotentialDc,
         ElectricResistance,
         ElectricResistivity,
+        ElectricSurfaceChargeDensity,
         Energy,
         Entropy,
         Force,

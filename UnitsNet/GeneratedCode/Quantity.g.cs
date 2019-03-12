@@ -102,6 +102,8 @@ namespace UnitsNet
                     return ElectricResistance.From(value, ElectricResistance.BaseUnit);
                 case QuantityType.ElectricResistivity:
                     return ElectricResistivity.From(value, ElectricResistivity.BaseUnit);
+                case QuantityType.ElectricSurfaceChargeDensity:
+                    return ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit);
                 case QuantityType.Energy:
                     return Energy.From(value, Energy.BaseUnit);
                 case QuantityType.Entropy:
@@ -330,6 +332,9 @@ namespace UnitsNet
                     return true;
                 case ElectricResistivityUnit electricResistivityUnit:
                     quantity = ElectricResistivity.From(value, electricResistivityUnit);
+                    return true;
+                case ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit:
+                    quantity = ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit);
                     return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
@@ -600,6 +605,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistivity):
                     return parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricSurfaceChargeDensity):
+                    return parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Energy):
                     return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
                 case Type _ when quantityType == typeof(Entropy):
