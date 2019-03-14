@@ -297,6 +297,9 @@ namespace UnitsNet
                 ("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.OhmMeter, new string[]{"Ω·m"}),
                 ("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.PicoohmCentimeter, new string[]{"pΩ·cm"}),
                 ("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.PicoohmMeter, new string[]{"pΩ·m"}),
+                ("en-US", typeof(ElectricSurfaceChargeDensityUnit), (int)ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new string[]{"C/cm²"}),
+                ("en-US", typeof(ElectricSurfaceChargeDensityUnit), (int)ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new string[]{"C/in²"}),
+                ("en-US", typeof(ElectricSurfaceChargeDensityUnit), (int)ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new string[]{"C/m²"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.BritishThermalUnit, new string[]{"BTU"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Calorie, new string[]{"cal"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.DecathermEc, new string[]{"Dth (E.C.)"}),
@@ -490,6 +493,8 @@ namespace UnitsNet
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"ft", "'", "′"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"фут"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Hand, new string[]{"h", "hh"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.Hectometer, new string[]{"hm"}),
+                ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Hectometer, new string[]{"гм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"in", "\"", "″"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"дюйм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"km"}),
@@ -1010,6 +1015,8 @@ namespace UnitsNet
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicDecimeter, new string[]{"дм³"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicFoot, new string[]{"ft³"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicFoot, new string[]{"фут³"}),
+                ("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicHectometer, new string[]{"hm³"}),
+                ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicHectometer, new string[]{"гм³"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicInch, new string[]{"in³"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicInch, new string[]{"дюйм³"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicKilometer, new string[]{"km³"}),
@@ -1138,6 +1145,9 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerHour, new string[]{"gal (U.S.)/h"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerMinute, new string[]{"gal (U.S.)/min", "GPM"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerSecond, new string[]{"gal (U.S.)/s"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicMeterPerMeter, new string[]{"m³/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.LiterPerMeter, new string[]{"l/m"}),
+                ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
             };
     }
 }

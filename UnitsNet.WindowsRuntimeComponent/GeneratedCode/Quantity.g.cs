@@ -134,6 +134,9 @@ namespace UnitsNet
                 case ElectricResistivityUnit electricResistivityUnit:
                     quantity = ElectricResistivity.From(value, electricResistivityUnit);
                     return true;
+                case ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit:
+                    quantity = ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit);
+                    return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
@@ -311,6 +314,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumePerLengthUnit volumePerLengthUnit:
+                    quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -453,6 +459,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ElectricResistivity))
                 return parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity);
+
+            if (quantityType == typeof(ElectricSurfaceChargeDensity))
+                return parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity);
 
             if (quantityType == typeof(Energy))
                 return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
@@ -630,6 +639,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumeFlow))
                 return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+
+            if (quantityType == typeof(VolumePerLength))
+                return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
 
             throw new ArgumentException(
                 $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");

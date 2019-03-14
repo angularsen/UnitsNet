@@ -60,6 +60,7 @@ namespace UnitsNet
         ElectricPotentialDc,
         ElectricResistance,
         ElectricResistivity,
+        ElectricSurfaceChargeDensity,
         Energy,
         Entropy,
         Force,
@@ -119,5 +120,6 @@ namespace UnitsNet
         VitaminA,
         Volume,
         VolumeFlow,
+        VolumePerLength,
     }
 }

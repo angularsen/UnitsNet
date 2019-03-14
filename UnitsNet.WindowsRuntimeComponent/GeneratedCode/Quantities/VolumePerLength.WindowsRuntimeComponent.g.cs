@@ -29,15 +29,12 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     In electromagnetism, charge density is a measure of the amount of electric charge per volume.
+    ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
-    /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Charge_density
-    /// </remarks>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class ElectricChargeDensity : IQuantity
+    public sealed partial class VolumePerLength : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -47,21 +44,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly ElectricChargeDensityUnit? _unit;
+        private readonly VolumePerLengthUnit? _unit;
 
-        static ElectricChargeDensity()
+        static VolumePerLength()
         {
-            BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.VolumePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit CoulombPerCubicMeter.
+        ///     Creates the quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public ElectricChargeDensity()
+        public VolumePerLength()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -74,9 +71,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private ElectricChargeDensity(double numericValue, ElectricChargeDensityUnit unit)
+        private VolumePerLength(double numericValue, VolumePerLengthUnit unit)
         {
-            if(unit == ElectricChargeDensityUnit.Undefined)
+            if(unit == VolumePerLengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -96,34 +93,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricChargeDensity, which is CoulombPerCubicMeter. All conversions go via this value.
+        ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeDensityUnit BaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
+        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricChargeDensity
+        /// Represents the largest possible value of VolumePerLength
         /// </summary>
-        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, BaseUnit);
+        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricChargeDensity
+        /// Represents the smallest possible value of VolumePerLength
         /// </summary>
-        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, BaseUnit);
+        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricChargeDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
 
         /// <summary>
-        ///     All units of measurement for the ElectricChargeDensity quantity.
+        ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
-        public static ElectricChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
+        public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerCubicMeter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, BaseUnit);
+        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
 
         #endregion
 
@@ -140,28 +137,38 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public ElectricChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricChargeDensity.QuantityType;
+        public QuantityType Type => VolumePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricChargeDensity.BaseDimensions;
+        public BaseDimensions Dimensions => VolumePerLength.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricChargeDensity in CoulombsPerCubicMeter.
+        ///     Get VolumePerLength in CubicMetersPerMeter.
         /// </summary>
-        public double CoulombsPerCubicMeter => As(ElectricChargeDensityUnit.CoulombPerCubicMeter);
+        public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
+
+        /// <summary>
+        ///     Get VolumePerLength in LitersPerMeter.
+        /// </summary>
+        public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
+
+        /// <summary>
+        ///     Get VolumePerLength in OilBarrelsPerFoot.
+        /// </summary>
+        public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         #endregion
 
@@ -172,7 +179,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(ElectricChargeDensityUnit unit)
+        public static string GetAbbreviation(VolumePerLengthUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -183,7 +190,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(ElectricChargeDensityUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(VolumePerLengthUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -194,27 +201,47 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricChargeDensity from CoulombsPerCubicMeter.
+        ///     Get VolumePerLength from CubicMetersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricChargeDensity FromCoulombsPerCubicMeter(double coulombspercubicmeter)
+        public static VolumePerLength FromCubicMetersPerMeter(double cubicmeterspermeter)
         {
-            double value = (double) coulombspercubicmeter;
-            return new ElectricChargeDensity(value, ElectricChargeDensityUnit.CoulombPerCubicMeter);
+            double value = (double) cubicmeterspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
+        }
+        /// <summary>
+        ///     Get VolumePerLength from LitersPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumePerLength FromLitersPerMeter(double literspermeter)
+        {
+            double value = (double) literspermeter;
+            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
+        }
+        /// <summary>
+        ///     Get VolumePerLength from OilBarrelsPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumePerLength FromOilBarrelsPerFoot(double oilbarrelsperfoot)
+        {
+            double value = (double) oilbarrelsperfoot;
+            return new VolumePerLength(value, VolumePerLengthUnit.OilBarrelPerFoot);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricChargeDensityUnit" /> to <see cref="ElectricChargeDensity" />.
+        ///     Dynamically convert from value and unit enum <see cref="VolumePerLengthUnit" /> to <see cref="VolumePerLength" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricChargeDensity unit value.</returns>
+        /// <returns>VolumePerLength unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static ElectricChargeDensity From(double value, ElectricChargeDensityUnit fromUnit)
+        public static VolumePerLength From(double value, VolumePerLengthUnit fromUnit)
         {
-            return new ElectricChargeDensity((double)value, fromUnit);
+            return new VolumePerLength((double)value, fromUnit);
         }
 
         #endregion
@@ -243,7 +270,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricChargeDensity Parse(string str)
+        public static VolumePerLength Parse(string str)
         {
             return Parse(str, null);
         }
@@ -271,10 +298,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static ElectricChargeDensity Parse(string str, [CanBeNull] string cultureName)
+        public static VolumePerLength Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<ElectricChargeDensity, ElectricChargeDensityUnit>(
+            return QuantityParser.Default.Parse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From);
@@ -288,7 +315,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricChargeDensity result)
+        public static bool TryParse([CanBeNull] string str, out VolumePerLength result)
         {
             return TryParse(str, null, out result);
         }
@@ -303,10 +330,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out ElectricChargeDensity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out VolumePerLength result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<ElectricChargeDensity, ElectricChargeDensityUnit>(
+            return QuantityParser.Default.TryParse<VolumePerLength, VolumePerLengthUnit>(
                 str,
                 provider,
                 From,
@@ -322,7 +349,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricChargeDensityUnit ParseUnit(string str)
+        public static VolumePerLengthUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -337,13 +364,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static ElectricChargeDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static VolumePerLengthUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<ElectricChargeDensityUnit>(str, provider);
+            return UnitParser.Default.Parse<VolumePerLengthUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out ElectricChargeDensityUnit unit)
+        public static bool TryParseUnit(string str, out VolumePerLengthUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -358,10 +385,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out ElectricChargeDensityUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out VolumePerLengthUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<ElectricChargeDensityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<VolumePerLengthUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -371,13 +398,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricChargeDensity objElectricChargeDensity)) throw new ArgumentException("Expected type ElectricChargeDensity.", nameof(obj));
+            if(!(obj is VolumePerLength objVolumePerLength)) throw new ArgumentException("Expected type VolumePerLength.", nameof(obj));
 
-            return CompareTo(objElectricChargeDensity);
+            return CompareTo(objVolumePerLength);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(ElectricChargeDensity other)
+        internal int CompareTo(VolumePerLength other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -385,20 +412,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricChargeDensity objElectricChargeDensity))
+            if(obj is null || !(obj is VolumePerLength objVolumePerLength))
                 return false;
 
-            return Equals(objElectricChargeDensity);
+            return Equals(objVolumePerLength);
         }
 
-        public bool Equals(ElectricChargeDensity other)
+        public bool Equals(VolumePerLength other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricChargeDensity within the given absolute or relative tolerance.
+        ///     Compare equality to another VolumePerLength within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -436,7 +463,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricChargeDensity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VolumePerLength other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -450,7 +477,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricChargeDensity.</returns>
+        /// <returns>A hash code for the current VolumePerLength.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -460,13 +487,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((ElectricChargeDensityUnit)unit);
+        double IQuantity.As(object unit) => As((VolumePerLengthUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricChargeDensityUnit unit)
+        public double As(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -476,13 +503,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricChargeDensity to another ElectricChargeDensity with the unit representation <paramref name="unit" />.
+        ///     Converts this VolumePerLength to another VolumePerLength with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricChargeDensity with the specified unit.</returns>
-        public ElectricChargeDensity ToUnit(ElectricChargeDensityUnit unit)
+        /// <returns>A VolumePerLength with the specified unit.</returns>
+        public VolumePerLength ToUnit(VolumePerLengthUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new ElectricChargeDensity(convertedValue, unit);
+            return new VolumePerLength(convertedValue, unit);
         }
 
         /// <summary>
@@ -494,13 +521,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return _value;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return _value;
+                case VolumePerLengthUnit.LiterPerMeter: return _value/1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return _value/1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ElectricChargeDensityUnit unit)
+        private double AsBaseNumericType(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -509,7 +538,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return baseUnitValue;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return baseUnitValue;
+                case VolumePerLengthUnit.LiterPerMeter: return baseUnitValue*1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return baseUnitValue*1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

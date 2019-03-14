@@ -102,6 +102,8 @@ namespace UnitsNet
                     return ElectricResistance.From(value, ElectricResistance.BaseUnit);
                 case QuantityType.ElectricResistivity:
                     return ElectricResistivity.From(value, ElectricResistivity.BaseUnit);
+                case QuantityType.ElectricSurfaceChargeDensity:
+                    return ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit);
                 case QuantityType.Energy:
                     return Energy.From(value, Energy.BaseUnit);
                 case QuantityType.Entropy:
@@ -220,6 +222,8 @@ namespace UnitsNet
                     return Volume.From(value, Volume.BaseUnit);
                 case QuantityType.VolumeFlow:
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case QuantityType.VolumePerLength:
+                    return VolumePerLength.From(value, VolumePerLength.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
@@ -328,6 +332,9 @@ namespace UnitsNet
                     return true;
                 case ElectricResistivityUnit electricResistivityUnit:
                     quantity = ElectricResistivity.From(value, electricResistivityUnit);
+                    return true;
+                case ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit:
+                    quantity = ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit);
                     return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
@@ -506,6 +513,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumePerLengthUnit volumePerLengthUnit:
+                    quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -595,6 +605,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistivity):
                     return parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricSurfaceChargeDensity):
+                    return parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Energy):
                     return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
                 case Type _ when quantityType == typeof(Entropy):
@@ -713,6 +725,8 @@ namespace UnitsNet
                     return parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+                case Type _ when quantityType == typeof(VolumePerLength):
+                    return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
                 default:
                     return false;
             }

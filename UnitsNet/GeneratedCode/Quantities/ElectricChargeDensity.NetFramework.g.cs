@@ -30,7 +30,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     In electromagnetism, charge density is a measure of the amount of electric charge per unit length, surface area, or volume.
+    ///     In electromagnetism, charge density is a measure of the amount of electric charge per volume.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Charge_density
@@ -53,7 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity,
                 new UnitInfo<ElectricChargeDensityUnit>[] {
-                    new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

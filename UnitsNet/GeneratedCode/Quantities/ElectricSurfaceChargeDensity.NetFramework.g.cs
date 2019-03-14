@@ -30,9 +30,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
+    ///     In electromagnetism, surface charge density is a measure of the amount of electric charge per surface area.
     /// </summary>
-    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Charge_density
+    /// </remarks>
+    public partial struct ElectricSurfaceChargeDensity : IQuantity<ElectricSurfaceChargeDensityUnit>, IEquatable<ElectricSurfaceChargeDensity>, IComparable, IComparable<ElectricSurfaceChargeDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -42,38 +45,17 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly LengthUnit? _unit;
+        private readonly ElectricSurfaceChargeDensityUnit? _unit;
 
-        static Length()
+        static ElectricSurfaceChargeDensity()
         {
-            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
-                new UnitInfo<LengthUnit>[] {
-                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(length: LengthUnit.Fathom)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hand, new BaseUnits(length: LengthUnit.Hand)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(length: LengthUnit.Microinch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(length: LengthUnit.Mil)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(length: LengthUnit.NauticalMile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(length: LengthUnit.PrinterPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(length: LengthUnit.PrinterPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(length: LengthUnit.Shackle)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(length: LengthUnit.Twip)),
-                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(length: LengthUnit.Yard)),
+            Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>(QuantityType.ElectricSurfaceChargeDensity,
+                new UnitInfo<ElectricSurfaceChargeDensityUnit>[] {
+                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -84,9 +66,9 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Length(double numericValue, LengthUnit unit)
+        public ElectricSurfaceChargeDensity(double numericValue, ElectricSurfaceChargeDensityUnit unit)
         {
-            if(unit == LengthUnit.Undefined)
+            if(unit == ElectricSurfaceChargeDensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -101,7 +83,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(double numericValue, UnitSystem unitSystem)
+        public ElectricSurfaceChargeDensity(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -115,7 +97,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LengthUnit> Info { get; }
+        public static QuantityInfo<ElectricSurfaceChargeDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -123,34 +105,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Length, which is Meter. All conversions go via this value.
+        ///     The base unit of ElectricSurfaceChargeDensity, which is CoulombPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
+        public static ElectricSurfaceChargeDensityUnit BaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Length
+        /// Represents the largest possible value of ElectricSurfaceChargeDensity
         /// </summary>
-        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MaxValue { get; } = new ElectricSurfaceChargeDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Length
+        /// Represents the smallest possible value of ElectricSurfaceChargeDensity
         /// </summary>
-        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MinValue { get; } = new ElectricSurfaceChargeDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Length;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricSurfaceChargeDensity;
 
         /// <summary>
-        ///     All units of measurement for the Length quantity.
+        ///     All units of measurement for the ElectricSurfaceChargeDensity quantity.
         /// </summary>
-        public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
+        public static ElectricSurfaceChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().Except(new ElectricSurfaceChargeDensityUnit[]{ ElectricSurfaceChargeDensityUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerSquareMeter.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, BaseUnit);
+        public static ElectricSurfaceChargeDensity Zero { get; } = new ElectricSurfaceChargeDensity(0, BaseUnit);
 
         #endregion
 
@@ -164,10 +146,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricSurfaceChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<LengthUnit> QuantityInfo => Info;
+        public QuantityInfo<ElectricSurfaceChargeDensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -175,136 +157,31 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Length.QuantityType;
+        public QuantityType Type => ElectricSurfaceChargeDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Length.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricSurfaceChargeDensity.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Length in Centimeters.
+        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareCentimeter.
         /// </summary>
-        public double Centimeters => As(LengthUnit.Centimeter);
+        public double CoulombsPerSquareCentimeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Length in Decimeters.
+        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareInch.
         /// </summary>
-        public double Decimeters => As(LengthUnit.Decimeter);
+        public double CoulombsPerSquareInch => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
 
         /// <summary>
-        ///     Get Length in DtpPicas.
+        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareMeter.
         /// </summary>
-        public double DtpPicas => As(LengthUnit.DtpPica);
-
-        /// <summary>
-        ///     Get Length in DtpPoints.
-        /// </summary>
-        public double DtpPoints => As(LengthUnit.DtpPoint);
-
-        /// <summary>
-        ///     Get Length in Fathoms.
-        /// </summary>
-        public double Fathoms => As(LengthUnit.Fathom);
-
-        /// <summary>
-        ///     Get Length in Feet.
-        /// </summary>
-        public double Feet => As(LengthUnit.Foot);
-
-        /// <summary>
-        ///     Get Length in Hands.
-        /// </summary>
-        public double Hands => As(LengthUnit.Hand);
-
-        /// <summary>
-        ///     Get Length in Hectometers.
-        /// </summary>
-        public double Hectometers => As(LengthUnit.Hectometer);
-
-        /// <summary>
-        ///     Get Length in Inches.
-        /// </summary>
-        public double Inches => As(LengthUnit.Inch);
-
-        /// <summary>
-        ///     Get Length in Kilometers.
-        /// </summary>
-        public double Kilometers => As(LengthUnit.Kilometer);
-
-        /// <summary>
-        ///     Get Length in Meters.
-        /// </summary>
-        public double Meters => As(LengthUnit.Meter);
-
-        /// <summary>
-        ///     Get Length in Microinches.
-        /// </summary>
-        public double Microinches => As(LengthUnit.Microinch);
-
-        /// <summary>
-        ///     Get Length in Micrometers.
-        /// </summary>
-        public double Micrometers => As(LengthUnit.Micrometer);
-
-        /// <summary>
-        ///     Get Length in Mils.
-        /// </summary>
-        public double Mils => As(LengthUnit.Mil);
-
-        /// <summary>
-        ///     Get Length in Miles.
-        /// </summary>
-        public double Miles => As(LengthUnit.Mile);
-
-        /// <summary>
-        ///     Get Length in Millimeters.
-        /// </summary>
-        public double Millimeters => As(LengthUnit.Millimeter);
-
-        /// <summary>
-        ///     Get Length in Nanometers.
-        /// </summary>
-        public double Nanometers => As(LengthUnit.Nanometer);
-
-        /// <summary>
-        ///     Get Length in NauticalMiles.
-        /// </summary>
-        public double NauticalMiles => As(LengthUnit.NauticalMile);
-
-        /// <summary>
-        ///     Get Length in PrinterPicas.
-        /// </summary>
-        public double PrinterPicas => As(LengthUnit.PrinterPica);
-
-        /// <summary>
-        ///     Get Length in PrinterPoints.
-        /// </summary>
-        public double PrinterPoints => As(LengthUnit.PrinterPoint);
-
-        /// <summary>
-        ///     Get Length in Shackles.
-        /// </summary>
-        public double Shackles => As(LengthUnit.Shackle);
-
-        /// <summary>
-        ///     Get Length in Twips.
-        /// </summary>
-        public double Twips => As(LengthUnit.Twip);
-
-        /// <summary>
-        ///     Get Length in UsSurveyFeet.
-        /// </summary>
-        public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
-
-        /// <summary>
-        ///     Get Length in Yards.
-        /// </summary>
-        public double Yards => As(LengthUnit.Yard);
+        public double CoulombsPerSquareMeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
         #endregion
 
@@ -315,7 +192,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(LengthUnit unit)
+        public static string GetAbbreviation(ElectricSurfaceChargeDensityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -326,7 +203,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(LengthUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(ElectricSurfaceChargeDensityUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -336,231 +213,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Length from Centimeters.
+        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromCentimeters(QuantityValue centimeters)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareCentimeter(QuantityValue coulombspersquarecentimeter)
         {
-            double value = (double) centimeters;
-            return new Length(value, LengthUnit.Centimeter);
+            double value = (double) coulombspersquarecentimeter;
+            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Length from Decimeters.
+        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDecimeters(QuantityValue decimeters)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareInch(QuantityValue coulombspersquareinch)
         {
-            double value = (double) decimeters;
-            return new Length(value, LengthUnit.Decimeter);
+            double value = (double) coulombspersquareinch;
+            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
         }
         /// <summary>
-        ///     Get Length from DtpPicas.
+        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPicas(QuantityValue dtppicas)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareMeter(QuantityValue coulombspersquaremeter)
         {
-            double value = (double) dtppicas;
-            return new Length(value, LengthUnit.DtpPica);
-        }
-        /// <summary>
-        ///     Get Length from DtpPoints.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPoints(QuantityValue dtppoints)
-        {
-            double value = (double) dtppoints;
-            return new Length(value, LengthUnit.DtpPoint);
-        }
-        /// <summary>
-        ///     Get Length from Fathoms.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFathoms(QuantityValue fathoms)
-        {
-            double value = (double) fathoms;
-            return new Length(value, LengthUnit.Fathom);
-        }
-        /// <summary>
-        ///     Get Length from Feet.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFeet(QuantityValue feet)
-        {
-            double value = (double) feet;
-            return new Length(value, LengthUnit.Foot);
-        }
-        /// <summary>
-        ///     Get Length from Hands.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHands(QuantityValue hands)
-        {
-            double value = (double) hands;
-            return new Length(value, LengthUnit.Hand);
-        }
-        /// <summary>
-        ///     Get Length from Hectometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHectometers(QuantityValue hectometers)
-        {
-            double value = (double) hectometers;
-            return new Length(value, LengthUnit.Hectometer);
-        }
-        /// <summary>
-        ///     Get Length from Inches.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromInches(QuantityValue inches)
-        {
-            double value = (double) inches;
-            return new Length(value, LengthUnit.Inch);
-        }
-        /// <summary>
-        ///     Get Length from Kilometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKilometers(QuantityValue kilometers)
-        {
-            double value = (double) kilometers;
-            return new Length(value, LengthUnit.Kilometer);
-        }
-        /// <summary>
-        ///     Get Length from Meters.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMeters(QuantityValue meters)
-        {
-            double value = (double) meters;
-            return new Length(value, LengthUnit.Meter);
-        }
-        /// <summary>
-        ///     Get Length from Microinches.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicroinches(QuantityValue microinches)
-        {
-            double value = (double) microinches;
-            return new Length(value, LengthUnit.Microinch);
-        }
-        /// <summary>
-        ///     Get Length from Micrometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicrometers(QuantityValue micrometers)
-        {
-            double value = (double) micrometers;
-            return new Length(value, LengthUnit.Micrometer);
-        }
-        /// <summary>
-        ///     Get Length from Mils.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMils(QuantityValue mils)
-        {
-            double value = (double) mils;
-            return new Length(value, LengthUnit.Mil);
-        }
-        /// <summary>
-        ///     Get Length from Miles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMiles(QuantityValue miles)
-        {
-            double value = (double) miles;
-            return new Length(value, LengthUnit.Mile);
-        }
-        /// <summary>
-        ///     Get Length from Millimeters.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMillimeters(QuantityValue millimeters)
-        {
-            double value = (double) millimeters;
-            return new Length(value, LengthUnit.Millimeter);
-        }
-        /// <summary>
-        ///     Get Length from Nanometers.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNanometers(QuantityValue nanometers)
-        {
-            double value = (double) nanometers;
-            return new Length(value, LengthUnit.Nanometer);
-        }
-        /// <summary>
-        ///     Get Length from NauticalMiles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNauticalMiles(QuantityValue nauticalmiles)
-        {
-            double value = (double) nauticalmiles;
-            return new Length(value, LengthUnit.NauticalMile);
-        }
-        /// <summary>
-        ///     Get Length from PrinterPicas.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPicas(QuantityValue printerpicas)
-        {
-            double value = (double) printerpicas;
-            return new Length(value, LengthUnit.PrinterPica);
-        }
-        /// <summary>
-        ///     Get Length from PrinterPoints.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPoints(QuantityValue printerpoints)
-        {
-            double value = (double) printerpoints;
-            return new Length(value, LengthUnit.PrinterPoint);
-        }
-        /// <summary>
-        ///     Get Length from Shackles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromShackles(QuantityValue shackles)
-        {
-            double value = (double) shackles;
-            return new Length(value, LengthUnit.Shackle);
-        }
-        /// <summary>
-        ///     Get Length from Twips.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromTwips(QuantityValue twips)
-        {
-            double value = (double) twips;
-            return new Length(value, LengthUnit.Twip);
-        }
-        /// <summary>
-        ///     Get Length from UsSurveyFeet.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromUsSurveyFeet(QuantityValue ussurveyfeet)
-        {
-            double value = (double) ussurveyfeet;
-            return new Length(value, LengthUnit.UsSurveyFoot);
-        }
-        /// <summary>
-        ///     Get Length from Yards.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromYards(QuantityValue yards)
-        {
-            double value = (double) yards;
-            return new Length(value, LengthUnit.Yard);
+            double value = (double) coulombspersquaremeter;
+            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricSurfaceChargeDensityUnit" /> to <see cref="ElectricSurfaceChargeDensity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Length unit value.</returns>
-        public static Length From(QuantityValue value, LengthUnit fromUnit)
+        /// <returns>ElectricSurfaceChargeDensity unit value.</returns>
+        public static ElectricSurfaceChargeDensity From(QuantityValue value, ElectricSurfaceChargeDensityUnit fromUnit)
         {
-            return new Length((double)value, fromUnit);
+            return new ElectricSurfaceChargeDensity((double)value, fromUnit);
         }
 
         #endregion
@@ -589,7 +277,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Length Parse(string str)
+        public static ElectricSurfaceChargeDensity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -617,9 +305,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Length Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricSurfaceChargeDensity Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Length, LengthUnit>(
+            return QuantityParser.Default.Parse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(
                 str,
                 provider,
                 From);
@@ -633,7 +321,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Length result)
+        public static bool TryParse([CanBeNull] string str, out ElectricSurfaceChargeDensity result)
         {
             return TryParse(str, null, out result);
         }
@@ -648,9 +336,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Length result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricSurfaceChargeDensity result)
         {
-            return QuantityParser.Default.TryParse<Length, LengthUnit>(
+            return QuantityParser.Default.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(
                 str,
                 provider,
                 From,
@@ -666,7 +354,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static LengthUnit ParseUnit(string str)
+        public static ElectricSurfaceChargeDensityUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -681,13 +369,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static LengthUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static ElectricSurfaceChargeDensityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return UnitParser.Default.Parse<LengthUnit>(str, provider);
+            return UnitParser.Default.Parse<ElectricSurfaceChargeDensityUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LengthUnit)"/>
-        public static bool TryParseUnit(string str, out LengthUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricSurfaceChargeDensityUnit)"/>
+        public static bool TryParseUnit(string str, out ElectricSurfaceChargeDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -702,9 +390,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out LengthUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider provider, out ElectricSurfaceChargeDensityUnit unit)
         {
-            return UnitParser.Default.TryParse<LengthUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<ElectricSurfaceChargeDensityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -712,45 +400,45 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Length operator -(Length right)
+        public static ElectricSurfaceChargeDensity operator -(ElectricSurfaceChargeDensity right)
         {
-            return new Length(-right.Value, right.Unit);
+            return new ElectricSurfaceChargeDensity(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from adding two <see cref="Length"/>.</summary>
-        public static Length operator +(Length left, Length right)
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from adding two <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static ElectricSurfaceChargeDensity operator +(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
-            return new Length(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricSurfaceChargeDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from subtracting two <see cref="Length"/>.</summary>
-        public static Length operator -(Length left, Length right)
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from subtracting two <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static ElectricSurfaceChargeDensity operator -(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
-            return new Length(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricSurfaceChargeDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(double left, Length right)
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from multiplying value and <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static ElectricSurfaceChargeDensity operator *(double left, ElectricSurfaceChargeDensity right)
         {
-            return new Length(left * right.Value, right.Unit);
+            return new ElectricSurfaceChargeDensity(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Length left, double right)
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from multiplying value and <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static ElectricSurfaceChargeDensity operator *(ElectricSurfaceChargeDensity left, double right)
         {
-            return new Length(left.Value * right, left.Unit);
+            return new ElectricSurfaceChargeDensity(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Length"/> from dividing <see cref="Length"/> by value.</summary>
-        public static Length operator /(Length left, double right)
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from dividing <see cref="ElectricSurfaceChargeDensity"/> by value.</summary>
+        public static ElectricSurfaceChargeDensity operator /(ElectricSurfaceChargeDensity left, double right)
         {
-            return new Length(left.Value / right, left.Unit);
+            return new ElectricSurfaceChargeDensity(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Length"/> by <see cref="Length"/>.</summary>
-        public static double operator /(Length left, Length right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricSurfaceChargeDensity"/> by <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static double operator /(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
-            return left.Meters / right.Meters;
+            return left.CoulombsPerSquareMeter / right.CoulombsPerSquareMeter;
         }
 
         #endregion
@@ -758,39 +446,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Length left, Length right)
+        public static bool operator <=(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Length left, Length right)
+        public static bool operator >=(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Length left, Length right)
+        public static bool operator <(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Length left, Length right)
+        public static bool operator >(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Length left, Length right)
+        /// <remarks>Consider using <see cref="Equals(ElectricSurfaceChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Length left, Length right)
+        /// <remarks>Consider using <see cref="Equals(ElectricSurfaceChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return !(left == right);
         }
@@ -799,37 +487,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
+            if(!(obj is ElectricSurfaceChargeDensity objElectricSurfaceChargeDensity)) throw new ArgumentException("Expected type ElectricSurfaceChargeDensity.", nameof(obj));
 
-            return CompareTo(objLength);
+            return CompareTo(objElectricSurfaceChargeDensity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Length other)
+        public int CompareTo(ElectricSurfaceChargeDensity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricSurfaceChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Length objLength))
+            if(obj is null || !(obj is ElectricSurfaceChargeDensity objElectricSurfaceChargeDensity))
                 return false;
 
-            return Equals(objLength);
+            return Equals(objElectricSurfaceChargeDensity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Length other)
+        /// <remarks>Consider using <see cref="Equals(ElectricSurfaceChargeDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricSurfaceChargeDensity other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Length within the given absolute or relative tolerance.
+        ///     Compare equality to another ElectricSurfaceChargeDensity within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -867,7 +555,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Length other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricSurfaceChargeDensity other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -881,7 +569,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Length.</returns>
+        /// <returns>A hash code for the current ElectricSurfaceChargeDensity.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -895,7 +583,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LengthUnit unit)
+        public double As(ElectricSurfaceChargeDensityUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -922,33 +610,33 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+            if(!(unit is ElectricSurfaceChargeDensityUnit unitAsElectricSurfaceChargeDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSurfaceChargeDensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLengthUnit);
+            return As(unitAsElectricSurfaceChargeDensityUnit);
         }
 
         /// <summary>
-        ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
+        ///     Converts this ElectricSurfaceChargeDensity to another ElectricSurfaceChargeDensity with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Length with the specified unit.</returns>
-        public Length ToUnit(LengthUnit unit)
+        /// <returns>A ElectricSurfaceChargeDensity with the specified unit.</returns>
+        public ElectricSurfaceChargeDensity ToUnit(ElectricSurfaceChargeDensityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Length(convertedValue, unit);
+            return new ElectricSurfaceChargeDensity(convertedValue, unit);
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+            if(!(unit is ElectricSurfaceChargeDensityUnit unitAsElectricSurfaceChargeDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSurfaceChargeDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLengthUnit);
+            return ToUnit(unitAsElectricSurfaceChargeDensityUnit);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Length ToUnit(UnitSystem unitSystem)
+        public ElectricSurfaceChargeDensity ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -966,10 +654,10 @@ namespace UnitsNet
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <inheritdoc />
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
+        IQuantity<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.ToUnit(ElectricSurfaceChargeDensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -980,36 +668,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LengthUnit.Centimeter: return (_value) * 1e-2d;
-                case LengthUnit.Decimeter: return (_value) * 1e-1d;
-                case LengthUnit.DtpPica: return _value/236.220472441;
-                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
-                case LengthUnit.Fathom: return _value*1.8288;
-                case LengthUnit.Foot: return _value*0.3048;
-                case LengthUnit.Hand: return _value * 1.016e-1;
-                case LengthUnit.Hectometer: return (_value) * 1e2d;
-                case LengthUnit.Inch: return _value*2.54e-2;
-                case LengthUnit.Kilometer: return (_value) * 1e3d;
-                case LengthUnit.Meter: return _value;
-                case LengthUnit.Microinch: return _value*2.54e-8;
-                case LengthUnit.Micrometer: return (_value) * 1e-6d;
-                case LengthUnit.Mil: return _value*2.54e-5;
-                case LengthUnit.Mile: return _value*1609.34;
-                case LengthUnit.Millimeter: return (_value) * 1e-3d;
-                case LengthUnit.Nanometer: return (_value) * 1e-9d;
-                case LengthUnit.NauticalMile: return _value*1852;
-                case LengthUnit.PrinterPica: return _value/237.106301584;
-                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
-                case LengthUnit.Shackle: return _value*27.432;
-                case LengthUnit.Twip: return _value/56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
-                case LengthUnit.Yard: return _value*0.9144;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter: return _value * 1.0e4;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch: return _value * 1.5500031000062000e3;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(LengthUnit unit)
+        private double GetValueAs(ElectricSurfaceChargeDensityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -1018,30 +685,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
-                case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
-                case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
-                case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
-                case LengthUnit.Fathom: return baseUnitValue/1.8288;
-                case LengthUnit.Foot: return baseUnitValue/0.3048;
-                case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
-                case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
-                case LengthUnit.Inch: return baseUnitValue/2.54e-2;
-                case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
-                case LengthUnit.Meter: return baseUnitValue;
-                case LengthUnit.Microinch: return baseUnitValue/2.54e-8;
-                case LengthUnit.Micrometer: return (baseUnitValue) / 1e-6d;
-                case LengthUnit.Mil: return baseUnitValue/2.54e-5;
-                case LengthUnit.Mile: return baseUnitValue/1609.34;
-                case LengthUnit.Millimeter: return (baseUnitValue) / 1e-3d;
-                case LengthUnit.Nanometer: return (baseUnitValue) / 1e-9d;
-                case LengthUnit.NauticalMile: return baseUnitValue/1852;
-                case LengthUnit.PrinterPica: return baseUnitValue*237.106301584;
-                case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
-                case LengthUnit.Shackle: return baseUnitValue/27.432;
-                case LengthUnit.Twip: return baseUnitValue*56692.913385826;
-                case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
-                case LengthUnit.Yard: return baseUnitValue/0.9144;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter: return baseUnitValue / 1.0e4;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch: return baseUnitValue / 1.5500031000062000e3;
+                case ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -1124,7 +770,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<LengthUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<ElectricSurfaceChargeDensityUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -1138,7 +784,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricSurfaceChargeDensity)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -1148,12 +794,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricSurfaceChargeDensity)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Length)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricSurfaceChargeDensity)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1198,16 +844,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Length))
+            if(conversionType == typeof(ElectricSurfaceChargeDensity))
                 return this;
-            else if(conversionType == typeof(LengthUnit))
+            else if(conversionType == typeof(ElectricSurfaceChargeDensityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Length.QuantityType;
+                return ElectricSurfaceChargeDensity.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Length.BaseDimensions;
+                return ElectricSurfaceChargeDensity.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Length)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricSurfaceChargeDensity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

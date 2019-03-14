@@ -23,33 +23,12 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum LengthUnit
+    public enum ElectricSurfaceChargeDensityUnit
     {
         Undefined = 0,
-        Centimeter,
-        Decimeter,
-        DtpPica,
-        DtpPoint,
-        Fathom,
-        Foot,
-        Hand,
-        Hectometer,
-        Inch,
-        Kilometer,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
-        PrinterPica,
-        PrinterPoint,
-        Shackle,
-        Twip,
-        UsSurveyFoot,
-        Yard,
+        CoulombPerSquareCentimeter,
+        CoulombPerSquareInch,
+        CoulombPerSquareMeter,
     }
 
     #pragma warning restore 1591

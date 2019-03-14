@@ -62,6 +62,7 @@ namespace UnitsNet
         ElectricPotentialDc,
         ElectricResistance,
         ElectricResistivity,
+        ElectricSurfaceChargeDensity,
         Energy,
         Entropy,
         Force,
@@ -121,6 +122,7 @@ namespace UnitsNet
         VitaminA,
         Volume,
         VolumeFlow,
+        VolumePerLength,
 // Missing XML comment for public type or member
 #pragma warning restore CS1591
     }
