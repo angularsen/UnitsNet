@@ -173,8 +173,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
         {
-            var unitSystemWithNoMatchingBaseUnits = new UnitSystem(new BaseUnits(mass: MassUnit.Kilogram));
-            Assert.Throws<ArgumentException>(() => new Length(1.0, unitSystemWithNoMatchingBaseUnits));
+            // AmplitudeRatio is unitless. Can't have any matches :)
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
         }
 
         [Fact]
