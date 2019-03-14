@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, BaseUnits.Undefined),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, BaseUnits.Undefined),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

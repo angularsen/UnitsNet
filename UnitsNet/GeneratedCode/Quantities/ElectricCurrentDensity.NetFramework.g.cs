@@ -53,7 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricCurrentDensityUnit>(QuantityType.ElectricCurrentDensity,
                 new UnitInfo<ElectricCurrentDensityUnit>[] {
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

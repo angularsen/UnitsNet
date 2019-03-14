@@ -11,6 +11,10 @@
     {
       "SingularName": "AmperePerSquareMeter",
       "PluralName": "AmperesPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [

@@ -13,6 +13,12 @@
     {
       "SingularName": "VoltPerMeter",
       "PluralName": "VoltsPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
