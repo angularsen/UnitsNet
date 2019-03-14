@@ -251,6 +251,8 @@ namespace UnitsNet
                 ("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Milliampere, new string[]{"mA"}),
                 ("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Nanoampere, new string[]{"nA"}),
                 ("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Picoampere, new string[]{"pA"}),
+                ("en-US", typeof(ElectricCurrentDensityUnit), (int)ElectricCurrentDensityUnit.AmperePerSquareFoot, new string[]{"A/ft²"}),
+                ("en-US", typeof(ElectricCurrentDensityUnit), (int)ElectricCurrentDensityUnit.AmperePerSquareInch, new string[]{"A/in²"}),
                 ("en-US", typeof(ElectricCurrentDensityUnit), (int)ElectricCurrentDensityUnit.AmperePerSquareMeter, new string[]{"A/m²"}),
                 ("en-US", typeof(ElectricCurrentGradientUnit), (int)ElectricCurrentGradientUnit.AmperePerSecond, new string[]{"A/s"}),
                 ("en-US", typeof(ElectricFieldUnit), (int)ElectricFieldUnit.VoltPerMeter, new string[]{"V/m"}),
