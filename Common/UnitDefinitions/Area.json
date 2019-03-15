@@ -9,6 +9,9 @@
     {
       "SingularName": "SquareKilometer",
       "PluralName": "SquareKilometers",
+      "BaseUnits": {
+        "L": "Kilometer"
+      },
       "FromUnitToBaseFunc": "x*1e6",
       "FromBaseToUnitFunc": "x/1e6",
       "Localization": [
@@ -25,6 +28,9 @@
     {
       "SingularName": "SquareMeter",
       "PluralName": "SquareMeters",
+      "BaseUnits": {
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
@@ -41,6 +47,9 @@
     {
       "SingularName": "SquareDecimeter",
       "PluralName": "SquareDecimeters",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
       "FromUnitToBaseFunc": "x*1e-2",
       "FromBaseToUnitFunc": "x/1e-2",
       "Localization": [
@@ -57,6 +66,9 @@
     {
       "SingularName": "SquareCentimeter",
       "PluralName": "SquareCentimeters",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
       "FromUnitToBaseFunc": "x*1e-4",
       "FromBaseToUnitFunc": "x/1e-4",
       "Localization": [
@@ -73,6 +85,9 @@
     {
       "SingularName": "SquareMillimeter",
       "PluralName": "SquareMillimeters",
+      "BaseUnits": {
+        "L": "Millimeter"
+      },
       "FromUnitToBaseFunc": "x*1e-6",
       "FromBaseToUnitFunc": "x/1e-6",
       "Localization": [
@@ -89,6 +104,9 @@
     {
       "SingularName": "SquareMicrometer",
       "PluralName": "SquareMicrometers",
+      "BaseUnits": {
+        "L": "Micrometer"
+      },
       "FromUnitToBaseFunc": "x*1e-12",
       "FromBaseToUnitFunc": "x/1e-12",
       "Localization": [
@@ -105,6 +123,9 @@
     {
       "SingularName": "SquareMile",
       "PluralName": "SquareMiles",
+      "BaseUnits": {
+        "L": "Mile"
+      },
       "FromUnitToBaseFunc": "x*2.59e6",
       "FromBaseToUnitFunc": "x/2.59e6",
       "Localization": [
@@ -121,6 +142,9 @@
     {
       "SingularName": "SquareYard",
       "PluralName": "SquareYards",
+      "BaseUnits": {
+        "L": "Yard"
+      },
       "FromUnitToBaseFunc": "x*0.836127",
       "FromBaseToUnitFunc": "x/0.836127",
       "Localization": [
@@ -137,6 +161,9 @@
     {
       "SingularName": "SquareFoot",
       "PluralName": "SquareFeet",
+      "BaseUnits": {
+        "L": "Foot"
+      },
       "FromUnitToBaseFunc": "x*0.092903",
       "FromBaseToUnitFunc": "x/0.092903",
       "Localization": [
@@ -153,6 +180,9 @@
     {
       "SingularName": "UsSurveySquareFoot",
       "PluralName": "UsSurveySquareFeet",
+      "BaseUnits": {
+        "L": "UsSurveyFoot"
+      },
       "FromUnitToBaseFunc": "x*0.09290341161",
       "FromBaseToUnitFunc": "x/0.09290341161",
       "Localization": [
@@ -165,6 +195,9 @@
     {
       "SingularName": "SquareInch",
       "PluralName": "SquareInches",
+      "BaseUnits": {
+        "L": "Inch"
+      },
       "FromUnitToBaseFunc": "x*0.00064516",
       "FromBaseToUnitFunc": "x/0.00064516",
       "Localization": [

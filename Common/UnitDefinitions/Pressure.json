@@ -13,16 +13,16 @@
       "PluralName": "Pascals",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Pa" ]
+          "Abbreviations": [ "Pa" ] 
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Па" ],
-          "AbbreviationsWithPrefixes": [ "мкПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
+          "AbbreviationsWithPrefixes": [ "мкПа", "ммПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
         }
       ]
     },
@@ -47,7 +47,7 @@
       "PluralName": "Bars",
       "FromUnitToBaseFunc": "x*1e5",
       "FromBaseToUnitFunc": "x/1e5",
-      "Prefixes": [ "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -158,23 +158,6 @@
           "Culture": "ru-RU",
           "Abbreviations": [ "Н/мм²" ],
           "AbbreviationsWithPrefixes": [ "кН/мм²" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "Psi",
-      "PluralName": "Psi",
-      "ObsoleteText": "Deprecated due to github issue #215, please use PoundForcePerSquareInch instead",
-      "FromUnitToBaseFunc": "x*6.894757293168361e3",
-      "FromBaseToUnitFunc": "x/6.894757293168361e3",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "psi" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "psi" ]
         }
       ]
     },
@@ -319,6 +302,42 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "inHg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DynePerSquareCentimeter",
+      "PluralName": "DynesPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x*1.0e-1",
+      "FromBaseToUnitFunc": "x/1.0e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dyn/cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerInchSecondSquared",
+      "PluralName": "PoundsPerInchSecondSquared",
+      "FromUnitToBaseFunc": "x*1.785796732283465e1",
+      "FromBaseToUnitFunc": "x/1.785796732283465e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbm/(in·s²)", "lb/(in·s²)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchOfWaterColumn",
+      "PluralName": "InchesOfWaterColumn",
+      "FromUnitToBaseFunc": "x*249.08890833333",
+      "FromBaseToUnitFunc": "x/249.08890833333",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "wc" ]
         }
       ]
     }

@@ -9,32 +9,13 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
@@ -59,6 +40,8 @@ namespace UnitsNet.Tests
         protected abstract double DtpPointsInOneMeter { get; }
         protected abstract double FathomsInOneMeter { get; }
         protected abstract double FeetInOneMeter { get; }
+        protected abstract double HandsInOneMeter { get; }
+        protected abstract double HectometersInOneMeter { get; }
         protected abstract double InchesInOneMeter { get; }
         protected abstract double KilometersInOneMeter { get; }
         protected abstract double MetersInOneMeter { get; }
@@ -83,6 +66,8 @@ namespace UnitsNet.Tests
         protected virtual double DtpPointsTolerance { get { return 1e-5; } }
         protected virtual double FathomsTolerance { get { return 1e-5; } }
         protected virtual double FeetTolerance { get { return 1e-5; } }
+        protected virtual double HandsTolerance { get { return 1e-5; } }
+        protected virtual double HectometersTolerance { get { return 1e-5; } }
         protected virtual double InchesTolerance { get { return 1e-5; } }
         protected virtual double KilometersTolerance { get { return 1e-5; } }
         protected virtual double MetersTolerance { get { return 1e-5; } }
@@ -102,6 +87,25 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
+        }
+
+        [Fact]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
@@ -111,6 +115,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DtpPointsInOneMeter, meter.DtpPoints, DtpPointsTolerance);
             AssertEx.EqualTolerance(FathomsInOneMeter, meter.Fathoms, FathomsTolerance);
             AssertEx.EqualTolerance(FeetInOneMeter, meter.Feet, FeetTolerance);
+            AssertEx.EqualTolerance(HandsInOneMeter, meter.Hands, HandsTolerance);
+            AssertEx.EqualTolerance(HectometersInOneMeter, meter.Hectometers, HectometersTolerance);
             AssertEx.EqualTolerance(InchesInOneMeter, meter.Inches, InchesTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.Meters, MetersTolerance);
@@ -138,6 +144,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.DtpPoint).DtpPoints, DtpPointsTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Fathom).Fathoms, FathomsTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Hand).Hands, HandsTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Hectometer).Hectometers, HectometersTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
@@ -157,6 +165,19 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FromMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
+        }
+
+        [Fact]
         public void As()
         {
             var meter = Length.FromMeters(1);
@@ -166,6 +187,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DtpPointsInOneMeter, meter.As(LengthUnit.DtpPoint), DtpPointsTolerance);
             AssertEx.EqualTolerance(FathomsInOneMeter, meter.As(LengthUnit.Fathom), FathomsTolerance);
             AssertEx.EqualTolerance(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
+            AssertEx.EqualTolerance(HandsInOneMeter, meter.As(LengthUnit.Hand), HandsTolerance);
+            AssertEx.EqualTolerance(HectometersInOneMeter, meter.As(LengthUnit.Hectometer), HectometersTolerance);
             AssertEx.EqualTolerance(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
@@ -212,6 +235,14 @@ namespace UnitsNet.Tests
             var footQuantity = meter.ToUnit(LengthUnit.Foot);
             AssertEx.EqualTolerance(FeetInOneMeter, (double)footQuantity.Value, FeetTolerance);
             Assert.Equal(LengthUnit.Foot, footQuantity.Unit);
+
+            var handQuantity = meter.ToUnit(LengthUnit.Hand);
+            AssertEx.EqualTolerance(HandsInOneMeter, (double)handQuantity.Value, HandsTolerance);
+            Assert.Equal(LengthUnit.Hand, handQuantity.Unit);
+
+            var hectometerQuantity = meter.ToUnit(LengthUnit.Hectometer);
+            AssertEx.EqualTolerance(HectometersInOneMeter, (double)hectometerQuantity.Value, HectometersTolerance);
+            Assert.Equal(LengthUnit.Hectometer, hectometerQuantity.Unit);
 
             var inchQuantity = meter.ToUnit(LengthUnit.Inch);
             AssertEx.EqualTolerance(InchesInOneMeter, (double)inchQuantity.Value, InchesTolerance);
@@ -288,6 +319,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.FromDtpPoints(meter.DtpPoints).Meters, DtpPointsTolerance);
             AssertEx.EqualTolerance(1, Length.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
             AssertEx.EqualTolerance(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length.FromHands(meter.Hands).Meters, HandsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromHectometers(meter.Hectometers).Meters, HectometersTolerance);
             AssertEx.EqualTolerance(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
             AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
             AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
@@ -359,28 +392,43 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
-
         [Fact]
         public void EqualityOperators()
         {
-            Length a = Length.FromMeters(1);
-            Length b = Length.FromMeters(2);
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
 
-// ReSharper disable EqualExpressionComparison
+ // ReSharper disable EqualExpressionComparison
+
             Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
             Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
 // ReSharper restore EqualExpressionComparison
         }
 
         [Fact]
         public void EqualsIsImplemented()
         {
-            Length v = Length.FromMeters(1);
-            Assert.True(v.Equals(Length.FromMeters(1), Length.FromMeters(MetersTolerance)));
-            Assert.False(v.Equals(Length.Zero, Length.FromMeters(MetersTolerance)));
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = Length.FromMeters(1);
+            Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -403,5 +451,23 @@ namespace UnitsNet.Tests
             Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
         }
 
+        [Fact]
+        public void HasAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == LengthUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(Length.BaseDimensions is null);
+        }
     }
 }

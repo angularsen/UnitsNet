@@ -1,29 +1,13 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class EnergyTests : EnergyTestsBase
     {
-        // TODO Override properties in base class here
         protected override double ThermsImperialInOneJoule => 9.478171203551087813109937767482e-9;
 
         protected override double JoulesInOneJoule => 1;
@@ -50,6 +34,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ErgsInOneJoule => 10000000;
 
+        protected override double TerawattHoursInOneJoule => 2.77777778e-16;
+
         protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
 
         protected override double FootPoundsInOneJoule => 0.737562149;
@@ -67,5 +53,30 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ThermsUsInOneJoule => 9.4804342797334860315281322406817e-9;
 
         protected override double WattHoursInOneJoule => 0.000277777778;
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var energy = new Energy(1.0, UnitSystem.SI);
+            Assert.Equal(EnergyUnit.Joule, energy.Unit);
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
+        {
+            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+
+            var inSI = btus.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(2110.11170524, inSI.Value);
+            Assert.Equal(EnergyUnit.Joule, inSI.Unit);
+        }
     }
 }

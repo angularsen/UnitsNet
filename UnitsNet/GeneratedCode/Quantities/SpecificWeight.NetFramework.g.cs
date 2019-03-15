@@ -9,210 +9,442 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct SpecificWeight : IComparable, IComparable<SpecificWeight>
+    /// <remarks>
+    ///     http://en.wikipedia.org/wiki/Specificweight
+    /// </remarks>
+    public partial struct SpecificWeight : IQuantity<SpecificWeightUnit>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>, IConvertible, IFormattable
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly SpecificWeightUnit? _unit;
+
+        static SpecificWeight()
+        {
+            BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+
+            Info = new QuantityInfo<SpecificWeightUnit>(QuantityType.SpecificWeight,
+                new UnitInfo<SpecificWeightUnit>[] {
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.MeganewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public SpecificWeight(double numericValue, SpecificWeightUnit unit)
+        {
+            if(unit == SpecificWeightUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public SpecificWeight(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+        }
+
+        #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<SpecificWeightUnit> Info { get; }
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
+        /// </summary>
+        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+
+        /// <summary>
+        /// Represents the largest possible value of SpecificWeight
+        /// </summary>
+        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of SpecificWeight
+        /// </summary>
+        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
+
+        /// <summary>
+        ///     All units of measurement for the SpecificWeight quantity.
+        /// </summary>
+        public static SpecificWeightUnit[] Units { get; } = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(QuantityValue? kilogramsforcepercubiccentimeter)
+        public QuantityType Type => SpecificWeight.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificWeight.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get SpecificWeight in KilogramsForcePerCubicCentimeter.
+        /// </summary>
+        public double KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilogramsForcePerCubicMeter.
+        /// </summary>
+        public double KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilogramsForcePerCubicMillimeter.
+        /// </summary>
+        public double KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilonewtonsPerCubicCentimeter.
+        /// </summary>
+        public double KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilonewtonsPerCubicMeter.
+        /// </summary>
+        public double KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilonewtonsPerCubicMillimeter.
+        /// </summary>
+        public double KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilopoundsForcePerCubicFoot.
+        /// </summary>
+        public double KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
+
+        /// <summary>
+        ///     Get SpecificWeight in KilopoundsForcePerCubicInch.
+        /// </summary>
+        public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
+
+        /// <summary>
+        ///     Get SpecificWeight in MeganewtonsPerCubicMeter.
+        /// </summary>
+        public double MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in NewtonsPerCubicCentimeter.
+        /// </summary>
+        public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in NewtonsPerCubicMeter.
+        /// </summary>
+        public double NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in NewtonsPerCubicMillimeter.
+        /// </summary>
+        public double NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in PoundsForcePerCubicFoot.
+        /// </summary>
+        public double PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
+
+        /// <summary>
+        ///     Get SpecificWeight in PoundsForcePerCubicInch.
+        /// </summary>
+        public double PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
+
+        /// <summary>
+        ///     Get SpecificWeight in TonnesForcePerCubicCentimeter.
+        /// </summary>
+        public double TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in TonnesForcePerCubicMeter.
+        /// </summary>
+        public double TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
+
+        /// <summary>
+        ///     Get SpecificWeight in TonnesForcePerCubicMillimeter.
+        /// </summary>
+        public double TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(SpecificWeightUnit unit)
         {
-            return kilogramsforcepercubiccentimeter.HasValue ? FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value) : default(SpecificWeight?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilogramsForcePerCubicMeter(QuantityValue? kilogramsforcepercubicmeter)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static string GetAbbreviation(SpecificWeightUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return kilogramsforcepercubicmeter.HasValue ? FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value) : default(SpecificWeight?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(QuantityValue? kilogramsforcepercubicmillimeter)
-        {
-            return kilogramsforcepercubicmillimeter.HasValue ? FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value) : default(SpecificWeight?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
+        ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(QuantityValue? kilonewtonspercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(QuantityValue kilogramsforcepercubiccentimeter)
         {
-            return kilonewtonspercubiccentimeter.HasValue ? FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value) : default(SpecificWeight?);
+            double value = (double) kilogramsforcepercubiccentimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
+        ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilonewtonsPerCubicMeter(QuantityValue? kilonewtonspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilogramsForcePerCubicMeter(QuantityValue kilogramsforcepercubicmeter)
         {
-            return kilonewtonspercubicmeter.HasValue ? FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value) : default(SpecificWeight?);
+            double value = (double) kilogramsforcepercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
+        ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(QuantityValue? kilonewtonspercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(QuantityValue kilogramsforcepercubicmillimeter)
         {
-            return kilonewtonspercubicmillimeter.HasValue ? FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value) : default(SpecificWeight?);
+            double value = (double) kilogramsforcepercubicmillimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
+        ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(QuantityValue? kilopoundsforcepercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(QuantityValue kilonewtonspercubiccentimeter)
         {
-            return kilopoundsforcepercubicfoot.HasValue ? FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value) : default(SpecificWeight?);
+            double value = (double) kilonewtonspercubiccentimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
+        ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromKilopoundsForcePerCubicInch(QuantityValue? kilopoundsforcepercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilonewtonsPerCubicMeter(QuantityValue kilonewtonspercubicmeter)
         {
-            return kilopoundsforcepercubicinch.HasValue ? FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value) : default(SpecificWeight?);
+            double value = (double) kilonewtonspercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable MeganewtonsPerCubicMeter.
+        ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromMeganewtonsPerCubicMeter(QuantityValue? meganewtonspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(QuantityValue kilonewtonspercubicmillimeter)
         {
-            return meganewtonspercubicmeter.HasValue ? FromMeganewtonsPerCubicMeter(meganewtonspercubicmeter.Value) : default(SpecificWeight?);
+            double value = (double) kilonewtonspercubicmillimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
+        ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromNewtonsPerCubicCentimeter(QuantityValue? newtonspercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilopoundsForcePerCubicFoot(QuantityValue kilopoundsforcepercubicfoot)
         {
-            return newtonspercubiccentimeter.HasValue ? FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value) : default(SpecificWeight?);
+            double value = (double) kilopoundsforcepercubicfoot;
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
+        ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromNewtonsPerCubicMeter(QuantityValue? newtonspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromKilopoundsForcePerCubicInch(QuantityValue kilopoundsforcepercubicinch)
         {
-            return newtonspercubicmeter.HasValue ? FromNewtonsPerCubicMeter(newtonspercubicmeter.Value) : default(SpecificWeight?);
+            double value = (double) kilopoundsforcepercubicinch;
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
+        ///     Get SpecificWeight from MeganewtonsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromNewtonsPerCubicMillimeter(QuantityValue? newtonspercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromMeganewtonsPerCubicMeter(QuantityValue meganewtonspercubicmeter)
         {
-            return newtonspercubicmillimeter.HasValue ? FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value) : default(SpecificWeight?);
+            double value = (double) meganewtonspercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.MeganewtonPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
+        ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromPoundsForcePerCubicFoot(QuantityValue? poundsforcepercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromNewtonsPerCubicCentimeter(QuantityValue newtonspercubiccentimeter)
         {
-            return poundsforcepercubicfoot.HasValue ? FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value) : default(SpecificWeight?);
+            double value = (double) newtonspercubiccentimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicCentimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
+        ///     Get SpecificWeight from NewtonsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromPoundsForcePerCubicInch(QuantityValue? poundsforcepercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromNewtonsPerCubicMeter(QuantityValue newtonspercubicmeter)
         {
-            return poundsforcepercubicinch.HasValue ? FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value) : default(SpecificWeight?);
+            double value = (double) newtonspercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
+        ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(QuantityValue? tonnesforcepercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromNewtonsPerCubicMillimeter(QuantityValue newtonspercubicmillimeter)
         {
-            return tonnesforcepercubiccentimeter.HasValue ? FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value) : default(SpecificWeight?);
+            double value = (double) newtonspercubicmillimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMillimeter);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
+        ///     Get SpecificWeight from PoundsForcePerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromTonnesForcePerCubicMeter(QuantityValue? tonnesforcepercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromPoundsForcePerCubicFoot(QuantityValue poundsforcepercubicfoot)
         {
-            return tonnesforcepercubicmeter.HasValue ? FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value) : default(SpecificWeight?);
+            double value = (double) poundsforcepercubicfoot;
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
+        ///     Get SpecificWeight from PoundsForcePerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(QuantityValue? tonnesforcepercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromPoundsForcePerCubicInch(QuantityValue poundsforcepercubicinch)
         {
-            return tonnesforcepercubicmillimeter.HasValue ? FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value) : default(SpecificWeight?);
+            double value = (double) poundsforcepercubicinch;
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicInch);
+        }
+        /// <summary>
+        ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromTonnesForcePerCubicCentimeter(QuantityValue tonnesforcepercubiccentimeter)
+        {
+            double value = (double) tonnesforcepercubiccentimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicCentimeter);
+        }
+        /// <summary>
+        ///     Get SpecificWeight from TonnesForcePerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromTonnesForcePerCubicMeter(QuantityValue tonnesforcepercubicmeter)
+        {
+            double value = (double) tonnesforcepercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMeter);
+        }
+        /// <summary>
+        ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificWeight FromTonnesForcePerCubicMillimeter(QuantityValue tonnesforcepercubicmillimeter)
+        {
+            double value = (double) tonnesforcepercubicmillimeter;
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMillimeter);
         }
 
         /// <summary>
@@ -221,108 +453,19 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificWeight unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static SpecificWeight? From(QuantityValue? value, SpecificWeightUnit fromUnit)
+        public static SpecificWeight From(QuantityValue value, SpecificWeightUnit fromUnit)
         {
-            return value.HasValue ? new SpecificWeight((double)value.Value, fromUnit) : default(SpecificWeight?);
+            return new SpecificWeight((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(SpecificWeightUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
-        }
-
-        #region Arithmetic Operators
-
-        public static SpecificWeight operator -(SpecificWeight right)
-        {
-            return new SpecificWeight(-right.Value, right.Unit);
-        }
-
-        public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
-        {
-            return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
-        {
-            return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificWeight operator *(double left, SpecificWeight right)
-        {
-            return new SpecificWeight(left * right.Value, right.Unit);
-        }
-
-        public static SpecificWeight operator *(SpecificWeight left, double right)
-        {
-            return new SpecificWeight(left.Value * right, left.Unit);
-        }
-
-        public static SpecificWeight operator /(SpecificWeight left, double right)
-        {
-            return new SpecificWeight(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(SpecificWeight left, SpecificWeight right)
-        {
-            return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
-        }
-
-        #endregion
-
-        public static bool operator <=(SpecificWeight left, SpecificWeight right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(SpecificWeight left, SpecificWeight right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(SpecificWeight left, SpecificWeight right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(SpecificWeight left, SpecificWeight right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(SpecificWeight left, SpecificWeight right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(SpecificWeight left, SpecificWeight right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-
-        #region Parsing
+        #region Static Parse Methods
 
         /// <summary>
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -341,88 +484,438 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
+        public static SpecificWeight Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static SpecificWeight Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<SpecificWeight, SpecificWeightUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    SpecificWeightUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerCubicMeter(x.NewtonsPerCubicMeter + y.NewtonsPerCubicMeter));
+            return QuantityParser.Default.Parse<SpecificWeight, SpecificWeightUnit>(
+                str,
+                provider,
+                From);
         }
 
         /// <summary>
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
+        public static bool TryParse([CanBeNull] string str, out SpecificWeight result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out SpecificWeight result)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(SpecificWeight);
-                return false;
-            }
+            return QuantityParser.Default.TryParse<SpecificWeight, SpecificWeightUnit>(
+                str,
+                provider,
+                From,
+                out result);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static SpecificWeightUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static SpecificWeightUnit ParseUnit(string str)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            return ParseUnit(str, null);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static SpecificWeightUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return UnitParser.Default.Parse<SpecificWeightUnit>(str, provider);
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<SpecificWeightUnit>(str.Trim());
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificWeightUnit)"/>
+        public static bool TryParseUnit(string str, out SpecificWeightUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
 
-            if (unit == SpecificWeightUnit.Undefined)
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out SpecificWeightUnit unit)
+        {
+            return UnitParser.Default.TryParse<SpecificWeightUnit>(str, provider, out unit);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        /// <summary>Negate the value.</summary>
+        public static SpecificWeight operator -(SpecificWeight right)
+        {
+            return new SpecificWeight(-right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from adding two <see cref="SpecificWeight"/>.</summary>
+        public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
+        {
+            return new SpecificWeight(left.Value + right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from subtracting two <see cref="SpecificWeight"/>.</summary>
+        public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
+        {
+            return new SpecificWeight(left.Value - right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
+        public static SpecificWeight operator *(double left, SpecificWeight right)
+        {
+            return new SpecificWeight(left * right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
+        public static SpecificWeight operator *(SpecificWeight left, double right)
+        {
+            return new SpecificWeight(left.Value * right, left.Unit);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from dividing <see cref="SpecificWeight"/> by value.</summary>
+        public static SpecificWeight operator /(SpecificWeight left, double right)
+        {
+            return new SpecificWeight(left.Value / right, left.Unit);
+        }
+
+        /// <summary>Get ratio value from dividing <see cref="SpecificWeight"/> by <see cref="SpecificWeight"/>.</summary>
+        public static double operator /(SpecificWeight left, SpecificWeight right)
+        {
+            return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        /// <summary>Returns true if less or equal to.</summary>
+        public static bool operator <=(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value <= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than or equal to.</summary>
+        public static bool operator >=(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value >= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if less than.</summary>
+        public static bool operator <(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value < right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than.</summary>
+        public static bool operator >(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value > right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(SpecificWeight left, SpecificWeight right)
+        {
+            return !(left == right);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(object obj)
+        {
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is SpecificWeight objSpecificWeight)) throw new ArgumentException("Expected type SpecificWeight.", nameof(obj));
+
+            return CompareTo(objSpecificWeight);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(SpecificWeight other)
+        {
+            return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is SpecificWeight objSpecificWeight))
+                return false;
+
+            return Equals(objSpecificWeight);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(SpecificWeight, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(SpecificWeight other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another SpecificWeight within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(SpecificWeight other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        }
+
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current SpecificWeight.</returns>
+        public override int GetHashCode()
+        {
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
+
+        #endregion
+
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(SpecificWeightUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
+
+            return As(unitAsSpecificWeightUnit);
+        }
+
+        /// <summary>
+        ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A SpecificWeight with the specified unit.</returns>
+        public SpecificWeight ToUnit(SpecificWeightUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new SpecificWeight(convertedValue, unit);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpecificWeightUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public SpecificWeight ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized SpecificWeightUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double GetValueAs(SpecificWeightUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = GetValueInBaseUnit();
+
+            switch(unit)
+            {
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue/9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue/9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue/9.80665e9;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue*0.000001) / 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (baseUnitValue) / 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue/1.570874638462462e2) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue/2.714471375263134e5) / 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (baseUnitValue) / 1e6d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue/1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue/2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue/9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue/9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue/9.80665e12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -430,50 +923,177 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] IFormatProvider provider)
+        public override string ToString()
         {
-            return ToString(unit, provider, 2);
+            return ToString("g");
+        }
+
+        /// <summary>
+        ///     Gets the default string representation of value and unit using the given format provider.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
+        {
+            return ToString("g", provider);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<SpecificWeightUnit>(this, format, formatProvider);
+        }
+
+        #endregion
+
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString("g", provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(SpecificWeight))
+                return this;
+            else if(conversionType == typeof(SpecificWeightUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return SpecificWeight.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return SpecificWeight.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(SpecificWeight)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
         }
 
         #endregion

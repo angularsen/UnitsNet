@@ -21,6 +21,31 @@
       ]
     },
     {
+      "SingularName": "GramPerDay",
+      "PluralName": "GramsPerDay",
+      "FromUnitToBaseFunc": "x/86400",
+      "FromBaseToUnitFunc": "x*86400",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerHour",
+      "PluralName": "GramsPerHour",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/h" ]
+        }
+      ]
+    },
+    {
       "SingularName": "KilogramPerHour",
       "PluralName": "KilogramsPerHour",
       "FromUnitToBaseFunc": "x/3.6",
@@ -37,6 +62,22 @@
       ]
     },
     {
+      "SingularName": "KilogramPerMinute",
+      "PluralName": "KilogramsPerMinute",
+      "FromUnitToBaseFunc": "x/0.06",
+      "FromBaseToUnitFunc": "x*0.06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кг/мин" ]
+        }
+      ]
+    },
+    {
       "SingularName": "TonnePerHour",
       "PluralName": "TonnesPerHour",
       "FromUnitToBaseFunc": "1000*x/3.6",
@@ -45,6 +86,20 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "t/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerDay",
+      "PluralName": "PoundsPerDay",
+      "FromUnitToBaseFunc": "x/190.47936",
+      "FromBaseToUnitFunc": "x*190.47936",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/d" ],
+          "AbbreviationsWithPrefixes": [ "Mlb/d" ]
         }
       ]
     },
@@ -58,6 +113,19 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerMinute",
+      "PluralName": "PoundsPerMinute",
+      "FromUnitToBaseFunc": "x/0.132277",
+      "FromBaseToUnitFunc": "x*0.132277",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/min" ]
         }
       ]
     },

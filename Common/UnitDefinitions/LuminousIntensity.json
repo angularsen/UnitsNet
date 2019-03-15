@@ -10,6 +10,9 @@
     {
       "SingularName": "Candela",
       "PluralName": "Candela",
+      "BaseUnits": {
+        "J": "Candela"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [

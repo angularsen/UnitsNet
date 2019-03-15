@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
@@ -9,18 +9,18 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     /// </summary>
     public sealed class UnitListItem
     {
-        public UnitListItem(object val)
+        public UnitListItem(Enum val)
         {
             UnitEnumValue = val;
-            UnitEnumValueInt = (int) val;
+            UnitEnumValueInt = Convert.ToInt32(val);
             UnitEnumType = val.GetType();
-            Abbreviation = UnitSystem.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
+            Abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
 
             Text = $"{val} [{Abbreviation}]";
         }
 
         public string Text { get; }
-        public object UnitEnumValue { get; }
+        public Enum UnitEnumValue { get; }
         public int UnitEnumValueInt { get; }
         public Type UnitEnumType { get; }
         public string Abbreviation { get; }

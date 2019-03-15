@@ -11,6 +11,9 @@
       "PluralName": "Amperes",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "BaseUnits": {
+        "I": "Ampere"
+      },
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Kilo", "Mega" ],
       "Localization": [
         {

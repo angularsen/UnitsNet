@@ -9,453 +9,844 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The amount of power in a volume.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct PowerDensity : IComparable, IComparable<PowerDensity>
+    public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible, IFormattable
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly PowerDensityUnit? _unit;
+
+        static PowerDensity()
+        {
+            BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+
+            Info = new QuantityInfo<PowerDensityUnit>(QuantityType.PowerDensity,
+                new UnitInfo<PowerDensityUnit>[] {
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public PowerDensity(double numericValue, PowerDensityUnit unit)
+        {
+            if(unit == PowerDensityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public PowerDensity(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+        }
+
+        #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<PowerDensityUnit> Info { get; }
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
+        /// </summary>
+        public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+
+        /// <summary>
+        /// Represents the largest possible value of PowerDensity
+        /// </summary>
+        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of PowerDensity
+        /// </summary>
+        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.PowerDensity;
+
+        /// <summary>
+        ///     All units of measurement for the PowerDensity quantity.
+        /// </summary>
+        public static PowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerCubicMeter.
+        /// </summary>
+        public static PowerDensity Zero { get; } = new PowerDensity(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DecawattsPerCubicFoot.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDecawattsPerCubicFoot(QuantityValue? decawattspercubicfoot)
+        public QuantityType Type => PowerDensity.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => PowerDensity.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get PowerDensity in DecawattsPerCubicFoot.
+        /// </summary>
+        public double DecawattsPerCubicFoot => As(PowerDensityUnit.DecawattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in DecawattsPerCubicInch.
+        /// </summary>
+        public double DecawattsPerCubicInch => As(PowerDensityUnit.DecawattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in DecawattsPerCubicMeter.
+        /// </summary>
+        public double DecawattsPerCubicMeter => As(PowerDensityUnit.DecawattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in DecawattsPerLiter.
+        /// </summary>
+        public double DecawattsPerLiter => As(PowerDensityUnit.DecawattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in DeciwattsPerCubicFoot.
+        /// </summary>
+        public double DeciwattsPerCubicFoot => As(PowerDensityUnit.DeciwattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in DeciwattsPerCubicInch.
+        /// </summary>
+        public double DeciwattsPerCubicInch => As(PowerDensityUnit.DeciwattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in DeciwattsPerCubicMeter.
+        /// </summary>
+        public double DeciwattsPerCubicMeter => As(PowerDensityUnit.DeciwattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in DeciwattsPerLiter.
+        /// </summary>
+        public double DeciwattsPerLiter => As(PowerDensityUnit.DeciwattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in GigawattsPerCubicFoot.
+        /// </summary>
+        public double GigawattsPerCubicFoot => As(PowerDensityUnit.GigawattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in GigawattsPerCubicInch.
+        /// </summary>
+        public double GigawattsPerCubicInch => As(PowerDensityUnit.GigawattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in GigawattsPerCubicMeter.
+        /// </summary>
+        public double GigawattsPerCubicMeter => As(PowerDensityUnit.GigawattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in GigawattsPerLiter.
+        /// </summary>
+        public double GigawattsPerLiter => As(PowerDensityUnit.GigawattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in KilowattsPerCubicFoot.
+        /// </summary>
+        public double KilowattsPerCubicFoot => As(PowerDensityUnit.KilowattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in KilowattsPerCubicInch.
+        /// </summary>
+        public double KilowattsPerCubicInch => As(PowerDensityUnit.KilowattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in KilowattsPerCubicMeter.
+        /// </summary>
+        public double KilowattsPerCubicMeter => As(PowerDensityUnit.KilowattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in KilowattsPerLiter.
+        /// </summary>
+        public double KilowattsPerLiter => As(PowerDensityUnit.KilowattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in MegawattsPerCubicFoot.
+        /// </summary>
+        public double MegawattsPerCubicFoot => As(PowerDensityUnit.MegawattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in MegawattsPerCubicInch.
+        /// </summary>
+        public double MegawattsPerCubicInch => As(PowerDensityUnit.MegawattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in MegawattsPerCubicMeter.
+        /// </summary>
+        public double MegawattsPerCubicMeter => As(PowerDensityUnit.MegawattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in MegawattsPerLiter.
+        /// </summary>
+        public double MegawattsPerLiter => As(PowerDensityUnit.MegawattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in MicrowattsPerCubicFoot.
+        /// </summary>
+        public double MicrowattsPerCubicFoot => As(PowerDensityUnit.MicrowattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in MicrowattsPerCubicInch.
+        /// </summary>
+        public double MicrowattsPerCubicInch => As(PowerDensityUnit.MicrowattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in MicrowattsPerCubicMeter.
+        /// </summary>
+        public double MicrowattsPerCubicMeter => As(PowerDensityUnit.MicrowattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in MicrowattsPerLiter.
+        /// </summary>
+        public double MicrowattsPerLiter => As(PowerDensityUnit.MicrowattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in MilliwattsPerCubicFoot.
+        /// </summary>
+        public double MilliwattsPerCubicFoot => As(PowerDensityUnit.MilliwattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in MilliwattsPerCubicInch.
+        /// </summary>
+        public double MilliwattsPerCubicInch => As(PowerDensityUnit.MilliwattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in MilliwattsPerCubicMeter.
+        /// </summary>
+        public double MilliwattsPerCubicMeter => As(PowerDensityUnit.MilliwattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in MilliwattsPerLiter.
+        /// </summary>
+        public double MilliwattsPerLiter => As(PowerDensityUnit.MilliwattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in NanowattsPerCubicFoot.
+        /// </summary>
+        public double NanowattsPerCubicFoot => As(PowerDensityUnit.NanowattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in NanowattsPerCubicInch.
+        /// </summary>
+        public double NanowattsPerCubicInch => As(PowerDensityUnit.NanowattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in NanowattsPerCubicMeter.
+        /// </summary>
+        public double NanowattsPerCubicMeter => As(PowerDensityUnit.NanowattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in NanowattsPerLiter.
+        /// </summary>
+        public double NanowattsPerLiter => As(PowerDensityUnit.NanowattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in PicowattsPerCubicFoot.
+        /// </summary>
+        public double PicowattsPerCubicFoot => As(PowerDensityUnit.PicowattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in PicowattsPerCubicInch.
+        /// </summary>
+        public double PicowattsPerCubicInch => As(PowerDensityUnit.PicowattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in PicowattsPerCubicMeter.
+        /// </summary>
+        public double PicowattsPerCubicMeter => As(PowerDensityUnit.PicowattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in PicowattsPerLiter.
+        /// </summary>
+        public double PicowattsPerLiter => As(PowerDensityUnit.PicowattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in TerawattsPerCubicFoot.
+        /// </summary>
+        public double TerawattsPerCubicFoot => As(PowerDensityUnit.TerawattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in TerawattsPerCubicInch.
+        /// </summary>
+        public double TerawattsPerCubicInch => As(PowerDensityUnit.TerawattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in TerawattsPerCubicMeter.
+        /// </summary>
+        public double TerawattsPerCubicMeter => As(PowerDensityUnit.TerawattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in TerawattsPerLiter.
+        /// </summary>
+        public double TerawattsPerLiter => As(PowerDensityUnit.TerawattPerLiter);
+
+        /// <summary>
+        ///     Get PowerDensity in WattsPerCubicFoot.
+        /// </summary>
+        public double WattsPerCubicFoot => As(PowerDensityUnit.WattPerCubicFoot);
+
+        /// <summary>
+        ///     Get PowerDensity in WattsPerCubicInch.
+        /// </summary>
+        public double WattsPerCubicInch => As(PowerDensityUnit.WattPerCubicInch);
+
+        /// <summary>
+        ///     Get PowerDensity in WattsPerCubicMeter.
+        /// </summary>
+        public double WattsPerCubicMeter => As(PowerDensityUnit.WattPerCubicMeter);
+
+        /// <summary>
+        ///     Get PowerDensity in WattsPerLiter.
+        /// </summary>
+        public double WattsPerLiter => As(PowerDensityUnit.WattPerLiter);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(PowerDensityUnit unit)
         {
-            return decawattspercubicfoot.HasValue ? FromDecawattsPerCubicFoot(decawattspercubicfoot.Value) : default(PowerDensity?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DecawattsPerCubicInch.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDecawattsPerCubicInch(QuantityValue? decawattspercubicinch)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static string GetAbbreviation(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return decawattspercubicinch.HasValue ? FromDecawattsPerCubicInch(decawattspercubicinch.Value) : default(PowerDensity?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable PowerDensity from nullable DecawattsPerCubicMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDecawattsPerCubicMeter(QuantityValue? decawattspercubicmeter)
-        {
-            return decawattspercubicmeter.HasValue ? FromDecawattsPerCubicMeter(decawattspercubicmeter.Value) : default(PowerDensity?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DecawattsPerLiter.
+        ///     Get PowerDensity from DecawattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDecawattsPerLiter(QuantityValue? decawattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDecawattsPerCubicFoot(QuantityValue decawattspercubicfoot)
         {
-            return decawattsperliter.HasValue ? FromDecawattsPerLiter(decawattsperliter.Value) : default(PowerDensity?);
+            double value = (double) decawattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DeciwattsPerCubicFoot.
+        ///     Get PowerDensity from DecawattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDeciwattsPerCubicFoot(QuantityValue? deciwattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDecawattsPerCubicInch(QuantityValue decawattspercubicinch)
         {
-            return deciwattspercubicfoot.HasValue ? FromDeciwattsPerCubicFoot(deciwattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) decawattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DeciwattsPerCubicInch.
+        ///     Get PowerDensity from DecawattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDeciwattsPerCubicInch(QuantityValue? deciwattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDecawattsPerCubicMeter(QuantityValue decawattspercubicmeter)
         {
-            return deciwattspercubicinch.HasValue ? FromDeciwattsPerCubicInch(deciwattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) decawattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DeciwattsPerCubicMeter.
+        ///     Get PowerDensity from DecawattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDeciwattsPerCubicMeter(QuantityValue? deciwattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDecawattsPerLiter(QuantityValue decawattsperliter)
         {
-            return deciwattspercubicmeter.HasValue ? FromDeciwattsPerCubicMeter(deciwattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) decawattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.DecawattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable DeciwattsPerLiter.
+        ///     Get PowerDensity from DeciwattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromDeciwattsPerLiter(QuantityValue? deciwattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDeciwattsPerCubicFoot(QuantityValue deciwattspercubicfoot)
         {
-            return deciwattsperliter.HasValue ? FromDeciwattsPerLiter(deciwattsperliter.Value) : default(PowerDensity?);
+            double value = (double) deciwattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable GigawattsPerCubicFoot.
+        ///     Get PowerDensity from DeciwattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromGigawattsPerCubicFoot(QuantityValue? gigawattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDeciwattsPerCubicInch(QuantityValue deciwattspercubicinch)
         {
-            return gigawattspercubicfoot.HasValue ? FromGigawattsPerCubicFoot(gigawattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) deciwattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable GigawattsPerCubicInch.
+        ///     Get PowerDensity from DeciwattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromGigawattsPerCubicInch(QuantityValue? gigawattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDeciwattsPerCubicMeter(QuantityValue deciwattspercubicmeter)
         {
-            return gigawattspercubicinch.HasValue ? FromGigawattsPerCubicInch(gigawattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) deciwattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable GigawattsPerCubicMeter.
+        ///     Get PowerDensity from DeciwattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromGigawattsPerCubicMeter(QuantityValue? gigawattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromDeciwattsPerLiter(QuantityValue deciwattsperliter)
         {
-            return gigawattspercubicmeter.HasValue ? FromGigawattsPerCubicMeter(gigawattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) deciwattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.DeciwattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable GigawattsPerLiter.
+        ///     Get PowerDensity from GigawattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromGigawattsPerLiter(QuantityValue? gigawattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromGigawattsPerCubicFoot(QuantityValue gigawattspercubicfoot)
         {
-            return gigawattsperliter.HasValue ? FromGigawattsPerLiter(gigawattsperliter.Value) : default(PowerDensity?);
+            double value = (double) gigawattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable KilowattsPerCubicFoot.
+        ///     Get PowerDensity from GigawattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromKilowattsPerCubicFoot(QuantityValue? kilowattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromGigawattsPerCubicInch(QuantityValue gigawattspercubicinch)
         {
-            return kilowattspercubicfoot.HasValue ? FromKilowattsPerCubicFoot(kilowattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) gigawattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable KilowattsPerCubicInch.
+        ///     Get PowerDensity from GigawattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromKilowattsPerCubicInch(QuantityValue? kilowattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromGigawattsPerCubicMeter(QuantityValue gigawattspercubicmeter)
         {
-            return kilowattspercubicinch.HasValue ? FromKilowattsPerCubicInch(kilowattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) gigawattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable KilowattsPerCubicMeter.
+        ///     Get PowerDensity from GigawattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromKilowattsPerCubicMeter(QuantityValue? kilowattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromGigawattsPerLiter(QuantityValue gigawattsperliter)
         {
-            return kilowattspercubicmeter.HasValue ? FromKilowattsPerCubicMeter(kilowattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) gigawattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.GigawattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable KilowattsPerLiter.
+        ///     Get PowerDensity from KilowattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromKilowattsPerLiter(QuantityValue? kilowattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromKilowattsPerCubicFoot(QuantityValue kilowattspercubicfoot)
         {
-            return kilowattsperliter.HasValue ? FromKilowattsPerLiter(kilowattsperliter.Value) : default(PowerDensity?);
+            double value = (double) kilowattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MegawattsPerCubicFoot.
+        ///     Get PowerDensity from KilowattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMegawattsPerCubicFoot(QuantityValue? megawattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromKilowattsPerCubicInch(QuantityValue kilowattspercubicinch)
         {
-            return megawattspercubicfoot.HasValue ? FromMegawattsPerCubicFoot(megawattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) kilowattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MegawattsPerCubicInch.
+        ///     Get PowerDensity from KilowattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMegawattsPerCubicInch(QuantityValue? megawattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromKilowattsPerCubicMeter(QuantityValue kilowattspercubicmeter)
         {
-            return megawattspercubicinch.HasValue ? FromMegawattsPerCubicInch(megawattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) kilowattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MegawattsPerCubicMeter.
+        ///     Get PowerDensity from KilowattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMegawattsPerCubicMeter(QuantityValue? megawattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromKilowattsPerLiter(QuantityValue kilowattsperliter)
         {
-            return megawattspercubicmeter.HasValue ? FromMegawattsPerCubicMeter(megawattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) kilowattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.KilowattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MegawattsPerLiter.
+        ///     Get PowerDensity from MegawattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMegawattsPerLiter(QuantityValue? megawattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMegawattsPerCubicFoot(QuantityValue megawattspercubicfoot)
         {
-            return megawattsperliter.HasValue ? FromMegawattsPerLiter(megawattsperliter.Value) : default(PowerDensity?);
+            double value = (double) megawattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MicrowattsPerCubicFoot.
+        ///     Get PowerDensity from MegawattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMicrowattsPerCubicFoot(QuantityValue? microwattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMegawattsPerCubicInch(QuantityValue megawattspercubicinch)
         {
-            return microwattspercubicfoot.HasValue ? FromMicrowattsPerCubicFoot(microwattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) megawattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MicrowattsPerCubicInch.
+        ///     Get PowerDensity from MegawattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMicrowattsPerCubicInch(QuantityValue? microwattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMegawattsPerCubicMeter(QuantityValue megawattspercubicmeter)
         {
-            return microwattspercubicinch.HasValue ? FromMicrowattsPerCubicInch(microwattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) megawattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MicrowattsPerCubicMeter.
+        ///     Get PowerDensity from MegawattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMicrowattsPerCubicMeter(QuantityValue? microwattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMegawattsPerLiter(QuantityValue megawattsperliter)
         {
-            return microwattspercubicmeter.HasValue ? FromMicrowattsPerCubicMeter(microwattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) megawattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.MegawattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MicrowattsPerLiter.
+        ///     Get PowerDensity from MicrowattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMicrowattsPerLiter(QuantityValue? microwattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMicrowattsPerCubicFoot(QuantityValue microwattspercubicfoot)
         {
-            return microwattsperliter.HasValue ? FromMicrowattsPerLiter(microwattsperliter.Value) : default(PowerDensity?);
+            double value = (double) microwattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MilliwattsPerCubicFoot.
+        ///     Get PowerDensity from MicrowattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMilliwattsPerCubicFoot(QuantityValue? milliwattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMicrowattsPerCubicInch(QuantityValue microwattspercubicinch)
         {
-            return milliwattspercubicfoot.HasValue ? FromMilliwattsPerCubicFoot(milliwattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) microwattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MilliwattsPerCubicInch.
+        ///     Get PowerDensity from MicrowattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMilliwattsPerCubicInch(QuantityValue? milliwattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMicrowattsPerCubicMeter(QuantityValue microwattspercubicmeter)
         {
-            return milliwattspercubicinch.HasValue ? FromMilliwattsPerCubicInch(milliwattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) microwattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MilliwattsPerCubicMeter.
+        ///     Get PowerDensity from MicrowattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMilliwattsPerCubicMeter(QuantityValue? milliwattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMicrowattsPerLiter(QuantityValue microwattsperliter)
         {
-            return milliwattspercubicmeter.HasValue ? FromMilliwattsPerCubicMeter(milliwattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) microwattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.MicrowattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable MilliwattsPerLiter.
+        ///     Get PowerDensity from MilliwattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromMilliwattsPerLiter(QuantityValue? milliwattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMilliwattsPerCubicFoot(QuantityValue milliwattspercubicfoot)
         {
-            return milliwattsperliter.HasValue ? FromMilliwattsPerLiter(milliwattsperliter.Value) : default(PowerDensity?);
+            double value = (double) milliwattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable NanowattsPerCubicFoot.
+        ///     Get PowerDensity from MilliwattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromNanowattsPerCubicFoot(QuantityValue? nanowattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMilliwattsPerCubicInch(QuantityValue milliwattspercubicinch)
         {
-            return nanowattspercubicfoot.HasValue ? FromNanowattsPerCubicFoot(nanowattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) milliwattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable NanowattsPerCubicInch.
+        ///     Get PowerDensity from MilliwattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromNanowattsPerCubicInch(QuantityValue? nanowattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMilliwattsPerCubicMeter(QuantityValue milliwattspercubicmeter)
         {
-            return nanowattspercubicinch.HasValue ? FromNanowattsPerCubicInch(nanowattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) milliwattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable NanowattsPerCubicMeter.
+        ///     Get PowerDensity from MilliwattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromNanowattsPerCubicMeter(QuantityValue? nanowattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromMilliwattsPerLiter(QuantityValue milliwattsperliter)
         {
-            return nanowattspercubicmeter.HasValue ? FromNanowattsPerCubicMeter(nanowattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) milliwattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.MilliwattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable NanowattsPerLiter.
+        ///     Get PowerDensity from NanowattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromNanowattsPerLiter(QuantityValue? nanowattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromNanowattsPerCubicFoot(QuantityValue nanowattspercubicfoot)
         {
-            return nanowattsperliter.HasValue ? FromNanowattsPerLiter(nanowattsperliter.Value) : default(PowerDensity?);
+            double value = (double) nanowattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable PicowattsPerCubicFoot.
+        ///     Get PowerDensity from NanowattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromPicowattsPerCubicFoot(QuantityValue? picowattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromNanowattsPerCubicInch(QuantityValue nanowattspercubicinch)
         {
-            return picowattspercubicfoot.HasValue ? FromPicowattsPerCubicFoot(picowattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) nanowattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable PicowattsPerCubicInch.
+        ///     Get PowerDensity from NanowattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromPicowattsPerCubicInch(QuantityValue? picowattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromNanowattsPerCubicMeter(QuantityValue nanowattspercubicmeter)
         {
-            return picowattspercubicinch.HasValue ? FromPicowattsPerCubicInch(picowattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) nanowattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable PicowattsPerCubicMeter.
+        ///     Get PowerDensity from NanowattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromPicowattsPerCubicMeter(QuantityValue? picowattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromNanowattsPerLiter(QuantityValue nanowattsperliter)
         {
-            return picowattspercubicmeter.HasValue ? FromPicowattsPerCubicMeter(picowattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) nanowattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.NanowattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable PicowattsPerLiter.
+        ///     Get PowerDensity from PicowattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromPicowattsPerLiter(QuantityValue? picowattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromPicowattsPerCubicFoot(QuantityValue picowattspercubicfoot)
         {
-            return picowattsperliter.HasValue ? FromPicowattsPerLiter(picowattsperliter.Value) : default(PowerDensity?);
+            double value = (double) picowattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable TerawattsPerCubicFoot.
+        ///     Get PowerDensity from PicowattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromTerawattsPerCubicFoot(QuantityValue? terawattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromPicowattsPerCubicInch(QuantityValue picowattspercubicinch)
         {
-            return terawattspercubicfoot.HasValue ? FromTerawattsPerCubicFoot(terawattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) picowattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable TerawattsPerCubicInch.
+        ///     Get PowerDensity from PicowattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromTerawattsPerCubicInch(QuantityValue? terawattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromPicowattsPerCubicMeter(QuantityValue picowattspercubicmeter)
         {
-            return terawattspercubicinch.HasValue ? FromTerawattsPerCubicInch(terawattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) picowattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable TerawattsPerCubicMeter.
+        ///     Get PowerDensity from PicowattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromTerawattsPerCubicMeter(QuantityValue? terawattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromPicowattsPerLiter(QuantityValue picowattsperliter)
         {
-            return terawattspercubicmeter.HasValue ? FromTerawattsPerCubicMeter(terawattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) picowattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.PicowattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable TerawattsPerLiter.
+        ///     Get PowerDensity from TerawattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromTerawattsPerLiter(QuantityValue? terawattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromTerawattsPerCubicFoot(QuantityValue terawattspercubicfoot)
         {
-            return terawattsperliter.HasValue ? FromTerawattsPerLiter(terawattsperliter.Value) : default(PowerDensity?);
+            double value = (double) terawattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable WattsPerCubicFoot.
+        ///     Get PowerDensity from TerawattsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromWattsPerCubicFoot(QuantityValue? wattspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromTerawattsPerCubicInch(QuantityValue terawattspercubicinch)
         {
-            return wattspercubicfoot.HasValue ? FromWattsPerCubicFoot(wattspercubicfoot.Value) : default(PowerDensity?);
+            double value = (double) terawattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable WattsPerCubicInch.
+        ///     Get PowerDensity from TerawattsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromWattsPerCubicInch(QuantityValue? wattspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromTerawattsPerCubicMeter(QuantityValue terawattspercubicmeter)
         {
-            return wattspercubicinch.HasValue ? FromWattsPerCubicInch(wattspercubicinch.Value) : default(PowerDensity?);
+            double value = (double) terawattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable WattsPerCubicMeter.
+        ///     Get PowerDensity from TerawattsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromWattsPerCubicMeter(QuantityValue? wattspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromTerawattsPerLiter(QuantityValue terawattsperliter)
         {
-            return wattspercubicmeter.HasValue ? FromWattsPerCubicMeter(wattspercubicmeter.Value) : default(PowerDensity?);
+            double value = (double) terawattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.TerawattPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable PowerDensity from nullable WattsPerLiter.
+        ///     Get PowerDensity from WattsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PowerDensity? FromWattsPerLiter(QuantityValue? wattsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromWattsPerCubicFoot(QuantityValue wattspercubicfoot)
         {
-            return wattsperliter.HasValue ? FromWattsPerLiter(wattsperliter.Value) : default(PowerDensity?);
+            double value = (double) wattspercubicfoot;
+            return new PowerDensity(value, PowerDensityUnit.WattPerCubicFoot);
+        }
+        /// <summary>
+        ///     Get PowerDensity from WattsPerCubicInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromWattsPerCubicInch(QuantityValue wattspercubicinch)
+        {
+            double value = (double) wattspercubicinch;
+            return new PowerDensity(value, PowerDensityUnit.WattPerCubicInch);
+        }
+        /// <summary>
+        ///     Get PowerDensity from WattsPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromWattsPerCubicMeter(QuantityValue wattspercubicmeter)
+        {
+            double value = (double) wattspercubicmeter;
+            return new PowerDensity(value, PowerDensityUnit.WattPerCubicMeter);
+        }
+        /// <summary>
+        ///     Get PowerDensity from WattsPerLiter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PowerDensity FromWattsPerLiter(QuantityValue wattsperliter)
+        {
+            double value = (double) wattsperliter;
+            return new PowerDensity(value, PowerDensityUnit.WattPerLiter);
         }
 
         /// <summary>
@@ -464,108 +855,19 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PowerDensity unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static PowerDensity? From(QuantityValue? value, PowerDensityUnit fromUnit)
+        public static PowerDensity From(QuantityValue value, PowerDensityUnit fromUnit)
         {
-            return value.HasValue ? new PowerDensity((double)value.Value, fromUnit) : default(PowerDensity?);
+            return new PowerDensity((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
-        }
-
-        #region Arithmetic Operators
-
-        public static PowerDensity operator -(PowerDensity right)
-        {
-            return new PowerDensity(-right.Value, right.Unit);
-        }
-
-        public static PowerDensity operator +(PowerDensity left, PowerDensity right)
-        {
-            return new PowerDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static PowerDensity operator -(PowerDensity left, PowerDensity right)
-        {
-            return new PowerDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static PowerDensity operator *(double left, PowerDensity right)
-        {
-            return new PowerDensity(left * right.Value, right.Unit);
-        }
-
-        public static PowerDensity operator *(PowerDensity left, double right)
-        {
-            return new PowerDensity(left.Value * right, left.Unit);
-        }
-
-        public static PowerDensity operator /(PowerDensity left, double right)
-        {
-            return new PowerDensity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(PowerDensity left, PowerDensity right)
-        {
-            return left.WattsPerCubicMeter / right.WattsPerCubicMeter;
-        }
-
-        #endregion
-
-        public static bool operator <=(PowerDensity left, PowerDensity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(PowerDensity left, PowerDensity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(PowerDensity left, PowerDensity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(PowerDensity left, PowerDensity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(PowerDensity left, PowerDensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(PowerDensity left, PowerDensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-
-        #region Parsing
+        #region Static Parse Methods
 
         /// <summary>
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -584,88 +886,492 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
+        public static PowerDensity Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static PowerDensity Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<PowerDensity, PowerDensityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    PowerDensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromWattsPerCubicMeter(x.WattsPerCubicMeter + y.WattsPerCubicMeter));
+            return QuantityParser.Default.Parse<PowerDensity, PowerDensityUnit>(
+                str,
+                provider,
+                From);
         }
 
         /// <summary>
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
+        public static bool TryParse([CanBeNull] string str, out PowerDensity result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out PowerDensity result)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(PowerDensity);
-                return false;
-            }
+            return QuantityParser.Default.TryParse<PowerDensity, PowerDensityUnit>(
+                str,
+                provider,
+                From,
+                out result);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static PowerDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static PowerDensityUnit ParseUnit(string str)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            return ParseUnit(str, null);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static PowerDensityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return UnitParser.Default.Parse<PowerDensityUnit>(str, provider);
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<PowerDensityUnit>(str.Trim());
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerDensityUnit)"/>
+        public static bool TryParseUnit(string str, out PowerDensityUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
 
-            if (unit == PowerDensityUnit.Undefined)
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out PowerDensityUnit unit)
+        {
+            return UnitParser.Default.TryParse<PowerDensityUnit>(str, provider, out unit);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        /// <summary>Negate the value.</summary>
+        public static PowerDensity operator -(PowerDensity right)
+        {
+            return new PowerDensity(-right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from adding two <see cref="PowerDensity"/>.</summary>
+        public static PowerDensity operator +(PowerDensity left, PowerDensity right)
+        {
+            return new PowerDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from subtracting two <see cref="PowerDensity"/>.</summary>
+        public static PowerDensity operator -(PowerDensity left, PowerDensity right)
+        {
+            return new PowerDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
+        public static PowerDensity operator *(double left, PowerDensity right)
+        {
+            return new PowerDensity(left * right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
+        public static PowerDensity operator *(PowerDensity left, double right)
+        {
+            return new PowerDensity(left.Value * right, left.Unit);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from dividing <see cref="PowerDensity"/> by value.</summary>
+        public static PowerDensity operator /(PowerDensity left, double right)
+        {
+            return new PowerDensity(left.Value / right, left.Unit);
+        }
+
+        /// <summary>Get ratio value from dividing <see cref="PowerDensity"/> by <see cref="PowerDensity"/>.</summary>
+        public static double operator /(PowerDensity left, PowerDensity right)
+        {
+            return left.WattsPerCubicMeter / right.WattsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        /// <summary>Returns true if less or equal to.</summary>
+        public static bool operator <=(PowerDensity left, PowerDensity right)
+        {
+            return left.Value <= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than or equal to.</summary>
+        public static bool operator >=(PowerDensity left, PowerDensity right)
+        {
+            return left.Value >= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if less than.</summary>
+        public static bool operator <(PowerDensity left, PowerDensity right)
+        {
+            return left.Value < right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than.</summary>
+        public static bool operator >(PowerDensity left, PowerDensity right)
+        {
+            return left.Value > right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(PowerDensity left, PowerDensity right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(PowerDensity left, PowerDensity right)
+        {
+            return !(left == right);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(object obj)
+        {
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is PowerDensity objPowerDensity)) throw new ArgumentException("Expected type PowerDensity.", nameof(obj));
+
+            return CompareTo(objPowerDensity);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(PowerDensity other)
+        {
+            return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is PowerDensity objPowerDensity))
+                return false;
+
+            return Equals(objPowerDensity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(PowerDensity other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another PowerDensity within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(PowerDensity other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        }
+
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current PowerDensity.</returns>
+        public override int GetHashCode()
+        {
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
+
+        #endregion
+
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(PowerDensityUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PowerDensityUnit unitAsPowerDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPowerDensityUnit);
+        }
+
+        /// <summary>
+        ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A PowerDensity with the specified unit.</returns>
+        public PowerDensity ToUnit(PowerDensityUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new PowerDensity(convertedValue, unit);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PowerDensityUnit unitAsPowerDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPowerDensityUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public PowerDensity ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PowerDensityUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case PowerDensityUnit.DecawattPerCubicFoot: return (_value*3.531466672148859e1) * 1e1d;
+                case PowerDensityUnit.DecawattPerCubicInch: return (_value*6.102374409473228e4) * 1e1d;
+                case PowerDensityUnit.DecawattPerCubicMeter: return (_value) * 1e1d;
+                case PowerDensityUnit.DecawattPerLiter: return (_value*1.0e3) * 1e1d;
+                case PowerDensityUnit.DeciwattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-1d;
+                case PowerDensityUnit.DeciwattPerCubicInch: return (_value*6.102374409473228e4) * 1e-1d;
+                case PowerDensityUnit.DeciwattPerCubicMeter: return (_value) * 1e-1d;
+                case PowerDensityUnit.DeciwattPerLiter: return (_value*1.0e3) * 1e-1d;
+                case PowerDensityUnit.GigawattPerCubicFoot: return (_value*3.531466672148859e1) * 1e9d;
+                case PowerDensityUnit.GigawattPerCubicInch: return (_value*6.102374409473228e4) * 1e9d;
+                case PowerDensityUnit.GigawattPerCubicMeter: return (_value) * 1e9d;
+                case PowerDensityUnit.GigawattPerLiter: return (_value*1.0e3) * 1e9d;
+                case PowerDensityUnit.KilowattPerCubicFoot: return (_value*3.531466672148859e1) * 1e3d;
+                case PowerDensityUnit.KilowattPerCubicInch: return (_value*6.102374409473228e4) * 1e3d;
+                case PowerDensityUnit.KilowattPerCubicMeter: return (_value) * 1e3d;
+                case PowerDensityUnit.KilowattPerLiter: return (_value*1.0e3) * 1e3d;
+                case PowerDensityUnit.MegawattPerCubicFoot: return (_value*3.531466672148859e1) * 1e6d;
+                case PowerDensityUnit.MegawattPerCubicInch: return (_value*6.102374409473228e4) * 1e6d;
+                case PowerDensityUnit.MegawattPerCubicMeter: return (_value) * 1e6d;
+                case PowerDensityUnit.MegawattPerLiter: return (_value*1.0e3) * 1e6d;
+                case PowerDensityUnit.MicrowattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-6d;
+                case PowerDensityUnit.MicrowattPerCubicInch: return (_value*6.102374409473228e4) * 1e-6d;
+                case PowerDensityUnit.MicrowattPerCubicMeter: return (_value) * 1e-6d;
+                case PowerDensityUnit.MicrowattPerLiter: return (_value*1.0e3) * 1e-6d;
+                case PowerDensityUnit.MilliwattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-3d;
+                case PowerDensityUnit.MilliwattPerCubicInch: return (_value*6.102374409473228e4) * 1e-3d;
+                case PowerDensityUnit.MilliwattPerCubicMeter: return (_value) * 1e-3d;
+                case PowerDensityUnit.MilliwattPerLiter: return (_value*1.0e3) * 1e-3d;
+                case PowerDensityUnit.NanowattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-9d;
+                case PowerDensityUnit.NanowattPerCubicInch: return (_value*6.102374409473228e4) * 1e-9d;
+                case PowerDensityUnit.NanowattPerCubicMeter: return (_value) * 1e-9d;
+                case PowerDensityUnit.NanowattPerLiter: return (_value*1.0e3) * 1e-9d;
+                case PowerDensityUnit.PicowattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-12d;
+                case PowerDensityUnit.PicowattPerCubicInch: return (_value*6.102374409473228e4) * 1e-12d;
+                case PowerDensityUnit.PicowattPerCubicMeter: return (_value) * 1e-12d;
+                case PowerDensityUnit.PicowattPerLiter: return (_value*1.0e3) * 1e-12d;
+                case PowerDensityUnit.TerawattPerCubicFoot: return (_value*3.531466672148859e1) * 1e12d;
+                case PowerDensityUnit.TerawattPerCubicInch: return (_value*6.102374409473228e4) * 1e12d;
+                case PowerDensityUnit.TerawattPerCubicMeter: return (_value) * 1e12d;
+                case PowerDensityUnit.TerawattPerLiter: return (_value*1.0e3) * 1e12d;
+                case PowerDensityUnit.WattPerCubicFoot: return _value*3.531466672148859e1;
+                case PowerDensityUnit.WattPerCubicInch: return _value*6.102374409473228e4;
+                case PowerDensityUnit.WattPerCubicMeter: return _value;
+                case PowerDensityUnit.WattPerLiter: return _value*1.0e3;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double GetValueAs(PowerDensityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = GetValueInBaseUnit();
+
+            switch(unit)
+            {
+                case PowerDensityUnit.DecawattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e1d;
+                case PowerDensityUnit.DecawattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e1d;
+                case PowerDensityUnit.DecawattPerCubicMeter: return (baseUnitValue) / 1e1d;
+                case PowerDensityUnit.DecawattPerLiter: return (baseUnitValue/1.0e3) / 1e1d;
+                case PowerDensityUnit.DeciwattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-1d;
+                case PowerDensityUnit.DeciwattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-1d;
+                case PowerDensityUnit.DeciwattPerCubicMeter: return (baseUnitValue) / 1e-1d;
+                case PowerDensityUnit.DeciwattPerLiter: return (baseUnitValue/1.0e3) / 1e-1d;
+                case PowerDensityUnit.GigawattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e9d;
+                case PowerDensityUnit.GigawattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e9d;
+                case PowerDensityUnit.GigawattPerCubicMeter: return (baseUnitValue) / 1e9d;
+                case PowerDensityUnit.GigawattPerLiter: return (baseUnitValue/1.0e3) / 1e9d;
+                case PowerDensityUnit.KilowattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e3d;
+                case PowerDensityUnit.KilowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e3d;
+                case PowerDensityUnit.KilowattPerCubicMeter: return (baseUnitValue) / 1e3d;
+                case PowerDensityUnit.KilowattPerLiter: return (baseUnitValue/1.0e3) / 1e3d;
+                case PowerDensityUnit.MegawattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e6d;
+                case PowerDensityUnit.MegawattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e6d;
+                case PowerDensityUnit.MegawattPerCubicMeter: return (baseUnitValue) / 1e6d;
+                case PowerDensityUnit.MegawattPerLiter: return (baseUnitValue/1.0e3) / 1e6d;
+                case PowerDensityUnit.MicrowattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-6d;
+                case PowerDensityUnit.MicrowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-6d;
+                case PowerDensityUnit.MicrowattPerCubicMeter: return (baseUnitValue) / 1e-6d;
+                case PowerDensityUnit.MicrowattPerLiter: return (baseUnitValue/1.0e3) / 1e-6d;
+                case PowerDensityUnit.MilliwattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-3d;
+                case PowerDensityUnit.MilliwattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-3d;
+                case PowerDensityUnit.MilliwattPerCubicMeter: return (baseUnitValue) / 1e-3d;
+                case PowerDensityUnit.MilliwattPerLiter: return (baseUnitValue/1.0e3) / 1e-3d;
+                case PowerDensityUnit.NanowattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-9d;
+                case PowerDensityUnit.NanowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-9d;
+                case PowerDensityUnit.NanowattPerCubicMeter: return (baseUnitValue) / 1e-9d;
+                case PowerDensityUnit.NanowattPerLiter: return (baseUnitValue/1.0e3) / 1e-9d;
+                case PowerDensityUnit.PicowattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-12d;
+                case PowerDensityUnit.PicowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-12d;
+                case PowerDensityUnit.PicowattPerCubicMeter: return (baseUnitValue) / 1e-12d;
+                case PowerDensityUnit.PicowattPerLiter: return (baseUnitValue/1.0e3) / 1e-12d;
+                case PowerDensityUnit.TerawattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e12d;
+                case PowerDensityUnit.TerawattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e12d;
+                case PowerDensityUnit.TerawattPerCubicMeter: return (baseUnitValue) / 1e12d;
+                case PowerDensityUnit.TerawattPerLiter: return (baseUnitValue/1.0e3) / 1e12d;
+                case PowerDensityUnit.WattPerCubicFoot: return baseUnitValue/3.531466672148859e1;
+                case PowerDensityUnit.WattPerCubicInch: return baseUnitValue/6.102374409473228e4;
+                case PowerDensityUnit.WattPerCubicMeter: return baseUnitValue;
+                case PowerDensityUnit.WattPerLiter: return baseUnitValue/1.0e3;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -673,50 +1379,177 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider)
+        public override string ToString()
         {
-            return ToString(unit, provider, 2);
+            return ToString("g");
+        }
+
+        /// <summary>
+        ///     Gets the default string representation of value and unit using the given format provider.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
+        {
+            return ToString("g", provider);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<PowerDensityUnit>(this, format, formatProvider);
+        }
+
+        #endregion
+
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerDensity)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerDensity)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(PowerDensity)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString("g", provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(PowerDensity))
+                return this;
+            else if(conversionType == typeof(PowerDensityUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return PowerDensity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return PowerDensity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(PowerDensity)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
         }
 
         #endregion

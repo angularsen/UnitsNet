@@ -7,25 +7,11 @@
   },
   "Units": [
     {
-      "ObsoleteText": "Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.",
-      "SingularName": "Year",
-      "PluralName": "Years",
-      "FromUnitToBaseFunc": "x*365*24*3600",
-      "FromBaseToUnitFunc": "x/(365*24*3600)",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "yr", "year", "years" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "год" ]
-        }
-      ]
-    },
-    {
       "SingularName": "Year365",
       "PluralName": "Years365",
+      "BaseUnits": {
+        "T": "Year365"
+      },
       "FromUnitToBaseFunc": "x*365*24*3600",
       "FromBaseToUnitFunc": "x/(365*24*3600)",
       "Localization": [
@@ -36,29 +22,15 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "год" ]
-        }
-      ]
-    },
-    {
-      "ObsoleteText": "Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.",
-      "SingularName": "Month",
-      "PluralName": "Months",
-      "FromUnitToBaseFunc": "x*30*24*3600",
-      "FromBaseToUnitFunc": "x/(30*24*3600)",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "mo", "month", "months" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "месяц" ]
         }
       ]
     },
     {
       "SingularName": "Month30",
       "PluralName": "Months30",
+      "BaseUnits": {
+        "T": "Month30"
+      },
       "FromUnitToBaseFunc": "x*30*24*3600",
       "FromBaseToUnitFunc": "x/(30*24*3600)",
       "Localization": [
@@ -75,6 +47,9 @@
     {
       "SingularName": "Week",
       "PluralName": "Weeks",
+      "BaseUnits": {
+        "T": "Week"
+      },
       "FromUnitToBaseFunc": "x*7*24*3600",
       "FromBaseToUnitFunc": "x/(7*24*3600)",
       "Localization": [
@@ -91,6 +66,9 @@
     {
       "SingularName": "Day",
       "PluralName": "Days",
+      "BaseUnits": {
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "x*24*3600",
       "FromBaseToUnitFunc": "x/(24*3600)",
       "Localization": [
@@ -107,6 +85,9 @@
     {
       "SingularName": "Hour",
       "PluralName": "Hours",
+      "BaseUnits": {
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "x*3600",
       "FromBaseToUnitFunc": "x/3600",
       "Localization": [
@@ -123,6 +104,9 @@
     {
       "SingularName": "Minute",
       "PluralName": "Minutes",
+      "BaseUnits": {
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "x*60",
       "FromBaseToUnitFunc": "x/60",
       "Localization": [
@@ -139,6 +123,9 @@
     {
       "SingularName": "Second",
       "PluralName": "Seconds",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Nano", "Micro", "Milli" ],

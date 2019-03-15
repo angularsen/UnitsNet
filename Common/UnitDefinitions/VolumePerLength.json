@@ -1,0 +1,55 @@
+﻿{
+  "Name": "VolumePerLength",
+  "BaseUnit": "CubicMeterPerMeter",
+  "XmlDoc": "Volume, typically of fluid, that a container can hold within a unit of length.",
+  "BaseDimensions": {
+    "L": 3
+  },
+  "Units": [
+    {
+      "SingularName": "CubicMeterPerMeter",
+      "PluralName": "CubicMetersPerMeter",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerMeter",
+      "PluralName": "LitersPerMeter",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x/1000",
+      "FromBaseToUnitFunc": "x*1000",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerFoot",
+      "PluralName": "OilBarrelsPerFoot",
+      "FromUnitToBaseFunc": "x/1.91713408",
+      "FromBaseToUnitFunc": "x*1.91713408",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/ft" ]
+        }
+      ]
+    }
+  ]
+}

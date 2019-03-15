@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -6,13 +7,135 @@ namespace UnitsNet.Tests
     public class BaseDimensionsTests
     {
         [Fact]
-        public void EqualityWorksAsExpected()
+        public void ConstructorImplementedCorrectly()
+        {
+            var baseDimensions = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            Assert.True(baseDimensions.Length == 1);
+            Assert.True(baseDimensions.Mass == 2);
+            Assert.True(baseDimensions.Time == 3);
+            Assert.True(baseDimensions.Current == 4);
+            Assert.True(baseDimensions.Temperature == 5);
+            Assert.True(baseDimensions.Amount == 6);
+            Assert.True(baseDimensions.LuminousIntensity == 7);
+        }
+
+        [Theory]
+        [InlineData(1, 0, 0, 0, 0, 0, 0)]
+        [InlineData(0, 1, 0, 0, 0, 0, 0)]
+        [InlineData(0, 0, 1, 0, 0, 0, 0)]
+        [InlineData(0, 0, 0, 1, 0, 0, 0)]
+        [InlineData(0, 0, 0, 0, 1, 0, 0)]
+        [InlineData(0, 0, 0, 0, 0, 1, 0)]
+        [InlineData(0, 0, 0, 0, 0, 0, 1)]
+        public void IsBaseQuantityImplementedProperly(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var baseDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
+            var derivedDimensions = new BaseDimensions(length * 2, mass * 2, time * 2, current * 2, temperature * 2, amount * 2, luminousIntensity * 2);
+
+            Assert.True(baseDimensions.IsBaseQuantity());
+            Assert.False(derivedDimensions.IsBaseQuantity());
+        }
+
+        [Theory]
+        [InlineData(2, 0, 0, 0, 0, 0, 0)]
+        [InlineData(0, 2, 0, 0, 0, 0, 0)]
+        [InlineData(0, 0, 2, 0, 0, 0, 0)]
+        [InlineData(0, 0, 0, 2, 0, 0, 0)]
+        [InlineData(0, 0, 0, 0, 2, 0, 0)]
+        [InlineData(0, 0, 0, 0, 0, 2, 0)]
+        [InlineData(0, 0, 0, 0, 0, 0, 2)]
+        public void IsDerivedQuantityImplementedProperly(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var baseDimensions = new BaseDimensions(length / 2, mass / 2, time / 2, current / 2, temperature / 2, amount / 2, luminousIntensity / 2);
+            var derivedDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
+
+            Assert.False(baseDimensions.IsDerivedQuantity());
+            Assert.True(derivedDimensions.IsDerivedQuantity());
+        }
+
+        [Fact]
+        public void EqualsWorksAsExpected()
         {
             var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
             var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
 
             Assert.True(baseDimensions1.Equals(baseDimensions2));
             Assert.True(baseDimensions2.Equals(baseDimensions1));
+
+            Assert.False(baseDimensions1.Equals(null));
+        }
+
+        [Fact]
+        public void EqualityOperatorsWorkAsExpected()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            Assert.True(baseDimensions1 == baseDimensions2);
+            Assert.True(baseDimensions2 == baseDimensions1);
+
+            Assert.False(baseDimensions1 == null);
+            Assert.False(null == baseDimensions1);
+
+            Assert.False(baseDimensions2 == null);
+            Assert.False(null == baseDimensions2);
+
+            BaseDimensions nullBaseDimensions1 = null;
+            BaseDimensions nullBaseDimensions2 = null;
+
+            Assert.True(nullBaseDimensions1 == nullBaseDimensions2);
+        }
+
+        [Fact]
+        public void InequalityOperatorsWorkAsExpected()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(7, 6, 5, 4, 3, 2, 1);
+
+            Assert.True(baseDimensions1 != baseDimensions2);
+            Assert.True(baseDimensions2 != baseDimensions1);
+
+            Assert.True(baseDimensions1 != null);
+            Assert.True(null != baseDimensions1);
+
+            Assert.True(baseDimensions2 != null);
+            Assert.True(null != baseDimensions2);
+
+            BaseDimensions nullBaseDimensions1 = null;
+            BaseDimensions nullBaseDimensions2 = null;
+
+            Assert.False(nullBaseDimensions1 != nullBaseDimensions2);
+        }
+
+        [Fact]
+        public void MultiplyThrowsExceptionIfPassedNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1.Multiply(null));
+        }
+
+        [Fact]
+        public void DivideThrowsExceptionIfPassedNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1.Divide(null));
+        }
+
+        [Fact]
+        public void MultiplyOperatorThrowsExceptionWithNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1 / null);
+            Assert.Throws<ArgumentNullException>(() => null / baseDimensions1);
+        }
+
+        [Fact]
+        public void DivideOperatorThrowsExceptionWithNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1 * null);
+            Assert.Throws<ArgumentNullException>(() => null * baseDimensions1);
         }
 
         [Fact]
@@ -287,7 +410,6 @@ namespace UnitsNet.Tests
             Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
 
-#if !WINDOWS_UWP
         [Fact]
         public void EqualityWorksAsExpectedWithOperatorOverloads()
         {
@@ -569,12 +691,52 @@ namespace UnitsNet.Tests
             var calculatedDimensions = mass.Dimensions * acceleration.Dimensions;
             Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
-#endif
 
         [Fact]
         public void CheckToStringUsingMolarEntropy()
         {
             Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
+        }
+
+        [Fact]
+        public void GetHashCodeWorksProperly()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(7, 6, 5, 4, 3, 2, 1);
+            var baseDimensions3 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            var hashSet = new HashSet<BaseDimensions>();
+
+            hashSet.Add(baseDimensions1);
+            Assert.Contains(baseDimensions1, hashSet);
+
+            hashSet.Add(baseDimensions2);
+            Assert.Contains(baseDimensions2, hashSet);
+
+            // Should be the same as baseDimensions1
+            Assert.Contains(baseDimensions3, hashSet);
+
+            Assert.True(baseDimensions1.GetHashCode() != baseDimensions2.GetHashCode());
+            Assert.True(baseDimensions1.GetHashCode() == baseDimensions3.GetHashCode());
+        }
+
+        [Fact]
+        public void DimensionlessPropertyIsCorrect()
+        {
+            Assert.True(BaseDimensions.Dimensionless == new BaseDimensions(0, 0, 0, 0, 0, 0, 0));
+        }
+
+        [Fact]
+        public void IsDimensionlessMethodImplementedCorrectly()
+        {
+            Assert.True(BaseDimensions.Dimensionless.IsDimensionless());
+            Assert.True(new BaseDimensions(0, 0, 0, 0, 0, 0, 0).IsDimensionless());
+
+            Assert.False(BaseDimensions.Dimensionless.IsBaseQuantity());
+            Assert.False(BaseDimensions.Dimensionless.IsDerivedQuantity());
+
+            // Example case
+            Assert.True(Level.BaseDimensions.IsDimensionless());
         }
     }
 }

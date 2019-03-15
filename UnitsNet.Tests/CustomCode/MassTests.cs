@@ -1,25 +1,8 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -31,6 +14,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecagramsInOneKilogram => 1E2;
 
         protected override double DecigramsInOneKilogram => 1E4;
+
+        protected override double GrainsInOneKilogram => 15432.358352941431d;
 
         protected override double GramsInOneKilogram => 1E3;
 
@@ -62,12 +47,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortTonsInOneKilogram => 1.102311310924388e-3;
 
-        protected override double SlugsInOneKilogram => 6.85217659e-2;
+        protected override double SlugsInOneKilogram => 6.852176556196105e-2;
 
         protected override double StoneInOneKilogram => 0.1574731728702698;
 
         protected override double TonnesInOneKilogram => 1E-3;
-        
+
         protected override double LongHundredweightInOneKilogram => 0.01968413055222121;
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
@@ -105,6 +90,22 @@ namespace UnitsNet.Tests.CustomCode
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void NegativeMassToStonePoundsReturnsCorrectValues()
+        {
+            var negativeMass = Mass.FromPounds(-1.0);
+            var stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(0, stonePounds.Stone);
+            Assert.Equal(-1.0, stonePounds.Pounds);
+
+            negativeMass = Mass.FromPounds(-25.0);
+            stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(-1.0, stonePounds.Stone);
+            Assert.Equal(-11.0, stonePounds.Pounds);
         }
     }
 }

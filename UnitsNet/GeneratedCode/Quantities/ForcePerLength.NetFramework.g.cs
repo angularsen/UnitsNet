@@ -9,138 +9,319 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    /// <inheritdoc />
     /// <summary>
     ///     The magnitude of force per unit length.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ForcePerLength : IComparable, IComparable<ForcePerLength>
+    public partial struct ForcePerLength : IQuantity<ForcePerLengthUnit>, IEquatable<ForcePerLength>, IComparable, IComparable<ForcePerLength>, IConvertible, IFormattable
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ForcePerLengthUnit? _unit;
+
+        static ForcePerLength()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+
+            Info = new QuantityInfo<ForcePerLengthUnit>(QuantityType.ForcePerLength,
+                new UnitInfo<ForcePerLengthUnit>[] {
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public ForcePerLength(double numericValue, ForcePerLengthUnit unit)
+        {
+            if(unit == ForcePerLengthUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public ForcePerLength(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+        }
+
+        #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ForcePerLengthUnit> Info { get; }
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of ForcePerLength, which is NewtonPerMeter. All conversions go via this value.
+        /// </summary>
+        public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+
+        /// <summary>
+        /// Represents the largest possible value of ForcePerLength
+        /// </summary>
+        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of ForcePerLength
+        /// </summary>
+        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ForcePerLength;
+
+        /// <summary>
+        ///     All units of measurement for the ForcePerLength quantity.
+        /// </summary>
+        public static ForcePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().Except(new ForcePerLengthUnit[]{ ForcePerLengthUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerMeter.
+        /// </summary>
+        public static ForcePerLength Zero { get; } = new ForcePerLength(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ForcePerLengthUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromCentinewtonsPerMeter(QuantityValue? centinewtonspermeter)
+        public QuantityType Type => ForcePerLength.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ForcePerLength.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get ForcePerLength in CentinewtonsPerMeter.
+        /// </summary>
+        public double CentinewtonsPerMeter => As(ForcePerLengthUnit.CentinewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in DecinewtonsPerMeter.
+        /// </summary>
+        public double DecinewtonsPerMeter => As(ForcePerLengthUnit.DecinewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in KilogramsForcePerMeter.
+        /// </summary>
+        public double KilogramsForcePerMeter => As(ForcePerLengthUnit.KilogramForcePerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in KilonewtonsPerMeter.
+        /// </summary>
+        public double KilonewtonsPerMeter => As(ForcePerLengthUnit.KilonewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in MeganewtonsPerMeter.
+        /// </summary>
+        public double MeganewtonsPerMeter => As(ForcePerLengthUnit.MeganewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in MicronewtonsPerMeter.
+        /// </summary>
+        public double MicronewtonsPerMeter => As(ForcePerLengthUnit.MicronewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in MillinewtonsPerMeter.
+        /// </summary>
+        public double MillinewtonsPerMeter => As(ForcePerLengthUnit.MillinewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in NanonewtonsPerMeter.
+        /// </summary>
+        public double NanonewtonsPerMeter => As(ForcePerLengthUnit.NanonewtonPerMeter);
+
+        /// <summary>
+        ///     Get ForcePerLength in NewtonsPerMeter.
+        /// </summary>
+        public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(ForcePerLengthUnit unit)
         {
-            return centinewtonspermeter.HasValue ? FromCentinewtonsPerMeter(centinewtonspermeter.Value) : default(ForcePerLength?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromDecinewtonsPerMeter(QuantityValue? decinewtonspermeter)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static string GetAbbreviation(ForcePerLengthUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return decinewtonspermeter.HasValue ? FromDecinewtonsPerMeter(decinewtonspermeter.Value) : default(ForcePerLength?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromKilogramsForcePerMeter(QuantityValue? kilogramsforcepermeter)
-        {
-            return kilogramsforcepermeter.HasValue ? FromKilogramsForcePerMeter(kilogramsforcepermeter.Value) : default(ForcePerLength?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
+        ///     Get ForcePerLength from CentinewtonsPerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromKilonewtonsPerMeter(QuantityValue? kilonewtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromCentinewtonsPerMeter(QuantityValue centinewtonspermeter)
         {
-            return kilonewtonspermeter.HasValue ? FromKilonewtonsPerMeter(kilonewtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) centinewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.CentinewtonPerMeter);
         }
-
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable MeganewtonsPerMeter.
+        ///     Get ForcePerLength from DecinewtonsPerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromMeganewtonsPerMeter(QuantityValue? meganewtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromDecinewtonsPerMeter(QuantityValue decinewtonspermeter)
         {
-            return meganewtonspermeter.HasValue ? FromMeganewtonsPerMeter(meganewtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) decinewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.DecinewtonPerMeter);
         }
-
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
+        ///     Get ForcePerLength from KilogramsForcePerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromKilogramsForcePerMeter(QuantityValue kilogramsforcepermeter)
         {
-            return micronewtonspermeter.HasValue ? FromMicronewtonsPerMeter(micronewtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) kilogramsforcepermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.KilogramForcePerMeter);
         }
-
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
+        ///     Get ForcePerLength from KilonewtonsPerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromMillinewtonsPerMeter(QuantityValue? millinewtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromKilonewtonsPerMeter(QuantityValue kilonewtonspermeter)
         {
-            return millinewtonspermeter.HasValue ? FromMillinewtonsPerMeter(millinewtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) kilonewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerMeter);
         }
-
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
+        ///     Get ForcePerLength from MeganewtonsPerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromNanonewtonsPerMeter(QuantityValue? nanonewtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromMeganewtonsPerMeter(QuantityValue meganewtonspermeter)
         {
-            return nanonewtonspermeter.HasValue ? FromNanonewtonsPerMeter(nanonewtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) meganewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.MeganewtonPerMeter);
         }
-
         /// <summary>
-        ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
+        ///     Get ForcePerLength from MicronewtonsPerMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ForcePerLength? FromNewtonsPerMeter(QuantityValue? newtonspermeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromMicronewtonsPerMeter(QuantityValue micronewtonspermeter)
         {
-            return newtonspermeter.HasValue ? FromNewtonsPerMeter(newtonspermeter.Value) : default(ForcePerLength?);
+            double value = (double) micronewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.MicronewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from MillinewtonsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromMillinewtonsPerMeter(QuantityValue millinewtonspermeter)
+        {
+            double value = (double) millinewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.MillinewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from NanonewtonsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromNanonewtonsPerMeter(QuantityValue nanonewtonspermeter)
+        {
+            double value = (double) nanonewtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.NanonewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from NewtonsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromNewtonsPerMeter(QuantityValue newtonspermeter)
+        {
+            double value = (double) newtonspermeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
         }
 
         /// <summary>
@@ -149,108 +330,19 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForcePerLength unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ForcePerLength? From(QuantityValue? value, ForcePerLengthUnit fromUnit)
+        public static ForcePerLength From(QuantityValue value, ForcePerLengthUnit fromUnit)
         {
-            return value.HasValue ? new ForcePerLength((double)value.Value, fromUnit) : default(ForcePerLength?);
+            return new ForcePerLength((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(ForcePerLengthUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
-        }
-
-        #region Arithmetic Operators
-
-        public static ForcePerLength operator -(ForcePerLength right)
-        {
-            return new ForcePerLength(-right.Value, right.Unit);
-        }
-
-        public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
-        {
-            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
-        {
-            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ForcePerLength operator *(double left, ForcePerLength right)
-        {
-            return new ForcePerLength(left * right.Value, right.Unit);
-        }
-
-        public static ForcePerLength operator *(ForcePerLength left, double right)
-        {
-            return new ForcePerLength(left.Value * right, left.Unit);
-        }
-
-        public static ForcePerLength operator /(ForcePerLength left, double right)
-        {
-            return new ForcePerLength(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ForcePerLength left, ForcePerLength right)
-        {
-            return left.NewtonsPerMeter / right.NewtonsPerMeter;
-        }
-
-        #endregion
-
-        public static bool operator <=(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(ForcePerLength left, ForcePerLength right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(ForcePerLength left, ForcePerLength right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-
-        #region Parsing
+        #region Static Parse Methods
 
         /// <summary>
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -269,88 +361,422 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
+        public static ForcePerLength Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ForcePerLength Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<ForcePerLength, ForcePerLengthUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    ForcePerLengthUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerMeter(x.NewtonsPerMeter + y.NewtonsPerMeter));
+            return QuantityParser.Default.Parse<ForcePerLength, ForcePerLengthUnit>(
+                str,
+                provider,
+                From);
         }
 
         /// <summary>
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
+        public static bool TryParse([CanBeNull] string str, out ForcePerLength result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ForcePerLength result)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(ForcePerLength);
-                return false;
-            }
+            return QuantityParser.Default.TryParse<ForcePerLength, ForcePerLengthUnit>(
+                str,
+                provider,
+                From,
+                out result);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static ForcePerLengthUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ForcePerLengthUnit ParseUnit(string str)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            return ParseUnit(str, null);
         }
 
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ForcePerLengthUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return UnitParser.Default.Parse<ForcePerLengthUnit>(str, provider);
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<ForcePerLengthUnit>(str.Trim());
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ForcePerLengthUnit)"/>
+        public static bool TryParseUnit(string str, out ForcePerLengthUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
 
-            if (unit == ForcePerLengthUnit.Undefined)
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out ForcePerLengthUnit unit)
+        {
+            return UnitParser.Default.TryParse<ForcePerLengthUnit>(str, provider, out unit);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        /// <summary>Negate the value.</summary>
+        public static ForcePerLength operator -(ForcePerLength right)
+        {
+            return new ForcePerLength(-right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from adding two <see cref="ForcePerLength"/>.</summary>
+        public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
+        {
+            return new ForcePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from subtracting two <see cref="ForcePerLength"/>.</summary>
+        public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
+        {
+            return new ForcePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from multiplying value and <see cref="ForcePerLength"/>.</summary>
+        public static ForcePerLength operator *(double left, ForcePerLength right)
+        {
+            return new ForcePerLength(left * right.Value, right.Unit);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from multiplying value and <see cref="ForcePerLength"/>.</summary>
+        public static ForcePerLength operator *(ForcePerLength left, double right)
+        {
+            return new ForcePerLength(left.Value * right, left.Unit);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from dividing <see cref="ForcePerLength"/> by value.</summary>
+        public static ForcePerLength operator /(ForcePerLength left, double right)
+        {
+            return new ForcePerLength(left.Value / right, left.Unit);
+        }
+
+        /// <summary>Get ratio value from dividing <see cref="ForcePerLength"/> by <see cref="ForcePerLength"/>.</summary>
+        public static double operator /(ForcePerLength left, ForcePerLength right)
+        {
+            return left.NewtonsPerMeter / right.NewtonsPerMeter;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        /// <summary>Returns true if less or equal to.</summary>
+        public static bool operator <=(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value <= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than or equal to.</summary>
+        public static bool operator >=(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value >= right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if less than.</summary>
+        public static bool operator <(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value < right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if greater than.</summary>
+        public static bool operator >(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value > right.GetValueAs(left.Unit);
+        }
+
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ForcePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ForcePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ForcePerLength left, ForcePerLength right)
+        {
+            return !(left == right);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(object obj)
+        {
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is ForcePerLength objForcePerLength)) throw new ArgumentException("Expected type ForcePerLength.", nameof(obj));
+
+            return CompareTo(objForcePerLength);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(ForcePerLength other)
+        {
+            return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ForcePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ForcePerLength objForcePerLength))
+                return false;
+
+            return Equals(objForcePerLength);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ForcePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ForcePerLength other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another ForcePerLength within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(ForcePerLength other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        }
+
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current ForcePerLength.</returns>
+        public override int GetHashCode()
+        {
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
+
+        #endregion
+
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ForcePerLengthUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return As(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is ForcePerLengthUnit unitAsForcePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
+
+            return As(unitAsForcePerLengthUnit);
+        }
+
+        /// <summary>
+        ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ForcePerLength with the specified unit.</returns>
+        public ForcePerLength ToUnit(ForcePerLengthUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ForcePerLength(convertedValue, unit);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is ForcePerLengthUnit unitAsForcePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForcePerLengthUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public ForcePerLength ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            return ToUnit(unitForUnitSystem);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ForcePerLengthUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double GetValueAs(ForcePerLengthUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = GetValueInBaseUnit();
+
+            switch(unit)
+            {
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (baseUnitValue) / 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (baseUnitValue) / 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return baseUnitValue/9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (baseUnitValue) / 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (baseUnitValue) / 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (baseUnitValue) / 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -358,50 +784,177 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] IFormatProvider provider)
+        public override string ToString()
         {
-            return ToString(unit, provider, 2);
+            return ToString("g");
+        }
+
+        /// <summary>
+        ///     Gets the default string representation of value and unit using the given format provider.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
+        {
+            return ToString("g", provider);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? CultureInfo.CurrentUICulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<ForcePerLengthUnit>(this, format, formatProvider);
+        }
+
+        #endregion
+
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString("g", provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(ForcePerLength))
+                return this;
+            else if(conversionType == typeof(ForcePerLengthUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ForcePerLength.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ForcePerLength.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
         }
 
         #endregion

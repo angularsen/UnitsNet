@@ -1,27 +1,24 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitsNet.Units;
 
 namespace WpfMVVMSample.Settings
 {
     public class SettingsManager : BindableBase
     {
-        private Dictionary<Type, Func<object>> _defaultUnitProviders;
+        private readonly Dictionary<Type, Func<Enum>> _defaultUnitProviders;
         public SettingsManager()
         {
             DefaultMassUnit = MassUnit.Kilogram;
             DefaultAccelerationUnit = AccelerationUnit.MeterPerSecondSquared;
             DefaultForceUnit = ForceUnit.Newton;
 
-            _defaultUnitProviders = new Dictionary<Type, Func<object>>
+            _defaultUnitProviders = new Dictionary<Type, Func<Enum>>
             {
-                {typeof(MassUnit),()=> this.DefaultMassUnit },
-                {typeof(AccelerationUnit),()=> this.DefaultAccelerationUnit },
-                {typeof(ForceUnit),()=> this.DefaultForceUnit },
+                {typeof(MassUnit), () => DefaultMassUnit},
+                {typeof(AccelerationUnit), () => DefaultAccelerationUnit},
+                {typeof(ForceUnit), () => DefaultForceUnit},
             };
         }
 
@@ -46,7 +43,7 @@ namespace WpfMVVMSample.Settings
             set { SetProperty(ref _defaultForceUnit, value); }
         }
 
-        public object GetDefaultUnit(Type unitType)
+        public Enum GetDefaultUnit(Type unitType)
         {
             if (_defaultUnitProviders.ContainsKey(unitType))
             {

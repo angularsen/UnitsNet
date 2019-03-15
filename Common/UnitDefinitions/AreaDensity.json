@@ -10,6 +10,10 @@
     {
       "SingularName": "KilogramPerSquareMeter",
       "PluralName": "KilogramsPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [

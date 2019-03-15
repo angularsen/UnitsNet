@@ -11,6 +11,11 @@
     {
       "SingularName": "Joule",
       "PluralName": "Joules",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -88,14 +93,14 @@
       "PluralName": "WattHours",
       "FromUnitToBaseFunc": "x*3600d",
       "FromBaseToUnitFunc": "x/3600d",
-      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "Wh" ]
         },
         {
-          "Culture": "en-US",
+          "Culture": "ru-RU",
           "Abbreviations": [ "Вт/ч" ]
         }
       ]

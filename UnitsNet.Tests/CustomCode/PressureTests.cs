@@ -1,25 +1,6 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -66,8 +47,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
 
-        protected override double PsiInOnePascal => 1.450377377302092e-4;
-
         protected override double TechnicalAtmospheresInOnePascal => 1.0197*1E-5;
 
         protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;
@@ -97,9 +76,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarsInOnePascal => 1e-2;
 
+        protected override double MicrobarsInOnePascal => 1.0e1;
+
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
+
+        protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;
+
+        protected override double DynesPerSquareCentimeterInOnePascal => 1.0e1;
+
+        protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
+
+        protected override double MillipascalsInOnePascal => 1e3;
 
         [Fact]
         public void AreaTimesPressureEqualsForce()
