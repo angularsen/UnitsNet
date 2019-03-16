@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -191,6 +194,83 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentException>(() => unitsNETTypeConverter.ConvertFrom(context, culture, "1m^2"));
         }
 
+        [Theory]
+        [InlineData(typeof(Length))]
+        [InlineData(typeof(IQuantity))]
+        [InlineData(typeof(object))]
+        public void ConvertTo_GiveWrongType_ThrowException(Type value)
+        {
+            UnitsNetTypeConverter<Length> unitsNETTypeConverter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+            Length length = Length.FromMeters(1);
+
+            Assert.Throws<NotSupportedException>(() => unitsNETTypeConverter.ConvertTo(length, value));
+        }
+
+        [Theory]
+        [InlineData(typeof(string))]
+        public void ConvertTo_GiveRigthType_DoConvertion(Type value)
+        {
+            UnitsNetTypeConverter<Length> unitsNETTypeConverter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+            Length length = Length.FromMeters(1);
+
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(length, value));
+        }
+
+        [Fact]
+        public void ConvertTo_GiveSomeValues_ConvertToString()
+        {
+            UnitsNetTypeConverter<Length> unitsNETTypeConverter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+            Length length = Length.FromMeters(1);
+
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(length, typeof(string)));
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(context, culture, length, typeof(string)));
+
+            context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
+                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter)
+            });
+
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(length, typeof(string)));
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(context, culture, length, typeof(string)));
+
+            context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
+                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter),
+                new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
+            });
+
+            Assert.Equal("1 m", unitsNETTypeConverter.ConvertTo(length, typeof(string)));
+            Assert.Equal("10 dm", unitsNETTypeConverter.ConvertTo(context, culture, length, typeof(string)));
+        }
+
+        [Fact]
+        public void ConvertTo_TestDisplayAsFormating_ConvertToFormatedString()
+        {
+            UnitsNetTypeConverter<Length> unitsNETTypeConverter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
+            Length length = Length.FromMeters(1);
+
+            context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
+            });
+
+            Assert.Equal("10 dm", unitsNETTypeConverter.ConvertTo(context, culture, length, typeof(string)));
+
+            context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter, "v")
+            });
+
+            Assert.Equal("10", unitsNETTypeConverter.ConvertTo(context, culture, length, typeof(string)));
+        }
+
+
         [Fact]
         public void WrongUnitTypeInAttribut_DefaultUnit()
         {
@@ -199,6 +279,10 @@ namespace UnitsNet.Tests
 
             Assert.Throws<InvalidOperationException>(() => unitsNETTypeConverter.ConvertFrom(context, culture, "1"));
         }
+
+
+
+
 
         [Fact]
         public void ConvertFrom_GiveStringWithPower_1()
