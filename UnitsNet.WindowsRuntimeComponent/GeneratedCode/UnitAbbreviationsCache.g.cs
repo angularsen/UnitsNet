@@ -887,6 +887,7 @@ namespace UnitsNet
                 ("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.MegajoulePerKilogram, new string[]{"MJ/kg"}),
                 ("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.MegawattHourPerKilogram, new string[]{"MWh/kg"}),
                 ("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.WattHourPerKilogram, new string[]{"Wh/kg"}),
+                ("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.BtuPerPoundFahrenheit, new string[]{"BTU/lb·°F", "BTU/lbm·°F"}),
                 ("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.CaloriePerGramKelvin, new string[]{"cal/g.K"}),
                 ("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new string[]{"J/kg.C"}),
                 ("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.JoulePerKilogramKelvin, new string[]{"J/kg.K"}),
