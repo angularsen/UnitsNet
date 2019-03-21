@@ -92,7 +92,7 @@ namespace UnitsNet
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, BaseUnits.Undefined),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, BaseUnits.Undefined),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);

@@ -53,7 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricFieldUnit>(QuantityType.ElectricField,
                 new UnitInfo<ElectricFieldUnit>[] {
-                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }

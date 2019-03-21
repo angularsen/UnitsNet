@@ -83,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, BaseUnits.Undefined),
