@@ -37,7 +37,8 @@ namespace UnitsNet
         double As(Enum unit);
 
         /// <summary>
-        ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>.
+        ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>. If multiple units were found for the given <see cref="UnitSystem"/>,
+        ///     the first match will be used.
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
         /// <returns>The converted value.</returns>
@@ -62,6 +63,7 @@ namespace UnitsNet
 
         /// <summary>
         ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
@@ -125,6 +127,7 @@ namespace UnitsNet
 
         /// <summary>
         ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
