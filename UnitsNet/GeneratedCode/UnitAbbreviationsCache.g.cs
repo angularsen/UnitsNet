@@ -245,6 +245,8 @@ namespace UnitsNet
                 ("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Microsiemens, new string[]{"µS"}),
                 ("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Millisiemens, new string[]{"mS"}),
                 ("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Siemens, new string[]{"S"}),
+                ("en-US", typeof(ElectricConductivityUnit), (int)ElectricConductivityUnit.SiemensPerFoot, new string[]{"S/ft"}),
+                ("en-US", typeof(ElectricConductivityUnit), (int)ElectricConductivityUnit.SiemensPerInch, new string[]{"S/in"}),
                 ("en-US", typeof(ElectricConductivityUnit), (int)ElectricConductivityUnit.SiemensPerMeter, new string[]{"S/m"}),
                 ("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Ampere, new string[]{"A"}),
                 ("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Centiampere, new string[]{"cA"}),
