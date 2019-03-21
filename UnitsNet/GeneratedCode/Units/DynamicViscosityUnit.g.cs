@@ -32,6 +32,9 @@ namespace UnitsNet.Units
         NewtonSecondPerMeterSquared,
         PascalSecond,
         Poise,
+        PoundForceSecondPerSquareFoot,
+        PoundForceSecondPerSquareInch,
+        Reyn,
     }
 
     #pragma warning restore 1591
