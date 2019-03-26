@@ -46,6 +46,42 @@
           "Abbreviations": [ "P" ]
         }
       ]
+    },
+    {
+      "SingularName": "Reyn",
+      "PluralName": "Reyns",
+      "FromUnitToBaseFunc": "x * 6.8947572931683613e3",
+      "FromBaseToUnitFunc": "x / 6.8947572931683613e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "reyn" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceSecondPerSquareInch",
+      "PluralName": "PoundsForceSecondPerSquareInch",
+      "FromUnitToBaseFunc": "x * 6.8947572931683613e3",
+      "FromBaseToUnitFunc": "x / 6.8947572931683613e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·s/in²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceSecondPerSquareFoot",
+      "PluralName": "PoundsForceSecondPerSquareFoot",
+      "FromUnitToBaseFunc": "x * 4.7880258980335843e1",
+      "FromBaseToUnitFunc": "x / 4.7880258980335843e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·s/ft²" ]
+        }
+      ]
     }
   ]
 }

@@ -53,7 +53,9 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricConductivityUnit>(QuantityType.ElectricConductivity,
                 new UnitInfo<ElectricConductivityUnit>[] {
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -167,6 +169,16 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricConductivity in SiemensPerFoot.
+        /// </summary>
+        public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
+
+        /// <summary>
+        ///     Get ElectricConductivity in SiemensPerInch.
+        /// </summary>
+        public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
+
+        /// <summary>
         ///     Get ElectricConductivity in SiemensPerMeter.
         /// </summary>
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
@@ -200,6 +212,24 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get ElectricConductivity from SiemensPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductivity FromSiemensPerFoot(QuantityValue siemensperfoot)
+        {
+            double value = (double) siemensperfoot;
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
+        }
+        /// <summary>
+        ///     Get ElectricConductivity from SiemensPerInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductivity FromSiemensPerInch(QuantityValue siemensperinch)
+        {
+            double value = (double) siemensperinch;
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
+        }
         /// <summary>
         ///     Get ElectricConductivity from SiemensPerMeter.
         /// </summary>
@@ -638,6 +668,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
+                case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
                 case ElectricConductivityUnit.SiemensPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -653,6 +685,8 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
+                case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
                 case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
