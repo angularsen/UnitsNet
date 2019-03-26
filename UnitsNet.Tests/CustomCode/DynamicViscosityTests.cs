@@ -18,7 +18,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared => 1.4503773773020922e-4;
         protected override double PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared => 2.0885434233150127e-2;
 
-        [ Fact]
+        [Fact]
         public static void DynamicViscosityDividedByDensityEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / Density.FromKilogramsPerCubicMeter(2);
