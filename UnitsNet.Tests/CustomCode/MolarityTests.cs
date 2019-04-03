@@ -30,29 +30,104 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
         protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
-        protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
-        protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
         protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
+        protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
+        protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
+        protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
         protected override double NanomolesPerLiterInOneMolesPerCubicMeter => 1e6;
         protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
-        protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
+
+        protected override double MolarInOneMolesPerCubicMeter => 1E-3;
+        protected override double MillimolarInOneMolesPerCubicMeter => 1;
+        protected override double MicromolarInOneMolesPerCubicMeter => 1E3;
+        protected override double NanomolarInOneMolesPerCubicMeter => 1E6;
+        protected override double PicomolarInOneMolesPerCubicMeter => 1E9;
+
+        private static double MolarMassHClInGramsPerMole = 36.46;
+        private static double MassOfSubstanceInGrams = 5;
+        private static double VolumeOfSolutionInLiters = 1.2;
+
+        private static double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
+        private static double ExpectedConcentrationInKgPerCubicMeter = 4.16667;
+        
+        private static double MolarMassOfEthanolInGramsPerMole = 46.06844;
+        private static double DensityOfEthanolInKgPerCubicMeter = 789;
+        private static double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
 
         [Fact]
-        public void ExpectDensityConvertedToMolarityCorrectly()
+        public void ExpectMassConcentrationConvertedToMolarityCorrectly()
         {
-            var density = Density.FromKilogramsPerCubicMeter(60.02);
-            var mw = Mass.FromGrams(58.443);
-            var molarity = (density / mw).MolesPerCubicMeter;
-            AssertEx.EqualTolerance(1026.98355, molarity, MolesPerCubicMeterTolerance);
+            var massConcentration = MassConcentration.FromKilogramsPerCubicMeter(60.02); // used to be Density
+            var molarMass = MolarMass.FromGramsPerMole(58.443); // used to be Mass
+
+            Molarity molarity = massConcentration / molarMass;
+            AssertEx.EqualTolerance(1026.98355, molarity.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
         }
 
         [Fact]
-        public void ExpectMolarityConvertedToDensityCorrectly()
+        public void ExpectMolarityConvertedToMassConcentrationCorrectly()
         {
             var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var mw = Mass.FromGrams(58.443);
-            var density = molarity.ToDensity(mw).KilogramsPerCubicMeter;
-            AssertEx.EqualTolerance(60.02, density, MolesPerCubicMeterTolerance);
+            var molarMass = MolarMass.FromGramsPerMole(58.443);
+
+            MassConcentration concentration = molarity.ToMassConcentration(molarMass);  // molarity * molarMass
+            AssertEx.EqualTolerance(60.02, concentration.KilogramsPerCubicMeter, MolesPerCubicMeterTolerance);
+        }
+
+        [Fact]
+        public void HClSolutionMolarityIsEqualToExpected()
+        {
+            // same test is performed in AmountOfSubstanceTests
+            var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            var substanceMass = Mass.FromGrams(MassOfSubstanceInGrams);
+            var volumeSolution = Volume.FromLiters(VolumeOfSolutionInLiters);
+            AmountOfSubstance amountOfSubstance = substanceMass / molarMass;
+
+            Molarity molarity = amountOfSubstance / volumeSolution;
+            AssertEx.EqualTolerance(ExpectedMolarityMolesPerLiter, molarity.MolesPerLiter, MolesPerLiterTolerance);
+        }
+
+        [Fact]
+        public void HClSolutionConcentrationIsEqualToExpected()
+        {
+            var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            var molarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
+
+            MassConcentration concentration = molarity * molarMass;
+            AssertEx.EqualTolerance(ExpectedConcentrationInKgPerCubicMeter, concentration.KilogramsPerCubicMeter, MolesPerLiterTolerance);
+        }
+
+        [Fact]
+        public void TenPercentHClSolutionMolarityIsEqualToExpected()
+        {
+            var originalMolarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
+
+            Molarity tenPercentMolarity = originalMolarity * VolumeConcentration.FromPercent(10);
+            AssertEx.EqualTolerance(ExpectedMolarityMolesPerLiter / 10, tenPercentMolarity.MolesPerLiter, MolesPerLiterTolerance);
+        }
+
+        [Fact]
+        public void MolarityFromVolumeConcentrationEthanol()
+        {
+            var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
+            var molarMass = MolarMass.FromGramsPerMole(MolarMassOfEthanolInGramsPerMole);
+            var volumeConcentration = VolumeConcentration.FromMillilitersPerLiter(VolumeConcentration_0_5M_Ethanol);
+
+            Molarity molarity = volumeConcentration.ToMolarity(density, molarMass); // volumeConcentration * density / molarMass
+            AssertEx.EqualTolerance(0.5, molarity.MolesPerLiter, MolesPerCubicMeterTolerance);
+        }
+
+        [Fact]
+        public void OneMolarFromStringParsedCorrectly()
+        {
+            Assert.Equal(Molarity.Parse("1M"), Molarity.Parse("1 mol/L"));
+        }
+
+        [Fact]
+        public void OneMilliMolarFromStringParsedCorrectly()
+        {
+            var one_mM = Molarity.Parse("1000 mM");
+            Assert.Equal(1, one_mM.MolesPerLiter);
         }
 
     }

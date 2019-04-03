@@ -42,6 +42,17 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
         protected override double MegamolesInOneMole => 1e-6;
+        
+        private static double MolarMassOfOxygen = 15.999;
+        private static double MolesInTenGramsOfOxygen = 0.6250390649415588;
+
+
+        private static double MolarMassHClInGramsPerMole = 36.46;
+        private static double MassOfSubstanceInGrams = 5;
+        private static double VolumeOfSolutionInLiters = 1.2;
+
+        private static double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
+
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
@@ -58,5 +69,46 @@ namespace UnitsNet.Tests.CustomCode
             var numberOfParticles = twoMoles.NumberOfParticles();
             Assert.Equal(AmountOfSubstance.AvogadroConstant * 2, numberOfParticles);
         }
+
+        [Fact]
+        public void TenMolesOfOxygenToMassEqualToExpected()
+        {
+            AmountOfSubstance tenMoles = AmountOfSubstance.FromMoles(10);
+            MolarMass molarMass = MolarMass.FromGramsPerMole(MolarMassOfOxygen);
+            AssertEx.EqualTolerance(10 * MolarMassOfOxygen, (tenMoles * molarMass).Grams, MolesTolerance);
+        }
+
+        [Fact]
+        public void TenGramsOfOxygenToMolesEqualToExpected()
+        {
+            Mass tenGrams = Mass.FromGrams(10);
+            MolarMass molarMass = MolarMass.FromGramsPerMole(MolarMassOfOxygen);
+            AssertEx.EqualTolerance(MolesInTenGramsOfOxygen, (tenGrams / molarMass).Moles, MolesTolerance);
+        }
+
+        [Fact]
+        public void HClSolutionVolumeIsEqualToExpected()
+        {
+            MolarMass molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            Mass substanceMass = Mass.FromGrams(MassOfSubstanceInGrams);
+            AmountOfSubstance amountOfSubstance = substanceMass / molarMass;
+            Molarity molarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
+
+            Volume volumeSolution = amountOfSubstance / molarity;
+            AssertEx.EqualTolerance(VolumeOfSolutionInLiters, volumeSolution.Liters, MolesTolerance);
+        }
+
+        [Fact]
+        public void HClSolutionMolarityIsEqualToExpected()
+        {
+            MolarMass molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            Mass substanceMass = Mass.FromGrams(MassOfSubstanceInGrams);
+            AmountOfSubstance amountOfSubstance = substanceMass / molarMass;
+            Volume volumeSolution = Volume.FromLiters(VolumeOfSolutionInLiters);
+
+            Molarity molarity = amountOfSubstance / volumeSolution;
+            AssertEx.EqualTolerance(ExpectedMolarityMolesPerLiter, molarity.MolesPerLiter, MolesTolerance);
+        }
+
     }
 }

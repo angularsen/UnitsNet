@@ -30,12 +30,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     The mass fraction is defined as the mass of a constituent divided by the total mass of the mixture.
     /// </summary>
     /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Molar_concentration
+    ///     https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)
     /// </remarks>
-    public partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    public partial struct MassFraction : IQuantity<MassFractionUnit>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -45,27 +45,38 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly MolarityUnit? _unit;
+        private readonly MassFractionUnit? _unit;
 
-        static Molarity()
+        static MassFraction()
         {
-            BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+            BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity,
-                new UnitInfo<MolarityUnit>[] {
-                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Micromolar, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Millimolar, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Molar, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Nanomolar, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Picomolar, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
+            Info = new QuantityInfo<MassFractionUnit>(QuantityType.MassFraction,
+                new UnitInfo<MassFractionUnit>[] {
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -76,9 +87,9 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Molarity(double numericValue, MolarityUnit unit)
+        public MassFraction(double numericValue, MassFractionUnit unit)
         {
-            if(unit == MolarityUnit.Undefined)
+            if(unit == MassFractionUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -93,7 +104,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Molarity(double numericValue, UnitSystem unitSystem)
+        public MassFraction(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -107,7 +118,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarityUnit> Info { get; }
+        public static QuantityInfo<MassFractionUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -115,34 +126,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
+        ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
+        public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Molarity
+        /// Represents the largest possible value of MassFraction
         /// </summary>
-        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
+        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Molarity
+        /// Represents the smallest possible value of MassFraction
         /// </summary>
-        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
+        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
+        public static QuantityType QuantityType { get; } = QuantityType.MassFraction;
 
         /// <summary>
-        ///     All units of measurement for the Molarity quantity.
+        ///     All units of measurement for the MassFraction quantity.
         /// </summary>
-        public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
+        public static MassFractionUnit[] Units { get; } = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
+        public static MassFraction Zero { get; } = new MassFraction(0, BaseUnit);
 
         #endregion
 
@@ -156,10 +167,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassFractionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<MolarityUnit> QuantityInfo => Info;
+        public QuantityInfo<MassFractionUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -167,81 +178,136 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Molarity.QuantityType;
+        public QuantityType Type => MassFraction.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Molarity.BaseDimensions;
+        public BaseDimensions Dimensions => MassFraction.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
+        ///     Get MassFraction in CentigramsPerGram.
         /// </summary>
-        public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
+        public double CentigramsPerGram => As(MassFractionUnit.CentigramPerGram);
 
         /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
+        ///     Get MassFraction in CentigramsPerKiloGram.
         /// </summary>
-        public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
+        public double CentigramsPerKiloGram => As(MassFractionUnit.CentigramPerKiloGram);
 
         /// <summary>
-        ///     Get Molarity in Micromolar.
+        ///     Get MassFraction in DecagramsPerGram.
         /// </summary>
-        public double Micromolar => As(MolarityUnit.Micromolar);
+        public double DecagramsPerGram => As(MassFractionUnit.DecagramPerGram);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
+        ///     Get MassFraction in DecagramsPerKiloGram.
         /// </summary>
-        public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
+        public double DecagramsPerKiloGram => As(MassFractionUnit.DecagramPerKiloGram);
 
         /// <summary>
-        ///     Get Molarity in Millimolar.
+        ///     Get MassFraction in DecigramsPerGram.
         /// </summary>
-        public double Millimolar => As(MolarityUnit.Millimolar);
+        public double DecigramsPerGram => As(MassFractionUnit.DecigramPerGram);
 
         /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
+        ///     Get MassFraction in DecigramsPerKiloGram.
         /// </summary>
-        public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
+        public double DecigramsPerKiloGram => As(MassFractionUnit.DecigramPerKiloGram);
 
         /// <summary>
-        ///     Get Molarity in Molar.
+        ///     Get MassFraction in DecimalFractions.
         /// </summary>
-        public double Molar => As(MolarityUnit.Molar);
+        public double DecimalFractions => As(MassFractionUnit.DecimalFraction);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
+        ///     Get MassFraction in GramsPerGram.
         /// </summary>
-        public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
+        public double GramsPerGram => As(MassFractionUnit.GramPerGram);
 
         /// <summary>
-        ///     Get Molarity in MolesPerLiter.
+        ///     Get MassFraction in GramsPerKiloGram.
         /// </summary>
-        public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
+        public double GramsPerKiloGram => As(MassFractionUnit.GramPerKiloGram);
 
         /// <summary>
-        ///     Get Molarity in Nanomolar.
+        ///     Get MassFraction in HectogramsPerGram.
         /// </summary>
-        public double Nanomolar => As(MolarityUnit.Nanomolar);
+        public double HectogramsPerGram => As(MassFractionUnit.HectogramPerGram);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
+        ///     Get MassFraction in HectogramsPerKiloGram.
         /// </summary>
-        public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
+        public double HectogramsPerKiloGram => As(MassFractionUnit.HectogramPerKiloGram);
 
         /// <summary>
-        ///     Get Molarity in Picomolar.
+        ///     Get MassFraction in KilogramsPerGram.
         /// </summary>
-        public double Picomolar => As(MolarityUnit.Picomolar);
+        public double KilogramsPerGram => As(MassFractionUnit.KilogramPerGram);
 
         /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
+        ///     Get MassFraction in KilogramsPerKiloGram.
         /// </summary>
-        public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
+        public double KilogramsPerKiloGram => As(MassFractionUnit.KilogramPerKiloGram);
+
+        /// <summary>
+        ///     Get MassFraction in MicrogramsPerGram.
+        /// </summary>
+        public double MicrogramsPerGram => As(MassFractionUnit.MicrogramPerGram);
+
+        /// <summary>
+        ///     Get MassFraction in MicrogramsPerKiloGram.
+        /// </summary>
+        public double MicrogramsPerKiloGram => As(MassFractionUnit.MicrogramPerKiloGram);
+
+        /// <summary>
+        ///     Get MassFraction in MilligramsPerGram.
+        /// </summary>
+        public double MilligramsPerGram => As(MassFractionUnit.MilligramPerGram);
+
+        /// <summary>
+        ///     Get MassFraction in MilligramsPerKiloGram.
+        /// </summary>
+        public double MilligramsPerKiloGram => As(MassFractionUnit.MilligramPerKiloGram);
+
+        /// <summary>
+        ///     Get MassFraction in NanogramsPerGram.
+        /// </summary>
+        public double NanogramsPerGram => As(MassFractionUnit.NanogramPerGram);
+
+        /// <summary>
+        ///     Get MassFraction in NanogramsPerKiloGram.
+        /// </summary>
+        public double NanogramsPerKiloGram => As(MassFractionUnit.NanogramPerKiloGram);
+
+        /// <summary>
+        ///     Get MassFraction in PartsPerBillion.
+        /// </summary>
+        public double PartsPerBillion => As(MassFractionUnit.PartPerBillion);
+
+        /// <summary>
+        ///     Get MassFraction in PartsPerMillion.
+        /// </summary>
+        public double PartsPerMillion => As(MassFractionUnit.PartPerMillion);
+
+        /// <summary>
+        ///     Get MassFraction in PartsPerThousand.
+        /// </summary>
+        public double PartsPerThousand => As(MassFractionUnit.PartPerThousand);
+
+        /// <summary>
+        ///     Get MassFraction in PartsPerTrillion.
+        /// </summary>
+        public double PartsPerTrillion => As(MassFractionUnit.PartPerTrillion);
+
+        /// <summary>
+        ///     Get MassFraction in Percent.
+        /// </summary>
+        public double Percent => As(MassFractionUnit.Percent);
 
         #endregion
 
@@ -252,7 +318,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(MolarityUnit unit)
+        public static string GetAbbreviation(MassFractionUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -263,7 +329,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(MolarityUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(MassFractionUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -273,132 +339,231 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
+        ///     Get MassFraction from CentigramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromCentimolesPerLiter(QuantityValue centimolesperliter)
+        public static MassFraction FromCentigramsPerGram(QuantityValue centigramspergram)
         {
-            double value = (double) centimolesperliter;
-            return new Molarity(value, MolarityUnit.CentimolesPerLiter);
+            double value = (double) centigramspergram;
+            return new MassFraction(value, MassFractionUnit.CentigramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
+        ///     Get MassFraction from CentigramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromDecimolesPerLiter(QuantityValue decimolesperliter)
+        public static MassFraction FromCentigramsPerKiloGram(QuantityValue centigramsperkilogram)
         {
-            double value = (double) decimolesperliter;
-            return new Molarity(value, MolarityUnit.DecimolesPerLiter);
+            double value = (double) centigramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.CentigramPerKiloGram);
         }
         /// <summary>
-        ///     Get Molarity from Micromolar.
+        ///     Get MassFraction from DecagramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolar(QuantityValue micromolar)
+        public static MassFraction FromDecagramsPerGram(QuantityValue decagramspergram)
         {
-            double value = (double) micromolar;
-            return new Molarity(value, MolarityUnit.Micromolar);
+            double value = (double) decagramspergram;
+            return new MassFraction(value, MassFractionUnit.DecagramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
+        ///     Get MassFraction from DecagramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolesPerLiter(QuantityValue micromolesperliter)
+        public static MassFraction FromDecagramsPerKiloGram(QuantityValue decagramsperkilogram)
         {
-            double value = (double) micromolesperliter;
-            return new Molarity(value, MolarityUnit.MicromolesPerLiter);
+            double value = (double) decagramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.DecagramPerKiloGram);
         }
         /// <summary>
-        ///     Get Molarity from Millimolar.
+        ///     Get MassFraction from DecigramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolar(QuantityValue millimolar)
+        public static MassFraction FromDecigramsPerGram(QuantityValue decigramspergram)
         {
-            double value = (double) millimolar;
-            return new Molarity(value, MolarityUnit.Millimolar);
+            double value = (double) decigramspergram;
+            return new MassFraction(value, MassFractionUnit.DecigramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
+        ///     Get MassFraction from DecigramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolesPerLiter(QuantityValue millimolesperliter)
+        public static MassFraction FromDecigramsPerKiloGram(QuantityValue decigramsperkilogram)
         {
-            double value = (double) millimolesperliter;
-            return new Molarity(value, MolarityUnit.MillimolesPerLiter);
+            double value = (double) decigramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.DecigramPerKiloGram);
         }
         /// <summary>
-        ///     Get Molarity from Molar.
+        ///     Get MassFraction from DecimalFractions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolar(QuantityValue molar)
+        public static MassFraction FromDecimalFractions(QuantityValue decimalfractions)
         {
-            double value = (double) molar;
-            return new Molarity(value, MolarityUnit.Molar);
+            double value = (double) decimalfractions;
+            return new MassFraction(value, MassFractionUnit.DecimalFraction);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
+        ///     Get MassFraction from GramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerCubicMeter(QuantityValue molespercubicmeter)
+        public static MassFraction FromGramsPerGram(QuantityValue gramspergram)
         {
-            double value = (double) molespercubicmeter;
-            return new Molarity(value, MolarityUnit.MolesPerCubicMeter);
+            double value = (double) gramspergram;
+            return new MassFraction(value, MassFractionUnit.GramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerLiter.
+        ///     Get MassFraction from GramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerLiter(QuantityValue molesperliter)
+        public static MassFraction FromGramsPerKiloGram(QuantityValue gramsperkilogram)
         {
-            double value = (double) molesperliter;
-            return new Molarity(value, MolarityUnit.MolesPerLiter);
+            double value = (double) gramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.GramPerKiloGram);
         }
         /// <summary>
-        ///     Get Molarity from Nanomolar.
+        ///     Get MassFraction from HectogramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolar(QuantityValue nanomolar)
+        public static MassFraction FromHectogramsPerGram(QuantityValue hectogramspergram)
         {
-            double value = (double) nanomolar;
-            return new Molarity(value, MolarityUnit.Nanomolar);
+            double value = (double) hectogramspergram;
+            return new MassFraction(value, MassFractionUnit.HectogramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
+        ///     Get MassFraction from HectogramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolesPerLiter(QuantityValue nanomolesperliter)
+        public static MassFraction FromHectogramsPerKiloGram(QuantityValue hectogramsperkilogram)
         {
-            double value = (double) nanomolesperliter;
-            return new Molarity(value, MolarityUnit.NanomolesPerLiter);
+            double value = (double) hectogramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.HectogramPerKiloGram);
         }
         /// <summary>
-        ///     Get Molarity from Picomolar.
+        ///     Get MassFraction from KilogramsPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolar(QuantityValue picomolar)
+        public static MassFraction FromKilogramsPerGram(QuantityValue kilogramspergram)
         {
-            double value = (double) picomolar;
-            return new Molarity(value, MolarityUnit.Picomolar);
+            double value = (double) kilogramspergram;
+            return new MassFraction(value, MassFractionUnit.KilogramPerGram);
         }
         /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
+        ///     Get MassFraction from KilogramsPerKiloGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolesPerLiter(QuantityValue picomolesperliter)
+        public static MassFraction FromKilogramsPerKiloGram(QuantityValue kilogramsperkilogram)
         {
-            double value = (double) picomolesperliter;
-            return new Molarity(value, MolarityUnit.PicomolesPerLiter);
+            double value = (double) kilogramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.KilogramPerKiloGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from MicrogramsPerGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromMicrogramsPerGram(QuantityValue microgramspergram)
+        {
+            double value = (double) microgramspergram;
+            return new MassFraction(value, MassFractionUnit.MicrogramPerGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from MicrogramsPerKiloGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromMicrogramsPerKiloGram(QuantityValue microgramsperkilogram)
+        {
+            double value = (double) microgramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.MicrogramPerKiloGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from MilligramsPerGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromMilligramsPerGram(QuantityValue milligramspergram)
+        {
+            double value = (double) milligramspergram;
+            return new MassFraction(value, MassFractionUnit.MilligramPerGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from MilligramsPerKiloGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromMilligramsPerKiloGram(QuantityValue milligramsperkilogram)
+        {
+            double value = (double) milligramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.MilligramPerKiloGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from NanogramsPerGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromNanogramsPerGram(QuantityValue nanogramspergram)
+        {
+            double value = (double) nanogramspergram;
+            return new MassFraction(value, MassFractionUnit.NanogramPerGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from NanogramsPerKiloGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromNanogramsPerKiloGram(QuantityValue nanogramsperkilogram)
+        {
+            double value = (double) nanogramsperkilogram;
+            return new MassFraction(value, MassFractionUnit.NanogramPerKiloGram);
+        }
+        /// <summary>
+        ///     Get MassFraction from PartsPerBillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromPartsPerBillion(QuantityValue partsperbillion)
+        {
+            double value = (double) partsperbillion;
+            return new MassFraction(value, MassFractionUnit.PartPerBillion);
+        }
+        /// <summary>
+        ///     Get MassFraction from PartsPerMillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromPartsPerMillion(QuantityValue partspermillion)
+        {
+            double value = (double) partspermillion;
+            return new MassFraction(value, MassFractionUnit.PartPerMillion);
+        }
+        /// <summary>
+        ///     Get MassFraction from PartsPerThousand.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromPartsPerThousand(QuantityValue partsperthousand)
+        {
+            double value = (double) partsperthousand;
+            return new MassFraction(value, MassFractionUnit.PartPerThousand);
+        }
+        /// <summary>
+        ///     Get MassFraction from PartsPerTrillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromPartsPerTrillion(QuantityValue partspertrillion)
+        {
+            double value = (double) partspertrillion;
+            return new MassFraction(value, MassFractionUnit.PartPerTrillion);
+        }
+        /// <summary>
+        ///     Get MassFraction from Percent.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFraction FromPercent(QuantityValue percent)
+        {
+            double value = (double) percent;
+            return new MassFraction(value, MassFractionUnit.Percent);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
+        ///     Dynamically convert from value and unit enum <see cref="MassFractionUnit" /> to <see cref="MassFraction" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Molarity unit value.</returns>
-        public static Molarity From(QuantityValue value, MolarityUnit fromUnit)
+        /// <returns>MassFraction unit value.</returns>
+        public static MassFraction From(QuantityValue value, MassFractionUnit fromUnit)
         {
-            return new Molarity((double)value, fromUnit);
+            return new MassFraction((double)value, fromUnit);
         }
 
         #endregion
@@ -427,7 +592,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Molarity Parse(string str)
+        public static MassFraction Parse(string str)
         {
             return Parse(str, null);
         }
@@ -455,9 +620,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Molarity Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static MassFraction Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.Parse<MassFraction, MassFractionUnit>(
                 str,
                 provider,
                 From);
@@ -471,7 +636,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, out MassFraction result)
         {
             return TryParse(str, null, out result);
         }
@@ -486,9 +651,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MassFraction result)
         {
-            return QuantityParser.Default.TryParse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.TryParse<MassFraction, MassFractionUnit>(
                 str,
                 provider,
                 From,
@@ -504,7 +669,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MolarityUnit ParseUnit(string str)
+        public static MassFractionUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -519,13 +684,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MolarityUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static MassFractionUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return UnitParser.Default.Parse<MolarityUnit>(str, provider);
+            return UnitParser.Default.Parse<MassFractionUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarityUnit)"/>
-        public static bool TryParseUnit(string str, out MolarityUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFractionUnit)"/>
+        public static bool TryParseUnit(string str, out MassFractionUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -540,9 +705,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out MolarityUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider provider, out MassFractionUnit unit)
         {
-            return UnitParser.Default.TryParse<MolarityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<MassFractionUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -550,45 +715,45 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Molarity operator -(Molarity right)
+        public static MassFraction operator -(MassFraction right)
         {
-            return new Molarity(-right.Value, right.Unit);
+            return new MassFraction(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from adding two <see cref="Molarity"/>.</summary>
-        public static Molarity operator +(Molarity left, Molarity right)
+        /// <summary>Get <see cref="MassFraction"/> from adding two <see cref="MassFraction"/>.</summary>
+        public static MassFraction operator +(MassFraction left, MassFraction right)
         {
-            return new Molarity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MassFraction(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from subtracting two <see cref="Molarity"/>.</summary>
-        public static Molarity operator -(Molarity left, Molarity right)
+        /// <summary>Get <see cref="MassFraction"/> from subtracting two <see cref="MassFraction"/>.</summary>
+        public static MassFraction operator -(MassFraction left, MassFraction right)
         {
-            return new Molarity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MassFraction(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(double left, Molarity right)
+        /// <summary>Get <see cref="MassFraction"/> from multiplying value and <see cref="MassFraction"/>.</summary>
+        public static MassFraction operator *(double left, MassFraction right)
         {
-            return new Molarity(left * right.Value, right.Unit);
+            return new MassFraction(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(Molarity left, double right)
+        /// <summary>Get <see cref="MassFraction"/> from multiplying value and <see cref="MassFraction"/>.</summary>
+        public static MassFraction operator *(MassFraction left, double right)
         {
-            return new Molarity(left.Value * right, left.Unit);
+            return new MassFraction(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from dividing <see cref="Molarity"/> by value.</summary>
-        public static Molarity operator /(Molarity left, double right)
+        /// <summary>Get <see cref="MassFraction"/> from dividing <see cref="MassFraction"/> by value.</summary>
+        public static MassFraction operator /(MassFraction left, double right)
         {
-            return new Molarity(left.Value / right, left.Unit);
+            return new MassFraction(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Molarity"/> by <see cref="Molarity"/>.</summary>
-        public static double operator /(Molarity left, Molarity right)
+        /// <summary>Get ratio value from dividing <see cref="MassFraction"/> by <see cref="MassFraction"/>.</summary>
+        public static double operator /(MassFraction left, MassFraction right)
         {
-            return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
+            return left.DecimalFractions / right.DecimalFractions;
         }
 
         #endregion
@@ -596,39 +761,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Molarity left, Molarity right)
+        public static bool operator <=(MassFraction left, MassFraction right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Molarity left, Molarity right)
+        public static bool operator >=(MassFraction left, MassFraction right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Molarity left, Molarity right)
+        public static bool operator <(MassFraction left, MassFraction right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Molarity left, Molarity right)
+        public static bool operator >(MassFraction left, MassFraction right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Molarity left, Molarity right)
+        /// <remarks>Consider using <see cref="Equals(MassFraction, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MassFraction left, MassFraction right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Molarity left, Molarity right)
+        /// <remarks>Consider using <see cref="Equals(MassFraction, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MassFraction left, MassFraction right)
         {
             return !(left == right);
         }
@@ -637,37 +802,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Molarity objMolarity)) throw new ArgumentException("Expected type Molarity.", nameof(obj));
+            if(!(obj is MassFraction objMassFraction)) throw new ArgumentException("Expected type MassFraction.", nameof(obj));
 
-            return CompareTo(objMolarity);
+            return CompareTo(objMassFraction);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Molarity other)
+        public int CompareTo(MassFraction other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MassFraction, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Molarity objMolarity))
+            if(obj is null || !(obj is MassFraction objMassFraction))
                 return false;
 
-            return Equals(objMolarity);
+            return Equals(objMassFraction);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Molarity other)
+        /// <remarks>Consider using <see cref="Equals(MassFraction, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MassFraction other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Molarity within the given absolute or relative tolerance.
+        ///     Compare equality to another MassFraction within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -705,7 +870,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Molarity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MassFraction other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -719,7 +884,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Molarity.</returns>
+        /// <returns>A hash code for the current MassFraction.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -733,7 +898,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarityUnit unit)
+        public double As(MassFractionUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -760,33 +925,33 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is MolarityUnit unitAsMolarityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
+            if(!(unit is MassFractionUnit unitAsMassFractionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMolarityUnit);
+            return As(unitAsMassFractionUnit);
         }
 
         /// <summary>
-        ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
+        ///     Converts this MassFraction to another MassFraction with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Molarity with the specified unit.</returns>
-        public Molarity ToUnit(MolarityUnit unit)
+        /// <returns>A MassFraction with the specified unit.</returns>
+        public MassFraction ToUnit(MassFractionUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Molarity(convertedValue, unit);
+            return new MassFraction(convertedValue, unit);
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is MolarityUnit unitAsMolarityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
+            if(!(unit is MassFractionUnit unitAsMassFractionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMolarityUnit);
+            return ToUnit(unitAsMassFractionUnit);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Molarity ToUnit(UnitSystem unitSystem)
+        public MassFraction ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -804,10 +969,10 @@ namespace UnitsNet
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <inheritdoc />
-        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
+        IQuantity<MassFractionUnit> IQuantity<MassFractionUnit>.ToUnit(MassFractionUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<MassFractionUnit> IQuantity<MassFractionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -818,25 +983,36 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.Micromolar: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.Millimolar: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.Molar: return _value/1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.Nanomolar: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.Picomolar: return (_value/1e-3) * 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case MassFractionUnit.CentigramPerGram: return (_value) * 1e-2d;
+                case MassFractionUnit.CentigramPerKiloGram: return (_value/1e3) * 1e-2d;
+                case MassFractionUnit.DecagramPerGram: return (_value) * 1e1d;
+                case MassFractionUnit.DecagramPerKiloGram: return (_value/1e3) * 1e1d;
+                case MassFractionUnit.DecigramPerGram: return (_value) * 1e-1d;
+                case MassFractionUnit.DecigramPerKiloGram: return (_value/1e3) * 1e-1d;
+                case MassFractionUnit.DecimalFraction: return _value;
+                case MassFractionUnit.GramPerGram: return _value;
+                case MassFractionUnit.GramPerKiloGram: return _value/1e3;
+                case MassFractionUnit.HectogramPerGram: return (_value) * 1e2d;
+                case MassFractionUnit.HectogramPerKiloGram: return (_value/1e3) * 1e2d;
+                case MassFractionUnit.KilogramPerGram: return (_value) * 1e3d;
+                case MassFractionUnit.KilogramPerKiloGram: return (_value/1e3) * 1e3d;
+                case MassFractionUnit.MicrogramPerGram: return (_value) * 1e-6d;
+                case MassFractionUnit.MicrogramPerKiloGram: return (_value/1e3) * 1e-6d;
+                case MassFractionUnit.MilligramPerGram: return (_value) * 1e-3d;
+                case MassFractionUnit.MilligramPerKiloGram: return (_value/1e3) * 1e-3d;
+                case MassFractionUnit.NanogramPerGram: return (_value) * 1e-9d;
+                case MassFractionUnit.NanogramPerKiloGram: return (_value/1e3) * 1e-9d;
+                case MassFractionUnit.PartPerBillion: return _value/1e9;
+                case MassFractionUnit.PartPerMillion: return _value/1e6;
+                case MassFractionUnit.PartPerThousand: return _value/1e3;
+                case MassFractionUnit.PartPerTrillion: return _value/1e12;
+                case MassFractionUnit.Percent: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(MolarityUnit unit)
+        private double GetValueAs(MassFractionUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -845,19 +1021,30 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
-                case MolarityUnit.Micromolar: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.Millimolar: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.Molar: return baseUnitValue*1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
-                case MolarityUnit.Nanomolar: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.Picomolar: return (baseUnitValue*1e-3) / 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case MassFractionUnit.CentigramPerGram: return (baseUnitValue) / 1e-2d;
+                case MassFractionUnit.CentigramPerKiloGram: return (baseUnitValue*1e3) / 1e-2d;
+                case MassFractionUnit.DecagramPerGram: return (baseUnitValue) / 1e1d;
+                case MassFractionUnit.DecagramPerKiloGram: return (baseUnitValue*1e3) / 1e1d;
+                case MassFractionUnit.DecigramPerGram: return (baseUnitValue) / 1e-1d;
+                case MassFractionUnit.DecigramPerKiloGram: return (baseUnitValue*1e3) / 1e-1d;
+                case MassFractionUnit.DecimalFraction: return baseUnitValue;
+                case MassFractionUnit.GramPerGram: return baseUnitValue;
+                case MassFractionUnit.GramPerKiloGram: return baseUnitValue*1e3;
+                case MassFractionUnit.HectogramPerGram: return (baseUnitValue) / 1e2d;
+                case MassFractionUnit.HectogramPerKiloGram: return (baseUnitValue*1e3) / 1e2d;
+                case MassFractionUnit.KilogramPerGram: return (baseUnitValue) / 1e3d;
+                case MassFractionUnit.KilogramPerKiloGram: return (baseUnitValue*1e3) / 1e3d;
+                case MassFractionUnit.MicrogramPerGram: return (baseUnitValue) / 1e-6d;
+                case MassFractionUnit.MicrogramPerKiloGram: return (baseUnitValue*1e3) / 1e-6d;
+                case MassFractionUnit.MilligramPerGram: return (baseUnitValue) / 1e-3d;
+                case MassFractionUnit.MilligramPerKiloGram: return (baseUnitValue*1e3) / 1e-3d;
+                case MassFractionUnit.NanogramPerGram: return (baseUnitValue) / 1e-9d;
+                case MassFractionUnit.NanogramPerKiloGram: return (baseUnitValue*1e3) / 1e-9d;
+                case MassFractionUnit.PartPerBillion: return baseUnitValue*1e9;
+                case MassFractionUnit.PartPerMillion: return baseUnitValue*1e6;
+                case MassFractionUnit.PartPerThousand: return baseUnitValue*1e3;
+                case MassFractionUnit.PartPerTrillion: return baseUnitValue*1e12;
+                case MassFractionUnit.Percent: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -940,7 +1127,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<MolarityUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<MassFractionUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -954,7 +1141,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFraction)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -964,12 +1151,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFraction)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFraction)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1014,16 +1201,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Molarity))
+            if(conversionType == typeof(MassFraction))
                 return this;
-            else if(conversionType == typeof(MolarityUnit))
+            else if(conversionType == typeof(MassFractionUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Molarity.QuantityType;
+                return MassFraction.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Molarity.BaseDimensions;
+                return MassFraction.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Molarity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MassFraction)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

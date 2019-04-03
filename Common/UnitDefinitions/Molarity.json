@@ -30,7 +30,20 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/L" ]
+          "Abbreviations": [ "mol/L"]
+        }
+      ]
+    },
+    {
+      "SingularName": "Molar",
+      "PluralName": "Molar",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli"],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "M"]
         }
       ]
     }

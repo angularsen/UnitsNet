@@ -7,26 +7,6 @@ namespace UnitsNet
 {
     public partial struct Density
     {
-        /// <summary>
-        ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
-        /// </summary>
-        /// <param name="molecularWeight"></param>
-        public Molarity ToMolarity(Mass molecularWeight)
-        {
-            return Molarity.FromMolesPerCubicMeter(KilogramsPerCubicMeter / molecularWeight.Kilograms);
-        }
-
-        #region Static Methods
-
-        /// <summary>
-        ///     Get <see cref="Density" /> from <see cref="Molarity" />.
-        /// </summary>
-        public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
-        {
-            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms, DensityUnit.KilogramPerCubicMeter);
-        }
-
-        #endregion
 
         /// <summary>Get <see cref="Mass"/> from <see cref="Density"/> times <see cref="Volume"/>.</summary>
         public static Mass operator *(Density density, Volume volume)
@@ -58,10 +38,5 @@ namespace UnitsNet
             return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, SpecificWeightUnit.NewtonPerCubicMeter);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from <see cref="Density"/> divided by <see cref="Mass"/>.</summary>
-        public static Molarity operator /(Density density, Mass molecularWeight)
-        {
-            return new Molarity(density.KilogramsPerCubicMeter / molecularWeight.Kilograms, MolarityUnit.MolesPerCubicMeter);
-        }
     }
 }

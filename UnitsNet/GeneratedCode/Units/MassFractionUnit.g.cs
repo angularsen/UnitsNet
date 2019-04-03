@@ -23,22 +23,33 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum MolarityUnit
+    public enum MassFractionUnit
     {
         Undefined = 0,
-        CentimolesPerLiter,
-        DecimolesPerLiter,
-        Micromolar,
-        MicromolesPerLiter,
-        Millimolar,
-        MillimolesPerLiter,
-        Molar,
-        MolesPerCubicMeter,
-        MolesPerLiter,
-        Nanomolar,
-        NanomolesPerLiter,
-        Picomolar,
-        PicomolesPerLiter,
+        CentigramPerGram,
+        CentigramPerKiloGram,
+        DecagramPerGram,
+        DecagramPerKiloGram,
+        DecigramPerGram,
+        DecigramPerKiloGram,
+        DecimalFraction,
+        GramPerGram,
+        GramPerKiloGram,
+        HectogramPerGram,
+        HectogramPerKiloGram,
+        KilogramPerGram,
+        KilogramPerKiloGram,
+        MicrogramPerGram,
+        MicrogramPerKiloGram,
+        MilligramPerGram,
+        MilligramPerKiloGram,
+        NanogramPerGram,
+        NanogramPerKiloGram,
+        PartPerBillion,
+        PartPerMillion,
+        PartPerThousand,
+        PartPerTrillion,
+        Percent,
     }
 
     #pragma warning restore 1591

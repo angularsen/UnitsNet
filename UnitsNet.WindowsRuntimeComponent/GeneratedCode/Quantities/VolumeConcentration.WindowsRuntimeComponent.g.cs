@@ -29,15 +29,15 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     The volume concentration (not to be confused with volume fraction) is defined as the volume of a constituent divided by the total volume of the mixture.
     /// </summary>
     /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Molar_concentration
+    ///     https://en.wikipedia.org/wiki/Concentration#Volume_concentration
     /// </remarks>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class Molarity : IQuantity
+    public sealed partial class VolumeConcentration : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -47,21 +47,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly MolarityUnit? _unit;
+        private readonly VolumeConcentrationUnit? _unit;
 
-        static Molarity()
+        static VolumeConcentration()
         {
-            BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo(QuantityType.Molarity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo(QuantityType.VolumeConcentration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit MolesPerCubicMeter.
+        ///     Creates the quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public Molarity()
+        public VolumeConcentration()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -74,9 +74,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Molarity(double numericValue, MolarityUnit unit)
+        private VolumeConcentration(double numericValue, VolumeConcentrationUnit unit)
         {
-            if(unit == MolarityUnit.Undefined)
+            if(unit == VolumeConcentrationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -96,34 +96,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
+        ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
+        public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Molarity
+        /// Represents the largest possible value of VolumeConcentration
         /// </summary>
-        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
+        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Molarity
+        /// Represents the smallest possible value of VolumeConcentration
         /// </summary>
-        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
+        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumeConcentration;
 
         /// <summary>
-        ///     All units of measurement for the Molarity quantity.
+        ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
-        public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
+        public static VolumeConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
+        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, BaseUnit);
 
         #endregion
 
@@ -140,88 +140,123 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumeConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Molarity.QuantityType;
+        public QuantityType Type => VolumeConcentration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Molarity.BaseDimensions;
+        public BaseDimensions Dimensions => VolumeConcentration.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
+        ///     Get VolumeConcentration in CentilitersPerLiter.
         /// </summary>
-        public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
+        public double CentilitersPerLiter => As(VolumeConcentrationUnit.CentilitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
+        ///     Get VolumeConcentration in CentilitersPerMililiter.
         /// </summary>
-        public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
+        public double CentilitersPerMililiter => As(VolumeConcentrationUnit.CentilitersPerMililiter);
 
         /// <summary>
-        ///     Get Molarity in Micromolar.
+        ///     Get VolumeConcentration in DecilitersPerLiter.
         /// </summary>
-        public double Micromolar => As(MolarityUnit.Micromolar);
+        public double DecilitersPerLiter => As(VolumeConcentrationUnit.DecilitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
+        ///     Get VolumeConcentration in DecilitersPerMililiter.
         /// </summary>
-        public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
+        public double DecilitersPerMililiter => As(VolumeConcentrationUnit.DecilitersPerMililiter);
 
         /// <summary>
-        ///     Get Molarity in Millimolar.
+        ///     Get VolumeConcentration in DecimalFractions.
         /// </summary>
-        public double Millimolar => As(MolarityUnit.Millimolar);
+        public double DecimalFractions => As(VolumeConcentrationUnit.DecimalFraction);
 
         /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
+        ///     Get VolumeConcentration in LitersPerLiter.
         /// </summary>
-        public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
+        public double LitersPerLiter => As(VolumeConcentrationUnit.LitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in Molar.
+        ///     Get VolumeConcentration in LitersPerMililiter.
         /// </summary>
-        public double Molar => As(MolarityUnit.Molar);
+        public double LitersPerMililiter => As(VolumeConcentrationUnit.LitersPerMililiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
+        ///     Get VolumeConcentration in MicrolitersPerLiter.
         /// </summary>
-        public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
+        public double MicrolitersPerLiter => As(VolumeConcentrationUnit.MicrolitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerLiter.
+        ///     Get VolumeConcentration in MicrolitersPerMililiter.
         /// </summary>
-        public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
+        public double MicrolitersPerMililiter => As(VolumeConcentrationUnit.MicrolitersPerMililiter);
 
         /// <summary>
-        ///     Get Molarity in Nanomolar.
+        ///     Get VolumeConcentration in MillilitersPerLiter.
         /// </summary>
-        public double Nanomolar => As(MolarityUnit.Nanomolar);
+        public double MillilitersPerLiter => As(VolumeConcentrationUnit.MillilitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
+        ///     Get VolumeConcentration in MillilitersPerMililiter.
         /// </summary>
-        public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
+        public double MillilitersPerMililiter => As(VolumeConcentrationUnit.MillilitersPerMililiter);
 
         /// <summary>
-        ///     Get Molarity in Picomolar.
+        ///     Get VolumeConcentration in NanolitersPerLiter.
         /// </summary>
-        public double Picomolar => As(MolarityUnit.Picomolar);
+        public double NanolitersPerLiter => As(VolumeConcentrationUnit.NanolitersPerLiter);
 
         /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
+        ///     Get VolumeConcentration in NanolitersPerMililiter.
         /// </summary>
-        public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
+        public double NanolitersPerMililiter => As(VolumeConcentrationUnit.NanolitersPerMililiter);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PartsPerBillion.
+        /// </summary>
+        public double PartsPerBillion => As(VolumeConcentrationUnit.PartPerBillion);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PartsPerMillion.
+        /// </summary>
+        public double PartsPerMillion => As(VolumeConcentrationUnit.PartPerMillion);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PartsPerThousand.
+        /// </summary>
+        public double PartsPerThousand => As(VolumeConcentrationUnit.PartPerThousand);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PartsPerTrillion.
+        /// </summary>
+        public double PartsPerTrillion => As(VolumeConcentrationUnit.PartPerTrillion);
+
+        /// <summary>
+        ///     Get VolumeConcentration in Percent.
+        /// </summary>
+        public double Percent => As(VolumeConcentrationUnit.Percent);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PicolitersPerLiter.
+        /// </summary>
+        public double PicolitersPerLiter => As(VolumeConcentrationUnit.PicolitersPerLiter);
+
+        /// <summary>
+        ///     Get VolumeConcentration in PicolitersPerMililiter.
+        /// </summary>
+        public double PicolitersPerMililiter => As(VolumeConcentrationUnit.PicolitersPerMililiter);
 
         #endregion
 
@@ -232,7 +267,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(MolarityUnit unit)
+        public static string GetAbbreviation(VolumeConcentrationUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -243,7 +278,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(MolarityUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(VolumeConcentrationUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -254,147 +289,217 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
+        ///     Get VolumeConcentration from CentilitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromCentimolesPerLiter(double centimolesperliter)
+        public static VolumeConcentration FromCentilitersPerLiter(double centilitersperliter)
         {
-            double value = (double) centimolesperliter;
-            return new Molarity(value, MolarityUnit.CentimolesPerLiter);
+            double value = (double) centilitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
+        ///     Get VolumeConcentration from CentilitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromDecimolesPerLiter(double decimolesperliter)
+        public static VolumeConcentration FromCentilitersPerMililiter(double centiliterspermililiter)
         {
-            double value = (double) decimolesperliter;
-            return new Molarity(value, MolarityUnit.DecimolesPerLiter);
+            double value = (double) centiliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerMililiter);
         }
         /// <summary>
-        ///     Get Molarity from Micromolar.
+        ///     Get VolumeConcentration from DecilitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMicromolar(double micromolar)
+        public static VolumeConcentration FromDecilitersPerLiter(double decilitersperliter)
         {
-            double value = (double) micromolar;
-            return new Molarity(value, MolarityUnit.Micromolar);
+            double value = (double) decilitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
+        ///     Get VolumeConcentration from DecilitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMicromolesPerLiter(double micromolesperliter)
+        public static VolumeConcentration FromDecilitersPerMililiter(double deciliterspermililiter)
         {
-            double value = (double) micromolesperliter;
-            return new Molarity(value, MolarityUnit.MicromolesPerLiter);
+            double value = (double) deciliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerMililiter);
         }
         /// <summary>
-        ///     Get Molarity from Millimolar.
+        ///     Get VolumeConcentration from DecimalFractions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMillimolar(double millimolar)
+        public static VolumeConcentration FromDecimalFractions(double decimalfractions)
         {
-            double value = (double) millimolar;
-            return new Molarity(value, MolarityUnit.Millimolar);
+            double value = (double) decimalfractions;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.DecimalFraction);
         }
         /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
+        ///     Get VolumeConcentration from LitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMillimolesPerLiter(double millimolesperliter)
+        public static VolumeConcentration FromLitersPerLiter(double litersperliter)
         {
-            double value = (double) millimolesperliter;
-            return new Molarity(value, MolarityUnit.MillimolesPerLiter);
+            double value = (double) litersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from Molar.
+        ///     Get VolumeConcentration from LitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMolar(double molar)
+        public static VolumeConcentration FromLitersPerMililiter(double literspermililiter)
         {
-            double value = (double) molar;
-            return new Molarity(value, MolarityUnit.Molar);
+            double value = (double) literspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerMililiter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
+        ///     Get VolumeConcentration from MicrolitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
+        public static VolumeConcentration FromMicrolitersPerLiter(double microlitersperliter)
         {
-            double value = (double) molespercubicmeter;
-            return new Molarity(value, MolarityUnit.MolesPerCubicMeter);
+            double value = (double) microlitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerLiter.
+        ///     Get VolumeConcentration from MicrolitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMolesPerLiter(double molesperliter)
+        public static VolumeConcentration FromMicrolitersPerMililiter(double microliterspermililiter)
         {
-            double value = (double) molesperliter;
-            return new Molarity(value, MolarityUnit.MolesPerLiter);
+            double value = (double) microliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerMililiter);
         }
         /// <summary>
-        ///     Get Molarity from Nanomolar.
+        ///     Get VolumeConcentration from MillilitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromNanomolar(double nanomolar)
+        public static VolumeConcentration FromMillilitersPerLiter(double millilitersperliter)
         {
-            double value = (double) nanomolar;
-            return new Molarity(value, MolarityUnit.Nanomolar);
+            double value = (double) millilitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
+        ///     Get VolumeConcentration from MillilitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
+        public static VolumeConcentration FromMillilitersPerMililiter(double milliliterspermililiter)
         {
-            double value = (double) nanomolesperliter;
-            return new Molarity(value, MolarityUnit.NanomolesPerLiter);
+            double value = (double) milliliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerMililiter);
         }
         /// <summary>
-        ///     Get Molarity from Picomolar.
+        ///     Get VolumeConcentration from NanolitersPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromPicomolar(double picomolar)
+        public static VolumeConcentration FromNanolitersPerLiter(double nanolitersperliter)
         {
-            double value = (double) picomolar;
-            return new Molarity(value, MolarityUnit.Picomolar);
+            double value = (double) nanolitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
+        ///     Get VolumeConcentration from NanolitersPerMililiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromPicomolesPerLiter(double picomolesperliter)
+        public static VolumeConcentration FromNanolitersPerMililiter(double nanoliterspermililiter)
         {
-            double value = (double) picomolesperliter;
-            return new Molarity(value, MolarityUnit.PicomolesPerLiter);
+            double value = (double) nanoliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerMililiter);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PartsPerBillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPartsPerBillion(double partsperbillion)
+        {
+            double value = (double) partsperbillion;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerBillion);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PartsPerMillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPartsPerMillion(double partspermillion)
+        {
+            double value = (double) partspermillion;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerMillion);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PartsPerThousand.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPartsPerThousand(double partsperthousand)
+        {
+            double value = (double) partsperthousand;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerThousand);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PartsPerTrillion.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPartsPerTrillion(double partspertrillion)
+        {
+            double value = (double) partspertrillion;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerTrillion);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from Percent.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPercent(double percent)
+        {
+            double value = (double) percent;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.Percent);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PicolitersPerLiter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPicolitersPerLiter(double picolitersperliter)
+        {
+            double value = (double) picolitersperliter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerLiter);
+        }
+        /// <summary>
+        ///     Get VolumeConcentration from PicolitersPerMililiter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeConcentration FromPicolitersPerMililiter(double picoliterspermililiter)
+        {
+            double value = (double) picoliterspermililiter;
+            return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerMililiter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
+        ///     Dynamically convert from value and unit enum <see cref="VolumeConcentrationUnit" /> to <see cref="VolumeConcentration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Molarity unit value.</returns>
+        /// <returns>VolumeConcentration unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static Molarity From(double value, MolarityUnit fromUnit)
+        public static VolumeConcentration From(double value, VolumeConcentrationUnit fromUnit)
         {
-            return new Molarity((double)value, fromUnit);
+            return new VolumeConcentration((double)value, fromUnit);
         }
 
         #endregion
@@ -423,7 +528,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Molarity Parse(string str)
+        public static VolumeConcentration Parse(string str)
         {
             return Parse(str, null);
         }
@@ -451,10 +556,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static Molarity Parse(string str, [CanBeNull] string cultureName)
+        public static VolumeConcentration Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.Parse<VolumeConcentration, VolumeConcentrationUnit>(
                 str,
                 provider,
                 From);
@@ -468,7 +573,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, out VolumeConcentration result)
         {
             return TryParse(str, null, out result);
         }
@@ -483,10 +588,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out VolumeConcentration result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.TryParse<VolumeConcentration, VolumeConcentrationUnit>(
                 str,
                 provider,
                 From,
@@ -502,7 +607,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MolarityUnit ParseUnit(string str)
+        public static VolumeConcentrationUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -517,13 +622,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static MolarityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static VolumeConcentrationUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<MolarityUnit>(str, provider);
+            return UnitParser.Default.Parse<VolumeConcentrationUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out MolarityUnit unit)
+        public static bool TryParseUnit(string str, out VolumeConcentrationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -538,10 +643,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out MolarityUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out VolumeConcentrationUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<MolarityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<VolumeConcentrationUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -551,13 +656,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Molarity objMolarity)) throw new ArgumentException("Expected type Molarity.", nameof(obj));
+            if(!(obj is VolumeConcentration objVolumeConcentration)) throw new ArgumentException("Expected type VolumeConcentration.", nameof(obj));
 
-            return CompareTo(objMolarity);
+            return CompareTo(objVolumeConcentration);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(Molarity other)
+        internal int CompareTo(VolumeConcentration other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -565,20 +670,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Molarity objMolarity))
+            if(obj is null || !(obj is VolumeConcentration objVolumeConcentration))
                 return false;
 
-            return Equals(objMolarity);
+            return Equals(objVolumeConcentration);
         }
 
-        public bool Equals(Molarity other)
+        public bool Equals(VolumeConcentration other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Molarity within the given absolute or relative tolerance.
+        ///     Compare equality to another VolumeConcentration within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -616,7 +721,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Molarity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VolumeConcentration other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -630,7 +735,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Molarity.</returns>
+        /// <returns>A hash code for the current VolumeConcentration.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -640,13 +745,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((MolarityUnit)unit);
+        double IQuantity.As(object unit) => As((VolumeConcentrationUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarityUnit unit)
+        public double As(VolumeConcentrationUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -656,13 +761,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
+        ///     Converts this VolumeConcentration to another VolumeConcentration with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Molarity with the specified unit.</returns>
-        public Molarity ToUnit(MolarityUnit unit)
+        /// <returns>A VolumeConcentration with the specified unit.</returns>
+        public VolumeConcentration ToUnit(VolumeConcentrationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new Molarity(convertedValue, unit);
+            return new VolumeConcentration(convertedValue, unit);
         }
 
         /// <summary>
@@ -674,25 +779,32 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.Micromolar: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.Millimolar: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.Molar: return _value/1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.Nanomolar: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.Picomolar: return (_value/1e-3) * 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case VolumeConcentrationUnit.CentilitersPerLiter: return (_value) * 1e-2d;
+                case VolumeConcentrationUnit.CentilitersPerMililiter: return (_value/1e-3) * 1e-2d;
+                case VolumeConcentrationUnit.DecilitersPerLiter: return (_value) * 1e-1d;
+                case VolumeConcentrationUnit.DecilitersPerMililiter: return (_value/1e-3) * 1e-1d;
+                case VolumeConcentrationUnit.DecimalFraction: return _value;
+                case VolumeConcentrationUnit.LitersPerLiter: return _value;
+                case VolumeConcentrationUnit.LitersPerMililiter: return _value/1e-3;
+                case VolumeConcentrationUnit.MicrolitersPerLiter: return (_value) * 1e-6d;
+                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (_value/1e-3) * 1e-6d;
+                case VolumeConcentrationUnit.MillilitersPerLiter: return (_value) * 1e-3d;
+                case VolumeConcentrationUnit.MillilitersPerMililiter: return (_value/1e-3) * 1e-3d;
+                case VolumeConcentrationUnit.NanolitersPerLiter: return (_value) * 1e-9d;
+                case VolumeConcentrationUnit.NanolitersPerMililiter: return (_value/1e-3) * 1e-9d;
+                case VolumeConcentrationUnit.PartPerBillion: return _value/1e9;
+                case VolumeConcentrationUnit.PartPerMillion: return _value/1e6;
+                case VolumeConcentrationUnit.PartPerThousand: return _value/1e3;
+                case VolumeConcentrationUnit.PartPerTrillion: return _value/1e12;
+                case VolumeConcentrationUnit.Percent: return _value/1e2;
+                case VolumeConcentrationUnit.PicolitersPerLiter: return (_value) * 1e-12d;
+                case VolumeConcentrationUnit.PicolitersPerMililiter: return (_value/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MolarityUnit unit)
+        private double AsBaseNumericType(VolumeConcentrationUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -701,19 +813,26 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
-                case MolarityUnit.Micromolar: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.Millimolar: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.Molar: return baseUnitValue*1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
-                case MolarityUnit.Nanomolar: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.Picomolar: return (baseUnitValue*1e-3) / 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case VolumeConcentrationUnit.CentilitersPerLiter: return (baseUnitValue) / 1e-2d;
+                case VolumeConcentrationUnit.CentilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-2d;
+                case VolumeConcentrationUnit.DecilitersPerLiter: return (baseUnitValue) / 1e-1d;
+                case VolumeConcentrationUnit.DecilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-1d;
+                case VolumeConcentrationUnit.DecimalFraction: return baseUnitValue;
+                case VolumeConcentrationUnit.LitersPerLiter: return baseUnitValue;
+                case VolumeConcentrationUnit.LitersPerMililiter: return baseUnitValue*1e-3;
+                case VolumeConcentrationUnit.MicrolitersPerLiter: return (baseUnitValue) / 1e-6d;
+                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-6d;
+                case VolumeConcentrationUnit.MillilitersPerLiter: return (baseUnitValue) / 1e-3d;
+                case VolumeConcentrationUnit.MillilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-3d;
+                case VolumeConcentrationUnit.NanolitersPerLiter: return (baseUnitValue) / 1e-9d;
+                case VolumeConcentrationUnit.NanolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-9d;
+                case VolumeConcentrationUnit.PartPerBillion: return baseUnitValue*1e9;
+                case VolumeConcentrationUnit.PartPerMillion: return baseUnitValue*1e6;
+                case VolumeConcentrationUnit.PartPerThousand: return baseUnitValue*1e3;
+                case VolumeConcentrationUnit.PartPerTrillion: return baseUnitValue*1e12;
+                case VolumeConcentrationUnit.Percent: return baseUnitValue*1e2;
+                case VolumeConcentrationUnit.PicolitersPerLiter: return (baseUnitValue) / 1e-12d;
+                case VolumeConcentrationUnit.PicolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -28,11 +28,16 @@ namespace UnitsNet.Units
         Undefined = 0,
         CentimolesPerLiter,
         DecimolesPerLiter,
+        Micromolar,
         MicromolesPerLiter,
+        Millimolar,
         MillimolesPerLiter,
+        Molar,
         MolesPerCubicMeter,
         MolesPerLiter,
+        Nanomolar,
         NanomolesPerLiter,
+        Picomolar,
         PicomolesPerLiter,
     }
 
