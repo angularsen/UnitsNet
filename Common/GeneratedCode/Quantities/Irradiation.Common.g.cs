@@ -162,14 +162,34 @@ namespace UnitsNet
         public static IrradiationUnit[] Units { get; } = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().ToArray();
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareCentimeter.
+        /// </summary>
+        public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Irradiation in JoulesPerSquareMeter.
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareMillimeter.
+        /// </summary>
+        public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Get Irradiation in KilojoulesPerSquareMeter.
+        /// </summary>
+        public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
+
+        /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
         /// </summary>
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
+
+        /// <summary>
+        ///     Get Irradiation in MillijoulesPerSquareCentimeter.
+        /// </summary>
+        public double MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
         ///     Get Irradiation in WattHoursPerSquareMeter.
@@ -186,6 +206,20 @@ namespace UnitsNet
         public static Irradiation Zero => new Irradiation(0, BaseUnit);
 
         /// <summary>
+        ///     Get Irradiation from JoulesPerSquareCentimeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromJoulesPerSquareCentimeter(double joulespersquarecentimeter)
+#else
+        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue joulespersquarecentimeter)
+#endif
+        {
+            double value = (double) joulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
+        }
+
+        /// <summary>
         ///     Get Irradiation from JoulesPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
@@ -200,6 +234,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Irradiation from JoulesPerSquareMillimeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromJoulesPerSquareMillimeter(double joulespersquaremillimeter)
+#else
+        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue joulespersquaremillimeter)
+#endif
+        {
+            double value = (double) joulespersquaremillimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
+        }
+
+        /// <summary>
+        ///     Get Irradiation from KilojoulesPerSquareMeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromKilojoulesPerSquareMeter(double kilojoulespersquaremeter)
+#else
+        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue kilojoulespersquaremeter)
+#endif
+        {
+            double value = (double) kilojoulespersquaremeter;
+            return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
+        }
+
+        /// <summary>
         ///     Get Irradiation from KilowattHoursPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
@@ -211,6 +273,20 @@ namespace UnitsNet
         {
             double value = (double) kilowatthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Get Irradiation from MillijoulesPerSquareCentimeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromMillijoulesPerSquareCentimeter(double millijoulespersquarecentimeter)
+#else
+        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue millijoulespersquarecentimeter)
+#endif
+        {
+            double value = (double) millijoulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
 
         /// <summary>
@@ -399,8 +475,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return _value*1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return _value;
+                case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return (_value*1e4) * 1e-3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -416,8 +496,12 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return baseUnitValue/1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
+                case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return (baseUnitValue/1e4) / 1e-3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

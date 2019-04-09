@@ -21,6 +21,19 @@
       ]
     },
     {
+      "SingularName": "JoulePerSquareCentimeter",
+      "PluralName": "JoulesPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": ["Milli"],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/cm²" ]
+        }
+      ]
+    },
+    {
       "SingularName": "WattHourPerSquareMeter",
       "PluralName": "WattHoursPerSquareMeter",
       "FromUnitToBaseFunc": "x*3600d",

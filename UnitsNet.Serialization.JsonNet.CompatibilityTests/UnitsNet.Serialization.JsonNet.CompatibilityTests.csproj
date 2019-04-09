@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 </Project>

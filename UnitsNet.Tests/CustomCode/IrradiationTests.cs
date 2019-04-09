@@ -46,8 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IrradiationTests : IrradiationTestsBase
     {
+        protected override double JoulesPerSquareCentimeterInOneJoulePerSquareMeter => 1e-4;
         protected override double JoulesPerSquareMeterInOneJoulePerSquareMeter => 1;
+        protected override double JoulesPerSquareMillimeterInOneJoulePerSquareMeter => 1e-6;
+        protected override double KilojoulesPerSquareMeterInOneJoulePerSquareMeter => 1e-3;
 
+        protected override double MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter => 1e-1;
         protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-4;
 
         protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-7;

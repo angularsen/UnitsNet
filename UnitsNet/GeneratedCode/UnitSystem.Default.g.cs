@@ -2009,15 +2009,35 @@ namespace UnitsNet
                 new UnitLocalization(typeof (IrradiationUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) IrradiationUnit.JoulePerSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/cm²"),
+                            }),
                         new CulturesForEnumValue((int) IrradiationUnit.JoulePerSquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "J/m²"),
                             }),
+                        new CulturesForEnumValue((int) IrradiationUnit.JoulePerSquareMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/mm²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradiationUnit.KilojoulePerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/m²"),
+                            }),
                         new CulturesForEnumValue((int) IrradiationUnit.KilowattHourPerSquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kWh/m²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradiationUnit.MillijoulePerSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mJ/cm²"),
                             }),
                         new CulturesForEnumValue((int) IrradiationUnit.WattHourPerSquareMeter,
                             new[]

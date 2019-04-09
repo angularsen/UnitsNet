@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToIrradiation
 {
     public static class NumberToIrradiationExtensions
     {
+        #region JoulePerSquareCentimeter
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareCentimeter(this int value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareCentimeter(this int? value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareCentimeter(this long value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareCentimeter(this long? value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareCentimeter(this double value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareCentimeter(this double? value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareCentimeter(this float value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareCentimeter(this float? value) => Irradiation.FromJoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareCentimeter(this decimal value) => Irradiation.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareCentimeter(this decimal? value) => Irradiation.FromJoulesPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region JoulePerSquareMeter
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
@@ -78,6 +112,74 @@ namespace UnitsNet.Extensions.NumberToIrradiation
 
         #endregion
 
+        #region JoulePerSquareMillimeter
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareMillimeter(this int value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareMillimeter(this int? value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareMillimeter(this long value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareMillimeter(this long? value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareMillimeter(this double value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareMillimeter(this double? value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareMillimeter(this float value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareMillimeter(this float? value) => Irradiation.FromJoulesPerSquareMillimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation JoulesPerSquareMillimeter(this decimal value) => Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? JoulesPerSquareMillimeter(this decimal? value) => Irradiation.FromJoulesPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KilojoulePerSquareMeter
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation KilojoulesPerSquareMeter(this int value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? KilojoulesPerSquareMeter(this int? value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation KilojoulesPerSquareMeter(this long value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? KilojoulesPerSquareMeter(this long? value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation KilojoulesPerSquareMeter(this double value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? KilojoulesPerSquareMeter(this double? value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation KilojoulesPerSquareMeter(this float value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? KilojoulesPerSquareMeter(this float? value) => Irradiation.FromKilojoulesPerSquareMeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation KilojoulesPerSquareMeter(this decimal value) => Irradiation.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? KilojoulesPerSquareMeter(this decimal? value) => Irradiation.FromKilojoulesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilowattHourPerSquareMeter
 
         /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
@@ -109,6 +211,40 @@ namespace UnitsNet.Extensions.NumberToIrradiation
 
         /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this decimal? value) => Irradiation.FromKilowattHoursPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MillijoulePerSquareCentimeter
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation MillijoulesPerSquareCentimeter(this int value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? MillijoulesPerSquareCentimeter(this int? value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation MillijoulesPerSquareCentimeter(this long value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? MillijoulesPerSquareCentimeter(this long? value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation MillijoulesPerSquareCentimeter(this double value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? MillijoulesPerSquareCentimeter(this double? value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation MillijoulesPerSquareCentimeter(this float value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? MillijoulesPerSquareCentimeter(this float? value) => Irradiation.FromMillijoulesPerSquareCentimeter(value);
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation MillijoulesPerSquareCentimeter(this decimal value) => Irradiation.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Irradiation? MillijoulesPerSquareCentimeter(this decimal? value) => Irradiation.FromMillijoulesPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

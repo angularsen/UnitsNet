@@ -63,6 +63,14 @@ namespace UnitsNet
         #region Nullable From Methods
 
         /// <summary>
+        ///     Get nullable Irradiation from nullable JoulesPerSquareCentimeter.
+        /// </summary>
+        public static Irradiation? FromJoulesPerSquareCentimeter(QuantityValue? joulespersquarecentimeter)
+        {
+            return joulespersquarecentimeter.HasValue ? FromJoulesPerSquareCentimeter(joulespersquarecentimeter.Value) : default(Irradiation?);
+        }
+
+        /// <summary>
         ///     Get nullable Irradiation from nullable JoulesPerSquareMeter.
         /// </summary>
         public static Irradiation? FromJoulesPerSquareMeter(QuantityValue? joulespersquaremeter)
@@ -71,11 +79,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Irradiation from nullable JoulesPerSquareMillimeter.
+        /// </summary>
+        public static Irradiation? FromJoulesPerSquareMillimeter(QuantityValue? joulespersquaremillimeter)
+        {
+            return joulespersquaremillimeter.HasValue ? FromJoulesPerSquareMillimeter(joulespersquaremillimeter.Value) : default(Irradiation?);
+        }
+
+        /// <summary>
+        ///     Get nullable Irradiation from nullable KilojoulesPerSquareMeter.
+        /// </summary>
+        public static Irradiation? FromKilojoulesPerSquareMeter(QuantityValue? kilojoulespersquaremeter)
+        {
+            return kilojoulespersquaremeter.HasValue ? FromKilojoulesPerSquareMeter(kilojoulespersquaremeter.Value) : default(Irradiation?);
+        }
+
+        /// <summary>
         ///     Get nullable Irradiation from nullable KilowattHoursPerSquareMeter.
         /// </summary>
         public static Irradiation? FromKilowattHoursPerSquareMeter(QuantityValue? kilowatthourspersquaremeter)
         {
             return kilowatthourspersquaremeter.HasValue ? FromKilowattHoursPerSquareMeter(kilowatthourspersquaremeter.Value) : default(Irradiation?);
+        }
+
+        /// <summary>
+        ///     Get nullable Irradiation from nullable MillijoulesPerSquareCentimeter.
+        /// </summary>
+        public static Irradiation? FromMillijoulesPerSquareCentimeter(QuantityValue? millijoulespersquarecentimeter)
+        {
+            return millijoulespersquarecentimeter.HasValue ? FromMillijoulesPerSquareCentimeter(millijoulespersquarecentimeter.Value) : default(Irradiation?);
         }
 
         /// <summary>
