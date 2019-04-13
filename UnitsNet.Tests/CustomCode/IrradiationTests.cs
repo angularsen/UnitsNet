@@ -35,6 +35,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double JoulesPerSquareMillimeterInOneJoulePerSquareMeter => 1E-6;
 
+        protected override double MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter => 1e-1;
+
         protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-4;
 
         protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-7;

@@ -58,6 +58,7 @@ namespace UnitsNet
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -197,6 +198,11 @@ namespace UnitsNet
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
+        ///     Get Irradiation in MillijoulesPerSquareCentimeter.
+        /// </summary>
+        public double MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Irradiation in WattHoursPerSquareMeter.
         /// </summary>
         public double WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
@@ -274,6 +280,15 @@ namespace UnitsNet
         {
             double value = (double) kilowatthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
+        }
+        /// <summary>
+        ///     Get Irradiation from MillijoulesPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue millijoulespersquarecentimeter)
+        {
+            double value = (double) millijoulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
         /// <summary>
         ///     Get Irradiation from WattHoursPerSquareMeter.
@@ -718,6 +733,7 @@ namespace UnitsNet
                 case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
                 case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return (_value*1e4) * 1e-3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -738,6 +754,7 @@ namespace UnitsNet
                 case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
                 case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return (baseUnitValue/1e4) / 1e-3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
