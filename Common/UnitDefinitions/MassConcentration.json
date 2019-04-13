@@ -12,8 +12,8 @@
       "SingularName": "GramPerCubicMillimeter",
       "PluralName": "GramsPerCubicMillimeter",
       "BaseUnits": {
-        "L": "Millimeter",
-        "M": "Gram"
+        "L": "Meter",
+        "M": "Kilogram"
       },
       "FromUnitToBaseFunc": "x/1e-6",
       "FromBaseToUnitFunc": "x*1e-6",
@@ -29,8 +29,8 @@
       "SingularName": "GramPerCubicCentimeter",
       "PluralName": "GramsPerCubicCentimeter",
       "BaseUnits": {
-        "L": "Centimeter",
-        "M": "Gram"
+        "L": "Meter",
+        "M": "Kilogram"
       },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
@@ -47,7 +47,7 @@
       "PluralName": "GramsPerCubicMeter",
       "BaseUnits": {
         "L": "Meter",
-        "M": "Gram"
+        "M": "Kilogram"
       },
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
@@ -165,46 +165,62 @@
     },
     {
       "SingularName": "GramPerLiter",
-      "PluralName": "GramsPerLiter",
-      "FromUnitToBaseFunc": "x/1",
-      "FromBaseToUnitFunc": "x*1",
+      "PluralName": "GramsPerLiter",      
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/l"]
+          "Abbreviations": [ "g/L"]
         }
       ]
     },
     {
       "SingularName": "GramPerDeciliter",
-      "PluralName": "GramsPerDeciLiter",
+      "PluralName": "GramsPerDeciLiter",    
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x/1e-1",
       "FromBaseToUnitFunc": "x*1e-1",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/dl" ]
+          "Abbreviations": [ "g/dL" ]
         }
       ]
     },
     {
       "SingularName": "GramPerMilliliter",
-      "PluralName": "GramsPerMilliliter",
+      "PluralName": "GramsPerMilliliter",    
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/ml" ]
+          "Abbreviations": [ "g/mL" ]
         }
       ]
     },
     {
       "SingularName": "PoundPerUSGallon",
-      "PluralName": "PoundsPerUSGallon",
+      "PluralName": "PoundsPerUSGallon",      
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x*1.19826427e2",
       "FromBaseToUnitFunc": "x/1.19826427e2",
       "Localization": [
@@ -216,7 +232,11 @@
     },
     {
       "SingularName": "PoundPerImperialGallon",
-      "PluralName": "PoundsPerImperialGallon",
+      "PluralName": "PoundsPerImperialGallon",      
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram"
+      },
       "FromUnitToBaseFunc": "x*9.9776398e1",
       "FromBaseToUnitFunc": "x/9.9776398e1",
       "Localization": [
@@ -238,7 +258,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/l" ]
+          "Abbreviations": [ "kg/L" ]
         }
       ]
     }
