@@ -159,9 +159,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassConcentration in CentigramsPerDeciLiter.
+        ///     Get MassConcentration in CentigramsPerDeciliter.
         /// </summary>
-        public double CentigramsPerDeciLiter => As(MassConcentrationUnit.CentigramPerDeciliter);
+        public double CentigramsPerDeciliter => As(MassConcentrationUnit.CentigramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in CentigramsPerLiter.
@@ -174,9 +174,9 @@ namespace UnitsNet
         public double CentigramsPerMilliliter => As(MassConcentrationUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in DecigramsPerDeciLiter.
+        ///     Get MassConcentration in DecigramsPerDeciliter.
         /// </summary>
-        public double DecigramsPerDeciLiter => As(MassConcentrationUnit.DecigramPerDeciliter);
+        public double DecigramsPerDeciliter => As(MassConcentrationUnit.DecigramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in DecigramsPerLiter.
@@ -204,9 +204,9 @@ namespace UnitsNet
         public double GramsPerCubicMillimeter => As(MassConcentrationUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerDeciLiter.
+        ///     Get MassConcentration in GramsPerDeciliter.
         /// </summary>
-        public double GramsPerDeciLiter => As(MassConcentrationUnit.GramPerDeciliter);
+        public double GramsPerDeciliter => As(MassConcentrationUnit.GramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in GramsPerLiter.
@@ -254,9 +254,9 @@ namespace UnitsNet
         public double MicrogramsPerCubicMeter => As(MassConcentrationUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerDeciLiter.
+        ///     Get MassConcentration in MicrogramsPerDeciliter.
         /// </summary>
-        public double MicrogramsPerDeciLiter => As(MassConcentrationUnit.MicrogramPerDeciliter);
+        public double MicrogramsPerDeciliter => As(MassConcentrationUnit.MicrogramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in MicrogramsPerLiter.
@@ -274,9 +274,9 @@ namespace UnitsNet
         public double MilligramsPerCubicMeter => As(MassConcentrationUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerDeciLiter.
+        ///     Get MassConcentration in MilligramsPerDeciliter.
         /// </summary>
-        public double MilligramsPerDeciLiter => As(MassConcentrationUnit.MilligramPerDeciliter);
+        public double MilligramsPerDeciliter => As(MassConcentrationUnit.MilligramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in MilligramsPerLiter.
@@ -289,9 +289,9 @@ namespace UnitsNet
         public double MilligramsPerMilliliter => As(MassConcentrationUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in NanogramsPerDeciLiter.
+        ///     Get MassConcentration in NanogramsPerDeciliter.
         /// </summary>
-        public double NanogramsPerDeciLiter => As(MassConcentrationUnit.NanogramPerDeciliter);
+        public double NanogramsPerDeciliter => As(MassConcentrationUnit.NanogramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in NanogramsPerLiter.
@@ -304,9 +304,9 @@ namespace UnitsNet
         public double NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in PicogramsPerDeciLiter.
+        ///     Get MassConcentration in PicogramsPerDeciliter.
         /// </summary>
-        public double PicogramsPerDeciLiter => As(MassConcentrationUnit.PicogramPerDeciliter);
+        public double PicogramsPerDeciliter => As(MassConcentrationUnit.PicogramPerDeciliter);
 
         /// <summary>
         ///     Get MassConcentration in PicogramsPerLiter.
@@ -389,11 +389,11 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassConcentration from CentigramsPerDeciLiter.
+        ///     Get MassConcentration from CentigramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromCentigramsPerDeciLiter(double centigramsperdeciliter)
+        public static MassConcentration FromCentigramsPerDeciliter(double centigramsperdeciliter)
         {
             double value = (double) centigramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerDeciliter);
@@ -419,11 +419,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from DecigramsPerDeciLiter.
+        ///     Get MassConcentration from DecigramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromDecigramsPerDeciLiter(double decigramsperdeciliter)
+        public static MassConcentration FromDecigramsPerDeciliter(double decigramsperdeciliter)
         {
             double value = (double) decigramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerDeciliter);
@@ -479,11 +479,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerDeciLiter.
+        ///     Get MassConcentration from GramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromGramsPerDeciLiter(double gramsperdeciliter)
+        public static MassConcentration FromGramsPerDeciliter(double gramsperdeciliter)
         {
             double value = (double) gramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerDeciliter);
@@ -579,11 +579,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerDeciLiter.
+        ///     Get MassConcentration from MicrogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromMicrogramsPerDeciLiter(double microgramsperdeciliter)
+        public static MassConcentration FromMicrogramsPerDeciliter(double microgramsperdeciliter)
         {
             double value = (double) microgramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerDeciliter);
@@ -619,11 +619,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerDeciLiter.
+        ///     Get MassConcentration from MilligramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromMilligramsPerDeciLiter(double milligramsperdeciliter)
+        public static MassConcentration FromMilligramsPerDeciliter(double milligramsperdeciliter)
         {
             double value = (double) milligramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerDeciliter);
@@ -649,11 +649,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from NanogramsPerDeciLiter.
+        ///     Get MassConcentration from NanogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromNanogramsPerDeciLiter(double nanogramsperdeciliter)
+        public static MassConcentration FromNanogramsPerDeciliter(double nanogramsperdeciliter)
         {
             double value = (double) nanogramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerDeciliter);
@@ -679,11 +679,11 @@ namespace UnitsNet
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from PicogramsPerDeciLiter.
+        ///     Get MassConcentration from PicogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static MassConcentration FromPicogramsPerDeciLiter(double picogramsperdeciliter)
+        public static MassConcentration FromPicogramsPerDeciliter(double picogramsperdeciliter)
         {
             double value = (double) picogramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerDeciliter);

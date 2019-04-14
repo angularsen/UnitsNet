@@ -42,8 +42,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
 
-        private static double MolarMassOfOxygen = 15.999;
-        private static double MolesInTenGramsOfOxygen = 0.6250390649415588;
+        private const double MolarMassOfOxygen = 15.999;
+        private const double MolesInTenGramsOfOxygen = 0.6250390649415588;
 
         [Fact]
         public void TenGramsOfOxygenContainExpectedNumberOfMoles()  

@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeConcentrationTests : VolumeConcentrationTestsBase
     {
+        #region Unit Conversion Coefficients
         protected override double LitersPerMililiterInOneDecimalFraction => 1E-3;
         protected override double DecilitersPerMililiterInOneDecimalFraction => 1E-2;
         protected override double CentilitersPerMililiterInOneDecimalFraction => 1E-1;
@@ -42,23 +43,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrolitersPerLiterInOneDecimalFraction => 1E6;
         protected override double NanolitersPerLiterInOneDecimalFraction => 1E9;
         protected override double PicolitersPerLiterInOneDecimalFraction => 1E12;
-
-        protected override double DecimalFractionsInOneDecimalFraction => 1;
-
-        protected override double PercentInOneDecimalFraction => 100;
-
-        protected override double PartsPerBillionInOneDecimalFraction => 1e9;
-
-        protected override double PartsPerMillionInOneDecimalFraction => 1e6;
-
+        
         protected override double PartsPerThousandInOneDecimalFraction => 1e3;
-
+        protected override double PartsPerMillionInOneDecimalFraction => 1e6;
+        protected override double PartsPerBillionInOneDecimalFraction => 1e9;
         protected override double PartsPerTrillionInOneDecimalFraction => 1e12;
 
-        private static double MolarMassOfEthanolInGramsPerMole = 46.06844;
-        private static double DensityOfEthanolInKgPerCubicMeter = 789;
-        private static double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
+        protected override double DecimalFractionsInOneDecimalFraction => 1;
+        protected override double PercentInOneDecimalFraction => 100;
+        #endregion
 
+        private const double MolarMassOfEthanolInGramsPerMole = 46.06844;
+        private const double DensityOfEthanolInKgPerCubicMeter = 789;
 
         [Fact]
         public void MassConcentrationFromVolumeConcentrationAndDensity()
@@ -83,6 +79,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void VolumeConcentrationFromMolarityOfEthanol()
         {
+            const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
             var molarity = Molarity.FromMolesPerLiter(0.5);
             var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
             var molarMass = MolarMass.FromGramsPerMole(MolarMassOfEthanolInGramsPerMole);

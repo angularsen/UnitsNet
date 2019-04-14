@@ -28,6 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarityTests : MolarityTestsBase
     {
+        #region Unit Conversion Coefficients
         protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
         protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
         protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
@@ -42,17 +43,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicromolarInOneMolesPerCubicMeter => 1E3;
         protected override double NanomolarInOneMolesPerCubicMeter => 1E6;
         protected override double PicomolarInOneMolesPerCubicMeter => 1E9;
+        #endregion
 
-        private static double MolarMassHClInGramsPerMole = 36.46;
-        private static double MassOfSubstanceInGrams = 5;
-        private static double VolumeOfSolutionInLiters = 1.2;
-
-        private static double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
-        private static double ExpectedConcentrationInKgPerCubicMeter = 4.16667;
+        private const double MolarMassHClInGramsPerMole = 36.46;
         
-        private static double MolarMassOfEthanolInGramsPerMole = 46.06844;
-        private static double DensityOfEthanolInKgPerCubicMeter = 789;
-        private static double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
+        private const double MolarMassOfEthanolInGramsPerMole = 46.06844;
+        private const double DensityOfEthanolInKgPerCubicMeter = 789;
 
         [Fact]
         public void ExpectMassConcentrationConvertedToMolarityCorrectly()
@@ -77,6 +73,9 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void HClSolutionMolarityIsEqualToExpected()
         {
+            const double MassOfSubstanceInGrams = 5;
+            const double VolumeOfSolutionInLiters = 1.2;
+            const double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
             // same test is performed in AmountOfSubstanceTests
             var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
             var substanceMass = Mass.FromGrams(MassOfSubstanceInGrams);
@@ -90,6 +89,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void HClSolutionConcentrationIsEqualToExpected()
         {
+            const double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
+            const double ExpectedConcentrationInKgPerCubicMeter = 4.16667;
             var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
             var molarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
 
@@ -100,6 +101,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TenPercentHClSolutionMolarityIsEqualToExpected()
         {
+            const double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
             var originalMolarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
 
             Molarity tenPercentMolarity = originalMolarity * VolumeConcentration.FromPercent(10);
@@ -109,6 +111,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MolarityFromVolumeConcentrationEthanol()
         {
+            const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
             var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
             var molarMass = MolarMass.FromGramsPerMole(MolarMassOfEthanolInGramsPerMole);
             var volumeConcentration = VolumeConcentration.FromMillilitersPerLiter(VolumeConcentration_0_5M_Ethanol);
