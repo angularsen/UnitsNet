@@ -55,16 +55,11 @@ namespace UnitsNet
                 new UnitInfo<MolarityUnit>[] {
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Micromolar, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Millimolar, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Molar, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Nanomolar, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.Picomolar, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -189,29 +184,14 @@ namespace UnitsNet
         public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in Micromolar.
-        /// </summary>
-        public double Micromolar => As(MolarityUnit.Micromolar);
-
-        /// <summary>
         ///     Get Molarity in MicromolesPerLiter.
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in Millimolar.
-        /// </summary>
-        public double Millimolar => As(MolarityUnit.Millimolar);
-
-        /// <summary>
         ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
-
-        /// <summary>
-        ///     Get Molarity in Molar.
-        /// </summary>
-        public double Molar => As(MolarityUnit.Molar);
 
         /// <summary>
         ///     Get Molarity in MolesPerCubicMeter.
@@ -224,19 +204,9 @@ namespace UnitsNet
         public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in Nanomolar.
-        /// </summary>
-        public double Nanomolar => As(MolarityUnit.Nanomolar);
-
-        /// <summary>
         ///     Get Molarity in NanomolesPerLiter.
         /// </summary>
         public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
-
-        /// <summary>
-        ///     Get Molarity in Picomolar.
-        /// </summary>
-        public double Picomolar => As(MolarityUnit.Picomolar);
 
         /// <summary>
         ///     Get Molarity in PicomolesPerLiter.
@@ -291,15 +261,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.DecimolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from Micromolar.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolar(QuantityValue micromolar)
-        {
-            double value = (double) micromolar;
-            return new Molarity(value, MolarityUnit.Micromolar);
-        }
-        /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -309,15 +270,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MicromolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from Millimolar.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolar(QuantityValue millimolar)
-        {
-            double value = (double) millimolar;
-            return new Molarity(value, MolarityUnit.Millimolar);
-        }
-        /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -325,15 +277,6 @@ namespace UnitsNet
         {
             double value = (double) millimolesperliter;
             return new Molarity(value, MolarityUnit.MillimolesPerLiter);
-        }
-        /// <summary>
-        ///     Get Molarity from Molar.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolar(QuantityValue molar)
-        {
-            double value = (double) molar;
-            return new Molarity(value, MolarityUnit.Molar);
         }
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
@@ -354,15 +297,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from Nanomolar.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolar(QuantityValue nanomolar)
-        {
-            double value = (double) nanomolar;
-            return new Molarity(value, MolarityUnit.Nanomolar);
-        }
-        /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -370,15 +304,6 @@ namespace UnitsNet
         {
             double value = (double) nanomolesperliter;
             return new Molarity(value, MolarityUnit.NanomolesPerLiter);
-        }
-        /// <summary>
-        ///     Get Molarity from Picomolar.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolar(QuantityValue picomolar)
-        {
-            double value = (double) picomolar;
-            return new Molarity(value, MolarityUnit.Picomolar);
         }
         /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
@@ -820,16 +745,11 @@ namespace UnitsNet
             {
                 case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
                 case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.Micromolar: return (_value/1e-3) * 1e-6d;
                 case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.Millimolar: return (_value/1e-3) * 1e-3d;
                 case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.Molar: return _value/1e-3;
                 case MolarityUnit.MolesPerCubicMeter: return _value;
                 case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.Nanomolar: return (_value/1e-3) * 1e-9d;
                 case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.Picomolar: return (_value/1e-3) * 1e-12d;
                 case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -847,16 +767,11 @@ namespace UnitsNet
             {
                 case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
                 case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
-                case MolarityUnit.Micromolar: return (baseUnitValue*1e-3) / 1e-6d;
                 case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.Millimolar: return (baseUnitValue*1e-3) / 1e-3d;
                 case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.Molar: return baseUnitValue*1e-3;
                 case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
                 case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
-                case MolarityUnit.Nanomolar: return (baseUnitValue*1e-3) / 1e-9d;
                 case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.Picomolar: return (baseUnitValue*1e-3) / 1e-12d;
                 case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

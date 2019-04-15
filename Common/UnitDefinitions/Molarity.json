@@ -29,7 +29,7 @@
       "SingularName": "MolesPerLiter",
       "PluralName": "MolesPerLiter",
       "BaseUnits": {
-        "L": "Meter",
+        "L": "Decimeter",
         "N": "Mole"
       },
       "FromUnitToBaseFunc": "x/1e-3",
@@ -38,24 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/L"]
-        }
-      ]
-    },
-    {
-      "SingularName": "Molar",
-      "PluralName": "Molar",
-      "BaseUnits": {
-        "L": "Meter",
-        "N": "Mole"
-      },
-      "FromUnitToBaseFunc": "x/1e-3",
-      "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli"],
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "M"]
+          "Abbreviations": [ "mol/L", "M"]
         }
       ]
     }
