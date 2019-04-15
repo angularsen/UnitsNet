@@ -52,10 +52,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecimalFractionsInOneDecimalFraction => 1;
         protected override double PercentInOneDecimalFraction => 100;
         #endregion
-
-        private const double MolarMassOfEthanolInGramsPerMole = 46.06844;
-        private const double DensityOfEthanolInKgPerCubicMeter = 789;
-
+        
         [Fact]
         public void MassConcentrationFromVolumeConcentrationAndDensity()
         {
@@ -81,8 +78,8 @@ namespace UnitsNet.Tests.CustomCode
         {
             const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
             var molarity = Molarity.FromMolesPerLiter(0.5);
-            var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
-            var molarMass = MolarMass.FromGramsPerMole(MolarMassOfEthanolInGramsPerMole);
+            var density = Density.FromKilogramsPerCubicMeter(KnownQuantities.DensityOfEthanolInKgPerCubicMeter);
+            var molarMass = MolarMass.FromGramsPerMole(KnownQuantities.MolarMassOfEthanolInGramsPerMole);
 
             VolumeConcentration volumeConcentration = molarity.ToVolumeConcentration(density, molarMass);
             AssertEx.EqualTolerance(VolumeConcentration_0_5M_Ethanol, volumeConcentration.MillilitersPerLiter, MillilitersPerLiterTolerance);

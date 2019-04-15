@@ -72,8 +72,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032; 
         #endregion
 
-        private const double DensityOfEthanolInKgPerCubicMeter = 789;
-
         [Fact]
         public static void MassConcentrationTimesVolumeEqualsMass()
         {
@@ -122,19 +120,19 @@ namespace UnitsNet.Tests.CustomCode
         public void MassConcentrationFromVolumeConcentrationEthanol()
         {
             const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
-            var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
+            var density = Density.FromKilogramsPerCubicMeter(KnownQuantities.DensityOfEthanolInKgPerCubicMeter);
             var volumeConcentration = VolumeConcentration.FromMillilitersPerLiter(VolumeConcentration_0_5M_Ethanol);
 
             MassConcentration massConcentration = volumeConcentration.ToMassConcentration(density);
             AssertEx.EqualTolerance(23.03422, massConcentration.GramsPerLiter, GramsPerCubicMeterTolerance);
         }
 
-//        [Fact]
-//        public void DefaultSIUnitIsKgPerCubicMeter()
-//        {
-//            var massConcentration = new MassConcentration(1, UnitSystem.SI);
-//            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, massConcentration.Unit); // MassConcentration.BaseUnit = KilogramPerCubicMeter
-//        }
+        [Fact(Skip = "No BaseUnit defined: see https://github.com/angularsen/UnitsNet/issues/651")]
+        public void DefaultSIUnitIsKgPerCubicMeter()
+        {
+            var massConcentration = new MassConcentration(1, UnitSystem.SI);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, massConcentration.Unit); // MassConcentration.BaseUnit = KilogramPerCubicMeter
+        }
 
         [Fact]
         public void DefaultUnitTypeRespectedForCustomUnitSystem()

@@ -39,10 +39,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
         #endregion
 
-        private const double MolarMassHClInGramsPerMole = 36.46;
-        
-        private const double MolarMassOfEthanolInGramsPerMole = 46.06844;
-        private const double DensityOfEthanolInKgPerCubicMeter = 789;
 
         [Fact]
         public void ExpectMassConcentrationConvertedToMolarityCorrectly()
@@ -71,7 +67,7 @@ namespace UnitsNet.Tests.CustomCode
             const double VolumeOfSolutionInLiters = 1.2;
             const double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
             // same test is performed in AmountOfSubstanceTests
-            var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            var molarMass = MolarMass.FromGramsPerMole(KnownQuantities.MolarMassHClInGramsPerMole);
             var substanceMass = Mass.FromGrams(MassOfSubstanceInGrams);
             var volumeSolution = Volume.FromLiters(VolumeOfSolutionInLiters);
             AmountOfSubstance amountOfSubstance = substanceMass / molarMass;
@@ -85,7 +81,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             const double ExpectedMolarityMolesPerLiter = 0.1142805; // molarity = 5 / (1.2 * 36.46) = 0.114 mol/l = 0.114 M
             const double ExpectedConcentrationInKgPerCubicMeter = 4.16667;
-            var molarMass = MolarMass.FromGramsPerMole(MolarMassHClInGramsPerMole);
+            var molarMass = MolarMass.FromGramsPerMole(KnownQuantities.MolarMassHClInGramsPerMole);
             var molarity = Molarity.FromMolesPerLiter(ExpectedMolarityMolesPerLiter);
 
             MassConcentration concentration = molarity * molarMass;
@@ -106,8 +102,8 @@ namespace UnitsNet.Tests.CustomCode
         public void MolarityFromVolumeConcentrationEthanol()
         {
             const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
-            var density = Density.FromKilogramsPerCubicMeter(DensityOfEthanolInKgPerCubicMeter);
-            var molarMass = MolarMass.FromGramsPerMole(MolarMassOfEthanolInGramsPerMole);
+            var density = Density.FromKilogramsPerCubicMeter(KnownQuantities.DensityOfEthanolInKgPerCubicMeter);
+            var molarMass = MolarMass.FromGramsPerMole(KnownQuantities.MolarMassOfEthanolInGramsPerMole);
             var volumeConcentration = VolumeConcentration.FromMillilitersPerLiter(VolumeConcentration_0_5M_Ethanol);
 
             Molarity molarity = volumeConcentration.ToMolarity(density, molarMass); // volumeConcentration * density / molarMass
