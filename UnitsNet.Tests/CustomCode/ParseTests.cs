@@ -176,7 +176,7 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData("1 µN", "en-US", 1, ForceUnit.Micronewton)]
-        [InlineData("1 нН", "ru-RU", 1, ForceUnit.Micronewton)]
+        [InlineData("1 мкН", "ru-RU", 1, ForceUnit.Micronewton)]
         [InlineData("1 N", "en-US", 1, ForceUnit.Newton)]
         [InlineData("1 Н", "ru-RU", 1, ForceUnit.Newton)]
         [InlineData("1 kN", "en-US", 1, ForceUnit.Kilonewton)]
