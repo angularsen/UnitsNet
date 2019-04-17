@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="System.CommandLine.DragonFruit" Version="0.2.0-alpha.19174.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="submodules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="submodules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="submodules\**" />
   </ItemGroup>
 
 </Project>
