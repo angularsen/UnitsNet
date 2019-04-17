@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine.DragonFruit" Version="0.2.0-alpha.19174.3" />
+  </ItemGroup>
+
 </Project>
