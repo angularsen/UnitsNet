@@ -69,14 +69,21 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
         protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
         protected override double PoundsPerUSGallonInOneKilogramPerCubicMeter => 8.3454045e-3;
-        protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032; 
+        protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032;
         #endregion
 
-        [Fact]
-        public static void MassConcentrationTimesVolumeEqualsMass()
+        [Theory]
+        [InlineData(2, MassConcentrationUnit.KilogramPerCubicMeter, 3, VolumeUnit.CubicMeter, 6, MassUnit.Kilogram)]
+        public static void MassConcentrationTimesVolumeEqualsMass(
+            double massConcValue, MassConcentrationUnit massConcUnit,
+            double volumeValue, VolumeUnit volumeUnit,
+            double expectedMassValue, MassUnit expectedMassUnit, double tolerance= 1e-5)
         {
-            Mass mass = MassConcentration.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
-            Assert.Equal(mass, Mass.FromKilograms(6));
+            var massConcentration = new MassConcentration(massConcValue, massConcUnit);
+            var volume = new Volume(volumeValue, volumeUnit);
+
+            Mass mass = massConcentration * volume;
+            AssertEx.EqualTolerance(mass.As(expectedMassUnit), expectedMassValue, tolerance);
         }
 
         [Fact]
@@ -96,14 +103,18 @@ namespace UnitsNet.Tests.CustomCode
             AssertEx.EqualTolerance(60.02, concentration.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
         }
 
-        [Fact]
-        public void ExpectMassConcentrationConvertedToMolarityCorrectly()
+        [Theory]
+        [InlineData(60.02, MassConcentrationUnit.KilogramPerCubicMeter, 58.443, MolarMassUnit.GramPerMole, 1026.98355, MolarityUnit.MolesPerCubicMeter)]
+        public void ExpectMassConcentrationConvertedToMolarityCorrectly(
+            double massConcValue, MassConcentrationUnit massConcUnit,
+            double molarMassValue, MolarMassUnit molarMassUnit,
+            double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerance = 1e-5)
         {
-            var concentration = MassConcentration.FromKilogramsPerCubicMeter(60.02);
-            var molarMass = MolarMass.FromGramsPerMole(58.443);
+            var massConcentration = new MassConcentration(massConcValue, massConcUnit);
+            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
 
-            Molarity molarity = concentration.ToMolarity(molarMass);     // molarity / molarMass
-            AssertEx.EqualTolerance(1026.98355, molarity.MolesPerCubicMeter, KilogramsPerCubicMeterTolerance);
+            Molarity molarity = massConcentration.ToMolarity(molarMass);     // molarity / molarMass
+            AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerance);
         }
 
         [Fact]
@@ -115,7 +126,7 @@ namespace UnitsNet.Tests.CustomCode
             MassConcentration massConcentration = volumeConcentration.ToMassConcentration(density); // volumeConcentration * density
             AssertEx.EqualTolerance(5, massConcentration.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
         }
-        
+
         [Fact]
         public void MassConcentrationFromVolumeConcentrationEthanol()
         {
@@ -143,6 +154,6 @@ namespace UnitsNet.Tests.CustomCode
             var massConcentration = new MassConcentration(1, customSystem);
             Assert.Equal(MassConcentrationUnit.GramPerCubicMillimeter, massConcentration.Unit);
         }
-        
+
     }
 }
