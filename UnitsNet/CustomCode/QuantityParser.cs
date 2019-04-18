@@ -12,12 +12,21 @@ using JetBrains.Annotations;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-
-    internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="fromUnit"></param>
+    /// <typeparam name="TQuantity"></typeparam>
+    /// <typeparam name="TUnitType"></typeparam>
+    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
 
-    internal class QuantityParser
+    /// <summary>
+    /// 
+    /// </summary>
+    public class QuantityParser
     {
         /// <summary>
         /// Allow integer, floating point or exponential number formats.
@@ -25,10 +34,17 @@ namespace UnitsNet
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
-        private UnitParser _unitParser;
+        private readonly UnitParser _unitParser;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static QuantityParser Default { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unitAbbreviationsCache"></param>
         public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
@@ -69,8 +85,18 @@ namespace UnitsNet
             return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="fromDelegate"></param>
+        /// <param name="result"></param>
+        /// <typeparam name="TQuantity"></typeparam>
+        /// <typeparam name="TUnitType"></typeparam>
+        /// <returns></returns>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+        public bool TryParse<TQuantity, TUnitType>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
