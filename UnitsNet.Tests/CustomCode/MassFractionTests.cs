@@ -28,15 +28,15 @@ namespace UnitsNet.Tests.CustomCode
     public class MassFractionTests : MassFractionTestsBase
     {
         #region Unit Conversion Coefficients
-        protected override double KilogramsPerKiloGramInOneDecimalFraction => 1;
-        protected override double HectogramsPerKiloGramInOneDecimalFraction => 10;
-        protected override double DecagramsPerKiloGramInOneDecimalFraction => 1E2;
-        protected override double GramsPerKiloGramInOneDecimalFraction => 1E3;
-        protected override double DecigramsPerKiloGramInOneDecimalFraction => 1E4;
-        protected override double CentigramsPerKiloGramInOneDecimalFraction => 1E5;
-        protected override double MilligramsPerKiloGramInOneDecimalFraction => 1E6;
-        protected override double MicrogramsPerKiloGramInOneDecimalFraction => 1E9;
-        protected override double NanogramsPerKiloGramInOneDecimalFraction => 1E12;
+        protected override double KilogramsPerKilogramInOneDecimalFraction => 1;
+        protected override double HectogramsPerKilogramInOneDecimalFraction => 10;
+        protected override double DecagramsPerKilogramInOneDecimalFraction => 1E2;
+        protected override double GramsPerKilogramInOneDecimalFraction => 1E3;
+        protected override double DecigramsPerKilogramInOneDecimalFraction => 1E4;
+        protected override double CentigramsPerKilogramInOneDecimalFraction => 1E5;
+        protected override double MilligramsPerKilogramInOneDecimalFraction => 1E6;
+        protected override double MicrogramsPerKilogramInOneDecimalFraction => 1E9;
+        protected override double NanogramsPerKilogramInOneDecimalFraction => 1E12;
 
         protected override double KilogramsPerGramInOneDecimalFraction => 1E-3;
         protected override double HectogramsPerGramInOneDecimalFraction => 1E-2;
@@ -64,6 +64,7 @@ namespace UnitsNet.Tests.CustomCode
             var two_kg = Mass.FromKilograms(2);
 
             var massFraction = MassFraction.FromMasses(one_kg, two_kg);
+
             AssertEx.EqualTolerance(50, massFraction.Percent, PercentTolerance);
         }
 
@@ -74,7 +75,8 @@ namespace UnitsNet.Tests.CustomCode
             var massFraction = MassFraction.FromPercent(50);
 
             var totalMass = massFraction.GetTotalMass(componentMass);
-            AssertEx.EqualTolerance(2, totalMass.Kilograms, KilogramsPerKiloGramTolerance);
+
+            AssertEx.EqualTolerance(2, totalMass.Kilograms, KilogramsPerKilogramTolerance);
         }
 
         [Fact]
@@ -84,7 +86,8 @@ namespace UnitsNet.Tests.CustomCode
             var massFraction = MassFraction.FromPercent(50);
 
             var componentMass = massFraction.GetComponentMass(totalMass);
-            AssertEx.EqualTolerance(1, componentMass.Kilograms, KilogramsPerKiloGramTolerance);
+
+            AssertEx.EqualTolerance(1, componentMass.Kilograms, KilogramsPerKilogramTolerance);
         }
 
     }

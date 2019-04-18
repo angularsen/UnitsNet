@@ -62,13 +62,13 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicCentimeter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram)),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerLiter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMilliliter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMillimeter, BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram)),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicFoot, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicInch, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, BaseUnits.Undefined),
@@ -1238,7 +1238,7 @@ namespace UnitsNet
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case MassConcentrationUnit.KilogramPerLiter: return _value*1e3;
+                case MassConcentrationUnit.KilogramPerLiter: return (_value) * 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
@@ -1292,7 +1292,7 @@ namespace UnitsNet
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
-                case MassConcentrationUnit.KilogramPerLiter: return baseUnitValue/1e3;
+                case MassConcentrationUnit.KilogramPerLiter: return (baseUnitValue) / 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;

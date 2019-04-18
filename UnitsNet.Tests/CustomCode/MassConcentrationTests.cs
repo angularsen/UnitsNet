@@ -73,39 +73,10 @@ namespace UnitsNet.Tests.CustomCode
         #endregion
 
         [Theory]
-        [InlineData(2, MassConcentrationUnit.KilogramPerCubicMeter, 3, VolumeUnit.CubicMeter, 6, MassUnit.Kilogram)]
-        public static void MassConcentrationTimesVolumeEqualsMass(
-            double massConcValue, MassConcentrationUnit massConcUnit,
-            double volumeValue, VolumeUnit volumeUnit,
-            double expectedMassValue, MassUnit expectedMassUnit, double tolerance= 1e-5)
-        {
-            var massConcentration = new MassConcentration(massConcValue, massConcUnit);
-            var volume = new Volume(volumeValue, volumeUnit);
-
-            Mass mass = massConcentration * volume;
-            AssertEx.EqualTolerance(mass.As(expectedMassUnit), expectedMassValue, tolerance);
-        }
-
-        [Fact]
-        public static void VolumeTimesMassConcentrationEqualsMass()
-        {
-            Mass mass = Volume.FromCubicMeters(3) * MassConcentration.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(mass, Mass.FromKilograms(6));
-        }
-
-        [Fact]
-        public void ExpectMolarityConvertedToMassConcentrationCorrectly()
-        {
-            var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var molarMass = MolarMass.FromGramsPerMole(58.443);
-
-            MassConcentration concentration = molarity.ToMassConcentration(molarMass);     // molarity * molarMass
-            AssertEx.EqualTolerance(60.02, concentration.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Theory]
-        [InlineData(60.02, MassConcentrationUnit.KilogramPerCubicMeter, 58.443, MolarMassUnit.GramPerMole, 1026.98355, MolarityUnit.MolesPerCubicMeter)]
-        public void ExpectMassConcentrationConvertedToMolarityCorrectly(
+        [InlineData(60.02, MassConcentrationUnit.KilogramPerCubicMeter,
+                    58.443, MolarMassUnit.GramPerMole,
+                    1026.98355, MolarityUnit.MolesPerCubicMeter)]    // test from JonathanDavies626
+        public void MolarityFromMassConcentrationAndMolarMass(
             double massConcValue, MassConcentrationUnit massConcUnit,
             double molarMassValue, MolarMassUnit molarMassUnit,
             double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerance = 1e-5)
@@ -114,34 +85,50 @@ namespace UnitsNet.Tests.CustomCode
             var molarMass = new MolarMass(molarMassValue, molarMassUnit);
 
             Molarity molarity = massConcentration.ToMolarity(molarMass);     // molarity / molarMass
+
             AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerance);
         }
 
-        [Fact]
-        public void MassConcentrationFromVolumeConcentrationAndDensity()
+        [Theory]
+        [InlineData(10, DensityUnit.GramPerCubicMeter,
+                    5, MassConcentrationUnit.GramPerCubicMeter,
+                    0.5, VolumeConcentrationUnit.DecimalFraction)]  // synthetic data
+        public void VolumeConcentrationFromMassConcentrationAndDensity(
+            double componentDensityValue, DensityUnit componentDensityUnit,
+            double massConcValue, MassConcentrationUnit masConcUnit,
+            double expectedVolumeConcValue, VolumeConcentrationUnit expectedVolumeConcUnit, double tolerence = 1e-5)
         {
-            var volumeConcentration = VolumeConcentration.FromPercent(50);
-            var density = Density.FromGramsPerCubicMeter(10);
+            var density = new Density(componentDensityValue, componentDensityUnit);
+            var massConcentration = new MassConcentration(massConcValue, masConcUnit);
 
-            MassConcentration massConcentration = volumeConcentration.ToMassConcentration(density); // volumeConcentration * density
-            AssertEx.EqualTolerance(5, massConcentration.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+            VolumeConcentration volumeConcentration = massConcentration.ToVolumeConcentration(density); // massConcentration / density;
+
+            AssertEx.EqualTolerance(expectedVolumeConcValue, volumeConcentration.As(expectedVolumeConcUnit), tolerence);
         }
 
-        [Fact]
-        public void MassConcentrationFromVolumeConcentrationEthanol()
+        [Theory]
+        [InlineData(2, MassConcentrationUnit.KilogramPerCubicMeter,
+                    3, VolumeUnit.CubicMeter,
+                    6, MassUnit.Kilogram)]  // synthetic data
+        public static void ComponentMassFromMassConcentrationAndSolutionVolume(
+            double massConcValue, MassConcentrationUnit massConcUnit,
+            double volumeValue, VolumeUnit volumeUnit,
+            double expectedMassValue, MassUnit expectedMassUnit, double tolerance = 1e-5)
         {
-            const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
-            var density = Density.FromKilogramsPerCubicMeter(KnownQuantities.DensityOfEthanolInKgPerCubicMeter);
-            var volumeConcentration = VolumeConcentration.FromMillilitersPerLiter(VolumeConcentration_0_5M_Ethanol);
+            var massConcentration = new MassConcentration(massConcValue, massConcUnit);
+            var volume = new Volume(volumeValue, volumeUnit);
 
-            MassConcentration massConcentration = volumeConcentration.ToMassConcentration(density);
-            AssertEx.EqualTolerance(23.03422, massConcentration.GramsPerLiter, GramsPerCubicMeterTolerance);
+            Mass massComponent = massConcentration * volume;
+            
+            AssertEx.EqualTolerance(expectedMassValue, massComponent.As(expectedMassUnit), tolerance);
         }
+
 
         [Fact(Skip = "No BaseUnit defined: see https://github.com/angularsen/UnitsNet/issues/651")]
         public void DefaultSIUnitIsKgPerCubicMeter()
         {
             var massConcentration = new MassConcentration(1, UnitSystem.SI);
+
             Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, massConcentration.Unit); // MassConcentration.BaseUnit = KilogramPerCubicMeter
         }
 
@@ -152,6 +139,7 @@ namespace UnitsNet.Tests.CustomCode
                 ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeCelsius, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
 
             var massConcentration = new MassConcentration(1, customSystem);
+
             Assert.Equal(MassConcentrationUnit.GramPerCubicMillimeter, massConcentration.Unit);
         }
 

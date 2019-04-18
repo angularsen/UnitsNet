@@ -54,24 +54,24 @@ namespace UnitsNet
             Info = new QuantityInfo<MassFractionUnit>(QuantityType.MassFraction,
                 new UnitInfo<MassFractionUnit>[] {
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKiloGram, BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, BaseUnits.Undefined),
@@ -195,9 +195,9 @@ namespace UnitsNet
         public double CentigramsPerGram => As(MassFractionUnit.CentigramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in CentigramsPerKiloGram.
+        ///     Get MassFraction in CentigramsPerKilogram.
         /// </summary>
-        public double CentigramsPerKiloGram => As(MassFractionUnit.CentigramPerKiloGram);
+        public double CentigramsPerKilogram => As(MassFractionUnit.CentigramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in DecagramsPerGram.
@@ -205,9 +205,9 @@ namespace UnitsNet
         public double DecagramsPerGram => As(MassFractionUnit.DecagramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in DecagramsPerKiloGram.
+        ///     Get MassFraction in DecagramsPerKilogram.
         /// </summary>
-        public double DecagramsPerKiloGram => As(MassFractionUnit.DecagramPerKiloGram);
+        public double DecagramsPerKilogram => As(MassFractionUnit.DecagramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in DecigramsPerGram.
@@ -215,9 +215,9 @@ namespace UnitsNet
         public double DecigramsPerGram => As(MassFractionUnit.DecigramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in DecigramsPerKiloGram.
+        ///     Get MassFraction in DecigramsPerKilogram.
         /// </summary>
-        public double DecigramsPerKiloGram => As(MassFractionUnit.DecigramPerKiloGram);
+        public double DecigramsPerKilogram => As(MassFractionUnit.DecigramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in DecimalFractions.
@@ -230,9 +230,9 @@ namespace UnitsNet
         public double GramsPerGram => As(MassFractionUnit.GramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in GramsPerKiloGram.
+        ///     Get MassFraction in GramsPerKilogram.
         /// </summary>
-        public double GramsPerKiloGram => As(MassFractionUnit.GramPerKiloGram);
+        public double GramsPerKilogram => As(MassFractionUnit.GramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in HectogramsPerGram.
@@ -240,9 +240,9 @@ namespace UnitsNet
         public double HectogramsPerGram => As(MassFractionUnit.HectogramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in HectogramsPerKiloGram.
+        ///     Get MassFraction in HectogramsPerKilogram.
         /// </summary>
-        public double HectogramsPerKiloGram => As(MassFractionUnit.HectogramPerKiloGram);
+        public double HectogramsPerKilogram => As(MassFractionUnit.HectogramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in KilogramsPerGram.
@@ -250,9 +250,9 @@ namespace UnitsNet
         public double KilogramsPerGram => As(MassFractionUnit.KilogramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in KilogramsPerKiloGram.
+        ///     Get MassFraction in KilogramsPerKilogram.
         /// </summary>
-        public double KilogramsPerKiloGram => As(MassFractionUnit.KilogramPerKiloGram);
+        public double KilogramsPerKilogram => As(MassFractionUnit.KilogramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in MicrogramsPerGram.
@@ -260,9 +260,9 @@ namespace UnitsNet
         public double MicrogramsPerGram => As(MassFractionUnit.MicrogramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in MicrogramsPerKiloGram.
+        ///     Get MassFraction in MicrogramsPerKilogram.
         /// </summary>
-        public double MicrogramsPerKiloGram => As(MassFractionUnit.MicrogramPerKiloGram);
+        public double MicrogramsPerKilogram => As(MassFractionUnit.MicrogramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in MilligramsPerGram.
@@ -270,9 +270,9 @@ namespace UnitsNet
         public double MilligramsPerGram => As(MassFractionUnit.MilligramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in MilligramsPerKiloGram.
+        ///     Get MassFraction in MilligramsPerKilogram.
         /// </summary>
-        public double MilligramsPerKiloGram => As(MassFractionUnit.MilligramPerKiloGram);
+        public double MilligramsPerKilogram => As(MassFractionUnit.MilligramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in NanogramsPerGram.
@@ -280,9 +280,9 @@ namespace UnitsNet
         public double NanogramsPerGram => As(MassFractionUnit.NanogramPerGram);
 
         /// <summary>
-        ///     Get MassFraction in NanogramsPerKiloGram.
+        ///     Get MassFraction in NanogramsPerKilogram.
         /// </summary>
-        public double NanogramsPerKiloGram => As(MassFractionUnit.NanogramPerKiloGram);
+        public double NanogramsPerKilogram => As(MassFractionUnit.NanogramPerKilogram);
 
         /// <summary>
         ///     Get MassFraction in PartsPerBillion.
@@ -348,13 +348,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.CentigramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from CentigramsPerKiloGram.
+        ///     Get MassFraction from CentigramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromCentigramsPerKiloGram(QuantityValue centigramsperkilogram)
+        public static MassFraction FromCentigramsPerKilogram(QuantityValue centigramsperkilogram)
         {
             double value = (double) centigramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.CentigramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.CentigramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from DecagramsPerGram.
@@ -366,13 +366,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.DecagramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from DecagramsPerKiloGram.
+        ///     Get MassFraction from DecagramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecagramsPerKiloGram(QuantityValue decagramsperkilogram)
+        public static MassFraction FromDecagramsPerKilogram(QuantityValue decagramsperkilogram)
         {
             double value = (double) decagramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.DecagramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.DecagramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from DecigramsPerGram.
@@ -384,13 +384,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.DecigramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from DecigramsPerKiloGram.
+        ///     Get MassFraction from DecigramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromDecigramsPerKiloGram(QuantityValue decigramsperkilogram)
+        public static MassFraction FromDecigramsPerKilogram(QuantityValue decigramsperkilogram)
         {
             double value = (double) decigramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.DecigramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.DecigramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from DecimalFractions.
@@ -411,13 +411,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.GramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from GramsPerKiloGram.
+        ///     Get MassFraction from GramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromGramsPerKiloGram(QuantityValue gramsperkilogram)
+        public static MassFraction FromGramsPerKilogram(QuantityValue gramsperkilogram)
         {
             double value = (double) gramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.GramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.GramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from HectogramsPerGram.
@@ -429,13 +429,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.HectogramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from HectogramsPerKiloGram.
+        ///     Get MassFraction from HectogramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromHectogramsPerKiloGram(QuantityValue hectogramsperkilogram)
+        public static MassFraction FromHectogramsPerKilogram(QuantityValue hectogramsperkilogram)
         {
             double value = (double) hectogramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.HectogramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.HectogramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from KilogramsPerGram.
@@ -447,13 +447,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.KilogramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from KilogramsPerKiloGram.
+        ///     Get MassFraction from KilogramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromKilogramsPerKiloGram(QuantityValue kilogramsperkilogram)
+        public static MassFraction FromKilogramsPerKilogram(QuantityValue kilogramsperkilogram)
         {
             double value = (double) kilogramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.KilogramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.KilogramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from MicrogramsPerGram.
@@ -465,13 +465,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.MicrogramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from MicrogramsPerKiloGram.
+        ///     Get MassFraction from MicrogramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMicrogramsPerKiloGram(QuantityValue microgramsperkilogram)
+        public static MassFraction FromMicrogramsPerKilogram(QuantityValue microgramsperkilogram)
         {
             double value = (double) microgramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.MicrogramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.MicrogramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from MilligramsPerGram.
@@ -483,13 +483,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.MilligramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from MilligramsPerKiloGram.
+        ///     Get MassFraction from MilligramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromMilligramsPerKiloGram(QuantityValue milligramsperkilogram)
+        public static MassFraction FromMilligramsPerKilogram(QuantityValue milligramsperkilogram)
         {
             double value = (double) milligramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.MilligramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.MilligramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from NanogramsPerGram.
@@ -501,13 +501,13 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.NanogramPerGram);
         }
         /// <summary>
-        ///     Get MassFraction from NanogramsPerKiloGram.
+        ///     Get MassFraction from NanogramsPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFraction FromNanogramsPerKiloGram(QuantityValue nanogramsperkilogram)
+        public static MassFraction FromNanogramsPerKilogram(QuantityValue nanogramsperkilogram)
         {
             double value = (double) nanogramsperkilogram;
-            return new MassFraction(value, MassFractionUnit.NanogramPerKiloGram);
+            return new MassFraction(value, MassFractionUnit.NanogramPerKilogram);
         }
         /// <summary>
         ///     Get MassFraction from PartsPerBillion.
@@ -984,24 +984,24 @@ namespace UnitsNet
             switch(Unit)
             {
                 case MassFractionUnit.CentigramPerGram: return (_value) * 1e-2d;
-                case MassFractionUnit.CentigramPerKiloGram: return (_value/1e3) * 1e-2d;
+                case MassFractionUnit.CentigramPerKilogram: return (_value/1e3) * 1e-2d;
                 case MassFractionUnit.DecagramPerGram: return (_value) * 1e1d;
-                case MassFractionUnit.DecagramPerKiloGram: return (_value/1e3) * 1e1d;
+                case MassFractionUnit.DecagramPerKilogram: return (_value/1e3) * 1e1d;
                 case MassFractionUnit.DecigramPerGram: return (_value) * 1e-1d;
-                case MassFractionUnit.DecigramPerKiloGram: return (_value/1e3) * 1e-1d;
+                case MassFractionUnit.DecigramPerKilogram: return (_value/1e3) * 1e-1d;
                 case MassFractionUnit.DecimalFraction: return _value;
                 case MassFractionUnit.GramPerGram: return _value;
-                case MassFractionUnit.GramPerKiloGram: return _value/1e3;
+                case MassFractionUnit.GramPerKilogram: return _value/1e3;
                 case MassFractionUnit.HectogramPerGram: return (_value) * 1e2d;
-                case MassFractionUnit.HectogramPerKiloGram: return (_value/1e3) * 1e2d;
+                case MassFractionUnit.HectogramPerKilogram: return (_value/1e3) * 1e2d;
                 case MassFractionUnit.KilogramPerGram: return (_value) * 1e3d;
-                case MassFractionUnit.KilogramPerKiloGram: return (_value/1e3) * 1e3d;
+                case MassFractionUnit.KilogramPerKilogram: return (_value/1e3) * 1e3d;
                 case MassFractionUnit.MicrogramPerGram: return (_value) * 1e-6d;
-                case MassFractionUnit.MicrogramPerKiloGram: return (_value/1e3) * 1e-6d;
+                case MassFractionUnit.MicrogramPerKilogram: return (_value/1e3) * 1e-6d;
                 case MassFractionUnit.MilligramPerGram: return (_value) * 1e-3d;
-                case MassFractionUnit.MilligramPerKiloGram: return (_value/1e3) * 1e-3d;
+                case MassFractionUnit.MilligramPerKilogram: return (_value/1e3) * 1e-3d;
                 case MassFractionUnit.NanogramPerGram: return (_value) * 1e-9d;
-                case MassFractionUnit.NanogramPerKiloGram: return (_value/1e3) * 1e-9d;
+                case MassFractionUnit.NanogramPerKilogram: return (_value/1e3) * 1e-9d;
                 case MassFractionUnit.PartPerBillion: return _value/1e9;
                 case MassFractionUnit.PartPerMillion: return _value/1e6;
                 case MassFractionUnit.PartPerThousand: return _value/1e3;
@@ -1022,24 +1022,24 @@ namespace UnitsNet
             switch(unit)
             {
                 case MassFractionUnit.CentigramPerGram: return (baseUnitValue) / 1e-2d;
-                case MassFractionUnit.CentigramPerKiloGram: return (baseUnitValue*1e3) / 1e-2d;
+                case MassFractionUnit.CentigramPerKilogram: return (baseUnitValue*1e3) / 1e-2d;
                 case MassFractionUnit.DecagramPerGram: return (baseUnitValue) / 1e1d;
-                case MassFractionUnit.DecagramPerKiloGram: return (baseUnitValue*1e3) / 1e1d;
+                case MassFractionUnit.DecagramPerKilogram: return (baseUnitValue*1e3) / 1e1d;
                 case MassFractionUnit.DecigramPerGram: return (baseUnitValue) / 1e-1d;
-                case MassFractionUnit.DecigramPerKiloGram: return (baseUnitValue*1e3) / 1e-1d;
+                case MassFractionUnit.DecigramPerKilogram: return (baseUnitValue*1e3) / 1e-1d;
                 case MassFractionUnit.DecimalFraction: return baseUnitValue;
                 case MassFractionUnit.GramPerGram: return baseUnitValue;
-                case MassFractionUnit.GramPerKiloGram: return baseUnitValue*1e3;
+                case MassFractionUnit.GramPerKilogram: return baseUnitValue*1e3;
                 case MassFractionUnit.HectogramPerGram: return (baseUnitValue) / 1e2d;
-                case MassFractionUnit.HectogramPerKiloGram: return (baseUnitValue*1e3) / 1e2d;
+                case MassFractionUnit.HectogramPerKilogram: return (baseUnitValue*1e3) / 1e2d;
                 case MassFractionUnit.KilogramPerGram: return (baseUnitValue) / 1e3d;
-                case MassFractionUnit.KilogramPerKiloGram: return (baseUnitValue*1e3) / 1e3d;
+                case MassFractionUnit.KilogramPerKilogram: return (baseUnitValue*1e3) / 1e3d;
                 case MassFractionUnit.MicrogramPerGram: return (baseUnitValue) / 1e-6d;
-                case MassFractionUnit.MicrogramPerKiloGram: return (baseUnitValue*1e3) / 1e-6d;
+                case MassFractionUnit.MicrogramPerKilogram: return (baseUnitValue*1e3) / 1e-6d;
                 case MassFractionUnit.MilligramPerGram: return (baseUnitValue) / 1e-3d;
-                case MassFractionUnit.MilligramPerKiloGram: return (baseUnitValue*1e3) / 1e-3d;
+                case MassFractionUnit.MilligramPerKilogram: return (baseUnitValue*1e3) / 1e-3d;
                 case MassFractionUnit.NanogramPerGram: return (baseUnitValue) / 1e-9d;
-                case MassFractionUnit.NanogramPerKiloGram: return (baseUnitValue*1e3) / 1e-9d;
+                case MassFractionUnit.NanogramPerKilogram: return (baseUnitValue*1e3) / 1e-9d;
                 case MassFractionUnit.PartPerBillion: return baseUnitValue*1e9;
                 case MassFractionUnit.PartPerMillion: return baseUnitValue*1e6;
                 case MassFractionUnit.PartPerThousand: return baseUnitValue*1e3;

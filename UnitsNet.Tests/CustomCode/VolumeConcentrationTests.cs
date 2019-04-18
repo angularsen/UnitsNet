@@ -21,6 +21,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -52,37 +53,46 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecimalFractionsInOneDecimalFraction => 1;
         protected override double PercentInOneDecimalFraction => 100;
         #endregion
-        
-        [Fact]
-        public void MassConcentrationFromVolumeConcentrationAndDensity()
-        {
-            var density = Density.FromGramsPerCubicMeter(10);
-            var volumeConcentration = VolumeConcentration.FromPercent(50);
 
-            MassConcentration massConcentration = volumeConcentration * density;
-            AssertEx.EqualTolerance(5, massConcentration.GramsPerCubicMeter, DecimalFractionsTolerance);
+        [Theory]
+        [InlineData(50, VolumeConcentrationUnit.Percent,
+                    10, DensityUnit.GramPerCubicMeter,
+                    5, MassConcentrationUnit.GramPerCubicMeter)]    // synthetic data
+        [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
+                    KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
+                    23.03422, MassConcentrationUnit.GramPerLiter)]  // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol 
+        public void MassConcentrationFromVolumeConcentrationAndComponentDensity(
+            double volumeConcValue, VolumeConcentrationUnit volumeConcUnit,
+            double componentDensityValue, DensityUnit componentDensityUnit,
+            double expectedMassConcValue, MassConcentrationUnit expectedMassConcUnit,
+            double tolerence = 1e-5)
+        {
+            var volumeConcentration = new VolumeConcentration(volumeConcValue, volumeConcUnit);
+            var componentDensity = new Density(componentDensityValue, componentDensityUnit);
+
+            MassConcentration massConcentration = volumeConcentration.ToMassConcentration(componentDensity); // volumeConcentration * density
+
+            AssertEx.EqualTolerance(expectedMassConcValue, massConcentration.As(expectedMassConcUnit), tolerence);
         }
 
-        [Fact]
-        public void VolumeConcentrationFromMassConcentrationAndDensity()
+        [Theory]
+        [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
+                    KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
+                    KnownQuantities.MolarMassOfEthanolInGramsPerMole, MolarMassUnit.GramPerMole,
+                    0.5, MolarityUnit.MolesPerLiter)]   // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
+        public void MolarityFromVolumeConcentrationAndComponentDensityAndMolarMass(
+            double volumeConcValue, VolumeConcentrationUnit volumeConcUnit,
+            double componentDensityValue, DensityUnit componetDensityUnit,
+            double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
+            double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
         {
-            var density = Density.FromGramsPerCubicMeter(10);
-            var massConcentration = MassConcentration.FromGramsPerCubicMeter(5);
+            var volumeConcentration = new VolumeConcentration(volumeConcValue, volumeConcUnit);
+            var componentDensity = new Density(componentDensityValue, componetDensityUnit);
+            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
 
-            VolumeConcentration volumeConcentration = massConcentration / density;
-            AssertEx.EqualTolerance(0.5, volumeConcentration.DecimalFractions, DecimalFractionsTolerance);
-        }
-        
-        [Fact]
-        public void VolumeConcentrationFromMolarityOfEthanol()
-        {
-            const double VolumeConcentration_0_5M_Ethanol = 29.19419518377693;
-            var molarity = Molarity.FromMolesPerLiter(0.5);
-            var density = Density.FromKilogramsPerCubicMeter(KnownQuantities.DensityOfEthanolInKgPerCubicMeter);
-            var molarMass = MolarMass.FromGramsPerMole(KnownQuantities.MolarMassOfEthanolInGramsPerMole);
+            Molarity molarity = volumeConcentration.ToMolarity(componentDensity, componentMolarMass); // volumeConcentration * density / molarMass
 
-            VolumeConcentration volumeConcentration = molarity.ToVolumeConcentration(density, molarMass);
-            AssertEx.EqualTolerance(VolumeConcentration_0_5M_Ethanol, volumeConcentration.MillilitersPerLiter, MillilitersPerLiterTolerance);
+            AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerence);
         }
 
     }

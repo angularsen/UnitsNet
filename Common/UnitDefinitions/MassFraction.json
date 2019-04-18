@@ -30,8 +30,8 @@
       ]
     },
     {
-      "SingularName": "GramPerKiloGram",
-      "PluralName": "GramsPerKiloGram",
+      "SingularName": "GramPerKilogram",
+      "PluralName": "GramsPerKilogram",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],

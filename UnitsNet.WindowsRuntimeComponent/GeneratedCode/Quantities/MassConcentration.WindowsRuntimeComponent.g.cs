@@ -1094,7 +1094,7 @@ namespace UnitsNet
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case MassConcentrationUnit.KilogramPerLiter: return _value*1e3;
+                case MassConcentrationUnit.KilogramPerLiter: return (_value) * 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
@@ -1148,7 +1148,7 @@ namespace UnitsNet
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
-                case MassConcentrationUnit.KilogramPerLiter: return baseUnitValue/1e3;
+                case MassConcentrationUnit.KilogramPerLiter: return (baseUnitValue) / 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
                 case MassConcentrationUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
