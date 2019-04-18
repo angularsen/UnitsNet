@@ -96,7 +96,6 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentException>(() => new Information((decimal)0.0, InformationUnit.Undefined));
         }
 
-
         [Fact]
         public void BitToInformationUnits()
         {
@@ -159,7 +158,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabit).Terabits, TerabitsTolerance);
             AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabyte).Terabytes, TerabytesTolerance);
         }
-
 
         [Fact]
         public void As()
