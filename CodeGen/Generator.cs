@@ -183,7 +183,6 @@ namespace CodeGen
             }).ToArray();
         }
 
-
         private static void EnsureValidAbbreviationsWithPrefixes(string quantityName, Localization localization, Unit unit)
         {
             if (localization.AbbreviationsWithPrefixes.Length > 0 &&

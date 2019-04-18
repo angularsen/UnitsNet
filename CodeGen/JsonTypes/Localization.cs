@@ -9,9 +9,11 @@ namespace CodeGen.JsonTypes
     {
         // 0649 Field is never assigned to
 #pragma warning disable 0649
+
         public string[] Abbreviations = Array.Empty<string>();
         public string[] AbbreviationsWithPrefixes = Array.Empty<string>();
         public string Culture;
+
         // 0649 Field is never assigned to
 #pragma warning restore 0649
     }

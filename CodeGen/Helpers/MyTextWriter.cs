@@ -10,7 +10,7 @@ namespace CodeGen.Helpers
     {
         private readonly StringBuilder _sb = new StringBuilder();
         private string _currentIndentationString;
-        public int _indentLevel;
+        private int _indentLevel;
 
         public MyTextWriter(string indentString = "    ", int initialIndentLevel = 0)
         {
@@ -34,9 +34,6 @@ namespace CodeGen.Helpers
         {
             return string.Join(string.Empty, Enumerable.Repeat(IndentString, indentLevel));
         }
-
-        public string PrevIndent => GetIndent(_indentLevel - 1);
-        public string NextIndent => GetIndent(_indentLevel + 1);
 
         /// <summary>
         ///     Write line with current indent. Trims preceding newline if any, to simplify code formatting when calling this method.

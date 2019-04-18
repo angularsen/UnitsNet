@@ -9,17 +9,18 @@ namespace CodeGen.JsonTypes
     {
         // 0649 Field is never assigned to
 #pragma warning disable 0649
+
         public BaseUnits BaseUnits;
         public string FromBaseToUnitFunc;
         public string FromUnitToBaseFunc;
         public Localization[] Localization = Array.Empty<Localization>();
         public string PluralName;
-//        public string[] Prefixes = Array.Empty<string>();
         public Prefix[] Prefixes = Array.Empty<Prefix>();
         public string SingularName;
         public string XmlDocRemarks;
         public string XmlDocSummary;
         public string ObsoleteText;
+
         // 0649 Field is never assigned to
 #pragma warning restore 0649
     }
