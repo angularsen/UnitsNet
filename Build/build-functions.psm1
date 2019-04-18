@@ -18,19 +18,18 @@ function Remove-ArtifactsDir {
 }
 
 function Update-GeneratedCode {
-  # Regenerate source code since it occasionally happens that merged pull requests did not include all the regenerated code
-  $genScriptDotNet = "$root/UnitsNet/Scripts/GenerateUnits.ps1"
-  $genScriptWrc = "$root/UnitsNet.WindowsRuntimeComponent/Scripts/GenerateUnits.ps1"
-
   write-host -foreground blue "Generate code for .NET...`n---"
-  write-host $genScriptDotNet
-  & $genScriptDotNet
+  dotnet run --project "$root/CodeGen"
   if ($lastexitcode -ne 0) { exit 1 }
 
+  # NOTE: WRC codegen scripts have not yet been updated from the old PowerShell to the new C# codegen style.
+  # WRC is generally not actively maintained anymore and not sure it's worth the effort to migrate it.
+  #
   # Regenerate WRC code even if we are not building that target.
   # The reason is that build.bat will skip WRC build since most people don't have that dependency installed.
   # AppVeyor build server would still regen and build WRC regardless, but this way we also get the changes
   # into pull requests so they are visible and master branch is kept up-to-date.
+  $genScriptWrc = "$root/UnitsNet.WindowsRuntimeComponent/Scripts/GenerateUnits.ps1"
   write-host -foreground blue "Generate code for Windows Runtime Component...`n---"
   write-host $genScriptWrc
   & $genScriptWrc
