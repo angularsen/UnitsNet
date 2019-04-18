@@ -24,35 +24,6 @@ function GenerateQuantity([Quantity]$quantity, $outDir)
     Write-Host -NoNewline "quantity(OK) "
 }
 
-function GenerateUnitTestBaseClass([Quantity]$quantity, $outDir)
-{
-    $outFileName = "$outDir/$($quantity.Name)TestsBase.g.cs"
-    GenerateUnitTestBaseClassSourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
-    if (!$?) {
-        exit 1
-    }
-    Write-Host -NoNewline "test base(OK) "
-}
-
-function GenerateUnitTestClassIfNotExists([Quantity]$quantity, $outDir)
-{
-    Write-Host -NoNewline "test stub"
-    $outFileName = "$outDir/$($quantity.Name)Tests.cs"
-    if (Test-Path $outFileName)
-    {
-        Write-Host -NoNewline "(skip) "
-        return
-    }
-    else
-    {
-        GenerateUnitTestPlaceholderSourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
-        if (!$?) {
-            exit 1
-        }
-        Write-Host -NoNewline "(OK) "
-    }
-}
-
 function GenerateUnitType([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name)Unit.g.cs"
@@ -311,8 +282,6 @@ foreach ($quantity in $quantities) {
 
     GenerateQuantity $quantity $quantityDir
     GenerateUnitType $quantity $unitEnumDir
-    GenerateUnitTestBaseClass $quantity $testsDir
-    GenerateUnitTestClassIfNotExists $quantity $testsCustomCodeDir
 
     Write-Host ""
 }
