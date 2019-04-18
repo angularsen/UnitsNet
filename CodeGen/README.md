@@ -12,7 +12,7 @@ dotnet run
 Alternatively, build the .exe and run it:
 ```cmd
 cd /dev/UnitsNet/CodeGen
-dotnet publish -c Release -r win10-x64 CodeGen
+dotnet publish -c Release -r win10-x64
 cd ../Artifacts/CodeGen/netcoreapp2.1/win10-x64/
 CodeGen.exe
 ```
