@@ -12,16 +12,4 @@
     <PackageReference Include="System.CommandLine.DragonFruit" Version="0.2.0-alpha.19174.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="submodules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="submodules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="submodules\**" />
-  </ItemGroup>
-
 </Project>
