@@ -15,12 +15,12 @@ namespace UnitsNet
     public abstract class UnitAttributeBase : Attribute
     {
         /// <summary>
-        /// This property hold the UnitType information
+        /// The unit enum type, such as <see cref="UnitsNet.Units.LengthUnit" />
         /// </summary>
         public Enum UnitType { get; set; }
 
         /// <summary>
-        /// Constructor of this class
+        /// Initializes a new instance of the <see cref="UnitAttributeBase"/> class.
         /// </summary>
         /// <param name="unitType"></param>
         public UnitAttributeBase(object unitType)
@@ -35,7 +35,7 @@ namespace UnitsNet
     public class DefaultUnitAttribute : UnitAttributeBase
     {
         /// <summary>
-        /// Constructor for ConvertToUnit attribute
+        /// Initializes a new instance of the <see cref="DefaultUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity gets when the string parsing dose only consist of digits</param>
         public DefaultUnitAttribute(object unitType) : base(unitType) { }
@@ -47,7 +47,7 @@ namespace UnitsNet
     public class ConvertToUnitAttribute : DefaultUnitAttribute
     {
         /// <summary>
-        /// Constructor for ConvertToUnit attribute
+        /// Initializes a new instance of the <see cref="ConvertToUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity is converted to when parsing from string</param>
         public ConvertToUnitAttribute(object unitType) : base(unitType) { }
@@ -59,25 +59,33 @@ namespace UnitsNet
     public class DisplayAsUnitAttribute : DefaultUnitAttribute
     {
         /// <summary>
-        /// The formating used when the quantity is converted to string
+        /// The formating used when the quantity is converted to string. See <see cref="IQuantity.ToString(System.IFormatProvider)"/>
         /// </summary>
         public string Format { get; set; }
 
         /// <summary>
-        /// Constructor for DisplayAsUnit attribute
+        /// Initializes a new instance of the <see cref="DisplayAsUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
         /// <param name="format">Formating string <see cref="IQuantity.ToString(System.IFormatProvider)"/></param>
-        public DisplayAsUnitAttribute(object unitType, string format = "") : base(unitType) { Format = format; }
+        public DisplayAsUnitAttribute(object unitType, string format = "") : base(unitType)
+        {
+            Format = format;
+        }
     }
 
+    // TODO example or documentation ? when documentation where?
     /// <summary>
-    ///     Converts IQuantitys from string and to string.
+    ///     Converts between IQuantity and string.
     ///     Implements the TypeConverter interface so that eg the PropertyGrid can read and write the properties implementing the IQuantity interface.
     /// </summary>
+    /// <example>
+    /// 
+    /// </example>
     /// <typeparam name="TQuantity">Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.</typeparam>
     public class UnitsNetTypeConverter<TQuantity> : TypeConverter where TQuantity : IQuantity
     {
+        // TODO be more specific that only string is supported same below
         /// <summary>
         ///     Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.
         /// </summary>
@@ -102,13 +110,14 @@ namespace UnitsNet
                 QuantityType actual = Quantity.From(1, attribute.UnitType).Type;
                 if(expected != actual)
                 {
-                    throw new InvalidOperationException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
+                    throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
                 }
             }
 
             return attribute;
         }
 
+        // TODO 
         /// <summary>
         ///     Converts the given object to the type of this converter, using the specified context and culture information.
         /// </summary>
@@ -133,7 +142,7 @@ namespace UnitsNet
                 }
                 else
                 {
-                    // this should not be part of QuantityTypeConverter. it should rather be part of the parse function
+                    // TODO this should not be part of QuantityTypeConverter. it should rather be part of the parse function
                     stringValue = stringValue.Replace("^-9", "⁻⁹"); 
                     stringValue = stringValue.Replace("^-8", "⁻⁸");
                     stringValue = stringValue.Replace("^-7", "⁻⁷");
@@ -167,6 +176,7 @@ namespace UnitsNet
             return result ?? base.ConvertFrom(context, culture, value);
         }
 
+        // TODO
         /// <summary>Returns whether this converter can convert the object to the specified type, using the specified context.</summary>
         /// <returns>true if this converter can perform the conversion; otherwise, false.</returns>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> that provides a format context. </param>
@@ -176,6 +186,7 @@ namespace UnitsNet
             return (destinationType == typeof(string)) || base.CanConvertTo(context, destinationType);
         }
 
+        // TODO
         /// <summary>Converts the given value object to the specified type, using the specified context and culture information.</summary>
         /// <returns>An <see cref="T:System.Object" /> that represents the converted value.</returns>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> that provides a format context. </param>
