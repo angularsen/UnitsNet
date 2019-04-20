@@ -48,8 +48,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -57,7 +57,6 @@ namespace UnitsNet
 {");
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
             Writer.WL($@"
-    /// <inheritdoc />
     /// <summary>
     ///     {_quantity.XmlDoc}
     /// </summary>");
@@ -68,7 +67,10 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WL($@"
-    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+    public sealed partial class {_quantity.Name} : IQuantity
     {{
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -88,13 +90,15 @@ namespace UnitsNet
             GenerateStaticMethods();
             GenerateStaticFactoryMethods();
             GenerateStaticParseMethods();
-            GenerateArithmeticOperators();
             GenerateEqualityAndComparison();
             GenerateConversionMethods();
             GenerateToString();
-            GenerateIConvertibleMethods();
 
             Writer.WL($@"
+        private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
+        {{
+            return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
+        }}
     }}
 }}");
             return Writer.ToString();
@@ -108,47 +112,13 @@ namespace UnitsNet
         {{");
             Writer.WL(_isDimensionless
                 ? @"
-            BaseDimensions = BaseDimensions.Dimensionless;
-"
+            BaseDimensions = BaseDimensions.Dimensionless;"
                 : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
-");
+            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});");
 
             Writer.WL($@"
-            Info = new QuantityInfo<{_unitEnumName}>(QuantityType.{_quantity.Name},
-                new UnitInfo<{_unitEnumName}>[] {{");
-
-            foreach (var unit in _quantity.Units)
-            {
-                var baseUnits = unit.BaseUnits;
-                if (baseUnits == null)
-                {
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, BaseUnits.Undefined),");
-                }
-                else
-                {
-                    var baseUnitsCtorArgs = string.Join(", ",
-                        new[]
-                        {
-                            baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
-                            baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
-                            baseUnits.T != null ? $"time: DurationUnit.{baseUnits.T}" : null,
-                            baseUnits.I != null ? $"current: ElectricCurrentUnit.{baseUnits.I}" : null,
-                            baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
-                            baseUnits.N != null ? $"amount: AmountOfSubstanceUnit.{baseUnits.N}" : null,
-                            baseUnits.J != null ? $"luminousIntensity: LuminousIntensityUnit.{baseUnits.J}" : null
-                        }.Where(str => str != null));
-
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, new BaseUnits({baseUnitsCtorArgs})),");
-                }
-            }
-
-            Writer.WL(@"
-                },
-                BaseUnit, Zero, BaseDimensions);
-        }
+            Info = new QuantityInfo(QuantityType.{_quantity.Name}, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+        }}
 ");
         }
 
@@ -156,12 +126,25 @@ namespace UnitsNet
         {
             Writer.WL($@"
         /// <summary>
+        ///     Creates the quantity with a value of 0 in the base unit {_baseUnit.SingularName}.
+        /// </summary>
+        /// <remarks>
+        ///     Windows Runtime Component requires a default constructor.
+        /// </remarks>
+        public {_quantity.Name}()
+        {{
+            _value = 0;
+            _unit = BaseUnit;
+        }}
+
+        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
         /// <param name=""unit"">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} numericValue, {_unitEnumName} unit)
+        private {_quantity.Name}({_quantity.BaseType} numericValue, {_unitEnumName} unit)
         {{
             if(unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
@@ -175,31 +158,6 @@ namespace UnitsNet
             Writer.WL($@"
             _unit = unit;
         }}
-
-        /// <summary>
-        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref=""UnitSystem""/>.
-        /// If multiple compatible units were found, the first match is used.
-        /// </summary>
-        /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
-        /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
-        /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
-        /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
-        public {_quantity.Name}({_valueType} numericValue, UnitSystem unitSystem)
-        {{
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-");
-
-            Writer.WL(_quantity.BaseType == "double"
-                ? @"
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));"
-                : @"
-            _value = numericValue;");
-            Writer.WL(@"
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-        }
 ");
         }
 
@@ -208,8 +166,10 @@ namespace UnitsNet
             Writer.WL($@"
         #region Static Properties
 
-        /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
-        public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info {{ get; }}
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -258,26 +218,19 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public {_valueType} Value => _value;
-");
-
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.BaseType != "double")
-                Writer.WL(@"
-        double IQuantity.Value => (double) _value;
+        public double Value => Convert.ToDouble(_value);
 ");
 
             Writer.WL($@"
-        Enum IQuantity.Unit => Unit;
+        /// <inheritdoc cref=""IQuantity.Unit""/>
+        object IQuantity.Unit => Unit;
 
-        /// <inheritdoc />
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref=""BaseUnit"" /> if default ctor was used.
+        /// </summary>
         public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        /// <inheritdoc />
-        public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
-
-        /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
@@ -337,9 +290,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""unit"">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name=""provider"">Format to use for localization. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static string GetAbbreviation({_unitEnumName} unit, [CanBeNull] IFormatProvider provider)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public static string GetAbbreviation({_quantity.Name}Unit unit, [CanBeNull] string cultureName)
         {{
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }}
 
@@ -362,7 +316,8 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(QuantityValue {valueParamName})
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static {_quantity.Name} From{unit.PluralName}(double {valueParamName})
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
@@ -377,7 +332,9 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From(QuantityValue value, {_unitEnumName} fromUnit)
+        // Fix name conflict with parameter ""value""
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName(""returnValue"")]
+        public static {_quantity.Name} From(double value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(({_valueType})value, fromUnit);
         }}
@@ -440,9 +397,10 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static {_quantity.Name} Parse(string str, [CanBeNull] IFormatProvider provider)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public static {_quantity.Name} Parse(string str, [CanBeNull] string cultureName)
         {{
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return QuantityParser.Default.Parse<{_quantity.Name}, {_unitEnumName}>(
                 str,
                 provider,
@@ -471,9 +429,10 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
         /// </example>
-        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out {_quantity.Name} result)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out {_quantity.Name} result)
         {{
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return QuantityParser.Default.TryParse<{_quantity.Name}, {_unitEnumName}>(
                 str,
                 provider,
@@ -504,13 +463,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
-        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static {_unitEnumName} ParseUnit(string str, IFormatProvider provider = null)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public static {_unitEnumName} ParseUnit(string str, [CanBeNull] string cultureName)
         {{
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
         }}
 
-        /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out UnitsNet.Units.{_unitEnumName})""/>
         public static bool TryParseUnit(string str, out {_unitEnumName} unit)
         {{
             return TryParseUnit(str, null, out unit);
@@ -525,133 +484,11 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
-        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out {_unitEnumName} unit)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out {_unitEnumName} unit)
         {{
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitParser.Default.TryParse<{_unitEnumName}>(str, provider, out unit);
-        }}
-
-        #endregion
-");
-        }
-
-        private void GenerateArithmeticOperators()
-        {
-            if (!_quantity.GenerateArithmetic)
-                return;
-
-            // Logarithmic units required different arithmetic
-            if (_quantity.Logarithmic)
-            {
-                GenerateLogarithmicArithmeticOperators();
-                return;
-            }
-
-            Writer.WL($@"
-        #region Arithmetic Operators
-
-        /// <summary>Negate the value.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} right)
-        {{
-            return new {_quantity.Name}(-right.Value, right.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from adding two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return new {_quantity.Name}(left.Value + right.GetValueAs(left.Unit), left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from subtracting two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return new {_quantity.Name}(left.Value - right.GetValueAs(left.Unit), left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_valueType} left, {_quantity.Name} right)
-        {{
-            return new {_quantity.Name}(left * right.Value, right.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, {_valueType} right)
-        {{
-            return new {_quantity.Name}(left.Value * right, left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from dividing <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, {_valueType} right)
-        {{
-            return new {_quantity.Name}(left.Value / right, left.Unit);
-        }}
-
-        /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
-        }}
-
-        #endregion
-");
-        }
-
-        private void GenerateLogarithmicArithmeticOperators()
-        {
-            var scalingFactor = _quantity.LogarithmicScalingFactor;
-            // Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to use 20 instead.
-            var x = (10 * scalingFactor).ToString();
-            Writer.WL($@"
-        #region Logarithmic Arithmetic Operators
-
-        /// <summary>Negate the value.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} right)
-        {{
-            return new {_quantity.Name}(-right.Value, right.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic addition of two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            // Logarithmic addition
-            // Formula: {x}*log10(10^(x/{x}) + 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            // Logarithmic subtraction
-            // Formula: {x}*log10(10^(x/{x}) - 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_valueType} left, {_quantity.Name} right)
-        {{
-            // Logarithmic multiplication = addition
-            return new {_quantity.Name}(left + right.Value, right.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, double right)
-        {{
-            // Logarithmic multiplication = addition
-            return new {_quantity.Name}(left.Value + ({_valueType})right, left.Unit);
-        }}
-
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic division of <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, double right)
-        {{
-            // Logarithmic division = subtraction
-            return new {_quantity.Name}(left.Value - ({_valueType})right, left.Unit);
-        }}
-
-        /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
         }}
 
         #endregion
@@ -663,45 +500,6 @@ namespace UnitsNet
             Writer.WL($@"
         #region Equality / IComparable
 
-        /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Value <= right.GetValueAs(left.Unit);
-        }}
-
-        /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Value >= right.GetValueAs(left.Unit);
-        }}
-
-        /// <summary>Returns true if less than.</summary>
-        public static bool operator <({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Value < right.GetValueAs(left.Unit);
-        }}
-
-        /// <summary>Returns true if greater than.</summary>
-        public static bool operator >({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Value > right.GetValueAs(left.Unit);
-        }}
-
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Equals(right);
-        }}
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return !(left == right);
-        }}
-
-        /// <inheritdoc />
         public int CompareTo(object obj)
         {{
             if(obj is null) throw new ArgumentNullException(nameof(obj));
@@ -710,14 +508,13 @@ namespace UnitsNet
             return CompareTo(obj{_quantity.Name});
         }}
 
-        /// <inheritdoc />
-        public int CompareTo({_quantity.Name} other)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        internal int CompareTo({_quantity.Name} other)
         {{
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }}
 
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
+        [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {{
             if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
@@ -726,11 +523,9 @@ namespace UnitsNet
             return Equals(obj{_quantity.Name});
         }}
 
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
         public bool Equals({_quantity.Name} other)
         {{
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }}
 
         /// <summary>
@@ -802,6 +597,8 @@ namespace UnitsNet
             Writer.WL($@"
         #region Conversion Methods
 
+        double IQuantity.As(object unit) => As(({_quantity.Name}Unit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
@@ -811,32 +608,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = GetValueAs(unit);
+            var converted = AsBaseNumericType(unit);
             return Convert.ToDouble(converted);
-        }}
-
-        /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public double As(UnitSystem unitSystem)
-        {{
-            if(unitSystem == null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }}
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {{
-            if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return As(unitAs{_unitEnumName});
         }}
 
         /// <summary>
@@ -845,49 +618,16 @@ namespace UnitsNet
         /// <returns>A {_quantity.Name} with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
         {{
-            var convertedValue = GetValueAs(unit);
+            var convertedValue = AsBaseNumericType(unit);
             return new {_quantity.Name}(convertedValue, unit);
         }}
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {{
-            if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return ToUnit(unitAs{_unitEnumName});
-        }}
-
-        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
-        {{
-            if(unitSystem == null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
-        }}
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private {_valueType} GetValueInBaseUnit()
+        private {_valueType} AsBaseUnit()
         {{
             switch(Unit)
             {{");
@@ -904,12 +644,12 @@ namespace UnitsNet
             }}
         }}
 
-        private {_valueType} GetValueAs({_unitEnumName} unit)
+        private {_valueType} AsBaseNumericType({_unitEnumName} unit)
         {{
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = AsBaseUnit();
 
             switch(unit)
             {{");
@@ -936,22 +676,23 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Gets the default string representation of value and unit.
+        ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {{
-            return ToString(""g"");
+            return ToString(null);
         }}
 
         /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
+        ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public string ToString([CanBeNull] string cultureName)
         {{
-            return ToString(""g"", provider);
+            var provider = cultureName;
+            return ToString(provider, 2);
         }}
 
         /// <summary>
@@ -959,10 +700,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""significantDigitsAfterRadix"">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        [Obsolete(@""This method is deprecated and will be removed at a future release. Please use ToString(""""s2"""") or ToString(""""s2"""", provider) where 2 is an example of the number passed to significantDigitsAfterRadix."")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public string ToString(string cultureName, int significantDigitsAfterRadix)
         {{
+            var provider = cultureName;
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
             return ToString(provider, format);
@@ -974,147 +715,22 @@ namespace UnitsNet
         /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
         /// <param name=""args"">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
+        public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
         {{
+            var provider = GetFormatProviderFromCultureName(cultureName);
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? CultureInfo.CurrentUICulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }}
 
-        /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref=""CultureInfo.CurrentUICulture"" />.
-        /// </summary>
-        /// <param name=""format"">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string format)
-        {{
-            return ToString(format, CultureInfo.CurrentUICulture);
-        }}
-
-        /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref=""CultureInfo.CurrentUICulture"" /> if null.
-        /// </summary>
-        /// <param name=""format"">The format string.</param>
-        /// <param name=""formatProvider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
-        {{
-            return QuantityFormatter.Format<{_unitEnumName}>(this, format, formatProvider);
-        }}
-
         #endregion
 ");
-        }
-
-        private void GenerateIConvertibleMethods()
-        {
-           Writer.WL($@"
-        #region IConvertible Methods
-
-        TypeCode IConvertible.GetTypeCode()
-        {{
-            return TypeCode.Object;
-        }}
-
-        bool IConvertible.ToBoolean(IFormatProvider provider)
-        {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to bool is not supported."");
-        }}
-
-        byte IConvertible.ToByte(IFormatProvider provider)
-        {{
-            return Convert.ToByte(_value);
-        }}
-
-        char IConvertible.ToChar(IFormatProvider provider)
-        {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to char is not supported."");
-        }}
-
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
-        {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to DateTime is not supported."");
-        }}
-
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
-        {{
-            return Convert.ToDecimal(_value);
-        }}
-
-        double IConvertible.ToDouble(IFormatProvider provider)
-        {{
-            return Convert.ToDouble(_value);
-        }}
-
-        short IConvertible.ToInt16(IFormatProvider provider)
-        {{
-            return Convert.ToInt16(_value);
-        }}
-
-        int IConvertible.ToInt32(IFormatProvider provider)
-        {{
-            return Convert.ToInt32(_value);
-        }}
-
-        long IConvertible.ToInt64(IFormatProvider provider)
-        {{
-            return Convert.ToInt64(_value);
-        }}
-
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
-        {{
-            return Convert.ToSByte(_value);
-        }}
-
-        float IConvertible.ToSingle(IFormatProvider provider)
-        {{
-            return Convert.ToSingle(_value);
-        }}
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {{
-            return ToString(""g"", provider);
-        }}
-
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
-        {{
-            if(conversionType == typeof({_quantity.Name}))
-                return this;
-            else if(conversionType == typeof({_unitEnumName}))
-                return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return {_quantity.Name}.QuantityType;
-            else if(conversionType == typeof(BaseDimensions))
-                return {_quantity.Name}.BaseDimensions;
-            else
-                throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to {{conversionType}} is not supported."");
-        }}
-
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
-        {{
-            return Convert.ToUInt16(_value);
-        }}
-
-        uint IConvertible.ToUInt32(IFormatProvider provider)
-        {{
-            return Convert.ToUInt32(_value);
-        }}
-
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
-        {{
-            return Convert.ToUInt64(_value);
-        }}
-
-        #endregion");
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
