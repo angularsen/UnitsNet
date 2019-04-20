@@ -1,7 +1,7 @@
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.WindowsRuntimeComponent
+namespace CodeGen.Generators.UnitsNetGen
 {
     internal class UnitTypeGenerator : GeneratorBase
     {
@@ -45,7 +45,7 @@ namespace UnitsNet.Units
         /// <remarks>{unit.XmlDocRemarks}</remarks>");
                 }
 
-                Writer.WLIfText(2, Generators.QuantityGenerator.GetObsoleteAttributeOrNull(unit));
+                Writer.WLIfText(2, QuantityGenerator.GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         {unit.SingularName},");
             }

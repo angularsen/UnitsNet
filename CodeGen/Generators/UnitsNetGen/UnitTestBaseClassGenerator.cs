@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators
+namespace CodeGen.Generators.UnitsNetGen
 {
     internal class UnitTestBaseClassGenerator : GeneratorBase
     {

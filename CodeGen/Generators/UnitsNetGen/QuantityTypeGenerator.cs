@@ -1,6 +1,6 @@
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.WindowsRuntimeComponent
+namespace CodeGen.Generators.UnitsNetGen
 {
     internal class QuantityTypeGenerator : GeneratorBase
     {
@@ -26,11 +26,15 @@ namespace UnitsNet
     /// </summary>
     public enum QuantityType
     {
+// Missing XML comment for public type or member
+#pragma warning disable CS1591
         Undefined = 0,");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
         {quantity.Name},");
             Writer.WL(@"
+// Missing XML comment for public type or member
+#pragma warning restore CS1591
     }
 }");
             return Writer.ToString();

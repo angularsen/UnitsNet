@@ -1,7 +1,7 @@
 using System.Linq;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.WindowsRuntimeComponent
+namespace CodeGen.Generators.UnitsNetGen
 {
     internal class UnitAbbreviationsCacheGenerator : GeneratorBase
     {
@@ -23,7 +23,7 @@ using UnitsNet.Units;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public sealed partial class UnitAbbreviationsCache
+    public partial class UnitAbbreviationsCache
     {
         private static readonly (string CultureName, Type UnitType, int UnitValue, string[] UnitAbbreviations)[] GeneratedLocalizations
             = new []

@@ -6,14 +6,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CodeGen.Generators.UnitsNetGen;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
 using Serilog;
+using QuantityGenerator = CodeGen.Generators.UnitsNetWrcGen.QuantityGenerator;
+using QuantityTypeGenerator = CodeGen.Generators.UnitsNetWrcGen.QuantityTypeGenerator;
+using StaticQuantityGenerator = CodeGen.Generators.UnitsNetWrcGen.StaticQuantityGenerator;
+using UnitAbbreviationsCacheGenerator = CodeGen.Generators.UnitsNetWrcGen.UnitAbbreviationsCacheGenerator;
+using UnitTypeGenerator = CodeGen.Generators.UnitsNetWrcGen.UnitTypeGenerator;
 
 namespace CodeGen.Generators
 {
-    internal static class Generator
+    internal static class UnitsNetWrcGenerator
     {
         private const int AlignPad = 35;
 
@@ -27,6 +33,7 @@ namespace CodeGen.Generators
         {
             if (repositoryRoot == null) throw new ArgumentNullException(nameof(repositoryRoot));
             var root = repositoryRoot.FullName;
+            var outputDir = $"{root}/UnitsNet.WindowsRuntimeComponent/GeneratedCode";
 
             var templatesDir = Path.Combine(root, "Common/UnitDefinitions");
             var jsonFiles = Directory.GetFiles(templatesDir, "*.json");
@@ -35,17 +42,15 @@ namespace CodeGen.Generators
             foreach (Quantity quantity in quantities)
             {
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
-                GenerateQuantity(sb, quantity, $"{root}/UnitsNet/GeneratedCode/Quantities/{quantity.Name}.NetFramework.g.cs"); // TODO Remove NetFramework suffix
-                GenerateUnitType(sb, quantity, $"{root}/UnitsNet/GeneratedCode/Units/{quantity.Name}Unit.g.cs");
-                GenerateUnitTestBaseClass(sb, quantity, $"{root}/UnitsNet.Tests/GeneratedCode/{quantity.Name}TestsBase.g.cs");
-                GenerateUnitTestClassIfNotExists(sb, quantity, $"{root}/UnitsNet.Tests/CustomCode/{quantity.Name}Tests.cs");
+                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.WindowsRuntimeComponent.g.cs");
+                GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
                 Log.Information(sb.ToString());
             }
 
             Log.Information("");
-            GenerateUnitAbbreviationsCache(quantities, $"{root}/UnitsNet/GeneratedCode/UnitAbbreviationsCache.g.cs");
-            GenerateQuantityType(quantities, $"{root}/UnitsNet/GeneratedCode/QuantityType.g.cs");
-            GenerateStaticQuantity(quantities, $"{root}/UnitsNet/GeneratedCode/Quantity.g.cs");
+            GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
+            GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
+            GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");

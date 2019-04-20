@@ -1,7 +1,7 @@
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.WindowsRuntimeComponent
+namespace CodeGen.Generators.UnitsNetWrcGen
 {
     internal class StaticQuantityGenerator : GeneratorBase
     {
