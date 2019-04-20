@@ -18,7 +18,7 @@ function Remove-ArtifactsDir {
 }
 
 function Update-GeneratedCode {
-  write-host -foreground blue "Generate code for .NET...`n---"
+  write-host -foreground blue "Generate code...`n---"
   dotnet run --project "$root/CodeGen"
   if ($lastexitcode -ne 0) { exit 1 }
   write-host -foreground blue "Generate code...END`n"
