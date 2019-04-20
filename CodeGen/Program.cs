@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CodeGen.Generators;
+using CodeGen.Generators.WindowsRuntimeComponent;
 using Serilog;
 using Serilog.Events;
 
@@ -43,6 +45,7 @@ namespace CodeGen
                 }
 
                 Generator.Generate(repositoryRoot);
+                UnitsNetWrcGenerator.Generate(repositoryRoot);
                 Log.Information($"Completed in {sw.ElapsedMilliseconds} ms!", ConsoleColor.Green);
                 return 0;
             }
