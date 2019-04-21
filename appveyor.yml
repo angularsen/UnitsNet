@@ -14,19 +14,17 @@ cache:
   - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
 
+environment:
+  codecov_upload_token:
+    secure: 713yzE0R2Ek0JZTp+7uR3Upclc+jiIlM3Gf0UQ1Nbb5K09oXhE42hP8KWQngZ9ko
+
 build_script:
 - ps: |
-    #####################################
     # Build, test, pack and push nugets
-    #####################################
-
     .\\build-with-wrc.bat
     $BuildExitCode = $LASTEXITCODE
 
-    #####################################
     # Upload test results to AppVeyor
-    #####################################
-
     $wc = New-Object 'System.Net.WebClient'
 
     if (Test-Path .\\Artifacts\\Logs\\) {
@@ -40,13 +38,30 @@ build_script:
         exit $BuildExitCode
     }
 
-# Do not build feature branch with open Pull Requests
+# Do not build feature branch with open Pull Requests to avoid building twice
 skip_branch_with_pr: true
-test: off
+
+before_test:
+- dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
+# Already installed in AppVeyor?
+# - choco install opencover.portable -Y
+
+test_script:
+- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Tests" -output:"Artifacts/UnitsNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.CompatibilityTests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.Tests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+
+after_test:
+- tools\reportgenerator.exe -reports:Artifacts/UnitsNet.Tests.coverage.xml;UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml;UnitsNet.Serialization.JsonNet.Tests.coverage.xml -targetdir:Artifacts/coverage_report -reporttypes:HtmlSummary
+- ps: |
+    $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+    Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+    bash codecov.sh -f "coverage.xml" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
+- path: Artifacts\coverage_report
 
 deploy:
 - provider: NuGet
