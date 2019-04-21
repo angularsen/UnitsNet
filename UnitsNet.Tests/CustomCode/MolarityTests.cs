@@ -103,12 +103,10 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(Molarity.Parse("1M"), Molarity.Parse("1 mol/L"));
         }
 
-        [Fact(Skip = "Awaiting fix for https://github.com/angularsen/UnitsNet/issues/344")]
+        [Fact]
         public void OneMilliMolarFromStringParsedCorrectly()
         {
-            var one_mM = Molarity.Parse("1000 mM");
-
-            Assert.Equal(1, one_mM.MolesPerLiter);
+            Assert.Equal(1, Molarity.Parse("1000 mM").MolesPerLiter);
         }
 
     }
