@@ -1,0 +1,106 @@
+{
+  "Name": "VolumeConcentration",
+  "BaseUnit": "DecimalFraction",
+  "XmlDoc": "The volume concentration (not to be confused with volume fraction) is defined as the volume of a constituent divided by the total volume of the mixture.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Concentration#Volume_concentration",
+  "Units": [
+      {
+      "SingularName": "DecimalFraction",
+      "PluralName": "DecimalFractions",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "LitersPerLiter",
+      "PluralName": "LitersPerLiter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L/L" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "LitersPerMililiter",
+      "PluralName": "LitersPerMililiter",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L/mL" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percent",
+      "FromUnitToBaseFunc": "x/1e2",
+      "FromBaseToUnitFunc": "x*1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%", "% (v/v)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerThousand",
+      "PluralName": "PartsPerThousand",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "‰" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerMillion",
+      "PluralName": "PartsPerMillion",
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerBillion",
+      "PluralName": "PartsPerBillion",
+      "FromUnitToBaseFunc": "x/1e9",
+      "FromBaseToUnitFunc": "x*1e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppb" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerTrillion",
+      "PluralName": "PartsPerTrillion",
+      "FromUnitToBaseFunc": "x/1e12",
+      "FromBaseToUnitFunc": "x*1e12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppt" ]
+        }
+      ]
+    }
+  ]
+}

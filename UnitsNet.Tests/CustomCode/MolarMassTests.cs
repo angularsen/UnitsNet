@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -40,5 +41,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerMoleTolerance => 1e-3;
         protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
+        
     }
 }
