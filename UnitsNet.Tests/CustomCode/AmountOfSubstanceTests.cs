@@ -91,8 +91,8 @@ namespace UnitsNet.Tests.CustomCode
             var componentMass = new Mass(componentMassValue, componentMassUnit);
             var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
             var volumeSolution = new Volume(solutionVolumeValue, solutionVolumeUnit);
-
             AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+
             Molarity molarity = amountOfSubstance / volumeSolution;
 
             AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerence);
@@ -112,8 +112,8 @@ namespace UnitsNet.Tests.CustomCode
             var componentMass = new Mass(componentMassValue, componentMassUnit);
             var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
             var desiredMolarity = new Molarity(desiredMolarityValue, desiredMolarityUnit);
-
             AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+
             Volume volumeSolution = amountOfSubstance / desiredMolarity;
 
             AssertEx.EqualTolerance(expectedSolutionVolumeValue, volumeSolution.As(expectedSolutionVolumeUnit), tolerence);
