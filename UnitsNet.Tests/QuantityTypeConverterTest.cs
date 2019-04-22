@@ -119,7 +119,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertFrom_GivenEmpyString_ThrowsNotSupportedException()
+        public void ConvertFrom_GivenEmptyString_ThrowsNotSupportedException()
         {
             var converter = new UnitsNetTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
