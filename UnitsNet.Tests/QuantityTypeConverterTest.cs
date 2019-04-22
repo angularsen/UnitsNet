@@ -140,7 +140,7 @@ namespace UnitsNet.Tests
         [InlineData(typeof(Length))]
         [InlineData(typeof(IQuantity))]
         [InlineData(typeof(object))]
-        public void ConvertTo_GivenWrongType_ThrowsExceptionNotSupportedException(Type value)
+        public void ConvertTo_GivenWrongType_ThrowsNotSupportedException(Type value)
         {
             var converter = new UnitsNetTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
