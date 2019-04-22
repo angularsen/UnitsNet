@@ -28,7 +28,7 @@ class Localization
 {
   [string]$Culture
   [string[]]$Abbreviations = @()
-  [string[]]$AbbreviationsWithPrefixes = @()
+  [object[]]$AbbreviationsWithPrefixes = @()
 }
 
 class BaseDimensions

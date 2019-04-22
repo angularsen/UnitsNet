@@ -192,16 +192,29 @@ function Add-PrefixUnits {
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
 
-                    Localization=$unit.Localization | % {
-                        $abbrev = $prefixAbbreviation + $_.Abbreviations[0]
-                        if ($_.AbbreviationsWithPrefixes) {
-                            $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex]
-                        }
-
-                    New-Object PsObject -Property @{
-                        Culture=$_.Culture
-                        Abbreviations= $abbrev
-                    }}
+                    Localization=$unit.Localization | % { 
+						foreach ($abbrSyno in $_.Abbreviations) {
+							$abbrev = $prefixAbbreviation + $abbrSyno
+							if ($_.AbbreviationsWithPrefixes) {
+								if($_.AbbreviationsWithPrefixes[$prefixIndex] -isnot [System.String]){
+									foreach($synoWithPrefix in $_.AbbreviationsWithPrefixes[$prefixIndex]){		
+										New-Object PsObject -Property @{
+											Culture=$_.Culture
+											Abbreviations= $synoWithPrefix
+										}
+									}
+									continue
+								}
+								else{
+									$abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex]
+								}
+							}
+							New-Object PsObject -Property @{
+								Culture=$_.Culture
+								Abbreviations= $abbrev
+							}
+						}
+					}
                 }
 
                 # Append prefix unit
