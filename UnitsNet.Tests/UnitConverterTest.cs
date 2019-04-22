@@ -11,10 +11,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void CustomConversionWithSameQuantityType()
         {
-            ConversionFunction<Length> conversionFunction = (from) => Length.FromInches(18);
+            Length ConversionFunction(Length from) => Length.FromInches(18);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction(LengthUnit.Meter, LengthUnit.Inch, conversionFunction);
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, ConversionFunction);
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch);
             var converted = foundConversionFunction(Length.FromMeters(1.0));
@@ -23,12 +23,26 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void CustomConversionWithDifferentQuantityTypes()
+        public void CustomConversionWithSameQuantityTypeByTypeParam()
         {
-            ConversionFunction conversionFunction = (from) => Length.FromInches(18);
+            Length ConversionFunction(Length from) => Length.FromInches(18);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch, conversionFunction);
+            unitConverter.SetConversionFunction(LengthUnit.Meter, LengthUnit.Inch, (ConversionFunction<Length>) ConversionFunction);
+
+            var foundConversionFunction = unitConverter.GetConversionFunction(typeof(Length), LengthUnit.Meter, typeof(Length), LengthUnit.Inch);
+            var converted = foundConversionFunction(Length.FromMeters(1.0));
+
+            Assert.Equal(Length.FromInches(18), converted);
+        }
+
+        [Fact]
+        public void CustomConversionWithDifferentQuantityTypes()
+        {
+            IQuantity ConversionFunction(IQuantity from) => Length.FromInches(18);
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch, ConversionFunction);
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch);
             var converted = foundConversionFunction(Mass.FromGrains(100));
@@ -37,12 +51,26 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TryCustomConversionForOilBarrelsToUsGallons()
+        public void CustomConversionWithDifferentQuantityTypesByTypeParam()
         {
-            ConversionFunction<Volume> conversionFunction = (from) => Volume.FromUsGallons(from.Value * 42);
+            IQuantity ConversionFunction(IQuantity from) => Length.FromInches(18);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction);
+            unitConverter.SetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch, ConversionFunction);
+
+            var foundConversionFunction = unitConverter.GetConversionFunction(typeof(Mass), MassUnit.Grain, typeof(Length), LengthUnit.Inch);
+            var converted = foundConversionFunction(Mass.FromGrains(100));
+
+            Assert.Equal(Length.FromInches(18), converted);
+        }
+
+        [Fact]
+        public void TryCustomConversionForOilBarrelsToUsGallons()
+        {
+            Volume ConversionFunction(Volume from) => Volume.FromUsGallons(from.Value * 42);
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, ConversionFunction);
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon);
             var converted = foundConversionFunction(Volume.FromOilBarrels(1));
