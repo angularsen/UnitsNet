@@ -186,6 +186,11 @@ namespace UnitsNet
         public double CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
+        ///     Get Volume in CubicHectometers.
+        /// </summary>
+        public double CubicHectometers => As(VolumeUnit.CubicHectometer);
+
+        /// <summary>
         ///     Get Volume in CubicInches.
         /// </summary>
         public double CubicInches => As(VolumeUnit.CubicInch);
@@ -254,6 +259,11 @@ namespace UnitsNet
         ///     Get Volume in ImperialOunces.
         /// </summary>
         public double ImperialOunces => As(VolumeUnit.ImperialOunce);
+
+        /// <summary>
+        ///     Get Volume in ImperialPints.
+        /// </summary>
+        public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
         ///     Get Volume in KilocubicFeet.
@@ -471,6 +481,16 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicFoot);
         }
         /// <summary>
+        ///     Get Volume from CubicHectometers.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromCubicHectometers(double cubichectometers)
+        {
+            double value = (double) cubichectometers;
+            return new Volume(value, VolumeUnit.CubicHectometer);
+        }
+        /// <summary>
         ///     Get Volume from CubicInches.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -609,6 +629,16 @@ namespace UnitsNet
         {
             double value = (double) imperialounces;
             return new Volume(value, VolumeUnit.ImperialOunce);
+        }
+        /// <summary>
+        ///     Get Volume from ImperialPints.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromImperialPints(double imperialpints)
+        {
+            double value = (double) imperialpints;
+            return new Volume(value, VolumeUnit.ImperialPint);
         }
         /// <summary>
         ///     Get Volume from KilocubicFeet.
@@ -1157,6 +1187,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
                 case VolumeUnit.CubicFoot: return _value*0.0283168;
+                case VolumeUnit.CubicHectometer: return _value*1e6;
                 case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
                 case VolumeUnit.CubicKilometer: return _value*1e9;
                 case VolumeUnit.CubicMeter: return _value;
@@ -1171,6 +1202,7 @@ namespace UnitsNet
                 case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
+                case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
                 case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
@@ -1216,6 +1248,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
                 case VolumeUnit.CubicFoot: return baseUnitValue/0.0283168;
+                case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
                 case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
                 case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
                 case VolumeUnit.CubicMeter: return baseUnitValue;
@@ -1230,6 +1263,7 @@ namespace UnitsNet
                 case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
+                case VolumeUnit.ImperialPint: return baseUnitValue / 5.6826125e-4;
                 case VolumeUnit.KilocubicFoot: return (baseUnitValue/0.0283168) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;

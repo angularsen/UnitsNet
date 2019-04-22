@@ -21,8 +21,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
-    public partial struct Pressure : IQuantity<PressureUnit>, IEquatable<Pressure>, IComparable, IComparable<Pressure>, IConvertible
+    public partial struct Pressure : IQuantity<PressureUnit>, IEquatable<Pressure>, IComparable, IComparable<Pressure>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -47,7 +47,53 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure,
+                new UnitInfo<PressureUnit>[] {
+                    new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Bar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Centibar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Decibar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Kilobar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Megabar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Microbar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millibar, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Torr, BaseUnits.Undefined),
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -63,6 +109,25 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
+        }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public Pressure(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -1096,8 +1161,6 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As((PressureUnit)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1111,8 +1174,29 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
+        }
+
         /// <inheritdoc />
-        public double As(Enum unit) => As((PressureUnit) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is PressureUnit unitAsPressureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
+
+            return As(unitAsPressureUnit);
+        }
 
         /// <summary>
         ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
@@ -1124,10 +1208,38 @@ namespace UnitsNet
             return new Pressure(convertedValue, unit);
         }
 
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is PressureUnit unitAsPressureUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPressureUnit);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Pressure ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
+        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -1257,22 +1369,22 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
-        ///     Get default string representation of value and unit.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString("g");
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(provider, 2);
+            return ToString("g", provider);
         }
 
         /// <summary>
@@ -1281,6 +1393,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -1295,6 +1408,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -1305,6 +1419,29 @@ namespace UnitsNet
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<PressureUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -1373,7 +1510,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider provider)
         {
-            return ToString(provider);
+            return ToString("g", provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)

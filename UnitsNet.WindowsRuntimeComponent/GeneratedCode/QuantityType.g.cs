@@ -60,6 +60,7 @@ namespace UnitsNet
         ElectricPotentialDc,
         ElectricResistance,
         ElectricResistivity,
+        ElectricSurfaceChargeDensity,
         Energy,
         Entropy,
         Force,
@@ -83,8 +84,10 @@ namespace UnitsNet
         MagneticFlux,
         Magnetization,
         Mass,
+        MassConcentration,
         MassFlow,
         MassFlux,
+        MassFraction,
         MassMomentOfInertia,
         MolarEnergy,
         MolarEntropy,
@@ -118,6 +121,8 @@ namespace UnitsNet
         Torque,
         VitaminA,
         Volume,
+        VolumeConcentration,
         VolumeFlow,
+        VolumePerLength,
     }
 }

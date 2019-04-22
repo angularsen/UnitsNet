@@ -30,6 +30,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
 
         protected override double PoundsPerUSGallonInOneKilogramPerCubicMeter => 8.3454045e-3;
+
         protected override double PoundsPerImperialGallonInOneKilogramPerCubicMeter => 1.002241e-2;
 
         protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-9;
@@ -84,6 +85,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
 
+        protected override double KilogramsPerLiterInOneKilogramPerCubicMeter => 1e-3;
+
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
@@ -104,25 +107,7 @@ namespace UnitsNet.Tests.CustomCode
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
             Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
-
-        [Fact]
-        public void ExpectMolarityConvertedToDensityCorrectly()
-        {
-            var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var mw = Mass.FromGrams(58.443);
-            var density = Density.FromMolarity(molarity, mw).KilogramsPerCubicMeter;
-            AssertEx.EqualTolerance(60.02, density, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Fact]
-        public void ExpectDensityConvertedToMolarityCorrectly()
-        {
-            var density = Density.FromKilogramsPerCubicMeter(60.02);
-            var mw = Mass.FromGrams(58.443);
-            var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
-            AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
-        }
-
+        
         [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {

@@ -3,6 +3,7 @@
 
 using Xunit;
 using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -19,6 +20,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
         protected override double FeetInOneMeter => 3.28084;
+
+        protected override double HectometersInOneMeter => 1E-2;
 
         protected override double TwipsInOneMeter => 56692.913386;
         protected override double UsSurveyFeetInOneMeter => 3.280833333333333;
@@ -52,7 +55,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
-        [Fact]
+        protected override double HandsInOneMeter => 9.8425196850393701;
+
+        [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
             Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
@@ -150,6 +155,44 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(-2.0, feetInches.Feet);
             Assert.Equal(-1.0, feetInches.Inches);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
+        {
+            // AmplitudeRatio is unitless. Can't have any matches :)
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+
+            var inSI = inches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
     }
 }

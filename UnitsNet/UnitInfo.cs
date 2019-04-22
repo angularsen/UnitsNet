@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -17,13 +18,16 @@ namespace UnitsNet
     /// </remarks>
     public class UnitInfo
     {
-        /// <summary>Creates an instance from a unit enum value.</summary>
-        /// <param name="value">The unit enum value.</param>
-        /// <example>new UnitInfo(LengthUnit.Meter)</example>
-        public UnitInfo(Enum value)
+        /// <summary>
+        /// Creates an instance of the UnitInfo class.
+        /// </summary>
+        /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
+        public UnitInfo([NotNull] Enum value, [NotNull] BaseUnits baseUnits)
         {
-            Value = value;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();
+            BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
         }
 
         /// <summary>
@@ -36,6 +40,11 @@ namespace UnitsNet
         /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the <see cref="BaseUnits"/> for this unit.
+        /// </summary>
+        public BaseUnits BaseUnits { get; }
     }
 
     /// <inheritdoc cref="UnitInfo" />
@@ -49,7 +58,7 @@ namespace UnitsNet
         where TUnit : Enum
     {
         /// <inheritdoc />
-        public UnitInfo(TUnit value) : base(value)
+        public UnitInfo(TUnit value, BaseUnits baseUnits) : base(value, baseUnits)
         {
             Value = value;
         }

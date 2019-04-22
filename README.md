@@ -4,9 +4,9 @@
 
 ## Units.NET
 
-Add strongly typed quantities to your code and merrily get on with your life. 
+Add strongly typed quantities to your code and get merrily on with your life. 
 
-No more magic constants found on StackOverflow, no second-guessing the unit of that `double length` variable.
+No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
 Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested. If you have read this far, it is exactly what you are looking for and then some.
 

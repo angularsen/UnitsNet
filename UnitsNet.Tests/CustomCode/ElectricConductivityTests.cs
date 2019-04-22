@@ -28,5 +28,7 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricConductivityTests : ElectricConductivityTestsBase
     {
         protected override double SiemensPerMeterInOneSiemensPerMeter => 1;
+        protected override double SiemensPerInchInOneSiemensPerMeter => 2.54e-2;
+        protected override double SiemensPerFootInOneSiemensPerMeter => 3.048e-1;
     }
 }

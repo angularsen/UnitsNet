@@ -2,7 +2,7 @@
   "Name": "PowerDensity",
   "BaseUnit": "WattPerCubicMeter",
   "XmlDoc": "The amount of power in a volume.",
-    "BaseDimensions": {
+  "BaseDimensions": {
     "L": -1,
     "M": 1,
     "T": -3
@@ -11,6 +11,11 @@
     {
       "SingularName": "WattPerCubicMeter",
       "PluralName": "WattsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],

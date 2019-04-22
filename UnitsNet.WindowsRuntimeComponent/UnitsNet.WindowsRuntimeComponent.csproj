@@ -20,6 +20,9 @@
     <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
     <LangVersion>7.3</LangVersion>
 
+    <!-- CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member' -->
+    <NoWarn>CS1591</NoWarn>
+
     <!-- SourceLink -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

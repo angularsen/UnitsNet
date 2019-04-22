@@ -43,8 +43,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 
@@ -66,7 +66,7 @@ if ($obsoleteAttribute)
     ///     $($quantity.XmlDocRemarks)
     /// </remarks>
 "@; }@"
-    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>, IConvertible
+    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -85,7 +85,21 @@ if ($obsoleteAttribute)
 "@; } else {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }@"
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName,
+                new UnitInfo<$unitEnumName>[] {
+"@; foreach ($unit in $units) {
+      if($unit.BaseUnits -eq $null){@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), BaseUnits.Undefined),
+"@;   } else{
+          $baseUnitsArray = @($unit.BaseUnits.Length, $unit.BaseUnits.Mass, $unit.BaseUnits.Time, $unit.BaseUnits.ElectricCurrent, $unit.BaseUnits.Temperature, $unit.BaseUnits.AmountOfSubstance, $unit.BaseUnits.LuminousIntensity)
+          $baseUnitsArrayFiltered = $baseUnitsArray | Where-Object {$_ -ne ""}
+          $baseUnitsConstructorString = $baseUnitsArrayFiltered -join ', ';@"
+                    new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), new BaseUnits($baseUnitsConstructorString)),
+"@;   }
+    }@"
+                },
+                BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -106,6 +120,29 @@ if ($obsoleteAttribute)
 "@; }@"
             _unit = unit;
         }
+
+        /// <summary>
+        /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unitSystem">The unit system to create the quantity with.</param>
+        /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        public $quantityName($valueType numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
+"@; if ($quantity.BaseType -eq "double") {@"
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+"@; } else {@"
+            _value = numericValue;
+"@; }@"
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+        }
 "@;
     GenerateStaticProperties $genArgs
     GenerateProperties $genArgs
@@ -121,22 +158,22 @@ if ($obsoleteAttribute)
         #region ToString Methods
 
         /// <summary>
-        ///     Get default string representation of value and unit.
+        ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString("g");
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(provider, 2);
+            return ToString("g", provider);
         }
 
         /// <summary>
@@ -145,6 +182,7 @@ if ($obsoleteAttribute)
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
         public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
@@ -159,6 +197,7 @@ if ($obsoleteAttribute)
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
         public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -169,6 +208,29 @@ if ($obsoleteAttribute)
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentUICulture);
+        }
+
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return QuantityFormatter.Format<$unitEnumName>(this, format, formatProvider);
         }
 
         #endregion
@@ -237,7 +299,7 @@ if ($obsoleteAttribute)
 
         string IConvertible.ToString(IFormatProvider provider)
         {
-            return ToString(provider);
+            return ToString("g", provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
@@ -910,8 +972,6 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         #region Conversion Methods
 
-        double IQuantity.As(Enum unit) => As(($unitEnumName)unit);
-
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -925,8 +985,29 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        public double As(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
+        }
+
         /// <inheritdoc />
-        public double As(Enum unit) => As(($unitEnumName) unit);
+        double IQuantity.As(Enum unit)
+        {
+            if(!(unit is $unitEnumName unitAs$unitEnumName))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof($unitEnumName)} is supported.", nameof(unit));
+
+            return As(unitAs$unitEnumName);
+        }
 
         /// <summary>
         ///     Converts this $quantityName to another $quantityName with the unit representation <paramref name="unit" />.
@@ -938,10 +1019,38 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return new $quantityName(convertedValue, unit);
         }
 
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit)
+        {
+            if(!(unit is $unitEnumName unitAs$unitEnumName))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof($unitEnumName)} is supported.", nameof(unit));
+
+            return ToUnit(unitAs$unitEnumName);
+        }
+
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public $quantityName ToUnit(UnitSystem unitSystem)
+        {
+            if(unitSystem == null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
         IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
+        IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

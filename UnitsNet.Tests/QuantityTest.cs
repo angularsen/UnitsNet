@@ -1,9 +1,10 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 using Xunit;
 
@@ -136,6 +137,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
+        {
+            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity parsedLength));
+            Assert.Null(parsedLength);
+        }
+
+        [Fact]
         public void TryParse_GivenInvalidString_ReturnsFalseAndNullQuantity()
         {
             Assert.False(Quantity.TryParse(typeof(Length), "x cm", out IQuantity parsedLength));
@@ -157,7 +165,7 @@ namespace UnitsNet.Tests
             Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
-            Assert.True(Quantity.TryParse(typeof(Pressure), "3.0 Mbar", out IQuantity parsedPressure));
+            Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity parsedPressure));
             Assert.Equal(Pressure.FromMegabars(3), parsedPressure);
         }
 
@@ -170,6 +178,28 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
             Assert.Equal(QuantityCount, types.Length);
+        }
+
+        [Fact]
+        public void FromQuantityType_GivenUndefinedQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType(QuantityType.Undefined, 0.0));
+        }
+
+        [Fact]
+        public void FromQuantityType_GivenInvalidQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType((QuantityType)(-1), 0.0));
+        }
+
+        [Fact]
+        public void FromQuantityType_GivenLengthQuantityType_ReturnsLengthQuantity()
+        {
+            var fromQuantity = Quantity.FromQuantityType(QuantityType.Length, 0.0);
+
+            Assert.Equal(0.0, fromQuantity.Value);
+            Assert.Equal(QuantityType.Length, fromQuantity.Type);
+            Assert.Equal(Length.BaseUnit, fromQuantity.Unit);
         }
     }
 }

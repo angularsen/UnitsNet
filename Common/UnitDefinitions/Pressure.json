@@ -11,13 +11,18 @@
     {
       "SingularName": "Pascal",
       "PluralName": "Pascals",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Pa" ] 
+          "Abbreviations": [ "Pa" ]
         },
         {
           "Culture": "ru-RU",

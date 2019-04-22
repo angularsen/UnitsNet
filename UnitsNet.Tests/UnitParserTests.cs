@@ -1,12 +1,14 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection( nameof( UnitAbbreviationsCacheFixture ) )]
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitParserTests
     {
         [Theory]
@@ -130,6 +132,18 @@ namespace UnitsNet.Tests
             // Assert
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
+        }
+
+        [Theory]
+        [InlineData("ng", "en-US", MassUnit.Nanogram)]
+        [InlineData("нг", "ru-RU", MassUnit.Nanogram)]
+        [InlineData("g", "en-US", MassUnit.Gram)]
+        [InlineData("г", "ru-RU", MassUnit.Gram)]
+        [InlineData("kg", "en-US", MassUnit.Kilogram)]
+        [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
+        public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
+        {
+            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, new CultureInfo(cultureName)));
         }
     }
 }
