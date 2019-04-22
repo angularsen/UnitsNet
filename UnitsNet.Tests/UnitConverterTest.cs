@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
 
@@ -76,6 +78,36 @@ namespace UnitsNet.Tests
             var converted = foundConversionFunction(Volume.FromOilBarrels(1));
 
             Assert.Equal(Volume.FromUsGallons(42), converted);
+        }
+
+        [Fact]
+        public void ConversionToSameUnit_ReturnsSameQuantity()
+        {
+            var unitConverter = new UnitConverter();
+
+            var foundConversionFunction = unitConverter.GetConversionFunction<HowMuch>(HowMuchUnit.ATon, HowMuchUnit.ATon);
+            var converted = foundConversionFunction(new HowMuch(39, HowMuchUnit.Some)); // Intentionally pass the wrong unit here, to test that the exact same quantity is returned
+
+            Assert.Equal(39, converted.Value);
+            Assert.Equal(HowMuchUnit.Some, converted.Unit);
+        }
+
+        [Theory]
+        [InlineData(1, HowMuchUnit.Some, HowMuchUnit.Some, 1)]
+        [InlineData(1, HowMuchUnit.Some, HowMuchUnit.ATon, 2)]
+        [InlineData(1, HowMuchUnit.Some, HowMuchUnit.AShitTon, 10)]
+        public void ConversionForUnitsOfCustomQuantity(double fromValue, Enum fromUnit, Enum toUnit, double expectedValue)
+        {
+            // Intentionally don't map conversion Some->Some, it is not necessary
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch(x.Value * 2, HowMuchUnit.ATon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch(x.Value * 10, HowMuchUnit.AShitTon));
+
+            var foundConversionFunction = unitConverter.GetConversionFunction<HowMuch>(fromUnit, toUnit);
+            var converted = foundConversionFunction(new HowMuch(fromValue, fromUnit));
+
+            Assert.Equal(expectedValue, converted.Value);
+            Assert.Equal(toUnit, converted.Unit);
         }
 
         [Theory]

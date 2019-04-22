@@ -162,6 +162,13 @@ namespace UnitsNet
         /// <param name="lookupKey"></param>
         internal ConversionFunction GetConversionFunction(ConversionFunctionLookupKey lookupKey)
         {
+            IQuantity EchoFunction(IQuantity fromQuantity) => fromQuantity;
+
+            // If from/to units and to quantity types are equal, then return a function that echoes the input quantity
+            // in order to not have to map conversion functions to "self".
+            if (lookupKey.Item1 == lookupKey.Item3 && Equals(lookupKey.Item2, lookupKey.Item4))
+                return EchoFunction;
+
             return _conversionFunctions[lookupKey];
         }
 
