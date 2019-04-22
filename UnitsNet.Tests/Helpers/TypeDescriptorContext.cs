@@ -6,7 +6,7 @@ using System.Text;
 namespace UnitsNet.Tests.Helpers
 {
     /// <summary>
-    /// Is  used to imitate e property with attributes
+    /// Is used to imitate e property with attributes
     /// </summary>
     public class TypeDescriptorContext : ITypeDescriptorContext
     {
@@ -14,7 +14,6 @@ namespace UnitsNet.Tests.Helpers
         {
             public PropertyDescriptor_(string name, Attribute[] attributes) : base(name, attributes)
             {
-
             }
 
             public override Type ComponentType => throw new NotImplementedException();
