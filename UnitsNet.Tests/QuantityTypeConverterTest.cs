@@ -171,38 +171,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_GivenSomeQuantitysAndContextWithDefaultUnitAndConvertToUnitAttributes_ReturnsQuantityStringInUnitOfQuantity()
-        {
-            var converter = new UnitsNetTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
-            {
-                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
-                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter)
-            });
-            Length length = Length.FromMeters(1);
-
-            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
-            Assert.Equal("1 m", converter.ConvertTo(context, culture, length, typeof(string)));
-        }
-
-        [Fact]
-        public void ConvertTo_GivenSomeQuantitysAndContextWithDefaultUnitAndConvertToUnitAndDisplayAsUnitAttributes_ReturnsQuantityStringInSpecifiedDisplayUnit()
-        {
-            var converter = new UnitsNetTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
-            {
-                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
-                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter),
-                new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
-            });
-
-            Length length = Length.FromMeters(1);
-
-            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
-            Assert.Equal("10 dm", converter.ConvertTo(context, culture, length, typeof(string)));
-        }
-
-        [Fact]
         public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitDefaultFormating()
         {
             var converter = new UnitsNetTypeConverter<Length>();
@@ -231,10 +199,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ConvertTo_TestDisplayAsFormattingWithoutDefinedUnit_ReturnsQuantityStringWithQuantetiesUnitAndFormatedAsValueOnly()
+        {
+            var converter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DisplayAsUnitAttribute(null, "v")
+            });
+
+            Length length = Length.FromMeters(1);
+
+            Assert.Equal("1", converter.ConvertTo(context, culture, length, typeof(string)));
+        }
+
+        [Fact]
+        public void ConvertTo_GivenSomeQuantitysAndContextWithDisplayAsUnitAttributes_ReturnsQuantityStringInSpecifiedDisplayUnit()
+        {
+            var converter = new UnitsNetTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
+                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter),
+                new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
+            });
+
+            Length length = Length.FromMeters(1);
+
+            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
+            Assert.Equal("10 dm", converter.ConvertTo(context, culture, length, typeof(string)));
+        }
+
+        [Fact]
         public void WrongUnitTypeInAttribut_DefaultUnit()
         {
             var converter = new UnitsNetTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { new DefaultUnitAttribute(Units.VolumeUnit.CubicMeter) });
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(Units.VolumeUnit.CubicMeter)
+            });
 
             Assert.Throws<ArgumentException>(() => converter.ConvertFrom(context, culture, "1"));
         }
