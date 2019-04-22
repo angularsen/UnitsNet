@@ -85,29 +85,29 @@ namespace UnitsNet
     /// <typeparam name="TQuantity">Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.</typeparam>
     /// <example>
     ///   <para>
-    /// This example shows how to use this typeConverter.
+    /// This example shows how to use this TypeConverter.
     /// It will convert between string to a Length object. The properties unit is displayed.</para>
     ///   <para>When converting a string to Length the unit of the string is used. When no unit is given by the string the base unit is used.</para>
     ///   <para>The displayed unit can be defined by the <see cref="DisplayAsUnitAttribute"/>.</para>
     ///
-    /// <code title="Using the typeConverter without additional attributes">
+    /// <code title="Using the TypeConverter without additional attributes">
     ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     /// 
-    /// <code title="Using the typeConverter using the DisplayAsUnit attribute">
+    /// <code title="Using the TypeConverter using the DisplayAsUnit attribute">
     ///     [DisplayAsUnit(UnitsNet.Units.LengthUnit.Meter)]
     ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     /// 
-    /// <code title="Using the typeConverter using the ConvertToUnit attribute">
+    /// <code title="Using the TypeConverter using the ConvertToUnit attribute">
     ///     [ConvertToUnitAttribute(UnitsNet.Units.LengthUnit.Meter)]
     ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     ///
-    /// <code title="Using the typeConverter using the DefaultUnit attribute">
+    /// <code title="Using the TypeConverter using the DefaultUnit attribute">
     ///     [DefaultUnitAttribute(UnitsNet.Units.LengthUnit.Meter)]
     ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
