@@ -172,27 +172,6 @@ namespace UnitsNet
                 }
                 else
                 {
-                    // TODO this should not be part of QuantityTypeConverter. it should rather be part of the parse function
-                    stringValue = stringValue.Replace("^-9", "⁻⁹"); 
-                    stringValue = stringValue.Replace("^-8", "⁻⁸");
-                    stringValue = stringValue.Replace("^-7", "⁻⁷");
-                    stringValue = stringValue.Replace("^-6", "⁻⁶");
-                    stringValue = stringValue.Replace("^-5", "⁻⁵");
-                    stringValue = stringValue.Replace("^-4", "⁻⁴");
-                    stringValue = stringValue.Replace("^-3", "⁻³");
-                    stringValue = stringValue.Replace("^-2", "⁻²");
-                    stringValue = stringValue.Replace("^-1", "⁻¹");
-                    stringValue = stringValue.Replace("^1", "");
-                    stringValue = stringValue.Replace("^2", "²");
-                    stringValue = stringValue.Replace("^3", "³");
-                    stringValue = stringValue.Replace("^4", "⁴");
-                    stringValue = stringValue.Replace("^5", "⁵");
-                    stringValue = stringValue.Replace("^6", "⁶");
-                    stringValue = stringValue.Replace("^7", "⁷");
-                    stringValue = stringValue.Replace("^8", "⁸");
-                    stringValue = stringValue.Replace("^9", "⁹");
-                    stringValue = stringValue.Replace("*", "·");
-
                     result = Quantity.Parse(culture, typeof(TQuantity), stringValue);
                 }
 

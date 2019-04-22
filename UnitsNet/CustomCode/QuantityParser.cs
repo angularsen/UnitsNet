@@ -183,6 +183,13 @@ namespace UnitsNet
         private static bool ExtractValueAndUnit(Regex regex, string str, out string valueString, out string unitString)
         {
             var match = regex.Match(str);
+
+            if(match.Groups[0].Value == match.Groups[1].Value || match.Groups.Count < 3)
+            {
+                str = UnitParser.NormelizeUnit(str);
+                match = regex.Match(str);
+            }
+
             var groups = match.Groups;
 
             var valueGroup = groups["value"];

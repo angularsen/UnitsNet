@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.Units;
 using Xunit;
 
@@ -58,6 +59,44 @@ namespace UnitsNet.Tests
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
+        }
+
+        [Theory]
+        [InlineData("m", typeof(LengthUnit), LengthUnit.Meter)]
+        [InlineData("m^1", typeof(LengthUnit), LengthUnit.Meter)]
+        [InlineData("m²", typeof(AreaUnit), AreaUnit.SquareMeter)]
+        [InlineData("m^2", typeof(AreaUnit), AreaUnit.SquareMeter)]
+        [InlineData("m³", typeof(VolumeUnit), VolumeUnit.CubicMeter)]
+        [InlineData("m^3", typeof(VolumeUnit), VolumeUnit.CubicMeter)]
+        [InlineData("m⁴", typeof(AreaMomentOfInertiaUnit), AreaMomentOfInertiaUnit.MeterToTheFourth)]
+        [InlineData("m^4", typeof(AreaMomentOfInertiaUnit), AreaMomentOfInertiaUnit.MeterToTheFourth)]
+        [InlineData("K⁻¹", typeof(CoefficientOfThermalExpansionUnit), CoefficientOfThermalExpansionUnit.InverseKelvin)]
+        [InlineData("K^-1", typeof(CoefficientOfThermalExpansionUnit), CoefficientOfThermalExpansionUnit.InverseKelvin)]
+        [InlineData("kg·s⁻¹·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s^-1·m^-2", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        public void Parse_CanParseUnitsWithPowers(string unitAbbreviation, Type unitType, Enum resultUnitType)
+        {
+            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
+        }
+
+        [Theory]
+        [InlineData("kg·s⁻¹·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg*s⁻¹*m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹*m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        public void Parse_CanParseMultiplySigns(string unitAbbreviation, Type unitType, Enum resultUnitType)
+        {
+            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
+        }
+
+        [Theory]
+        [InlineData("kg·s⁻¹·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData(" kg·s⁻¹·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹·m⁻² ", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg· s⁻¹·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹ ·m⁻²", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        public void Parse_CanParseWithWithspacesInUnit(string unitAbbreviation, Type unitType, Enum resultUnitType)
+        {
+            Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
         }
 
         [Fact]

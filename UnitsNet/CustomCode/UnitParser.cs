@@ -77,6 +77,12 @@ namespace UnitsNet
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
 
+            if (unitIntValues.Count < 1)
+            {
+                unitAbbreviation = NormelizeUnit(unitAbbreviation);
+                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            }
+
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
@@ -92,6 +98,34 @@ namespace UnitsNet
                     throw new AmbiguousUnitParseException(
                         $"Cannot parse \"{unitAbbreviation}\" since it could be either of these: {unitsCsv}");
             }
+        }
+
+        internal static string NormelizeUnit(string unitAbbreviation)
+        {
+            // remove all whitespaces in the string
+            unitAbbreviation = new string(unitAbbreviation.Where(c => !char.IsWhiteSpace(c)).ToArray());
+
+            unitAbbreviation = unitAbbreviation.Replace("^-9", "⁻⁹");
+            unitAbbreviation = unitAbbreviation.Replace("^-8", "⁻⁸");
+            unitAbbreviation = unitAbbreviation.Replace("^-7", "⁻⁷");
+            unitAbbreviation = unitAbbreviation.Replace("^-6", "⁻⁶");
+            unitAbbreviation = unitAbbreviation.Replace("^-5", "⁻⁵");
+            unitAbbreviation = unitAbbreviation.Replace("^-4", "⁻⁴");
+            unitAbbreviation = unitAbbreviation.Replace("^-3", "⁻³");
+            unitAbbreviation = unitAbbreviation.Replace("^-2", "⁻²");
+            unitAbbreviation = unitAbbreviation.Replace("^-1", "⁻¹");
+            unitAbbreviation = unitAbbreviation.Replace("^1", "");
+            unitAbbreviation = unitAbbreviation.Replace("^2", "²");
+            unitAbbreviation = unitAbbreviation.Replace("^3", "³");
+            unitAbbreviation = unitAbbreviation.Replace("^4", "⁴");
+            unitAbbreviation = unitAbbreviation.Replace("^5", "⁵");
+            unitAbbreviation = unitAbbreviation.Replace("^6", "⁶");
+            unitAbbreviation = unitAbbreviation.Replace("^7", "⁷");
+            unitAbbreviation = unitAbbreviation.Replace("^8", "⁸");
+            unitAbbreviation = unitAbbreviation.Replace("^9", "⁹");
+            unitAbbreviation = unitAbbreviation.Replace("*", "·");
+
+            return unitAbbreviation;
         }
 
         /// <summary>
@@ -164,6 +198,12 @@ namespace UnitsNet
                 return false;
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+
+            if (unitIntValues.Count < 1)
+            {
+                unitAbbreviation = NormelizeUnit(unitAbbreviation);
+                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
