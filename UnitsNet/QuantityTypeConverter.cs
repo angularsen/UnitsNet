@@ -8,7 +8,7 @@ using System.Globalization;
 namespace UnitsNet
 {
     /// <summary>
-    /// Is the base class for all attributes that are related to <see cref="UnitsNetTypeConverter{T}"/>
+    /// Is the base class for all attributes that are related to <see cref="QuantityTypeConverter{T}"/>
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public abstract class UnitAttributeBase : Attribute
@@ -125,7 +125,7 @@ namespace UnitsNet
     ///     Units.Length Length { get; set; }
     /// </code>
     /// </example>
-    public class UnitsNetTypeConverter<TQuantity> : TypeConverter where TQuantity : IQuantity
+    public class QuantityTypeConverter<TQuantity> : TypeConverter where TQuantity : IQuantity
     {
         /// <summary>
         ///     Returns true if sourceType if of type <see cref="string"/>
