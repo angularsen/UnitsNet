@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void WrongUnitTypeInAttribut_DefaultUnit()
+        public void ConvertFrom_GivenDefaultUnitAttributeWithWrongUnitType_ThrowsArgumentException()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
