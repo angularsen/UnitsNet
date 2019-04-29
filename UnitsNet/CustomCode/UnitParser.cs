@@ -50,7 +50,7 @@ namespace UnitsNet
         [PublicAPI]
         public TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
         {
-            return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType));
+            return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
         }
 
         /// <summary>

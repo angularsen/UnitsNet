@@ -188,6 +188,21 @@ namespace UnitsNet
         /// </summary>
         public double Poise => As(DynamicViscosityUnit.Poise);
 
+        /// <summary>
+        ///     Get DynamicViscosity in PoundsForceSecondPerSquareFoot.
+        /// </summary>
+        public double PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+
+        /// <summary>
+        ///     Get DynamicViscosity in PoundsForceSecondPerSquareInch.
+        /// </summary>
+        public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+
+        /// <summary>
+        ///     Get DynamicViscosity in Reyns.
+        /// </summary>
+        public double Reyns => As(DynamicViscosityUnit.Reyn);
+
         #endregion
 
         #region Static Methods
@@ -277,6 +292,36 @@ namespace UnitsNet
         {
             double value = (double) poise;
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from PoundsForceSecondPerSquareFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static DynamicViscosity FromPoundsForceSecondPerSquareFoot(double poundsforcesecondpersquarefoot)
+        {
+            double value = (double) poundsforcesecondpersquarefoot;
+            return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from PoundsForceSecondPerSquareInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static DynamicViscosity FromPoundsForceSecondPerSquareInch(double poundsforcesecondpersquareinch)
+        {
+            double value = (double) poundsforcesecondpersquareinch;
+            return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from Reyns.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static DynamicViscosity FromReyns(double reyns)
+        {
+            double value = (double) reyns;
+            return new DynamicViscosity(value, DynamicViscosityUnit.Reyn);
         }
 
         /// <summary>
@@ -575,6 +620,9 @@ namespace UnitsNet
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
                 case DynamicViscosityUnit.PascalSecond: return _value;
                 case DynamicViscosityUnit.Poise: return _value/10;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return _value * 4.7880258980335843e1;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return _value * 6.8947572931683613e3;
+                case DynamicViscosityUnit.Reyn: return _value * 6.8947572931683613e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -595,6 +643,9 @@ namespace UnitsNet
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return baseUnitValue;
                 case DynamicViscosityUnit.PascalSecond: return baseUnitValue;
                 case DynamicViscosityUnit.Poise: return baseUnitValue*10;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return baseUnitValue / 4.7880258980335843e1;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return baseUnitValue / 6.8947572931683613e3;
+                case DynamicViscosityUnit.Reyn: return baseUnitValue / 6.8947572931683613e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -3,6 +3,7 @@
 
 using Xunit;
 using System;
+using System.Globalization;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -163,6 +164,22 @@ namespace UnitsNet.Tests.CustomCode
         {
             Volume volume = Duration.FromSeconds(20) * VolumeFlow.FromCubicMetersPerSecond(2);
             Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
+
+        [Theory]
+        [InlineData("1s", 1)]
+        [InlineData("2 seconds", 2)]
+        [InlineData("1 ms", 1e-3)]
+        [InlineData("1000 msec", 1)]
+        [InlineData("1 с", 1, "ru-RU")]
+        [InlineData("1 сек", 1, "ru-RU")]
+        [InlineData("1000 мс", 1, "ru-RU")]
+        [InlineData("1000 мсек", 1, "ru-RU")]
+        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string culture = null)
+        {
+            var cultureInfo = culture == null ? null : new CultureInfo(culture);
+
+            AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
         }
     }
 }

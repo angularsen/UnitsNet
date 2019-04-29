@@ -156,6 +156,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SpecificEntropy in BtusPerPoundFahrenheit.
+        /// </summary>
+        public double BtusPerPoundFahrenheit => As(SpecificEntropyUnit.BtuPerPoundFahrenheit);
+
+        /// <summary>
         ///     Get SpecificEntropy in CaloriesPerGramKelvin.
         /// </summary>
         public double CaloriesPerGramKelvin => As(SpecificEntropyUnit.CaloriePerGramKelvin);
@@ -225,6 +230,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get SpecificEntropy from BtusPerPoundFahrenheit.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEntropy FromBtusPerPoundFahrenheit(double btusperpoundfahrenheit)
+        {
+            double value = (double) btusperpoundfahrenheit;
+            return new SpecificEntropy(value, SpecificEntropyUnit.BtuPerPoundFahrenheit);
+        }
         /// <summary>
         ///     Get SpecificEntropy from CaloriesPerGramKelvin.
         /// </summary>
@@ -596,6 +611,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return _value * 4.1868e3;
                 case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
@@ -618,6 +634,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return baseUnitValue / 4.1868e3;
                 case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return baseUnitValue;

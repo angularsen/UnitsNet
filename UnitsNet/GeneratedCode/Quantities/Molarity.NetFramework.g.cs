@@ -57,8 +57,8 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
                 },
@@ -82,18 +82,21 @@ namespace UnitsNet
 
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Molarity(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -670,8 +673,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -708,8 +716,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />

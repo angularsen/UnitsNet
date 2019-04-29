@@ -59,6 +59,9 @@ namespace UnitsNet
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -80,18 +83,21 @@ namespace UnitsNet
 
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public DynamicViscosity(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -198,6 +204,21 @@ namespace UnitsNet
         /// </summary>
         public double Poise => As(DynamicViscosityUnit.Poise);
 
+        /// <summary>
+        ///     Get DynamicViscosity in PoundsForceSecondPerSquareFoot.
+        /// </summary>
+        public double PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+
+        /// <summary>
+        ///     Get DynamicViscosity in PoundsForceSecondPerSquareInch.
+        /// </summary>
+        public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+
+        /// <summary>
+        ///     Get DynamicViscosity in Reyns.
+        /// </summary>
+        public double Reyns => As(DynamicViscosityUnit.Reyn);
+
         #endregion
 
         #region Static Methods
@@ -280,6 +301,33 @@ namespace UnitsNet
         {
             double value = (double) poise;
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from PoundsForceSecondPerSquareFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static DynamicViscosity FromPoundsForceSecondPerSquareFoot(QuantityValue poundsforcesecondpersquarefoot)
+        {
+            double value = (double) poundsforcesecondpersquarefoot;
+            return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from PoundsForceSecondPerSquareInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static DynamicViscosity FromPoundsForceSecondPerSquareInch(QuantityValue poundsforcesecondpersquareinch)
+        {
+            double value = (double) poundsforcesecondpersquareinch;
+            return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+        }
+        /// <summary>
+        ///     Get DynamicViscosity from Reyns.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static DynamicViscosity FromReyns(QuantityValue reyns)
+        {
+            double value = (double) reyns;
+            return new DynamicViscosity(value, DynamicViscosityUnit.Reyn);
         }
 
         /// <summary>
@@ -640,8 +688,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -678,8 +731,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -706,6 +764,9 @@ namespace UnitsNet
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
                 case DynamicViscosityUnit.PascalSecond: return _value;
                 case DynamicViscosityUnit.Poise: return _value/10;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return _value * 4.7880258980335843e1;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return _value * 6.8947572931683613e3;
+                case DynamicViscosityUnit.Reyn: return _value * 6.8947572931683613e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -726,6 +787,9 @@ namespace UnitsNet
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return baseUnitValue;
                 case DynamicViscosityUnit.PascalSecond: return baseUnitValue;
                 case DynamicViscosityUnit.Poise: return baseUnitValue*10;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return baseUnitValue / 4.7880258980335843e1;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return baseUnitValue / 6.8947572931683613e3;
+                case DynamicViscosityUnit.Reyn: return baseUnitValue / 6.8947572931683613e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

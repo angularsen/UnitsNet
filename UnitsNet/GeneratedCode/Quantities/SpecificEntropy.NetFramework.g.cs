@@ -50,6 +50,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy,
                 new UnitInfo<SpecificEntropyUnit>[] {
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramKelvin, BaseUnits.Undefined),
@@ -79,18 +80,21 @@ namespace UnitsNet
 
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificEntropy(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -168,6 +172,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SpecificEntropy in BtusPerPoundFahrenheit.
+        /// </summary>
+        public double BtusPerPoundFahrenheit => As(SpecificEntropyUnit.BtuPerPoundFahrenheit);
+
+        /// <summary>
         ///     Get SpecificEntropy in CaloriesPerGramKelvin.
         /// </summary>
         public double CaloriesPerGramKelvin => As(SpecificEntropyUnit.CaloriePerGramKelvin);
@@ -236,6 +245,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get SpecificEntropy from BtusPerPoundFahrenheit.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEntropy FromBtusPerPoundFahrenheit(QuantityValue btusperpoundfahrenheit)
+        {
+            double value = (double) btusperpoundfahrenheit;
+            return new SpecificEntropy(value, SpecificEntropyUnit.BtuPerPoundFahrenheit);
+        }
         /// <summary>
         ///     Get SpecificEntropy from CaloriesPerGramKelvin.
         /// </summary>
@@ -667,8 +685,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -705,8 +728,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -727,6 +755,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return _value * 4.1868e3;
                 case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
@@ -749,6 +778,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return baseUnitValue / 4.1868e3;
                 case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return baseUnitValue;

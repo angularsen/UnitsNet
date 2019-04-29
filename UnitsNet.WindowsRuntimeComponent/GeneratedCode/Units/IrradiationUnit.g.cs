@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         JoulePerSquareMillimeter,
         KilojoulePerSquareMeter,
         KilowattHourPerSquareMeter,
+        MillijoulePerSquareCentimeter,
         WattHourPerSquareMeter,
     }
 

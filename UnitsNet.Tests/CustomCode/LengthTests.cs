@@ -171,6 +171,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
+        {
+            // AmplitudeRatio is unitless. Can't have any matches :)
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
+        }
+
+        [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var inches = new Length(2.0, LengthUnit.Inch);

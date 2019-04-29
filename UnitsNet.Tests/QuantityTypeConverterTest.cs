@@ -1,13 +1,10 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
-using System.Text;
-using UnitsNet;
 using UnitsNet.Tests.Helpers;
 using Xunit;
 
@@ -31,14 +28,14 @@ namespace UnitsNet.Tests
 
         static QuantityTypeConverterTest()
         {
-            // NOTE: After this, you can use your typeconverter.
+            // NOTE: After this, you can use your TypeConverter.
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
         }
 
         /// <summary>
         /// Is used for tests that are culture dependent
         /// </summary>
-        static CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
+        private static CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
         [Theory]
         [InlineData(typeof(string), true)]
@@ -48,9 +45,11 @@ namespace UnitsNet.Tests
         [InlineData(typeof(Length), false)]
         public void CanConvertFrom_GivenSomeTypes(Type value, bool expectedResult)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
 
-            Assert.True(converter.CanConvertFrom(value) == expectedResult);
+            bool canConvertFrom = converter.CanConvertFrom(value);
+
+            Assert.Equal(expectedResult, canConvertFrom);
         }
 
         [Theory]
@@ -61,9 +60,11 @@ namespace UnitsNet.Tests
         [InlineData(typeof(Length), false)]
         public void CanConvertTo_GivenSomeTypes(Type value, bool expectedResult)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
 
-            Assert.True(converter.CanConvertTo(value) == expectedResult);
+            bool canConvertTo = converter.CanConvertTo(value);
+
+            Assert.Equal(expectedResult, canConvertTo);
         }
 
         [Theory]
@@ -73,13 +74,13 @@ namespace UnitsNet.Tests
         [InlineData("1km", 1, Units.LengthUnit.Kilometer)]
         public void ConvertFrom_GivenQuantityStringAndContextWithNoAttributes_ReturnsQuantityWithBaseUnitIfNotSpecified(string str, double expectedValue, Enum expectedUnit)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             var convertedValue = (Length)converter.ConvertFrom(context, culture, str);
 
-            Assert.Equal(convertedValue.Value, expectedValue);
-            Assert.Equal(convertedValue.Unit, expectedUnit);
+            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
         [Theory]
@@ -89,13 +90,16 @@ namespace UnitsNet.Tests
         [InlineData("1km", 1, Units.LengthUnit.Kilometer)]
         public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAttribute_ReturnsQuantityWithGivenDefaultUnitIfNotSpecified(string str, double expectedValue, Enum expectedUnit)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
-            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { new DefaultUnitAttribute(Units.LengthUnit.Centimeter) });
+            var converter = new QuantityTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
+            {
+                new DefaultUnitAttribute(Units.LengthUnit.Centimeter)
+            });
 
             var convertedValue = (Length)converter.ConvertFrom(context, culture, str);
 
-            Assert.Equal(convertedValue.Value, expectedValue);
-            Assert.Equal(convertedValue.Unit, expectedUnit);
+            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
         [Theory]
@@ -105,23 +109,23 @@ namespace UnitsNet.Tests
         [InlineData("1km", 1000, Units.LengthUnit.Meter)]
         public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAndConvertToUnitAttributes_ReturnsQuantityConvertedToUnit(string str, double expectedValue, Enum expectedUnit)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
-                {
-                    new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
-                    new ConvertToUnitAttribute(Units.LengthUnit.Meter)
-                });
+            {
+                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
+                new ConvertToUnitAttribute(Units.LengthUnit.Meter)
+            });
 
             var convertedValue = (Length)converter.ConvertFrom(context, culture, str);
 
-            Assert.Equal(convertedValue.Value, expectedValue);
-            Assert.Equal(convertedValue.Unit, expectedUnit);
+            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
         [Fact]
-        public void ConvertFrom_GivenEmpyString_ThrowsNotSupportedException()
+        public void ConvertFrom_GivenEmptyString_ThrowsNotSupportedException()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Throws<NotSupportedException>(() => converter.ConvertFrom(context, culture, ""));
@@ -130,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenWrongQuantity_ThrowsArgumentException()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Throws<ArgumentException>(() => converter.ConvertFrom(context, culture, "1m^2"));
@@ -140,9 +144,9 @@ namespace UnitsNet.Tests
         [InlineData(typeof(Length))]
         [InlineData(typeof(IQuantity))]
         [InlineData(typeof(object))]
-        public void ConvertTo_GivenWrongType_ThrowsExceptionNotSupportedException(Type value)
+        public void ConvertTo_GivenWrongType_ThrowsNotSupportedException(Type value)
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
             Length length = Length.FromMeters(1);
 
@@ -152,87 +156,93 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertTo_GivenStringType_ReturnsQuantityString()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
+            string convertedQuantity = (string)converter.ConvertTo(length, typeof(string));
+
+            Assert.Equal("1 m", convertedQuantity);
         }
 
         [Fact]
         public void ConvertTo_GivenSomeQuantitysAndContextWithNoAttributes_ReturnsQuantityStringInUnitOfQuantity()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
-            Assert.Equal("1 m", converter.ConvertTo(context, culture, length, typeof(string)));
+            string convertedQuantity = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("1 m", convertedQuantity);
         }
 
         [Fact]
         public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitDefaultFormating()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
                 new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
             });
-
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("10 dm", converter.ConvertTo(context, culture, length, typeof(string)));
+            string convertedQuantity = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("10 dm", convertedQuantity);
         }
 
         [Fact]
         public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitFormateAsValueOnly()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
                 new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter, "v")
             });
-
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("10", converter.ConvertTo(context, culture, length, typeof(string)));
+            string convertedQuantity = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("10", convertedQuantity);
         }
 
         [Fact]
         public void ConvertTo_TestDisplayAsFormattingWithoutDefinedUnit_ReturnsQuantityStringWithQuantetiesUnitAndFormatedAsValueOnly()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
                 new DisplayAsUnitAttribute(null, "v")
             });
-
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("1", converter.ConvertTo(context, culture, length, typeof(string)));
+            string convertedQuantity = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("1", convertedQuantity);
         }
 
         [Fact]
         public void ConvertTo_GivenSomeQuantitysAndContextWithDisplayAsUnitAttributes_ReturnsQuantityStringInSpecifiedDisplayUnit()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
-                new DefaultUnitAttribute(Units.LengthUnit.Centimeter),
-                new ConvertToUnitAttribute(Units.LengthUnit.Millimeter),
                 new DisplayAsUnitAttribute(Units.LengthUnit.Decimeter)
             });
-
             Length length = Length.FromMeters(1);
 
-            Assert.Equal("1 m", converter.ConvertTo(length, typeof(string)));
-            Assert.Equal("10 dm", converter.ConvertTo(context, culture, length, typeof(string)));
+            string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string));
+            string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("1 m", convertedQuantityDefaultCulture);
+            Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
 
         [Fact]
-        public void WrongUnitTypeInAttribut_DefaultUnit()
+        public void ConvertFrom_GivenDefaultUnitAttributeWithWrongUnitType_ThrowsArgumentException()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
                 new DefaultUnitAttribute(Units.VolumeUnit.CubicMeter)
@@ -244,7 +254,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_1()
         {
-            var converter = new UnitsNetTypeConverter<Length>();
+            var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(Length.FromMeters(1), converter.ConvertFrom(context, culture, "1m"));
@@ -254,7 +264,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_2()
         {
-            var converter = new UnitsNetTypeConverter<Area>();
+            var converter = new QuantityTypeConverter<Area>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(Area.FromSquareMeters(1), converter.ConvertFrom(context, culture, "1m²"));
@@ -264,7 +274,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_3()
         {
-            var converter = new UnitsNetTypeConverter<Volume>();
+            var converter = new QuantityTypeConverter<Volume>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(Volume.FromCubicMeters(1), converter.ConvertFrom(context, culture, "1m³"));
@@ -274,7 +284,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_4()
         {
-            var converter = new UnitsNetTypeConverter<AreaMomentOfInertia>();
+            var converter = new QuantityTypeConverter<AreaMomentOfInertia>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(AreaMomentOfInertia.FromMetersToTheFourth(1), converter.ConvertFrom(context, culture, "1m⁴"));
@@ -284,7 +294,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_minus1()
         {
-            var converter = new UnitsNetTypeConverter<CoefficientOfThermalExpansion>();
+            var converter = new QuantityTypeConverter<CoefficientOfThermalExpansion>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(1), converter.ConvertFrom(context, culture, "1K⁻¹"));
@@ -294,7 +304,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConvertFrom_GivenStringWithPower_minus2()
         {
-            var converter = new UnitsNetTypeConverter<MassFlux>();
+            var converter = new QuantityTypeConverter<MassFlux>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
             Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(1), converter.ConvertFrom(context, culture, "1kg·s⁻¹·m⁻²"));

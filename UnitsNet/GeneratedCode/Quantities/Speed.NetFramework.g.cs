@@ -55,33 +55,33 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerMinute, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerHour, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerMinute, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerHour, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerMinute, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerMinute, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -103,18 +103,21 @@ namespace UnitsNet
 
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
+        /// If multiple compatible units were found, the first match is used.
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Speed(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
+            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -1027,8 +1030,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return As(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return As(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1065,8 +1073,13 @@ namespace UnitsNet
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitForUnitSystem = Info.GetUnitInfoFor(unitSystem.BaseUnits).Value;
-            return ToUnit(unitForUnitSystem);
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
