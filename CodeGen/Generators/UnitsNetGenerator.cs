@@ -10,6 +10,7 @@ using CodeGen.Generators.UnitsNetGen;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
 namespace CodeGen.Generators
@@ -171,14 +172,49 @@ namespace CodeGen.Generators
 
                 // "k" + "m" => "km"
                 // Correct count is ensured earlier
-                var abbrev = loc.AbbreviationsWithPrefixes.Any()
-                    ? loc.AbbreviationsWithPrefixes[prefixIndex]
-                    : $"{prefixInfo.Abbreviation}{loc.Abbreviations.First()}";
+                if (loc.AbbreviationsWithPrefixes == null || !loc.AbbreviationsWithPrefixes.Any())
+                {
+                    var prefixedAbbreviation = $"{prefixInfo.Abbreviation}{loc.Abbreviations.First()}";
+                    return new Localization
+                    {
+                        Culture = loc.Culture,
+                        Abbreviations = new[] {prefixedAbbreviation},
+                    };
+                }
+
+                /*
+                 Example: For languages where you can't simply prepend "k" for kilo prefix, the prefix abbreviations must be explicitly defined
+                 with AbbreviationsWithPrefixes. This is an array of string|string[] so if there are two items in `Abbreviations` then
+                 there should be sub-arrays each of length 2.
+"Prefixes": [ "Nano", "Micro", "Milli" ],
+"Localization": [
+{
+  "Culture": "en-US",
+  "Abbreviations": [ "s", "sec", "secs", "second", "seconds" ]
+},
+{
+  "Culture": "ru-RU",
+  "Abbreviations": [ "с", "сек" ],
+  "AbbreviationsWithPrefixes": [ ["нс", "нсек"], ["мкс", "мксек"], ["мс", "мсек"] ]
+}
+                 */
+                string[] abbreviationsWithPrefixes;
+                switch (loc.AbbreviationsWithPrefixes[prefixIndex].Type)
+                {
+                    case JTokenType.Array:
+                        abbreviationsWithPrefixes = loc.AbbreviationsWithPrefixes[prefixIndex].ToObject<string[]>();
+                        break;
+                    case JTokenType.String:
+                        abbreviationsWithPrefixes = new[] {loc.AbbreviationsWithPrefixes[prefixIndex].ToObject<string>()};
+                        break;
+                    default:
+                        throw new NotSupportedException("Expect AbbreviationsWithPrefixes to be an array of strings or string arrays.");
+                }
 
                 return new Localization
                 {
                     Culture = loc.Culture,
-                    Abbreviations = new[]{abbrev},
+                    Abbreviations = abbreviationsWithPrefixes
                 };
             }).ToArray();
         }

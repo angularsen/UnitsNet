@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Newtonsoft.Json.Linq;
 
 namespace CodeGen.JsonTypes
 {
@@ -11,7 +12,7 @@ namespace CodeGen.JsonTypes
 #pragma warning disable 0649
 
         public string[] Abbreviations = Array.Empty<string>();
-        public string[] AbbreviationsWithPrefixes = Array.Empty<string>();
+        public JToken[] AbbreviationsWithPrefixes;
         public string Culture;
 
         // 0649 Field is never assigned to
