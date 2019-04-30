@@ -136,8 +136,8 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с" ],
-          "AbbreviationsWithPrefixes": [ "нс", "мкс", "мс" ]
+          "Abbreviations": [ "с", "сек" ],
+          "AbbreviationsWithPrefixes": [ ["нс", "нсек"], ["мкс", "мксек"], ["мс", "мсек"] ]
         }
       ]
     }
