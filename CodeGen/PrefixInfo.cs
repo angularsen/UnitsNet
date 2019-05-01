@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeGen.JsonTypes;
 
 namespace CodeGen
@@ -9,6 +9,11 @@ namespace CodeGen
     /// </summary>
     internal class PrefixInfo
     {
+        /// <summary>
+        /// The unit prefix.
+        /// </summary>
+        public Prefix Prefix { get; }
+
         /// <summary>
         /// The unit prefix abbreviation, such as "k" for kilo or "m" for milli.
         /// </summary>
@@ -20,44 +25,45 @@ namespace CodeGen
         /// <example>Kilo has "1e3" in order to multiply by 1000.</example>
         public string Factor { get; }
 
-        public static readonly IReadOnlyDictionary<Prefix, PrefixInfo> Entries = new Dictionary<Prefix, PrefixInfo>
+        public static readonly IReadOnlyDictionary<Prefix, PrefixInfo> Entries = new[]
         {
-            // NOTE: Need to append 'd' suffix for double in order to later search/replace "d" with "m"
+            // Need to append 'd' suffix for double in order to later search/replace "d" with "m"
             // when creating decimal conversion functions in CodeGen.Generator.FixConversionFunctionsForDecimalValueTypes.
 
             // SI prefixes
-            { Prefix.Yocto, new PrefixInfo("y", "1e-24d") },
-            { Prefix.Zepto, new PrefixInfo("z", "1e-21d") },
-            { Prefix.Atto, new PrefixInfo("a", "1e-18d") },
-            { Prefix.Femto, new PrefixInfo("f", "1e-15d") },
-            { Prefix.Pico, new PrefixInfo("p", "1e-12d") },
-            { Prefix.Nano, new PrefixInfo("n", "1e-9d") },
-            { Prefix.Micro, new PrefixInfo("µ", "1e-6d") },
-            { Prefix.Milli, new PrefixInfo("m", "1e-3d") },
-            { Prefix.Centi, new PrefixInfo("c", "1e-2d") },
-            { Prefix.Deci, new PrefixInfo("d", "1e-1d") },
-            { Prefix.Deca, new PrefixInfo("da", "1e1d") },
-            { Prefix.Hecto, new PrefixInfo("h", "1e2d") },
-            { Prefix.Kilo, new PrefixInfo("k", "1e3d") },
-            { Prefix.Mega, new PrefixInfo("M", "1e6d") },
-            { Prefix.Giga, new PrefixInfo("G", "1e9d") },
-            { Prefix.Tera, new PrefixInfo("T", "1e12d") },
-            { Prefix.Peta, new PrefixInfo("P", "1e15d") },
-            { Prefix.Exa, new PrefixInfo("E", "1e18d") },
-            { Prefix.Zetta, new PrefixInfo("Z", "1e21d") },
-            { Prefix.Yotta, new PrefixInfo("Y", "1e24d") },
+            new PrefixInfo(Prefix.Yocto, "y", "1e-24d"),
+            new PrefixInfo(Prefix.Zepto, "z", "1e-21d"),
+            new PrefixInfo(Prefix.Atto, "a", "1e-18d"),
+            new PrefixInfo(Prefix.Femto, "f", "1e-15d"),
+            new PrefixInfo(Prefix.Pico, "p", "1e-12d"),
+            new PrefixInfo(Prefix.Nano, "n", "1e-9d"),
+            new PrefixInfo(Prefix.Micro, "µ", "1e-6d"),
+            new PrefixInfo(Prefix.Milli, "m", "1e-3d"),
+            new PrefixInfo(Prefix.Centi, "c", "1e-2d"),
+            new PrefixInfo(Prefix.Deci, "d", "1e-1d"),
+            new PrefixInfo(Prefix.Deca, "da", "1e1d"),
+            new PrefixInfo(Prefix.Hecto, "h", "1e2d"),
+            new PrefixInfo(Prefix.Kilo, "k", "1e3d"),
+            new PrefixInfo(Prefix.Mega, "M", "1e6d"),
+            new PrefixInfo(Prefix.Giga, "G", "1e9d"),
+            new PrefixInfo(Prefix.Tera, "T", "1e12d"),
+            new PrefixInfo(Prefix.Peta, "P", "1e15d"),
+            new PrefixInfo(Prefix.Exa, "E", "1e18d"),
+            new PrefixInfo(Prefix.Zetta, "Z", "1e21d"),
+            new PrefixInfo(Prefix.Yotta, "Y", "1e24d"),
 
             // Binary prefixes
-            { Prefix.Kibi, new PrefixInfo("Ki", $"1024d") },
-            { Prefix.Mebi, new PrefixInfo("Mi", $"(1024d * 1024)") },
-            { Prefix.Gibi, new PrefixInfo("Gi", $"(1024d * 1024 * 1024)") },
-            { Prefix.Tebi, new PrefixInfo("Ti", $"(1024d * 1024 * 1024 * 1024)") },
-            { Prefix.Pebi, new PrefixInfo("Pi", $"(1024d * 1024 * 1024 * 1024 * 1024)") },
-            { Prefix.Exbi, new PrefixInfo("Ei", $"(1024d * 1024 * 1024 * 1024 * 1024 * 1024)") },
-        };
+            new PrefixInfo(Prefix.Kibi, "Ki", $"1024d"),
+            new PrefixInfo(Prefix.Mebi, "Mi", $"(1024d * 1024)"),
+            new PrefixInfo(Prefix.Gibi, "Gi", $"(1024d * 1024 * 1024)"),
+            new PrefixInfo(Prefix.Tebi, "Ti", $"(1024d * 1024 * 1024 * 1024)"),
+            new PrefixInfo(Prefix.Pebi, "Pi", $"(1024d * 1024 * 1024 * 1024 * 1024)"),
+            new PrefixInfo(Prefix.Exbi, "Ei", $"(1024d * 1024 * 1024 * 1024 * 1024 * 1024)"),
+        }.ToDictionary(prefixInfo => prefixInfo.Prefix);
 
-        private PrefixInfo(string abbreviation, string factor)
+        private PrefixInfo(Prefix prefix, string abbreviation, string factor)
         {
+            Prefix = prefix;
             Abbreviation = abbreviation;
             Factor = factor;
         }

@@ -99,7 +99,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/d" ],
-          "AbbreviationsWithPrefixes": [ "Mlb/d" ]
+          "AbbreviationsForPrefixes": { "Mega": "Mlb/d" }
         }
       ]
     },

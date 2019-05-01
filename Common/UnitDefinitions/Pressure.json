@@ -27,7 +27,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Па" ],
-          "AbbreviationsWithPrefixes": [ "мкПа", "ммПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
+          "AbbreviationsForPrefixes": { "Micro": "мкПа", "Milli": "ммПа", "Deca": "даПа", "Hecto": "гПа", "Kilo": "кПа", "Mega": "МПа", "Giga": "ГПа" }
         }
       ]
     },
@@ -126,7 +126,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н/м²" ],
-          "AbbreviationsWithPrefixes": [ "кН/м²", "Мн/м²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "кН/м²", "Mega": "Мн/м²" }
         }
       ]
     },
@@ -144,7 +144,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н/см²" ],
-          "AbbreviationsWithPrefixes": [ "кН/см²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "кН/см²" }
         }
       ]
     },
@@ -162,7 +162,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н/мм²" ],
-          "AbbreviationsWithPrefixes": [ "кН/мм²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "кН/мм²" }
         }
       ]
     },
@@ -208,7 +208,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsWithPrefixes": [ "kipf/in²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
         }
       ]
     },
@@ -222,7 +222,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/ft²" ],
-          "AbbreviationsWithPrefixes": [ "kipf/ft²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/ft²" }
         }
       ]
     },

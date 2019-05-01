@@ -20,7 +20,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "л" ],
-          "AbbreviationsWithPrefixes": [ "мкл", "мл", "сл", "дл", "гл", "кл", "Mкл" ]
+          "AbbreviationsForPrefixes": {"Micro": "мкл", "Milli": "мл", "Centi": "сл", "Deci": "дл", "Hecto": "гл", "Kilo": "кл", "Mega": "Mкл" }
         }
       ]
     },
