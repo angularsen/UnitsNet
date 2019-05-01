@@ -22,8 +22,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м" ],
-          "AbbreviationsWithPrefixes": [ "нм", "мкм", "мм", "см", "дм", "гм", "км" ]
+          "Abbreviations": [ "м" ]
         }
       ]
     },

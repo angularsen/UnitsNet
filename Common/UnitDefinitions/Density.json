@@ -77,7 +77,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/in³" ],
-          "AbbreviationsWithPrefixes": [ "kip/in³" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
         }
       ]
     },
@@ -95,7 +95,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/ft³" ],
-          "AbbreviationsWithPrefixes": [ "kip/ft³" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
         }
       ]
     },

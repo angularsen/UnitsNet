@@ -22,8 +22,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г" ],
-          "AbbreviationsWithPrefixes": [ "нг", "мкг", "мг", "сг", "дг", "даг", "гг", "кг" ]
+          "Abbreviations": [ "г" ]
         }
       ]
     },
@@ -43,8 +42,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "т" ],
-          "AbbreviationsWithPrefixes": [ "кт", "Мт" ]
+          "Abbreviations": [ "т" ]
         }
       ]
     },

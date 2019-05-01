@@ -19,8 +19,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "л" ],
-          "AbbreviationsWithPrefixes": [ "мкл", "мл", "сл", "дл", "гл", "кл", "Mкл" ]
+          "Abbreviations": [ "л" ]
         }
       ]
     },
