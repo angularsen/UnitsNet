@@ -67,19 +67,6 @@ namespace CodeGen.Generators
             return quantity;
         }
 
-        private static void GenerateUnitTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
-        {
-            if (File.Exists(filePath))
-            {
-                sb.Append("test stub(skip) ");
-                return;
-            }
-
-            string content = new UnitTestStubGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
-            sb.Append("test stub(OK) ");
-        }
-
         private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
         {
             string content = new QuantityGenerator(quantity).Generate();
@@ -92,13 +79,6 @@ namespace CodeGen.Generators
             string content = new UnitTypeGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("unit(OK) ");
-        }
-
-        private static void GenerateUnitTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
-        {
-            string content = new UnitTestBaseClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
-            sb.Append("test base(OK) ");
         }
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
