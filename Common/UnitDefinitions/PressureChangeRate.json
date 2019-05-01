@@ -21,8 +21,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Па/с" ],
-          "AbbreviationsForPrefixes": { "Kilo": "кПа/с", "Mega": "МПа/с" }
+          "Abbreviations": [ "Па/с" ]
         }
       ]
     },
@@ -39,8 +38,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Па/с" ],
-          "AbbreviationsForPrefixes": { "Kilo": "кПа/мин", "Mega": "МПа/мин" }
+          "Abbreviations": [ "Па/с" ]
         }
       ]
     },

@@ -20,8 +20,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г/моль" ],
-          "AbbreviationsForPrefixes": { "Nano": "нг/моль", "Micro": "мкг/моль", "Milli": "мг/моль", "Centi": "сг/моль", "Deci": "дг/моль", "Deca": "даг/моль", "Hecto": "гг/моль", "Kilo": "кг/моль" }
+          "Abbreviations": [ "г/моль" ]
         }
       ]
     },

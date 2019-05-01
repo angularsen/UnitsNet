@@ -98,8 +98,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/d" ],
-          "AbbreviationsForPrefixes": { "Mega": "Mlb/d" }
+          "Abbreviations": [ "lb/d" ]
         }
       ]
     },
