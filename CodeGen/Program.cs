@@ -12,8 +12,21 @@ namespace CodeGen
     class Program
     {
         /// <summary>
-        ///
+        /// Code generator for Units.NET.
+        /// Reads unit definitions from JSON files and outputs C# files in GeneratedCode folders:
+        /// <list type="number">
+        ///     <item><description>Quantity types (Length, Mass, ...)</description></item>
+        ///     <item><description><see cref="UnitsNet.QuantityType"/> enum type (QuantityType.Length, QuantityType.Mass, ...)</description></item>
+        ///     <item><description><see cref="UnitsNet.Quantity"/> type</description></item>
+        ///     <item><description><see cref="UnitsNet.UnitAbbreviationsCache"/></description></item>
+        ///     <item><description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description></item>
+        ///     <item><description>Unit enum types (LengthUnit, MassUnit, ...)</description></item>
+        /// </list>
         /// </summary>
+        /// <remarks>
+        /// System.CommandLine.Dragonfruit based Main method, where CLI arguments are parsed and passed directly to this method.
+        /// See https://github.com/dotnet/command-line-api/
+        /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
         static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null)
