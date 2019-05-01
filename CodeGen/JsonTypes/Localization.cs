@@ -63,8 +63,7 @@ namespace CodeGen.JsonTypes
         /// </example>
         /// <remarks>
         ///     The unit abbreviation value can either be a string or an array of strings. Typically the number of abbreviations
-        ///     for a prefix
-        ///     matches that of "Abbreviations" array, but this is not required.
+        ///     for a prefix matches that of "Abbreviations" array, but this is not required.
         /// </remarks>
         public JObject AbbreviationsForPrefixes;
 
