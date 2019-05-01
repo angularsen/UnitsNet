@@ -136,12 +136,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с", "сек" ],
-          "AbbreviationsForPrefixes": {
-            "Nano": ["нс", "нсек"],
-            "Micro": ["мкс", "мксек"],
-            "Milli": ["мс", "мсек"]
-          }
+          "Abbreviations": [ "с", "сек" ]
         }
       ]
     }

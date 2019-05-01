@@ -47,8 +47,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н·м" ],
-          "AbbreviationsForPrefixes": { "Kilo": "кН·м", "Mega": "МН·м" }
+          "Abbreviations": [ "Н·м" ]
         }
       ]
     },
@@ -62,7 +61,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf·in" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf·in", "Mega": "Mlbf·in" }
+          "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
         }
       ]
     },
@@ -76,7 +75,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf·ft" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf·ft", "Mega": "Mlbf·ft" }
+          "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
         }
       ]
     },

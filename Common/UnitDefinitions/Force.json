@@ -79,8 +79,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н" ],
-          "AbbreviationsForPrefixes": { "Micro": "мкН", "Milli": "мН", "Deca": "даН", "Kilo": "кН", "Mega": "МН" }
+          "Abbreviations": [ "Н" ]
         }
       ]
     },

@@ -22,8 +22,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г" ],
-          "AbbreviationsForPrefixes": { "Nano": "нг", "Micro": "мкг", "Milli": "мг", "Centi": "сг", "Deci": "дг", "Deca": "даг", "Hecto": "гг", "Kilo": "кг" }
+          "Abbreviations": [ "г" ]
         }
       ]
     },
@@ -43,8 +42,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "т" ],
-          "AbbreviationsForPrefixes": { "Kilo": "кт", "Mega": "Мт" }
+          "Abbreviations": [ "т" ]
         }
       ]
     },

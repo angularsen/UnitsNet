@@ -62,20 +62,22 @@ namespace CodeGen.Generators
         {
             foreach (var u in quantity.Units)
                 // Use decimal for internal calculations if base type is not double, such as for long or int.
+            {
                 if (string.Equals(quantity.BaseType, "decimal", StringComparison.OrdinalIgnoreCase))
                 {
                     // Change any double literals like "1024d" to decimal literals "1024m"
                     u.FromUnitToBaseFunc = u.FromUnitToBaseFunc.Replace("d", "m");
                     u.FromBaseToUnitFunc = u.FromBaseToUnitFunc.Replace("d", "m");
                 }
+            }
         }
 
         private static void AddPrefixUnits(Quantity quantity)
         {
             var unitsToAdd = new List<Unit>();
             foreach (var unit in quantity.Units)
-                // "Kilo", "Nano" etc.
             foreach (var prefix in unit.Prefixes)
+            {
                 try
                 {
                     var prefixInfo = PrefixInfo.Entries[prefix];
@@ -94,6 +96,7 @@ namespace CodeGen.Generators
                 {
                     throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
                 }
+            }
 
             quantity.Units = quantity.Units.Concat(unitsToAdd).ToArray();
         }
@@ -101,22 +104,24 @@ namespace CodeGen.Generators
         /// <summary>
         ///     Create unit abbreviations for a prefix unit, given a unit and the prefix.
         ///     The unit abbreviations are either prefixed with the SI prefix or an explicitly configured abbreviation via
-        ///     <see cref="AbbreviationsForPrefixes" />.
+        ///     <see cref="Localization.AbbreviationsForPrefixes" />.
         /// </summary>
         private static Localization[] GetLocalizationForPrefixUnit(IEnumerable<Localization> localizations, PrefixInfo prefixInfo)
         {
             return localizations.Select(loc =>
             {
-                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out var unitAbbreviationsForPrefix))
+                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
+                {
                     return new Localization
                     {
                         Culture = loc.Culture,
                         Abbreviations = unitAbbreviationsForPrefix
                     };
+                }
 
                 // No prefix unit abbreviations are specified, so fall back to prepending the default SI prefix to each unit abbreviation:
                 // kilo ("k") + meter ("m") => kilometer ("km")
-                var prefix = prefixInfo.Abbreviation;
+                var prefix = prefixInfo.GetPrefixForCultureOrSiPrefix(loc.Culture);
                 unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
 
                 return new Localization
