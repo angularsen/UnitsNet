@@ -16,9 +16,9 @@ namespace CodeGen
         /// Reads unit definitions from JSON files and outputs C# files in GeneratedCode folders:
         /// <list type="number">
         ///     <item><description>Quantity types (Length, Mass, ...)</description></item>
-        ///     <item><description><see cref="UnitsNet.QuantityType"/> enum type (QuantityType.Length, QuantityType.Mass, ...)</description></item>
-        ///     <item><description><see cref="UnitsNet.Quantity"/> type</description></item>
-        ///     <item><description><see cref="UnitsNet.UnitAbbreviationsCache"/></description></item>
+        ///     <item><description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description></item>
+        ///     <item><description>UnitsNet.Quantity type</description></item>
+        ///     <item><description>UnitsNet.UnitAbbreviationsCache</description></item>
         ///     <item><description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description></item>
         ///     <item><description>Unit enum types (LengthUnit, MassUnit, ...)</description></item>
         /// </list>
