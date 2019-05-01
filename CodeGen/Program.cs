@@ -29,7 +29,8 @@ namespace CodeGen
         /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
-        static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null)
+        /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
+        static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -57,7 +58,10 @@ namespace CodeGen
                 }
 
                 UnitsNetGenerator.Generate(repositoryRoot);
-                UnitsNetWrcGenerator.Generate(repositoryRoot);
+
+                if (!skipWrc)
+                    UnitsNetWrcGenerator.Generate(repositoryRoot);
+
                 Log.Information($"Completed in {sw.ElapsedMilliseconds} ms!", ConsoleColor.Green);
                 return 0;
             }
