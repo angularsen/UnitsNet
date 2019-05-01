@@ -9,58 +9,63 @@ using Serilog.Events;
 
 namespace CodeGen
 {
-    class Program
+    internal class Program
     {
         /// <summary>
-        /// Code generator for Units.NET.
-        /// Reads unit definitions from JSON files and outputs C# files in GeneratedCode folders:
-        /// <list type="number">
-        ///     <item><description>Quantity types (Length, Mass, ...)</description></item>
-        ///     <item><description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description></item>
-        ///     <item><description>UnitsNet.Quantity type</description></item>
-        ///     <item><description>UnitsNet.UnitAbbreviationsCache</description></item>
-        ///     <item><description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description></item>
-        ///     <item><description>Unit enum types (LengthUnit, MassUnit, ...)</description></item>
-        /// </list>
+        ///     Code generator for Units.NET.
+        ///     Reads unit definitions from JSON files and outputs C# files in GeneratedCode folders:
+        ///     <list type="number">
+        ///         <item>
+        ///             <description>Quantity types (Length, Mass, ...)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description>UnitsNet.Quantity type</description>
+        ///         </item>
+        ///         <item>
+        ///             <description>UnitsNet.UnitAbbreviationsCache</description>
+        ///         </item>
+        ///         <item>
+        ///             <description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description>
+        ///         </item>
+        ///         <item>
+        ///             <description>Unit enum types (LengthUnit, MassUnit, ...)</description>
+        ///         </item>
+        ///     </list>
         /// </summary>
         /// <remarks>
-        /// System.CommandLine.Dragonfruit based Main method, where CLI arguments are parsed and passed directly to this method.
-        /// See https://github.com/dotnet/command-line-api/
+        ///     System.CommandLine.Dragonfruit based Main method, where CLI arguments are parsed and passed directly to this
+        ///     method.
+        ///     See https://github.com/dotnet/command-line-api/
         /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
         /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
-        static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false)
+        private static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
-                .Console(restrictedToMinimumLevel: verbose ? LogEventLevel.Verbose : LogEventLevel.Information)
+                .Console(verbose ? LogEventLevel.Verbose : LogEventLevel.Information)
                 .CreateLogger();
 
             try
             {
-                if (repositoryRoot == null)
-                {
-                    var executableParentDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                    Log.Verbose($"Executable dir: {executableParentDir}");
+                repositoryRoot = repositoryRoot ?? FindRepositoryRoot();
 
-                    if (!TryFindRepositoryRoot(executableParentDir, out repositoryRoot))
-                    {
-                        throw new Exception($"Unable to find repository root in directory hierarchy: {executableParentDir}");
-                    }
-                }
+                var rootDir = repositoryRoot.FullName;
+
+                Log.Information($"Units.NET code generator {Assembly.GetExecutingAssembly().GetName().Version}", ConsoleColor.Green);
+                if (verbose) Log.Debug($"verbose: {true}", ConsoleColor.Blue);
 
                 var sw = Stopwatch.StartNew();
-                Log.Information($"Units.NET code generator {Assembly.GetExecutingAssembly().GetName().Version}", ConsoleColor.Green);
-                if (verbose)
-                {
-                    Log.Debug($"verbose: {true}", ConsoleColor.Blue);
-                }
+                var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
 
-                UnitsNetGenerator.Generate(repositoryRoot);
+                UnitsNetGenerator.Generate(rootDir, quantities);
 
                 if (!skipWrc)
-                    UnitsNetWrcGenerator.Generate(repositoryRoot);
+                    UnitsNetWrcGenerator.Generate(rootDir, quantities);
 
                 Log.Information($"Completed in {sw.ElapsedMilliseconds} ms!", ConsoleColor.Green);
                 return 0;
@@ -72,23 +77,23 @@ namespace CodeGen
             }
         }
 
-        private static bool TryFindRepositoryRoot(DirectoryInfo searchFromDir, out DirectoryInfo repoRootDir)
+        private static DirectoryInfo FindRepositoryRoot()
         {
-            for (var dir = searchFromDir; dir != null; dir = dir.Parent)
+            var executableParentDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Log.Verbose($"Executable dir: {executableParentDir}");
+
+            for (var dir = executableParentDir; dir != null; dir = dir.Parent)
             {
                 if (dir.GetFiles("UnitsNet.sln").Any())
                 {
-                    repoRootDir = dir;
                     Log.Verbose($"Found repo root: {dir}");
-                    return true;
+                    return dir;
                 }
 
                 Log.Verbose($"Not repo root: {dir}");
             }
 
-            Log.Verbose($"Giving up finding repo root.");
-            repoRootDir = null;
-            return false;
+            throw new Exception($"Unable to find repository root in directory hierarchy: {executableParentDir}");
         }
     }
 }
