@@ -151,8 +151,8 @@ namespace CodeGen.Generators
 
                     unitsToAdd.Add(new Unit
                     {
-                        SingularName = $"{prefix}{StringExtensions.ToCamelCase(unit.SingularName)}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                        PluralName = $"{prefix}{StringExtensions.ToCamelCase(unit.PluralName)}",     // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
+                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
+                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}",     // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
                         BaseUnits = null, // Can we determine this somehow?
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
@@ -166,60 +166,95 @@ namespace CodeGen.Generators
 
         private static Localization[] GetLocalizationForPrefixUnit(Unit unit, int prefixIndex, PrefixInfo prefixInfo, string quantityName)
         {
-            return unit.Localization.Select(loc =>
+            string[] GetUnitAbbreviationsForPrefix(Localization loc)
             {
-                EnsureValidAbbreviationsWithPrefixes(quantityName, loc, unit);
-
-                // "k" + "m" => "km"
-                // Correct count is ensured earlier
+                // If no custom abbreviations are specified, prepend the default prefix to each unit abbreviation: kilo ("k") + meter ("m") => kilometer ("km")
                 if (loc.AbbreviationsWithPrefixes == null || !loc.AbbreviationsWithPrefixes.Any())
                 {
-                    var prefixedAbbreviation = $"{prefixInfo.Abbreviation}{loc.Abbreviations.First()}";
-                    return new Localization
-                    {
-                        Culture = loc.Culture,
-                        Abbreviations = new[] {prefixedAbbreviation},
-                    };
+                    string prefix = prefixInfo.Abbreviation;
+                    return loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
                 }
 
                 /*
-                 Example: For languages where you can't simply prepend "k" for kilo prefix, the prefix abbreviations must be explicitly defined
-                 with AbbreviationsWithPrefixes. This is an array of string|string[] so if there are two items in `Abbreviations` then
-                 there should be sub-arrays each of length 2.
-"Prefixes": [ "Nano", "Micro", "Milli" ],
-"Localization": [
-{
-  "Culture": "en-US",
-  "Abbreviations": [ "s", "sec", "secs", "second", "seconds" ]
-},
-{
-  "Culture": "ru-RU",
-  "Abbreviations": [ "с", "сек" ],
-  "AbbreviationsWithPrefixes": [ ["нс", "нсек"], ["мкс", "мксек"], ["мс", "мсек"] ]
-}
+                 Prepend prefix to all abbreviations of a unit.
+                 Some languages, like Russian, you can't simply prepend "k" for kilo prefix, so the prefix abbreviations must be explicitly defined
+                 with AbbreviationsWithPrefixes.
+
+                 Example 1 - Torque.Newtonmeter has only a single abbreviation in Russian, so AbbreviationsWithPrefixes is an array of strings mapped to each prefix
+
+    {
+      "SingularName": "NewtonMeter",
+      "PluralName": "NewtonMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Н·м" ],
+          "AbbreviationsWithPrefixes": [ "кН·м", "МН·м" ]
+        }
+      ]
+    },
+
+                Example 2 - Duration.Second has 3 prefixes and 2 abbreviations in Russian, so AbbreviationsWithPrefixes is an array of 3 items where each
+                represents the unit abbreviations for that prefix - typically a variant of those in "Abbreviations", but the counts don't have to match.
+
+    {
+      "SingularName": "Second",
+      "PluralName": "Seconds",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s", "sec", "secs", "second", "seconds" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "с", "сек" ],
+          "AbbreviationsWithPrefixes": [ ["нс", "нсек"], ["мкс", "мксек"], ["мс", "мсек"] ]
+        }
+      ]
+    }
                  */
-                string[] abbreviationsWithPrefixes;
-                switch (loc.AbbreviationsWithPrefixes[prefixIndex].Type)
+
+                EnsureValidAbbreviationsWithPrefixes(loc, unit, quantityName);
+                JToken abbreviationsForPrefix = loc.AbbreviationsWithPrefixes[prefixIndex];
+                switch (abbreviationsForPrefix.Type)
                 {
                     case JTokenType.Array:
-                        abbreviationsWithPrefixes = loc.AbbreviationsWithPrefixes[prefixIndex].ToObject<string[]>();
-                        break;
+                        return abbreviationsForPrefix.ToObject<string[]>();
                     case JTokenType.String:
-                        abbreviationsWithPrefixes = new[] {loc.AbbreviationsWithPrefixes[prefixIndex].ToObject<string>()};
-                        break;
+                        return new[] {abbreviationsForPrefix.ToObject<string>()};
                     default:
                         throw new NotSupportedException("Expect AbbreviationsWithPrefixes to be an array of strings or string arrays.");
                 }
+            }
+
+            Localization WithPrefixes(Localization loc)
+            {
+                string[] unitAbbreviationsForPrefix = GetUnitAbbreviationsForPrefix(loc);
 
                 return new Localization
                 {
                     Culture = loc.Culture,
-                    Abbreviations = abbreviationsWithPrefixes
+                    Abbreviations = unitAbbreviationsForPrefix,
                 };
-            }).ToArray();
+            }
+
+            return unit.Localization.Select(WithPrefixes).ToArray();
         }
 
-        private static void EnsureValidAbbreviationsWithPrefixes(string quantityName, Localization localization, Unit unit)
+        private static void EnsureValidAbbreviationsWithPrefixes(Localization localization, Unit unit, string quantityName)
         {
             if (localization.AbbreviationsWithPrefixes.Length > 0 &&
                 localization.AbbreviationsWithPrefixes.Length != unit.Prefixes.Length)
