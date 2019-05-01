@@ -9,7 +9,6 @@ using System.Text;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Serilog;
 using QuantityGenerator = CodeGen.Generators.UnitsNetWrcGen.QuantityGenerator;
 using QuantityTypeGenerator = CodeGen.Generators.UnitsNetWrcGen.QuantityTypeGenerator;
@@ -60,11 +59,18 @@ namespace CodeGen.Generators
 
         private static Quantity ParseQuantityFile(string jsonFile)
         {
-            var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFile, Encoding.UTF8), JsonSerializerSettings);
-            AddPrefixUnits(quantity);
-            FixConversionFunctionsForDecimalValueTypes(quantity);
-            OrderUnitsByName(quantity);
-            return quantity;
+            try
+            {
+                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFile, Encoding.UTF8), JsonSerializerSettings);
+                AddPrefixUnits(quantity);
+                FixConversionFunctionsForDecimalValueTypes(quantity);
+                OrderUnitsByName(quantity);
+                return quantity;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error parsing quantity JSON file: {jsonFile}", e);
+            }
         }
 
         private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
@@ -127,124 +133,61 @@ namespace CodeGen.Generators
             foreach (Unit unit in quantity.Units)
             {
                 // "Kilo", "Nano" etc.
-                for (var prefixIndex = 0; prefixIndex < unit.Prefixes.Length; prefixIndex++)
+                foreach (Prefix prefix in unit.Prefixes)
                 {
-                    Prefix prefix = unit.Prefixes[prefixIndex];
-                    PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
-
-                    unitsToAdd.Add(new Unit
+                    try
                     {
-                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}",     // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = null, // Can we determine this somehow?
-                        FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
-                        FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
-                        Localization = GetLocalizationForPrefixUnit(unit, prefixIndex, prefixInfo, quantity.Name),
-                    });
+                        PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
+
+                        unitsToAdd.Add(new Unit
+                        {
+                            SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
+                            PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
+                            BaseUnits = null, // Can we determine this somehow?
+                            FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
+                            FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
+                            Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
+                    }
                 }
             }
 
             quantity.Units = quantity.Units.Concat(unitsToAdd).ToArray();
         }
 
-        private static Localization[] GetLocalizationForPrefixUnit(Unit unit, int prefixIndex, PrefixInfo prefixInfo, string quantityName)
+        /// <summary>
+        /// Create unit abbreviations for a prefix unit, given a unit and the prefix.
+        /// The unit abbreviations are either prefixed with the SI prefix or an explicitly configured abbreviation via <see cref="AbbreviationsForPrefixes"/>.
+        /// </summary>
+        private static Localization[] GetLocalizationForPrefixUnit(IEnumerable<Localization> localizations, PrefixInfo prefixInfo)
         {
-            string[] GetUnitAbbreviationsForPrefix(Localization loc)
+            return localizations.Select(loc =>
             {
-                // If no custom abbreviations are specified, prepend the default prefix to each unit abbreviation: kilo ("k") + meter ("m") => kilometer ("km")
-                if (loc.AbbreviationsWithPrefixes == null || !loc.AbbreviationsWithPrefixes.Any())
+                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
                 {
-                    string prefix = prefixInfo.Abbreviation;
-                    return loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
+                    // Use explicitly defined prefix unit abbreviations
+                    return new Localization
+                    {
+                        Culture = loc.Culture,
+                        Abbreviations = unitAbbreviationsForPrefix,
+                    };
                 }
 
-                /*
-                 Prepend prefix to all abbreviations of a unit.
-                 Some languages, like Russian, you can't simply prepend "k" for kilo prefix, so the prefix abbreviations must be explicitly defined
-                 with AbbreviationsWithPrefixes.
-
-                 Example 1 - Torque.Newtonmeter has only a single abbreviation in Russian, so AbbreviationsWithPrefixes is an array of strings mapped to each prefix
-
-    {
-      "SingularName": "NewtonMeter",
-      "PluralName": "NewtonMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "N·m" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "Н·м" ],
-          "AbbreviationsWithPrefixes": [ "кН·м", "МН·м" ]
-        }
-      ]
-    },
-
-                Example 2 - Duration.Second has 3 prefixes and 2 abbreviations in Russian, so AbbreviationsWithPrefixes is an array of 3 items where each
-                represents the unit abbreviations for that prefix - typically a variant of those in "Abbreviations", but the counts don't have to match.
-
-    {
-      "SingularName": "Second",
-      "PluralName": "Seconds",
-      "BaseUnits": {
-        "T": "Second"
-      },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "s", "sec", "secs", "second", "seconds" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "с", "сек" ],
-          "AbbreviationsWithPrefixes": [ ["нс", "нсек"], ["мкс", "мксек"], ["мс", "мсек"] ]
-        }
-      ]
-    }
-                 */
-
-                EnsureValidAbbreviationsWithPrefixes(loc, unit, quantityName);
-                JToken abbreviationsForPrefix = loc.AbbreviationsWithPrefixes[prefixIndex];
-                switch (abbreviationsForPrefix.Type)
-                {
-                    case JTokenType.Array:
-                        return abbreviationsForPrefix.ToObject<string[]>();
-                    case JTokenType.String:
-                        return new[] {abbreviationsForPrefix.ToObject<string>()};
-                    default:
-                        throw new NotSupportedException("Expect AbbreviationsWithPrefixes to be an array of strings or string arrays.");
-                }
-            }
-
-            Localization WithPrefixes(Localization loc)
-            {
-                string[] unitAbbreviationsForPrefix = GetUnitAbbreviationsForPrefix(loc);
+                // No prefix unit abbreviations are specified, so fall back to prepending the default SI prefix to each unit abbreviation:
+                // kilo ("k") + meter ("m") => kilometer ("km")
+                string prefix = prefixInfo.Abbreviation;
+                unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
 
                 return new Localization
                 {
                     Culture = loc.Culture,
                     Abbreviations = unitAbbreviationsForPrefix,
                 };
-            }
-
-            return unit.Localization.Select(WithPrefixes).ToArray();
-        }
-
-        private static void EnsureValidAbbreviationsWithPrefixes(Localization localization, Unit unit, string quantityName)
-        {
-            if (localization.AbbreviationsWithPrefixes.Length > 0 &&
-                localization.AbbreviationsWithPrefixes.Length != unit.Prefixes.Length)
-            {
-                throw new InvalidDataException(
-                    $"The Prefixes array length {unit.Prefixes.Length} does not match Localization.AbbreviationsWithPrefixes array length {localization.AbbreviationsWithPrefixes.Length} for {quantityName}.{unit.SingularName}");
-            }
+            }).ToArray();
         }
     }
 }

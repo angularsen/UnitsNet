@@ -23,7 +23,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "м" ],
-          "AbbreviationsWithPrefixes": [ "нм", "мкм", "мм", "см", "дм", "гм", "км" ]
+          "AbbreviationsForPrefixes": { "Nano": "нм", "Micro": "мкм", "Milli": "мм", "Centi": "см", "Deci": "дм", "Hecto": "гм", "Kilo": "км" }
         }
       ]
     },

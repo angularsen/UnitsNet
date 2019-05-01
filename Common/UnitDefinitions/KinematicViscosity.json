@@ -38,7 +38,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Ст" ],
-          "AbbreviationsWithPrefixes": [ "нСт", "мкСт", "мСт", "сСт", "дСт", "кСт" ]
+          "AbbreviationsForPrefixes": { "Nano": "нСт", "Micro": "мкСт", "Milli": "мСт", "Centi": "сСт", "Deci": "дСт", "Kilo": "кСт" }
         }
       ]
     }
