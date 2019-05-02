@@ -39,10 +39,15 @@ namespace CodeGen.Generators
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
             var testProjectDir = $"{rootDir}/UnitsNet.Tests";
 
+            // Ensure output directories exist
+            Directory.CreateDirectory($"{outputDir}/Quantities");
+            Directory.CreateDirectory($"{outputDir}/Units");
+            Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
+
             foreach (var quantity in quantities)
             {
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
-                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.NetFramework.g.cs"); // TODO Remove NetFramework suffix
+                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
                 GenerateUnitTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/{quantity.Name}TestsBase.g.cs");
                 GenerateUnitTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
