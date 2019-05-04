@@ -170,6 +170,11 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
+        /// <summary>
+        ///     Get RotationalAcceleration in RevolutionsPerSecondPerSecond.
+        /// </summary>
+        public double RevolutionsPerSecondPerSecond => As(RotationalAccelerationUnit.RevolutionPerSecondPerSecond);
+
         #endregion
 
         #region Static Methods
@@ -229,6 +234,16 @@ namespace UnitsNet
         {
             double value = (double) revolutionsperminutepersecond;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+        }
+        /// <summary>
+        ///     Get RotationalAcceleration from RevolutionsPerSecondPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static RotationalAcceleration FromRevolutionsPerSecondPerSecond(double revolutionspersecondpersecond)
+        {
+            double value = (double) revolutionspersecondpersecond;
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerSecondPerSecond);
         }
 
         /// <summary>
@@ -524,6 +539,7 @@ namespace UnitsNet
                 case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI/180)*_value;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
                 case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
+                case RotationalAccelerationUnit.RevolutionPerSecondPerSecond: return (2*Math.PI)*_value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -541,6 +557,7 @@ namespace UnitsNet
                 case RotationalAccelerationUnit.DegreePerSecondSquared: return (180/Math.PI)*baseUnitValue;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return baseUnitValue;
                 case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60/(2*Math.PI))*baseUnitValue;
+                case RotationalAccelerationUnit.RevolutionPerSecondPerSecond: return (1/(2*Math.PI))*baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
