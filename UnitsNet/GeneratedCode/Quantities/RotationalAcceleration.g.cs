@@ -53,6 +53,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -180,6 +181,11 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
+        /// <summary>
+        ///     Get RotationalAcceleration in RevolutionsPerSecondSquared.
+        /// </summary>
+        public double RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
+
         #endregion
 
         #region Static Methods
@@ -235,6 +241,15 @@ namespace UnitsNet
         {
             double value = (double) revolutionsperminutepersecond;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+        }
+        /// <summary>
+        ///     Get RotationalAcceleration from RevolutionsPerSecondSquared.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RotationalAcceleration FromRevolutionsPerSecondSquared(QuantityValue revolutionspersecondsquared)
+        {
+            double value = (double) revolutionspersecondsquared;
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerSecondSquared);
         }
 
         /// <summary>
@@ -668,6 +683,7 @@ namespace UnitsNet
                 case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI/180)*_value;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
                 case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
+                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (2*Math.PI)*_value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -685,6 +701,7 @@ namespace UnitsNet
                 case RotationalAccelerationUnit.DegreePerSecondSquared: return (180/Math.PI)*baseUnitValue;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return baseUnitValue;
                 case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60/(2*Math.PI))*baseUnitValue;
+                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (1/(2*Math.PI))*baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

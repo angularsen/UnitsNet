@@ -920,6 +920,7 @@ namespace UnitsNet
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.DegreePerSecondSquared, new string[]{"°/s²", "deg/s²"}),
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RadianPerSecondSquared, new string[]{"rad/s²"}),
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new string[]{"rpm/s"}),
+                ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RevolutionPerSecondSquared, new string[]{"r/s²"}),
                 ("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.CentiradianPerSecond, new string[]{"crad/s"}),
                 ("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.CentiradianPerSecond, new string[]{"срад/с"}),
                 ("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DeciradianPerSecond, new string[]{"drad/s"}),

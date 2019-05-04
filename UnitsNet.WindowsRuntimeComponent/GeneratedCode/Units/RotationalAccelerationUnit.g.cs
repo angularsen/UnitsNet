@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         DegreePerSecondSquared,
         RadianPerSecondSquared,
         RevolutionPerMinutePerSecond,
+        RevolutionPerSecondSquared,
     }
 
     #pragma warning restore 1591
