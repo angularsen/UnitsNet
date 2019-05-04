@@ -37,13 +37,13 @@ namespace UnitsNet.Tests
         protected abstract double DegreesPerSecondSquaredInOneRadianPerSecondSquared { get; }
         protected abstract double RadiansPerSecondSquaredInOneRadianPerSecondSquared { get; }
         protected abstract double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared { get; }
-        protected abstract double RevolutionsPerSecondPerSecondInOneRadianPerSecondSquared { get; }
+        protected abstract double RevolutionsPerSecondSquaredInOneRadianPerSecondSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double RadiansPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerMinutePerSecondTolerance { get { return 1e-5; } }
-        protected virtual double RevolutionsPerSecondPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double RevolutionsPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -72,7 +72,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, radianpersecondsquared.RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(RevolutionsPerSecondPerSecondInOneRadianPerSecondSquared, radianpersecondsquared.RevolutionsPerSecondPerSecond, RevolutionsPerSecondPerSecondTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.RevolutionsPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, RotationalAcceleration.From(1, RotationalAccelerationUnit.DegreePerSecondSquared).DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, RotationalAcceleration.From(1, RotationalAccelerationUnit.RadianPerSecondSquared).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, RotationalAcceleration.From(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.From(1, RotationalAccelerationUnit.RevolutionPerSecondPerSecond).RevolutionsPerSecondPerSecond, RevolutionsPerSecondPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalAcceleration.From(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).RevolutionsPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
         }
 
         [Fact]
@@ -104,7 +104,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.DegreePerSecondSquared), DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RadianPerSecondSquared), RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond), RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(RevolutionsPerSecondPerSecondInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RevolutionPerSecondPerSecond), RevolutionsPerSecondPerSecondTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RevolutionPerSecondSquared), RevolutionsPerSecondSquaredTolerance);
         }
 
         [Fact]
@@ -124,9 +124,9 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, (double)revolutionperminutepersecondQuantity.Value, RevolutionsPerMinutePerSecondTolerance);
             Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, revolutionperminutepersecondQuantity.Unit);
 
-            var revolutionpersecondpersecondQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondPerSecond);
-            AssertEx.EqualTolerance(RevolutionsPerSecondPerSecondInOneRadianPerSecondSquared, (double)revolutionpersecondpersecondQuantity.Value, RevolutionsPerSecondPerSecondTolerance);
-            Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondPerSecond, revolutionpersecondpersecondQuantity.Unit);
+            var revolutionpersecondsquaredQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared);
+            AssertEx.EqualTolerance(RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, (double)revolutionpersecondsquaredQuantity.Value, RevolutionsPerSecondSquaredTolerance);
+            Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, revolutionpersecondsquaredQuantity.Unit);
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, RotationalAcceleration.FromDegreesPerSecondSquared(radianpersecondsquared.DegreesPerSecondSquared).RadiansPerSecondSquared, DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, RotationalAcceleration.FromRadiansPerSecondSquared(radianpersecondsquared.RadiansPerSecondSquared).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerMinutePerSecond(radianpersecondsquared.RevolutionsPerMinutePerSecond).RadiansPerSecondSquared, RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerSecondPerSecond(radianpersecondsquared.RevolutionsPerSecondPerSecond).RadiansPerSecondSquared, RevolutionsPerSecondPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerSecondSquared(radianpersecondsquared.RevolutionsPerSecondSquared).RadiansPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
         }
 
         [Fact]

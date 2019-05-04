@@ -43,8 +43,8 @@
       ]
     },
     {
-      "SingularName": "RevolutionPerSecondPerSecond",
-      "PluralName": "RevolutionsPerSecondPerSecond",
+      "SingularName": "RevolutionPerSecondSquared",
+      "PluralName": "RevolutionsPerSecondSquared",
       "FromUnitToBaseFunc": "(2*Math.PI)*x",
       "FromBaseToUnitFunc": "(1/(2*Math.PI))*x",
       "Localization": [
