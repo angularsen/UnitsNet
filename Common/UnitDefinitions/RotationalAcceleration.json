@@ -41,6 +41,18 @@
           "Abbreviations": [ "rpm/s" ]
         }
       ]
+    },
+    {
+      "SingularName": "RevolutionPerSecondPerSecond",
+      "PluralName": "RevolutionsPerSecondPerSecond",
+      "FromUnitToBaseFunc": "(2*Math.PI)*x",
+      "FromBaseToUnitFunc": "(1/(2*Math.PI))*x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "r/s²" ]
+        }
+      ]
     }
   ]
 }
