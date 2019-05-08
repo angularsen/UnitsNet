@@ -186,7 +186,7 @@ namespace UnitsNet
 
             if(match.Groups[0].Value == match.Groups[1].Value || match.Groups.Count < 3)
             {
-                str = UnitParser.NormelizeUnit(str);
+                str = UnitParser.NormalizeUnitString(str);
                 match = regex.Match(str);
             }
 

@@ -79,7 +79,7 @@ namespace UnitsNet
 
             if (unitIntValues.Count < 1)
             {
-                unitAbbreviation = NormelizeUnit(unitAbbreviation);
+                unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
             }
 
@@ -100,9 +100,9 @@ namespace UnitsNet
             }
         }
 
-        internal static string NormelizeUnit(string unitAbbreviation)
+        internal static string NormalizeUnitString(string unitAbbreviation)
         {
-            // remove all whitespaces in the string
+            // remove all whitespace in the string
             unitAbbreviation = new string(unitAbbreviation.Where(c => !char.IsWhiteSpace(c)).ToArray());
 
             unitAbbreviation = unitAbbreviation.Replace("^-9", "⁻⁹");
@@ -201,7 +201,7 @@ namespace UnitsNet
 
             if (unitIntValues.Count < 1)
             {
-                unitAbbreviation = NormelizeUnit(unitAbbreviation);
+                unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
             }
 
