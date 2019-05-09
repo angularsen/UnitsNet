@@ -124,6 +124,9 @@ namespace UnitsNet
             unitAbbreviation = unitAbbreviation.Replace("^8", "⁸");
             unitAbbreviation = unitAbbreviation.Replace("^9", "⁹");
             unitAbbreviation = unitAbbreviation.Replace("*", "·");
+            // "\u03bc" = Lower case Greek letter 'Mu'
+            // "\u00b5" = Micro sign
+            unitAbbreviation = unitAbbreviation.Replace("\u03bc", "\u00b5");
 
             return unitAbbreviation;
         }
