@@ -77,7 +77,7 @@ namespace UnitsNet
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
 
-            if (unitIntValues.Count < 1)
+            if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
@@ -202,7 +202,7 @@ namespace UnitsNet
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
 
-            if (unitIntValues.Count < 1)
+            if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
