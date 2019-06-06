@@ -35,6 +35,30 @@
           "Abbreviations": [ "кгс/м" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundForcePerFoot",
+      "PluralName": "PoundsForcePerFoot",
+      "FromUnitToBaseFunc": "x*14.59390292",
+      "FromBaseToUnitFunc": "x/14.59390292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerInch",
+      "PluralName": "PoundsForcePerInch",
+      "FromUnitToBaseFunc": "x*1.75126835e2",
+      "FromBaseToUnitFunc": "x/1.75126835e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/in" ]
+        }
+      ]
     }
   ]
 }

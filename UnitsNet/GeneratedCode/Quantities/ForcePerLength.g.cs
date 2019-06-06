@@ -59,6 +59,8 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerFoot, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerInch, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -216,6 +218,16 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
 
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerFoot.
+        /// </summary>
+        public double PoundsForcePerFoot => As(ForcePerLengthUnit.PoundForcePerFoot);
+
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerInch.
+        /// </summary>
+        public double PoundsForcePerInch => As(ForcePerLengthUnit.PoundForcePerInch);
+
         #endregion
 
         #region Static Methods
@@ -325,6 +337,24 @@ namespace UnitsNet
         {
             double value = (double) newtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromPoundsForcePerFoot(QuantityValue poundsforceperfoot)
+        {
+            double value = (double) poundsforceperfoot;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerFoot);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromPoundsForcePerInch(QuantityValue poundsforceperinch)
+        {
+            double value = (double) poundsforceperinch;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerInch);
         }
 
         /// <summary>
@@ -764,6 +794,8 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                case ForcePerLengthUnit.PoundForcePerFoot: return _value*14.59390292;
+                case ForcePerLengthUnit.PoundForcePerInch: return _value*1.75126835e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -787,6 +819,8 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
+                case ForcePerLengthUnit.PoundForcePerFoot: return baseUnitValue/14.59390292;
+                case ForcePerLengthUnit.PoundForcePerInch: return baseUnitValue/1.75126835e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

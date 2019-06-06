@@ -35,6 +35,8 @@ namespace UnitsNet.Units
         MillinewtonPerMeter,
         NanonewtonPerMeter,
         NewtonPerMeter,
+        PoundForcePerFoot,
+        PoundForcePerInch,
     }
 
     #pragma warning restore 1591
