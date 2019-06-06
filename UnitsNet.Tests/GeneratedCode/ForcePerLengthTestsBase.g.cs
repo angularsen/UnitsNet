@@ -43,6 +43,8 @@ namespace UnitsNet.Tests
         protected abstract double MillinewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double NanonewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double NewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double PoundsForcePerFootInOneNewtonPerMeter { get; }
+        protected abstract double PoundsForcePerInchInOneNewtonPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentinewtonsPerMeterTolerance { get { return 1e-5; } }
@@ -54,6 +56,8 @@ namespace UnitsNet.Tests
         protected virtual double MillinewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double NanonewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerFootTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -88,6 +92,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.NewtonsPerMeter, NewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.PoundsForcePerFoot, PoundsForcePerFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerInchInOneNewtonPerMeter, newtonpermeter.PoundsForcePerInch, PoundsForcePerInchTolerance);
         }
 
         [Fact]
@@ -102,6 +108,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMeter).MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMeter).NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMeter).NewtonsPerMeter, NewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerFoot).PoundsForcePerFoot, PoundsForcePerFootTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerInch).PoundsForcePerInch, PoundsForcePerInchTolerance);
         }
 
         [Fact]
@@ -130,6 +138,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MillinewtonPerMeter), MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NanonewtonPerMeter), NanonewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NewtonPerMeter), NewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.PoundForcePerFoot), PoundsForcePerFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerInchInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.PoundForcePerInch), PoundsForcePerInchTolerance);
         }
 
         [Fact]
@@ -172,6 +182,14 @@ namespace UnitsNet.Tests
             var newtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, (double)newtonpermeterQuantity.Value, NewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, newtonpermeterQuantity.Unit);
+
+            var poundforceperfootQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.PoundForcePerFoot);
+            AssertEx.EqualTolerance(PoundsForcePerFootInOneNewtonPerMeter, (double)poundforceperfootQuantity.Value, PoundsForcePerFootTolerance);
+            Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, poundforceperfootQuantity.Unit);
+
+            var poundforceperinchQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.PoundForcePerInch);
+            AssertEx.EqualTolerance(PoundsForcePerInchInOneNewtonPerMeter, (double)poundforceperinchQuantity.Value, PoundsForcePerInchTolerance);
+            Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, poundforceperinchQuantity.Unit);
         }
 
         [Fact]
@@ -187,6 +205,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForcePerLength.FromMillinewtonsPerMeter(newtonpermeter.MillinewtonsPerMeter).NewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNanonewtonsPerMeter(newtonpermeter.NanonewtonsPerMeter).NewtonsPerMeter, NanonewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNewtonsPerMeter(newtonpermeter.NewtonsPerMeter).NewtonsPerMeter, NewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromPoundsForcePerFoot(newtonpermeter.PoundsForcePerFoot).NewtonsPerMeter, PoundsForcePerFootTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromPoundsForcePerInch(newtonpermeter.PoundsForcePerInch).NewtonsPerMeter, PoundsForcePerInchTolerance);
         }
 
         [Fact]
