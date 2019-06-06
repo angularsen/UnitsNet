@@ -37,6 +37,7 @@ namespace UnitsNet.Units
         NewtonPerMeter,
         PoundForcePerFoot,
         PoundForcePerInch,
+        PoundForcePerYard,
     }
 
     #pragma warning restore 1591

@@ -61,6 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerFoot, BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerInch, BaseUnits.Undefined),
+                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerYard, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -228,6 +229,11 @@ namespace UnitsNet
         /// </summary>
         public double PoundsForcePerInch => As(ForcePerLengthUnit.PoundForcePerInch);
 
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerYard.
+        /// </summary>
+        public double PoundsForcePerYard => As(ForcePerLengthUnit.PoundForcePerYard);
+
         #endregion
 
         #region Static Methods
@@ -355,6 +361,15 @@ namespace UnitsNet
         {
             double value = (double) poundsforceperinch;
             return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerInch);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerYard.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForcePerLength FromPoundsForcePerYard(QuantityValue poundsforceperyard)
+        {
+            double value = (double) poundsforceperyard;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerYard);
         }
 
         /// <summary>
@@ -796,6 +811,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.NewtonPerMeter: return _value;
                 case ForcePerLengthUnit.PoundForcePerFoot: return _value*14.59390292;
                 case ForcePerLengthUnit.PoundForcePerInch: return _value*1.75126835e2;
+                case ForcePerLengthUnit.PoundForcePerYard: return _value*4.864634307;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -821,6 +837,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
                 case ForcePerLengthUnit.PoundForcePerFoot: return baseUnitValue/14.59390292;
                 case ForcePerLengthUnit.PoundForcePerInch: return baseUnitValue/1.75126835e2;
+                case ForcePerLengthUnit.PoundForcePerYard: return baseUnitValue/4.864634307;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

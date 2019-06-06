@@ -59,6 +59,18 @@
           "Abbreviations": [ "lbf/in" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundForcePerYard",
+      "PluralName": "PoundsForcePerYard",
+      "FromUnitToBaseFunc": "x*4.864634307",
+      "FromBaseToUnitFunc": "x/4.864634307",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/yd" ]
+        }
+      ]
     }
   ]
 }
