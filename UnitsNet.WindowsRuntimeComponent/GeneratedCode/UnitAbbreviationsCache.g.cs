@@ -424,6 +424,7 @@ namespace UnitsNet
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareFoot, new string[]{"W/ft²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareInch, new string[]{"W/in²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareMeter, new string[]{"W/m²"}),
+                ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new string[]{"Btu/ft²·hr·°F"}),
                 ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new string[]{"W/m²·°C"}),
                 ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new string[]{"W/m²·K"}),
                 ("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Kilolux, new string[]{"klx"}),

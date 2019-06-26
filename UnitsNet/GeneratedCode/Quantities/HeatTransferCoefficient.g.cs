@@ -50,6 +50,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient,
                 new UnitInfo<HeatTransferCoefficientUnit>[] {
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, BaseUnits.Undefined),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, BaseUnits.Undefined),
                 },
@@ -165,6 +166,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get HeatTransferCoefficient in BtusPerSquareFootDegreeFahrenheit.
+        /// </summary>
+        public double BtusPerSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
+
+        /// <summary>
         ///     Get HeatTransferCoefficient in WattsPerSquareMeterCelsius.
         /// </summary>
         public double WattsPerSquareMeterCelsius => As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
@@ -203,6 +209,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get HeatTransferCoefficient from BtusPerSquareFootDegreeFahrenheit.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(QuantityValue btuspersquarefootdegreefahrenheit)
+        {
+            double value = (double) btuspersquarefootdegreefahrenheit;
+            return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
+        }
         /// <summary>
         ///     Get HeatTransferCoefficient from WattsPerSquareMeterCelsius.
         /// </summary>
@@ -650,6 +665,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return _value * 5.6782633411134878;
                 case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return _value;
                 case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return _value;
                 default:
@@ -666,6 +682,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return baseUnitValue / 5.6782633411134878;
                 case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return baseUnitValue;
                 case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return baseUnitValue;
                 default:
