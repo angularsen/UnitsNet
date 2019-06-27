@@ -41,7 +41,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerMinuteInOneGramPerSecond => 0.132277;
 
+        protected override double PoundsPerSecondInOneGramPerSecond => 2.2046226218487758e-3;
+
         protected override double MegapoundsPerMinuteInOneGramPerSecond => 0.132277e-6;
+
+        protected override double MegapoundsPerSecondInOneGramPerSecond => 2.2046226218487758e-9;
 
         protected override double KilogramsPerMinuteInOneGramPerSecond => 0.06;
 
