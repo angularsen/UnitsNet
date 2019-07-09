@@ -98,7 +98,7 @@ namespace UnitsNet
             if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
                 TryParse(inchesGroup.Value, formatProvider, out Length inches))
             {
-                result = feet + inches;
+                result = feet.Value >= 0 ? feet + inches : feet - inches;
                 return true;
             }
 
