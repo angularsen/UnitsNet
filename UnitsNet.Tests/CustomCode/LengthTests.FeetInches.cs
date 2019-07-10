@@ -34,6 +34,10 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1′", 1)] // Feet only
         [InlineData("1\"", 0.08333333)] // Inches only
         [InlineData("1″", 0.08333333)] // Inches only
+        [InlineData("0' 1\"", 0.08333333)] // Inches only
+        [InlineData("0' 1″", 0.08333333)] // Inches only
+        [InlineData("0′ 1\"", 0.08333333)] // Inches only
+        [InlineData("0′ 1″", 0.08333333)] // Inches only
         [InlineData("1' 1\"", 1.08333333)] // Normal form
         [InlineData("1′ 1″", 1.08333333)] // Normal form
         [InlineData(" 1′ 1″ ", 1.08333333)] // Normal form, requires trimming
@@ -45,6 +49,10 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("-1′", -1)] // Feet only
         [InlineData("-1\"", -0.08333333)] // Inches only
         [InlineData("-1″", -0.08333333)] // Inches only
+        [InlineData("-0' 1\"", -0.08333333)] // Inches only
+        [InlineData("-0' 1″", -0.08333333)] // Inches only
+        [InlineData("-0′ 1\"", -0.08333333)] // Inches only
+        [InlineData("-0′ 1″", -0.08333333)] // Inches only
         [InlineData("-1' 1\"", -1.08333333)] // Normal form
         [InlineData("-1′ 1″", -1.08333333)] // Normal form
         [InlineData(" -1′ 1″ ", -1.08333333)] // Normal form, requires trimming
