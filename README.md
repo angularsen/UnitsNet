@@ -21,7 +21,7 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 
 ### Overview
 
-* [90 quantities with 800+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [95 quantities with 1000+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
 * [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
