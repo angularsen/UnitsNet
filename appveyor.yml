@@ -18,14 +18,15 @@ environment:
   codecov_upload_token:
     secure: 713yzE0R2Ek0JZTp+7uR3Upclc+jiIlM3Gf0UQ1Nbb5K09oXhE42hP8KWQngZ9ko
 
-# Enable Remote Desktop (password configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI)
+# Uncomment me to enable Remote Desktop for the duration of the build (when debugging hanging builds).
+# Password is configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI.
 # init:
   # - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-# Enable Remote Desktop (password configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI)
-# Build is blocked until a special "lock" file on VM desktop is deleted (max 60 mins).
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+# Uncomment me to enable Remote Desktop AFTER build. Build is blocked until a special "lock" file on VM desktop is deleted (max 60 mins).
+# Password is configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI.
+# on_finish:
+  # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 build_script:
 - ps: |
