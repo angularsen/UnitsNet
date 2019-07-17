@@ -60,7 +60,6 @@ before_test:
 - dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
 
 test_script:
-- Tools\OpenCover\OpenCover.Console.exe -version && exit 0 # Workaround for non-zero exit code
 - Tools\OpenCover\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Tests" -output:"Artifacts/Coverage/UnitsNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
 - Tools\OpenCover\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.CompatibilityTests" -output:"Artifacts/Coverage/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
 - Tools\OpenCover\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.Tests" -output:"Artifacts/Coverage/UnitsNet.Serialization.JsonNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
