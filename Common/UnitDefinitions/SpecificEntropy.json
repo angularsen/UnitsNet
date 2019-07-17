@@ -46,6 +46,18 @@
           "Abbreviations": [ "cal/g.K" ]
         }
       ]
+    },
+    {
+      "SingularName": "BtuPerPoundFahrenheit",
+      "PluralName": "BtusPerPoundFahrenheit",
+      "FromUnitToBaseFunc": "x * 4.1868e3",
+      "FromBaseToUnitFunc": "x / 4.1868e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/lb·°F", "BTU/lbm·°F" ]
+        }
+      ]
     }
   ]
 }

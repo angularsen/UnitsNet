@@ -50,7 +50,7 @@ namespace UnitsNet
         [PublicAPI]
         public TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
         {
-            return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType));
+            return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
         }
 
         /// <summary>
@@ -77,6 +77,12 @@ namespace UnitsNet
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
 
+            if (unitIntValues.Count == 0)
+            {
+                unitAbbreviation = NormalizeUnitString(unitAbbreviation);
+                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            }
+
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
@@ -92,6 +98,37 @@ namespace UnitsNet
                     throw new AmbiguousUnitParseException(
                         $"Cannot parse \"{unitAbbreviation}\" since it could be either of these: {unitsCsv}");
             }
+        }
+
+        internal static string NormalizeUnitString(string unitAbbreviation)
+        {
+            // remove all whitespace in the string
+            unitAbbreviation = new string(unitAbbreviation.Where(c => !char.IsWhiteSpace(c)).ToArray());
+
+            unitAbbreviation = unitAbbreviation.Replace("^-9", "⁻⁹");
+            unitAbbreviation = unitAbbreviation.Replace("^-8", "⁻⁸");
+            unitAbbreviation = unitAbbreviation.Replace("^-7", "⁻⁷");
+            unitAbbreviation = unitAbbreviation.Replace("^-6", "⁻⁶");
+            unitAbbreviation = unitAbbreviation.Replace("^-5", "⁻⁵");
+            unitAbbreviation = unitAbbreviation.Replace("^-4", "⁻⁴");
+            unitAbbreviation = unitAbbreviation.Replace("^-3", "⁻³");
+            unitAbbreviation = unitAbbreviation.Replace("^-2", "⁻²");
+            unitAbbreviation = unitAbbreviation.Replace("^-1", "⁻¹");
+            unitAbbreviation = unitAbbreviation.Replace("^1", "");
+            unitAbbreviation = unitAbbreviation.Replace("^2", "²");
+            unitAbbreviation = unitAbbreviation.Replace("^3", "³");
+            unitAbbreviation = unitAbbreviation.Replace("^4", "⁴");
+            unitAbbreviation = unitAbbreviation.Replace("^5", "⁵");
+            unitAbbreviation = unitAbbreviation.Replace("^6", "⁶");
+            unitAbbreviation = unitAbbreviation.Replace("^7", "⁷");
+            unitAbbreviation = unitAbbreviation.Replace("^8", "⁸");
+            unitAbbreviation = unitAbbreviation.Replace("^9", "⁹");
+            unitAbbreviation = unitAbbreviation.Replace("*", "·");
+            // "\u03bc" = Lower case Greek letter 'Mu'
+            // "\u00b5" = Micro sign
+            unitAbbreviation = unitAbbreviation.Replace("\u03bc", "\u00b5");
+
+            return unitAbbreviation;
         }
 
         /// <summary>
@@ -164,6 +201,12 @@ namespace UnitsNet
                 return false;
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+
+            if (unitIntValues.Count == 0)
+            {
+                unitAbbreviation = NormalizeUnitString(unitAbbreviation);
+                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)

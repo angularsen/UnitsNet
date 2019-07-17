@@ -1,0 +1,64 @@
+﻿{
+  "Name": "ElectricSurfaceChargeDensity",
+  "BaseUnit": "CoulombPerSquareMeter",
+  "XmlDoc": "In electromagnetism, surface charge density is a measure of the amount of electric charge per surface area.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Charge_density",
+  "BaseDimensions": {
+    "L": -2,
+    "T": 1,
+    "I": 1
+  },
+  "Units": [
+    {
+      "SingularName": "CoulombPerSquareMeter",
+      "PluralName": "CoulombsPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "C/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CoulombPerSquareCentimeter",
+      "PluralName": "CoulombsPerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x * 1.0e4",
+      "FromBaseToUnitFunc": "x / 1.0e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "C/cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CoulombPerSquareInch",
+      "PluralName": "CoulombsPerSquareInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x * 1.5500031000062000e3",
+      "FromBaseToUnitFunc": "x / 1.5500031000062000e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "C/in²" ]
+        }
+      ]
+    }
+  ]
+}

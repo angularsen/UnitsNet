@@ -35,5 +35,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin => 1e-6;
         protected override double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-4;
         protected override double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-7;
+        protected override double BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin => 2.3884589662749594e-4;
     }
 }

@@ -107,25 +107,7 @@ namespace UnitsNet.Tests.CustomCode
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
             Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
-
-        [Fact]
-        public void ExpectMolarityConvertedToDensityCorrectly()
-        {
-            var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var mw = Mass.FromGrams(58.443);
-            var density = Density.FromMolarity(molarity, mw).KilogramsPerCubicMeter;
-            AssertEx.EqualTolerance(60.02, density, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Fact]
-        public void ExpectDensityConvertedToMolarityCorrectly()
-        {
-            var density = Density.FromKilogramsPerCubicMeter(60.02);
-            var mw = Mass.FromGrams(58.443);
-            var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
-            AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
-        }
-
+        
         [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {

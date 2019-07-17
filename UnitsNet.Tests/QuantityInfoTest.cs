@@ -155,12 +155,61 @@ namespace UnitsNet.Tests
         {
             var baseUnits = new BaseUnits(LengthUnit.Meter);
 
-            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length, new UnitInfo<LengthUnit>[]{
-                new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
-                new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits)
-            }, LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
+            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length,
+                new UnitInfo<LengthUnit>[]{
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },
+                LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
 
             Assert.Throws<InvalidOperationException>(() => quantityInfo.GetUnitInfoFor(baseUnits));
+        }
+
+        [Fact]
+        public void GetUnitInfosFor_GivenNullAsBaseUnits_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => Length.Info.GetUnitInfosFor(null));
+        }
+
+        [Fact]
+        public void GetUnitInfosFor_GivenBaseUnitsWithNoMatch_ReturnsEmpty()
+        {
+            var baseUnitsWithNoMatch = new BaseUnits(mass: MassUnit.Kilogram);
+            var result = Length.Info.GetUnitInfosFor(baseUnitsWithNoMatch);
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GetUnitInfosFor_GivenBaseUnitsWithOneMatch_ReturnsOneMatch()
+        {
+            var baseUnitsWithOneMatch = new BaseUnits(LengthUnit.Foot);
+            var result = Length.Info.GetUnitInfosFor(baseUnitsWithOneMatch);
+            Assert.Collection(result, element1 => Assert.Equal(LengthUnit.Foot, element1.Value));
+        }
+
+        [Fact]
+        public void GetUnitInfosFor_GivenBaseUnitsWithMultipleMatches_ReturnsMultipleMatches()
+        {
+            var baseUnits = new BaseUnits(LengthUnit.Meter);
+
+            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length,
+                new UnitInfo<LengthUnit>[]{
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },
+                LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
+
+            var result = quantityInfo.GetUnitInfosFor(baseUnits);
+
+            Assert.Collection(result,
+                element1 =>
+                {
+                    Assert.Equal(LengthUnit.Meter, element1.Value);
+                    Assert.Equal(baseUnits, element1.BaseUnits);
+                },
+                element2 =>
+                {
+                    Assert.Equal(LengthUnit.Foot, element2.Value);
+                    Assert.Equal(baseUnits, element2.BaseUnits);
+                } );
         }
     }
 }

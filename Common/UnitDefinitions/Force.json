@@ -79,8 +79,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н" ],
-          "AbbreviationsWithPrefixes": [ "мкН", "мН", "даН", "кН", "МН" ]
+          "Abbreviations": [ "Н" ]
         }
       ]
     },

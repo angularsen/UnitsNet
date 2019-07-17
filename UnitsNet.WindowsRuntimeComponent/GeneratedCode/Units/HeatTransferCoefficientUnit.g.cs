@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum HeatTransferCoefficientUnit
     {
         Undefined = 0,
+        BtuPerSquareFootDegreeFahrenheit,
         WattPerSquareMeterCelsius,
         WattPerSquareMeterKelvin,
     }

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -138,8 +139,7 @@ namespace UnitsNet
             if(baseUnits == null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            var matchingUnitInfos = UnitInfos
-                .Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits))
+            var matchingUnitInfos = GetUnitInfosFor(baseUnits)
                 .Take(2)
                 .ToArray();
 
@@ -151,6 +151,20 @@ namespace UnitsNet
                 throw new InvalidOperationException($"More than one unit was found that is a subset of {nameof(baseUnits)}");
 
             return firstUnitInfo;
+        }
+
+        /// <summary>
+        /// Gets an <see cref="IEnumerable{T}"/> of <see cref="UnitInfo"/> that have <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.
+        /// </summary>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitInfo"/> that have <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
+        public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
+        {
+            if(baseUnits == null)
+                throw new ArgumentNullException(nameof(baseUnits));
+
+            return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
         }
     }
 
@@ -203,6 +217,12 @@ namespace UnitsNet
         public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)
         {
             return (UnitInfo<TUnit>)base.GetUnitInfoFor(baseUnits);
+        }
+
+        /// <inheritdoc cref="QuantityInfo.GetUnitInfosFor" />
+        public new IEnumerable<UnitInfo<TUnit>> GetUnitInfosFor(BaseUnits baseUnits)
+        {
+            return base.GetUnitInfosFor(baseUnits).Cast<UnitInfo<TUnit>>();
         }
     }
 }

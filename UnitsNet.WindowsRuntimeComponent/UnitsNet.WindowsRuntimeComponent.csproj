@@ -20,6 +20,10 @@
     <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
     <LangVersion>7.3</LangVersion>
 
+    <!-- CS0618: XXX is obsolete: 'REASON' -->
+    <!-- CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member' -->
+    <NoWarn>CS0618;CS1591</NoWarn>
+
     <!-- SourceLink -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

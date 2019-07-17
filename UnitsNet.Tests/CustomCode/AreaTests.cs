@@ -35,6 +35,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsSurveySquareFeetInOneSquareMeter => 10.76386736111121;
 
+        protected override double SquareNauticalMilesInOneSquareMeter => 0.00000029155335;
+
         [Fact]
         public void AreaDividedByLengthEqualsLength()
         {

@@ -37,8 +37,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Ст" ],
-          "AbbreviationsWithPrefixes": [ "нСт", "мкСт", "мСт", "сСт", "дСт", "кСт" ]
+          "Abbreviations": [ "Ст" ]
         }
       ]
     }

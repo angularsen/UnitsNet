@@ -102,6 +102,8 @@ namespace UnitsNet
                     return ElectricResistance.From(value, ElectricResistance.BaseUnit);
                 case QuantityType.ElectricResistivity:
                     return ElectricResistivity.From(value, ElectricResistivity.BaseUnit);
+                case QuantityType.ElectricSurfaceChargeDensity:
+                    return ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit);
                 case QuantityType.Energy:
                     return Energy.From(value, Energy.BaseUnit);
                 case QuantityType.Entropy:
@@ -148,10 +150,14 @@ namespace UnitsNet
                     return Magnetization.From(value, Magnetization.BaseUnit);
                 case QuantityType.Mass:
                     return Mass.From(value, Mass.BaseUnit);
+                case QuantityType.MassConcentration:
+                    return MassConcentration.From(value, MassConcentration.BaseUnit);
                 case QuantityType.MassFlow:
                     return MassFlow.From(value, MassFlow.BaseUnit);
                 case QuantityType.MassFlux:
                     return MassFlux.From(value, MassFlux.BaseUnit);
+                case QuantityType.MassFraction:
+                    return MassFraction.From(value, MassFraction.BaseUnit);
                 case QuantityType.MassMomentOfInertia:
                     return MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit);
                 case QuantityType.MolarEnergy:
@@ -218,8 +224,12 @@ namespace UnitsNet
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
                     return Volume.From(value, Volume.BaseUnit);
+                case QuantityType.VolumeConcentration:
+                    return VolumeConcentration.From(value, VolumeConcentration.BaseUnit);
                 case QuantityType.VolumeFlow:
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case QuantityType.VolumePerLength:
+                    return VolumePerLength.From(value, VolumePerLength.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
@@ -329,6 +339,9 @@ namespace UnitsNet
                 case ElectricResistivityUnit electricResistivityUnit:
                     quantity = ElectricResistivity.From(value, electricResistivityUnit);
                     return true;
+                case ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit:
+                    quantity = ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit);
+                    return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
@@ -398,11 +411,17 @@ namespace UnitsNet
                 case MassUnit massUnit:
                     quantity = Mass.From(value, massUnit);
                     return true;
+                case MassConcentrationUnit massConcentrationUnit:
+                    quantity = MassConcentration.From(value, massConcentrationUnit);
+                    return true;
                 case MassFlowUnit massFlowUnit:
                     quantity = MassFlow.From(value, massFlowUnit);
                     return true;
                 case MassFluxUnit massFluxUnit:
                     quantity = MassFlux.From(value, massFluxUnit);
+                    return true;
+                case MassFractionUnit massFractionUnit:
+                    quantity = MassFraction.From(value, massFractionUnit);
                     return true;
                 case MassMomentOfInertiaUnit massMomentOfInertiaUnit:
                     quantity = MassMomentOfInertia.From(value, massMomentOfInertiaUnit);
@@ -503,8 +522,14 @@ namespace UnitsNet
                 case VolumeUnit volumeUnit:
                     quantity = Volume.From(value, volumeUnit);
                     return true;
+                case VolumeConcentrationUnit volumeConcentrationUnit:
+                    quantity = VolumeConcentration.From(value, volumeConcentrationUnit);
+                    return true;
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
+                    return true;
+                case VolumePerLengthUnit volumePerLengthUnit:
+                    quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
                 default:
                 {
@@ -595,6 +620,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistivity):
                     return parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricSurfaceChargeDensity):
+                    return parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Energy):
                     return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
                 case Type _ when quantityType == typeof(Entropy):
@@ -641,10 +668,14 @@ namespace UnitsNet
                     return parser.TryParse<Magnetization, MagnetizationUnit>(quantityString, formatProvider, Magnetization.From, out quantity);
                 case Type _ when quantityType == typeof(Mass):
                     return parser.TryParse<Mass, MassUnit>(quantityString, formatProvider, Mass.From, out quantity);
+                case Type _ when quantityType == typeof(MassConcentration):
+                    return parser.TryParse<MassConcentration, MassConcentrationUnit>(quantityString, formatProvider, MassConcentration.From, out quantity);
                 case Type _ when quantityType == typeof(MassFlow):
                     return parser.TryParse<MassFlow, MassFlowUnit>(quantityString, formatProvider, MassFlow.From, out quantity);
                 case Type _ when quantityType == typeof(MassFlux):
                     return parser.TryParse<MassFlux, MassFluxUnit>(quantityString, formatProvider, MassFlux.From, out quantity);
+                case Type _ when quantityType == typeof(MassFraction):
+                    return parser.TryParse<MassFraction, MassFractionUnit>(quantityString, formatProvider, MassFraction.From, out quantity);
                 case Type _ when quantityType == typeof(MassMomentOfInertia):
                     return parser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(quantityString, formatProvider, MassMomentOfInertia.From, out quantity);
                 case Type _ when quantityType == typeof(MolarEnergy):
@@ -711,8 +742,12 @@ namespace UnitsNet
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):
                     return parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity);
+                case Type _ when quantityType == typeof(VolumeConcentration):
+                    return parser.TryParse<VolumeConcentration, VolumeConcentrationUnit>(quantityString, formatProvider, VolumeConcentration.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+                case Type _ when quantityType == typeof(VolumePerLength):
+                    return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
                 default:
                     return false;
             }

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -42,7 +43,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VFormatEqualsValueToString()
         {
-            Assert.Equal(length.Value.ToString(), length.ToString("v"));
+            Assert.Equal(length.Value.ToString(CultureInfo.CurrentUICulture), length.ToString("v"));
         }
 
         [Fact]
@@ -61,7 +62,7 @@ namespace UnitsNet.Tests
         [InlineData("s6", "1.234568 ft")]
         public void SFormatEqualsSignificantDigits(string sFormatString, string expected)
         {
-            Assert.Equal(expected, length.ToString(sFormatString));
+            Assert.Equal(expected, length.ToString(sFormatString, NumberFormatInfo.InvariantInfo));
         }
 
         [Fact]
