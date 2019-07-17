@@ -258,5 +258,7 @@ Artifacts
 
 # Build server tooling
 /secure-file
-Tools/reportgenerator.exe
-/Tools/.store
+/Tools/reportgenerator.exe
+/Tools/.store/
+/Tools/opencover/
+/Tools/Temp/

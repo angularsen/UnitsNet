@@ -1,0 +1,1 @@
+Run `init.bat` in root to download tooling like this one. This is to avoid bloating the repo size with binaries.

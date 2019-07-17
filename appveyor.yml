@@ -52,17 +52,15 @@ skip_branch_with_pr: true
 
 before_test:
 - dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
-# Already installed in AppVeyor?
-# - choco install opencover.portable -Y
 
 test_script:
-- OpenCover.Console.exe -version
-- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Tests" -output:"Artifacts/UnitsNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
-- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.CompatibilityTests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
-- OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.Tests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+- "Tools/OpenCover\OpenCover.Console.exe" -version
+- "Tools/OpenCover\OpenCover.Console.exe" -target:"dotnet.exe" -targetargs:"test UnitsNet.Tests" -output:"Artifacts/Coverage/UnitsNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+- "Tools/OpenCover\OpenCover.Console.exe" -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.CompatibilityTests" -output:"Artifacts/Coverage/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
+- "Tools/OpenCover\OpenCover.Console.exe" -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.Tests" -output:"Artifacts/Coverage/UnitsNet.Serialization.JsonNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
 
 after_test:
-- tools\reportgenerator.exe -reports:Artifacts/UnitsNet.Tests.coverage.xml;UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml;UnitsNet.Serialization.JsonNet.Tests.coverage.xml -targetdir:Artifacts/coverage_report -reporttypes:HtmlSummary
+- "Tools/reportgenerator.exe" -reports:Artifacts/Coverage/UnitsNet.Tests.coverage.xml;Artifacts/Coverage/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml;Artifacts/Coverage/UnitsNet.Serialization.JsonNet.Tests.coverage.xml -targetdir:Artifacts/Coverage -reporttypes:HtmlSummary
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
     Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
@@ -71,7 +69,7 @@ after_test:
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
-- path: Artifacts\coverage_report
+- path: Artifacts\Coverage
 
 deploy:
 - provider: NuGet
