@@ -88,17 +88,24 @@ namespace UnitsNet
             string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
 
             // Match entire string exactly
-            string pattern = $@"^(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
+            string pattern = $@"^(?<negativeSign>\-?)(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
 
             var match = new Regex(pattern, RegexOptions.Singleline).Match(str);
-            if (!match.Success) return false;
+            if (!match.Success)
+                return false;
 
+            var negativeSignGroup = match.Groups["negativeSign"];
             var feetGroup = match.Groups["feet"];
             var inchesGroup = match.Groups["inches"];
+
             if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
                 TryParse(inchesGroup.Value, formatProvider, out Length inches))
             {
                 result = feet + inches;
+
+                if(negativeSignGroup.Length > 0)
+                    result = -result;
+
                 return true;
             }
 

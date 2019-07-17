@@ -150,10 +150,14 @@ namespace UnitsNet
                     return Magnetization.From(value, Magnetization.BaseUnit);
                 case QuantityType.Mass:
                     return Mass.From(value, Mass.BaseUnit);
+                case QuantityType.MassConcentration:
+                    return MassConcentration.From(value, MassConcentration.BaseUnit);
                 case QuantityType.MassFlow:
                     return MassFlow.From(value, MassFlow.BaseUnit);
                 case QuantityType.MassFlux:
                     return MassFlux.From(value, MassFlux.BaseUnit);
+                case QuantityType.MassFraction:
+                    return MassFraction.From(value, MassFraction.BaseUnit);
                 case QuantityType.MassMomentOfInertia:
                     return MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit);
                 case QuantityType.MolarEnergy:
@@ -220,6 +224,8 @@ namespace UnitsNet
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
                     return Volume.From(value, Volume.BaseUnit);
+                case QuantityType.VolumeConcentration:
+                    return VolumeConcentration.From(value, VolumeConcentration.BaseUnit);
                 case QuantityType.VolumeFlow:
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
                 case QuantityType.VolumePerLength:
@@ -405,11 +411,17 @@ namespace UnitsNet
                 case MassUnit massUnit:
                     quantity = Mass.From(value, massUnit);
                     return true;
+                case MassConcentrationUnit massConcentrationUnit:
+                    quantity = MassConcentration.From(value, massConcentrationUnit);
+                    return true;
                 case MassFlowUnit massFlowUnit:
                     quantity = MassFlow.From(value, massFlowUnit);
                     return true;
                 case MassFluxUnit massFluxUnit:
                     quantity = MassFlux.From(value, massFluxUnit);
+                    return true;
+                case MassFractionUnit massFractionUnit:
+                    quantity = MassFraction.From(value, massFractionUnit);
                     return true;
                 case MassMomentOfInertiaUnit massMomentOfInertiaUnit:
                     quantity = MassMomentOfInertia.From(value, massMomentOfInertiaUnit);
@@ -509,6 +521,9 @@ namespace UnitsNet
                     return true;
                 case VolumeUnit volumeUnit:
                     quantity = Volume.From(value, volumeUnit);
+                    return true;
+                case VolumeConcentrationUnit volumeConcentrationUnit:
+                    quantity = VolumeConcentration.From(value, volumeConcentrationUnit);
                     return true;
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
@@ -653,10 +668,14 @@ namespace UnitsNet
                     return parser.TryParse<Magnetization, MagnetizationUnit>(quantityString, formatProvider, Magnetization.From, out quantity);
                 case Type _ when quantityType == typeof(Mass):
                     return parser.TryParse<Mass, MassUnit>(quantityString, formatProvider, Mass.From, out quantity);
+                case Type _ when quantityType == typeof(MassConcentration):
+                    return parser.TryParse<MassConcentration, MassConcentrationUnit>(quantityString, formatProvider, MassConcentration.From, out quantity);
                 case Type _ when quantityType == typeof(MassFlow):
                     return parser.TryParse<MassFlow, MassFlowUnit>(quantityString, formatProvider, MassFlow.From, out quantity);
                 case Type _ when quantityType == typeof(MassFlux):
                     return parser.TryParse<MassFlux, MassFluxUnit>(quantityString, formatProvider, MassFlux.From, out quantity);
+                case Type _ when quantityType == typeof(MassFraction):
+                    return parser.TryParse<MassFraction, MassFractionUnit>(quantityString, formatProvider, MassFraction.From, out quantity);
                 case Type _ when quantityType == typeof(MassMomentOfInertia):
                     return parser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(quantityString, formatProvider, MassMomentOfInertia.From, out quantity);
                 case Type _ when quantityType == typeof(MolarEnergy):
@@ -723,6 +742,8 @@ namespace UnitsNet
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):
                     return parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity);
+                case Type _ when quantityType == typeof(VolumeConcentration):
+                    return parser.TryParse<VolumeConcentration, VolumeConcentrationUnit>(quantityString, formatProvider, VolumeConcentration.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
                 case Type _ when quantityType == typeof(VolumePerLength):

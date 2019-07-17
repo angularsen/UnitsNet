@@ -71,6 +71,12 @@ namespace UnitsNet
             return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
         }
 
+        /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="MolarMass" /> divided by <see cref="Mass" />.</summary>
+        public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
+        {
+            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
         public static Force operator *(Mass mass, Acceleration acceleration)
         {

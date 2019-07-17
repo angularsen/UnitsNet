@@ -1,0 +1,106 @@
+{
+  "Name": "MassFraction",
+  "BaseUnit": "DecimalFraction",
+  "XmlDoc": "The mass fraction is defined as the mass of a constituent divided by the total mass of the mixture.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)",
+  "Units": [
+     {
+      "SingularName": "DecimalFraction",
+      "PluralName": "DecimalFractions",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerGram",
+      "PluralName": "GramsPerGram",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerKilogram",
+      "PluralName": "GramsPerKilogram",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percent",
+      "FromUnitToBaseFunc": "x/1e2",
+      "FromBaseToUnitFunc": "x*1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%", "% (w/w)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerThousand",
+      "PluralName": "PartsPerThousand",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "‰" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerMillion",
+      "PluralName": "PartsPerMillion",
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerBillion",
+      "PluralName": "PartsPerBillion",
+      "FromUnitToBaseFunc": "x/1e9",
+      "FromBaseToUnitFunc": "x*1e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppb" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartPerTrillion",
+      "PluralName": "PartsPerTrillion",
+      "FromUnitToBaseFunc": "x/1e12",
+      "FromBaseToUnitFunc": "x*1e12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppt" ]
+        }
+      ]
+    }
+  ]
+}

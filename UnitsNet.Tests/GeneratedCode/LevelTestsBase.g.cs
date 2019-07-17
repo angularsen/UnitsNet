@@ -136,7 +136,6 @@ namespace UnitsNet.Tests
 
         protected abstract void AssertLogarithmicSubtraction();
 
-
         [Fact]
         public void ComparisonOperators()
         {

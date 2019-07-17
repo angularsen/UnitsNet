@@ -1,0 +1,238 @@
+﻿{
+  "Name": "MassConcentration",
+  "BaseUnit": "KilogramPerCubicMeter",
+  "XmlDoc": "In chemistry, the mass concentration ρi (or γi) is defined as the mass of a constituent mi divided by the volume of the mixture V",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mass_concentration_(chemistry)",
+  "BaseDimensions": {
+    "M": 1,
+    "L": -3
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerCubicMillimeter",
+      "PluralName": "GramsPerCubicMillimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Millimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-6",
+      "FromBaseToUnitFunc": "x*1e-6",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicCentimeter",
+      "PluralName": "GramsPerCubicCentimeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicMeter",
+      "PluralName": "GramsPerCubicMeter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo", "Milli", "Micro" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "г/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerMilliliter",
+      "PluralName": "GramsPerMilliliter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mL" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerDeciliter",
+      "PluralName": "GramsPerDeciliter",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/dL" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerLiter",
+      "PluralName": "GramsPerLiter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/L"]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMillimeter",
+      "PluralName": "TonnesPerCubicMillimeter",
+      "BaseUnits": {
+        "M": "Tonne",
+        "L": "Millimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-12",
+      "FromBaseToUnitFunc": "x*1e-12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicCentimeter",
+      "PluralName": "TonnesPerCubicCentimeter",
+      "BaseUnits": {
+        "M": "Tonne",
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-9",
+      "FromBaseToUnitFunc": "x*1e-9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMeter",
+      "PluralName": "TonnesPerCubicMeter",
+      "BaseUnits": {
+        "M": "Tonne",
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x/0.001",
+      "FromBaseToUnitFunc": "x*0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicInch",
+      "PluralName": "PoundsPerCubicInch",
+      "BaseUnits": {
+        "M": "Pound",
+        "L": "Inch"
+      },
+      "FromUnitToBaseFunc": "x/3.6127298147753e-5",
+      "FromBaseToUnitFunc": "x*3.6127298147753e-5",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/in³" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicFoot",
+      "PluralName": "PoundsPerCubicFoot",
+      "BaseUnits": {
+        "M": "Pound",
+        "L": "Foot"
+      },
+      "FromUnitToBaseFunc": "x/0.062427961",
+      "FromBaseToUnitFunc": "x*0.062427961",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft³" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicFoot",
+      "PluralName": "SlugsPerCubicFoot",
+      "BaseUnits": {
+        "M": "Slug",
+        "L": "Foot"
+      },
+      "FromUnitToBaseFunc": "x*515.378818",
+      "FromBaseToUnitFunc": "x*0.00194032033",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerUSGallon",
+      "PluralName": "PoundsPerUSGallon",
+      "FromUnitToBaseFunc": "x*1.19826427e2",
+      "FromBaseToUnitFunc": "x/1.19826427e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (U.S.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerImperialGallon",
+      "PluralName": "PoundsPerImperialGallon",
+      "FromUnitToBaseFunc": "x*9.9776398e1",
+      "FromBaseToUnitFunc": "x/9.9776398e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (imp.)" ]
+        }
+      ]
+    }
+  ]
+}

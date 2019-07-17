@@ -115,12 +115,12 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "th (E.C.)" ],
-          "AbbreviationsWithPrefixes": [ "Dth (E.C.)" ]
+          "AbbreviationsForPrefixes": { "Deca": "Dth (E.C.)" }
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Европейский терм" ],
-          "AbbreviationsWithPrefixes": [ "Европейский декатерм" ]
+          "AbbreviationsForPrefixes": { "Deca": "Европейский декатерм" }
         }
       ]
     },
@@ -134,12 +134,12 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "th (U.S.)" ],
-          "AbbreviationsWithPrefixes": [ "Dth (U.S.)" ]
+          "AbbreviationsForPrefixes": { "Deca": "Dth (U.S.)" }
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Американский терм" ],
-          "AbbreviationsWithPrefixes": [ "Американский декатерм" ]
+          "AbbreviationsForPrefixes": { "Deca": "Американский декатерм" }
         }
       ]
     },
@@ -153,12 +153,12 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "th (imp.)" ],
-          "AbbreviationsWithPrefixes": [ "Dth (imp.)" ]
+          "AbbreviationsForPrefixes": { "Deca": "Dth (imp.)" }
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Английский терм" ],
-          "AbbreviationsWithPrefixes": [ "Английский декатерм" ]
+          "AbbreviationsForPrefixes": { "Deca": "Английский декатерм" }
         }
       ]
     }
