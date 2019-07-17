@@ -211,6 +211,11 @@ namespace UnitsNet
         public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
 
         /// <summary>
+        ///     Get Area in SquareNauticalMiles.
+        /// </summary>
+        public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
+
+        /// <summary>
         ///     Get Area in SquareYards.
         /// </summary>
         public double SquareYards => As(AreaUnit.SquareYard);
@@ -359,6 +364,16 @@ namespace UnitsNet
         {
             double value = (double) squaremillimeters;
             return new Area(value, AreaUnit.SquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Area from SquareNauticalMiles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromSquareNauticalMiles(double squarenauticalmiles)
+        {
+            double value = (double) squarenauticalmiles;
+            return new Area(value, AreaUnit.SquareNauticalMile);
         }
         /// <summary>
         ///     Get Area from SquareYards.
@@ -682,6 +697,7 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return _value*1e-12;
                 case AreaUnit.SquareMile: return _value*2.59e6;
                 case AreaUnit.SquareMillimeter: return _value*1e-6;
+                case AreaUnit.SquareNauticalMile: return _value*3429904;
                 case AreaUnit.SquareYard: return _value*0.836127;
                 case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
                 default:
@@ -709,6 +725,7 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return baseUnitValue/1e-12;
                 case AreaUnit.SquareMile: return baseUnitValue/2.59e6;
                 case AreaUnit.SquareMillimeter: return baseUnitValue/1e-6;
+                case AreaUnit.SquareNauticalMile: return baseUnitValue/3429904;
                 case AreaUnit.SquareYard: return baseUnitValue/0.836127;
                 case AreaUnit.UsSurveySquareFoot: return baseUnitValue/0.09290341161;
                 default:

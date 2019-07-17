@@ -114,6 +114,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMile, new string[]{"миля²"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.SquareMillimeter, new string[]{"mm²"}),
                 ("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMillimeter, new string[]{"мм²"}),
+                ("en-US", typeof(AreaUnit), (int)AreaUnit.SquareNauticalMile, new string[]{"nmi²"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.SquareYard, new string[]{"yd²"}),
                 ("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareYard, new string[]{"ярд²"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.UsSurveySquareFoot, new string[]{"ft² (US)"}),
