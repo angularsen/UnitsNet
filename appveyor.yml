@@ -47,6 +47,7 @@ before_test:
 # - choco install opencover.portable -Y
 
 test_script:
+- OpenCover.Console.exe -version
 - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Tests" -output:"Artifacts/UnitsNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
 - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.CompatibilityTests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.CompatibilityTests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
 - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test UnitsNet.Serialization.JsonNet.Tests" -output:"Artifacts/UnitsNet.Serialization.JsonNet.Tests.coverage.xml" -filter:"+[UnitsNet*]* -[UnitsNet.Tests*]*" -oldstyle -register:user
