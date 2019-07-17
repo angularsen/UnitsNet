@@ -301,7 +301,7 @@ This project is still early and many units and conversions are not yet covered. 
 
 Please read the wiki on [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit).
 
-Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*.json` files and running `generate-code.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
+Generally adding a unit involves adding or modifying [Common/UnitDefinitions/*.json](Common/UnitDefinitions/) files and running [generate-code.bat](generate-code.bat) to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
 
   * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**
