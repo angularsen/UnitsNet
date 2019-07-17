@@ -65,7 +65,7 @@ after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
     Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-    bash codecov.sh -f "Artifacts/*coverage.xml" -t $env:codecov_upload_token
+    bash codecov.sh -f "Artifacts/Coverage/*.coverage.xml" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
