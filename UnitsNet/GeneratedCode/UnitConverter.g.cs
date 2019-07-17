@@ -153,6 +153,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMile, Area.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareMillimeter, q => q.ToUnit(AreaUnit.SquareMillimeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMillimeter, Area.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareNauticalMile, q => q.ToUnit(AreaUnit.SquareNauticalMile));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareNauticalMile, Area.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareYard, q => q.ToUnit(AreaUnit.SquareYard));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareYard, Area.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.UsSurveySquareFoot, q => q.ToUnit(AreaUnit.UsSurveySquareFoot));
@@ -595,6 +597,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.NanonewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.NanonewtonPerMeter));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLength.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.PoundForcePerFoot, q => q.ToUnit(ForcePerLengthUnit.PoundForcePerFoot));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerFoot, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.PoundForcePerInch, q => q.ToUnit(ForcePerLengthUnit.PoundForcePerInch));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerInch, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.PoundForcePerYard, q => q.ToUnit(ForcePerLengthUnit.PoundForcePerYard));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerYard, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.BeatPerMinute, q => q.ToUnit(FrequencyUnit.BeatPerMinute));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.CyclePerHour, q => q.ToUnit(FrequencyUnit.CyclePerHour));
@@ -647,6 +655,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.WattPerSquareInch, q => q.ToUnit(HeatFluxUnit.WattPerSquareInch));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFlux.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFlux.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, q => q.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
+            unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, q => q.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.BaseUnit, q => q);
@@ -991,6 +1001,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerMinute, q => q.ToUnit(MassFlowUnit.MegapoundPerMinute));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerSecond, q => q.ToUnit(MassFlowUnit.MegapoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MicrogramPerDay, q => q.ToUnit(MassFlowUnit.MicrogramPerDay));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MicrogramPerSecond, q => q.ToUnit(MassFlowUnit.MicrogramPerSecond));
@@ -1009,6 +1021,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerMinute, q => q.ToUnit(MassFlowUnit.PoundPerMinute));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerSecond, q => q.ToUnit(MassFlowUnit.PoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.ShortTonPerHour, q => q.ToUnit(MassFlowUnit.ShortTonPerHour));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.TonnePerDay, q => q.ToUnit(MassFlowUnit.TonnePerDay));
@@ -1423,6 +1437,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAcceleration.BaseUnit, q => q);
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, q => q.ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.RevolutionPerSecondSquared, q => q.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.CentiradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.CentiradianPerSecond));
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.DeciradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.DeciradianPerSecond));
