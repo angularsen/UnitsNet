@@ -40,10 +40,14 @@ namespace CodeGen.Generators
         {
             var outputDir = $"{rootDir}/UnitsNet.WindowsRuntimeComponent/GeneratedCode";
 
+            // Ensure output directories exist
+            Directory.CreateDirectory($"{outputDir}/Quantities");
+            Directory.CreateDirectory($"{outputDir}/Units");
+
             foreach (var quantity in quantities)
             {
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
-                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.WindowsRuntimeComponent.g.cs");
+                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
                 Log.Information(sb.ToString());
             }

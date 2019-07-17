@@ -37,6 +37,7 @@ namespace UnitsNet.Units
         SquareMicrometer,
         SquareMile,
         SquareMillimeter,
+        SquareNauticalMile,
         SquareYard,
         UsSurveySquareFoot,
     }
