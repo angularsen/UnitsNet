@@ -293,6 +293,59 @@
           "Abbreviations": [ "h", "hh" ]
         }
       ]
+    },
+    {
+      "SingularName": "AstronomicalUnit",
+      "PluralName": "AstronomicalUnits",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x * 1.4959787070e11",
+      "FromBaseToUnitFunc": "x / 1.4959787070e11",
+      "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "au", "ua", "AU" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Parsec",
+      "PluralName": "Parsecs",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x * 3.08567758128e16",
+      "FromBaseToUnitFunc": "x / 3.08567758128e16",
+      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pc" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LightYear",
+      "PluralName": "LightYears",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x * 9.46073047258e15",
+      "FromBaseToUnitFunc": "x / 9.46073047258e15",
+      "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ly" ]
+        }
+      ]
     }
   ]
 }
