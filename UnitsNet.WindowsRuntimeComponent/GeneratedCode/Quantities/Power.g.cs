@@ -246,6 +246,11 @@ namespace UnitsNet
         public double Picowatts => As(PowerUnit.Picowatt);
 
         /// <summary>
+        ///     Get Power in SolarLuminosities.
+        /// </summary>
+        public double SolarLuminosities => As(PowerUnit.SolarLuminosity);
+
+        /// <summary>
         ///     Get Power in Terawatts.
         /// </summary>
         public double Terawatts => As(PowerUnit.Terawatt);
@@ -464,6 +469,16 @@ namespace UnitsNet
         {
             decimal value = (decimal) picowatts;
             return new Power(value, PowerUnit.Picowatt);
+        }
+        /// <summary>
+        ///     Get Power from SolarLuminosities.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromSolarLuminosities(double solarluminosities)
+        {
+            decimal value = (decimal) solarluminosities;
+            return new Power(value, PowerUnit.SolarLuminosity);
         }
         /// <summary>
         ///     Get Power from Terawatts.
@@ -794,6 +809,7 @@ namespace UnitsNet
                 case PowerUnit.Nanowatt: return (_value) * 1e-9m;
                 case PowerUnit.Petawatt: return (_value) * 1e15m;
                 case PowerUnit.Picowatt: return (_value) * 1e-12m;
+                case PowerUnit.SolarLuminosity: return _value * 3.828e26m;
                 case PowerUnit.Terawatt: return (_value) * 1e12m;
                 case PowerUnit.Watt: return _value;
                 default:
@@ -828,6 +844,7 @@ namespace UnitsNet
                 case PowerUnit.Nanowatt: return (baseUnitValue) / 1e-9m;
                 case PowerUnit.Petawatt: return (baseUnitValue) / 1e15m;
                 case PowerUnit.Picowatt: return (baseUnitValue) / 1e-12m;
+                case PowerUnit.SolarLuminosity: return baseUnitValue / 3.828e26m;
                 case PowerUnit.Terawatt: return (baseUnitValue) / 1e12m;
                 case PowerUnit.Watt: return baseUnitValue;
                 default:

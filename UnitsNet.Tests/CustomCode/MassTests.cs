@@ -57,6 +57,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
 
+        protected override double EarthMassesInOneKilogram => 1.0 / 5.9722E+24;
+
+        protected override double SolarMassesInOneKilogram => 1.0 / 1.98847e30;
+
+        protected override double SolarMassesTolerance => 0.1;
+
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {

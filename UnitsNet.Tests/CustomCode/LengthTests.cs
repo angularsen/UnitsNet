@@ -57,6 +57,20 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
+        protected override double AstronomicalUnitsInOneMeter => 1.0 / 1.4959787070e11;
+
+        protected override double KilolightYearsInOneMeter => 1.0 / (9.46073047258e15 * 1e3);
+
+        protected override double KiloparsecsInOneMeter => 1.0 / (3.08567782e16 * 1e3);
+
+        protected override double LightYearsInOneMeter => 1.0 / (9.46073047258e15);
+
+        protected override double MegalightYearsInOneMeter => 1.0 / (9.46073047258e15 * 1e6);
+
+        protected override double MegaparsecsInOneMeter => 1.0 / (3.08567782e16 * 1e6);
+
+        protected override double ParsecsInOneMeter => 1.0 / 3.08567782e16;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {

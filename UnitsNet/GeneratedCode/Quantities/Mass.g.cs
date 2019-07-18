@@ -53,6 +53,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Centigram, BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Decagram, BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Decigram, BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.EarthMass, new BaseUnits(mass: MassUnit.Gram)),
                     new UnitInfo<MassUnit>(MassUnit.Grain, new BaseUnits(mass: MassUnit.Grain)),
                     new UnitInfo<MassUnit>(MassUnit.Gram, new BaseUnits(mass: MassUnit.Gram)),
                     new UnitInfo<MassUnit>(MassUnit.Hectogram, BaseUnits.Undefined),
@@ -71,6 +72,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, new BaseUnits(mass: MassUnit.ShortHundredweight)),
                     new UnitInfo<MassUnit>(MassUnit.ShortTon, new BaseUnits(mass: MassUnit.ShortTon)),
                     new UnitInfo<MassUnit>(MassUnit.Slug, new BaseUnits(mass: MassUnit.Slug)),
+                    new UnitInfo<MassUnit>(MassUnit.SolarMass, new BaseUnits(mass: MassUnit.Gram)),
                     new UnitInfo<MassUnit>(MassUnit.Stone, new BaseUnits(mass: MassUnit.Stone)),
                     new UnitInfo<MassUnit>(MassUnit.Tonne, new BaseUnits(mass: MassUnit.Tonne)),
                 },
@@ -201,6 +203,11 @@ namespace UnitsNet
         public double Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
+        ///     Get Mass in EarthMasses.
+        /// </summary>
+        public double EarthMasses => As(MassUnit.EarthMass);
+
+        /// <summary>
         ///     Get Mass in Grains.
         /// </summary>
         public double Grains => As(MassUnit.Grain);
@@ -291,6 +298,11 @@ namespace UnitsNet
         public double Slugs => As(MassUnit.Slug);
 
         /// <summary>
+        ///     Get Mass in SolarMasses.
+        /// </summary>
+        public double SolarMasses => As(MassUnit.SolarMass);
+
+        /// <summary>
         ///     Get Mass in Stone.
         /// </summary>
         public double Stone => As(MassUnit.Stone);
@@ -355,6 +367,15 @@ namespace UnitsNet
         {
             double value = (double) decigrams;
             return new Mass(value, MassUnit.Decigram);
+        }
+        /// <summary>
+        ///     Get Mass from EarthMasses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromEarthMasses(QuantityValue earthmasses)
+        {
+            double value = (double) earthmasses;
+            return new Mass(value, MassUnit.EarthMass);
         }
         /// <summary>
         ///     Get Mass from Grains.
@@ -517,6 +538,15 @@ namespace UnitsNet
         {
             double value = (double) slugs;
             return new Mass(value, MassUnit.Slug);
+        }
+        /// <summary>
+        ///     Get Mass from SolarMasses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromSolarMasses(QuantityValue solarmasses)
+        {
+            double value = (double) solarmasses;
+            return new Mass(value, MassUnit.SolarMass);
         }
         /// <summary>
         ///     Get Mass from Stone.
@@ -968,6 +998,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
                 case MassUnit.Decagram: return (_value/1e3) * 1e1d;
                 case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
+                case MassUnit.EarthMass: return _value * 5.9722E+24;
                 case MassUnit.Grain: return _value/15432.358352941431;
                 case MassUnit.Gram: return _value/1e3;
                 case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
@@ -986,6 +1017,7 @@ namespace UnitsNet
                 case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
                 case MassUnit.ShortTon: return _value*9.0718474e2;
                 case MassUnit.Slug: return _value/6.852176556196105e-2;
+                case MassUnit.SolarMass: return _value * 1.98847e30;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
                 default:
@@ -1005,6 +1037,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (baseUnitValue*1e3) / 1e-2d;
                 case MassUnit.Decagram: return (baseUnitValue*1e3) / 1e1d;
                 case MassUnit.Decigram: return (baseUnitValue*1e3) / 1e-1d;
+                case MassUnit.EarthMass: return baseUnitValue / 5.9722E+24;
                 case MassUnit.Grain: return baseUnitValue*15432.358352941431;
                 case MassUnit.Gram: return baseUnitValue*1e3;
                 case MassUnit.Hectogram: return (baseUnitValue*1e3) / 1e2d;
@@ -1023,6 +1056,7 @@ namespace UnitsNet
                 case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
                 case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
                 case MassUnit.Slug: return baseUnitValue*6.852176556196105e-2;
+                case MassUnit.SolarMass: return baseUnitValue / 1.98947e30;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
                 default:
