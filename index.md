@@ -7,5 +7,5 @@ This is not quite working yet, but the idea is to showcase C# code snippets usin
 Bug issue: https://github.com/dotnet/try/issues/221
 
 <!--iframe src="https://try.dot.net/?fromGist=df44833326fcc575e8169fccb9d41fc7" -->
-<iframe src="https://try.dot.net/v2/editor?hostOrigin=https:%2F%2Fnodatime.org&waitForConfiguration=true">
+<iframe src="https://try.dot.net/v2/editor?hostOrigin=https:%2F%2Fangularsen.github.io%2FUnitsNet&waitForConfiguration=true">
 </iframe>
