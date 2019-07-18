@@ -2,6 +2,7 @@
 $artifactsDir = "$root\Artifacts"
 $nugetOutDir = "$root\Artifacts\NuGet"
 $testReportDir = "$root\Artifacts\Logs"
+$testCoverageDir = "$root\Artifacts\Coverage"
 $nuget = "$root\Tools\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
@@ -65,6 +66,7 @@ function Start-Tests {
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
+  new-item -type directory -force $testCoverageDir 1> $null
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
