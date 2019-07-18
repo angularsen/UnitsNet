@@ -25,7 +25,7 @@ namespace UnitsNet
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
-        private UnitParser _unitParser;
+        private readonly UnitParser _unitParser;
 
         public static QuantityParser Default { get; }
 
