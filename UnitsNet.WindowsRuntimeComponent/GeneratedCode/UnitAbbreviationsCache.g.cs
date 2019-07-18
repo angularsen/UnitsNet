@@ -917,6 +917,8 @@ namespace UnitsNet
                 ("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerThousand, new string[]{"‰"}),
                 ("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerTrillion, new string[]{"ppt"}),
                 ("en-US", typeof(RatioUnit), (int)RatioUnit.Percent, new string[]{"%"}),
+                ("en-US", typeof(RatioChangeRateUnit), (int)RatioChangeRateUnit.DecimalFractionPerSecond, new string[]{"/s"}),
+                ("en-US", typeof(RatioChangeRateUnit), (int)RatioChangeRateUnit.PercentPerSecond, new string[]{"%/s"}),
                 ("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.KilovoltampereReactiveHour, new string[]{"kvarh"}),
                 ("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.MegavoltampereReactiveHour, new string[]{"Mvarh"}),
                 ("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.VoltampereReactiveHour, new string[]{"varh"}),
