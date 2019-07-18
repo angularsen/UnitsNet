@@ -1,4 +1,3 @@
-# Units.NET
 - [UnitsNet - GitHub](https://github.com/angularsen/unitsnet)
 
 ## Live demo (TODO)
