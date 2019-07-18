@@ -29,7 +29,7 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The quantity of percent flowing per unit of time.
+    ///     The change in ratio per unit of time.
     /// </summary>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
@@ -53,7 +53,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit PercentPerSecond.
+        ///     Creates the quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
@@ -93,9 +93,9 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RatioChangeRate, which is PercentPerSecond. All conversions go via this value.
+        ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.PercentPerSecond;
+        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
@@ -118,7 +118,7 @@ namespace UnitsNet
         public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit PercentPerSecond.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
         public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
 

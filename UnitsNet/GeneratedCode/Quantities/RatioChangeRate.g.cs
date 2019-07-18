@@ -30,7 +30,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The quantity of percent flowing per unit of time.
+    ///     The change in ratio per unit of time.
     /// </summary>
     public partial struct RatioChangeRate : IQuantity<RatioChangeRateUnit>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
     {
@@ -101,9 +101,9 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RatioChangeRate, which is PercentPerSecond. All conversions go via this value.
+        ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.PercentPerSecond;
+        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
@@ -126,7 +126,7 @@ namespace UnitsNet
         public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit PercentPerSecond.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
         public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
 
@@ -420,7 +420,7 @@ namespace UnitsNet
         /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
         public static double operator /(RatioChangeRate left, RatioChangeRate right)
         {
-            return left.PercentsPerSecond / right.PercentsPerSecond;
+            return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RatioChangeRateTests : RatioChangeRateTestsBase
     {
-        protected override double DecimalFractionsPerSecondInOnePercentPerSecond => 0.01;
-        protected override double PercentsPerSecondInOnePercentPerSecond => 1;
+        protected override double DecimalFractionsPerSecondInOneDecimalFractionPerSecond => 1;
+        protected override double PercentsPerSecondInOneDecimalFractionPerSecond => 100;
     }
 }

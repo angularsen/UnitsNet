@@ -34,8 +34,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RatioChangeRateTestsBase
     {
-        protected abstract double DecimalFractionsPerSecondInOnePercentPerSecond { get; }
-        protected abstract double PercentsPerSecondInOnePercentPerSecond { get; }
+        protected abstract double DecimalFractionsPerSecondInOneDecimalFractionPerSecond { get; }
+        protected abstract double PercentsPerSecondInOneDecimalFractionPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecimalFractionsPerSecondTolerance { get { return 1e-5; } }
@@ -51,22 +51,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.PositiveInfinity, RatioChangeRateUnit.PercentPerSecond));
-            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.NegativeInfinity, RatioChangeRateUnit.PercentPerSecond));
+            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.PositiveInfinity, RatioChangeRateUnit.DecimalFractionPerSecond));
+            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.NegativeInfinity, RatioChangeRateUnit.DecimalFractionPerSecond));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.NaN, RatioChangeRateUnit.PercentPerSecond));
+            Assert.Throws<ArgumentException>(() => new RatioChangeRate(double.NaN, RatioChangeRateUnit.DecimalFractionPerSecond));
         }
 
         [Fact]
-        public void PercentPerSecondToRatioChangeRateUnits()
+        public void DecimalFractionPerSecondToRatioChangeRateUnits()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOnePercentPerSecond, percentpersecond.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
-            AssertEx.EqualTolerance(PercentsPerSecondInOnePercentPerSecond, percentpersecond.PercentsPerSecond, PercentsPerSecondTolerance);
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOneDecimalFractionPerSecond, decimalfractionpersecond.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(PercentsPerSecondInOneDecimalFractionPerSecond, decimalfractionpersecond.PercentsPerSecond, PercentsPerSecondTolerance);
         }
 
         [Fact]
@@ -77,106 +77,106 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromPercentsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecimalFractionsPerSecond_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromPercentsPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromPercentsPerSecond(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromDecimalFractionsPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromDecimalFractionsPerSecond(double.NegativeInfinity));
         }
 
         [Fact]
-        public void FromPercentsPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromDecimalFractionsPerSecond_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromPercentsPerSecond(double.NaN));
+            Assert.Throws<ArgumentException>(() => RatioChangeRate.FromDecimalFractionsPerSecond(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOnePercentPerSecond, percentpersecond.As(RatioChangeRateUnit.DecimalFractionPerSecond), DecimalFractionsPerSecondTolerance);
-            AssertEx.EqualTolerance(PercentsPerSecondInOnePercentPerSecond, percentpersecond.As(RatioChangeRateUnit.PercentPerSecond), PercentsPerSecondTolerance);
+            var decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOneDecimalFractionPerSecond, decimalfractionpersecond.As(RatioChangeRateUnit.DecimalFractionPerSecond), DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(PercentsPerSecondInOneDecimalFractionPerSecond, decimalfractionpersecond.As(RatioChangeRateUnit.PercentPerSecond), PercentsPerSecondTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
+            var decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
 
-            var decimalfractionpersecondQuantity = percentpersecond.ToUnit(RatioChangeRateUnit.DecimalFractionPerSecond);
-            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOnePercentPerSecond, (double)decimalfractionpersecondQuantity.Value, DecimalFractionsPerSecondTolerance);
+            var decimalfractionpersecondQuantity = decimalfractionpersecond.ToUnit(RatioChangeRateUnit.DecimalFractionPerSecond);
+            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOneDecimalFractionPerSecond, (double)decimalfractionpersecondQuantity.Value, DecimalFractionsPerSecondTolerance);
             Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, decimalfractionpersecondQuantity.Unit);
 
-            var percentpersecondQuantity = percentpersecond.ToUnit(RatioChangeRateUnit.PercentPerSecond);
-            AssertEx.EqualTolerance(PercentsPerSecondInOnePercentPerSecond, (double)percentpersecondQuantity.Value, PercentsPerSecondTolerance);
+            var percentpersecondQuantity = decimalfractionpersecond.ToUnit(RatioChangeRateUnit.PercentPerSecond);
+            AssertEx.EqualTolerance(PercentsPerSecondInOneDecimalFractionPerSecond, (double)percentpersecondQuantity.Value, PercentsPerSecondTolerance);
             Assert.Equal(RatioChangeRateUnit.PercentPerSecond, percentpersecondQuantity.Unit);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            AssertEx.EqualTolerance(1, RatioChangeRate.FromDecimalFractionsPerSecond(percentpersecond.DecimalFractionsPerSecond).PercentsPerSecond, DecimalFractionsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RatioChangeRate.FromPercentsPerSecond(percentpersecond.PercentsPerSecond).PercentsPerSecond, PercentsPerSecondTolerance);
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            AssertEx.EqualTolerance(1, RatioChangeRate.FromDecimalFractionsPerSecond(decimalfractionpersecond.DecimalFractionsPerSecond).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RatioChangeRate.FromPercentsPerSecond(decimalfractionpersecond.PercentsPerSecond).DecimalFractionsPerSecond, PercentsPerSecondTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            RatioChangeRate v = RatioChangeRate.FromPercentsPerSecond(1);
-            AssertEx.EqualTolerance(-1, -v.PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (RatioChangeRate.FromPercentsPerSecond(3)-v).PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (v + v).PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (v*10).PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (10*v).PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (RatioChangeRate.FromPercentsPerSecond(10)/5).PercentsPerSecond, PercentsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, RatioChangeRate.FromPercentsPerSecond(10)/RatioChangeRate.FromPercentsPerSecond(5), PercentsPerSecondTolerance);
+            RatioChangeRate v = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            AssertEx.EqualTolerance(-1, -v.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (RatioChangeRate.FromDecimalFractionsPerSecond(3)-v).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (v + v).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (v*10).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (10*v).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (RatioChangeRate.FromDecimalFractionsPerSecond(10)/5).DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, RatioChangeRate.FromDecimalFractionsPerSecond(10)/RatioChangeRate.FromDecimalFractionsPerSecond(5), DecimalFractionsPerSecondTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            RatioChangeRate onePercentPerSecond = RatioChangeRate.FromPercentsPerSecond(1);
-            RatioChangeRate twoPercentsPerSecond = RatioChangeRate.FromPercentsPerSecond(2);
+            RatioChangeRate oneDecimalFractionPerSecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            RatioChangeRate twoDecimalFractionsPerSecond = RatioChangeRate.FromDecimalFractionsPerSecond(2);
 
-            Assert.True(onePercentPerSecond < twoPercentsPerSecond);
-            Assert.True(onePercentPerSecond <= twoPercentsPerSecond);
-            Assert.True(twoPercentsPerSecond > onePercentPerSecond);
-            Assert.True(twoPercentsPerSecond >= onePercentPerSecond);
+            Assert.True(oneDecimalFractionPerSecond < twoDecimalFractionsPerSecond);
+            Assert.True(oneDecimalFractionPerSecond <= twoDecimalFractionsPerSecond);
+            Assert.True(twoDecimalFractionsPerSecond > oneDecimalFractionPerSecond);
+            Assert.True(twoDecimalFractionsPerSecond >= oneDecimalFractionPerSecond);
 
-            Assert.False(onePercentPerSecond > twoPercentsPerSecond);
-            Assert.False(onePercentPerSecond >= twoPercentsPerSecond);
-            Assert.False(twoPercentsPerSecond < onePercentPerSecond);
-            Assert.False(twoPercentsPerSecond <= onePercentPerSecond);
+            Assert.False(oneDecimalFractionPerSecond > twoDecimalFractionsPerSecond);
+            Assert.False(oneDecimalFractionPerSecond >= twoDecimalFractionsPerSecond);
+            Assert.False(twoDecimalFractionsPerSecond < oneDecimalFractionPerSecond);
+            Assert.False(twoDecimalFractionsPerSecond <= oneDecimalFractionPerSecond);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.Equal(0, percentpersecond.CompareTo(percentpersecond));
-            Assert.True(percentpersecond.CompareTo(RatioChangeRate.Zero) > 0);
-            Assert.True(RatioChangeRate.Zero.CompareTo(percentpersecond) < 0);
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.Equal(0, decimalfractionpersecond.CompareTo(decimalfractionpersecond));
+            Assert.True(decimalfractionpersecond.CompareTo(RatioChangeRate.Zero) > 0);
+            Assert.True(RatioChangeRate.Zero.CompareTo(decimalfractionpersecond) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.Throws<ArgumentException>(() => percentpersecond.CompareTo(new object()));
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.Throws<ArgumentException>(() => decimalfractionpersecond.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.Throws<ArgumentNullException>(() => percentpersecond.CompareTo(null));
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.Throws<ArgumentNullException>(() => decimalfractionpersecond.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = RatioChangeRate.FromPercentsPerSecond(1);
-            var b = RatioChangeRate.FromPercentsPerSecond(2);
+            var a = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            var b = RatioChangeRate.FromDecimalFractionsPerSecond(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -195,8 +195,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = RatioChangeRate.FromPercentsPerSecond(1);
-            var b = RatioChangeRate.FromPercentsPerSecond(2);
+            var a = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            var b = RatioChangeRate.FromDecimalFractionsPerSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -206,23 +206,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.True(v.Equals(RatioChangeRate.FromPercentsPerSecond(1), PercentsPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(RatioChangeRate.Zero, PercentsPerSecondTolerance, ComparisonType.Relative));
+            var v = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.True(v.Equals(RatioChangeRate.FromDecimalFractionsPerSecond(1), DecimalFractionsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(RatioChangeRate.Zero, DecimalFractionsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.False(percentpersecond.Equals(new object()));
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.False(decimalfractionpersecond.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            RatioChangeRate percentpersecond = RatioChangeRate.FromPercentsPerSecond(1);
-            Assert.False(percentpersecond.Equals(null));
+            RatioChangeRate decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            Assert.False(decimalfractionpersecond.Equals(null));
         }
 
         [Fact]
