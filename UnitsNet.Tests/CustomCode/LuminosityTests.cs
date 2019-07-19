@@ -17,36 +17,37 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    // Disable missing XML comment warnings for the generated unit enums.
-    #pragma warning disable 1591
-
-    public enum PowerUnit
+    public class LuminosityTests : LuminosityTestsBase
     {
-        Undefined = 0,
-        BoilerHorsepower,
-        BritishThermalUnitPerHour,
-        Decawatt,
-        Deciwatt,
-        ElectricalHorsepower,
-        Femtowatt,
-        Gigawatt,
-        HydraulicHorsepower,
-        KilobritishThermalUnitPerHour,
-        Kilowatt,
-        MechanicalHorsepower,
-        Megawatt,
-        MetricHorsepower,
-        Microwatt,
-        Milliwatt,
-        Nanowatt,
-        Petawatt,
-        Picowatt,
-        Terawatt,
-        Watt,
-    }
+        // Override properties in base class here
+        protected override double FemtowattsInOneWatt => 1e15;
 
-    #pragma warning restore 1591
+        protected override double PicowattsInOneWatt => 1e12;
+
+        protected override double NanowattsInOneWatt => 1e9;
+
+        protected override double MicrowattsInOneWatt => 1e6;
+
+        protected override double MilliwattsInOneWatt => 1e3;
+
+        protected override double DeciwattsInOneWatt => 1e1;
+
+        protected override double WattsInOneWatt => 1;
+
+        protected override double DecawattsInOneWatt => 1e-1;
+
+        protected override double KilowattsInOneWatt => 1e-3;
+
+        protected override double MegawattsInOneWatt => 1e-6;
+
+        protected override double GigawattsInOneWatt => 1e-9;
+
+        protected override double TerawattsInOneWatt => 1e-12;
+
+        protected override double PetawattsInOneWatt => 1e-15;
+    }
 }

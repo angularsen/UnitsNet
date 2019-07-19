@@ -52,7 +52,6 @@ namespace UnitsNet.Tests
         protected abstract double NanowattsInOneWatt { get; }
         protected abstract double PetawattsInOneWatt { get; }
         protected abstract double PicowattsInOneWatt { get; }
-        protected abstract double SolarLuminositiesInOneWatt { get; }
         protected abstract double TerawattsInOneWatt { get; }
         protected abstract double WattsInOneWatt { get; }
 
@@ -75,7 +74,6 @@ namespace UnitsNet.Tests
         protected virtual double NanowattsTolerance { get { return 1e-5; } }
         protected virtual double PetawattsTolerance { get { return 1e-5; } }
         protected virtual double PicowattsTolerance { get { return 1e-5; } }
-        protected virtual double SolarLuminositiesTolerance { get { return 1e-5; } }
         protected virtual double TerawattsTolerance { get { return 1e-5; } }
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -108,7 +106,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.Nanowatts, NanowattsTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.Picowatts, PicowattsTolerance);
-            AssertEx.EqualTolerance(SolarLuminositiesInOneWatt, watt.SolarLuminosities, SolarLuminositiesTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.Terawatts, TerawattsTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.Watts, WattsTolerance);
         }
@@ -134,7 +131,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Nanowatt).Nanowatts, NanowattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Petawatt).Petawatts, PetawattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Picowatt).Picowatts, PicowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.SolarLuminosity).SolarLuminosities, SolarLuminositiesTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Terawatt).Terawatts, TerawattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Watt).Watts, WattsTolerance);
         }
@@ -161,7 +157,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.As(PowerUnit.Nanowatt), NanowattsTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.As(PowerUnit.Picowatt), PicowattsTolerance);
-            AssertEx.EqualTolerance(SolarLuminositiesInOneWatt, watt.As(PowerUnit.SolarLuminosity), SolarLuminositiesTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.As(PowerUnit.Terawatt), TerawattsTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.As(PowerUnit.Watt), WattsTolerance);
         }
@@ -243,10 +238,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PicowattsInOneWatt, (double)picowattQuantity.Value, PicowattsTolerance);
             Assert.Equal(PowerUnit.Picowatt, picowattQuantity.Unit);
 
-            var solarluminosityQuantity = watt.ToUnit(PowerUnit.SolarLuminosity);
-            AssertEx.EqualTolerance(SolarLuminositiesInOneWatt, (double)solarluminosityQuantity.Value, SolarLuminositiesTolerance);
-            Assert.Equal(PowerUnit.SolarLuminosity, solarluminosityQuantity.Unit);
-
             var terawattQuantity = watt.ToUnit(PowerUnit.Terawatt);
             AssertEx.EqualTolerance(TerawattsInOneWatt, (double)terawattQuantity.Value, TerawattsTolerance);
             Assert.Equal(PowerUnit.Terawatt, terawattQuantity.Unit);
@@ -278,7 +269,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromSolarLuminosities(watt.SolarLuminosities).Watts, SolarLuminositiesTolerance);
             AssertEx.EqualTolerance(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
         }

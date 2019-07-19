@@ -23,27 +23,21 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum PowerUnit
+    public enum LuminosityUnit
     {
         Undefined = 0,
-        BoilerHorsepower,
-        BritishThermalUnitPerHour,
         Decawatt,
         Deciwatt,
-        ElectricalHorsepower,
         Femtowatt,
         Gigawatt,
-        HydraulicHorsepower,
-        KilobritishThermalUnitPerHour,
         Kilowatt,
-        MechanicalHorsepower,
         Megawatt,
-        MetricHorsepower,
         Microwatt,
         Milliwatt,
         Nanowatt,
         Petawatt,
         Picowatt,
+        SolarLuminosity,
         Terawatt,
         Watt,
     }

@@ -188,6 +188,9 @@ namespace UnitsNet
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
                     return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
+                    return true;
                 case LuminousFluxUnit luminousFluxUnit:
                     quantity = LuminousFlux.From(value, luminousFluxUnit);
                     return true;
@@ -292,6 +295,9 @@ namespace UnitsNet
                     return true;
                 case SpeedUnit speedUnit:
                     quantity = Speed.From(value, speedUnit);
+                    return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
                     return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
@@ -523,6 +529,9 @@ namespace UnitsNet
             if (quantityType == typeof(LinearDensity))
                 return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
 
+            if (quantityType == typeof(Luminosity))
+                return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
+
             if (quantityType == typeof(LuminousFlux))
                 return parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity);
 
@@ -627,6 +636,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Speed))
                 return parser.TryParse<Speed, SpeedUnit>(quantityString, formatProvider, Speed.From, out quantity);
+
+            if (quantityType == typeof(Luminosity))
+                return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
 
             if (quantityType == typeof(Temperature))
                 return parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity);

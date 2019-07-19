@@ -94,18 +94,6 @@
           "Abbreviations": [ "Btu/hr" ]
         }
       ]
-    },
-    {
-      "SingularName": "SolarLuminosity",
-      "PluralName": "SolarLuminosities",
-      "FromUnitToBaseFunc": "x * 3.828e26m",
-      "FromBaseToUnitFunc": "x / 3.828e26m",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "sl" ]
-        }
-      ]
     }
   ]
 }

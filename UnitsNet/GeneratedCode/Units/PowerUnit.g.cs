@@ -44,7 +44,6 @@ namespace UnitsNet.Units
         Nanowatt,
         Petawatt,
         Picowatt,
-        SolarLuminosity,
         Terawatt,
         Watt,
     }

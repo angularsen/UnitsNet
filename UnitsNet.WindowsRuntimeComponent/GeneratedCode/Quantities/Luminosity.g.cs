@@ -29,27 +29,30 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
+    ///     Luminosity is an absolute measure of radiated electromagnetic power (light), the radiant power emitted by a light-emitting object.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Luminosity
+    /// </remarks>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class Power : IQuantity
+    public sealed partial class Luminosity : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly decimal _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly PowerUnit? _unit;
+        private readonly LuminosityUnit? _unit;
 
-        static Power()
+        static Luminosity()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.Power, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Luminosity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -58,7 +61,7 @@ namespace UnitsNet
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public Power()
+        public Luminosity()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -71,12 +74,12 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Power(decimal numericValue, PowerUnit unit)
+        private Luminosity(double numericValue, LuminosityUnit unit)
         {
-            if(unit == PowerUnit.Undefined)
+            if(unit == LuminosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -93,34 +96,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Power, which is Watt. All conversions go via this value.
+        ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
+        public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of Power
+        /// Represents the largest possible value of Luminosity
         /// </summary>
-        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
+        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Power
+        /// Represents the smallest possible value of Luminosity
         /// </summary>
-        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
+        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Power;
+        public static QuantityType QuantityType { get; } = QuantityType.Luminosity;
 
         /// <summary>
-        ///     All units of measurement for the Power quantity.
+        ///     All units of measurement for the Luminosity quantity.
         /// </summary>
-        public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+        public static LuminosityUnit[] Units { get; } = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; } = new Power(0, BaseUnit);
+        public static Luminosity Zero { get; } = new Luminosity(0, BaseUnit);
 
         #endregion
 
@@ -137,123 +140,93 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LuminosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Power.QuantityType;
+        public QuantityType Type => Luminosity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Power.BaseDimensions;
+        public BaseDimensions Dimensions => Luminosity.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Power in BoilerHorsepower.
+        ///     Get Luminosity in Decawatts.
         /// </summary>
-        public double BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
+        public double Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Get Power in BritishThermalUnitsPerHour.
+        ///     Get Luminosity in Deciwatts.
         /// </summary>
-        public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
+        public double Deciwatts => As(LuminosityUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Power in Decawatts.
+        ///     Get Luminosity in Femtowatts.
         /// </summary>
-        public double Decawatts => As(PowerUnit.Decawatt);
+        public double Femtowatts => As(LuminosityUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Power in Deciwatts.
+        ///     Get Luminosity in Gigawatts.
         /// </summary>
-        public double Deciwatts => As(PowerUnit.Deciwatt);
+        public double Gigawatts => As(LuminosityUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Power in ElectricalHorsepower.
+        ///     Get Luminosity in Kilowatts.
         /// </summary>
-        public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
+        public double Kilowatts => As(LuminosityUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Power in Femtowatts.
+        ///     Get Luminosity in Megawatts.
         /// </summary>
-        public double Femtowatts => As(PowerUnit.Femtowatt);
+        public double Megawatts => As(LuminosityUnit.Megawatt);
 
         /// <summary>
-        ///     Get Power in Gigawatts.
+        ///     Get Luminosity in Microwatts.
         /// </summary>
-        public double Gigawatts => As(PowerUnit.Gigawatt);
+        public double Microwatts => As(LuminosityUnit.Microwatt);
 
         /// <summary>
-        ///     Get Power in HydraulicHorsepower.
+        ///     Get Luminosity in Milliwatts.
         /// </summary>
-        public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
+        public double Milliwatts => As(LuminosityUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Power in KilobritishThermalUnitsPerHour.
+        ///     Get Luminosity in Nanowatts.
         /// </summary>
-        public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
+        public double Nanowatts => As(LuminosityUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Power in Kilowatts.
+        ///     Get Luminosity in Petawatts.
         /// </summary>
-        public double Kilowatts => As(PowerUnit.Kilowatt);
+        public double Petawatts => As(LuminosityUnit.Petawatt);
 
         /// <summary>
-        ///     Get Power in MechanicalHorsepower.
+        ///     Get Luminosity in Picowatts.
         /// </summary>
-        public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
+        public double Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Get Power in Megawatts.
+        ///     Get Luminosity in Watts.
         /// </summary>
-        public double Megawatts => As(PowerUnit.Megawatt);
+        public double Watts => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
-        ///     Get Power in MetricHorsepower.
+        ///     Get Luminosity in Terawatts.
         /// </summary>
-        public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
+        public double Terawatts => As(LuminosityUnit.Terawatt);
 
         /// <summary>
-        ///     Get Power in Microwatts.
+        ///     Get Luminosity in Watts.
         /// </summary>
-        public double Microwatts => As(PowerUnit.Microwatt);
-
-        /// <summary>
-        ///     Get Power in Milliwatts.
-        /// </summary>
-        public double Milliwatts => As(PowerUnit.Milliwatt);
-
-        /// <summary>
-        ///     Get Power in Nanowatts.
-        /// </summary>
-        public double Nanowatts => As(PowerUnit.Nanowatt);
-
-        /// <summary>
-        ///     Get Power in Petawatts.
-        /// </summary>
-        public double Petawatts => As(PowerUnit.Petawatt);
-
-        /// <summary>
-        ///     Get Power in Picowatts.
-        /// </summary>
-        public double Picowatts => As(PowerUnit.Picowatt);
-
-        /// <summary>
-        ///     Get Power in Terawatts.
-        /// </summary>
-        public double Terawatts => As(PowerUnit.Terawatt);
-
-        /// <summary>
-        ///     Get Power in Watts.
-        /// </summary>
-        public double Watts => As(PowerUnit.Watt);
+        public double Watts => As(LuminosityUnit.Watt);
 
         #endregion
 
@@ -264,7 +237,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(PowerUnit unit)
+        public static string GetAbbreviation(LuminosityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -275,7 +248,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(PowerUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(LuminosityUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -286,217 +259,157 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Power from BoilerHorsepower.
+        ///     Get Luminosity from Decawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromBoilerHorsepower(double boilerhorsepower)
+        public static Luminosity FromDecawatts(double decawatts)
         {
-            decimal value = (decimal) boilerhorsepower;
-            return new Power(value, PowerUnit.BoilerHorsepower);
+            double value = (double) decawatts;
+            return new Luminosity(value, LuminosityUnit.Decawatt);
         }
         /// <summary>
-        ///     Get Power from BritishThermalUnitsPerHour.
+        ///     Get Luminosity from Deciwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
+        public static Luminosity FromDeciwatts(double deciwatts)
         {
-            decimal value = (decimal) britishthermalunitsperhour;
-            return new Power(value, PowerUnit.BritishThermalUnitPerHour);
+            double value = (double) deciwatts;
+            return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
         /// <summary>
-        ///     Get Power from Decawatts.
+        ///     Get Luminosity from Femtowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromDecawatts(double decawatts)
+        public static Luminosity FromFemtowatts(double femtowatts)
         {
-            decimal value = (decimal) decawatts;
-            return new Power(value, PowerUnit.Decawatt);
+            double value = (double) femtowatts;
+            return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
         /// <summary>
-        ///     Get Power from Deciwatts.
+        ///     Get Luminosity from Gigawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromDeciwatts(double deciwatts)
+        public static Luminosity FromGigawatts(double gigawatts)
         {
-            decimal value = (decimal) deciwatts;
-            return new Power(value, PowerUnit.Deciwatt);
+            double value = (double) gigawatts;
+            return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
         /// <summary>
-        ///     Get Power from ElectricalHorsepower.
+        ///     Get Luminosity from Kilowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromElectricalHorsepower(double electricalhorsepower)
+        public static Luminosity FromKilowatts(double kilowatts)
         {
-            decimal value = (decimal) electricalhorsepower;
-            return new Power(value, PowerUnit.ElectricalHorsepower);
+            double value = (double) kilowatts;
+            return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
         /// <summary>
-        ///     Get Power from Femtowatts.
+        ///     Get Luminosity from Megawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromFemtowatts(double femtowatts)
+        public static Luminosity FromMegawatts(double megawatts)
         {
-            decimal value = (decimal) femtowatts;
-            return new Power(value, PowerUnit.Femtowatt);
+            double value = (double) megawatts;
+            return new Luminosity(value, LuminosityUnit.Megawatt);
         }
         /// <summary>
-        ///     Get Power from Gigawatts.
+        ///     Get Luminosity from Microwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromGigawatts(double gigawatts)
+        public static Luminosity FromMicrowatts(double microwatts)
         {
-            decimal value = (decimal) gigawatts;
-            return new Power(value, PowerUnit.Gigawatt);
+            double value = (double) microwatts;
+            return new Luminosity(value, LuminosityUnit.Microwatt);
         }
         /// <summary>
-        ///     Get Power from HydraulicHorsepower.
+        ///     Get Luminosity from Milliwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromHydraulicHorsepower(double hydraulichorsepower)
+        public static Luminosity FromMilliwatts(double milliwatts)
         {
-            decimal value = (decimal) hydraulichorsepower;
-            return new Power(value, PowerUnit.HydraulicHorsepower);
+            double value = (double) milliwatts;
+            return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
         /// <summary>
-        ///     Get Power from KilobritishThermalUnitsPerHour.
+        ///     Get Luminosity from Nanowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
+        public static Luminosity FromNanowatts(double nanowatts)
         {
-            decimal value = (decimal) kilobritishthermalunitsperhour;
-            return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
+            double value = (double) nanowatts;
+            return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
         /// <summary>
-        ///     Get Power from Kilowatts.
+        ///     Get Luminosity from Petawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromKilowatts(double kilowatts)
+        public static Luminosity FromPetawatts(double petawatts)
         {
-            decimal value = (decimal) kilowatts;
-            return new Power(value, PowerUnit.Kilowatt);
+            double value = (double) petawatts;
+            return new Luminosity(value, LuminosityUnit.Petawatt);
         }
         /// <summary>
-        ///     Get Power from MechanicalHorsepower.
+        ///     Get Luminosity from Picowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
+        public static Luminosity FromPicowatts(double picowatts)
         {
-            decimal value = (decimal) mechanicalhorsepower;
-            return new Power(value, PowerUnit.MechanicalHorsepower);
+            double value = (double) picowatts;
+            return new Luminosity(value, LuminosityUnit.Picowatt);
         }
         /// <summary>
-        ///     Get Power from Megawatts.
+        ///     Get Luminosity from Watts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromMegawatts(double megawatts)
+        public static Luminosity FromWatts(double watts)
         {
-            decimal value = (decimal) megawatts;
-            return new Power(value, PowerUnit.Megawatt);
+            double value = (double) watts;
+            return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
         /// <summary>
-        ///     Get Power from MetricHorsepower.
+        ///     Get Luminosity from Terawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromMetricHorsepower(double metrichorsepower)
+        public static Luminosity FromTerawatts(double terawatts)
         {
-            decimal value = (decimal) metrichorsepower;
-            return new Power(value, PowerUnit.MetricHorsepower);
+            double value = (double) terawatts;
+            return new Luminosity(value, LuminosityUnit.Terawatt);
         }
         /// <summary>
-        ///     Get Power from Microwatts.
+        ///     Get Luminosity from Watts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromMicrowatts(double microwatts)
+        public static Luminosity FromWatts(double watts)
         {
-            decimal value = (decimal) microwatts;
-            return new Power(value, PowerUnit.Microwatt);
-        }
-        /// <summary>
-        ///     Get Power from Milliwatts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromMilliwatts(double milliwatts)
-        {
-            decimal value = (decimal) milliwatts;
-            return new Power(value, PowerUnit.Milliwatt);
-        }
-        /// <summary>
-        ///     Get Power from Nanowatts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromNanowatts(double nanowatts)
-        {
-            decimal value = (decimal) nanowatts;
-            return new Power(value, PowerUnit.Nanowatt);
-        }
-        /// <summary>
-        ///     Get Power from Petawatts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromPetawatts(double petawatts)
-        {
-            decimal value = (decimal) petawatts;
-            return new Power(value, PowerUnit.Petawatt);
-        }
-        /// <summary>
-        ///     Get Power from Picowatts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromPicowatts(double picowatts)
-        {
-            decimal value = (decimal) picowatts;
-            return new Power(value, PowerUnit.Picowatt);
-        }
-        /// <summary>
-        ///     Get Power from Terawatts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromTerawatts(double terawatts)
-        {
-            decimal value = (decimal) terawatts;
-            return new Power(value, PowerUnit.Terawatt);
-        }
-        /// <summary>
-        ///     Get Power from Watts.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Power FromWatts(double watts)
-        {
-            decimal value = (decimal) watts;
-            return new Power(value, PowerUnit.Watt);
+            double value = (double) watts;
+            return new Luminosity(value, LuminosityUnit.Watt);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
+        ///     Dynamically convert from value and unit enum <see cref="LuminosityUnit" /> to <see cref="Luminosity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Power unit value.</returns>
+        /// <returns>Luminosity unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static Power From(double value, PowerUnit fromUnit)
+        public static Luminosity From(double value, LuminosityUnit fromUnit)
         {
-            return new Power((decimal)value, fromUnit);
+            return new Luminosity((double)value, fromUnit);
         }
 
         #endregion
@@ -525,7 +438,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Power Parse(string str)
+        public static Luminosity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -553,10 +466,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static Power Parse(string str, [CanBeNull] string cultureName)
+        public static Luminosity Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<Power, PowerUnit>(
+            return QuantityParser.Default.Parse<Luminosity, LuminosityUnit>(
                 str,
                 provider,
                 From);
@@ -570,7 +483,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Power result)
+        public static bool TryParse([CanBeNull] string str, out Luminosity result)
         {
             return TryParse(str, null, out result);
         }
@@ -585,10 +498,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out Power result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out Luminosity result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<Power, PowerUnit>(
+            return QuantityParser.Default.TryParse<Luminosity, LuminosityUnit>(
                 str,
                 provider,
                 From,
@@ -604,7 +517,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static PowerUnit ParseUnit(string str)
+        public static LuminosityUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -619,13 +532,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static PowerUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static LuminosityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<PowerUnit>(str, provider);
+            return UnitParser.Default.Parse<LuminosityUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out PowerUnit unit)
+        public static bool TryParseUnit(string str, out LuminosityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -640,10 +553,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out PowerUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out LuminosityUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<PowerUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<LuminosityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -653,13 +566,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Power objPower)) throw new ArgumentException("Expected type Power.", nameof(obj));
+            if(!(obj is Luminosity objLuminosity)) throw new ArgumentException("Expected type Luminosity.", nameof(obj));
 
-            return CompareTo(objPower);
+            return CompareTo(objLuminosity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(Power other)
+        internal int CompareTo(Luminosity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -667,20 +580,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Power objPower))
+            if(obj is null || !(obj is Luminosity objLuminosity))
                 return false;
 
-            return Equals(objPower);
+            return Equals(objLuminosity);
         }
 
-        public bool Equals(Power other)
+        public bool Equals(Luminosity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Power within the given absolute or relative tolerance.
+        ///     Compare equality to another Luminosity within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -718,7 +631,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Power other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Luminosity other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -732,7 +645,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Power.</returns>
+        /// <returns>A hash code for the current Luminosity.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -742,13 +655,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((PowerUnit)unit);
+        double IQuantity.As(object unit) => As((LuminosityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(PowerUnit unit)
+        public double As(LuminosityUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -758,13 +671,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
+        ///     Converts this Luminosity to another Luminosity with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Power with the specified unit.</returns>
-        public Power ToUnit(PowerUnit unit)
+        /// <returns>A Luminosity with the specified unit.</returns>
+        public Luminosity ToUnit(LuminosityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new Power(convertedValue, unit);
+            return new Luminosity(convertedValue, unit);
         }
 
         /// <summary>
@@ -772,36 +685,30 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal AsBaseUnit()
+        private double AsBaseUnit()
         {
             switch(Unit)
             {
-                case PowerUnit.BoilerHorsepower: return _value*9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return _value*0.293071m;
-                case PowerUnit.Decawatt: return (_value) * 1e1m;
-                case PowerUnit.Deciwatt: return (_value) * 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return _value*746m;
-                case PowerUnit.Femtowatt: return (_value) * 1e-15m;
-                case PowerUnit.Gigawatt: return (_value) * 1e9m;
-                case PowerUnit.HydraulicHorsepower: return _value*745.69988145m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071m) * 1e3m;
-                case PowerUnit.Kilowatt: return (_value) * 1e3m;
-                case PowerUnit.MechanicalHorsepower: return _value*745.69m;
-                case PowerUnit.Megawatt: return (_value) * 1e6m;
-                case PowerUnit.MetricHorsepower: return _value*735.49875m;
-                case PowerUnit.Microwatt: return (_value) * 1e-6m;
-                case PowerUnit.Milliwatt: return (_value) * 1e-3m;
-                case PowerUnit.Nanowatt: return (_value) * 1e-9m;
-                case PowerUnit.Petawatt: return (_value) * 1e15m;
-                case PowerUnit.Picowatt: return (_value) * 1e-12m;
-                case PowerUnit.Terawatt: return (_value) * 1e12m;
-                case PowerUnit.Watt: return _value;
+                case LuminosityUnit.Decawatt: return (_value) * 1e1d;
+                case LuminosityUnit.Deciwatt: return (_value) * 1e-1d;
+                case LuminosityUnit.Femtowatt: return (_value) * 1e-15d;
+                case LuminosityUnit.Gigawatt: return (_value) * 1e9d;
+                case LuminosityUnit.Kilowatt: return (_value) * 1e3d;
+                case LuminosityUnit.Megawatt: return (_value) * 1e6d;
+                case LuminosityUnit.Microwatt: return (_value) * 1e-6d;
+                case LuminosityUnit.Milliwatt: return (_value) * 1e-3d;
+                case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
+                case LuminosityUnit.Petawatt: return (_value) * 1e15d;
+                case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
+                case LuminosityUnit.SolarLuminosity: return _value * 3.828e26;
+                case LuminosityUnit.Terawatt: return (_value) * 1e12d;
+                case LuminosityUnit.Watt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private decimal AsBaseNumericType(PowerUnit unit)
+        private double AsBaseNumericType(LuminosityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -810,26 +717,20 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PowerUnit.BoilerHorsepower: return baseUnitValue/9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return baseUnitValue/0.293071m;
-                case PowerUnit.Decawatt: return (baseUnitValue) / 1e1m;
-                case PowerUnit.Deciwatt: return (baseUnitValue) / 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return baseUnitValue/746m;
-                case PowerUnit.Femtowatt: return (baseUnitValue) / 1e-15m;
-                case PowerUnit.Gigawatt: return (baseUnitValue) / 1e9m;
-                case PowerUnit.HydraulicHorsepower: return baseUnitValue/745.69988145m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (baseUnitValue/0.293071m) / 1e3m;
-                case PowerUnit.Kilowatt: return (baseUnitValue) / 1e3m;
-                case PowerUnit.MechanicalHorsepower: return baseUnitValue/745.69m;
-                case PowerUnit.Megawatt: return (baseUnitValue) / 1e6m;
-                case PowerUnit.MetricHorsepower: return baseUnitValue/735.49875m;
-                case PowerUnit.Microwatt: return (baseUnitValue) / 1e-6m;
-                case PowerUnit.Milliwatt: return (baseUnitValue) / 1e-3m;
-                case PowerUnit.Nanowatt: return (baseUnitValue) / 1e-9m;
-                case PowerUnit.Petawatt: return (baseUnitValue) / 1e15m;
-                case PowerUnit.Picowatt: return (baseUnitValue) / 1e-12m;
-                case PowerUnit.Terawatt: return (baseUnitValue) / 1e12m;
-                case PowerUnit.Watt: return baseUnitValue;
+                case LuminosityUnit.Decawatt: return (baseUnitValue) / 1e1d;
+                case LuminosityUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
+                case LuminosityUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
+                case LuminosityUnit.Gigawatt: return (baseUnitValue) / 1e9d;
+                case LuminosityUnit.Kilowatt: return (baseUnitValue) / 1e3d;
+                case LuminosityUnit.Megawatt: return (baseUnitValue) / 1e6d;
+                case LuminosityUnit.Microwatt: return (baseUnitValue) / 1e-6d;
+                case LuminosityUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
+                case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
+                case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
+                case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
+                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.828e26;
+                case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
+                case LuminosityUnit.Watt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
