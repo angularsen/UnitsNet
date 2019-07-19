@@ -676,6 +676,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal LinearDensity ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new LinearDensity(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(LinearDensityUnit unit)
         {
             if(Unit == unit)

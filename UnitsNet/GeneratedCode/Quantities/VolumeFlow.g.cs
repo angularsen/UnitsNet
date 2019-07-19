@@ -1393,6 +1393,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal VolumeFlow ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new VolumeFlow(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(VolumeFlowUnit unit)
         {
             if(Unit == unit)

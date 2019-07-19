@@ -1012,6 +1012,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MassFraction ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MassFraction(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(MassFractionUnit unit)
         {
             if(Unit == unit)
