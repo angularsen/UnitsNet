@@ -57,9 +57,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
 
-        protected override double EarthMassesInOneKilogram => 1.0 / 5.9722E+24;
+        protected override double EarthMassesInOneKilogram => 1.6744248350691500000000000E-25;
 
-        protected override double SolarMassesInOneKilogram => 1.0 / 1.98847e30;
+        protected override double SolarMassesInOneKilogram => 5.0289921396852900000000000E-31;
 
         protected override double SolarMassesTolerance => 0.1;
 
