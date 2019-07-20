@@ -55,6 +55,8 @@ build_script:
 # Do not build feature branch with open Pull Requests to avoid building twice
 skip_branch_with_pr: true
 
+# Upload code coverage reports to codecov.io.
+# PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
 after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
