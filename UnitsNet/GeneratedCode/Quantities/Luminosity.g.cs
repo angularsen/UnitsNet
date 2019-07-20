@@ -844,7 +844,7 @@ namespace UnitsNet
                 case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
                 case LuminosityUnit.Petawatt: return (_value) * 1e15d;
                 case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return _value * 3.828e26;
+                case LuminosityUnit.SolarLuminosity: return _value * 3.846e26;
                 case LuminosityUnit.Terawatt: return (_value) * 1e12d;
                 case LuminosityUnit.Watt: return _value;
                 default:
@@ -883,7 +883,7 @@ namespace UnitsNet
                 case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
                 case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
                 case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.828e26;
+                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.846e26;
                 case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
                 case LuminosityUnit.Watt: return baseUnitValue;
                 default:

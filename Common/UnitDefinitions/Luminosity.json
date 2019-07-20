@@ -26,8 +26,9 @@
     {
       "SingularName": "SolarLuminosity",
       "PluralName": "SolarLuminosities",
-      "FromUnitToBaseFunc": "x * 3.828e26",
-      "FromBaseToUnitFunc": "x / 3.828e26",
+      "FromUnitToBaseFunc": "x * 3.846e26",
+      "FromBaseToUnitFunc": "x / 3.846e26",
+      "XmlDocRemarks": "https://www.britannica.com/science/luminosity",
       "Localization": [
         {
           "Culture": "en-US",

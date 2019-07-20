@@ -37,6 +37,7 @@ namespace UnitsNet.Units
         Nanowatt,
         Petawatt,
         Picowatt,
+        /// <remarks>https://www.britannica.com/science/luminosity</remarks>
         SolarLuminosity,
         Terawatt,
         Watt,
