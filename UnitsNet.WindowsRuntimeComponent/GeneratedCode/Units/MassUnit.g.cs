@@ -31,6 +31,12 @@ namespace UnitsNet.Units
         Decigram,
 
         /// <summary>
+        ///     Earth mass is a ratio unit to the mass of planet Earth.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Earth_mass</remarks>
+        EarthMass,
+
+        /// <summary>
         ///     A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Grain_(unit)</remarks>
@@ -86,6 +92,12 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Slug_(unit)</remarks>
         Slug,
+
+        /// <summary>
+        ///     Solar mass is a ratio unit to the mass of the solar system star, the sun.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Solar_mass</remarks>
+        SolarMass,
 
         /// <summary>
         ///     The stone (abbreviation st) is a unit of mass equal to 14 pounds avoirdupois (about 6.35 kilograms) used in Great Britain and Ireland for measuring human body weight.

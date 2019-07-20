@@ -37,6 +37,7 @@ namespace UnitsNet.Tests
         protected abstract double CentigramsInOneKilogram { get; }
         protected abstract double DecagramsInOneKilogram { get; }
         protected abstract double DecigramsInOneKilogram { get; }
+        protected abstract double EarthMassesInOneKilogram { get; }
         protected abstract double GrainsInOneKilogram { get; }
         protected abstract double GramsInOneKilogram { get; }
         protected abstract double HectogramsInOneKilogram { get; }
@@ -55,6 +56,7 @@ namespace UnitsNet.Tests
         protected abstract double ShortHundredweightInOneKilogram { get; }
         protected abstract double ShortTonsInOneKilogram { get; }
         protected abstract double SlugsInOneKilogram { get; }
+        protected abstract double SolarMassesInOneKilogram { get; }
         protected abstract double StoneInOneKilogram { get; }
         protected abstract double TonnesInOneKilogram { get; }
 
@@ -62,6 +64,7 @@ namespace UnitsNet.Tests
         protected virtual double CentigramsTolerance { get { return 1e-5; } }
         protected virtual double DecagramsTolerance { get { return 1e-5; } }
         protected virtual double DecigramsTolerance { get { return 1e-5; } }
+        protected virtual double EarthMassesTolerance { get { return 1e-5; } }
         protected virtual double GrainsTolerance { get { return 1e-5; } }
         protected virtual double GramsTolerance { get { return 1e-5; } }
         protected virtual double HectogramsTolerance { get { return 1e-5; } }
@@ -80,6 +83,7 @@ namespace UnitsNet.Tests
         protected virtual double ShortHundredweightTolerance { get { return 1e-5; } }
         protected virtual double ShortTonsTolerance { get { return 1e-5; } }
         protected virtual double SlugsTolerance { get { return 1e-5; } }
+        protected virtual double SolarMassesTolerance { get { return 1e-5; } }
         protected virtual double StoneTolerance { get { return 1e-5; } }
         protected virtual double TonnesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -110,6 +114,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.Centigrams, CentigramsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.Decagrams, DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.Decigrams, DecigramsTolerance);
+            AssertEx.EqualTolerance(EarthMassesInOneKilogram, kilogram.EarthMasses, EarthMassesTolerance);
             AssertEx.EqualTolerance(GrainsInOneKilogram, kilogram.Grains, GrainsTolerance);
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.Grams, GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.Hectograms, HectogramsTolerance);
@@ -128,6 +133,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(ShortHundredweightInOneKilogram, kilogram.ShortHundredweight, ShortHundredweightTolerance);
             AssertEx.EqualTolerance(ShortTonsInOneKilogram, kilogram.ShortTons, ShortTonsTolerance);
             AssertEx.EqualTolerance(SlugsInOneKilogram, kilogram.Slugs, SlugsTolerance);
+            AssertEx.EqualTolerance(SolarMassesInOneKilogram, kilogram.SolarMasses, SolarMassesTolerance);
             AssertEx.EqualTolerance(StoneInOneKilogram, kilogram.Stone, StoneTolerance);
             AssertEx.EqualTolerance(TonnesInOneKilogram, kilogram.Tonnes, TonnesTolerance);
         }
@@ -138,6 +144,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Centigram).Centigrams, CentigramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decagram).Decagrams, DecagramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decigram).Decigrams, DecigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.EarthMass).EarthMasses, EarthMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Grain).Grains, GrainsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Gram).Grams, GramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
@@ -156,6 +163,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortHundredweight).ShortHundredweight, ShortHundredweightTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Slug).Slugs, SlugsTolerance);
+            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.SolarMass).SolarMasses, SolarMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Stone).Stone, StoneTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
         }
@@ -180,6 +188,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), CentigramsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), DecigramsTolerance);
+            AssertEx.EqualTolerance(EarthMassesInOneKilogram, kilogram.As(MassUnit.EarthMass), EarthMassesTolerance);
             AssertEx.EqualTolerance(GrainsInOneKilogram, kilogram.As(MassUnit.Grain), GrainsTolerance);
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.As(MassUnit.Gram), GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), HectogramsTolerance);
@@ -198,6 +207,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(ShortHundredweightInOneKilogram, kilogram.As(MassUnit.ShortHundredweight), ShortHundredweightTolerance);
             AssertEx.EqualTolerance(ShortTonsInOneKilogram, kilogram.As(MassUnit.ShortTon), ShortTonsTolerance);
             AssertEx.EqualTolerance(SlugsInOneKilogram, kilogram.As(MassUnit.Slug), SlugsTolerance);
+            AssertEx.EqualTolerance(SolarMassesInOneKilogram, kilogram.As(MassUnit.SolarMass), SolarMassesTolerance);
             AssertEx.EqualTolerance(StoneInOneKilogram, kilogram.As(MassUnit.Stone), StoneTolerance);
             AssertEx.EqualTolerance(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), TonnesTolerance);
         }
@@ -218,6 +228,10 @@ namespace UnitsNet.Tests
             var decigramQuantity = kilogram.ToUnit(MassUnit.Decigram);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, (double)decigramQuantity.Value, DecigramsTolerance);
             Assert.Equal(MassUnit.Decigram, decigramQuantity.Unit);
+
+            var earthmassQuantity = kilogram.ToUnit(MassUnit.EarthMass);
+            AssertEx.EqualTolerance(EarthMassesInOneKilogram, (double)earthmassQuantity.Value, EarthMassesTolerance);
+            Assert.Equal(MassUnit.EarthMass, earthmassQuantity.Unit);
 
             var grainQuantity = kilogram.ToUnit(MassUnit.Grain);
             AssertEx.EqualTolerance(GrainsInOneKilogram, (double)grainQuantity.Value, GrainsTolerance);
@@ -291,6 +305,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SlugsInOneKilogram, (double)slugQuantity.Value, SlugsTolerance);
             Assert.Equal(MassUnit.Slug, slugQuantity.Unit);
 
+            var solarmassQuantity = kilogram.ToUnit(MassUnit.SolarMass);
+            AssertEx.EqualTolerance(SolarMassesInOneKilogram, (double)solarmassQuantity.Value, SolarMassesTolerance);
+            Assert.Equal(MassUnit.SolarMass, solarmassQuantity.Unit);
+
             var stoneQuantity = kilogram.ToUnit(MassUnit.Stone);
             AssertEx.EqualTolerance(StoneInOneKilogram, (double)stoneQuantity.Value, StoneTolerance);
             Assert.Equal(MassUnit.Stone, stoneQuantity.Unit);
@@ -307,6 +325,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
@@ -325,6 +344,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms, ShortHundredweightTolerance);
             AssertEx.EqualTolerance(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromSlugs(kilogram.Slugs).Kilograms, SlugsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
             AssertEx.EqualTolerance(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
         }

@@ -30,9 +30,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The change in ratio per unit of time.
+    ///     Luminosity is an absolute measure of radiated electromagnetic power (light), the radiant power emitted by a light-emitting object.
     /// </summary>
-    public partial struct RatioChangeRate : IQuantity<RatioChangeRateUnit>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Luminosity
+    /// </remarks>
+    public partial struct Luminosity : IQuantity<LuminosityUnit>, IEquatable<Luminosity>, IComparable, IComparable<Luminosity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -42,16 +45,28 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly RatioChangeRateUnit? _unit;
+        private readonly LuminosityUnit? _unit;
 
-        static RatioChangeRate()
+        static Luminosity()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<RatioChangeRateUnit>(QuantityType.RatioChangeRate,
-                new UnitInfo<RatioChangeRateUnit>[] {
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, BaseUnits.Undefined),
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, BaseUnits.Undefined),
+            Info = new QuantityInfo<LuminosityUnit>(QuantityType.Luminosity,
+                new UnitInfo<LuminosityUnit>[] {
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -62,9 +77,9 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RatioChangeRate(double numericValue, RatioChangeRateUnit unit)
+        public Luminosity(double numericValue, LuminosityUnit unit)
         {
-            if(unit == RatioChangeRateUnit.Undefined)
+            if(unit == LuminosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
@@ -79,7 +94,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RatioChangeRate(double numericValue, UnitSystem unitSystem)
+        public Luminosity(double numericValue, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -93,7 +108,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioChangeRateUnit> Info { get; }
+        public static QuantityInfo<LuminosityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -101,34 +116,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
+        ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of RatioChangeRate
+        /// Represents the largest possible value of Luminosity
         /// </summary>
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of RatioChangeRate
+        /// Represents the smallest possible value of Luminosity
         /// </summary>
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
+        public static QuantityType QuantityType { get; } = QuantityType.Luminosity;
 
         /// <summary>
-        ///     All units of measurement for the RatioChangeRate quantity.
+        ///     All units of measurement for the Luminosity quantity.
         /// </summary>
-        public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+        public static LuminosityUnit[] Units { get; } = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static Luminosity Zero { get; } = new Luminosity(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +157,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public RatioChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LuminosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<RatioChangeRateUnit> QuantityInfo => Info;
+        public QuantityInfo<LuminosityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -153,26 +168,86 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => RatioChangeRate.QuantityType;
+        public QuantityType Type => Luminosity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => RatioChangeRate.BaseDimensions;
+        public BaseDimensions Dimensions => Luminosity.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RatioChangeRate in DecimalFractionsPerSecond.
+        ///     Get Luminosity in Decawatts.
         /// </summary>
-        public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
+        public double Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Get RatioChangeRate in PercentsPerSecond.
+        ///     Get Luminosity in Deciwatts.
         /// </summary>
-        public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
+        public double Deciwatts => As(LuminosityUnit.Deciwatt);
+
+        /// <summary>
+        ///     Get Luminosity in Femtowatts.
+        /// </summary>
+        public double Femtowatts => As(LuminosityUnit.Femtowatt);
+
+        /// <summary>
+        ///     Get Luminosity in Gigawatts.
+        /// </summary>
+        public double Gigawatts => As(LuminosityUnit.Gigawatt);
+
+        /// <summary>
+        ///     Get Luminosity in Kilowatts.
+        /// </summary>
+        public double Kilowatts => As(LuminosityUnit.Kilowatt);
+
+        /// <summary>
+        ///     Get Luminosity in Megawatts.
+        /// </summary>
+        public double Megawatts => As(LuminosityUnit.Megawatt);
+
+        /// <summary>
+        ///     Get Luminosity in Microwatts.
+        /// </summary>
+        public double Microwatts => As(LuminosityUnit.Microwatt);
+
+        /// <summary>
+        ///     Get Luminosity in Milliwatts.
+        /// </summary>
+        public double Milliwatts => As(LuminosityUnit.Milliwatt);
+
+        /// <summary>
+        ///     Get Luminosity in Nanowatts.
+        /// </summary>
+        public double Nanowatts => As(LuminosityUnit.Nanowatt);
+
+        /// <summary>
+        ///     Get Luminosity in Petawatts.
+        /// </summary>
+        public double Petawatts => As(LuminosityUnit.Petawatt);
+
+        /// <summary>
+        ///     Get Luminosity in Picowatts.
+        /// </summary>
+        public double Picowatts => As(LuminosityUnit.Picowatt);
+
+        /// <summary>
+        ///     Get Luminosity in SolarLuminosities.
+        /// </summary>
+        public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
+
+        /// <summary>
+        ///     Get Luminosity in Terawatts.
+        /// </summary>
+        public double Terawatts => As(LuminosityUnit.Terawatt);
+
+        /// <summary>
+        ///     Get Luminosity in Watts.
+        /// </summary>
+        public double Watts => As(LuminosityUnit.Watt);
 
         #endregion
 
@@ -183,7 +258,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(RatioChangeRateUnit unit)
+        public static string GetAbbreviation(LuminosityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -194,7 +269,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(RatioChangeRateUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(LuminosityUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -204,33 +279,141 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RatioChangeRate from DecimalFractionsPerSecond.
+        ///     Get Luminosity from Decawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
+        public static Luminosity FromDecawatts(QuantityValue decawatts)
         {
-            double value = (double) decimalfractionspersecond;
-            return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
+            double value = (double) decawatts;
+            return new Luminosity(value, LuminosityUnit.Decawatt);
         }
         /// <summary>
-        ///     Get RatioChangeRate from PercentsPerSecond.
+        ///     Get Luminosity from Deciwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromPercentsPerSecond(QuantityValue percentspersecond)
+        public static Luminosity FromDeciwatts(QuantityValue deciwatts)
         {
-            double value = (double) percentspersecond;
-            return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
+            double value = (double) deciwatts;
+            return new Luminosity(value, LuminosityUnit.Deciwatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Femtowatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromFemtowatts(QuantityValue femtowatts)
+        {
+            double value = (double) femtowatts;
+            return new Luminosity(value, LuminosityUnit.Femtowatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Gigawatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromGigawatts(QuantityValue gigawatts)
+        {
+            double value = (double) gigawatts;
+            return new Luminosity(value, LuminosityUnit.Gigawatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Kilowatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromKilowatts(QuantityValue kilowatts)
+        {
+            double value = (double) kilowatts;
+            return new Luminosity(value, LuminosityUnit.Kilowatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Megawatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromMegawatts(QuantityValue megawatts)
+        {
+            double value = (double) megawatts;
+            return new Luminosity(value, LuminosityUnit.Megawatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Microwatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromMicrowatts(QuantityValue microwatts)
+        {
+            double value = (double) microwatts;
+            return new Luminosity(value, LuminosityUnit.Microwatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Milliwatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromMilliwatts(QuantityValue milliwatts)
+        {
+            double value = (double) milliwatts;
+            return new Luminosity(value, LuminosityUnit.Milliwatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Nanowatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromNanowatts(QuantityValue nanowatts)
+        {
+            double value = (double) nanowatts;
+            return new Luminosity(value, LuminosityUnit.Nanowatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Petawatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromPetawatts(QuantityValue petawatts)
+        {
+            double value = (double) petawatts;
+            return new Luminosity(value, LuminosityUnit.Petawatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Picowatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromPicowatts(QuantityValue picowatts)
+        {
+            double value = (double) picowatts;
+            return new Luminosity(value, LuminosityUnit.Picowatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from SolarLuminosities.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromSolarLuminosities(QuantityValue solarluminosities)
+        {
+            double value = (double) solarluminosities;
+            return new Luminosity(value, LuminosityUnit.SolarLuminosity);
+        }
+        /// <summary>
+        ///     Get Luminosity from Terawatts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromTerawatts(QuantityValue terawatts)
+        {
+            double value = (double) terawatts;
+            return new Luminosity(value, LuminosityUnit.Terawatt);
+        }
+        /// <summary>
+        ///     Get Luminosity from Watts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Luminosity FromWatts(QuantityValue watts)
+        {
+            double value = (double) watts;
+            return new Luminosity(value, LuminosityUnit.Watt);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="LuminosityUnit" /> to <see cref="Luminosity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(QuantityValue value, RatioChangeRateUnit fromUnit)
+        /// <returns>Luminosity unit value.</returns>
+        public static Luminosity From(QuantityValue value, LuminosityUnit fromUnit)
         {
-            return new RatioChangeRate((double)value, fromUnit);
+            return new Luminosity((double)value, fromUnit);
         }
 
         #endregion
@@ -259,7 +442,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RatioChangeRate Parse(string str)
+        public static Luminosity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -287,9 +470,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static RatioChangeRate Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Luminosity Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<RatioChangeRate, RatioChangeRateUnit>(
+            return QuantityParser.Default.Parse<Luminosity, LuminosityUnit>(
                 str,
                 provider,
                 From);
@@ -303,7 +486,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out RatioChangeRate result)
+        public static bool TryParse([CanBeNull] string str, out Luminosity result)
         {
             return TryParse(str, null, out result);
         }
@@ -318,9 +501,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RatioChangeRate result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Luminosity result)
         {
-            return QuantityParser.Default.TryParse<RatioChangeRate, RatioChangeRateUnit>(
+            return QuantityParser.Default.TryParse<Luminosity, LuminosityUnit>(
                 str,
                 provider,
                 From,
@@ -336,7 +519,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static RatioChangeRateUnit ParseUnit(string str)
+        public static LuminosityUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -351,13 +534,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static RatioChangeRateUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static LuminosityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return UnitParser.Default.Parse<RatioChangeRateUnit>(str, provider);
+            return UnitParser.Default.Parse<LuminosityUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RatioChangeRateUnit)"/>
-        public static bool TryParseUnit(string str, out RatioChangeRateUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminosityUnit)"/>
+        public static bool TryParseUnit(string str, out LuminosityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -372,9 +555,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out RatioChangeRateUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider provider, out LuminosityUnit unit)
         {
-            return UnitParser.Default.TryParse<RatioChangeRateUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<LuminosityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -382,45 +565,45 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static RatioChangeRate operator -(RatioChangeRate right)
+        public static Luminosity operator -(Luminosity right)
         {
-            return new RatioChangeRate(-right.Value, right.Unit);
+            return new Luminosity(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from adding two <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator +(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get <see cref="Luminosity"/> from adding two <see cref="Luminosity"/>.</summary>
+        public static Luminosity operator +(Luminosity left, Luminosity right)
         {
-            return new RatioChangeRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Luminosity(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from subtracting two <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator -(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get <see cref="Luminosity"/> from subtracting two <see cref="Luminosity"/>.</summary>
+        public static Luminosity operator -(Luminosity left, Luminosity right)
         {
-            return new RatioChangeRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Luminosity(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(double left, RatioChangeRate right)
+        /// <summary>Get <see cref="Luminosity"/> from multiplying value and <see cref="Luminosity"/>.</summary>
+        public static Luminosity operator *(double left, Luminosity right)
         {
-            return new RatioChangeRate(left * right.Value, right.Unit);
+            return new Luminosity(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(RatioChangeRate left, double right)
+        /// <summary>Get <see cref="Luminosity"/> from multiplying value and <see cref="Luminosity"/>.</summary>
+        public static Luminosity operator *(Luminosity left, double right)
         {
-            return new RatioChangeRate(left.Value * right, left.Unit);
+            return new Luminosity(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from dividing <see cref="RatioChangeRate"/> by value.</summary>
-        public static RatioChangeRate operator /(RatioChangeRate left, double right)
+        /// <summary>Get <see cref="Luminosity"/> from dividing <see cref="Luminosity"/> by value.</summary>
+        public static Luminosity operator /(Luminosity left, double right)
         {
-            return new RatioChangeRate(left.Value / right, left.Unit);
+            return new Luminosity(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
-        public static double operator /(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get ratio value from dividing <see cref="Luminosity"/> by <see cref="Luminosity"/>.</summary>
+        public static double operator /(Luminosity left, Luminosity right)
         {
-            return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
+            return left.Watts / right.Watts;
         }
 
         #endregion
@@ -428,39 +611,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator <=(Luminosity left, Luminosity right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator >=(Luminosity left, Luminosity right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator <(Luminosity left, Luminosity right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator >(Luminosity left, Luminosity right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(RatioChangeRate left, RatioChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Luminosity left, Luminosity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(RatioChangeRate left, RatioChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Luminosity left, Luminosity right)
         {
             return !(left == right);
         }
@@ -469,37 +652,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RatioChangeRate objRatioChangeRate)) throw new ArgumentException("Expected type RatioChangeRate.", nameof(obj));
+            if(!(obj is Luminosity objLuminosity)) throw new ArgumentException("Expected type Luminosity.", nameof(obj));
 
-            return CompareTo(objRatioChangeRate);
+            return CompareTo(objLuminosity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(RatioChangeRate other)
+        public int CompareTo(Luminosity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is RatioChangeRate objRatioChangeRate))
+            if(obj is null || !(obj is Luminosity objLuminosity))
                 return false;
 
-            return Equals(objRatioChangeRate);
+            return Equals(objLuminosity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(RatioChangeRate other)
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Luminosity other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another RatioChangeRate within the given absolute or relative tolerance.
+        ///     Compare equality to another Luminosity within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -537,7 +720,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RatioChangeRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Luminosity other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -551,7 +734,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current RatioChangeRate.</returns>
+        /// <returns>A hash code for the current Luminosity.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -565,7 +748,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioChangeRateUnit unit)
+        public double As(LuminosityUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -592,33 +775,33 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
+            if(!(unit is LuminosityUnit unitAsLuminosityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsRatioChangeRateUnit);
+            return As(unitAsLuminosityUnit);
         }
 
         /// <summary>
-        ///     Converts this RatioChangeRate to another RatioChangeRate with the unit representation <paramref name="unit" />.
+        ///     Converts this Luminosity to another Luminosity with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A RatioChangeRate with the specified unit.</returns>
-        public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
+        /// <returns>A Luminosity with the specified unit.</returns>
+        public Luminosity ToUnit(LuminosityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            return new Luminosity(convertedValue, unit);
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
+            if(!(unit is LuminosityUnit unitAsLuminosityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRatioChangeRateUnit);
+            return ToUnit(unitAsLuminosityUnit);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RatioChangeRate ToUnit(UnitSystem unitSystem)
+        public Luminosity ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -636,10 +819,10 @@ namespace UnitsNet
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <inheritdoc />
-        IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(RatioChangeRateUnit unit) => ToUnit(unit);
+        IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(LuminosityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -650,8 +833,20 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value*1e2;
-                case RatioChangeRateUnit.PercentPerSecond: return _value;
+                case LuminosityUnit.Decawatt: return (_value) * 1e1d;
+                case LuminosityUnit.Deciwatt: return (_value) * 1e-1d;
+                case LuminosityUnit.Femtowatt: return (_value) * 1e-15d;
+                case LuminosityUnit.Gigawatt: return (_value) * 1e9d;
+                case LuminosityUnit.Kilowatt: return (_value) * 1e3d;
+                case LuminosityUnit.Megawatt: return (_value) * 1e6d;
+                case LuminosityUnit.Microwatt: return (_value) * 1e-6d;
+                case LuminosityUnit.Milliwatt: return (_value) * 1e-3d;
+                case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
+                case LuminosityUnit.Petawatt: return (_value) * 1e15d;
+                case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
+                case LuminosityUnit.SolarLuminosity: return _value * 3.846e26;
+                case LuminosityUnit.Terawatt: return (_value) * 1e12d;
+                case LuminosityUnit.Watt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -662,13 +857,13 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RatioChangeRate ToBaseUnit()
+        internal Luminosity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RatioChangeRate(baseUnitValue, BaseUnit);
+            return new Luminosity(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(RatioChangeRateUnit unit)
+        private double GetValueAs(LuminosityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -677,8 +872,20 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue/1e2;
-                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue;
+                case LuminosityUnit.Decawatt: return (baseUnitValue) / 1e1d;
+                case LuminosityUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
+                case LuminosityUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
+                case LuminosityUnit.Gigawatt: return (baseUnitValue) / 1e9d;
+                case LuminosityUnit.Kilowatt: return (baseUnitValue) / 1e3d;
+                case LuminosityUnit.Megawatt: return (baseUnitValue) / 1e6d;
+                case LuminosityUnit.Microwatt: return (baseUnitValue) / 1e-6d;
+                case LuminosityUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
+                case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
+                case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
+                case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
+                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.846e26;
+                case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
+                case LuminosityUnit.Watt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -761,7 +968,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return QuantityFormatter.Format<RatioChangeRateUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<LuminosityUnit>(this, format, formatProvider);
         }
 
         #endregion
@@ -775,7 +982,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Luminosity)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -785,12 +992,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Luminosity)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Luminosity)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -835,16 +1042,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RatioChangeRate))
+            if(conversionType == typeof(Luminosity))
                 return this;
-            else if(conversionType == typeof(RatioChangeRateUnit))
+            else if(conversionType == typeof(LuminosityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return RatioChangeRate.QuantityType;
+                return Luminosity.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return RatioChangeRate.BaseDimensions;
+                return Luminosity.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Luminosity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

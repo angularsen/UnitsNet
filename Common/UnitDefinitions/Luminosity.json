@@ -1,0 +1,40 @@
+﻿{
+  "Name": "Luminosity",
+  "BaseUnit": "Watt",
+  "BaseType": "double",
+  "XmlDoc": "Luminosity is an absolute measure of radiated electromagnetic power (light), the radiant power emitted by a light-emitting object.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Luminosity",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "Watt",
+      "PluralName": "Watts",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SolarLuminosity",
+      "PluralName": "SolarLuminosities",
+      "FromUnitToBaseFunc": "x * 3.846e26",
+      "FromBaseToUnitFunc": "x / 3.846e26",
+      "XmlDocRemarks": "https://www.britannica.com/science/luminosity",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L⊙" ]
+        }
+      ]
+    }
+  ]
+}
