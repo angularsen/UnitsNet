@@ -235,9 +235,9 @@ namespace UnitsNet
         public double Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Get Luminosity in Watts.
+        ///     Get Luminosity in SolarLuminosities.
         /// </summary>
-        public double Watts => As(LuminosityUnit.SolarLuminosity);
+        public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
         ///     Get Luminosity in Terawatts.
@@ -378,12 +378,12 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Picowatt);
         }
         /// <summary>
-        ///     Get Luminosity from Watts.
+        ///     Get Luminosity from SolarLuminosities.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromWatts(QuantityValue watts)
+        public static Luminosity FromSolarLuminosities(QuantityValue solarluminosities)
         {
-            double value = (double) watts;
+            double value = (double) solarluminosities;
             return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
         /// <summary>

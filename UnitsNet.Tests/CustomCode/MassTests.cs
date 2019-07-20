@@ -61,7 +61,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SolarMassesInOneKilogram => 5.0289921396852900000000000E-31;
 
-        protected override double SolarMassesTolerance => 0.1;
+        //protected override double SolarMassesTolerance => 0.1;
 
         [Fact]
         public void AccelerationTimesMassEqualsForce()

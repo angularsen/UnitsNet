@@ -114,7 +114,6 @@ namespace UnitsNet
         SpecificVolume,
         SpecificWeight,
         Speed,
-        Luminosity,
         Temperature,
         TemperatureChangeRate,
         TemperatureDelta,
