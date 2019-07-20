@@ -27,6 +27,8 @@ remove-module build-functions -ErrorAction SilentlyContinue
 import-module $PSScriptRoot\build-functions.psm1
 
 try {
+  & "$PSScriptRoot/init.ps1" # Ensure tools are downloaded
+
   Remove-ArtifactsDir
   Update-GeneratedCode
   Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent
