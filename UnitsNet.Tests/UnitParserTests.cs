@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
 
@@ -123,6 +124,18 @@ namespace UnitsNet.Tests
         public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
         {
             Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, new CultureInfo(cultureName)));
+        }
+
+        [Fact]
+        public void Parse_MappedCustomUnit()
+        {
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
+            var unitParser = new UnitParser(unitAbbreviationsCache);
+
+            var parsedUnit = unitParser.Parse<HowMuchUnit>("fooh");
+
+            Assert.Equal(HowMuchUnit.Some, parsedUnit);
         }
     }
 }

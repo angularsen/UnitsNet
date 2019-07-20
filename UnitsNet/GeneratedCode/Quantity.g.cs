@@ -186,6 +186,8 @@ namespace UnitsNet
                     return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
                 case QuantityType.Ratio:
                     return Ratio.From(value, Ratio.BaseUnit);
+                case QuantityType.RatioChangeRate:
+                    return RatioChangeRate.From(value, RatioChangeRate.BaseUnit);
                 case QuantityType.ReactiveEnergy:
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case QuantityType.ReactivePower:
@@ -469,6 +471,9 @@ namespace UnitsNet
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
                     return true;
+                case RatioChangeRateUnit ratioChangeRateUnit:
+                    quantity = RatioChangeRate.From(value, ratioChangeRateUnit);
+                    return true;
                 case ReactiveEnergyUnit reactiveEnergyUnit:
                     quantity = ReactiveEnergy.From(value, reactiveEnergyUnit);
                     return true;
@@ -714,6 +719,8 @@ namespace UnitsNet
                     return parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(Ratio):
                     return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
+                case Type _ when quantityType == typeof(RatioChangeRate):
+                    return parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(ReactiveEnergy):
                     return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower):

@@ -833,6 +833,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Acceleration ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Acceleration(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(AccelerationUnit unit)
         {
             if(Unit == unit)
