@@ -14,9 +14,8 @@ cache:
   - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
 
-environment:
-  codecov_upload_token:
-    secure: 713yzE0R2Ek0JZTp+7uR3Upclc+jiIlM3Gf0UQ1Nbb5K09oXhE42hP8KWQngZ9ko
+# Set environment variables here
+# environment:
 
 # Uncomment me to enable Remote Desktop for the duration of the build (when debugging hanging builds).
 # Password is configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI.
@@ -64,7 +63,7 @@ after_test:
         [Net.SecurityProtocolType]::Tls12,
         [Net.SecurityProtocolType]::Tls11 ;
     Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-    bash codecov.sh -s "Artifacts/Coverage/" -t $env:codecov_upload_token
+    bash codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
