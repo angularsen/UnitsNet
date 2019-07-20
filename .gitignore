@@ -262,3 +262,5 @@ Artifacts
 /Tools/.store/
 /Tools/opencover/
 /Tools/Temp/
+Tools/xunit.exe
+Tools/dotCover/
