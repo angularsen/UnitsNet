@@ -260,7 +260,3 @@ Artifacts
 /secure-file
 /Tools/reportgenerator.exe
 /Tools/.store/
-/Tools/opencover/
-/Tools/Temp/
-Tools/xunit.exe
-Tools/dotCover/
