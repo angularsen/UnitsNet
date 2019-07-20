@@ -1064,6 +1064,7 @@ namespace UnitsNet
                 ("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeReaumur, new string[]{"°Ré"}),
                 ("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeRoemer, new string[]{"°Rø"}),
                 ("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.Kelvin, new string[]{"K"}),
+                ("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.SolarTemperature, new string[]{"T⊙"}),
                 ("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, new string[]{"c°C/s"}),
                 ("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, new string[]{"da°C/s"}),
                 ("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, new string[]{"d°C/s"}),

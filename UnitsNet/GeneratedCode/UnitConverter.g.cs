@@ -1675,6 +1675,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.DegreeRoemer, q => q.ToUnit(TemperatureUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.DegreeRoemer, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, Temperature.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.SolarTemperature, q => q.ToUnit(TemperatureUnit.SolarTemperature));
+            unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.SolarTemperature, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond));

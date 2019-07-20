@@ -25,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KelvinsInOneKelvin => 1;
 
+        protected override double SolarTemperaturesInOneKelvin => 1.73070266528210E-04;
+
         public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =
             new List<object[]>
             {
@@ -115,6 +117,8 @@ namespace UnitsNet.Tests.CustomCode
                 new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(10), Temperature.FromDegreesFahrenheit(0) },
                 new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(10) }
             };
+
+
 
         [Theory]
         [MemberData(nameof(TemperaturePlusTemperatureDeltaEqualsTemperatureData))]
