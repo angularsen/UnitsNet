@@ -2,6 +2,7 @@
 $artifactsDir = "$root\Artifacts"
 $nugetOutDir = "$root\Artifacts\NuGet"
 $testReportDir = "$root\Artifacts\Logs"
+$testCoverageDir = "$root\Artifacts\Coverage"
 $nuget = "$root\Tools\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
@@ -58,28 +59,37 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
 
 function Start-Tests {
   $projectPaths = @(
-    "UnitsNet.Tests\UnitsNet.Tests.NetCore.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.NetCore.csproj",
-    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.NetCore.csproj"
+    "UnitsNet.Tests\UnitsNet.Tests.csproj",
+    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
+    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
+  new-item -type directory -force $testCoverageDir 1> $null
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
     $reportFile = "$testReportDir\${projectFileNameNoEx}.xunit.xml"
+    $coverageReportFile = "$testCoverageDir\${projectFileNameNoEx}.coverage.xml"
     $projectDir = [System.IO.Path]::GetDirectoryName($projectPath)
 
-    # dotnet-xunit command must run in same dir as project
-    # https://github.com/xunit/xunit/issues/1216
+    # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
-    # -nobuild  <-- this gives an error, but might want to use this to avoid extra builds
-    dotnet xunit -configuration Release -framework netcoreapp2.0 -xml $reportFile -nobuild
+
+    # Create coverage report for this test project
+    & dotnet dotcover test `
+      --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
+      --dotCoverOutput="$coverageReportFile" `
+      --dcReportType=DetailedXML
+
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
   }
+
+  # Generate a summarized code coverage report for all test projects
+  & "Tools/reportgenerator.exe" -reports:"$root/Artifacts/Coverage/*.coverage.xml" -targetdir:"$root/Artifacts/Coverage" -reporttypes:HtmlSummary
 
   write-host -foreground blue "Run tests...END`n"
 }
