@@ -873,7 +873,7 @@ namespace UnitsNet
                 case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
                 case MassUnit.ShortTon: return _value*9.0718474e2;
                 case MassUnit.Slug: return _value/6.852176556196105e-2;
-                case MassUnit.SolarMass: return _value * 1.98847e30;
+                case MassUnit.SolarMass: return _value * 1.98947e30;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
                 default:
@@ -912,7 +912,7 @@ namespace UnitsNet
                 case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
                 case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
                 case MassUnit.Slug: return baseUnitValue*6.852176556196105e-2;
-                case MassUnit.SolarMass: return baseUnitValue / 1.98847e30;
+                case MassUnit.SolarMass: return baseUnitValue / 1.98947e30;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
                 default:

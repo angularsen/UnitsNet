@@ -56,8 +56,6 @@
     <EmbeddedResource Remove="UnitDefinitions\**" />
     <None Remove="UnitDefinitions\**" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="..\Common\UnitDefinitions\StellarLuminosity.json" />
-  </ItemGroup>
+
 
 </Project>
