@@ -71,6 +71,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ParsecsInOneMeter => 3.2407790389471100000000000E-17;
 
+        protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {

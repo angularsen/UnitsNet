@@ -538,6 +538,7 @@ namespace UnitsNet
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.PrinterPica, new string[]{"pica"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.PrinterPoint, new string[]{"pt"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Shackle, new string[]{"shackle"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.SolarRadius, new string[]{"R⊙"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Twip, new string[]{"twip"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.UsSurveyFoot, new string[]{"ftUS"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Yard, new string[]{"yd"}),

@@ -829,6 +829,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Shackle, q => q.ToUnit(LengthUnit.Shackle));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, Length.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.SolarRadius, q => q.ToUnit(LengthUnit.SolarRadius));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Twip, q => q.ToUnit(LengthUnit.Twip));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.UsSurveyFoot, q => q.ToUnit(LengthUnit.UsSurveyFoot));
