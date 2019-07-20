@@ -1268,6 +1268,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Density ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Density(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(DensityUnit unit)
         {
             if(Unit == unit)

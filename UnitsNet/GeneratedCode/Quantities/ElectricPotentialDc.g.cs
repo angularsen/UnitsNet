@@ -705,6 +705,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ElectricPotentialDc ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ElectricPotentialDc(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(ElectricPotentialDcUnit unit)
         {
             if(Unit == unit)

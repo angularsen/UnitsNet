@@ -665,6 +665,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Level ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Level(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(LevelUnit unit)
         {
             if(Unit == unit)

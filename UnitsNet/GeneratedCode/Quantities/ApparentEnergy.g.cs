@@ -673,6 +673,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ApparentEnergy ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ApparentEnergy(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(ApparentEnergyUnit unit)
         {
             if(Unit == unit)
