@@ -657,6 +657,17 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal RatioChangeRate ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new RatioChangeRate(baseUnitValue, BaseUnit);
+        }
+
         private double GetValueAs(RatioChangeRateUnit unit)
         {
             if(Unit == unit)

@@ -217,7 +217,7 @@
       "BaseUnits": {
         "M": "Gram"
       },
-      "FromUnitToBaseFunc": "x * 1.98847e30",
+      "FromUnitToBaseFunc": "x * 1.98947e30",
       "FromBaseToUnitFunc": "x / 1.98947e30",
       "XmlDocSummary": "Solar mass is a ratio unit to the mass of the solar system star, the sun.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Solar_mass",

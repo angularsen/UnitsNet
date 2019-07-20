@@ -607,7 +607,7 @@ namespace UnitsNet
                 ("en-US", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"short tn"}),
                 ("ru-RU", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"тонна малая"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.Slug, new string[]{"slug"}),
-                ("en-US", typeof(MassUnit), (int)MassUnit.SolarMass, new string[]{"sm"}),
+                ("en-US", typeof(MassUnit), (int)MassUnit.SolarMass, new string[]{"M⊙"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.Stone, new string[]{"st"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.Tonne, new string[]{"t"}),
                 ("ru-RU", typeof(MassUnit), (int)MassUnit.Tonne, new string[]{"т"}),
