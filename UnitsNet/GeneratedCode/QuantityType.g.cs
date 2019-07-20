@@ -80,6 +80,7 @@ namespace UnitsNet
         Length,
         Level,
         LinearDensity,
+        Luminosity,
         LuminousFlux,
         LuminousIntensity,
         MagneticField,

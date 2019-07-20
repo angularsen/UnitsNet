@@ -210,6 +210,40 @@
           "Abbreviations": [ "gr" ]
         }
       ]
+    },
+    {
+      "SingularName": "SolarMass",
+      "PluralName": "SolarMasses",
+      "BaseUnits": {
+        "M": "SolarMass"
+      },
+      "FromUnitToBaseFunc": "x * 1.98947e30",
+      "FromBaseToUnitFunc": "x / 1.98947e30",
+      "XmlDocSummary": "Solar mass is a ratio unit to the mass of the solar system star, the sun.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Solar_mass",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "M⊙" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "EarthMass",
+      "PluralName": "EarthMasses",
+      "BaseUnits": {
+        "M": "EarthMass"
+      },
+      "FromUnitToBaseFunc": "x * 5.9722E+24",
+      "FromBaseToUnitFunc": "x / 5.9722E+24",
+      "XmlDocSummary": "Earth mass is a ratio unit to the mass of planet Earth.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Earth_mass",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "em" ]
+        }
+      ]
     }
   ]
 }
