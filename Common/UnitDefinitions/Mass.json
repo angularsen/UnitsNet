@@ -215,7 +215,7 @@
       "SingularName": "SolarMass",
       "PluralName": "SolarMasses",
       "BaseUnits": {
-        "M": "Gram"
+        "M": "SolarMass"
       },
       "FromUnitToBaseFunc": "x * 1.98947e30",
       "FromBaseToUnitFunc": "x / 1.98947e30",
@@ -232,7 +232,7 @@
       "SingularName": "EarthMass",
       "PluralName": "EarthMasses",
       "BaseUnits": {
-        "M": "Gram"
+        "M": "EarthMass"
       },
       "FromUnitToBaseFunc": "x * 5.9722E+24",
       "FromBaseToUnitFunc": "x / 5.9722E+24",
