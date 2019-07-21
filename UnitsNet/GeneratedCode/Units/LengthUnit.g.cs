@@ -69,6 +69,12 @@ namespace UnitsNet.Units
         PrinterPica,
         PrinterPoint,
         Shackle,
+
+        /// <summary>
+        ///     Solar radius is a ratio unit to the radius of the solar system star, the sun.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
+        SolarRadius,
         Twip,
         UsSurveyFoot,
         Yard,

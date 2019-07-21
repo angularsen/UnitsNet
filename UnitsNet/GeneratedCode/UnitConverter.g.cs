@@ -829,6 +829,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Shackle, q => q.ToUnit(LengthUnit.Shackle));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, Length.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.SolarRadius, q => q.ToUnit(LengthUnit.SolarRadius));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Twip, q => q.ToUnit(LengthUnit.Twip));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.UsSurveyFoot, q => q.ToUnit(LengthUnit.UsSurveyFoot));
@@ -1673,6 +1675,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.DegreeRoemer, q => q.ToUnit(TemperatureUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.DegreeRoemer, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, Temperature.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.SolarTemperature, q => q.ToUnit(TemperatureUnit.SolarTemperature));
+            unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.SolarTemperature, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond));

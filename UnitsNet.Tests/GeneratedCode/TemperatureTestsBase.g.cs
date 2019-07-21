@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double DegreesReaumurInOneKelvin { get; }
         protected abstract double DegreesRoemerInOneKelvin { get; }
         protected abstract double KelvinsInOneKelvin { get; }
+        protected abstract double SolarTemperaturesInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }
@@ -52,6 +53,7 @@ namespace UnitsNet.Tests
         protected virtual double DegreesReaumurTolerance { get { return 1e-5; } }
         protected virtual double DegreesRoemerTolerance { get { return 1e-5; } }
         protected virtual double KelvinsTolerance { get { return 1e-5; } }
+        protected virtual double SolarTemperaturesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -85,6 +87,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.DegreesRoemer, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, kelvin.SolarTemperatures, SolarTemperaturesTolerance);
         }
 
         [Fact]
@@ -98,6 +101,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeReaumur).DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeRoemer).DegreesRoemer, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.Kelvin).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.SolarTemperature).SolarTemperatures, SolarTemperaturesTolerance);
         }
 
         [Fact]
@@ -125,6 +129,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.As(TemperatureUnit.DegreeReaumur), DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.As(TemperatureUnit.DegreeRoemer), DegreesRoemerTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(TemperatureUnit.Kelvin), KelvinsTolerance);
+            AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, kelvin.As(TemperatureUnit.SolarTemperature), SolarTemperaturesTolerance);
         }
 
         [Fact]
@@ -163,6 +168,10 @@ namespace UnitsNet.Tests
             var kelvinQuantity = kelvin.ToUnit(TemperatureUnit.Kelvin);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)kelvinQuantity.Value, KelvinsTolerance);
             Assert.Equal(TemperatureUnit.Kelvin, kelvinQuantity.Unit);
+
+            var solartemperatureQuantity = kelvin.ToUnit(TemperatureUnit.SolarTemperature);
+            AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, (double)solartemperatureQuantity.Value, SolarTemperaturesTolerance);
+            Assert.Equal(TemperatureUnit.SolarTemperature, solartemperatureQuantity.Unit);
         }
 
         [Fact]
@@ -177,6 +186,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Temperature.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(1, Temperature.FromSolarTemperatures(kelvin.SolarTemperatures).Kelvins, SolarTemperaturesTolerance);
         }
 
 

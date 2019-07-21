@@ -296,6 +296,11 @@ namespace UnitsNet
         public double Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
+        ///     Get Length in SolarRadiuses.
+        /// </summary>
+        public double SolarRadiuses => As(LengthUnit.SolarRadius);
+
+        /// <summary>
         ///     Get Length in Twips.
         /// </summary>
         public double Twips => As(LengthUnit.Twip);
@@ -619,6 +624,16 @@ namespace UnitsNet
         {
             double value = (double) shackles;
             return new Length(value, LengthUnit.Shackle);
+        }
+        /// <summary>
+        ///     Get Length from SolarRadiuses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Length FromSolarRadiuses(double solarradiuses)
+        {
+            double value = (double) solarradiuses;
+            return new Length(value, LengthUnit.SolarRadius);
         }
         /// <summary>
         ///     Get Length from Twips.
@@ -969,6 +984,7 @@ namespace UnitsNet
                 case LengthUnit.PrinterPica: return _value/237.106301584;
                 case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
                 case LengthUnit.Shackle: return _value*27.432;
+                case LengthUnit.SolarRadius: return _value * 6.95510000E+08;
                 case LengthUnit.Twip: return _value/56692.913385826;
                 case LengthUnit.UsSurveyFoot: return _value*1200/3937;
                 case LengthUnit.Yard: return _value*0.9144;
@@ -1014,6 +1030,7 @@ namespace UnitsNet
                 case LengthUnit.PrinterPica: return baseUnitValue*237.106301584;
                 case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
                 case LengthUnit.Shackle: return baseUnitValue/27.432;
+                case LengthUnit.SolarRadius: return baseUnitValue / 6.95510000E+08;
                 case LengthUnit.Twip: return baseUnitValue*56692.913385826;
                 case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
                 case LengthUnit.Yard: return baseUnitValue/0.9144;
