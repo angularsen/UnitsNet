@@ -63,7 +63,7 @@ double inches = meter.Inches;          // 39.3701
 // Pass quantity types instead of values to avoid conversion mistakes and communicate intent
 string PrintPersonWeight(Mass weight)
 {
-    // No such thing! Weight in this context is Mass, not Force.
+    // Compile error! Newtons belong to Force, not Mass. A common source of confusion.
     double weightNewtons = weight.Newtons; 
     
     // Convert to the unit of choice - when you need it
