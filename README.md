@@ -367,3 +367,5 @@ https://www.ansys.com/products/3d-design/ansys-discovery-live
 
 #### Primoris Sigma Stargen
 Stargen is a decades old software to create realistic planets and satellites from a given Star. It's based on work from various scientists and been used for years. Primoris Sigma Stargen is a C# port of the utility that makes it a Framework to extend it with new algorithms for planetary formation and physics equations. 
+
+https://github.com/ebfortin/primoris.universe.stargen
