@@ -31,6 +31,18 @@
           "Abbreviations": [ "W/m²·°C" ]
         }
       ]
+    },
+    {
+      "SingularName": "BtuPerSquareFootDegreeFahrenheit",
+      "PluralName": "BtusPerSquareFootDegreeFahrenheit",
+      "FromUnitToBaseFunc": "x * 5.6782633411134878",
+      "FromBaseToUnitFunc": "x / 5.6782633411134878",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Btu/ft²·hr·°F" ]
+        }
+      ]
     }
   ]
 }

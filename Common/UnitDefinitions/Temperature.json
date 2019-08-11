@@ -126,6 +126,18 @@
           "Abbreviations": [ "°Rø" ]
         }
       ]
+    },
+    {
+      "SingularName": "SolarTemperature",
+      "PluralName": "SolarTemperatures",
+      "FromUnitToBaseFunc": "x * 5778",
+      "FromBaseToUnitFunc": "x / 5778",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "T⊙" ]
+        }
+      ]
     }
   ]
 }

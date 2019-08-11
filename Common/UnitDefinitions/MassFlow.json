@@ -98,8 +98,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/d" ],
-          "AbbreviationsWithPrefixes": [ "Mlb/d" ]
+          "Abbreviations": [ "lb/d" ]
         }
       ]
     },
@@ -126,6 +125,19 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerSecond",
+      "PluralName": "PoundsPerSecond",
+      "FromUnitToBaseFunc": "x * 453.59237",
+      "FromBaseToUnitFunc": "x / 453.59237",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/s" ]
         }
       ]
     },

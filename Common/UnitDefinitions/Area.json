@@ -234,6 +234,18 @@
           "Abbreviations": [ "ha" ]
         }
       ]
+    },
+    {
+      "SingularName": "SquareNauticalMile",
+      "PluralName": "SquareNauticalMiles",
+      "FromUnitToBaseFunc": "x*3429904",
+      "FromBaseToUnitFunc": "x/3429904",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": ["nmi²"]
+        }
+      ]
     }
   ]
 }

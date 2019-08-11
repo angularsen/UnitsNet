@@ -25,7 +25,7 @@ namespace UnitsNet
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
-        private UnitParser _unitParser;
+        private readonly UnitParser _unitParser;
 
         public static QuantityParser Default { get; }
 
@@ -183,6 +183,17 @@ namespace UnitsNet
         private static bool ExtractValueAndUnit(Regex regex, string str, out string valueString, out string unitString)
         {
             var match = regex.Match(str);
+
+            // the regex coming in contains all allowed units as strings.
+            // That means if the unit in str is not formatted right
+            // the regex.Match will ether put str or string.empty into Groups[0] and Groups[1]
+            // Therefor a mismatch can be detected by comparing the values of this two groups.
+            if (match.Groups[0].Value == match.Groups[1].Value)
+            {
+                str = UnitParser.NormalizeUnitString(str);
+                match = regex.Match(str);
+            }
+
             var groups = match.Groups;
 
             var valueGroup = groups["value"];

@@ -1,6 +1,5 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/angularsen/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
-
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
 
 ## Units.NET
 
@@ -21,7 +20,7 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 
 ### Overview
 
-* [90 quantities with 800+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [95 quantities with 1000+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
 * [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
@@ -64,7 +63,7 @@ double inches = meter.Inches;          // 39.3701
 // Pass quantity types instead of values to avoid conversion mistakes and communicate intent
 string PrintPersonWeight(Mass weight)
 {
-    // No such thing! Weight in this context is Mass, not Force.
+    // Compile error! Newtons belong to Force, not Mass. A common source of confusion.
     double weightNewtons = weight.Newtons; 
     
     // Convert to the unit of choice - when you need it
@@ -301,7 +300,7 @@ This project is still early and many units and conversions are not yet covered. 
 
 Please read the wiki on [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit).
 
-Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*.json` files and running `generate-code.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
+Generally adding a unit involves adding or modifying [Common/UnitDefinitions/*.json](Common/UnitDefinitions/) files and running [generate-code.bat](generate-code.bat) to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
 
   * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**
@@ -366,3 +365,7 @@ https://www.ansys.com/products/3d-design/ansys-discovery-live
 
 *- Tristan Milnthorp, Principal Software Architect (tristan.milnthorp@ansys.com)*
 
+#### Primoris Sigma Stargen
+Stargen is a decades old software to create realistic planets and satellites from a given Star. It's based on work from various scientists and been used for years. Primoris Sigma Stargen is a C# port of the utility that makes it a Framework to extend it with new algorithms for planetary formation and physics equations. 
+
+https://github.com/ebfortin/primoris.universe.stargen

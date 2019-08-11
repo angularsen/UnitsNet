@@ -138,6 +138,8 @@ namespace UnitsNet
                     return Level.From(value, Level.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case QuantityType.Luminosity:
+                    return Luminosity.From(value, Luminosity.BaseUnit);
                 case QuantityType.LuminousFlux:
                     return LuminousFlux.From(value, LuminousFlux.BaseUnit);
                 case QuantityType.LuminousIntensity:
@@ -184,6 +186,8 @@ namespace UnitsNet
                     return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
                 case QuantityType.Ratio:
                     return Ratio.From(value, Ratio.BaseUnit);
+                case QuantityType.RatioChangeRate:
+                    return RatioChangeRate.From(value, RatioChangeRate.BaseUnit);
                 case QuantityType.ReactiveEnergy:
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case QuantityType.ReactivePower:
@@ -393,6 +397,9 @@ namespace UnitsNet
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
                     return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
+                    return true;
                 case LuminousFluxUnit luminousFluxUnit:
                     quantity = LuminousFlux.From(value, luminousFluxUnit);
                     return true;
@@ -461,6 +468,9 @@ namespace UnitsNet
                     return true;
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
+                    return true;
+                case RatioChangeRateUnit ratioChangeRateUnit:
+                    quantity = RatioChangeRate.From(value, ratioChangeRateUnit);
                     return true;
                 case ReactiveEnergyUnit reactiveEnergyUnit:
                     quantity = ReactiveEnergy.From(value, reactiveEnergyUnit);
@@ -656,6 +666,8 @@ namespace UnitsNet
                     return parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity):
                     return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+                case Type _ when quantityType == typeof(Luminosity):
+                    return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousFlux):
                     return parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousIntensity):
@@ -702,6 +714,8 @@ namespace UnitsNet
                     return parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(Ratio):
                     return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
+                case Type _ when quantityType == typeof(RatioChangeRate):
+                    return parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(ReactiveEnergy):
                     return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower):

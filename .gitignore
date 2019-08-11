@@ -258,3 +258,6 @@ Artifacts
 
 # Build server tooling
 /secure-file
+/Tools/reportgenerator.exe
+/Tools/.store/
+codecov.sh

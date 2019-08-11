@@ -34,6 +34,10 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1′", 1)] // Feet only
         [InlineData("1\"", 0.08333333)] // Inches only
         [InlineData("1″", 0.08333333)] // Inches only
+        [InlineData("0' 1\"", 0.08333333)] // Inches only
+        [InlineData("0' 1″", 0.08333333)] // Inches only
+        [InlineData("0′ 1\"", 0.08333333)] // Inches only
+        [InlineData("0′ 1″", 0.08333333)] // Inches only
         [InlineData("1' 1\"", 1.08333333)] // Normal form
         [InlineData("1′ 1″", 1.08333333)] // Normal form
         [InlineData(" 1′ 1″ ", 1.08333333)] // Normal form, requires trimming
@@ -41,6 +45,21 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1′1″", 1.08333333)] // Without space
         [InlineData("1 ft 1 in", 1.08333333)]
         [InlineData("1ft 1in", 1.08333333)]
+        [InlineData("-1'", -1)] // Feet only
+        [InlineData("-1′", -1)] // Feet only
+        [InlineData("-1\"", -0.08333333)] // Inches only
+        [InlineData("-1″", -0.08333333)] // Inches only
+        [InlineData("-0' 1\"", -0.08333333)] // Inches only
+        [InlineData("-0' 1″", -0.08333333)] // Inches only
+        [InlineData("-0′ 1\"", -0.08333333)] // Inches only
+        [InlineData("-0′ 1″", -0.08333333)] // Inches only
+        [InlineData("-1' 1\"", -1.08333333)] // Normal form
+        [InlineData("-1′ 1″", -1.08333333)] // Normal form
+        [InlineData(" -1′ 1″ ", -1.08333333)] // Normal form, requires trimming
+        [InlineData("-1'1\"", -1.08333333)] // Without space
+        [InlineData("-1′1″", -1.08333333)] // Without space
+        [InlineData("-1 ft 1 in", -1.08333333)]
+        [InlineData("-1ft 1in", -1.08333333)]
         public void TryParseFeetInches(string str, double expectedFeet)
         {
             Assert.True(Length.TryParseFeetInches(str, out Length result));

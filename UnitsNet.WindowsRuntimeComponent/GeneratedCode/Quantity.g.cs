@@ -188,6 +188,9 @@ namespace UnitsNet
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
                     return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
+                    return true;
                 case LuminousFluxUnit luminousFluxUnit:
                     quantity = LuminousFlux.From(value, luminousFluxUnit);
                     return true;
@@ -256,6 +259,9 @@ namespace UnitsNet
                     return true;
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
+                    return true;
+                case RatioChangeRateUnit ratioChangeRateUnit:
+                    quantity = RatioChangeRate.From(value, ratioChangeRateUnit);
                     return true;
                 case ReactiveEnergyUnit reactiveEnergyUnit:
                     quantity = ReactiveEnergy.From(value, reactiveEnergyUnit);
@@ -523,6 +529,9 @@ namespace UnitsNet
             if (quantityType == typeof(LinearDensity))
                 return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
 
+            if (quantityType == typeof(Luminosity))
+                return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
+
             if (quantityType == typeof(LuminousFlux))
                 return parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity);
 
@@ -591,6 +600,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Ratio))
                 return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
+
+            if (quantityType == typeof(RatioChangeRate))
+                return parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity);
 
             if (quantityType == typeof(ReactiveEnergy))
                 return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
