@@ -7,7 +7,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    public class IQuantityTests
+    public partial class IQuantityTests
     {
         [Fact]
         public void As_GivenWrongUnitType_ThrowsArgumentException()
