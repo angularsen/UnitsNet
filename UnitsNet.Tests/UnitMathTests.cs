@@ -16,7 +16,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AverageOfEmpySourceThrowsException()
+        public void AverageOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
 
@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MaxOfEmpySourceThrowsException()
+        public void MaxOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
 
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MinOfEmpySourceThrowsException()
+        public void MinOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
 
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void SumOfEmpySourceReturnsZero()
+        public void SumOfEmptySourceReturnsZero()
         {
             var units = new Length[] { };
 
