@@ -91,7 +91,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Btu/hr" ]
+          "Abbreviations": [ "Btu/h", "Btu/hr" ]
         }
       ]
     }
