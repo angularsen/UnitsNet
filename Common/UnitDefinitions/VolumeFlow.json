@@ -179,7 +179,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPS" ]
+          "Abbreviations": [ "L/s", "LPS" ]
         }
       ]
     },
@@ -192,7 +192,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ]
+          "Abbreviations": [ "L/min", "LPM" ]
         }
       ]
     },
@@ -204,7 +204,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPH" ]
+          "Abbreviations": [ "L/h", "LPH" ]
         },
         {
           "Culture": "ru-RU",
