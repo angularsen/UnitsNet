@@ -34,10 +34,14 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricRatioTestsBase
     {
-        protected abstract double MillivoltsPerVoltInOneMillivoltPerVolt { get; }
+        protected abstract double MicrovoltsPerVoltInOneVoltPerVolt { get; }
+        protected abstract double MillivoltsPerVoltInOneVoltPerVolt { get; }
+        protected abstract double VoltsPerVoltInOneVoltPerVolt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double MicrovoltsPerVoltTolerance { get { return 1e-5; } }
         protected virtual double MillivoltsPerVoltTolerance { get { return 1e-5; } }
+        protected virtual double VoltsPerVoltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -49,124 +53,140 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.PositiveInfinity, ElectricRatioUnit.MillivoltPerVolt));
-            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.NegativeInfinity, ElectricRatioUnit.MillivoltPerVolt));
+            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.PositiveInfinity, ElectricRatioUnit.VoltPerVolt));
+            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.NegativeInfinity, ElectricRatioUnit.VoltPerVolt));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.NaN, ElectricRatioUnit.MillivoltPerVolt));
+            Assert.Throws<ArgumentException>(() => new ElectricRatio(double.NaN, ElectricRatioUnit.VoltPerVolt));
         }
 
         [Fact]
-        public void MillivoltPerVoltToElectricRatioUnits()
+        public void VoltPerVoltToElectricRatioUnits()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            AssertEx.EqualTolerance(MillivoltsPerVoltInOneMillivoltPerVolt, millivoltpervolt.MillivoltsPerVolt, MillivoltsPerVoltTolerance);
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            AssertEx.EqualTolerance(MicrovoltsPerVoltInOneVoltPerVolt, voltpervolt.MicrovoltsPerVolt, MicrovoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(MillivoltsPerVoltInOneVoltPerVolt, voltpervolt.MillivoltsPerVolt, MillivoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(VoltsPerVoltInOneVoltPerVolt, voltpervolt.VoltsPerVolt, VoltsPerVoltTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
+            AssertEx.EqualTolerance(1, ElectricRatio.From(1, ElectricRatioUnit.MicrovoltPerVolt).MicrovoltsPerVolt, MicrovoltsPerVoltTolerance);
             AssertEx.EqualTolerance(1, ElectricRatio.From(1, ElectricRatioUnit.MillivoltPerVolt).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(1, ElectricRatio.From(1, ElectricRatioUnit.VoltPerVolt).VoltsPerVolt, VoltsPerVoltTolerance);
         }
 
         [Fact]
-        public void FromMillivoltsPerVolt_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltsPerVolt_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricRatio.FromMillivoltsPerVolt(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricRatio.FromMillivoltsPerVolt(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricRatio.FromVoltsPerVolt(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricRatio.FromVoltsPerVolt(double.NegativeInfinity));
         }
 
         [Fact]
-        public void FromMillivoltsPerVolt_WithNanValue_ThrowsArgumentException()
+        public void FromVoltsPerVolt_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricRatio.FromMillivoltsPerVolt(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricRatio.FromVoltsPerVolt(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            AssertEx.EqualTolerance(MillivoltsPerVoltInOneMillivoltPerVolt, millivoltpervolt.As(ElectricRatioUnit.MillivoltPerVolt), MillivoltsPerVoltTolerance);
+            var voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            AssertEx.EqualTolerance(MicrovoltsPerVoltInOneVoltPerVolt, voltpervolt.As(ElectricRatioUnit.MicrovoltPerVolt), MicrovoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(MillivoltsPerVoltInOneVoltPerVolt, voltpervolt.As(ElectricRatioUnit.MillivoltPerVolt), MillivoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(VoltsPerVoltInOneVoltPerVolt, voltpervolt.As(ElectricRatioUnit.VoltPerVolt), VoltsPerVoltTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
+            var voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
 
-            var millivoltpervoltQuantity = millivoltpervolt.ToUnit(ElectricRatioUnit.MillivoltPerVolt);
-            AssertEx.EqualTolerance(MillivoltsPerVoltInOneMillivoltPerVolt, (double)millivoltpervoltQuantity.Value, MillivoltsPerVoltTolerance);
+            var microvoltpervoltQuantity = voltpervolt.ToUnit(ElectricRatioUnit.MicrovoltPerVolt);
+            AssertEx.EqualTolerance(MicrovoltsPerVoltInOneVoltPerVolt, (double)microvoltpervoltQuantity.Value, MicrovoltsPerVoltTolerance);
+            Assert.Equal(ElectricRatioUnit.MicrovoltPerVolt, microvoltpervoltQuantity.Unit);
+
+            var millivoltpervoltQuantity = voltpervolt.ToUnit(ElectricRatioUnit.MillivoltPerVolt);
+            AssertEx.EqualTolerance(MillivoltsPerVoltInOneVoltPerVolt, (double)millivoltpervoltQuantity.Value, MillivoltsPerVoltTolerance);
             Assert.Equal(ElectricRatioUnit.MillivoltPerVolt, millivoltpervoltQuantity.Unit);
+
+            var voltpervoltQuantity = voltpervolt.ToUnit(ElectricRatioUnit.VoltPerVolt);
+            AssertEx.EqualTolerance(VoltsPerVoltInOneVoltPerVolt, (double)voltpervoltQuantity.Value, VoltsPerVoltTolerance);
+            Assert.Equal(ElectricRatioUnit.VoltPerVolt, voltpervoltQuantity.Unit);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            AssertEx.EqualTolerance(1, ElectricRatio.FromMillivoltsPerVolt(millivoltpervolt.MillivoltsPerVolt).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            AssertEx.EqualTolerance(1, ElectricRatio.FromMicrovoltsPerVolt(voltpervolt.MicrovoltsPerVolt).VoltsPerVolt, MicrovoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(1, ElectricRatio.FromMillivoltsPerVolt(voltpervolt.MillivoltsPerVolt).VoltsPerVolt, MillivoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(1, ElectricRatio.FromVoltsPerVolt(voltpervolt.VoltsPerVolt).VoltsPerVolt, VoltsPerVoltTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricRatio v = ElectricRatio.FromMillivoltsPerVolt(1);
-            AssertEx.EqualTolerance(-1, -v.MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(2, (ElectricRatio.FromMillivoltsPerVolt(3)-v).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(2, (v + v).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(10, (v*10).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(10, (10*v).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(2, (ElectricRatio.FromMillivoltsPerVolt(10)/5).MillivoltsPerVolt, MillivoltsPerVoltTolerance);
-            AssertEx.EqualTolerance(2, ElectricRatio.FromMillivoltsPerVolt(10)/ElectricRatio.FromMillivoltsPerVolt(5), MillivoltsPerVoltTolerance);
+            ElectricRatio v = ElectricRatio.FromVoltsPerVolt(1);
+            AssertEx.EqualTolerance(-1, -v.VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(2, (ElectricRatio.FromVoltsPerVolt(3)-v).VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(2, (v + v).VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(10, (v*10).VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(10, (10*v).VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(2, (ElectricRatio.FromVoltsPerVolt(10)/5).VoltsPerVolt, VoltsPerVoltTolerance);
+            AssertEx.EqualTolerance(2, ElectricRatio.FromVoltsPerVolt(10)/ElectricRatio.FromVoltsPerVolt(5), VoltsPerVoltTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricRatio oneMillivoltPerVolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            ElectricRatio twoMillivoltsPerVolt = ElectricRatio.FromMillivoltsPerVolt(2);
+            ElectricRatio oneVoltPerVolt = ElectricRatio.FromVoltsPerVolt(1);
+            ElectricRatio twoVoltsPerVolt = ElectricRatio.FromVoltsPerVolt(2);
 
-            Assert.True(oneMillivoltPerVolt < twoMillivoltsPerVolt);
-            Assert.True(oneMillivoltPerVolt <= twoMillivoltsPerVolt);
-            Assert.True(twoMillivoltsPerVolt > oneMillivoltPerVolt);
-            Assert.True(twoMillivoltsPerVolt >= oneMillivoltPerVolt);
+            Assert.True(oneVoltPerVolt < twoVoltsPerVolt);
+            Assert.True(oneVoltPerVolt <= twoVoltsPerVolt);
+            Assert.True(twoVoltsPerVolt > oneVoltPerVolt);
+            Assert.True(twoVoltsPerVolt >= oneVoltPerVolt);
 
-            Assert.False(oneMillivoltPerVolt > twoMillivoltsPerVolt);
-            Assert.False(oneMillivoltPerVolt >= twoMillivoltsPerVolt);
-            Assert.False(twoMillivoltsPerVolt < oneMillivoltPerVolt);
-            Assert.False(twoMillivoltsPerVolt <= oneMillivoltPerVolt);
+            Assert.False(oneVoltPerVolt > twoVoltsPerVolt);
+            Assert.False(oneVoltPerVolt >= twoVoltsPerVolt);
+            Assert.False(twoVoltsPerVolt < oneVoltPerVolt);
+            Assert.False(twoVoltsPerVolt <= oneVoltPerVolt);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.Equal(0, millivoltpervolt.CompareTo(millivoltpervolt));
-            Assert.True(millivoltpervolt.CompareTo(ElectricRatio.Zero) > 0);
-            Assert.True(ElectricRatio.Zero.CompareTo(millivoltpervolt) < 0);
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.Equal(0, voltpervolt.CompareTo(voltpervolt));
+            Assert.True(voltpervolt.CompareTo(ElectricRatio.Zero) > 0);
+            Assert.True(ElectricRatio.Zero.CompareTo(voltpervolt) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.Throws<ArgumentException>(() => millivoltpervolt.CompareTo(new object()));
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.Throws<ArgumentException>(() => voltpervolt.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.Throws<ArgumentNullException>(() => millivoltpervolt.CompareTo(null));
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.Throws<ArgumentNullException>(() => voltpervolt.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricRatio.FromMillivoltsPerVolt(1);
-            var b = ElectricRatio.FromMillivoltsPerVolt(2);
+            var a = ElectricRatio.FromVoltsPerVolt(1);
+            var b = ElectricRatio.FromVoltsPerVolt(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -185,8 +205,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ElectricRatio.FromMillivoltsPerVolt(1);
-            var b = ElectricRatio.FromMillivoltsPerVolt(2);
+            var a = ElectricRatio.FromVoltsPerVolt(1);
+            var b = ElectricRatio.FromVoltsPerVolt(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -196,23 +216,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.True(v.Equals(ElectricRatio.FromMillivoltsPerVolt(1), MillivoltsPerVoltTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricRatio.Zero, MillivoltsPerVoltTolerance, ComparisonType.Relative));
+            var v = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.True(v.Equals(ElectricRatio.FromVoltsPerVolt(1), VoltsPerVoltTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricRatio.Zero, VoltsPerVoltTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.False(millivoltpervolt.Equals(new object()));
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.False(voltpervolt.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricRatio millivoltpervolt = ElectricRatio.FromMillivoltsPerVolt(1);
-            Assert.False(millivoltpervolt.Equals(null));
+            ElectricRatio voltpervolt = ElectricRatio.FromVoltsPerVolt(1);
+            Assert.False(voltpervolt.Equals(null));
         }
 
         [Fact]

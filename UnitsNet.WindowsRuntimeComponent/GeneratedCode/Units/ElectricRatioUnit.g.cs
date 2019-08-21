@@ -26,7 +26,9 @@ namespace UnitsNet.Units
     public enum ElectricRatioUnit
     {
         Undefined = 0,
+        MicrovoltPerVolt,
         MillivoltPerVolt,
+        VoltPerVolt,
     }
 
     #pragma warning restore 1591

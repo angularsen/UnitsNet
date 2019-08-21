@@ -23,9 +23,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricRatioTests : ElectricRatioTestsBase
     {
+
         #region Overrides of ElectricRatioTestsBase
 
-        protected override double MillivoltsPerVoltInOneMillivoltPerVolt => 1;
+        protected override double MicrovoltsPerVoltInOneVoltPerVolt => 1e6;
+        protected override double MillivoltsPerVoltInOneVoltPerVolt => 1e3;
+        protected override double VoltsPerVoltInOneVoltPerVolt => 1;
 
         #endregion
     }

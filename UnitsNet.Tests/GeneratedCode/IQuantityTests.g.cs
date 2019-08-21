@@ -64,7 +64,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));
             Assertion(3, ElectricPotentialAcUnit.VoltAc, Quantity.From(3, ElectricPotentialAcUnit.VoltAc));
             Assertion(3, ElectricPotentialDcUnit.VoltDc, Quantity.From(3, ElectricPotentialDcUnit.VoltDc));
-            Assertion(3, ElectricRatioUnit.MillivoltPerVolt, Quantity.From(3, ElectricRatioUnit.MillivoltPerVolt));
+            Assertion(3, ElectricRatioUnit.VoltPerVolt, Quantity.From(3, ElectricRatioUnit.VoltPerVolt));
             Assertion(3, ElectricResistanceUnit.Ohm, Quantity.From(3, ElectricResistanceUnit.Ohm));
             Assertion(3, ElectricResistivityUnit.PicoohmMeter, Quantity.From(3, ElectricResistivityUnit.PicoohmMeter));
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));

@@ -53,7 +53,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit MillivoltPerVolt.
+        ///     Creates the quantity with a value of 0 in the base unit VoltPerVolt.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
@@ -93,9 +93,9 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricRatio, which is MillivoltPerVolt. All conversions go via this value.
+        ///     The base unit of ElectricRatio, which is VoltPerVolt. All conversions go via this value.
         /// </summary>
-        public static ElectricRatioUnit BaseUnit { get; } = ElectricRatioUnit.MillivoltPerVolt;
+        public static ElectricRatioUnit BaseUnit { get; } = ElectricRatioUnit.VoltPerVolt;
 
         /// <summary>
         /// Represents the largest possible value of ElectricRatio
@@ -118,7 +118,7 @@ namespace UnitsNet
         public static ElectricRatioUnit[] Units { get; } = Enum.GetValues(typeof(ElectricRatioUnit)).Cast<ElectricRatioUnit>().Except(new ElectricRatioUnit[]{ ElectricRatioUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit MillivoltPerVolt.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerVolt.
         /// </summary>
         public static ElectricRatio Zero { get; } = new ElectricRatio(0, BaseUnit);
 
@@ -156,9 +156,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricRatio in MicrovoltsPerVolt.
+        /// </summary>
+        public double MicrovoltsPerVolt => As(ElectricRatioUnit.MicrovoltPerVolt);
+
+        /// <summary>
         ///     Get ElectricRatio in MillivoltsPerVolt.
         /// </summary>
         public double MillivoltsPerVolt => As(ElectricRatioUnit.MillivoltPerVolt);
+
+        /// <summary>
+        ///     Get ElectricRatio in VoltsPerVolt.
+        /// </summary>
+        public double VoltsPerVolt => As(ElectricRatioUnit.VoltPerVolt);
 
         #endregion
 
@@ -191,6 +201,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get ElectricRatio from MicrovoltsPerVolt.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricRatio FromMicrovoltsPerVolt(double microvoltspervolt)
+        {
+            double value = (double) microvoltspervolt;
+            return new ElectricRatio(value, ElectricRatioUnit.MicrovoltPerVolt);
+        }
+        /// <summary>
         ///     Get ElectricRatio from MillivoltsPerVolt.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -199,6 +219,16 @@ namespace UnitsNet
         {
             double value = (double) millivoltspervolt;
             return new ElectricRatio(value, ElectricRatioUnit.MillivoltPerVolt);
+        }
+        /// <summary>
+        ///     Get ElectricRatio from VoltsPerVolt.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricRatio FromVoltsPerVolt(double voltspervolt)
+        {
+            double value = (double) voltspervolt;
+            return new ElectricRatio(value, ElectricRatioUnit.VoltPerVolt);
         }
 
         /// <summary>
@@ -491,7 +521,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricRatioUnit.MillivoltPerVolt: return _value;
+                case ElectricRatioUnit.MicrovoltPerVolt: return (_value) * 1e-6d;
+                case ElectricRatioUnit.MillivoltPerVolt: return (_value) * 1e-3d;
+                case ElectricRatioUnit.VoltPerVolt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -506,7 +538,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricRatioUnit.MillivoltPerVolt: return baseUnitValue;
+                case ElectricRatioUnit.MicrovoltPerVolt: return (baseUnitValue) / 1e-6d;
+                case ElectricRatioUnit.MillivoltPerVolt: return (baseUnitValue) / 1e-3d;
+                case ElectricRatioUnit.VoltPerVolt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

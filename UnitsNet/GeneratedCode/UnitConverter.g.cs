@@ -436,6 +436,10 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDc.BaseUnit, ElectricPotentialDcUnit.MillivoltDc, q => q.ToUnit(ElectricPotentialDcUnit.MillivoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDc.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDc.BaseUnit, ElectricPotentialDc.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatio.BaseUnit, ElectricRatioUnit.MicrovoltPerVolt, q => q.ToUnit(ElectricRatioUnit.MicrovoltPerVolt));
+            unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatioUnit.MicrovoltPerVolt, ElectricRatio.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatio.BaseUnit, ElectricRatioUnit.MillivoltPerVolt, q => q.ToUnit(ElectricRatioUnit.MillivoltPerVolt));
+            unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatioUnit.MillivoltPerVolt, ElectricRatio.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatio.BaseUnit, ElectricRatio.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Gigaohm, q => q.ToUnit(ElectricResistanceUnit.Gigaohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Gigaohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
