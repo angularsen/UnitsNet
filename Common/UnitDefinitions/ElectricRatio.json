@@ -1,0 +1,19 @@
+﻿{
+  "Name": "ElectricRatio",
+  "BaseUnit": "MillivoltPerVolt",
+  "XmlDoc": "Used to measure an electrical signal which is proportional to the applied excitation voltage (also called ratio-metric system).",
+  "Units": [
+    {
+      "SingularName": "MillivoltPerVolt",
+      "PluralName": "MillivoltsPerVolt",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    }
+  ]
+}

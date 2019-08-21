@@ -80,6 +80,9 @@ namespace UnitsNet
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
                     return true;
+                case DeformationUnit deformationUnit:
+                    quantity = Deformation.From(value, deformationUnit);
+                    return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
                     return true;
@@ -127,6 +130,9 @@ namespace UnitsNet
                     return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
+                    return true;
+                case ElectricRatioUnit electricRatioUnit:
+                    quantity = ElectricRatio.From(value, electricRatioUnit);
                     return true;
                 case ElectricResistanceUnit electricResistanceUnit:
                     quantity = ElectricResistance.From(value, electricResistanceUnit);
@@ -421,6 +427,9 @@ namespace UnitsNet
             if (quantityType == typeof(CoefficientOfThermalExpansion))
                 return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
 
+            if (quantityType == typeof(Deformation))
+                return parser.TryParse<Deformation, DeformationUnit>(quantityString, formatProvider, Deformation.From, out quantity);
+
             if (quantityType == typeof(Density))
                 return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
 
@@ -468,6 +477,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ElectricPotentialDc))
                 return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
+
+            if (quantityType == typeof(ElectricRatio))
+                return parser.TryParse<ElectricRatio, ElectricRatioUnit>(quantityString, formatProvider, ElectricRatio.From, out quantity);
 
             if (quantityType == typeof(ElectricResistance))
                 return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);

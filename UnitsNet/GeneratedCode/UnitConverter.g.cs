@@ -245,6 +245,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, q => q.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansion.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansion.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Deformation>(Deformation.BaseUnit, Deformation.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Density>(Density.BaseUnit, DensityUnit.CentigramPerDeciliter, q => q.ToUnit(DensityUnit.CentigramPerDeciliter));
             unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerDeciliter, Density.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Density>(Density.BaseUnit, DensityUnit.CentigramPerLiter, q => q.ToUnit(DensityUnit.CentigramPerLiter));
@@ -435,6 +436,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDc.BaseUnit, ElectricPotentialDcUnit.MillivoltDc, q => q.ToUnit(ElectricPotentialDcUnit.MillivoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDc.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDc.BaseUnit, ElectricPotentialDc.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ElectricRatio>(ElectricRatio.BaseUnit, ElectricRatio.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Gigaohm, q => q.ToUnit(ElectricResistanceUnit.Gigaohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Gigaohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Kiloohm, q => q.ToUnit(ElectricResistanceUnit.Kiloohm));

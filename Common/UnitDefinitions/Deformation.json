@@ -1,0 +1,19 @@
+﻿{
+  "Name": "Deformation",
+  "BaseUnit": "Microdeformation",
+  "XmlDoc": "Dimensionless quantity used to measure deformations in continuum mechanics.",
+  "Units": [
+    {
+      "SingularName": "Microdeformation",
+      "PluralName": "Microdeformations",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "µdef" ]
+        }
+      ]
+    }
+  ]
+}

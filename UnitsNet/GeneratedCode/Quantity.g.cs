@@ -66,6 +66,8 @@ namespace UnitsNet
                     return Capacitance.From(value, Capacitance.BaseUnit);
                 case QuantityType.CoefficientOfThermalExpansion:
                     return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
+                case QuantityType.Deformation:
+                    return Deformation.From(value, Deformation.BaseUnit);
                 case QuantityType.Density:
                     return Density.From(value, Density.BaseUnit);
                 case QuantityType.Duration:
@@ -98,6 +100,8 @@ namespace UnitsNet
                     return ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit);
                 case QuantityType.ElectricPotentialDc:
                     return ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit);
+                case QuantityType.ElectricRatio:
+                    return ElectricRatio.From(value, ElectricRatio.BaseUnit);
                 case QuantityType.ElectricResistance:
                     return ElectricResistance.From(value, ElectricResistance.BaseUnit);
                 case QuantityType.ElectricResistivity:
@@ -289,6 +293,9 @@ namespace UnitsNet
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
                     return true;
+                case DeformationUnit deformationUnit:
+                    quantity = Deformation.From(value, deformationUnit);
+                    return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
                     return true;
@@ -336,6 +343,9 @@ namespace UnitsNet
                     return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
+                    return true;
+                case ElectricRatioUnit electricRatioUnit:
+                    quantity = ElectricRatio.From(value, electricRatioUnit);
                     return true;
                 case ElectricResistanceUnit electricResistanceUnit:
                     quantity = ElectricResistance.From(value, electricResistanceUnit);
@@ -594,6 +604,8 @@ namespace UnitsNet
                     return parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity);
                 case Type _ when quantityType == typeof(CoefficientOfThermalExpansion):
                     return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
+                case Type _ when quantityType == typeof(Deformation):
+                    return parser.TryParse<Deformation, DeformationUnit>(quantityString, formatProvider, Deformation.From, out quantity);
                 case Type _ when quantityType == typeof(Density):
                     return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
                 case Type _ when quantityType == typeof(Duration):
@@ -626,6 +638,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialDc):
                     return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricRatio):
+                    return parser.TryParse<ElectricRatio, ElectricRatioUnit>(quantityString, formatProvider, ElectricRatio.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistance):
                     return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistivity):
