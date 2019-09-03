@@ -174,6 +174,26 @@ namespace UnitsNet
             LessThanImplementation<TLeft, TRight>.Invoke( left, right );
 
         /// <summary>
+        /// Checks if the left hand side is less than or equal to the right hand side.
+        /// </summary>
+        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
+        /// <param name="left">The left hand side parameter.</param>
+        /// <param name="right">The right hand side parameter.</param>
+        /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
+        internal static bool LessThanOrEqual<T>( T left, T right ) => LessThanOrEqual<T, T>( left, right );
+
+        /// <summary>
+        /// Checks if the left hand side is less than or equal to the right hand side.
+        /// </summary>
+        /// <typeparam name="TLeft">The type of the left hand side.</typeparam>
+        /// <typeparam name="TRight">The type of the right hand side.</typeparam>
+        /// <param name="left">The left hand side parameter.</param>
+        /// <param name="right">The right hand side parameter.</param>
+        /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
+        internal static bool LessThanOrEqual<TLeft, TRight>( TLeft left, TRight right ) =>
+            LessThanOrEqualImplementation<TLeft, TRight>.Invoke( left, right );
+
+        /// <summary>
         /// Checks if the left hand side is greater than the right hand side.
         /// </summary>
         /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
@@ -212,26 +232,6 @@ namespace UnitsNet
         /// <returns>True if the left hand side is greater than or equal to the right hand side, otherwise false.</returns>
         internal static bool GreaterThanOrEqual<TLeft, TRight>( TLeft left, TRight right ) =>
             GreaterThanOrEqualImplementation<TLeft, TRight>.Invoke( left, right );
-
-        /// <summary>
-        /// Checks if the left hand side is less than or equal to the right hand side.
-        /// </summary>
-        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
-        internal static bool LessThanOrEqual<T>( T left, T right ) => LessThanOrEqual<T, T>( left, right );
-
-        /// <summary>
-        /// Checks if the left hand side is less than or equal to the right hand side.
-        /// </summary>
-        /// <typeparam name="TLeft">The type of the left hand side.</typeparam>
-        /// <typeparam name="TRight">The type of the right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
-        internal static bool LessThanOrEqual<TLeft, TRight>( TLeft left, TRight right ) =>
-            LessThanOrEqualImplementation<TLeft, TRight>.Invoke( left, right );
 
         #region Implementation Classes
 
@@ -299,6 +299,14 @@ namespace UnitsNet
             internal static bool Invoke( TLeft left, TRight right ) => Function( left, right );
         }
 
+        private static class LessThanOrEqualImplementation<TLeft, TRight>
+        {
+            private readonly static Func<TLeft, TRight, bool> Function =
+                CreateBinaryFunction<TLeft, TRight, bool>( Expression.LessThanOrEqual );
+
+            internal static bool Invoke( TLeft left, TRight right ) => Function( left, right );
+        }
+
         private static class GreaterThanImplementation<TLeft, TRight>
         {
             private readonly static Func<TLeft, TRight, bool> Function =
@@ -311,14 +319,6 @@ namespace UnitsNet
         {
             private readonly static Func<TLeft, TRight, bool> Function =
                 CreateBinaryFunction<TLeft, TRight, bool>( Expression.GreaterThanOrEqual );
-
-            internal static bool Invoke( TLeft left, TRight right ) => Function( left, right );
-        }
-
-        private static class LessThanOrEqualImplementation<TLeft, TRight>
-        {
-            private readonly static Func<TLeft, TRight, bool> Function =
-                CreateBinaryFunction<TLeft, TRight, bool>( Expression.LessThanOrEqual );
 
             internal static bool Invoke( TLeft left, TRight right ) => Function( left, right );
         }
