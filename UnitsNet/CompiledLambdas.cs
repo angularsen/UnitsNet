@@ -156,15 +156,6 @@ namespace UnitsNet
         /// <summary>
         /// Checks if the left hand side is less than the right hand side.
         /// </summary>
-        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is less than the right hand side, otherwise false.</returns>
-        internal static bool LessThan<T>(T left, T right) => LessThan<T, T>(left, right);
-
-        /// <summary>
-        /// Checks if the left hand side is less than the right hand side.
-        /// </summary>
         /// <typeparam name="TLeft">The type of the left hand side.</typeparam>
         /// <typeparam name="TRight">The type of the right hand side.</typeparam>
         /// <param name="left">The left hand side parameter.</param>
@@ -172,15 +163,6 @@ namespace UnitsNet
         /// <returns>True if the left hand side is less than the right hand side, otherwise false.</returns>
         internal static bool LessThan<TLeft, TRight>(TLeft left, TRight right) =>
             LessThanImplementation<TLeft, TRight>.Invoke(left, right);
-
-        /// <summary>
-        /// Checks if the left hand side is less than or equal to the right hand side.
-        /// </summary>
-        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
-        internal static bool LessThanOrEqual<T>(T left, T right) => LessThanOrEqual<T, T>(left, right);
 
         /// <summary>
         /// Checks if the left hand side is less than or equal to the right hand side.
@@ -196,15 +178,6 @@ namespace UnitsNet
         /// <summary>
         /// Checks if the left hand side is greater than the right hand side.
         /// </summary>
-        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is greater than the right hand side, otherwise false.</returns>
-        internal static bool GreaterThan<T>(T left, T right) => GreaterThan<T, T>(left, right);
-
-        /// <summary>
-        /// Checks if the left hand side is greater than the right hand side.
-        /// </summary>
         /// <typeparam name="TLeft">The type of the left hand side.</typeparam>
         /// <typeparam name="TRight">The type of the right hand side.</typeparam>
         /// <param name="left">The left hand side parameter.</param>
@@ -212,15 +185,6 @@ namespace UnitsNet
         /// <returns>True if the left hand side is greater than the right hand side, otherwise false.</returns>
         internal static bool GreaterThan<TLeft, TRight>(TLeft left, TRight right) =>
             GreaterThanImplementation<TLeft, TRight>.Invoke(left, right);
-
-        /// <summary>
-        /// Checks if the left hand side is greater than or equal to the right hand side.
-        /// </summary>
-        /// <typeparam name="T">The type of both the left and right hand side.</typeparam>
-        /// <param name="left">The left hand side parameter.</param>
-        /// <param name="right">The right hand side parameter.</param>
-        /// <returns>True if the left hand side is greater than or equal to the right hand side, otherwise false.</returns>
-        internal static bool GreaterThanOrEqual<T>(T left, T right) => GreaterThanOrEqual<T, T>(left, right);
 
         /// <summary>
         /// Checks if the left hand side is greater than or equal to the right hand side.
