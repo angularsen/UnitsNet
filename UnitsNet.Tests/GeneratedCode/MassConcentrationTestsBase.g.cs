@@ -629,5 +629,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MassConcentration.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MassConcentration instance = (3.0, MassConcentrationUnit.KilogramPerCubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, instance.Unit);
+        }
     }
 }

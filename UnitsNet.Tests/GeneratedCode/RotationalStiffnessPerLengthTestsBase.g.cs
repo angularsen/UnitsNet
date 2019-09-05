@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(RotationalStiffnessPerLength.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            RotationalStiffnessPerLength instance = (3.0, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, instance.Unit);
+        }
     }
 }

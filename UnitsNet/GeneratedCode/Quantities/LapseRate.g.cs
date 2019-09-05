@@ -218,6 +218,12 @@ namespace UnitsNet
             return new LapseRate((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="LapseRate"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="LapseRate"/> from.</param>
+        public static implicit operator LapseRate(ValueTuple<QuantityValue, LapseRateUnit> tuple) => new LapseRate((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

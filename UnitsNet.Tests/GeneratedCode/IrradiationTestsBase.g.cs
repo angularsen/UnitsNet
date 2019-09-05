@@ -299,5 +299,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Irradiation.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Irradiation instance = (3.0, IrradiationUnit.JoulePerSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(IrradiationUnit.JoulePerSquareMeter, instance.Unit);
+        }
     }
 }

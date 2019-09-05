@@ -293,6 +293,12 @@ namespace UnitsNet
             return new AreaMomentOfInertia((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="AreaMomentOfInertia"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="AreaMomentOfInertia"/> from.</param>
+        public static implicit operator AreaMomentOfInertia(ValueTuple<QuantityValue, AreaMomentOfInertiaUnit> tuple) => new AreaMomentOfInertia((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

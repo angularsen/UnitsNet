@@ -623,6 +623,12 @@ namespace UnitsNet
             return new MassMomentOfInertia((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MassMomentOfInertia"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MassMomentOfInertia"/> from.</param>
+        public static implicit operator MassMomentOfInertia(ValueTuple<QuantityValue, MassMomentOfInertiaUnit> tuple) => new MassMomentOfInertia((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

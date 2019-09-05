@@ -308,6 +308,12 @@ namespace UnitsNet
             return new Entropy((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Entropy"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Entropy"/> from.</param>
+        public static implicit operator Entropy(ValueTuple<QuantityValue, EntropyUnit> tuple) => new Entropy((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

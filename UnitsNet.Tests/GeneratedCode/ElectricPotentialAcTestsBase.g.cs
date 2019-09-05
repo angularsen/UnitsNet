@@ -279,5 +279,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricPotentialAc.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricPotentialAc instance = (3.0, ElectricPotentialAcUnit.VoltAc);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricPotentialAcUnit.VoltAc, instance.Unit);
+        }
     }
 }

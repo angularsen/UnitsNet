@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(VitaminA.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            VitaminA instance = (3.0, VitaminAUnit.InternationalUnit);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(VitaminAUnit.InternationalUnit, instance.Unit);
+        }
     }
 }

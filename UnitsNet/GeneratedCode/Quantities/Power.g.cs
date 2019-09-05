@@ -505,6 +505,12 @@ namespace UnitsNet
             return new Power((decimal)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Power"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Power"/> from.</param>
+        public static implicit operator Power(ValueTuple<QuantityValue, PowerUnit> tuple) => new Power((decimal)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

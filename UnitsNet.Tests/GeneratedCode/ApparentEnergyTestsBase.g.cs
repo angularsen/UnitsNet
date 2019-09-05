@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ApparentEnergy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ApparentEnergy instance = (3.0, ApparentEnergyUnit.VoltampereHour);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ApparentEnergyUnit.VoltampereHour, instance.Unit);
+        }
     }
 }

@@ -413,6 +413,12 @@ namespace UnitsNet
             return new Irradiance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Irradiance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Irradiance"/> from.</param>
+        public static implicit operator Irradiance(ValueTuple<QuantityValue, IrradianceUnit> tuple) => new Irradiance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

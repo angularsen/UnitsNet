@@ -253,5 +253,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(PowerRatio.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            PowerRatio instance = (3.0, PowerRatioUnit.DecibelWatt);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PowerRatioUnit.DecibelWatt, instance.Unit);
+        }
     }
 }

@@ -439,5 +439,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Torque.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Torque instance = (3.0, TorqueUnit.NewtonMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(TorqueUnit.NewtonMeter, instance.Unit);
+        }
     }
 }

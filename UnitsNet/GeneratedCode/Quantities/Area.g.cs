@@ -413,6 +413,12 @@ namespace UnitsNet
             return new Area((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Area"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Area"/> from.</param>
+        public static implicit operator Area(ValueTuple<QuantityValue, AreaUnit> tuple) => new Area((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

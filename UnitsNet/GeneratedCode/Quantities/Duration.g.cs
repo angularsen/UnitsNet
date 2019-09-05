@@ -353,6 +353,12 @@ namespace UnitsNet
             return new Duration((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Duration"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Duration"/> from.</param>
+        public static implicit operator Duration(ValueTuple<QuantityValue, DurationUnit> tuple) => new Duration((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ReactivePower.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ReactivePower instance = (3.0, ReactivePowerUnit.VoltampereReactive);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ReactivePowerUnit.VoltampereReactive, instance.Unit);
+        }
     }
 }

@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Permeability.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Permeability instance = (3.0, PermeabilityUnit.HenryPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PermeabilityUnit.HenryPerMeter, instance.Unit);
+        }
     }
 }

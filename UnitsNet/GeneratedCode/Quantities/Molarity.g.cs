@@ -326,6 +326,12 @@ namespace UnitsNet
             return new Molarity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Molarity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Molarity"/> from.</param>
+        public static implicit operator Molarity(ValueTuple<QuantityValue, MolarityUnit> tuple) => new Molarity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

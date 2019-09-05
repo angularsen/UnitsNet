@@ -413,6 +413,12 @@ namespace UnitsNet
             return new Angle((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Angle"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Angle"/> from.</param>
+        public static implicit operator Angle(ValueTuple<QuantityValue, AngleUnit> tuple) => new Angle((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -266,6 +266,12 @@ namespace UnitsNet
             return new Illuminance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Illuminance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Illuminance"/> from.</param>
+        public static implicit operator Illuminance(ValueTuple<QuantityValue, IlluminanceUnit> tuple) => new Illuminance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -248,6 +248,12 @@ namespace UnitsNet
             return new SpecificVolume((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="SpecificVolume"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="SpecificVolume"/> from.</param>
+        public static implicit operator SpecificVolume(ValueTuple<QuantityValue, SpecificVolumeUnit> tuple) => new SpecificVolume((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

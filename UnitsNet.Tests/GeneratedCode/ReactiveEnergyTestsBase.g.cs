@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ReactiveEnergy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ReactiveEnergy instance = (3.0, ReactiveEnergyUnit.VoltampereReactiveHour);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, instance.Unit);
+        }
     }
 }

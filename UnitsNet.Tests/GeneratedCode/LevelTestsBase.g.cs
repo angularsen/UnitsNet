@@ -253,5 +253,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Level.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Level instance = (3.0, LevelUnit.Decibel);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(LevelUnit.Decibel, instance.Unit);
+        }
     }
 }

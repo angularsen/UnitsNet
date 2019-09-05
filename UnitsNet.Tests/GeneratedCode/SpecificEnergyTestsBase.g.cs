@@ -319,5 +319,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(SpecificEnergy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            SpecificEnergy instance = (3.0, SpecificEnergyUnit.JoulePerKilogram);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, instance.Unit);
+        }
     }
 }

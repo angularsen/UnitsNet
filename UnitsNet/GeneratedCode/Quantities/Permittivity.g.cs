@@ -221,6 +221,12 @@ namespace UnitsNet
             return new Permittivity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Permittivity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Permittivity"/> from.</param>
+        public static implicit operator Permittivity(ValueTuple<QuantityValue, PermittivityUnit> tuple) => new Permittivity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

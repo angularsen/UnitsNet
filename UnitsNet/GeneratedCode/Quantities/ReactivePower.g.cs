@@ -263,6 +263,12 @@ namespace UnitsNet
             return new ReactivePower((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ReactivePower"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ReactivePower"/> from.</param>
+        public static implicit operator ReactivePower(ValueTuple<QuantityValue, ReactivePowerUnit> tuple) => new ReactivePower((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

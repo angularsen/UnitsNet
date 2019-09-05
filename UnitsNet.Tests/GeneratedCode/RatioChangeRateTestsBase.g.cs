@@ -249,5 +249,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(RatioChangeRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            RatioChangeRate instance = (3.0, RatioChangeRateUnit.DecimalFractionPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, instance.Unit);
+        }
     }
 }

@@ -249,5 +249,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ThermalConductivity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ThermalConductivity instance = (3.0, ThermalConductivityUnit.WattPerMeterKelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, instance.Unit);
+        }
     }
 }

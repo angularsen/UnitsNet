@@ -549,5 +549,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Speed.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Speed instance = (3.0, SpeedUnit.MeterPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SpeedUnit.MeterPerSecond, instance.Unit);
+        }
     }
 }

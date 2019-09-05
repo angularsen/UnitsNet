@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(LapseRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            LapseRate instance = (3.0, LapseRateUnit.DegreeCelsiusPerKilometer);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, instance.Unit);
+        }
     }
 }

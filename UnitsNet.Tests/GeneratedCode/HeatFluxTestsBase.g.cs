@@ -409,5 +409,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(HeatFlux.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            HeatFlux instance = (3.0, HeatFluxUnit.WattPerSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(HeatFluxUnit.WattPerSquareMeter, instance.Unit);
+        }
     }
 }

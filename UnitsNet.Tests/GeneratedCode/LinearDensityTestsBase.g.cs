@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(LinearDensity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            LinearDensity instance = (3.0, LinearDensityUnit.KilogramPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(LinearDensityUnit.KilogramPerMeter, instance.Unit);
+        }
     }
 }

@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricCurrentGradient.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricCurrentGradient instance = (3.0, ElectricCurrentGradientUnit.AmperePerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, instance.Unit);
+        }
     }
 }

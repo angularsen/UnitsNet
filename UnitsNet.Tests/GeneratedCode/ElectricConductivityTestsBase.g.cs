@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricConductivity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricConductivity instance = (3.0, ElectricConductivityUnit.SiemensPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, instance.Unit);
+        }
     }
 }

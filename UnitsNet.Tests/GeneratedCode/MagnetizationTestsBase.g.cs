@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Magnetization.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Magnetization instance = (3.0, MagnetizationUnit.AmperePerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MagnetizationUnit.AmperePerMeter, instance.Unit);
+        }
     }
 }

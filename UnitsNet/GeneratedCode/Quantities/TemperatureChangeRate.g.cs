@@ -353,6 +353,12 @@ namespace UnitsNet
             return new TemperatureChangeRate((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="TemperatureChangeRate"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="TemperatureChangeRate"/> from.</param>
+        public static implicit operator TemperatureChangeRate(ValueTuple<QuantityValue, TemperatureChangeRateUnit> tuple) => new TemperatureChangeRate((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

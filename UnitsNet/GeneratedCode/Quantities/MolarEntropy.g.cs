@@ -248,6 +248,12 @@ namespace UnitsNet
             return new MolarEntropy((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MolarEntropy"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MolarEntropy"/> from.</param>
+        public static implicit operator MolarEntropy(ValueTuple<QuantityValue, MolarEntropyUnit> tuple) => new MolarEntropy((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

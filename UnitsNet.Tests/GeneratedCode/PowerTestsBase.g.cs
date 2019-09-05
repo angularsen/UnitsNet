@@ -403,5 +403,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Power.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Power instance = (3.0, PowerUnit.Watt);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PowerUnit.Watt, instance.Unit);
+        }
     }
 }

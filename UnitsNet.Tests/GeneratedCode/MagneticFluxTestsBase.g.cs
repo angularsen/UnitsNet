@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MagneticFlux.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MagneticFlux instance = (3.0, MagneticFluxUnit.Weber);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MagneticFluxUnit.Weber, instance.Unit);
+        }
     }
 }

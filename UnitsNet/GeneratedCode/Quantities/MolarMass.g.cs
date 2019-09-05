@@ -383,6 +383,12 @@ namespace UnitsNet
             return new MolarMass((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MolarMass"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MolarMass"/> from.</param>
+        public static implicit operator MolarMass(ValueTuple<QuantityValue, MolarMassUnit> tuple) => new MolarMass((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

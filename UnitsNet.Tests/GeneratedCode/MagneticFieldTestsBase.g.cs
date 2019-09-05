@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MagneticField.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MagneticField instance = (3.0, MagneticFieldUnit.Tesla);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MagneticFieldUnit.Tesla, instance.Unit);
+        }
     }
 }

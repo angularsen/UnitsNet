@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Illuminance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Illuminance instance = (3.0, IlluminanceUnit.Lux);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(IlluminanceUnit.Lux, instance.Unit);
+        }
     }
 }

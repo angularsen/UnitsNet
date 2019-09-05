@@ -278,6 +278,12 @@ namespace UnitsNet
             return new ElectricResistance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ElectricResistance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ElectricResistance"/> from.</param>
+        public static implicit operator ElectricResistance(ValueTuple<QuantityValue, ElectricResistanceUnit> tuple) => new ElectricResistance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

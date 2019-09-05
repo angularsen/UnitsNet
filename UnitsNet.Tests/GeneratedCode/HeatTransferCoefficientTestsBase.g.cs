@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(HeatTransferCoefficient.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            HeatTransferCoefficient instance = (3.0, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, instance.Unit);
+        }
     }
 }

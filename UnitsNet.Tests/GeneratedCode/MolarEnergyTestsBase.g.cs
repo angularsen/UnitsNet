@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MolarEnergy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MolarEnergy instance = (3.0, MolarEnergyUnit.JoulePerMole);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MolarEnergyUnit.JoulePerMole, instance.Unit);
+        }
     }
 }

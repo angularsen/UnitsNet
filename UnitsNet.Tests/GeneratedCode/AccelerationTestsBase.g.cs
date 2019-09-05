@@ -359,5 +359,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Acceleration.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Acceleration instance = (3.0, AccelerationUnit.MeterPerSecondSquared);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, instance.Unit);
+        }
     }
 }

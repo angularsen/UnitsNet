@@ -399,5 +399,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(SpecificWeight.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            SpecificWeight instance = (3.0, SpecificWeightUnit.NewtonPerCubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, instance.Unit);
+        }
     }
 }

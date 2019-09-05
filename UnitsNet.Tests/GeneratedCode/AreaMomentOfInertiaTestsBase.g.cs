@@ -289,5 +289,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(AreaMomentOfInertia.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            AreaMomentOfInertia instance = (3.0, AreaMomentOfInertiaUnit.MeterToTheFourth);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, instance.Unit);
+        }
     }
 }

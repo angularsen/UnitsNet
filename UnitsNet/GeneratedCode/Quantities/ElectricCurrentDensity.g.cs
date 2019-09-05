@@ -251,6 +251,12 @@ namespace UnitsNet
             return new ElectricCurrentDensity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ElectricCurrentDensity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ElectricCurrentDensity"/> from.</param>
+        public static implicit operator ElectricCurrentDensity(ValueTuple<QuantityValue, ElectricCurrentDensityUnit> tuple) => new ElectricCurrentDensity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

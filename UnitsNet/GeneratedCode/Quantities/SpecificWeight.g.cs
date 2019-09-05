@@ -461,6 +461,12 @@ namespace UnitsNet
             return new SpecificWeight((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="SpecificWeight"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="SpecificWeight"/> from.</param>
+        public static implicit operator SpecificWeight(ValueTuple<QuantityValue, SpecificWeightUnit> tuple) => new SpecificWeight((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

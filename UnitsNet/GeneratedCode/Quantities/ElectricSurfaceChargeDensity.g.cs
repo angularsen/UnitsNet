@@ -251,6 +251,12 @@ namespace UnitsNet
             return new ElectricSurfaceChargeDensity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ElectricSurfaceChargeDensity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ElectricSurfaceChargeDensity"/> from.</param>
+        public static implicit operator ElectricSurfaceChargeDensity(ValueTuple<QuantityValue, ElectricSurfaceChargeDensityUnit> tuple) => new ElectricSurfaceChargeDensity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

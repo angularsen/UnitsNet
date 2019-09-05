@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricCharge.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricCharge instance = (3.0, ElectricChargeUnit.Coulomb);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricChargeUnit.Coulomb, instance.Unit);
+        }
     }
 }

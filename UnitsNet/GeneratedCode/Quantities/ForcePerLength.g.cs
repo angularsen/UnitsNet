@@ -383,6 +383,12 @@ namespace UnitsNet
             return new ForcePerLength((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ForcePerLength"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ForcePerLength"/> from.</param>
+        public static implicit operator ForcePerLength(ValueTuple<QuantityValue, ForcePerLengthUnit> tuple) => new ForcePerLength((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

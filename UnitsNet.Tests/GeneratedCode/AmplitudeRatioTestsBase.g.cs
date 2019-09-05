@@ -273,5 +273,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(AmplitudeRatio.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            AmplitudeRatio instance = (3.0, AmplitudeRatioUnit.DecibelVolt);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, instance.Unit);
+        }
     }
 }

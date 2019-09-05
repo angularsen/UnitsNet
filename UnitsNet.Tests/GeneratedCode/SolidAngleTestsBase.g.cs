@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(SolidAngle.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            SolidAngle instance = (3.0, SolidAngleUnit.Steradian);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SolidAngleUnit.Steradian, instance.Unit);
+        }
     }
 }

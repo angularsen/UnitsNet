@@ -398,6 +398,12 @@ namespace UnitsNet
             return new Acceleration((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Acceleration"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Acceleration"/> from.</param>
+        public static implicit operator Acceleration(ValueTuple<QuantityValue, AccelerationUnit> tuple) => new Acceleration((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

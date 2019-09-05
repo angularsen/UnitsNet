@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(CoefficientOfThermalExpansion.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            CoefficientOfThermalExpansion instance = (3.0, CoefficientOfThermalExpansionUnit.InverseKelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, instance.Unit);
+        }
     }
 }

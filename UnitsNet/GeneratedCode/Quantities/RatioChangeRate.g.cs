@@ -233,6 +233,12 @@ namespace UnitsNet
             return new RatioChangeRate((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="RatioChangeRate"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="RatioChangeRate"/> from.</param>
+        public static implicit operator RatioChangeRate(ValueTuple<QuantityValue, RatioChangeRateUnit> tuple) => new RatioChangeRate((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

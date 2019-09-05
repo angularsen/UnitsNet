@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MolarEntropy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MolarEntropy instance = (3.0, MolarEntropyUnit.JoulePerMoleKelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, instance.Unit);
+        }
     }
 }

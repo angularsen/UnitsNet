@@ -669,5 +669,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(PowerDensity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            PowerDensity instance = (3.0, PowerDensityUnit.WattPerCubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PowerDensityUnit.WattPerCubicMeter, instance.Unit);
+        }
     }
 }

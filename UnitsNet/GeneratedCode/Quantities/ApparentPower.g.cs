@@ -263,6 +263,12 @@ namespace UnitsNet
             return new ApparentPower((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ApparentPower"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ApparentPower"/> from.</param>
+        public static implicit operator ApparentPower(ValueTuple<QuantityValue, ApparentPowerUnit> tuple) => new ApparentPower((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

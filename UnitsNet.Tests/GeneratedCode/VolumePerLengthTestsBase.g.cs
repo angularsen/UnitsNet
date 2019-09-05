@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(VolumePerLength.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            VolumePerLength instance = (3.0, VolumePerLengthUnit.CubicMeterPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, instance.Unit);
+        }
     }
 }

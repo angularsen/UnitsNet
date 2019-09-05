@@ -299,5 +299,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(PressureChangeRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            PressureChangeRate instance = (3.0, PressureChangeRateUnit.PascalPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PressureChangeRateUnit.PascalPerSecond, instance.Unit);
+        }
     }
 }

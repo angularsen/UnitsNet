@@ -233,6 +233,12 @@ namespace UnitsNet
             return new MassFlux((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MassFlux"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MassFlux"/> from.</param>
+        public static implicit operator MassFlux(ValueTuple<QuantityValue, MassFluxUnit> tuple) => new MassFlux((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

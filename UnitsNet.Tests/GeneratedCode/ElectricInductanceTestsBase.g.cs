@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricInductance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricInductance instance = (3.0, ElectricInductanceUnit.Henry);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricInductanceUnit.Henry, instance.Unit);
+        }
     }
 }

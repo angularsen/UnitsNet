@@ -379,5 +379,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(AmountOfSubstance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            AmountOfSubstance instance = (3.0, AmountOfSubstanceUnit.Mole);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AmountOfSubstanceUnit.Mole, instance.Unit);
+        }
     }
 }

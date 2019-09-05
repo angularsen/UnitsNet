@@ -559,5 +559,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MassFlow.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MassFlow instance = (3.0, MassFlowUnit.GramPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassFlowUnit.GramPerSecond, instance.Unit);
+        }
     }
 }

@@ -279,5 +279,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ThermalResistance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ThermalResistance instance = (3.0, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, instance.Unit);
+        }
     }
 }

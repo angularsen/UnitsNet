@@ -311,6 +311,12 @@ namespace UnitsNet
             return new Capacitance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Capacitance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Capacitance"/> from.</param>
+        public static implicit operator Capacitance(ValueTuple<QuantityValue, CapacitanceUnit> tuple) => new Capacitance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

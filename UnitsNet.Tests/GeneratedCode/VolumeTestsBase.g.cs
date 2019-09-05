@@ -699,5 +699,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Volume.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Volume instance = (3.0, VolumeUnit.CubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(VolumeUnit.CubicMeter, instance.Unit);
+        }
     }
 }

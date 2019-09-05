@@ -309,5 +309,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricCurrent.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricCurrent instance = (3.0, ElectricCurrentUnit.Ampere);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricCurrentUnit.Ampere, instance.Unit);
+        }
     }
 }

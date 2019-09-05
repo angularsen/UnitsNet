@@ -382,8 +382,14 @@ namespace UnitsNet
             return new {_quantity.Name}(({_valueType})value, fromUnit);
         }}
 
+        /// <summary>
+        /// Creates an instance of <see cref=""{_quantity.Name}""/> from the given tuple.
+        /// </summary>
+        /// <param name=""tuple"">The tuple to create the <see cref=""{_quantity.Name}""/> from.</param>
+        public static implicit operator {_quantity.Name}(ValueTuple<QuantityValue, {_unitEnumName}> tuple) => new {_quantity.Name}(({_valueType})tuple.Item1, tuple.Item2);
+
         #endregion
-");
+" );
         }
 
         private void GenerateStaticParseMethods()

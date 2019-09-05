@@ -249,5 +249,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MassFlux.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MassFlux instance = (3.0, MassFluxUnit.KilogramPerSecondPerSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, instance.Unit);
+        }
     }
 }

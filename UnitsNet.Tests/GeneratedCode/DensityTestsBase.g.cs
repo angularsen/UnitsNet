@@ -629,5 +629,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Density.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Density instance = (3.0, DensityUnit.KilogramPerCubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(DensityUnit.KilogramPerCubicMeter, instance.Unit);
+        }
     }
 }

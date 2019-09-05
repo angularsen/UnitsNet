@@ -469,5 +469,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MassFraction.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MassFraction instance = (3.0, MassFractionUnit.DecimalFraction);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassFractionUnit.DecimalFraction, instance.Unit);
+        }
     }
 }

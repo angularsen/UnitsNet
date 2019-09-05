@@ -349,5 +349,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ForcePerLength.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ForcePerLength instance = (3.0, ForcePerLengthUnit.NewtonPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, instance.Unit);
+        }
     }
 }

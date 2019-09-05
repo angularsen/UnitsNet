@@ -236,6 +236,12 @@ namespace UnitsNet
             return new ThermalConductivity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ThermalConductivity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ThermalConductivity"/> from.</param>
+        public static implicit operator ThermalConductivity(ValueTuple<QuantityValue, ThermalConductivityUnit> tuple) => new ThermalConductivity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

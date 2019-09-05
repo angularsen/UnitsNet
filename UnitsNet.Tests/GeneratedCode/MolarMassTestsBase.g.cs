@@ -349,5 +349,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MolarMass.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MolarMass instance = (3.0, MolarMassUnit.KilogramPerMole);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MolarMassUnit.KilogramPerMole, instance.Unit);
+        }
     }
 }

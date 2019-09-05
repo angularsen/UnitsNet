@@ -509,5 +509,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(MassMomentOfInertia.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            MassMomentOfInertia instance = (3.0, MassMomentOfInertiaUnit.KilogramSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareMeter, instance.Unit);
+        }
     }
 }

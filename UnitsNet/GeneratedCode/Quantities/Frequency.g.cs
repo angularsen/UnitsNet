@@ -338,6 +338,12 @@ namespace UnitsNet
             return new Frequency((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Frequency"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Frequency"/> from.</param>
+        public static implicit operator Frequency(ValueTuple<QuantityValue, FrequencyUnit> tuple) => new Frequency((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

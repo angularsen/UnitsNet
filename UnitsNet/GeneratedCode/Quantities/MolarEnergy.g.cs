@@ -248,6 +248,12 @@ namespace UnitsNet
             return new MolarEnergy((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MolarEnergy"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MolarEnergy"/> from.</param>
+        public static implicit operator MolarEnergy(ValueTuple<QuantityValue, MolarEnergyUnit> tuple) => new MolarEnergy((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

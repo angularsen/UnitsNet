@@ -319,5 +319,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(SpecificEntropy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            SpecificEntropy instance = (3.0, SpecificEntropyUnit.JoulePerKilogramKelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, instance.Unit);
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using CodeGen.JsonTypes;
 
@@ -303,8 +303,17 @@ namespace UnitsNet.Tests
         {{
             Assert.False({_quantity.Name}.BaseDimensions is null);
         }}
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {{
+            {_quantity.Name} instance = (3.0, {_unitEnumName}.{_baseUnit.SingularName});
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal({_unitEnumName}.{_baseUnit.SingularName}, instance.Unit);
+        }}
     }}
-}}");
+}}" );
             return Writer.ToString();
         }
     }

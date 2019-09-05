@@ -428,6 +428,12 @@ namespace UnitsNet
             return new AmountOfSubstance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="AmountOfSubstance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="AmountOfSubstance"/> from.</param>
+        public static implicit operator AmountOfSubstance(ValueTuple<QuantityValue, AmountOfSubstanceUnit> tuple) => new AmountOfSubstance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -398,6 +398,12 @@ namespace UnitsNet
             return new RotationalSpeed((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="RotationalSpeed"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="RotationalSpeed"/> from.</param>
+        public static implicit operator RotationalSpeed(ValueTuple<QuantityValue, RotationalSpeedUnit> tuple) => new RotationalSpeed((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

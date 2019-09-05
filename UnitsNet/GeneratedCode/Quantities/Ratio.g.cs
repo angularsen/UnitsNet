@@ -293,6 +293,12 @@ namespace UnitsNet
             return new Ratio((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Ratio"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Ratio"/> from.</param>
+        public static implicit operator Ratio(ValueTuple<QuantityValue, RatioUnit> tuple) => new Ratio((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -248,6 +248,12 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="CoefficientOfThermalExpansion"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="CoefficientOfThermalExpansion"/> from.</param>
+        public static implicit operator CoefficientOfThermalExpansion(ValueTuple<QuantityValue, CoefficientOfThermalExpansionUnit> tuple) => new CoefficientOfThermalExpansion((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

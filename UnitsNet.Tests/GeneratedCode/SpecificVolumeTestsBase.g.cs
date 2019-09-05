@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(SpecificVolume.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            SpecificVolume instance = (3.0, SpecificVolumeUnit.CubicMeterPerKilogram);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, instance.Unit);
+        }
     }
 }

@@ -263,6 +263,12 @@ namespace UnitsNet
             return new AmplitudeRatio((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="AmplitudeRatio"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="AmplitudeRatio"/> from.</param>
+        public static implicit operator AmplitudeRatio(ValueTuple<QuantityValue, AmplitudeRatioUnit> tuple) => new AmplitudeRatio((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricSurfaceChargeDensity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricSurfaceChargeDensity instance = (3.0, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, instance.Unit);
+        }
     }
 }

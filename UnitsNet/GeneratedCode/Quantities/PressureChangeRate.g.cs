@@ -308,6 +308,12 @@ namespace UnitsNet
             return new PressureChangeRate((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="PressureChangeRate"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="PressureChangeRate"/> from.</param>
+        public static implicit operator PressureChangeRate(ValueTuple<QuantityValue, PressureChangeRateUnit> tuple) => new PressureChangeRate((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

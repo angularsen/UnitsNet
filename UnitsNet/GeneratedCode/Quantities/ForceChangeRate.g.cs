@@ -368,6 +368,12 @@ namespace UnitsNet
             return new ForceChangeRate((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ForceChangeRate"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ForceChangeRate"/> from.</param>
+        public static implicit operator ForceChangeRate(ValueTuple<QuantityValue, ForceChangeRateUnit> tuple) => new ForceChangeRate((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

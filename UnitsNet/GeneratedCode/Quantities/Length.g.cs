@@ -683,6 +683,12 @@ namespace UnitsNet
             return new Length((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Length"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Length"/> from.</param>
+        public static implicit operator Length(ValueTuple<QuantityValue, LengthUnit> tuple) => new Length((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

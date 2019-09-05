@@ -369,5 +369,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricResistivity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricResistivity instance = (3.0, ElectricResistivityUnit.OhmMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricResistivityUnit.OhmMeter, instance.Unit);
+        }
     }
 }

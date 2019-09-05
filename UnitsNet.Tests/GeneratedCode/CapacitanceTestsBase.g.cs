@@ -299,5 +299,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Capacitance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Capacitance instance = (3.0, CapacitanceUnit.Farad);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(CapacitanceUnit.Farad, instance.Unit);
+        }
     }
 }

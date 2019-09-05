@@ -463,5 +463,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(BitRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            BitRate instance = (3.0, BitRateUnit.BitPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(BitRateUnit.BitPerSecond, instance.Unit);
+        }
     }
 }

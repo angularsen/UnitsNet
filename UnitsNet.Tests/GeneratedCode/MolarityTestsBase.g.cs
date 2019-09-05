@@ -309,5 +309,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Molarity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Molarity instance = (3.0, MolarityUnit.MolesPerCubicMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MolarityUnit.MolesPerCubicMeter, instance.Unit);
+        }
     }
 }

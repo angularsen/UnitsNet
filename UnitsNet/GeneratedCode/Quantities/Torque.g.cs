@@ -518,6 +518,12 @@ namespace UnitsNet
             return new Torque((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Torque"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Torque"/> from.</param>
+        public static implicit operator Torque(ValueTuple<QuantityValue, TorqueUnit> tuple) => new Torque((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -248,6 +248,12 @@ namespace UnitsNet
             return new ApparentEnergy((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ApparentEnergy"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ApparentEnergy"/> from.</param>
+        public static implicit operator ApparentEnergy(ValueTuple<QuantityValue, ApparentEnergyUnit> tuple) => new ApparentEnergy((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

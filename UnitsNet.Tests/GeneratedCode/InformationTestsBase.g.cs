@@ -463,5 +463,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Information.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Information instance = (3.0, InformationUnit.Bit);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(InformationUnit.Bit, instance.Unit);
+        }
     }
 }

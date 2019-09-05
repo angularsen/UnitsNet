@@ -369,5 +369,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Area.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Area instance = (3.0, AreaUnit.SquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AreaUnit.SquareMeter, instance.Unit);
+        }
     }
 }

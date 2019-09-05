@@ -479,5 +479,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Mass.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Mass instance = (3.0, MassUnit.Kilogram);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(MassUnit.Kilogram, instance.Unit);
+        }
     }
 }

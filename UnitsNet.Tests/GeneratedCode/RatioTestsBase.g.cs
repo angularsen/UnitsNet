@@ -289,5 +289,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Ratio.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Ratio instance = (3.0, RatioUnit.DecimalFraction);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(RatioUnit.DecimalFraction, instance.Unit);
+        }
     }
 }

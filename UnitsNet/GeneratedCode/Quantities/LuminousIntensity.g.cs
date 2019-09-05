@@ -221,6 +221,12 @@ namespace UnitsNet
             return new LuminousIntensity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="LuminousIntensity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="LuminousIntensity"/> from.</param>
+        public static implicit operator LuminousIntensity(ValueTuple<QuantityValue, LuminousIntensityUnit> tuple) => new LuminousIntensity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

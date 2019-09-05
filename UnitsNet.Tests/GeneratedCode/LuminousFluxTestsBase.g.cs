@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(LuminousFlux.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            LuminousFlux instance = (3.0, LuminousFluxUnit.Lumen);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(LuminousFluxUnit.Lumen, instance.Unit);
+        }
     }
 }

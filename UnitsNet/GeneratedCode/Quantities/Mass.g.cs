@@ -578,6 +578,12 @@ namespace UnitsNet
             return new Mass((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Mass"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Mass"/> from.</param>
+        public static implicit operator Mass(ValueTuple<QuantityValue, MassUnit> tuple) => new Mass((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

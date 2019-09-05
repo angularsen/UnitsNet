@@ -339,5 +339,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ForceChangeRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ForceChangeRate instance = (3.0, ForceChangeRateUnit.NewtonPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, instance.Unit);
+        }
     }
 }

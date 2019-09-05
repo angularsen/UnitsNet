@@ -248,6 +248,12 @@ namespace UnitsNet
             return new RotationalStiffness((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="RotationalStiffness"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="RotationalStiffness"/> from.</param>
+        public static implicit operator RotationalStiffness(ValueTuple<QuantityValue, RotationalStiffnessUnit> tuple) => new RotationalStiffness((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

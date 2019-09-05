@@ -459,5 +459,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Energy.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Energy instance = (3.0, EnergyUnit.Joule);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(EnergyUnit.Joule, instance.Unit);
+        }
     }
 }

@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Permittivity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Permittivity instance = (3.0, PermittivityUnit.FaradPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PermittivityUnit.FaradPerMeter, instance.Unit);
+        }
     }
 }

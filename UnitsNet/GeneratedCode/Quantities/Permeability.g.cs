@@ -221,6 +221,12 @@ namespace UnitsNet
             return new Permeability((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Permeability"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Permeability"/> from.</param>
+        public static implicit operator Permeability(ValueTuple<QuantityValue, PermeabilityUnit> tuple) => new Permeability((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

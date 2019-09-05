@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(RotationalAcceleration.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            RotationalAcceleration instance = (3.0, RotationalAccelerationUnit.RadianPerSecondSquared);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, instance.Unit);
+        }
     }
 }

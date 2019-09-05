@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -19,7 +20,7 @@ namespace UnitsNet
     ///     From 8 (int, long, double, decimal + each nullable) down to 2 (QuantityValue and QuantityValue?).
     ///     This also adds more numeric types with no extra overhead, such as float, short and byte.
     /// </remarks>
-    public struct QuantityValue
+    public struct QuantityValue : IEquatable<QuantityValue>, IEquatable<double>, IEquatable<decimal>
     {
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
@@ -91,6 +92,67 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return _value.HasValue ? _value.Value.GetHashCode() : _valueDecimal.Value.GetHashCode();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if(obj is QuantityValue quantityValue)
+                return Equals(quantityValue);
+            else if(obj is double asDouble)
+                return Equals(asDouble);
+            else if(obj is decimal asDecimal)
+                return Equals(asDecimal);
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(QuantityValue other)
+        {
+            if(_value.HasValue)
+                return _value.Value == (double)other;
+            else if(_valueDecimal.HasValue)
+                return _valueDecimal.Value == (decimal)other;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(double other)
+        {
+            return _value.HasValue ? _value.Value == other : _valueDecimal.Value == (decimal)other;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(decimal other)
+        {
+            return _valueDecimal.HasValue ? _valueDecimal.Value == other : _value.Value == (double)other;
+        }
 
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()

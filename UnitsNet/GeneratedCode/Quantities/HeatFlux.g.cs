@@ -473,6 +473,12 @@ namespace UnitsNet
             return new HeatFlux((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="HeatFlux"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="HeatFlux"/> from.</param>
+        public static implicit operator HeatFlux(ValueTuple<QuantityValue, HeatFluxUnit> tuple) => new HeatFlux((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

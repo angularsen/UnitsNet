@@ -429,5 +429,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(VolumeConcentration.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            VolumeConcentration instance = (3.0, VolumeConcentrationUnit.DecimalFraction);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(VolumeConcentrationUnit.DecimalFraction, instance.Unit);
+        }
     }
 }

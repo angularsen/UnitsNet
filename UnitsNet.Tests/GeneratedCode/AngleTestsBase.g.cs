@@ -369,5 +369,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Angle.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Angle instance = (3.0, AngleUnit.Degree);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(AngleUnit.Degree, instance.Unit);
+        }
     }
 }

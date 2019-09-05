@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricCurrentDensity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricCurrentDensity instance = (3.0, ElectricCurrentDensityUnit.AmperePerSquareMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, instance.Unit);
+        }
     }
 }

@@ -221,6 +221,12 @@ namespace UnitsNet
             return new MagneticFlux((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MagneticFlux"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MagneticFlux"/> from.</param>
+        public static implicit operator MagneticFlux(ValueTuple<QuantityValue, MagneticFluxUnit> tuple) => new MagneticFlux((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -806,6 +806,12 @@ namespace UnitsNet
             return new MassConcentration((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MassConcentration"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MassConcentration"/> from.</param>
+        public static implicit operator MassConcentration(ValueTuple<QuantityValue, MassConcentrationUnit> tuple) => new MassConcentration((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

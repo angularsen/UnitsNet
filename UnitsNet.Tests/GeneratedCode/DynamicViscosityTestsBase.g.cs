@@ -319,5 +319,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(DynamicViscosity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            DynamicViscosity instance = (3.0, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, instance.Unit);
+        }
     }
 }

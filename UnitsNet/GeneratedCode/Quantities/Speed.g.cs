@@ -683,6 +683,12 @@ namespace UnitsNet
             return new Speed((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="Speed"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="Speed"/> from.</param>
+        public static implicit operator Speed(ValueTuple<QuantityValue, SpeedUnit> tuple) => new Speed((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

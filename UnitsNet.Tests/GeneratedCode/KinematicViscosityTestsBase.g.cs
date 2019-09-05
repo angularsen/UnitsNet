@@ -309,5 +309,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(KinematicViscosity.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            KinematicViscosity instance = (3.0, KinematicViscosityUnit.SquareMeterPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, instance.Unit);
+        }
     }
 }

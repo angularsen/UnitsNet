@@ -329,5 +329,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(TemperatureChangeRate.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            TemperatureChangeRate instance = (3.0, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, instance.Unit);
+        }
     }
 }

@@ -649,5 +649,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Pressure.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Pressure instance = (3.0, PressureUnit.Pascal);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(PressureUnit.Pascal, instance.Unit);
+        }
     }
 }

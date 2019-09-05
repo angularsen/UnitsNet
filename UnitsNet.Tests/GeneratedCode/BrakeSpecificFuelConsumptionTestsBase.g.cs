@@ -259,5 +259,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(BrakeSpecificFuelConsumption.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            BrakeSpecificFuelConsumption instance = (3.0, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, instance.Unit);
+        }
     }
 }

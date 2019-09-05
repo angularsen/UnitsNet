@@ -278,6 +278,12 @@ namespace UnitsNet
             return new ThermalResistance((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ThermalResistance"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ThermalResistance"/> from.</param>
+        public static implicit operator ThermalResistance(ValueTuple<QuantityValue, ThermalResistanceUnit> tuple) => new ThermalResistance((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

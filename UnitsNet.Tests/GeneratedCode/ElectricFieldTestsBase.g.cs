@@ -239,5 +239,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricField.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricField instance = (3.0, ElectricFieldUnit.VoltPerMeter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricFieldUnit.VoltPerMeter, instance.Unit);
+        }
     }
 }

@@ -309,5 +309,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(TemperatureDelta.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            TemperatureDelta instance = (3.0, TemperatureDeltaUnit.Kelvin);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(TemperatureDeltaUnit.Kelvin, instance.Unit);
+        }
     }
 }

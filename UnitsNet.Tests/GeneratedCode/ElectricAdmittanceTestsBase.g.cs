@@ -269,5 +269,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(ElectricAdmittance.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            ElectricAdmittance instance = (3.0, ElectricAdmittanceUnit.Siemens);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(ElectricAdmittanceUnit.Siemens, instance.Unit);
+        }
     }
 }

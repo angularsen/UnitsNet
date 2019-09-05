@@ -319,5 +319,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Frequency.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Frequency instance = (3.0, FrequencyUnit.Hertz);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(FrequencyUnit.Hertz, instance.Unit);
+        }
     }
 }

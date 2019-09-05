@@ -266,6 +266,12 @@ namespace UnitsNet
             return new MagneticField((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="MagneticField"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="MagneticField"/> from.</param>
+        public static implicit operator MagneticField(ValueTuple<QuantityValue, MagneticFieldUnit> tuple) => new MagneticField((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

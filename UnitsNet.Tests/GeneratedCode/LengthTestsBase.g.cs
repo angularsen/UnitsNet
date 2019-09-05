@@ -549,5 +549,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Length.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Length instance = (3.0, LengthUnit.Meter);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(LengthUnit.Meter, instance.Unit);
+        }
     }
 }

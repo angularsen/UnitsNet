@@ -329,5 +329,14 @@ namespace UnitsNet.Tests
         {
             Assert.False(Duration.BaseDimensions is null);
         }
+
+        [Fact]
+        public void CanCreateInstanceFromTuple()
+        {
+            Duration instance = (3.0, DurationUnit.Second);
+
+            Assert.Equal<QuantityValue>(3.0, instance.Value);
+            Assert.Equal(DurationUnit.Second, instance.Unit);
+        }
     }
 }

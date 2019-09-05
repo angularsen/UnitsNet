@@ -278,6 +278,12 @@ namespace UnitsNet
             return new ElectricPotentialDc((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="ElectricPotentialDc"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="ElectricPotentialDc"/> from.</param>
+        public static implicit operator ElectricPotentialDc(ValueTuple<QuantityValue, ElectricPotentialDcUnit> tuple) => new ElectricPotentialDc((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

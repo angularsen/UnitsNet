@@ -863,6 +863,12 @@ namespace UnitsNet
             return new PowerDensity((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="PowerDensity"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="PowerDensity"/> from.</param>
+        public static implicit operator PowerDensity(ValueTuple<QuantityValue, PowerDensityUnit> tuple) => new PowerDensity((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods

@@ -923,6 +923,12 @@ namespace UnitsNet
             return new VolumeFlow((double)value, fromUnit);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="VolumeFlow"/> from the given tuple.
+        /// </summary>
+        /// <param name="tuple">The tuple to create the <see cref="VolumeFlow"/> from.</param>
+        public static implicit operator VolumeFlow(ValueTuple<QuantityValue, VolumeFlowUnit> tuple) => new VolumeFlow((double)tuple.Item1, tuple.Item2);
+
         #endregion
 
         #region Static Parse Methods
