@@ -73,22 +73,40 @@ namespace UnitsNet
 
         #region To double
 
+        /// <summary>
+        /// Returns this <see cref="QuantityValue"/> as a double.
+        /// </summary>
+        /// <returns>The double value.</returns>
+        public double ToDouble()
+        {
+            // double -> decimal -> zero (since we can't implement the default struct ctor)
+            return _value ?? (double)_valueDecimal.GetValueOrDefault();
+        }
+
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
         public static explicit operator double(QuantityValue number)
         {
-            // double -> decimal -> zero (since we can't implement the default struct ctor)
-            return number._value ?? (double) number._valueDecimal.GetValueOrDefault();
+            return number.ToDouble();
         }
 
         #endregion
 
         #region To decimal
 
+        /// <summary>
+        /// Returns this <see cref="QuantityValue"/> as a decimal.
+        /// </summary>
+        /// <returns>The decimal value.</returns>
+        public decimal ToDecimal()
+        {
+            // decimal -> double -> zero (since we can't implement the default struct ctor)
+            return _valueDecimal ?? (decimal)_value.GetValueOrDefault();
+        }
+
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
         public static explicit operator decimal(QuantityValue number)
         {
-            // decimal -> double -> zero (since we can't implement the default struct ctor)
-            return number._valueDecimal ?? (decimal) number._value.GetValueOrDefault();
+            return number.ToDecimal();
         }
 
         #endregion
