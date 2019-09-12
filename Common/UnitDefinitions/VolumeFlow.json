@@ -262,6 +262,18 @@
       ]
     },
     {
+      "SingularName": "UkGallonPerHour",
+      "PluralName": "UkGallonsPerHour",
+      "FromUnitToBaseFunc": "x/791887.667",
+      "FromBaseToUnitFunc": "x*791887.667",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/hour" ]
+        }
+      ]
+    },
+    {
       "SingularName": "UkGallonPerMinute",
       "PluralName": "UkGallonsPerMinute",
       "FromUnitToBaseFunc": "x/13198.2",
