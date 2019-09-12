@@ -92,6 +92,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerHour, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, BaseUnits.Undefined),
@@ -419,6 +420,11 @@ namespace UnitsNet
         ///     Get VolumeFlow in UkGallonsPerDay.
         /// </summary>
         public double UkGallonsPerDay => As(VolumeFlowUnit.UkGallonPerDay);
+
+        /// <summary>
+        ///     Get VolumeFlow in UkGallonsPerHour.
+        /// </summary>
+        public double UkGallonsPerHour => As(VolumeFlowUnit.UkGallonPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in UkGallonsPerMinute.
@@ -856,6 +862,15 @@ namespace UnitsNet
         {
             double value = (double) ukgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerDay);
+        }
+        /// <summary>
+        ///     Get VolumeFlow from UkGallonsPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromUkGallonsPerHour(QuantityValue ukgallonsperhour)
+        {
+            double value = (double) ukgallonsperhour;
+            return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerHour);
         }
         /// <summary>
         ///     Get VolumeFlow from UkGallonsPerMinute.
@@ -1382,6 +1397,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.OilBarrelPerMinute: return _value*2.64978825e-3;
                 case VolumeFlowUnit.OilBarrelPerSecond: return _value/6.28981;
                 case VolumeFlowUnit.UkGallonPerDay: return _value/19005304;
+                case VolumeFlowUnit.UkGallonPerHour: return _value/791887.667;
                 case VolumeFlowUnit.UkGallonPerMinute: return _value/13198.2;
                 case VolumeFlowUnit.UkGallonPerSecond: return _value/219.969;
                 case VolumeFlowUnit.UsGallonPerDay: return _value/22824465.227;
@@ -1455,6 +1471,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.OilBarrelPerMinute: return baseUnitValue/2.64978825e-3;
                 case VolumeFlowUnit.OilBarrelPerSecond: return baseUnitValue*6.28981;
                 case VolumeFlowUnit.UkGallonPerDay: return baseUnitValue*19005304;
+                case VolumeFlowUnit.UkGallonPerHour: return baseUnitValue*791887.667;
                 case VolumeFlowUnit.UkGallonPerMinute: return baseUnitValue*13198.2;
                 case VolumeFlowUnit.UkGallonPerSecond: return baseUnitValue*219.969;
                 case VolumeFlowUnit.UsGallonPerDay: return baseUnitValue*22824465.227;

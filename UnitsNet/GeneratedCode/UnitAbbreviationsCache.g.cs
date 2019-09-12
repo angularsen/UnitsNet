@@ -1271,6 +1271,7 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.OilBarrelPerMinute, new string[]{"bbl/min", "bpm"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.OilBarrelPerSecond, new string[]{"bbl/s"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UkGallonPerDay, new string[]{"gal (U. K.)/d"}),
+                ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UkGallonPerHour, new string[]{"gal (imp.)/hour"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UkGallonPerMinute, new string[]{"gal (imp.)/min"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UkGallonPerSecond, new string[]{"gal (imp.)/s"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerDay, new string[]{"gpd", "gal/d"}),
