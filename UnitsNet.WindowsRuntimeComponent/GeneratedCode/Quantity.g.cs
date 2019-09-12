@@ -155,6 +155,9 @@ namespace UnitsNet
                 case FrequencyUnit frequencyUnit:
                     quantity = Frequency.From(value, frequencyUnit);
                     return true;
+                case FuelEfficiencyUnit fuelEfficiencyUnit:
+                    quantity = FuelEfficiency.From(value, fuelEfficiencyUnit);
+                    return true;
                 case HeatFluxUnit heatFluxUnit:
                     quantity = HeatFlux.From(value, heatFluxUnit);
                     return true;
@@ -495,6 +498,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Frequency))
                 return parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity);
+
+            if (quantityType == typeof(FuelEfficiency))
+                return parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity);
 
             if (quantityType == typeof(HeatFlux))
                 return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
