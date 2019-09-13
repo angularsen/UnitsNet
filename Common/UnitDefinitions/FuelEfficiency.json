@@ -11,7 +11,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "l/100km"
+            "L/100km"
           ]
         }]
       },
@@ -23,7 +23,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "mpg (US)"
+            "mpg (U.S.)"
           ]
         }]
       },
@@ -35,7 +35,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "mpg (imp)"
+            "mpg (imp.)"
           ]
         }]
       },
@@ -47,7 +47,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "km/l"
+            "km/L"
           ]
         }]
       }
