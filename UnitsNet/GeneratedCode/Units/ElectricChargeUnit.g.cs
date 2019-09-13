@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum ElectricChargeUnit
     {
         Undefined = 0,
+        AmpereHour,
         Coulomb,
     }
 

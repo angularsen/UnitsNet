@@ -159,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricCharge in AmpereHours.
+        /// </summary>
+        public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
+
+        /// <summary>
         ///     Get ElectricCharge in Coulombs.
         /// </summary>
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
@@ -193,6 +198,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get ElectricCharge from AmpereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCharge FromAmpereHours(double amperehours)
+        {
+            double value = (double) amperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
+        }
         /// <summary>
         ///     Get ElectricCharge from Coulombs.
         /// </summary>
@@ -494,6 +509,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricChargeUnit.AmpereHour: return _value*3600;
                 case ElectricChargeUnit.Coulomb: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -509,6 +525,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricChargeUnit.AmpereHour: return baseUnitValue/3600;
                 case ElectricChargeUnit.Coulomb: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
