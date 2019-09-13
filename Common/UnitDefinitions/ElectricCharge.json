@@ -25,6 +25,7 @@
       "PluralName": "AmpereHours",
       "FromUnitToBaseFunc": "x/277.777777777e-6",
       "FromBaseToUnitFunc": "x*277.777777777e-6",
+      "Prefixes": [ "Kilo", "Mega", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

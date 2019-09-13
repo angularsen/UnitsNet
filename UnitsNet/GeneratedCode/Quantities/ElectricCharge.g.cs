@@ -55,6 +55,9 @@ namespace UnitsNet
                 new UnitInfo<ElectricChargeUnit>[] {
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, BaseUnits.Undefined),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, BaseUnits.Undefined),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, BaseUnits.Undefined),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -177,6 +180,21 @@ namespace UnitsNet
         /// </summary>
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
 
+        /// <summary>
+        ///     Get ElectricCharge in KiloampereHours.
+        /// </summary>
+        public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
+
+        /// <summary>
+        ///     Get ElectricCharge in MegaampereHours.
+        /// </summary>
+        public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
+
+        /// <summary>
+        ///     Get ElectricCharge in MilliampereHours.
+        /// </summary>
+        public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
+
         #endregion
 
         #region Static Methods
@@ -223,6 +241,33 @@ namespace UnitsNet
         {
             double value = (double) coulombs;
             return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from KiloampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCharge FromKiloampereHours(QuantityValue kiloamperehours)
+        {
+            double value = (double) kiloamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from MegaampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCharge FromMegaampereHours(QuantityValue megaamperehours)
+        {
+            double value = (double) megaamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from MilliampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCharge FromMilliampereHours(QuantityValue milliamperehours)
+        {
+            double value = (double) milliamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.MilliampereHour);
         }
 
         /// <summary>
@@ -655,6 +700,9 @@ namespace UnitsNet
             {
                 case ElectricChargeUnit.AmpereHour: return _value/277.777777777e-6;
                 case ElectricChargeUnit.Coulomb: return _value;
+                case ElectricChargeUnit.KiloampereHour: return (_value/277.777777777e-6) * 1e3d;
+                case ElectricChargeUnit.MegaampereHour: return (_value/277.777777777e-6) * 1e6d;
+                case ElectricChargeUnit.MilliampereHour: return (_value/277.777777777e-6) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -682,6 +730,9 @@ namespace UnitsNet
             {
                 case ElectricChargeUnit.AmpereHour: return baseUnitValue*277.777777777e-6;
                 case ElectricChargeUnit.Coulomb: return baseUnitValue;
+                case ElectricChargeUnit.KiloampereHour: return (baseUnitValue*277.777777777e-6) / 1e3d;
+                case ElectricChargeUnit.MegaampereHour: return (baseUnitValue*277.777777777e-6) / 1e6d;
+                case ElectricChargeUnit.MilliampereHour: return (baseUnitValue*277.777777777e-6) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

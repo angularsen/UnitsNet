@@ -370,6 +370,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.AmpereHour, q => q.ToUnit(ElectricChargeUnit.AmpereHour));
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricCharge.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.KiloampereHour, q => q.ToUnit(ElectricChargeUnit.KiloampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MegaampereHour, q => q.ToUnit(ElectricChargeUnit.MegaampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MilliampereHour, q => q.ToUnit(ElectricChargeUnit.MilliampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricChargeDensity>(ElectricChargeDensity.BaseUnit, ElectricChargeDensity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductanceUnit.Microsiemens, q => q.ToUnit(ElectricConductanceUnit.Microsiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductance.BaseUnit, q => q.ToBaseUnit());
