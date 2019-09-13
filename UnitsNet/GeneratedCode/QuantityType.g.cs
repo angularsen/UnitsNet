@@ -69,6 +69,7 @@ namespace UnitsNet
         ForceChangeRate,
         ForcePerLength,
         Frequency,
+        FuelEfficiency,
         HeatFlux,
         HeatTransferCoefficient,
         Illuminance,

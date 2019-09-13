@@ -116,6 +116,8 @@ namespace UnitsNet
                     return ForcePerLength.From(value, ForcePerLength.BaseUnit);
                 case QuantityType.Frequency:
                     return Frequency.From(value, Frequency.BaseUnit);
+                case QuantityType.FuelEfficiency:
+                    return FuelEfficiency.From(value, FuelEfficiency.BaseUnit);
                 case QuantityType.HeatFlux:
                     return HeatFlux.From(value, HeatFlux.BaseUnit);
                 case QuantityType.HeatTransferCoefficient:
@@ -363,6 +365,9 @@ namespace UnitsNet
                     return true;
                 case FrequencyUnit frequencyUnit:
                     quantity = Frequency.From(value, frequencyUnit);
+                    return true;
+                case FuelEfficiencyUnit fuelEfficiencyUnit:
+                    quantity = FuelEfficiency.From(value, fuelEfficiencyUnit);
                     return true;
                 case HeatFluxUnit heatFluxUnit:
                     quantity = HeatFlux.From(value, heatFluxUnit);
@@ -644,6 +649,8 @@ namespace UnitsNet
                     return parser.TryParse<ForcePerLength, ForcePerLengthUnit>(quantityString, formatProvider, ForcePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(Frequency):
                     return parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity);
+                case Type _ when quantityType == typeof(FuelEfficiency):
+                    return parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity);
                 case Type _ when quantityType == typeof(HeatFlux):
                     return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
                 case Type _ when quantityType == typeof(HeatTransferCoefficient):

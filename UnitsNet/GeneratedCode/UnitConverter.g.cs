@@ -620,6 +620,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Terahertz, q => q.ToUnit(FrequencyUnit.Terahertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, Frequency.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.KilometerPerLiter, q => q.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiency.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.MilePerUkGallon, q => q.ToUnit(FuelEfficiencyUnit.MilePerUkGallon));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.MilePerUsGallon, q => q.ToUnit(FuelEfficiencyUnit.MilePerUsGallon));
+            unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerHourSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerHourSquareFoot));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerHourSquareFoot, HeatFlux.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerMinuteSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerMinuteSquareFoot));
