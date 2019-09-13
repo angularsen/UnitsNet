@@ -653,7 +653,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricChargeUnit.AmpereHour: return _value*3600;
+                case ElectricChargeUnit.AmpereHour: return _value/277.777777777e-6;
                 case ElectricChargeUnit.Coulomb: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -680,7 +680,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricChargeUnit.AmpereHour: return baseUnitValue/3600;
+                case ElectricChargeUnit.AmpereHour: return baseUnitValue*277.777777777e-6;
                 case ElectricChargeUnit.Coulomb: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

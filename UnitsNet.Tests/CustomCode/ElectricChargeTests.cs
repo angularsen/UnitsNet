@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricChargeTests : ElectricChargeTestsBase
     {
+        protected override double AmpereHoursInOneCoulomb => 1 / 3600;
         protected override double CoulombsInOneCoulomb => 1;
     }
 }
