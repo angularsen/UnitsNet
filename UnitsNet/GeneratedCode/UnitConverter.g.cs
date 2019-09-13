@@ -1987,6 +1987,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.OilBarrelPerSecond, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UkGallonPerDay, q => q.ToUnit(VolumeFlowUnit.UkGallonPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UkGallonPerDay, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UkGallonPerHour, q => q.ToUnit(VolumeFlowUnit.UkGallonPerHour));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UkGallonPerHour, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UkGallonPerMinute, q => q.ToUnit(VolumeFlowUnit.UkGallonPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UkGallonPerMinute, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UkGallonPerSecond, q => q.ToUnit(VolumeFlowUnit.UkGallonPerSecond));

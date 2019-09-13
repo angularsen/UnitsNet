@@ -105,6 +105,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UkGallonsPerDayInOneCubicMeterPerSecond => 1.9005304e7;
 
+        protected override double UkGallonsPerHourInOneCubicMeterPerSecond => 791888.967;
+
         protected override double UkGallonsPerMinuteInOneCubicMeterPerSecond => 1.31982e4;
 
         protected override double UkGallonsPerSecondInOneCubicMeterPerSecond => 219.969;
