@@ -158,8 +158,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
-        /// <param name=""unit"">The unit representation to contruct this quantity with.</param>
+        /// <param name=""numericValue"">The numeric value to construct this quantity with.</param>
+        /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         public {_quantity.Name}({_quantity.BaseType} numericValue, {_unitEnumName} unit)
         {{
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref=""UnitSystem""/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
+        /// <param name=""numericValue"">The numeric value to construct this quantity with.</param>
         /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
         /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
@@ -983,7 +983,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
-        /// <param name=""args"">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name=""args"">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
