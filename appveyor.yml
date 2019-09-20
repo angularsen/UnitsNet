@@ -1,6 +1,13 @@
 version: '{build}'
 image: Visual Studio 2019
+
+# Don't build PR commits twice
+skip_branch_with_pr: true
+
+# Don't build tags, avoid duplicate builds on master when bumping version
 skip_tags: true
+
+# Don't build changes to docs
 skip_commits:
  files:
    - docs/*
@@ -51,9 +58,6 @@ build_script:
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
-
-# Do not build feature branch with open Pull Requests to avoid building twice
-skip_branch_with_pr: true
 
 # Upload code coverage reports to codecov.io.
 # PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
