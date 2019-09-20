@@ -72,6 +72,7 @@ namespace UnitsNet.Tests
             Assertion(3, ForceChangeRateUnit.NewtonPerSecond, Quantity.From(3, ForceChangeRateUnit.NewtonPerSecond));
             Assertion(3, ForcePerLengthUnit.PoundForcePerYard, Quantity.From(3, ForcePerLengthUnit.PoundForcePerYard));
             Assertion(3, FrequencyUnit.Terahertz, Quantity.From(3, FrequencyUnit.Terahertz));
+            Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
             Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
@@ -176,6 +177,7 @@ namespace UnitsNet.Tests
             Assertion(ForceChangeRate.Info, ForceChangeRate.Zero);
             Assertion(ForcePerLength.Info, ForcePerLength.Zero);
             Assertion(Frequency.Info, Frequency.Zero);
+            Assertion(FuelEfficiency.Info, FuelEfficiency.Zero);
             Assertion(HeatFlux.Info, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.Info, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.Info, Illuminance.Zero);
@@ -280,6 +282,7 @@ namespace UnitsNet.Tests
             Assertion(ForceChangeRate.QuantityType, ForceChangeRate.Zero);
             Assertion(ForcePerLength.QuantityType, ForcePerLength.Zero);
             Assertion(Frequency.QuantityType, Frequency.Zero);
+            Assertion(FuelEfficiency.QuantityType, FuelEfficiency.Zero);
             Assertion(HeatFlux.QuantityType, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.QuantityType, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.QuantityType, Illuminance.Zero);
@@ -384,6 +387,7 @@ namespace UnitsNet.Tests
             Assertion(ForceChangeRate.BaseDimensions, ForceChangeRate.Zero);
             Assertion(ForcePerLength.BaseDimensions, ForcePerLength.Zero);
             Assertion(Frequency.BaseDimensions, Frequency.Zero);
+            Assertion(FuelEfficiency.BaseDimensions, FuelEfficiency.Zero);
             Assertion(HeatFlux.BaseDimensions, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.BaseDimensions, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.BaseDimensions, Illuminance.Zero);

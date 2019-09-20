@@ -140,11 +140,11 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name=""numericValue"">The numeric value to construct this quantity with.</param>
+        /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        private {_quantity.Name}({_quantity.BaseType} numericValue, {_unitEnumName} unit)
+        private {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
         {{
             if(unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
@@ -152,9 +152,9 @@ namespace UnitsNet
 
             Writer.WL(_quantity.BaseType == "double"
                 ? @"
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));"
+            _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
-            _value = numericValue;");
+            _value = value;");
             Writer.WL($@"
             _unit = unit;
         }}
