@@ -23,4 +23,4 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           LABELS: "!wip"
-          MERGE_METHOD: squash
+          MERGE_METHOD: "squash"
