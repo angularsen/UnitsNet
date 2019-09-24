@@ -28,9 +28,9 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricChargeTests : ElectricChargeTestsBase
     {
         protected override double CoulombsInOneCoulomb => 1;
-        protected override double MilliampereHoursInOneCoulomb => 277.777777777e-3;
-        protected override double AmpereHoursInOneCoulomb => 277.777777777e-6;
-        protected override double KiloampereHoursInOneCoulomb => 277.777777777e-9;
-        protected override double MegaampereHoursInOneCoulomb => 277.777777777e-12;
+        protected override double MilliampereHoursInOneCoulomb => 2.77777777777e-1;
+        protected override double AmpereHoursInOneCoulomb => 2.77777777777e-4;
+        protected override double KiloampereHoursInOneCoulomb => 2.77777777777e-7;
+        protected override double MegaampereHoursInOneCoulomb => 2.77777777777e-10;
     }
 }
