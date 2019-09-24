@@ -68,6 +68,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, BaseUnits.Undefined),
@@ -274,6 +275,11 @@ namespace UnitsNet
         ///     Get Energy in MegawattHours.
         /// </summary>
         public double MegawattHours => As(EnergyUnit.MegawattHour);
+
+        /// <summary>
+        ///     Get Energy in Millijoules.
+        /// </summary>
+        public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
         ///     Get Energy in TerawattHours.
@@ -490,6 +496,15 @@ namespace UnitsNet
         {
             double value = (double) megawatthours;
             return new Energy(value, EnergyUnit.MegawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from Millijoules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMillijoules(QuantityValue millijoules)
+        {
+            double value = (double) millijoules;
+            return new Energy(value, EnergyUnit.Millijoule);
         }
         /// <summary>
         ///     Get Energy from TerawattHours.
@@ -983,6 +998,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.Millijoule: return (_value) * 1e-3d;
                 case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
@@ -1031,6 +1047,7 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
                 case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;

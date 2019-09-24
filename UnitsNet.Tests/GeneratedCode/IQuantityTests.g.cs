@@ -51,7 +51,7 @@ namespace UnitsNet.Tests
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
             Assertion(3, DynamicViscosityUnit.Reyn, Quantity.From(3, DynamicViscosityUnit.Reyn));
             Assertion(3, ElectricAdmittanceUnit.Siemens, Quantity.From(3, ElectricAdmittanceUnit.Siemens));
-            Assertion(3, ElectricChargeUnit.Coulomb, Quantity.From(3, ElectricChargeUnit.Coulomb));
+            Assertion(3, ElectricChargeUnit.MilliampereHour, Quantity.From(3, ElectricChargeUnit.MilliampereHour));
             Assertion(3, ElectricChargeDensityUnit.CoulombPerCubicMeter, Quantity.From(3, ElectricChargeDensityUnit.CoulombPerCubicMeter));
             Assertion(3, ElectricConductanceUnit.Siemens, Quantity.From(3, ElectricConductanceUnit.Siemens));
             Assertion(3, ElectricConductivityUnit.SiemensPerMeter, Quantity.From(3, ElectricConductivityUnit.SiemensPerMeter));

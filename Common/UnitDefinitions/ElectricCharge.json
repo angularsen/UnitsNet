@@ -19,6 +19,19 @@
           "Abbreviations": [ "C" ]
         }
       ]
+    },
+    {
+      "SingularName": "AmpereHour",
+      "PluralName": "AmpereHours",
+      "FromUnitToBaseFunc": "x/2.77777777777e-4",
+      "FromBaseToUnitFunc": "x*2.77777777777e-4",
+      "Prefixes": [ "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A-h", "Ah" ]
+        }
+      ]
     }
   ]
 }

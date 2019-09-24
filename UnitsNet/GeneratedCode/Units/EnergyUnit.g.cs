@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         MegabritishThermalUnit,
         Megajoule,
         MegawattHour,
+        Millijoule,
         TerawattHour,
         ThermEc,
         ThermImperial,

@@ -34,6 +34,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ErgsInOneJoule => 10000000;
 
+        protected override double MillijoulesInOneJoule => 1000;
+
         protected override double TerawattHoursInOneJoule => 2.77777778e-16;
 
         protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
