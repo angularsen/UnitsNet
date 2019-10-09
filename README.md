@@ -369,3 +369,15 @@ https://www.ansys.com/products/3d-design/ansys-discovery-live
 Stargen is a decades old software to create realistic planets and satellites from a given Star. It's based on work from various scientists and been used for years. Primoris Sigma Stargen is a C# port of the utility that makes it a Framework to extend it with new algorithms for planetary formation and physics equations. 
 
 https://github.com/ebfortin/primoris.universe.stargen
+
+<img src="https://www.harringtonhoists.com/images/harrington_logo3.png" height="35">
+
+#### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
+> Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.
+
+Harrington uses UnitsNet in their internal software to perform many different calculations related to crane dimensioning, girder strength, electrical safety verification, etc.
+
+https://www.harringtonhoists.com<br>
+https://kito.com
+
+*- Luke Westfall, Design Automation Engineer*
