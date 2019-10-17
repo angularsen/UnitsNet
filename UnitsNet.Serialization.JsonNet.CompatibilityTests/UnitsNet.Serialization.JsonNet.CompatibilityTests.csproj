@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\UnitsNet.Serialization.JsonNet.Tests\UnitsNetJsonConverterTests.cs" Link="UnitsNetJsonConverterTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <!--Get the latest released version of UnitsNet.Serialization.JsonNet in Nuget-->
     <PackageReference Include="UnitsNet.Serialization.JsonNet" Version="4.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />

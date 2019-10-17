@@ -320,6 +320,9 @@ namespace UnitsNet
                 case TorqueUnit torqueUnit:
                     quantity = Torque.From(value, torqueUnit);
                     return true;
+                case TorquePerLengthUnit torquePerLengthUnit:
+                    quantity = TorquePerLength.From(value, torquePerLengthUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
                     return true;
@@ -663,6 +666,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Torque))
                 return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
+
+            if (quantityType == typeof(TorquePerLength))
+                return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
 
             if (quantityType == typeof(VitaminA))
                 return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);

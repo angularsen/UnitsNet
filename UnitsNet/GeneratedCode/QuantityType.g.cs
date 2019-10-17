@@ -124,6 +124,7 @@ namespace UnitsNet
         ThermalConductivity,
         ThermalResistance,
         Torque,
+        TorquePerLength,
         VitaminA,
         Volume,
         VolumeConcentration,

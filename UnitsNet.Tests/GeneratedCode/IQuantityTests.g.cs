@@ -127,6 +127,7 @@ namespace UnitsNet.Tests
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
             Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
+            Assertion(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter, Quantity.From(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));
             Assertion(3, VolumeUnit.UsTeaspoon, Quantity.From(3, VolumeUnit.UsTeaspoon));
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
@@ -232,6 +233,7 @@ namespace UnitsNet.Tests
             Assertion(ThermalConductivity.Info, ThermalConductivity.Zero);
             Assertion(ThermalResistance.Info, ThermalResistance.Zero);
             Assertion(Torque.Info, Torque.Zero);
+            Assertion(TorquePerLength.Info, TorquePerLength.Zero);
             Assertion(VitaminA.Info, VitaminA.Zero);
             Assertion(Volume.Info, Volume.Zero);
             Assertion(VolumeConcentration.Info, VolumeConcentration.Zero);
@@ -337,6 +339,7 @@ namespace UnitsNet.Tests
             Assertion(ThermalConductivity.QuantityType, ThermalConductivity.Zero);
             Assertion(ThermalResistance.QuantityType, ThermalResistance.Zero);
             Assertion(Torque.QuantityType, Torque.Zero);
+            Assertion(TorquePerLength.QuantityType, TorquePerLength.Zero);
             Assertion(VitaminA.QuantityType, VitaminA.Zero);
             Assertion(Volume.QuantityType, Volume.Zero);
             Assertion(VolumeConcentration.QuantityType, VolumeConcentration.Zero);
@@ -442,6 +445,7 @@ namespace UnitsNet.Tests
             Assertion(ThermalConductivity.BaseDimensions, ThermalConductivity.Zero);
             Assertion(ThermalResistance.BaseDimensions, ThermalResistance.Zero);
             Assertion(Torque.BaseDimensions, Torque.Zero);
+            Assertion(TorquePerLength.BaseDimensions, TorquePerLength.Zero);
             Assertion(VitaminA.BaseDimensions, VitaminA.Zero);
             Assertion(Volume.BaseDimensions, Volume.Zero);
             Assertion(VolumeConcentration.BaseDimensions, VolumeConcentration.Zero);
