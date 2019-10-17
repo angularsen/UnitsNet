@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -42,7 +43,6 @@ namespace UnitsNet.Serialization.JsonNet
             object obj = TryDeserializeIComparable(reader, serializer);
             // A null System.Nullable value or a comparable type was deserialized so return this
             if (!(obj is ValueUnit) && !(obj is Array))
-            {
                 return obj;
 
             if (obj is Array)
@@ -70,7 +70,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private static object ParseValueUnit(ValueUnit vu)
+        private object ParseValueUnit(ValueUnit vu)
         {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
@@ -167,16 +167,13 @@ namespace UnitsNet.Serialization.JsonNet
 
                 List<ValueUnit> results = new List<ValueUnit>();
 
-                foreach (object value in values)
+                foreach (IQuantity value in values)
                 {
-                    object quantityValue = GetValueOfQuantity(value, elementType); // double or decimal value
-                    string quantityUnitName = GetUnitFullNameOfQuantity(value, elementType); // Example: "MassUnit.Kilogram"
-
                     results.Add(new ValueUnit()
                     {
-                        // TODO Should we serialize long, decimal and long differently?
-                        Value = Convert.ToDouble(quantityValue),
-                        Unit = quantityUnitName
+                        // See ValueUnit about precision loss for quantities using decimal type.
+                        Value = value.Value,
+                        Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
                     });
                 }
 
@@ -184,16 +181,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else
             {
-                /*object quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
-                string quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"*/
-            IQuantity quantity = obj as IQuantity;
-
-                /*serializer.Serialize(writer, new ValueUnit
-                {
-                    // TODO Should we serialize long, decimal and long differently?
-                    Value = Convert.ToDouble(quantityValue),
-                    Unit = quantityUnitName
-                });*/
+                IQuantity quantity = obj as IQuantity;
                 serializer.Serialize(writer, new ValueUnit
                 {
                     // See ValueUnit about precision loss for quantities using decimal type.
@@ -202,34 +190,6 @@ namespace UnitsNet.Serialization.JsonNet
                 } );
             }
 
-            
-        }
-
-        /// <summary>
-        /// Given quantity (ex: <see cref="Mass"/>), returns the full name (ex: "MassUnit.Kilogram") of the constructed unit given by the <see cref="Mass.Unit"/> property.
-        /// </summary>
-        /// <param name="obj">Quantity, such as <see cref="Mass"/>.</param>
-        /// <param name="quantityType">The type of <paramref name="obj"/>, passed in here to reuse a previous lookup.</param>
-        /// <returns>"MassUnit.Kilogram" for a mass quantity whose Unit property is MassUnit.Kilogram.</returns>
-        private static string GetUnitFullNameOfQuantity(object obj, Type quantityType)
-        {
-            // Get value of Unit property
-            PropertyInfo unitProperty = quantityType.GetProperty("Unit");
-            Enum quantityUnit = (Enum) unitProperty.GetValue(obj, null); // MassUnit.Kilogram
-
-            Type unitType = quantityUnit.GetType(); // MassUnit
-            return $"{unitType.Name}.{quantityUnit}"; // "MassUnit.Kilogram"
-        }
-
-        private static object GetValueOfQuantity(object value, Type quantityType)
-        {
-            FieldInfo valueField = GetPrivateInstanceField(quantityType, ValueFieldName);
-
-            // Unit base type can be double, long or decimal,
-            // so make sure we serialize the real type to avoid
-            // loss of precision
-            object quantityValue = valueField.GetValue(value);
-            return quantityValue;
             
         }
 
