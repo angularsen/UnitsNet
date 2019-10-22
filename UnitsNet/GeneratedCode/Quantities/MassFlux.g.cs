@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Mass flux is the mass flow rate per unit area.
     /// </summary>
-    public partial struct MassFlux : IQuantity<MassFluxUnit>, IEquatable<MassFlux>, IComparable, IComparable<MassFlux>, IConvertible, IFormattable
+    public partial struct MassFlux<T> : IQuantity<MassFluxUnit>, IEquatable<MassFlux<T>>, IComparable, IComparable<MassFlux<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -101,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
+        ///     The base unit of <see cref="MassFlux{T}" />, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
         public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of MassFlux
+        /// Represents the largest possible value of <see cref="MassFlux{T}" />
         /// </summary>
-        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux<T> MaxValue { get; } = new MassFlux<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of MassFlux
+        /// Represents the smallest possible value of <see cref="MassFlux{T}" />
         /// </summary>
-        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux<T> MinValue { get; } = new MassFlux<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -121,14 +121,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
 
         /// <summary>
-        ///     All units of measurement for the MassFlux quantity.
+        ///     All units of measurement for the <see cref="MassFlux{T}" /> quantity.
         /// </summary>
         public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
+        public static MassFlux<T> Zero { get; } = new MassFlux<T>(0, BaseUnit);
 
         #endregion
 
@@ -153,24 +153,24 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => MassFlux.QuantityType;
+        public QuantityType Type => MassFlux<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => MassFlux.BaseDimensions;
+        public BaseDimensions Dimensions => MassFlux<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareMeter.
+        ///     Get <see cref="MassFlux{T}" /> in GramsPerSecondPerSquareMeter.
         /// </summary>
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareMeter.
+        ///     Get <see cref="MassFlux{T}" /> in KilogramsPerSecondPerSquareMeter.
         /// </summary>
         public double KilogramsPerSecondPerSquareMeter => As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
@@ -204,33 +204,33 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareMeter.
+        ///     Get <see cref="MassFlux{T}" /> from GramsPerSecondPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlux FromGramsPerSecondPerSquareMeter(QuantityValue gramspersecondpersquaremeter)
+        public static MassFlux<T> FromGramsPerSecondPerSquareMeter(QuantityValue gramspersecondpersquaremeter)
         {
             double value = (double) gramspersecondpersquaremeter;
-            return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
+            return new MassFlux<T>(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareMeter.
+        ///     Get <see cref="MassFlux{T}" /> from KilogramsPerSecondPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlux FromKilogramsPerSecondPerSquareMeter(QuantityValue kilogramspersecondpersquaremeter)
+        public static MassFlux<T> FromKilogramsPerSecondPerSquareMeter(QuantityValue kilogramspersecondpersquaremeter)
         {
             double value = (double) kilogramspersecondpersquaremeter;
-            return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
+            return new MassFlux<T>(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.
+        ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassFlux unit value.</returns>
-        public static MassFlux From(QuantityValue value, MassFluxUnit fromUnit)
+        /// <returns><see cref="MassFlux{T}" /> unit value.</returns>
+        public static MassFlux<T> From(QuantityValue value, MassFluxUnit fromUnit)
         {
-            return new MassFlux((double)value, fromUnit);
+            return new MassFlux<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -259,7 +259,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MassFlux Parse(string str)
+        public static MassFlux<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -287,9 +287,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MassFlux Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static MassFlux<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<MassFlux, MassFluxUnit>(
+            return QuantityParser.Default.Parse<MassFlux<T>, MassFluxUnit>(
                 str,
                 provider,
                 From);
@@ -303,7 +303,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out MassFlux result)
+        public static bool TryParse([CanBeNull] string str, out MassFlux<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -318,9 +318,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MassFlux result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MassFlux<T> result)
         {
-            return QuantityParser.Default.TryParse<MassFlux, MassFluxUnit>(
+            return QuantityParser.Default.TryParse<MassFlux<T>, MassFluxUnit>(
                 str,
                 provider,
                 From,
@@ -382,43 +382,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static MassFlux operator -(MassFlux right)
+        public static MassFlux<T> operator -(MassFlux<T> right)
         {
-            return new MassFlux(-right.Value, right.Unit);
+            return new MassFlux<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from adding two <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator +(MassFlux left, MassFlux right)
+        /// <summary>Get <see cref="MassFlux{T}"/> from adding two <see cref="MassFlux{T}"/>.</summary>
+        public static MassFlux<T> operator +(MassFlux<T> left, MassFlux<T> right)
         {
-            return new MassFlux(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MassFlux<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from subtracting two <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator -(MassFlux left, MassFlux right)
+        /// <summary>Get <see cref="MassFlux{T}"/> from subtracting two <see cref="MassFlux{T}"/>.</summary>
+        public static MassFlux<T> operator -(MassFlux<T> left, MassFlux<T> right)
         {
-            return new MassFlux(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MassFlux<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from multiplying value and <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator *(double left, MassFlux right)
+        /// <summary>Get <see cref="MassFlux{T}"/> from multiplying value and <see cref="MassFlux{T}"/>.</summary>
+        public static MassFlux<T> operator *(double left, MassFlux<T> right)
         {
-            return new MassFlux(left * right.Value, right.Unit);
+            return new MassFlux<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from multiplying value and <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator *(MassFlux left, double right)
+        /// <summary>Get <see cref="MassFlux{T}"/> from multiplying value and <see cref="MassFlux{T}"/>.</summary>
+        public static MassFlux<T> operator *(MassFlux<T> left, double right)
         {
-            return new MassFlux(left.Value * right, left.Unit);
+            return new MassFlux<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from dividing <see cref="MassFlux"/> by value.</summary>
-        public static MassFlux operator /(MassFlux left, double right)
+        /// <summary>Get <see cref="MassFlux{T}"/> from dividing <see cref="MassFlux{T}"/> by value.</summary>
+        public static MassFlux<T> operator /(MassFlux<T> left, double right)
         {
-            return new MassFlux(left.Value / right, left.Unit);
+            return new MassFlux<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="MassFlux"/> by <see cref="MassFlux"/>.</summary>
-        public static double operator /(MassFlux left, MassFlux right)
+        /// <summary>Get ratio value from dividing <see cref="MassFlux{T}"/> by <see cref="MassFlux{T}"/>.</summary>
+        public static double operator /(MassFlux<T> left, MassFlux<T> right)
         {
             return left.KilogramsPerSecondPerSquareMeter / right.KilogramsPerSecondPerSquareMeter;
         }
@@ -428,39 +428,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(MassFlux left, MassFlux right)
+        public static bool operator <=(MassFlux<T> left, MassFlux<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(MassFlux left, MassFlux right)
+        public static bool operator >=(MassFlux<T> left, MassFlux<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(MassFlux left, MassFlux right)
+        public static bool operator <(MassFlux<T> left, MassFlux<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(MassFlux left, MassFlux right)
+        public static bool operator >(MassFlux<T> left, MassFlux<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MassFlux left, MassFlux right)
+        /// <remarks>Consider using <see cref="Equals(MassFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MassFlux<T> left, MassFlux<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MassFlux left, MassFlux right)
+        /// <remarks>Consider using <see cref="Equals(MassFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MassFlux<T> left, MassFlux<T> right)
         {
             return !(left == right);
         }
@@ -469,37 +469,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MassFlux objMassFlux)) throw new ArgumentException("Expected type MassFlux.", nameof(obj));
+            if(!(obj is MassFlux<T> objMassFlux)) throw new ArgumentException("Expected type MassFlux.", nameof(obj));
 
             return CompareTo(objMassFlux);
         }
 
         /// <inheritdoc />
-        public int CompareTo(MassFlux other)
+        public int CompareTo(MassFlux<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MassFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MassFlux objMassFlux))
+            if(obj is null || !(obj is MassFlux<T> objMassFlux))
                 return false;
 
             return Equals(objMassFlux);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MassFlux other)
+        /// <remarks>Consider using <see cref="Equals(MassFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MassFlux<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another MassFlux within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="MassFlux{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -537,7 +537,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MassFlux other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MassFlux<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -551,7 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current MassFlux.</returns>
+        /// <returns>A hash code for the current <see cref="MassFlux{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -599,13 +599,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="MassFlux{T}" /> to another <see cref="MassFlux{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A MassFlux with the specified unit.</returns>
-        public MassFlux ToUnit(MassFluxUnit unit)
+        /// <returns>A <see cref="MassFlux{T}" /> with the specified unit.</returns>
+        public MassFlux<T> ToUnit(MassFluxUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new MassFlux(convertedValue, unit);
+            return new MassFlux<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -618,7 +618,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassFlux ToUnit(UnitSystem unitSystem)
+        public MassFlux<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -662,10 +662,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MassFlux ToBaseUnit()
+        internal MassFlux<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassFlux(baseUnitValue, BaseUnit);
+            return new MassFlux<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(MassFluxUnit unit)
@@ -775,7 +775,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassFlux)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFlux<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -785,12 +785,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassFlux)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFlux<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassFlux)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassFlux<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -835,16 +835,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MassFlux))
+            if(conversionType == typeof(MassFlux<T>))
                 return this;
             else if(conversionType == typeof(MassFluxUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return MassFlux.QuantityType;
+                return MassFlux<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return MassFlux.BaseDimensions;
+                return MassFlux<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(MassFlux)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MassFlux<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

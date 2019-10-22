@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Illuminance
     /// </remarks>
-    public partial struct Illuminance : IQuantity<IlluminanceUnit>, IEquatable<Illuminance>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
+    public partial struct Illuminance<T> : IQuantity<IlluminanceUnit>, IEquatable<Illuminance<T>>, IComparable, IComparable<Illuminance<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -106,19 +106,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
+        ///     The base unit of <see cref="Illuminance{T}" />, which is Lux. All conversions go via this value.
         /// </summary>
         public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
 
         /// <summary>
-        /// Represents the largest possible value of Illuminance
+        /// Represents the largest possible value of <see cref="Illuminance{T}" />
         /// </summary>
-        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
+        public static Illuminance<T> MaxValue { get; } = new Illuminance<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Illuminance
+        /// Represents the smallest possible value of <see cref="Illuminance{T}" />
         /// </summary>
-        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
+        public static Illuminance<T> MinValue { get; } = new Illuminance<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +126,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Illuminance;
 
         /// <summary>
-        ///     All units of measurement for the Illuminance quantity.
+        ///     All units of measurement for the <see cref="Illuminance{T}" /> quantity.
         /// </summary>
         public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero { get; } = new Illuminance(0, BaseUnit);
+        public static Illuminance<T> Zero { get; } = new Illuminance<T>(0, BaseUnit);
 
         #endregion
 
@@ -158,34 +158,34 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Illuminance.QuantityType;
+        public QuantityType Type => Illuminance<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Illuminance.BaseDimensions;
+        public BaseDimensions Dimensions => Illuminance<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Illuminance in Kilolux.
+        ///     Get <see cref="Illuminance{T}" /> in Kilolux.
         /// </summary>
         public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance in Lux.
+        ///     Get <see cref="Illuminance{T}" /> in Lux.
         /// </summary>
         public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance in Megalux.
+        ///     Get <see cref="Illuminance{T}" /> in Megalux.
         /// </summary>
         public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance in Millilux.
+        ///     Get <see cref="Illuminance{T}" /> in Millilux.
         /// </summary>
         public double Millilux => As(IlluminanceUnit.Millilux);
 
@@ -219,51 +219,51 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Illuminance from Kilolux.
+        ///     Get <see cref="Illuminance{T}" /> from Kilolux.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromKilolux(QuantityValue kilolux)
+        public static Illuminance<T> FromKilolux(QuantityValue kilolux)
         {
             double value = (double) kilolux;
-            return new Illuminance(value, IlluminanceUnit.Kilolux);
+            return new Illuminance<T>(value, IlluminanceUnit.Kilolux);
         }
         /// <summary>
-        ///     Get Illuminance from Lux.
+        ///     Get <see cref="Illuminance{T}" /> from Lux.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromLux(QuantityValue lux)
+        public static Illuminance<T> FromLux(QuantityValue lux)
         {
             double value = (double) lux;
-            return new Illuminance(value, IlluminanceUnit.Lux);
+            return new Illuminance<T>(value, IlluminanceUnit.Lux);
         }
         /// <summary>
-        ///     Get Illuminance from Megalux.
+        ///     Get <see cref="Illuminance{T}" /> from Megalux.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromMegalux(QuantityValue megalux)
+        public static Illuminance<T> FromMegalux(QuantityValue megalux)
         {
             double value = (double) megalux;
-            return new Illuminance(value, IlluminanceUnit.Megalux);
+            return new Illuminance<T>(value, IlluminanceUnit.Megalux);
         }
         /// <summary>
-        ///     Get Illuminance from Millilux.
+        ///     Get <see cref="Illuminance{T}" /> from Millilux.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromMillilux(QuantityValue millilux)
+        public static Illuminance<T> FromMillilux(QuantityValue millilux)
         {
             double value = (double) millilux;
-            return new Illuminance(value, IlluminanceUnit.Millilux);
+            return new Illuminance<T>(value, IlluminanceUnit.Millilux);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance" />.
+        ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Illuminance unit value.</returns>
-        public static Illuminance From(QuantityValue value, IlluminanceUnit fromUnit)
+        /// <returns><see cref="Illuminance{T}" /> unit value.</returns>
+        public static Illuminance<T> From(QuantityValue value, IlluminanceUnit fromUnit)
         {
-            return new Illuminance((double)value, fromUnit);
+            return new Illuminance<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -292,7 +292,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Illuminance Parse(string str)
+        public static Illuminance<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -320,9 +320,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Illuminance Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Illuminance<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Illuminance, IlluminanceUnit>(
+            return QuantityParser.Default.Parse<Illuminance<T>, IlluminanceUnit>(
                 str,
                 provider,
                 From);
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Illuminance result)
+        public static bool TryParse([CanBeNull] string str, out Illuminance<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -351,9 +351,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Illuminance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Illuminance<T> result)
         {
-            return QuantityParser.Default.TryParse<Illuminance, IlluminanceUnit>(
+            return QuantityParser.Default.TryParse<Illuminance<T>, IlluminanceUnit>(
                 str,
                 provider,
                 From,
@@ -415,43 +415,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Illuminance operator -(Illuminance right)
+        public static Illuminance<T> operator -(Illuminance<T> right)
         {
-            return new Illuminance(-right.Value, right.Unit);
+            return new Illuminance<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Illuminance"/> from adding two <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator +(Illuminance left, Illuminance right)
+        /// <summary>Get <see cref="Illuminance{T}"/> from adding two <see cref="Illuminance{T}"/>.</summary>
+        public static Illuminance<T> operator +(Illuminance<T> left, Illuminance<T> right)
         {
-            return new Illuminance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Illuminance<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Illuminance"/> from subtracting two <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator -(Illuminance left, Illuminance right)
+        /// <summary>Get <see cref="Illuminance{T}"/> from subtracting two <see cref="Illuminance{T}"/>.</summary>
+        public static Illuminance<T> operator -(Illuminance<T> left, Illuminance<T> right)
         {
-            return new Illuminance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Illuminance<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(double left, Illuminance right)
+        /// <summary>Get <see cref="Illuminance{T}"/> from multiplying value and <see cref="Illuminance{T}"/>.</summary>
+        public static Illuminance<T> operator *(double left, Illuminance<T> right)
         {
-            return new Illuminance(left * right.Value, right.Unit);
+            return new Illuminance<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(Illuminance left, double right)
+        /// <summary>Get <see cref="Illuminance{T}"/> from multiplying value and <see cref="Illuminance{T}"/>.</summary>
+        public static Illuminance<T> operator *(Illuminance<T> left, double right)
         {
-            return new Illuminance(left.Value * right, left.Unit);
+            return new Illuminance<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Illuminance"/> from dividing <see cref="Illuminance"/> by value.</summary>
-        public static Illuminance operator /(Illuminance left, double right)
+        /// <summary>Get <see cref="Illuminance{T}"/> from dividing <see cref="Illuminance{T}"/> by value.</summary>
+        public static Illuminance<T> operator /(Illuminance<T> left, double right)
         {
-            return new Illuminance(left.Value / right, left.Unit);
+            return new Illuminance<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Illuminance"/> by <see cref="Illuminance"/>.</summary>
-        public static double operator /(Illuminance left, Illuminance right)
+        /// <summary>Get ratio value from dividing <see cref="Illuminance{T}"/> by <see cref="Illuminance{T}"/>.</summary>
+        public static double operator /(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Lux / right.Lux;
         }
@@ -461,39 +461,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Illuminance left, Illuminance right)
+        public static bool operator <=(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Illuminance left, Illuminance right)
+        public static bool operator >=(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Illuminance left, Illuminance right)
+        public static bool operator <(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Illuminance left, Illuminance right)
+        public static bool operator >(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Illuminance left, Illuminance right)
+        /// <remarks>Consider using <see cref="Equals(Illuminance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Illuminance<T> left, Illuminance<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Illuminance left, Illuminance right)
+        /// <remarks>Consider using <see cref="Equals(Illuminance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Illuminance<T> left, Illuminance<T> right)
         {
             return !(left == right);
         }
@@ -502,37 +502,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Illuminance objIlluminance)) throw new ArgumentException("Expected type Illuminance.", nameof(obj));
+            if(!(obj is Illuminance<T> objIlluminance)) throw new ArgumentException("Expected type Illuminance.", nameof(obj));
 
             return CompareTo(objIlluminance);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Illuminance other)
+        public int CompareTo(Illuminance<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Illuminance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Illuminance objIlluminance))
+            if(obj is null || !(obj is Illuminance<T> objIlluminance))
                 return false;
 
             return Equals(objIlluminance);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Illuminance other)
+        /// <remarks>Consider using <see cref="Equals(Illuminance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Illuminance<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Illuminance within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Illuminance{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Illuminance other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Illuminance<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Illuminance.</returns>
+        /// <returns>A hash code for the current <see cref="Illuminance{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -632,13 +632,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Illuminance{T}" /> to another <see cref="Illuminance{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Illuminance with the specified unit.</returns>
-        public Illuminance ToUnit(IlluminanceUnit unit)
+        /// <returns>A <see cref="Illuminance{T}" /> with the specified unit.</returns>
+        public Illuminance<T> ToUnit(IlluminanceUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Illuminance(convertedValue, unit);
+            return new Illuminance<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -651,7 +651,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Illuminance ToUnit(UnitSystem unitSystem)
+        public Illuminance<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -697,10 +697,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Illuminance ToBaseUnit()
+        internal Illuminance<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Illuminance(baseUnitValue, BaseUnit);
+            return new Illuminance<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(IlluminanceUnit unit)
@@ -812,7 +812,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Illuminance)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Illuminance<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -822,12 +822,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Illuminance)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Illuminance<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Illuminance)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Illuminance<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -872,16 +872,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Illuminance))
+            if(conversionType == typeof(Illuminance<T>))
                 return this;
             else if(conversionType == typeof(IlluminanceUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Illuminance.QuantityType;
+                return Illuminance<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Illuminance.BaseDimensions;
+                return Illuminance<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Illuminance)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Illuminance<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permeability_(electromagnetism)
     /// </remarks>
-    public partial struct Permeability : IQuantity<PermeabilityUnit>, IEquatable<Permeability>, IComparable, IComparable<Permeability>, IConvertible, IFormattable
+    public partial struct Permeability<T> : IQuantity<PermeabilityUnit>, IEquatable<Permeability<T>>, IComparable, IComparable<Permeability<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -103,19 +103,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Permeability, which is HenryPerMeter. All conversions go via this value.
+        ///     The base unit of <see cref="Permeability{T}" />, which is HenryPerMeter. All conversions go via this value.
         /// </summary>
         public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Permeability
+        /// Represents the largest possible value of <see cref="Permeability{T}" />
         /// </summary>
-        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
+        public static Permeability<T> MaxValue { get; } = new Permeability<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Permeability
+        /// Represents the smallest possible value of <see cref="Permeability{T}" />
         /// </summary>
-        public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
+        public static Permeability<T> MinValue { get; } = new Permeability<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -123,14 +123,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Permeability;
 
         /// <summary>
-        ///     All units of measurement for the Permeability quantity.
+        ///     All units of measurement for the <see cref="Permeability{T}" /> quantity.
         /// </summary>
         public static PermeabilityUnit[] Units { get; } = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit HenryPerMeter.
         /// </summary>
-        public static Permeability Zero { get; } = new Permeability(0, BaseUnit);
+        public static Permeability<T> Zero { get; } = new Permeability<T>(0, BaseUnit);
 
         #endregion
 
@@ -155,19 +155,19 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Permeability.QuantityType;
+        public QuantityType Type => Permeability<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Permeability.BaseDimensions;
+        public BaseDimensions Dimensions => Permeability<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Permeability in HenriesPerMeter.
+        ///     Get <see cref="Permeability{T}" /> in HenriesPerMeter.
         /// </summary>
         public double HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
 
@@ -201,24 +201,24 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Permeability from HenriesPerMeter.
+        ///     Get <see cref="Permeability{T}" /> from HenriesPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Permeability FromHenriesPerMeter(QuantityValue henriespermeter)
+        public static Permeability<T> FromHenriesPerMeter(QuantityValue henriespermeter)
         {
             double value = (double) henriespermeter;
-            return new Permeability(value, PermeabilityUnit.HenryPerMeter);
+            return new Permeability<T>(value, PermeabilityUnit.HenryPerMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
+        ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Permeability unit value.</returns>
-        public static Permeability From(QuantityValue value, PermeabilityUnit fromUnit)
+        /// <returns><see cref="Permeability{T}" /> unit value.</returns>
+        public static Permeability<T> From(QuantityValue value, PermeabilityUnit fromUnit)
         {
-            return new Permeability((double)value, fromUnit);
+            return new Permeability<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -247,7 +247,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Permeability Parse(string str)
+        public static Permeability<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -275,9 +275,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Permeability Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Permeability<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Permeability, PermeabilityUnit>(
+            return QuantityParser.Default.Parse<Permeability<T>, PermeabilityUnit>(
                 str,
                 provider,
                 From);
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Permeability result)
+        public static bool TryParse([CanBeNull] string str, out Permeability<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -306,9 +306,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Permeability result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Permeability<T> result)
         {
-            return QuantityParser.Default.TryParse<Permeability, PermeabilityUnit>(
+            return QuantityParser.Default.TryParse<Permeability<T>, PermeabilityUnit>(
                 str,
                 provider,
                 From,
@@ -370,43 +370,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Permeability operator -(Permeability right)
+        public static Permeability<T> operator -(Permeability<T> right)
         {
-            return new Permeability(-right.Value, right.Unit);
+            return new Permeability<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Permeability"/> from adding two <see cref="Permeability"/>.</summary>
-        public static Permeability operator +(Permeability left, Permeability right)
+        /// <summary>Get <see cref="Permeability{T}"/> from adding two <see cref="Permeability{T}"/>.</summary>
+        public static Permeability<T> operator +(Permeability<T> left, Permeability<T> right)
         {
-            return new Permeability(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Permeability<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Permeability"/> from subtracting two <see cref="Permeability"/>.</summary>
-        public static Permeability operator -(Permeability left, Permeability right)
+        /// <summary>Get <see cref="Permeability{T}"/> from subtracting two <see cref="Permeability{T}"/>.</summary>
+        public static Permeability<T> operator -(Permeability<T> left, Permeability<T> right)
         {
-            return new Permeability(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Permeability<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(double left, Permeability right)
+        /// <summary>Get <see cref="Permeability{T}"/> from multiplying value and <see cref="Permeability{T}"/>.</summary>
+        public static Permeability<T> operator *(double left, Permeability<T> right)
         {
-            return new Permeability(left * right.Value, right.Unit);
+            return new Permeability<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(Permeability left, double right)
+        /// <summary>Get <see cref="Permeability{T}"/> from multiplying value and <see cref="Permeability{T}"/>.</summary>
+        public static Permeability<T> operator *(Permeability<T> left, double right)
         {
-            return new Permeability(left.Value * right, left.Unit);
+            return new Permeability<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Permeability"/> from dividing <see cref="Permeability"/> by value.</summary>
-        public static Permeability operator /(Permeability left, double right)
+        /// <summary>Get <see cref="Permeability{T}"/> from dividing <see cref="Permeability{T}"/> by value.</summary>
+        public static Permeability<T> operator /(Permeability<T> left, double right)
         {
-            return new Permeability(left.Value / right, left.Unit);
+            return new Permeability<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Permeability"/> by <see cref="Permeability"/>.</summary>
-        public static double operator /(Permeability left, Permeability right)
+        /// <summary>Get ratio value from dividing <see cref="Permeability{T}"/> by <see cref="Permeability{T}"/>.</summary>
+        public static double operator /(Permeability<T> left, Permeability<T> right)
         {
             return left.HenriesPerMeter / right.HenriesPerMeter;
         }
@@ -416,39 +416,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Permeability left, Permeability right)
+        public static bool operator <=(Permeability<T> left, Permeability<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Permeability left, Permeability right)
+        public static bool operator >=(Permeability<T> left, Permeability<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Permeability left, Permeability right)
+        public static bool operator <(Permeability<T> left, Permeability<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Permeability left, Permeability right)
+        public static bool operator >(Permeability<T> left, Permeability<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Permeability left, Permeability right)
+        /// <remarks>Consider using <see cref="Equals(Permeability{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Permeability<T> left, Permeability<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Permeability left, Permeability right)
+        /// <remarks>Consider using <see cref="Equals(Permeability{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Permeability<T> left, Permeability<T> right)
         {
             return !(left == right);
         }
@@ -457,37 +457,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Permeability objPermeability)) throw new ArgumentException("Expected type Permeability.", nameof(obj));
+            if(!(obj is Permeability<T> objPermeability)) throw new ArgumentException("Expected type Permeability.", nameof(obj));
 
             return CompareTo(objPermeability);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Permeability other)
+        public int CompareTo(Permeability<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Permeability{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Permeability objPermeability))
+            if(obj is null || !(obj is Permeability<T> objPermeability))
                 return false;
 
             return Equals(objPermeability);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Permeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Permeability other)
+        /// <remarks>Consider using <see cref="Equals(Permeability{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Permeability<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Permeability within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Permeability{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -525,7 +525,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Permeability other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Permeability<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -539,7 +539,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Permeability.</returns>
+        /// <returns>A hash code for the current <see cref="Permeability{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -587,13 +587,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Permeability{T}" /> to another <see cref="Permeability{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Permeability with the specified unit.</returns>
-        public Permeability ToUnit(PermeabilityUnit unit)
+        /// <returns>A <see cref="Permeability{T}" /> with the specified unit.</returns>
+        public Permeability<T> ToUnit(PermeabilityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Permeability(convertedValue, unit);
+            return new Permeability<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -606,7 +606,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Permeability ToUnit(UnitSystem unitSystem)
+        public Permeability<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -649,10 +649,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Permeability ToBaseUnit()
+        internal Permeability<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Permeability(baseUnitValue, BaseUnit);
+            return new Permeability<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(PermeabilityUnit unit)
@@ -761,7 +761,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permeability)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permeability<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -771,12 +771,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permeability)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permeability<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permeability)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permeability<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -821,16 +821,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Permeability))
+            if(conversionType == typeof(Permeability<T>))
                 return this;
             else if(conversionType == typeof(PermeabilityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Permeability.QuantityType;
+                return Permeability<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Permeability.BaseDimensions;
+                return Permeability<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Permeability)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Permeability<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

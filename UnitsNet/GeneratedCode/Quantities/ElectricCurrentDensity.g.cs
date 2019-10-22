@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
-    public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public partial struct ElectricCurrentDensity<T> : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity<T>>, IComparable, IComparable<ElectricCurrentDensity<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -105,19 +105,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricCurrentDensity, which is AmperePerSquareMeter. All conversions go via this value.
+        ///     The base unit of <see cref="ElectricCurrentDensity{T}" />, which is AmperePerSquareMeter. All conversions go via this value.
         /// </summary>
         public static ElectricCurrentDensityUnit BaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricCurrentDensity
+        /// Represents the largest possible value of <see cref="ElectricCurrentDensity{T}" />
         /// </summary>
-        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
+        public static ElectricCurrentDensity<T> MaxValue { get; } = new ElectricCurrentDensity<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricCurrentDensity
+        /// Represents the smallest possible value of <see cref="ElectricCurrentDensity{T}" />
         /// </summary>
-        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, BaseUnit);
+        public static ElectricCurrentDensity<T> MinValue { get; } = new ElectricCurrentDensity<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -125,14 +125,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentDensity;
 
         /// <summary>
-        ///     All units of measurement for the ElectricCurrentDensity quantity.
+        ///     All units of measurement for the <see cref="ElectricCurrentDensity{T}" /> quantity.
         /// </summary>
         public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSquareMeter.
         /// </summary>
-        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, BaseUnit);
+        public static ElectricCurrentDensity<T> Zero { get; } = new ElectricCurrentDensity<T>(0, BaseUnit);
 
         #endregion
 
@@ -157,29 +157,29 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricCurrentDensity.QuantityType;
+        public QuantityType Type => ElectricCurrentDensity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricCurrentDensity.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricCurrentDensity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareFoot.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> in AmperesPerSquareFoot.
         /// </summary>
         public double AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareInch.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> in AmperesPerSquareInch.
         /// </summary>
         public double AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> in AmperesPerSquareMeter.
         /// </summary>
         public double AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
@@ -213,42 +213,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareFoot.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> from AmperesPerSquareFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentDensity FromAmperesPerSquareFoot(QuantityValue amperespersquarefoot)
+        public static ElectricCurrentDensity<T> FromAmperesPerSquareFoot(QuantityValue amperespersquarefoot)
         {
             double value = (double) amperespersquarefoot;
-            return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
+            return new ElectricCurrentDensity<T>(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
         }
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareInch.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> from AmperesPerSquareInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentDensity FromAmperesPerSquareInch(QuantityValue amperespersquareinch)
+        public static ElectricCurrentDensity<T> FromAmperesPerSquareInch(QuantityValue amperespersquareinch)
         {
             double value = (double) amperespersquareinch;
-            return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
+            return new ElectricCurrentDensity<T>(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
         }
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
+        ///     Get <see cref="ElectricCurrentDensity{T}" /> from AmperesPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
+        public static ElectricCurrentDensity<T> FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
         {
             double value = (double) amperespersquaremeter;
-            return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
+            return new ElectricCurrentDensity<T>(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentDensityUnit" /> to <see cref="ElectricCurrentDensity" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentDensityUnit" /> to <see cref="ElectricCurrentDensity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricCurrentDensity unit value.</returns>
-        public static ElectricCurrentDensity From(QuantityValue value, ElectricCurrentDensityUnit fromUnit)
+        /// <returns><see cref="ElectricCurrentDensity{T}" /> unit value.</returns>
+        public static ElectricCurrentDensity<T> From(QuantityValue value, ElectricCurrentDensityUnit fromUnit)
         {
-            return new ElectricCurrentDensity((double)value, fromUnit);
+            return new ElectricCurrentDensity<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -277,7 +277,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricCurrentDensity Parse(string str)
+        public static ElectricCurrentDensity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -305,9 +305,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricCurrentDensity Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricCurrentDensity<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(
+            return QuantityParser.Default.Parse<ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
                 str,
                 provider,
                 From);
@@ -321,7 +321,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricCurrentDensity result)
+        public static bool TryParse([CanBeNull] string str, out ElectricCurrentDensity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -336,9 +336,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricCurrentDensity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricCurrentDensity<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(
+            return QuantityParser.Default.TryParse<ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
                 str,
                 provider,
                 From,
@@ -400,43 +400,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ElectricCurrentDensity operator -(ElectricCurrentDensity right)
+        public static ElectricCurrentDensity<T> operator -(ElectricCurrentDensity<T> right)
         {
-            return new ElectricCurrentDensity(-right.Value, right.Unit);
+            return new ElectricCurrentDensity<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrentDensity"/> from adding two <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator +(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        /// <summary>Get <see cref="ElectricCurrentDensity{T}"/> from adding two <see cref="ElectricCurrentDensity{T}"/>.</summary>
+        public static ElectricCurrentDensity<T> operator +(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
-            return new ElectricCurrentDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrentDensity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrentDensity"/> from subtracting two <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator -(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        /// <summary>Get <see cref="ElectricCurrentDensity{T}"/> from subtracting two <see cref="ElectricCurrentDensity{T}"/>.</summary>
+        public static ElectricCurrentDensity<T> operator -(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
-            return new ElectricCurrentDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrentDensity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
+        /// <summary>Get <see cref="ElectricCurrentDensity{T}"/> from multiplying value and <see cref="ElectricCurrentDensity{T}"/>.</summary>
+        public static ElectricCurrentDensity<T> operator *(double left, ElectricCurrentDensity<T> right)
         {
-            return new ElectricCurrentDensity(left * right.Value, right.Unit);
+            return new ElectricCurrentDensity<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, double right)
+        /// <summary>Get <see cref="ElectricCurrentDensity{T}"/> from multiplying value and <see cref="ElectricCurrentDensity{T}"/>.</summary>
+        public static ElectricCurrentDensity<T> operator *(ElectricCurrentDensity<T> left, double right)
         {
-            return new ElectricCurrentDensity(left.Value * right, left.Unit);
+            return new ElectricCurrentDensity<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrentDensity"/> from dividing <see cref="ElectricCurrentDensity"/> by value.</summary>
-        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, double right)
+        /// <summary>Get <see cref="ElectricCurrentDensity{T}"/> from dividing <see cref="ElectricCurrentDensity{T}"/> by value.</summary>
+        public static ElectricCurrentDensity<T> operator /(ElectricCurrentDensity<T> left, double right)
         {
-            return new ElectricCurrentDensity(left.Value / right, left.Unit);
+            return new ElectricCurrentDensity<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ElectricCurrentDensity"/> by <see cref="ElectricCurrentDensity"/>.</summary>
-        public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricCurrentDensity{T}"/> by <see cref="ElectricCurrentDensity{T}"/>.</summary>
+        public static double operator /(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.AmperesPerSquareMeter / right.AmperesPerSquareMeter;
         }
@@ -446,39 +446,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static bool operator <=(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static bool operator >=(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static bool operator <(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static bool operator >(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricCurrentDensity<T> left, ElectricCurrentDensity<T> right)
         {
             return !(left == right);
         }
@@ -487,37 +487,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrentDensity objElectricCurrentDensity)) throw new ArgumentException("Expected type ElectricCurrentDensity.", nameof(obj));
+            if(!(obj is ElectricCurrentDensity<T> objElectricCurrentDensity)) throw new ArgumentException("Expected type ElectricCurrentDensity.", nameof(obj));
 
             return CompareTo(objElectricCurrentDensity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ElectricCurrentDensity other)
+        public int CompareTo(ElectricCurrentDensity<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricCurrentDensity objElectricCurrentDensity))
+            if(obj is null || !(obj is ElectricCurrentDensity<T> objElectricCurrentDensity))
                 return false;
 
             return Equals(objElectricCurrentDensity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricCurrentDensity other)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricCurrentDensity<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricCurrentDensity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ElectricCurrentDensity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrentDensity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrentDensity<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -569,7 +569,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricCurrentDensity.</returns>
+        /// <returns>A hash code for the current <see cref="ElectricCurrentDensity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -617,13 +617,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricCurrentDensity{T}" /> to another <see cref="ElectricCurrentDensity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricCurrentDensity with the specified unit.</returns>
-        public ElectricCurrentDensity ToUnit(ElectricCurrentDensityUnit unit)
+        /// <returns>A <see cref="ElectricCurrentDensity{T}" /> with the specified unit.</returns>
+        public ElectricCurrentDensity<T> ToUnit(ElectricCurrentDensityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ElectricCurrentDensity(convertedValue, unit);
+            return new ElectricCurrentDensity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -636,7 +636,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricCurrentDensity ToUnit(UnitSystem unitSystem)
+        public ElectricCurrentDensity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -681,10 +681,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricCurrentDensity ToBaseUnit()
+        internal ElectricCurrentDensity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrentDensity(baseUnitValue, BaseUnit);
+            return new ElectricCurrentDensity<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(ElectricCurrentDensityUnit unit)
@@ -795,7 +795,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -805,12 +805,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -855,16 +855,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricCurrentDensity))
+            if(conversionType == typeof(ElectricCurrentDensity<T>))
                 return this;
             else if(conversionType == typeof(ElectricCurrentDensityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ElectricCurrentDensity.QuantityType;
+                return ElectricCurrentDensity<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return ElectricCurrentDensity.BaseDimensions;
+                return ElectricCurrentDensity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

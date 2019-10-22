@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
-    public partial struct SpecificEnergy : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
+    public partial struct SpecificEnergy<T> : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy<T>>, IComparable, IComparable<SpecificEnergy<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -111,19 +111,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
+        ///     The base unit of <see cref="SpecificEnergy{T}" />, which is JoulePerKilogram. All conversions go via this value.
         /// </summary>
         public static SpecificEnergyUnit BaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
 
         /// <summary>
-        /// Represents the largest possible value of SpecificEnergy
+        /// Represents the largest possible value of <see cref="SpecificEnergy{T}" />
         /// </summary>
-        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
+        public static SpecificEnergy<T> MaxValue { get; } = new SpecificEnergy<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of SpecificEnergy
+        /// Represents the smallest possible value of <see cref="SpecificEnergy{T}" />
         /// </summary>
-        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
+        public static SpecificEnergy<T> MinValue { get; } = new SpecificEnergy<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -131,14 +131,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
 
         /// <summary>
-        ///     All units of measurement for the SpecificEnergy quantity.
+        ///     All units of measurement for the <see cref="SpecificEnergy{T}" /> quantity.
         /// </summary>
         public static SpecificEnergyUnit[] Units { get; } = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().Except(new SpecificEnergyUnit[]{ SpecificEnergyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, BaseUnit);
+        public static SpecificEnergy<T> Zero { get; } = new SpecificEnergy<T>(0, BaseUnit);
 
         #endregion
 
@@ -163,59 +163,59 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => SpecificEnergy.QuantityType;
+        public QuantityType Type => SpecificEnergy<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => SpecificEnergy.BaseDimensions;
+        public BaseDimensions Dimensions => SpecificEnergy<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificEnergy in BtuPerPound.
+        ///     Get <see cref="SpecificEnergy{T}" /> in BtuPerPound.
         /// </summary>
         public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Get SpecificEnergy in CaloriesPerGram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in CaloriesPerGram.
         /// </summary>
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in JoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in JoulesPerKilogram.
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilocaloriesPerGram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in KilocaloriesPerGram.
         /// </summary>
         public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilojoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in KilojoulesPerKilogram.
         /// </summary>
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in KilowattHoursPerKilogram.
         /// </summary>
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegajoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in MegajoulesPerKilogram.
         /// </summary>
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in MegawattHoursPerKilogram.
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> in WattHoursPerKilogram.
         /// </summary>
         public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
@@ -249,96 +249,96 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificEnergy from BtuPerPound.
+        ///     Get <see cref="SpecificEnergy{T}" /> from BtuPerPound.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromBtuPerPound(QuantityValue btuperpound)
+        public static SpecificEnergy<T> FromBtuPerPound(QuantityValue btuperpound)
         {
             double value = (double) btuperpound;
-            return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.BtuPerPound);
         }
         /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from CaloriesPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromCaloriesPerGram(QuantityValue caloriespergram)
+        public static SpecificEnergy<T> FromCaloriesPerGram(QuantityValue caloriespergram)
         {
             double value = (double) caloriespergram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.CaloriePerGram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from JoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromJoulesPerKilogram(QuantityValue joulesperkilogram)
+        public static SpecificEnergy<T> FromJoulesPerKilogram(QuantityValue joulesperkilogram)
         {
             double value = (double) joulesperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.JoulePerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.JoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from KilocaloriesPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromKilocaloriesPerGram(QuantityValue kilocaloriespergram)
+        public static SpecificEnergy<T> FromKilocaloriesPerGram(QuantityValue kilocaloriespergram)
         {
             double value = (double) kilocaloriespergram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.KilocaloriePerGram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilocaloriePerGram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from KilojoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromKilojoulesPerKilogram(QuantityValue kilojoulesperkilogram)
+        public static SpecificEnergy<T> FromKilojoulesPerKilogram(QuantityValue kilojoulesperkilogram)
         {
             double value = (double) kilojoulesperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilojoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from KilowattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromKilowattHoursPerKilogram(QuantityValue kilowatthoursperkilogram)
+        public static SpecificEnergy<T> FromKilowattHoursPerKilogram(QuantityValue kilowatthoursperkilogram)
         {
             double value = (double) kilowatthoursperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilowattHourPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from MegajoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromMegajoulesPerKilogram(QuantityValue megajoulesperkilogram)
+        public static SpecificEnergy<T> FromMegajoulesPerKilogram(QuantityValue megajoulesperkilogram)
         {
             double value = (double) megajoulesperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.MegajoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from MegawattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromMegawattHoursPerKilogram(QuantityValue megawatthoursperkilogram)
+        public static SpecificEnergy<T> FromMegawattHoursPerKilogram(QuantityValue megawatthoursperkilogram)
         {
             double value = (double) megawatthoursperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.MegawattHourPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram.
+        ///     Get <see cref="SpecificEnergy{T}" /> from WattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy FromWattHoursPerKilogram(QuantityValue watthoursperkilogram)
+        public static SpecificEnergy<T> FromWattHoursPerKilogram(QuantityValue watthoursperkilogram)
         {
             double value = (double) watthoursperkilogram;
-            return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerKilogram);
+            return new SpecificEnergy<T>(value, SpecificEnergyUnit.WattHourPerKilogram);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
+        ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SpecificEnergy unit value.</returns>
-        public static SpecificEnergy From(QuantityValue value, SpecificEnergyUnit fromUnit)
+        /// <returns><see cref="SpecificEnergy{T}" /> unit value.</returns>
+        public static SpecificEnergy<T> From(QuantityValue value, SpecificEnergyUnit fromUnit)
         {
-            return new SpecificEnergy((double)value, fromUnit);
+            return new SpecificEnergy<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -367,7 +367,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static SpecificEnergy Parse(string str)
+        public static SpecificEnergy<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -395,9 +395,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static SpecificEnergy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static SpecificEnergy<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<SpecificEnergy, SpecificEnergyUnit>(
+            return QuantityParser.Default.Parse<SpecificEnergy<T>, SpecificEnergyUnit>(
                 str,
                 provider,
                 From);
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out SpecificEnergy result)
+        public static bool TryParse([CanBeNull] string str, out SpecificEnergy<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -426,9 +426,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out SpecificEnergy result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out SpecificEnergy<T> result)
         {
-            return QuantityParser.Default.TryParse<SpecificEnergy, SpecificEnergyUnit>(
+            return QuantityParser.Default.TryParse<SpecificEnergy<T>, SpecificEnergyUnit>(
                 str,
                 provider,
                 From,
@@ -490,43 +490,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static SpecificEnergy operator -(SpecificEnergy right)
+        public static SpecificEnergy<T> operator -(SpecificEnergy<T> right)
         {
-            return new SpecificEnergy(-right.Value, right.Unit);
+            return new SpecificEnergy<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from adding two <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator +(SpecificEnergy left, SpecificEnergy right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from adding two <see cref="SpecificEnergy{T}"/>.</summary>
+        public static SpecificEnergy<T> operator +(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificEnergy<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from subtracting two <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator -(SpecificEnergy left, SpecificEnergy right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from subtracting two <see cref="SpecificEnergy{T}"/>.</summary>
+        public static SpecificEnergy<T> operator -(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificEnergy<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from multiplying value and <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator *(double left, SpecificEnergy right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from multiplying value and <see cref="SpecificEnergy{T}"/>.</summary>
+        public static SpecificEnergy<T> operator *(double left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy(left * right.Value, right.Unit);
+            return new SpecificEnergy<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from multiplying value and <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator *(SpecificEnergy left, double right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from multiplying value and <see cref="SpecificEnergy{T}"/>.</summary>
+        public static SpecificEnergy<T> operator *(SpecificEnergy<T> left, double right)
         {
-            return new SpecificEnergy(left.Value * right, left.Unit);
+            return new SpecificEnergy<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from dividing <see cref="SpecificEnergy"/> by value.</summary>
-        public static SpecificEnergy operator /(SpecificEnergy left, double right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from dividing <see cref="SpecificEnergy{T}"/> by value.</summary>
+        public static SpecificEnergy<T> operator /(SpecificEnergy<T> left, double right)
         {
-            return new SpecificEnergy(left.Value / right, left.Unit);
+            return new SpecificEnergy<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="SpecificEnergy"/> by <see cref="SpecificEnergy"/>.</summary>
-        public static double operator /(SpecificEnergy left, SpecificEnergy right)
+        /// <summary>Get ratio value from dividing <see cref="SpecificEnergy{T}"/> by <see cref="SpecificEnergy{T}"/>.</summary>
+        public static double operator /(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.JoulesPerKilogram / right.JoulesPerKilogram;
         }
@@ -536,39 +536,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(SpecificEnergy left, SpecificEnergy right)
+        public static bool operator <=(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(SpecificEnergy left, SpecificEnergy right)
+        public static bool operator >=(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(SpecificEnergy left, SpecificEnergy right)
+        public static bool operator <(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(SpecificEnergy left, SpecificEnergy right)
+        public static bool operator >(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(SpecificEnergy left, SpecificEnergy right)
+        /// <remarks>Consider using <see cref="Equals(SpecificEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(SpecificEnergy left, SpecificEnergy right)
+        /// <remarks>Consider using <see cref="Equals(SpecificEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
             return !(left == right);
         }
@@ -577,37 +577,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificEnergy objSpecificEnergy)) throw new ArgumentException("Expected type SpecificEnergy.", nameof(obj));
+            if(!(obj is SpecificEnergy<T> objSpecificEnergy)) throw new ArgumentException("Expected type SpecificEnergy.", nameof(obj));
 
             return CompareTo(objSpecificEnergy);
         }
 
         /// <inheritdoc />
-        public int CompareTo(SpecificEnergy other)
+        public int CompareTo(SpecificEnergy<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(SpecificEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is SpecificEnergy objSpecificEnergy))
+            if(obj is null || !(obj is SpecificEnergy<T> objSpecificEnergy))
                 return false;
 
             return Equals(objSpecificEnergy);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(SpecificEnergy other)
+        /// <remarks>Consider using <see cref="Equals(SpecificEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(SpecificEnergy<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another SpecificEnergy within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="SpecificEnergy{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -645,7 +645,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(SpecificEnergy other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(SpecificEnergy<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -659,7 +659,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current SpecificEnergy.</returns>
+        /// <returns>A hash code for the current <see cref="SpecificEnergy{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -707,13 +707,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this SpecificEnergy to another SpecificEnergy with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="SpecificEnergy{T}" /> to another <see cref="SpecificEnergy{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A SpecificEnergy with the specified unit.</returns>
-        public SpecificEnergy ToUnit(SpecificEnergyUnit unit)
+        /// <returns>A <see cref="SpecificEnergy{T}" /> with the specified unit.</returns>
+        public SpecificEnergy<T> ToUnit(SpecificEnergyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new SpecificEnergy(convertedValue, unit);
+            return new SpecificEnergy<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -726,7 +726,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public SpecificEnergy ToUnit(UnitSystem unitSystem)
+        public SpecificEnergy<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -777,10 +777,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal SpecificEnergy ToBaseUnit()
+        internal SpecificEnergy<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificEnergy(baseUnitValue, BaseUnit);
+            return new SpecificEnergy<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(SpecificEnergyUnit unit)
@@ -897,7 +897,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(SpecificEnergy)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(SpecificEnergy<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -907,12 +907,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(SpecificEnergy)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(SpecificEnergy<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(SpecificEnergy)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(SpecificEnergy<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -957,16 +957,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(SpecificEnergy))
+            if(conversionType == typeof(SpecificEnergy<T>))
                 return this;
             else if(conversionType == typeof(SpecificEnergyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return SpecificEnergy.QuantityType;
+                return SpecificEnergy<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return SpecificEnergy.BaseDimensions;
+                return SpecificEnergy<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(SpecificEnergy)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(SpecificEnergy<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

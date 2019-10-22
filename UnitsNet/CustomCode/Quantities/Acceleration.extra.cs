@@ -3,14 +3,14 @@
 
 namespace UnitsNet
 {
-    public partial struct Acceleration
+    public partial struct Acceleration<T>
     {
         /// <summary>
-        /// Multiply <see cref="Acceleration"/> and <see cref="Density"/> to get <see cref="SpecificWeight"/>.
+        /// Multiply <see cref="Acceleration{T}"/> and <see cref="Density{T}"/> to get <see cref="SpecificWeight{T}"/>.
         /// </summary>
-        public static SpecificWeight operator *(Acceleration acceleration, Density density)
+        public static SpecificWeight<T> operator *(Acceleration<T> acceleration, Density<T> density)
         {
-            return new SpecificWeight(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+            return new SpecificWeight<T>(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
     }
 }

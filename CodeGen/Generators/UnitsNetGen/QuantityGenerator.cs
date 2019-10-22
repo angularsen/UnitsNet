@@ -68,7 +68,7 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WL($@"
-    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable
+    public partial struct {_quantity.Name}<T> : IQuantity<{_unitEnumName}>, IEquatable<{_quantity.Name}<T>>, IComparable, IComparable<{_quantity.Name}<T>>, IConvertible, IFormattable
     {{
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -217,19 +217,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions {{ get; }}
 
         /// <summary>
-        ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
+        ///     The base unit of <see cref=""{_quantity.Name}{{T}}"" />, which is {_quantity.BaseUnit}. All conversions go via this value.
         /// </summary>
         public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
 
         /// <summary>
-        /// Represents the largest possible value of {_quantity.Name}
+        /// Represents the largest possible value of <see cref=""{_quantity.Name}{{T}}"" />
         /// </summary>
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_valueType}.MaxValue, BaseUnit);
+        public static {_quantity.Name}<T> MaxValue {{ get; }} = new {_quantity.Name}<T>({_valueType}.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of {_quantity.Name}
+        /// Represents the smallest possible value of <see cref=""{_quantity.Name}{{T}}"" />
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, BaseUnit);
+        public static {_quantity.Name}<T> MinValue {{ get; }} = new {_quantity.Name}<T>({_valueType}.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
@@ -237,14 +237,14 @@ namespace UnitsNet
         public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
 
         /// <summary>
-        ///     All units of measurement for the {_quantity.Name} quantity.
+        ///     All units of measurement for the <see cref=""{_quantity.Name}{{T}}"" /> quantity.
         /// </summary>
         public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);
+        public static {_quantity.Name}<T> Zero {{ get; }} = new {_quantity.Name}<T>(0, BaseUnit);
 
         #endregion
 ");
@@ -282,15 +282,15 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
-        public QuantityType Type => {_quantity.Name}.QuantityType;
+        public QuantityType Type => {_quantity.Name}<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => {_quantity.Name}.BaseDimensions;
+        public BaseDimensions Dimensions => {_quantity.Name}<T>.BaseDimensions;
 
         #endregion
-");
+" );
         }
 
         private void GenerateConversionProperties()
@@ -302,7 +302,7 @@ namespace UnitsNet
             {
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} in {unit.PluralName}.
+        ///     Get <see cref=""{_quantity.Name}{{T}}"" /> in {unit.PluralName}.
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
@@ -357,29 +357,29 @@ namespace UnitsNet
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} from {unit.PluralName}.
+        ///     Get <see cref=""{_quantity.Name}{{T}}"" /> from {unit.PluralName}.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(QuantityValue {valueParamName})
+        public static {_quantity.Name}<T> From{unit.PluralName}(QuantityValue {valueParamName})
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
-            return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
+            return new {_quantity.Name}<T>(value, {_unitEnumName}.{unit.SingularName});
         }}");
             }
 
             Writer.WL();
             Writer.WL($@"
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}"" />.
+        ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}{{T}}"" />.
         /// </summary>
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
-        /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From(QuantityValue value, {_unitEnumName} fromUnit)
+        /// <returns><see cref=""{_quantity.Name}{{T}}"" /> unit value.</returns>
+        public static {_quantity.Name}<T> From(QuantityValue value, {_unitEnumName} fromUnit)
         {{
-            return new {_quantity.Name}(({_valueType})value, fromUnit);
+            return new {_quantity.Name}<T>(({_valueType})value, fromUnit);
         }}
 
         #endregion
@@ -413,7 +413,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static {_quantity.Name} Parse(string str)
+        public static {_quantity.Name}<T> Parse(string str)
         {{
             return Parse(str, null);
         }}
@@ -441,9 +441,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static {_quantity.Name} Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static {_quantity.Name}<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {{
-            return QuantityParser.Default.Parse<{_quantity.Name}, {_unitEnumName}>(
+            return QuantityParser.Default.Parse<{_quantity.Name}<T>, {_unitEnumName}>(
                 str,
                 provider,
                 From);
@@ -457,7 +457,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out {_quantity.Name} result)
+        public static bool TryParse([CanBeNull] string str, out {_quantity.Name}<T> result)
         {{
             return TryParse(str, null, out result);
         }}
@@ -472,9 +472,9 @@ namespace UnitsNet
         ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out {_quantity.Name} result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out {_quantity.Name}<T> result)
         {{
-            return QuantityParser.Default.TryParse<{_quantity.Name}, {_unitEnumName}>(
+            return QuantityParser.Default.TryParse<{_quantity.Name}<T>, {_unitEnumName}>(
                 str,
                 provider,
                 From,
@@ -551,43 +551,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} right)
+        public static {_quantity.Name}<T> operator -({_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}(-right.Value, right.Unit);
+            return new {_quantity.Name}<T>(-right.Value, right.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from adding two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from adding two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator +({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new {_quantity.Name}<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from subtracting two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from subtracting two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator -({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new {_quantity.Name}<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_valueType} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from multiplying value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator *({_valueType} left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}(left * right.Value, right.Unit);
+            return new {_quantity.Name}<T>(left * right.Value, right.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, {_valueType} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from multiplying value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator *({_quantity.Name}<T> left, {_valueType} right)
         {{
-            return new {_quantity.Name}(left.Value * right, left.Unit);
+            return new {_quantity.Name}<T>(left.Value * right, left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from dividing <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, {_valueType} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from dividing <see cref=""{_quantity.Name}{{T}}""/> by value.</summary>
+        public static {_quantity.Name}<T> operator /({_quantity.Name}<T> left, {_valueType} right)
         {{
-            return new {_quantity.Name}(left.Value / right, left.Unit);
+            return new {_quantity.Name}<T>(left.Value / right, left.Unit);
         }}
 
-        /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}{{T}}""/> by <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static double operator /({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
         }}
@@ -605,50 +605,50 @@ namespace UnitsNet
         #region Logarithmic Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} right)
+        public static {_quantity.Name}<T> operator -({_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}(-right.Value, right.Unit);
+            return new {_quantity.Name}<T>(-right.Value, right.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic addition of two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from logarithmic addition of two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator +({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             // Logarithmic addition
             // Formula: {x}*log10(10^(x/{x}) + 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            return new {_quantity.Name}<T>({x}*Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator -({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             // Logarithmic subtraction
             // Formula: {x}*log10(10^(x/{x}) - 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            return new {_quantity.Name}<T>({x}*Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_valueType} left, {_quantity.Name} right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator *({_valueType} left, {_quantity.Name}<T> right)
         {{
             // Logarithmic multiplication = addition
-            return new {_quantity.Name}(left + right.Value, right.Unit);
+            return new {_quantity.Name}<T>(left + right.Value, right.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, double right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static {_quantity.Name}<T> operator *({_quantity.Name}<T> left, double right)
         {{
             // Logarithmic multiplication = addition
-            return new {_quantity.Name}(left.Value + ({_valueType})right, left.Unit);
+            return new {_quantity.Name}<T>(left.Value + ({_valueType})right, left.Unit);
         }}
 
-        /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic division of <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, double right)
+        /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from logarithmic division of <see cref=""{_quantity.Name}{{T}}""/> by value.</summary>
+        public static {_quantity.Name}<T> operator /({_quantity.Name}<T> left, double right)
         {{
             // Logarithmic division = subtraction
-            return new {_quantity.Name}(left.Value - ({_valueType})right, left.Unit);
+            return new {_quantity.Name}<T>(left.Value - ({_valueType})right, left.Unit);
         }}
 
-        /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
+        /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}{{T}}""/> by <see cref=""{_quantity.Name}{{T}}""/>.</summary>
+        public static double operator /({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             // Logarithmic division = subtraction
             return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
@@ -664,39 +664,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=({_quantity.Name} left, {_quantity.Name} right)
+        public static bool operator <=({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.Value <= right.GetValueAs(left.Unit);
         }}
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=({_quantity.Name} left, {_quantity.Name} right)
+        public static bool operator >=({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.Value >= right.GetValueAs(left.Unit);
         }}
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <({_quantity.Name} left, {_quantity.Name} right)
+        public static bool operator <({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.Value < right.GetValueAs(left.Unit);
         }}
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >({_quantity.Name} left, {_quantity.Name} right)
+        public static bool operator >({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.Value > right.GetValueAs(left.Unit);
         }}
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}{{T}}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
+        public static bool operator ==({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return left.Equals(right);
         }}
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}{{T}}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
+        public static bool operator !=({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
             return !(left == right);
         }}
@@ -705,37 +705,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {{
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
+            if(!(obj is {_quantity.Name}<T> obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
 
             return CompareTo(obj{_quantity.Name});
         }}
 
         /// <inheritdoc />
-        public int CompareTo({_quantity.Name} other)
+        public int CompareTo({_quantity.Name}<T> other)
         {{
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }}
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}{{T}}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {{
-            if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
+            if(obj is null || !(obj is {_quantity.Name}<T> obj{_quantity.Name}))
                 return false;
 
             return Equals(obj{_quantity.Name});
         }}
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public bool Equals({_quantity.Name} other)
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}{{T}}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
+        public bool Equals({_quantity.Name}<T> other)
         {{
             return _value.Equals(other.GetValueAs(this.Unit));
         }}
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another {_quantity.Name} within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref=""{_quantity.Name}{{T}}"" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -773,7 +773,7 @@ namespace UnitsNet
         /// <param name=""tolerance"">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name=""comparisonType"">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals({_quantity.Name} other, double tolerance, ComparisonType comparisonType)
+        public bool Equals({_quantity.Name}<T> other, double tolerance, ComparisonType comparisonType)
         {{
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
@@ -787,7 +787,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current {_quantity.Name}.</returns>
+        /// <returns>A hash code for the current <see cref=""{_quantity.Name}{{T}}"" />.</returns>
         public override int GetHashCode()
         {{
             return new {{ QuantityType, Value, Unit }}.GetHashCode();
@@ -840,13 +840,13 @@ namespace UnitsNet
         }}
 
         /// <summary>
-        ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
+        ///     Converts this <see cref=""{_quantity.Name}{{T}}"" /> to another <see cref=""{_quantity.Name}{{T}}"" /> with the unit representation <paramref name=""unit"" />.
         /// </summary>
-        /// <returns>A {_quantity.Name} with the specified unit.</returns>
-        public {_quantity.Name} ToUnit({_unitEnumName} unit)
+        /// <returns>A <see cref=""{_quantity.Name}{{T}}"" /> with the specified unit.</returns>
+        public {_quantity.Name}<T> ToUnit({_unitEnumName} unit)
         {{
             var convertedValue = GetValueAs(unit);
-            return new {_quantity.Name}(convertedValue, unit);
+            return new {_quantity.Name}<T>(convertedValue, unit);
         }}
 
         /// <inheritdoc />
@@ -859,7 +859,7 @@ namespace UnitsNet
         }}
 
         /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
+        public {_quantity.Name}<T> ToUnit(UnitSystem unitSystem)
         {{
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -909,10 +909,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal {_quantity.Name} ToBaseUnit()
+        internal {_quantity.Name}<T> ToBaseUnit()
         {{
             var baseUnitValue = GetValueInBaseUnit();
-            return new {_quantity.Name}(baseUnitValue, BaseUnit);
+            return new {_quantity.Name}<T>(baseUnitValue, BaseUnit);
         }}
 
         private {_valueType} GetValueAs({_unitEnumName} unit)
@@ -1038,7 +1038,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to bool is not supported."");
+            throw new InvalidCastException($""Converting {{typeof({_quantity.Name}<T>)}} to bool is not supported."");
         }}
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -1048,12 +1048,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to char is not supported."");
+            throw new InvalidCastException($""Converting {{typeof({_quantity.Name}<T>)}} to char is not supported."");
         }}
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {{
-            throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to DateTime is not supported."");
+            throw new InvalidCastException($""Converting {{typeof({_quantity.Name}<T>)}} to DateTime is not supported."");
         }}
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1098,16 +1098,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {{
-            if(conversionType == typeof({_quantity.Name}))
+            if(conversionType == typeof({_quantity.Name}<T>))
                 return this;
             else if(conversionType == typeof({_unitEnumName}))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return {_quantity.Name}.QuantityType;
+                return {_quantity.Name}<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return {_quantity.Name}.BaseDimensions;
+                return {_quantity.Name}<T>.BaseDimensions;
             else
-                throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to {{conversionType}} is not supported."");
+                throw new InvalidCastException($""Converting {{typeof({_quantity.Name}<T>)}} to {{conversionType}} is not supported."");
         }}
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
@@ -1125,7 +1125,7 @@ namespace UnitsNet
             return Convert.ToUInt64(_value);
         }}
 
-        #endregion");
+        #endregion" );
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>

@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
-    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstanceUnit>, IEquatable<AmountOfSubstance>, IComparable, IComparable<AmountOfSubstance>, IConvertible, IFormattable
+    public partial struct AmountOfSubstance<T> : IQuantity<AmountOfSubstanceUnit>, IEquatable<AmountOfSubstance<T>>, IComparable, IComparable<AmountOfSubstance<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -114,19 +114,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
+        ///     The base unit of <see cref="AmountOfSubstance{T}" />, which is Mole. All conversions go via this value.
         /// </summary>
         public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
-        /// Represents the largest possible value of AmountOfSubstance
+        /// Represents the largest possible value of <see cref="AmountOfSubstance{T}" />
         /// </summary>
-        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance<T> MaxValue { get; } = new AmountOfSubstance<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of AmountOfSubstance
+        /// Represents the smallest possible value of <see cref="AmountOfSubstance{T}" />
         /// </summary>
-        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static AmountOfSubstance<T> MinValue { get; } = new AmountOfSubstance<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -134,14 +134,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
 
         /// <summary>
-        ///     All units of measurement for the AmountOfSubstance quantity.
+        ///     All units of measurement for the <see cref="AmountOfSubstance{T}" /> quantity.
         /// </summary>
         public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
+        public static AmountOfSubstance<T> Zero { get; } = new AmountOfSubstance<T>(0, BaseUnit);
 
         #endregion
 
@@ -166,89 +166,89 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => AmountOfSubstance.QuantityType;
+        public QuantityType Type => AmountOfSubstance<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => AmountOfSubstance.BaseDimensions;
+        public BaseDimensions Dimensions => AmountOfSubstance<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AmountOfSubstance in Centimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Centimoles.
         /// </summary>
         public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in CentipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in CentipoundMoles.
         /// </summary>
         public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Decimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Decimoles.
         /// </summary>
         public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in DecipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in DecipoundMoles.
         /// </summary>
         public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Kilomoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Kilomoles.
         /// </summary>
         public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in KilopoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in KilopoundMoles.
         /// </summary>
         public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Megamoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Megamoles.
         /// </summary>
         public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Micromoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Micromoles.
         /// </summary>
         public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in MicropoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in MicropoundMoles.
         /// </summary>
         public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Millimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Millimoles.
         /// </summary>
         public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in MillipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in MillipoundMoles.
         /// </summary>
         public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Moles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Moles.
         /// </summary>
         public double Moles => As(AmountOfSubstanceUnit.Mole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Nanomoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in Nanomoles.
         /// </summary>
         public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in NanopoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in NanopoundMoles.
         /// </summary>
         public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in PoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> in PoundMoles.
         /// </summary>
         public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
 
@@ -282,150 +282,150 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AmountOfSubstance from Centimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Centimoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentimoles(QuantityValue centimoles)
+        public static AmountOfSubstance<T> FromCentimoles(QuantityValue centimoles)
         {
             double value = (double) centimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Centimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from CentipoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentipoundMoles(QuantityValue centipoundmoles)
+        public static AmountOfSubstance<T> FromCentipoundMoles(QuantityValue centipoundmoles)
         {
             double value = (double) centipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.CentipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Decimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Decimoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecimoles(QuantityValue decimoles)
+        public static AmountOfSubstance<T> FromDecimoles(QuantityValue decimoles)
         {
             double value = (double) decimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Decimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from DecipoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecipoundMoles(QuantityValue decipoundmoles)
+        public static AmountOfSubstance<T> FromDecipoundMoles(QuantityValue decipoundmoles)
         {
             double value = (double) decipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.DecipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Kilomoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilomoles(QuantityValue kilomoles)
+        public static AmountOfSubstance<T> FromKilomoles(QuantityValue kilomoles)
         {
             double value = (double) kilomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Kilomole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from KilopoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilopoundMoles(QuantityValue kilopoundmoles)
+        public static AmountOfSubstance<T> FromKilopoundMoles(QuantityValue kilopoundmoles)
         {
             double value = (double) kilopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.KilopoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Megamoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Megamoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMegamoles(QuantityValue megamoles)
+        public static AmountOfSubstance<T> FromMegamoles(QuantityValue megamoles)
         {
             double value = (double) megamoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Megamole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Micromoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Micromoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicromoles(QuantityValue micromoles)
+        public static AmountOfSubstance<T> FromMicromoles(QuantityValue micromoles)
         {
             double value = (double) micromoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Micromole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from MicropoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicropoundMoles(QuantityValue micropoundmoles)
+        public static AmountOfSubstance<T> FromMicropoundMoles(QuantityValue micropoundmoles)
         {
             double value = (double) micropoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.MicropoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Millimoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Millimoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillimoles(QuantityValue millimoles)
+        public static AmountOfSubstance<T> FromMillimoles(QuantityValue millimoles)
         {
             double value = (double) millimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Millimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from MillipoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillipoundMoles(QuantityValue millipoundmoles)
+        public static AmountOfSubstance<T> FromMillipoundMoles(QuantityValue millipoundmoles)
         {
             double value = (double) millipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.MillipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Moles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Moles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMoles(QuantityValue moles)
+        public static AmountOfSubstance<T> FromMoles(QuantityValue moles)
         {
             double value = (double) moles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Mole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from Nanomoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanomoles(QuantityValue nanomoles)
+        public static AmountOfSubstance<T> FromNanomoles(QuantityValue nanomoles)
         {
             double value = (double) nanomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.Nanomole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from NanopoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanopoundMoles(QuantityValue nanopoundmoles)
+        public static AmountOfSubstance<T> FromNanopoundMoles(QuantityValue nanopoundmoles)
         {
             double value = (double) nanopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.NanopoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles.
+        ///     Get <see cref="AmountOfSubstance{T}" /> from PoundMoles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromPoundMoles(QuantityValue poundmoles)
+        public static AmountOfSubstance<T> FromPoundMoles(QuantityValue poundmoles)
         {
             double value = (double) poundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
+            return new AmountOfSubstance<T>(value, AmountOfSubstanceUnit.PoundMole);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.
+        ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
+        /// <returns><see cref="AmountOfSubstance{T}" /> unit value.</returns>
+        public static AmountOfSubstance<T> From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
         {
-            return new AmountOfSubstance((double)value, fromUnit);
+            return new AmountOfSubstance<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -454,7 +454,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AmountOfSubstance Parse(string str)
+        public static AmountOfSubstance<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -482,9 +482,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static AmountOfSubstance Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static AmountOfSubstance<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.Parse<AmountOfSubstance<T>, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From);
@@ -498,7 +498,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out AmountOfSubstance result)
+        public static bool TryParse([CanBeNull] string str, out AmountOfSubstance<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -513,9 +513,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AmountOfSubstance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AmountOfSubstance<T> result)
         {
-            return QuantityParser.Default.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.TryParse<AmountOfSubstance<T>, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From,
@@ -577,43 +577,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static AmountOfSubstance operator -(AmountOfSubstance right)
+        public static AmountOfSubstance<T> operator -(AmountOfSubstance<T> right)
         {
-            return new AmountOfSubstance(-right.Value, right.Unit);
+            return new AmountOfSubstance<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from adding two <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator +(AmountOfSubstance left, AmountOfSubstance right)
+        /// <summary>Get <see cref="AmountOfSubstance{T}"/> from adding two <see cref="AmountOfSubstance{T}"/>.</summary>
+        public static AmountOfSubstance<T> operator +(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
-            return new AmountOfSubstance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new AmountOfSubstance<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from subtracting two <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator -(AmountOfSubstance left, AmountOfSubstance right)
+        /// <summary>Get <see cref="AmountOfSubstance{T}"/> from subtracting two <see cref="AmountOfSubstance{T}"/>.</summary>
+        public static AmountOfSubstance<T> operator -(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
-            return new AmountOfSubstance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new AmountOfSubstance<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(double left, AmountOfSubstance right)
+        /// <summary>Get <see cref="AmountOfSubstance{T}"/> from multiplying value and <see cref="AmountOfSubstance{T}"/>.</summary>
+        public static AmountOfSubstance<T> operator *(double left, AmountOfSubstance<T> right)
         {
-            return new AmountOfSubstance(left * right.Value, right.Unit);
+            return new AmountOfSubstance<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(AmountOfSubstance left, double right)
+        /// <summary>Get <see cref="AmountOfSubstance{T}"/> from multiplying value and <see cref="AmountOfSubstance{T}"/>.</summary>
+        public static AmountOfSubstance<T> operator *(AmountOfSubstance<T> left, double right)
         {
-            return new AmountOfSubstance(left.Value * right, left.Unit);
+            return new AmountOfSubstance<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from dividing <see cref="AmountOfSubstance"/> by value.</summary>
-        public static AmountOfSubstance operator /(AmountOfSubstance left, double right)
+        /// <summary>Get <see cref="AmountOfSubstance{T}"/> from dividing <see cref="AmountOfSubstance{T}"/> by value.</summary>
+        public static AmountOfSubstance<T> operator /(AmountOfSubstance<T> left, double right)
         {
-            return new AmountOfSubstance(left.Value / right, left.Unit);
+            return new AmountOfSubstance<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="AmountOfSubstance"/> by <see cref="AmountOfSubstance"/>.</summary>
-        public static double operator /(AmountOfSubstance left, AmountOfSubstance right)
+        /// <summary>Get ratio value from dividing <see cref="AmountOfSubstance{T}"/> by <see cref="AmountOfSubstance{T}"/>.</summary>
+        public static double operator /(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Moles / right.Moles;
         }
@@ -623,39 +623,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator <=(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator >=(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator <(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator >(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)
+        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)
+        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(AmountOfSubstance<T> left, AmountOfSubstance<T> right)
         {
             return !(left == right);
         }
@@ -664,37 +664,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AmountOfSubstance objAmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
+            if(!(obj is AmountOfSubstance<T> objAmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
 
             return CompareTo(objAmountOfSubstance);
         }
 
         /// <inheritdoc />
-        public int CompareTo(AmountOfSubstance other)
+        public int CompareTo(AmountOfSubstance<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is AmountOfSubstance objAmountOfSubstance))
+            if(obj is null || !(obj is AmountOfSubstance<T> objAmountOfSubstance))
                 return false;
 
             return Equals(objAmountOfSubstance);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(AmountOfSubstance other)
+        /// <remarks>Consider using <see cref="Equals(AmountOfSubstance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(AmountOfSubstance<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another AmountOfSubstance within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="AmountOfSubstance{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -732,7 +732,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AmountOfSubstance other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(AmountOfSubstance<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -746,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current AmountOfSubstance.</returns>
+        /// <returns>A hash code for the current <see cref="AmountOfSubstance{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -794,13 +794,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="AmountOfSubstance{T}" /> to another <see cref="AmountOfSubstance{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A AmountOfSubstance with the specified unit.</returns>
-        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
+        /// <returns>A <see cref="AmountOfSubstance{T}" /> with the specified unit.</returns>
+        public AmountOfSubstance<T> ToUnit(AmountOfSubstanceUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new AmountOfSubstance(convertedValue, unit);
+            return new AmountOfSubstance<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -813,7 +813,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AmountOfSubstance ToUnit(UnitSystem unitSystem)
+        public AmountOfSubstance<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -870,10 +870,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AmountOfSubstance ToBaseUnit()
+        internal AmountOfSubstance<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AmountOfSubstance(baseUnitValue, BaseUnit);
+            return new AmountOfSubstance<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(AmountOfSubstanceUnit unit)
@@ -996,7 +996,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -1006,12 +1006,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1056,16 +1056,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(AmountOfSubstance))
+            if(conversionType == typeof(AmountOfSubstance<T>))
                 return this;
             else if(conversionType == typeof(AmountOfSubstanceUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return AmountOfSubstance.QuantityType;
+                return AmountOfSubstance<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return AmountOfSubstance.BaseDimensions;
+                return AmountOfSubstance<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(AmountOfSubstance<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

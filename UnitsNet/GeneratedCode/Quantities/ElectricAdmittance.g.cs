@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
-    public partial struct ElectricAdmittance : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance>, IComparable, IComparable<ElectricAdmittance>, IConvertible, IFormattable
+    public partial struct ElectricAdmittance<T> : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance<T>>, IComparable, IComparable<ElectricAdmittance<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -103,19 +103,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
+        ///     The base unit of <see cref="ElectricAdmittance{T}" />, which is Siemens. All conversions go via this value.
         /// </summary>
         public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricAdmittance
+        /// Represents the largest possible value of <see cref="ElectricAdmittance{T}" />
         /// </summary>
-        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance<T> MaxValue { get; } = new ElectricAdmittance<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricAdmittance
+        /// Represents the smallest possible value of <see cref="ElectricAdmittance{T}" />
         /// </summary>
-        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance<T> MinValue { get; } = new ElectricAdmittance<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -123,14 +123,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
 
         /// <summary>
-        ///     All units of measurement for the ElectricAdmittance quantity.
+        ///     All units of measurement for the <see cref="ElectricAdmittance{T}" /> quantity.
         /// </summary>
         public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance<T> Zero { get; } = new ElectricAdmittance<T>(0, BaseUnit);
 
         #endregion
 
@@ -155,34 +155,34 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricAdmittance.QuantityType;
+        public QuantityType Type => ElectricAdmittance<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricAdmittance.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricAdmittance<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricAdmittance in Microsiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> in Microsiemens.
         /// </summary>
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Millisiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> in Millisiemens.
         /// </summary>
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Nanosiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> in Nanosiemens.
         /// </summary>
         public double Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Siemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> in Siemens.
         /// </summary>
         public double Siemens => As(ElectricAdmittanceUnit.Siemens);
 
@@ -216,51 +216,51 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricAdmittance from Microsiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> from Microsiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance FromMicrosiemens(QuantityValue microsiemens)
+        public static ElectricAdmittance<T> FromMicrosiemens(QuantityValue microsiemens)
         {
             double value = (double) microsiemens;
-            return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
+            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Microsiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Millisiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> from Millisiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance FromMillisiemens(QuantityValue millisiemens)
+        public static ElectricAdmittance<T> FromMillisiemens(QuantityValue millisiemens)
         {
             double value = (double) millisiemens;
-            return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
+            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Millisiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Nanosiemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> from Nanosiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance FromNanosiemens(QuantityValue nanosiemens)
+        public static ElectricAdmittance<T> FromNanosiemens(QuantityValue nanosiemens)
         {
             double value = (double) nanosiemens;
-            return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
+            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Nanosiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Siemens.
+        ///     Get <see cref="ElectricAdmittance{T}" /> from Siemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance FromSiemens(QuantityValue siemens)
+        public static ElectricAdmittance<T> FromSiemens(QuantityValue siemens)
         {
             double value = (double) siemens;
-            return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);
+            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Siemens);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricAdmittance unit value.</returns>
-        public static ElectricAdmittance From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
+        /// <returns><see cref="ElectricAdmittance{T}" /> unit value.</returns>
+        public static ElectricAdmittance<T> From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
         {
-            return new ElectricAdmittance((double)value, fromUnit);
+            return new ElectricAdmittance<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -289,7 +289,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricAdmittance Parse(string str)
+        public static ElectricAdmittance<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -317,9 +317,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricAdmittance Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricAdmittance<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<ElectricAdmittance, ElectricAdmittanceUnit>(
+            return QuantityParser.Default.Parse<ElectricAdmittance<T>, ElectricAdmittanceUnit>(
                 str,
                 provider,
                 From);
@@ -333,7 +333,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricAdmittance result)
+        public static bool TryParse([CanBeNull] string str, out ElectricAdmittance<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -348,9 +348,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricAdmittance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricAdmittance<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricAdmittance, ElectricAdmittanceUnit>(
+            return QuantityParser.Default.TryParse<ElectricAdmittance<T>, ElectricAdmittanceUnit>(
                 str,
                 provider,
                 From,
@@ -412,43 +412,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ElectricAdmittance operator -(ElectricAdmittance right)
+        public static ElectricAdmittance<T> operator -(ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance(-right.Value, right.Unit);
+            return new ElectricAdmittance<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricAdmittance"/> from adding two <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator +(ElectricAdmittance left, ElectricAdmittance right)
+        /// <summary>Get <see cref="ElectricAdmittance{T}"/> from adding two <see cref="ElectricAdmittance{T}"/>.</summary>
+        public static ElectricAdmittance<T> operator +(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricAdmittance<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricAdmittance"/> from subtracting two <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator -(ElectricAdmittance left, ElectricAdmittance right)
+        /// <summary>Get <see cref="ElectricAdmittance{T}"/> from subtracting two <see cref="ElectricAdmittance{T}"/>.</summary>
+        public static ElectricAdmittance<T> operator -(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricAdmittance<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
+        /// <summary>Get <see cref="ElectricAdmittance{T}"/> from multiplying value and <see cref="ElectricAdmittance{T}"/>.</summary>
+        public static ElectricAdmittance<T> operator *(double left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance(left * right.Value, right.Unit);
+            return new ElectricAdmittance<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(ElectricAdmittance left, double right)
+        /// <summary>Get <see cref="ElectricAdmittance{T}"/> from multiplying value and <see cref="ElectricAdmittance{T}"/>.</summary>
+        public static ElectricAdmittance<T> operator *(ElectricAdmittance<T> left, double right)
         {
-            return new ElectricAdmittance(left.Value * right, left.Unit);
+            return new ElectricAdmittance<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricAdmittance"/> from dividing <see cref="ElectricAdmittance"/> by value.</summary>
-        public static ElectricAdmittance operator /(ElectricAdmittance left, double right)
+        /// <summary>Get <see cref="ElectricAdmittance{T}"/> from dividing <see cref="ElectricAdmittance{T}"/> by value.</summary>
+        public static ElectricAdmittance<T> operator /(ElectricAdmittance<T> left, double right)
         {
-            return new ElectricAdmittance(left.Value / right, left.Unit);
+            return new ElectricAdmittance<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ElectricAdmittance"/> by <see cref="ElectricAdmittance"/>.</summary>
-        public static double operator /(ElectricAdmittance left, ElectricAdmittance right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricAdmittance{T}"/> by <see cref="ElectricAdmittance{T}"/>.</summary>
+        public static double operator /(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Siemens / right.Siemens;
         }
@@ -458,39 +458,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ElectricAdmittance left, ElectricAdmittance right)
+        public static bool operator <=(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ElectricAdmittance left, ElectricAdmittance right)
+        public static bool operator >=(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ElectricAdmittance left, ElectricAdmittance right)
+        public static bool operator <(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ElectricAdmittance left, ElectricAdmittance right)
+        public static bool operator >(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)
+        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricAdmittance left, ElectricAdmittance right)
+        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
             return !(left == right);
         }
@@ -499,37 +499,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricAdmittance objElectricAdmittance)) throw new ArgumentException("Expected type ElectricAdmittance.", nameof(obj));
+            if(!(obj is ElectricAdmittance<T> objElectricAdmittance)) throw new ArgumentException("Expected type ElectricAdmittance.", nameof(obj));
 
             return CompareTo(objElectricAdmittance);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ElectricAdmittance other)
+        public int CompareTo(ElectricAdmittance<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricAdmittance objElectricAdmittance))
+            if(obj is null || !(obj is ElectricAdmittance<T> objElectricAdmittance))
                 return false;
 
             return Equals(objElectricAdmittance);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricAdmittance other)
+        /// <remarks>Consider using <see cref="Equals(ElectricAdmittance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricAdmittance<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricAdmittance within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ElectricAdmittance{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -567,7 +567,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricAdmittance other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricAdmittance<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -581,7 +581,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricAdmittance.</returns>
+        /// <returns>A hash code for the current <see cref="ElectricAdmittance{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -629,13 +629,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricAdmittance to another ElectricAdmittance with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricAdmittance{T}" /> to another <see cref="ElectricAdmittance{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricAdmittance with the specified unit.</returns>
-        public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
+        /// <returns>A <see cref="ElectricAdmittance{T}" /> with the specified unit.</returns>
+        public ElectricAdmittance<T> ToUnit(ElectricAdmittanceUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ElectricAdmittance(convertedValue, unit);
+            return new ElectricAdmittance<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -648,7 +648,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricAdmittance ToUnit(UnitSystem unitSystem)
+        public ElectricAdmittance<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -694,10 +694,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricAdmittance ToBaseUnit()
+        internal ElectricAdmittance<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricAdmittance(baseUnitValue, BaseUnit);
+            return new ElectricAdmittance<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(ElectricAdmittanceUnit unit)
@@ -809,7 +809,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -819,12 +819,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricAdmittance<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -869,16 +869,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricAdmittance))
+            if(conversionType == typeof(ElectricAdmittance<T>))
                 return this;
             else if(conversionType == typeof(ElectricAdmittanceUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ElectricAdmittance.QuantityType;
+                return ElectricAdmittance<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return ElectricAdmittance.BaseDimensions;
+                return ElectricAdmittance<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ElectricAdmittance)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricAdmittance<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

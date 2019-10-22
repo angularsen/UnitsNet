@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
-    public partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertiaUnit>, IEquatable<AreaMomentOfInertia>, IComparable, IComparable<AreaMomentOfInertia>, IConvertible, IFormattable
+    public partial struct AreaMomentOfInertia<T> : IQuantity<AreaMomentOfInertiaUnit>, IEquatable<AreaMomentOfInertia<T>>, IComparable, IComparable<AreaMomentOfInertia<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -105,19 +105,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of AreaMomentOfInertia, which is MeterToTheFourth. All conversions go via this value.
+        ///     The base unit of <see cref="AreaMomentOfInertia{T}" />, which is MeterToTheFourth. All conversions go via this value.
         /// </summary>
         public static AreaMomentOfInertiaUnit BaseUnit { get; } = AreaMomentOfInertiaUnit.MeterToTheFourth;
 
         /// <summary>
-        /// Represents the largest possible value of AreaMomentOfInertia
+        /// Represents the largest possible value of <see cref="AreaMomentOfInertia{T}" />
         /// </summary>
-        public static AreaMomentOfInertia MaxValue { get; } = new AreaMomentOfInertia(double.MaxValue, BaseUnit);
+        public static AreaMomentOfInertia<T> MaxValue { get; } = new AreaMomentOfInertia<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of AreaMomentOfInertia
+        /// Represents the smallest possible value of <see cref="AreaMomentOfInertia{T}" />
         /// </summary>
-        public static AreaMomentOfInertia MinValue { get; } = new AreaMomentOfInertia(double.MinValue, BaseUnit);
+        public static AreaMomentOfInertia<T> MinValue { get; } = new AreaMomentOfInertia<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -125,14 +125,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.AreaMomentOfInertia;
 
         /// <summary>
-        ///     All units of measurement for the AreaMomentOfInertia quantity.
+        ///     All units of measurement for the <see cref="AreaMomentOfInertia{T}" /> quantity.
         /// </summary>
         public static AreaMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().Except(new AreaMomentOfInertiaUnit[]{ AreaMomentOfInertiaUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheFourth.
         /// </summary>
-        public static AreaMomentOfInertia Zero { get; } = new AreaMomentOfInertia(0, BaseUnit);
+        public static AreaMomentOfInertia<T> Zero { get; } = new AreaMomentOfInertia<T>(0, BaseUnit);
 
         #endregion
 
@@ -157,44 +157,44 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => AreaMomentOfInertia.QuantityType;
+        public QuantityType Type => AreaMomentOfInertia<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => AreaMomentOfInertia.BaseDimensions;
+        public BaseDimensions Dimensions => AreaMomentOfInertia<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in CentimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in CentimetersToTheFourth.
         /// </summary>
         public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in DecimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in DecimetersToTheFourth.
         /// </summary>
         public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in FeetToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in FeetToTheFourth.
         /// </summary>
         public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in InchesToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in InchesToTheFourth.
         /// </summary>
         public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in MetersToTheFourth.
         /// </summary>
         public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MillimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> in MillimetersToTheFourth.
         /// </summary>
         public double MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
@@ -228,69 +228,69 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from CentimetersToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromCentimetersToTheFourth(QuantityValue centimeterstothefourth)
+        public static AreaMomentOfInertia<T> FromCentimetersToTheFourth(QuantityValue centimeterstothefourth)
         {
             double value = (double) centimeterstothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from DecimetersToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromDecimetersToTheFourth(QuantityValue decimeterstothefourth)
+        public static AreaMomentOfInertia<T> FromDecimetersToTheFourth(QuantityValue decimeterstothefourth)
         {
             double value = (double) decimeterstothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from FeetToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from FeetToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromFeetToTheFourth(QuantityValue feettothefourth)
+        public static AreaMomentOfInertia<T> FromFeetToTheFourth(QuantityValue feettothefourth)
         {
             double value = (double) feettothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from InchesToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from InchesToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromInchesToTheFourth(QuantityValue inchestothefourth)
+        public static AreaMomentOfInertia<T> FromInchesToTheFourth(QuantityValue inchestothefourth)
         {
             double value = (double) inchestothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from MetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from MetersToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromMetersToTheFourth(QuantityValue meterstothefourth)
+        public static AreaMomentOfInertia<T> FromMetersToTheFourth(QuantityValue meterstothefourth)
         {
             double value = (double) meterstothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
+        ///     Get <see cref="AreaMomentOfInertia{T}" /> from MillimetersToTheFourth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromMillimetersToTheFourth(QuantityValue millimeterstothefourth)
+        public static AreaMomentOfInertia<T> FromMillimetersToTheFourth(QuantityValue millimeterstothefourth)
         {
             double value = (double) millimeterstothefourth;
-            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
+            return new AreaMomentOfInertia<T>(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia" />.
+        ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AreaMomentOfInertia unit value.</returns>
-        public static AreaMomentOfInertia From(QuantityValue value, AreaMomentOfInertiaUnit fromUnit)
+        /// <returns><see cref="AreaMomentOfInertia{T}" /> unit value.</returns>
+        public static AreaMomentOfInertia<T> From(QuantityValue value, AreaMomentOfInertiaUnit fromUnit)
         {
-            return new AreaMomentOfInertia((double)value, fromUnit);
+            return new AreaMomentOfInertia<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -319,7 +319,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AreaMomentOfInertia Parse(string str)
+        public static AreaMomentOfInertia<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -347,9 +347,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static AreaMomentOfInertia Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static AreaMomentOfInertia<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(
+            return QuantityParser.Default.Parse<AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
                 str,
                 provider,
                 From);
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out AreaMomentOfInertia result)
+        public static bool TryParse([CanBeNull] string str, out AreaMomentOfInertia<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -378,9 +378,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AreaMomentOfInertia result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AreaMomentOfInertia<T> result)
         {
-            return QuantityParser.Default.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(
+            return QuantityParser.Default.TryParse<AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
                 str,
                 provider,
                 From,
@@ -442,43 +442,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static AreaMomentOfInertia operator -(AreaMomentOfInertia right)
+        public static AreaMomentOfInertia<T> operator -(AreaMomentOfInertia<T> right)
         {
-            return new AreaMomentOfInertia(-right.Value, right.Unit);
+            return new AreaMomentOfInertia<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from adding two <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator +(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        /// <summary>Get <see cref="AreaMomentOfInertia{T}"/> from adding two <see cref="AreaMomentOfInertia{T}"/>.</summary>
+        public static AreaMomentOfInertia<T> operator +(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
-            return new AreaMomentOfInertia(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new AreaMomentOfInertia<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from subtracting two <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator -(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        /// <summary>Get <see cref="AreaMomentOfInertia{T}"/> from subtracting two <see cref="AreaMomentOfInertia{T}"/>.</summary>
+        public static AreaMomentOfInertia<T> operator -(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
-            return new AreaMomentOfInertia(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new AreaMomentOfInertia<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from multiplying value and <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator *(double left, AreaMomentOfInertia right)
+        /// <summary>Get <see cref="AreaMomentOfInertia{T}"/> from multiplying value and <see cref="AreaMomentOfInertia{T}"/>.</summary>
+        public static AreaMomentOfInertia<T> operator *(double left, AreaMomentOfInertia<T> right)
         {
-            return new AreaMomentOfInertia(left * right.Value, right.Unit);
+            return new AreaMomentOfInertia<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from multiplying value and <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator *(AreaMomentOfInertia left, double right)
+        /// <summary>Get <see cref="AreaMomentOfInertia{T}"/> from multiplying value and <see cref="AreaMomentOfInertia{T}"/>.</summary>
+        public static AreaMomentOfInertia<T> operator *(AreaMomentOfInertia<T> left, double right)
         {
-            return new AreaMomentOfInertia(left.Value * right, left.Unit);
+            return new AreaMomentOfInertia<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from dividing <see cref="AreaMomentOfInertia"/> by value.</summary>
-        public static AreaMomentOfInertia operator /(AreaMomentOfInertia left, double right)
+        /// <summary>Get <see cref="AreaMomentOfInertia{T}"/> from dividing <see cref="AreaMomentOfInertia{T}"/> by value.</summary>
+        public static AreaMomentOfInertia<T> operator /(AreaMomentOfInertia<T> left, double right)
         {
-            return new AreaMomentOfInertia(left.Value / right, left.Unit);
+            return new AreaMomentOfInertia<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="AreaMomentOfInertia"/> by <see cref="AreaMomentOfInertia"/>.</summary>
-        public static double operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        /// <summary>Get ratio value from dividing <see cref="AreaMomentOfInertia{T}"/> by <see cref="AreaMomentOfInertia{T}"/>.</summary>
+        public static double operator /(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.MetersToTheFourth / right.MetersToTheFourth;
         }
@@ -488,39 +488,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        public static bool operator <=(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        public static bool operator >=(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        public static bool operator <(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        public static bool operator >(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(AreaMomentOfInertia<T> left, AreaMomentOfInertia<T> right)
         {
             return !(left == right);
         }
@@ -529,37 +529,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AreaMomentOfInertia objAreaMomentOfInertia)) throw new ArgumentException("Expected type AreaMomentOfInertia.", nameof(obj));
+            if(!(obj is AreaMomentOfInertia<T> objAreaMomentOfInertia)) throw new ArgumentException("Expected type AreaMomentOfInertia.", nameof(obj));
 
             return CompareTo(objAreaMomentOfInertia);
         }
 
         /// <inheritdoc />
-        public int CompareTo(AreaMomentOfInertia other)
+        public int CompareTo(AreaMomentOfInertia<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is AreaMomentOfInertia objAreaMomentOfInertia))
+            if(obj is null || !(obj is AreaMomentOfInertia<T> objAreaMomentOfInertia))
                 return false;
 
             return Equals(objAreaMomentOfInertia);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(AreaMomentOfInertia other)
+        /// <remarks>Consider using <see cref="Equals(AreaMomentOfInertia{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(AreaMomentOfInertia<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another AreaMomentOfInertia within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="AreaMomentOfInertia{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -597,7 +597,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AreaMomentOfInertia other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(AreaMomentOfInertia<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -611,7 +611,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current AreaMomentOfInertia.</returns>
+        /// <returns>A hash code for the current <see cref="AreaMomentOfInertia{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -659,13 +659,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="AreaMomentOfInertia{T}" /> to another <see cref="AreaMomentOfInertia{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
-        public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
+        /// <returns>A <see cref="AreaMomentOfInertia{T}" /> with the specified unit.</returns>
+        public AreaMomentOfInertia<T> ToUnit(AreaMomentOfInertiaUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new AreaMomentOfInertia(convertedValue, unit);
+            return new AreaMomentOfInertia<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -678,7 +678,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AreaMomentOfInertia ToUnit(UnitSystem unitSystem)
+        public AreaMomentOfInertia<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -726,10 +726,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AreaMomentOfInertia ToBaseUnit()
+        internal AreaMomentOfInertia<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AreaMomentOfInertia(baseUnitValue, BaseUnit);
+            return new AreaMomentOfInertia<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(AreaMomentOfInertiaUnit unit)
@@ -843,7 +843,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -853,12 +853,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -903,16 +903,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(AreaMomentOfInertia))
+            if(conversionType == typeof(AreaMomentOfInertia<T>))
                 return this;
             else if(conversionType == typeof(AreaMomentOfInertiaUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return AreaMomentOfInertia.QuantityType;
+                return AreaMomentOfInertia<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return AreaMomentOfInertia.BaseDimensions;
+                return AreaMomentOfInertia<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

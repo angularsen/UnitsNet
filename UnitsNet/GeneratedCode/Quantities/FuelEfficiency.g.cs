@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
     /// </remarks>
-    public partial struct FuelEfficiency : IQuantity<FuelEfficiencyUnit>, IEquatable<FuelEfficiency>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
+    public partial struct FuelEfficiency<T> : IQuantity<FuelEfficiencyUnit>, IEquatable<FuelEfficiency<T>>, IComparable, IComparable<FuelEfficiency<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -106,19 +106,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of FuelEfficiency, which is LiterPer100Kilometers. All conversions go via this value.
+        ///     The base unit of <see cref="FuelEfficiency{T}" />, which is LiterPer100Kilometers. All conversions go via this value.
         /// </summary>
         public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
         /// <summary>
-        /// Represents the largest possible value of FuelEfficiency
+        /// Represents the largest possible value of <see cref="FuelEfficiency{T}" />
         /// </summary>
-        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
+        public static FuelEfficiency<T> MaxValue { get; } = new FuelEfficiency<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of FuelEfficiency
+        /// Represents the smallest possible value of <see cref="FuelEfficiency{T}" />
         /// </summary>
-        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
+        public static FuelEfficiency<T> MinValue { get; } = new FuelEfficiency<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +126,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.FuelEfficiency;
 
         /// <summary>
-        ///     All units of measurement for the FuelEfficiency quantity.
+        ///     All units of measurement for the <see cref="FuelEfficiency{T}" /> quantity.
         /// </summary>
         public static FuelEfficiencyUnit[] Units { get; } = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit LiterPer100Kilometers.
         /// </summary>
-        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, BaseUnit);
+        public static FuelEfficiency<T> Zero { get; } = new FuelEfficiency<T>(0, BaseUnit);
 
         #endregion
 
@@ -158,34 +158,34 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => FuelEfficiency.QuantityType;
+        public QuantityType Type => FuelEfficiency<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => FuelEfficiency.BaseDimensions;
+        public BaseDimensions Dimensions => FuelEfficiency<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get FuelEfficiency in KilometersPerLiters.
+        ///     Get <see cref="FuelEfficiency{T}" /> in KilometersPerLiters.
         /// </summary>
         public double KilometersPerLiters => As(FuelEfficiencyUnit.KilometerPerLiter);
 
         /// <summary>
-        ///     Get FuelEfficiency in LitersPer100Kilometers.
+        ///     Get <see cref="FuelEfficiency{T}" /> in LitersPer100Kilometers.
         /// </summary>
         public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
-        ///     Get FuelEfficiency in MilesPerUkGallon.
+        ///     Get <see cref="FuelEfficiency{T}" /> in MilesPerUkGallon.
         /// </summary>
         public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
 
         /// <summary>
-        ///     Get FuelEfficiency in MilesPerUsGallon.
+        ///     Get <see cref="FuelEfficiency{T}" /> in MilesPerUsGallon.
         /// </summary>
         public double MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
 
@@ -219,51 +219,51 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get FuelEfficiency from KilometersPerLiters.
+        ///     Get <see cref="FuelEfficiency{T}" /> from KilometersPerLiters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromKilometersPerLiters(QuantityValue kilometersperliters)
+        public static FuelEfficiency<T> FromKilometersPerLiters(QuantityValue kilometersperliters)
         {
             double value = (double) kilometersperliters;
-            return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
+            return new FuelEfficiency<T>(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
         /// <summary>
-        ///     Get FuelEfficiency from LitersPer100Kilometers.
+        ///     Get <see cref="FuelEfficiency{T}" /> from LitersPer100Kilometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromLitersPer100Kilometers(QuantityValue litersper100kilometers)
+        public static FuelEfficiency<T> FromLitersPer100Kilometers(QuantityValue litersper100kilometers)
         {
             double value = (double) litersper100kilometers;
-            return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
+            return new FuelEfficiency<T>(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
         /// <summary>
-        ///     Get FuelEfficiency from MilesPerUkGallon.
+        ///     Get <see cref="FuelEfficiency{T}" /> from MilesPerUkGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromMilesPerUkGallon(QuantityValue milesperukgallon)
+        public static FuelEfficiency<T> FromMilesPerUkGallon(QuantityValue milesperukgallon)
         {
             double value = (double) milesperukgallon;
-            return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
+            return new FuelEfficiency<T>(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
         /// <summary>
-        ///     Get FuelEfficiency from MilesPerUsGallon.
+        ///     Get <see cref="FuelEfficiency{T}" /> from MilesPerUsGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromMilesPerUsGallon(QuantityValue milesperusgallon)
+        public static FuelEfficiency<T> FromMilesPerUsGallon(QuantityValue milesperusgallon)
         {
             double value = (double) milesperusgallon;
-            return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
+            return new FuelEfficiency<T>(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="FuelEfficiencyUnit" /> to <see cref="FuelEfficiency" />.
+        ///     Dynamically convert from value and unit enum <see cref="FuelEfficiencyUnit" /> to <see cref="FuelEfficiency{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>FuelEfficiency unit value.</returns>
-        public static FuelEfficiency From(QuantityValue value, FuelEfficiencyUnit fromUnit)
+        /// <returns><see cref="FuelEfficiency{T}" /> unit value.</returns>
+        public static FuelEfficiency<T> From(QuantityValue value, FuelEfficiencyUnit fromUnit)
         {
-            return new FuelEfficiency((double)value, fromUnit);
+            return new FuelEfficiency<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -292,7 +292,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static FuelEfficiency Parse(string str)
+        public static FuelEfficiency<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -320,9 +320,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static FuelEfficiency Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static FuelEfficiency<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<FuelEfficiency, FuelEfficiencyUnit>(
+            return QuantityParser.Default.Parse<FuelEfficiency<T>, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From);
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out FuelEfficiency result)
+        public static bool TryParse([CanBeNull] string str, out FuelEfficiency<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -351,9 +351,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out FuelEfficiency result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out FuelEfficiency<T> result)
         {
-            return QuantityParser.Default.TryParse<FuelEfficiency, FuelEfficiencyUnit>(
+            return QuantityParser.Default.TryParse<FuelEfficiency<T>, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From,
@@ -415,43 +415,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static FuelEfficiency operator -(FuelEfficiency right)
+        public static FuelEfficiency<T> operator -(FuelEfficiency<T> right)
         {
-            return new FuelEfficiency(-right.Value, right.Unit);
+            return new FuelEfficiency<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="FuelEfficiency"/> from adding two <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator +(FuelEfficiency left, FuelEfficiency right)
+        /// <summary>Get <see cref="FuelEfficiency{T}"/> from adding two <see cref="FuelEfficiency{T}"/>.</summary>
+        public static FuelEfficiency<T> operator +(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
-            return new FuelEfficiency(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new FuelEfficiency<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="FuelEfficiency"/> from subtracting two <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator -(FuelEfficiency left, FuelEfficiency right)
+        /// <summary>Get <see cref="FuelEfficiency{T}"/> from subtracting two <see cref="FuelEfficiency{T}"/>.</summary>
+        public static FuelEfficiency<T> operator -(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
-            return new FuelEfficiency(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new FuelEfficiency<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(double left, FuelEfficiency right)
+        /// <summary>Get <see cref="FuelEfficiency{T}"/> from multiplying value and <see cref="FuelEfficiency{T}"/>.</summary>
+        public static FuelEfficiency<T> operator *(double left, FuelEfficiency<T> right)
         {
-            return new FuelEfficiency(left * right.Value, right.Unit);
+            return new FuelEfficiency<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(FuelEfficiency left, double right)
+        /// <summary>Get <see cref="FuelEfficiency{T}"/> from multiplying value and <see cref="FuelEfficiency{T}"/>.</summary>
+        public static FuelEfficiency<T> operator *(FuelEfficiency<T> left, double right)
         {
-            return new FuelEfficiency(left.Value * right, left.Unit);
+            return new FuelEfficiency<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="FuelEfficiency"/> from dividing <see cref="FuelEfficiency"/> by value.</summary>
-        public static FuelEfficiency operator /(FuelEfficiency left, double right)
+        /// <summary>Get <see cref="FuelEfficiency{T}"/> from dividing <see cref="FuelEfficiency{T}"/> by value.</summary>
+        public static FuelEfficiency<T> operator /(FuelEfficiency<T> left, double right)
         {
-            return new FuelEfficiency(left.Value / right, left.Unit);
+            return new FuelEfficiency<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="FuelEfficiency"/> by <see cref="FuelEfficiency"/>.</summary>
-        public static double operator /(FuelEfficiency left, FuelEfficiency right)
+        /// <summary>Get ratio value from dividing <see cref="FuelEfficiency{T}"/> by <see cref="FuelEfficiency{T}"/>.</summary>
+        public static double operator /(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.LitersPer100Kilometers / right.LitersPer100Kilometers;
         }
@@ -461,39 +461,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(FuelEfficiency left, FuelEfficiency right)
+        public static bool operator <=(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(FuelEfficiency left, FuelEfficiency right)
+        public static bool operator >=(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(FuelEfficiency left, FuelEfficiency right)
+        public static bool operator <(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(FuelEfficiency left, FuelEfficiency right)
+        public static bool operator >(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(FuelEfficiency left, FuelEfficiency right)
+        /// <remarks>Consider using <see cref="Equals(FuelEfficiency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(FuelEfficiency left, FuelEfficiency right)
+        /// <remarks>Consider using <see cref="Equals(FuelEfficiency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(FuelEfficiency<T> left, FuelEfficiency<T> right)
         {
             return !(left == right);
         }
@@ -502,37 +502,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is FuelEfficiency objFuelEfficiency)) throw new ArgumentException("Expected type FuelEfficiency.", nameof(obj));
+            if(!(obj is FuelEfficiency<T> objFuelEfficiency)) throw new ArgumentException("Expected type FuelEfficiency.", nameof(obj));
 
             return CompareTo(objFuelEfficiency);
         }
 
         /// <inheritdoc />
-        public int CompareTo(FuelEfficiency other)
+        public int CompareTo(FuelEfficiency<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(FuelEfficiency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is FuelEfficiency objFuelEfficiency))
+            if(obj is null || !(obj is FuelEfficiency<T> objFuelEfficiency))
                 return false;
 
             return Equals(objFuelEfficiency);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(FuelEfficiency other)
+        /// <remarks>Consider using <see cref="Equals(FuelEfficiency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(FuelEfficiency<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another FuelEfficiency within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="FuelEfficiency{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(FuelEfficiency other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(FuelEfficiency<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current FuelEfficiency.</returns>
+        /// <returns>A hash code for the current <see cref="FuelEfficiency{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -632,13 +632,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this FuelEfficiency to another FuelEfficiency with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="FuelEfficiency{T}" /> to another <see cref="FuelEfficiency{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A FuelEfficiency with the specified unit.</returns>
-        public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
+        /// <returns>A <see cref="FuelEfficiency{T}" /> with the specified unit.</returns>
+        public FuelEfficiency<T> ToUnit(FuelEfficiencyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new FuelEfficiency(convertedValue, unit);
+            return new FuelEfficiency<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -651,7 +651,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public FuelEfficiency ToUnit(UnitSystem unitSystem)
+        public FuelEfficiency<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -697,10 +697,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal FuelEfficiency ToBaseUnit()
+        internal FuelEfficiency<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new FuelEfficiency(baseUnitValue, BaseUnit);
+            return new FuelEfficiency<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(FuelEfficiencyUnit unit)
@@ -812,7 +812,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(FuelEfficiency)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(FuelEfficiency<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -822,12 +822,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(FuelEfficiency)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(FuelEfficiency<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(FuelEfficiency)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(FuelEfficiency<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -872,16 +872,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(FuelEfficiency))
+            if(conversionType == typeof(FuelEfficiency<T>))
                 return this;
             else if(conversionType == typeof(FuelEfficiencyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return FuelEfficiency.QuantityType;
+                return FuelEfficiency<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return FuelEfficiency.BaseDimensions;
+                return FuelEfficiency<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(FuelEfficiency)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(FuelEfficiency<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

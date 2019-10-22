@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as "a to b" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).
     /// </summary>
-    public partial struct Ratio : IQuantity<RatioUnit>, IEquatable<Ratio>, IComparable, IComparable<Ratio>, IConvertible, IFormattable
+    public partial struct Ratio<T> : IQuantity<RatioUnit>, IEquatable<Ratio<T>>, IComparable, IComparable<Ratio<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -105,19 +105,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
+        ///     The base unit of <see cref="Ratio{T}" />, which is DecimalFraction. All conversions go via this value.
         /// </summary>
         public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Ratio
+        /// Represents the largest possible value of <see cref="Ratio{T}" />
         /// </summary>
-        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
+        public static Ratio<T> MaxValue { get; } = new Ratio<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Ratio
+        /// Represents the smallest possible value of <see cref="Ratio{T}" />
         /// </summary>
-        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
+        public static Ratio<T> MinValue { get; } = new Ratio<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -125,14 +125,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Ratio;
 
         /// <summary>
-        ///     All units of measurement for the Ratio quantity.
+        ///     All units of measurement for the <see cref="Ratio{T}" /> quantity.
         /// </summary>
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
+        public static Ratio<T> Zero { get; } = new Ratio<T>(0, BaseUnit);
 
         #endregion
 
@@ -157,44 +157,44 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Ratio.QuantityType;
+        public QuantityType Type => Ratio<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Ratio.BaseDimensions;
+        public BaseDimensions Dimensions => Ratio<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Ratio in DecimalFractions.
+        ///     Get <see cref="Ratio{T}" /> in DecimalFractions.
         /// </summary>
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
-        ///     Get Ratio in PartsPerBillion.
+        ///     Get <see cref="Ratio{T}" /> in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
 
         /// <summary>
-        ///     Get Ratio in PartsPerMillion.
+        ///     Get <see cref="Ratio{T}" /> in PartsPerMillion.
         /// </summary>
         public double PartsPerMillion => As(RatioUnit.PartPerMillion);
 
         /// <summary>
-        ///     Get Ratio in PartsPerThousand.
+        ///     Get <see cref="Ratio{T}" /> in PartsPerThousand.
         /// </summary>
         public double PartsPerThousand => As(RatioUnit.PartPerThousand);
 
         /// <summary>
-        ///     Get Ratio in PartsPerTrillion.
+        ///     Get <see cref="Ratio{T}" /> in PartsPerTrillion.
         /// </summary>
         public double PartsPerTrillion => As(RatioUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Get Ratio in Percent.
+        ///     Get <see cref="Ratio{T}" /> in Percent.
         /// </summary>
         public double Percent => As(RatioUnit.Percent);
 
@@ -228,69 +228,69 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Ratio from DecimalFractions.
+        ///     Get <see cref="Ratio{T}" /> from DecimalFractions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromDecimalFractions(QuantityValue decimalfractions)
+        public static Ratio<T> FromDecimalFractions(QuantityValue decimalfractions)
         {
             double value = (double) decimalfractions;
-            return new Ratio(value, RatioUnit.DecimalFraction);
+            return new Ratio<T>(value, RatioUnit.DecimalFraction);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerBillion.
+        ///     Get <see cref="Ratio{T}" /> from PartsPerBillion.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromPartsPerBillion(QuantityValue partsperbillion)
+        public static Ratio<T> FromPartsPerBillion(QuantityValue partsperbillion)
         {
             double value = (double) partsperbillion;
-            return new Ratio(value, RatioUnit.PartPerBillion);
+            return new Ratio<T>(value, RatioUnit.PartPerBillion);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerMillion.
+        ///     Get <see cref="Ratio{T}" /> from PartsPerMillion.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromPartsPerMillion(QuantityValue partspermillion)
+        public static Ratio<T> FromPartsPerMillion(QuantityValue partspermillion)
         {
             double value = (double) partspermillion;
-            return new Ratio(value, RatioUnit.PartPerMillion);
+            return new Ratio<T>(value, RatioUnit.PartPerMillion);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerThousand.
+        ///     Get <see cref="Ratio{T}" /> from PartsPerThousand.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromPartsPerThousand(QuantityValue partsperthousand)
+        public static Ratio<T> FromPartsPerThousand(QuantityValue partsperthousand)
         {
             double value = (double) partsperthousand;
-            return new Ratio(value, RatioUnit.PartPerThousand);
+            return new Ratio<T>(value, RatioUnit.PartPerThousand);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerTrillion.
+        ///     Get <see cref="Ratio{T}" /> from PartsPerTrillion.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromPartsPerTrillion(QuantityValue partspertrillion)
+        public static Ratio<T> FromPartsPerTrillion(QuantityValue partspertrillion)
         {
             double value = (double) partspertrillion;
-            return new Ratio(value, RatioUnit.PartPerTrillion);
+            return new Ratio<T>(value, RatioUnit.PartPerTrillion);
         }
         /// <summary>
-        ///     Get Ratio from Percent.
+        ///     Get <see cref="Ratio{T}" /> from Percent.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Ratio FromPercent(QuantityValue percent)
+        public static Ratio<T> FromPercent(QuantityValue percent)
         {
             double value = (double) percent;
-            return new Ratio(value, RatioUnit.Percent);
+            return new Ratio<T>(value, RatioUnit.Percent);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
+        ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Ratio unit value.</returns>
-        public static Ratio From(QuantityValue value, RatioUnit fromUnit)
+        /// <returns><see cref="Ratio{T}" /> unit value.</returns>
+        public static Ratio<T> From(QuantityValue value, RatioUnit fromUnit)
         {
-            return new Ratio((double)value, fromUnit);
+            return new Ratio<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -319,7 +319,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Ratio Parse(string str)
+        public static Ratio<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -347,9 +347,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Ratio Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Ratio<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Ratio, RatioUnit>(
+            return QuantityParser.Default.Parse<Ratio<T>, RatioUnit>(
                 str,
                 provider,
                 From);
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Ratio result)
+        public static bool TryParse([CanBeNull] string str, out Ratio<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -378,9 +378,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Ratio result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Ratio<T> result)
         {
-            return QuantityParser.Default.TryParse<Ratio, RatioUnit>(
+            return QuantityParser.Default.TryParse<Ratio<T>, RatioUnit>(
                 str,
                 provider,
                 From,
@@ -442,43 +442,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Ratio operator -(Ratio right)
+        public static Ratio<T> operator -(Ratio<T> right)
         {
-            return new Ratio(-right.Value, right.Unit);
+            return new Ratio<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Ratio"/> from adding two <see cref="Ratio"/>.</summary>
-        public static Ratio operator +(Ratio left, Ratio right)
+        /// <summary>Get <see cref="Ratio{T}"/> from adding two <see cref="Ratio{T}"/>.</summary>
+        public static Ratio<T> operator +(Ratio<T> left, Ratio<T> right)
         {
-            return new Ratio(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Ratio<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Ratio"/> from subtracting two <see cref="Ratio"/>.</summary>
-        public static Ratio operator -(Ratio left, Ratio right)
+        /// <summary>Get <see cref="Ratio{T}"/> from subtracting two <see cref="Ratio{T}"/>.</summary>
+        public static Ratio<T> operator -(Ratio<T> left, Ratio<T> right)
         {
-            return new Ratio(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Ratio<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(double left, Ratio right)
+        /// <summary>Get <see cref="Ratio{T}"/> from multiplying value and <see cref="Ratio{T}"/>.</summary>
+        public static Ratio<T> operator *(double left, Ratio<T> right)
         {
-            return new Ratio(left * right.Value, right.Unit);
+            return new Ratio<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(Ratio left, double right)
+        /// <summary>Get <see cref="Ratio{T}"/> from multiplying value and <see cref="Ratio{T}"/>.</summary>
+        public static Ratio<T> operator *(Ratio<T> left, double right)
         {
-            return new Ratio(left.Value * right, left.Unit);
+            return new Ratio<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Ratio"/> from dividing <see cref="Ratio"/> by value.</summary>
-        public static Ratio operator /(Ratio left, double right)
+        /// <summary>Get <see cref="Ratio{T}"/> from dividing <see cref="Ratio{T}"/> by value.</summary>
+        public static Ratio<T> operator /(Ratio<T> left, double right)
         {
-            return new Ratio(left.Value / right, left.Unit);
+            return new Ratio<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Ratio"/> by <see cref="Ratio"/>.</summary>
-        public static double operator /(Ratio left, Ratio right)
+        /// <summary>Get ratio value from dividing <see cref="Ratio{T}"/> by <see cref="Ratio{T}"/>.</summary>
+        public static double operator /(Ratio<T> left, Ratio<T> right)
         {
             return left.DecimalFractions / right.DecimalFractions;
         }
@@ -488,39 +488,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Ratio left, Ratio right)
+        public static bool operator <=(Ratio<T> left, Ratio<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Ratio left, Ratio right)
+        public static bool operator >=(Ratio<T> left, Ratio<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Ratio left, Ratio right)
+        public static bool operator <(Ratio<T> left, Ratio<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Ratio left, Ratio right)
+        public static bool operator >(Ratio<T> left, Ratio<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Ratio left, Ratio right)
+        /// <remarks>Consider using <see cref="Equals(Ratio{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Ratio<T> left, Ratio<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Ratio left, Ratio right)
+        /// <remarks>Consider using <see cref="Equals(Ratio{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Ratio<T> left, Ratio<T> right)
         {
             return !(left == right);
         }
@@ -529,37 +529,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Ratio objRatio)) throw new ArgumentException("Expected type Ratio.", nameof(obj));
+            if(!(obj is Ratio<T> objRatio)) throw new ArgumentException("Expected type Ratio.", nameof(obj));
 
             return CompareTo(objRatio);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Ratio other)
+        public int CompareTo(Ratio<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Ratio{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Ratio objRatio))
+            if(obj is null || !(obj is Ratio<T> objRatio))
                 return false;
 
             return Equals(objRatio);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Ratio other)
+        /// <remarks>Consider using <see cref="Equals(Ratio{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Ratio<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Ratio within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Ratio{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -597,7 +597,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Ratio other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Ratio<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -611,7 +611,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Ratio.</returns>
+        /// <returns>A hash code for the current <see cref="Ratio{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -659,13 +659,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Ratio{T}" /> to another <see cref="Ratio{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Ratio with the specified unit.</returns>
-        public Ratio ToUnit(RatioUnit unit)
+        /// <returns>A <see cref="Ratio{T}" /> with the specified unit.</returns>
+        public Ratio<T> ToUnit(RatioUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Ratio(convertedValue, unit);
+            return new Ratio<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -678,7 +678,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Ratio ToUnit(UnitSystem unitSystem)
+        public Ratio<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -726,10 +726,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Ratio ToBaseUnit()
+        internal Ratio<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Ratio(baseUnitValue, BaseUnit);
+            return new Ratio<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(RatioUnit unit)
@@ -843,7 +843,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Ratio)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Ratio<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -853,12 +853,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Ratio)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Ratio<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Ratio)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Ratio<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -903,16 +903,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Ratio))
+            if(conversionType == typeof(Ratio<T>))
                 return this;
             else if(conversionType == typeof(RatioUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Ratio.QuantityType;
+                return Ratio<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Ratio.BaseDimensions;
+                return Ratio<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Ratio)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Ratio<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

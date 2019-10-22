@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electric_field
     /// </remarks>
-    public partial struct ElectricField : IQuantity<ElectricFieldUnit>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
+    public partial struct ElectricField<T> : IQuantity<ElectricFieldUnit>, IEquatable<ElectricField<T>>, IComparable, IComparable<ElectricField<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -103,19 +103,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
+        ///     The base unit of <see cref="ElectricField{T}" />, which is VoltPerMeter. All conversions go via this value.
         /// </summary>
         public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricField
+        /// Represents the largest possible value of <see cref="ElectricField{T}" />
         /// </summary>
-        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
+        public static ElectricField<T> MaxValue { get; } = new ElectricField<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricField
+        /// Represents the smallest possible value of <see cref="ElectricField{T}" />
         /// </summary>
-        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
+        public static ElectricField<T> MinValue { get; } = new ElectricField<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -123,14 +123,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ElectricField;
 
         /// <summary>
-        ///     All units of measurement for the ElectricField quantity.
+        ///     All units of measurement for the <see cref="ElectricField{T}" /> quantity.
         /// </summary>
         public static ElectricFieldUnit[] Units { get; } = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerMeter.
         /// </summary>
-        public static ElectricField Zero { get; } = new ElectricField(0, BaseUnit);
+        public static ElectricField<T> Zero { get; } = new ElectricField<T>(0, BaseUnit);
 
         #endregion
 
@@ -155,19 +155,19 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricField.QuantityType;
+        public QuantityType Type => ElectricField<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricField.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricField<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricField in VoltsPerMeter.
+        ///     Get <see cref="ElectricField{T}" /> in VoltsPerMeter.
         /// </summary>
         public double VoltsPerMeter => As(ElectricFieldUnit.VoltPerMeter);
 
@@ -201,24 +201,24 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricField from VoltsPerMeter.
+        ///     Get <see cref="ElectricField{T}" /> from VoltsPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricField FromVoltsPerMeter(QuantityValue voltspermeter)
+        public static ElectricField<T> FromVoltsPerMeter(QuantityValue voltspermeter)
         {
             double value = (double) voltspermeter;
-            return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
+            return new ElectricField<T>(value, ElectricFieldUnit.VoltPerMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricField unit value.</returns>
-        public static ElectricField From(QuantityValue value, ElectricFieldUnit fromUnit)
+        /// <returns><see cref="ElectricField{T}" /> unit value.</returns>
+        public static ElectricField<T> From(QuantityValue value, ElectricFieldUnit fromUnit)
         {
-            return new ElectricField((double)value, fromUnit);
+            return new ElectricField<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -247,7 +247,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricField Parse(string str)
+        public static ElectricField<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -275,9 +275,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricField Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricField<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<ElectricField, ElectricFieldUnit>(
+            return QuantityParser.Default.Parse<ElectricField<T>, ElectricFieldUnit>(
                 str,
                 provider,
                 From);
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricField result)
+        public static bool TryParse([CanBeNull] string str, out ElectricField<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -306,9 +306,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricField result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricField<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricField, ElectricFieldUnit>(
+            return QuantityParser.Default.TryParse<ElectricField<T>, ElectricFieldUnit>(
                 str,
                 provider,
                 From,
@@ -370,43 +370,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ElectricField operator -(ElectricField right)
+        public static ElectricField<T> operator -(ElectricField<T> right)
         {
-            return new ElectricField(-right.Value, right.Unit);
+            return new ElectricField<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricField"/> from adding two <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator +(ElectricField left, ElectricField right)
+        /// <summary>Get <see cref="ElectricField{T}"/> from adding two <see cref="ElectricField{T}"/>.</summary>
+        public static ElectricField<T> operator +(ElectricField<T> left, ElectricField<T> right)
         {
-            return new ElectricField(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricField<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricField"/> from subtracting two <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator -(ElectricField left, ElectricField right)
+        /// <summary>Get <see cref="ElectricField{T}"/> from subtracting two <see cref="ElectricField{T}"/>.</summary>
+        public static ElectricField<T> operator -(ElectricField<T> left, ElectricField<T> right)
         {
-            return new ElectricField(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricField<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(double left, ElectricField right)
+        /// <summary>Get <see cref="ElectricField{T}"/> from multiplying value and <see cref="ElectricField{T}"/>.</summary>
+        public static ElectricField<T> operator *(double left, ElectricField<T> right)
         {
-            return new ElectricField(left * right.Value, right.Unit);
+            return new ElectricField<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(ElectricField left, double right)
+        /// <summary>Get <see cref="ElectricField{T}"/> from multiplying value and <see cref="ElectricField{T}"/>.</summary>
+        public static ElectricField<T> operator *(ElectricField<T> left, double right)
         {
-            return new ElectricField(left.Value * right, left.Unit);
+            return new ElectricField<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricField"/> from dividing <see cref="ElectricField"/> by value.</summary>
-        public static ElectricField operator /(ElectricField left, double right)
+        /// <summary>Get <see cref="ElectricField{T}"/> from dividing <see cref="ElectricField{T}"/> by value.</summary>
+        public static ElectricField<T> operator /(ElectricField<T> left, double right)
         {
-            return new ElectricField(left.Value / right, left.Unit);
+            return new ElectricField<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ElectricField"/> by <see cref="ElectricField"/>.</summary>
-        public static double operator /(ElectricField left, ElectricField right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricField{T}"/> by <see cref="ElectricField{T}"/>.</summary>
+        public static double operator /(ElectricField<T> left, ElectricField<T> right)
         {
             return left.VoltsPerMeter / right.VoltsPerMeter;
         }
@@ -416,39 +416,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ElectricField left, ElectricField right)
+        public static bool operator <=(ElectricField<T> left, ElectricField<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ElectricField left, ElectricField right)
+        public static bool operator >=(ElectricField<T> left, ElectricField<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ElectricField left, ElectricField right)
+        public static bool operator <(ElectricField<T> left, ElectricField<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ElectricField left, ElectricField right)
+        public static bool operator >(ElectricField<T> left, ElectricField<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricField left, ElectricField right)
+        /// <remarks>Consider using <see cref="Equals(ElectricField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricField<T> left, ElectricField<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricField left, ElectricField right)
+        /// <remarks>Consider using <see cref="Equals(ElectricField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricField<T> left, ElectricField<T> right)
         {
             return !(left == right);
         }
@@ -457,37 +457,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricField objElectricField)) throw new ArgumentException("Expected type ElectricField.", nameof(obj));
+            if(!(obj is ElectricField<T> objElectricField)) throw new ArgumentException("Expected type ElectricField.", nameof(obj));
 
             return CompareTo(objElectricField);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ElectricField other)
+        public int CompareTo(ElectricField<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricField objElectricField))
+            if(obj is null || !(obj is ElectricField<T> objElectricField))
                 return false;
 
             return Equals(objElectricField);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricField other)
+        /// <remarks>Consider using <see cref="Equals(ElectricField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricField<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricField within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ElectricField{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -525,7 +525,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricField other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricField<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -539,7 +539,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricField.</returns>
+        /// <returns>A hash code for the current <see cref="ElectricField{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -587,13 +587,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricField{T}" /> to another <see cref="ElectricField{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricField with the specified unit.</returns>
-        public ElectricField ToUnit(ElectricFieldUnit unit)
+        /// <returns>A <see cref="ElectricField{T}" /> with the specified unit.</returns>
+        public ElectricField<T> ToUnit(ElectricFieldUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ElectricField(convertedValue, unit);
+            return new ElectricField<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -606,7 +606,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricField ToUnit(UnitSystem unitSystem)
+        public ElectricField<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -649,10 +649,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricField ToBaseUnit()
+        internal ElectricField<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricField(baseUnitValue, BaseUnit);
+            return new ElectricField<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(ElectricFieldUnit unit)
@@ -761,7 +761,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricField)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricField<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -771,12 +771,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricField)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricField<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricField)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricField<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -821,16 +821,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricField))
+            if(conversionType == typeof(ElectricField<T>))
                 return this;
             else if(conversionType == typeof(ElectricFieldUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ElectricField.QuantityType;
+                return ElectricField<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return ElectricField.BaseDimensions;
+                return ElectricField<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ElectricField)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricField<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

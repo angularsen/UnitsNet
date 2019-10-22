@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
-    public partial struct RotationalSpeed : IQuantity<RotationalSpeedUnit>, IEquatable<RotationalSpeed>, IComparable, IComparable<RotationalSpeed>, IConvertible, IFormattable
+    public partial struct RotationalSpeed<T> : IQuantity<RotationalSpeedUnit>, IEquatable<RotationalSpeed<T>>, IComparable, IComparable<RotationalSpeed<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -112,19 +112,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RotationalSpeed, which is RadianPerSecond. All conversions go via this value.
+        ///     The base unit of <see cref="RotationalSpeed{T}" />, which is RadianPerSecond. All conversions go via this value.
         /// </summary>
         public static RotationalSpeedUnit BaseUnit { get; } = RotationalSpeedUnit.RadianPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of RotationalSpeed
+        /// Represents the largest possible value of <see cref="RotationalSpeed{T}" />
         /// </summary>
-        public static RotationalSpeed MaxValue { get; } = new RotationalSpeed(double.MaxValue, BaseUnit);
+        public static RotationalSpeed<T> MaxValue { get; } = new RotationalSpeed<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of RotationalSpeed
+        /// Represents the smallest possible value of <see cref="RotationalSpeed{T}" />
         /// </summary>
-        public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
+        public static RotationalSpeed<T> MinValue { get; } = new RotationalSpeed<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -132,14 +132,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.RotationalSpeed;
 
         /// <summary>
-        ///     All units of measurement for the RotationalSpeed quantity.
+        ///     All units of measurement for the <see cref="RotationalSpeed{T}" /> quantity.
         /// </summary>
         public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().Except(new RotationalSpeedUnit[]{ RotationalSpeedUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecond.
         /// </summary>
-        public static RotationalSpeed Zero { get; } = new RotationalSpeed(0, BaseUnit);
+        public static RotationalSpeed<T> Zero { get; } = new RotationalSpeed<T>(0, BaseUnit);
 
         #endregion
 
@@ -164,79 +164,79 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => RotationalSpeed.QuantityType;
+        public QuantityType Type => RotationalSpeed<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => RotationalSpeed.BaseDimensions;
+        public BaseDimensions Dimensions => RotationalSpeed<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RotationalSpeed in CentiradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in CentiradiansPerSecond.
         /// </summary>
         public double CentiradiansPerSecond => As(RotationalSpeedUnit.CentiradianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in DeciradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in DeciradiansPerSecond.
         /// </summary>
         public double DeciradiansPerSecond => As(RotationalSpeedUnit.DeciradianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in DegreesPerMinute.
+        ///     Get <see cref="RotationalSpeed{T}" /> in DegreesPerMinute.
         /// </summary>
         public double DegreesPerMinute => As(RotationalSpeedUnit.DegreePerMinute);
 
         /// <summary>
-        ///     Get RotationalSpeed in DegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in DegreesPerSecond.
         /// </summary>
         public double DegreesPerSecond => As(RotationalSpeedUnit.DegreePerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in MicrodegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in MicrodegreesPerSecond.
         /// </summary>
         public double MicrodegreesPerSecond => As(RotationalSpeedUnit.MicrodegreePerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in MicroradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in MicroradiansPerSecond.
         /// </summary>
         public double MicroradiansPerSecond => As(RotationalSpeedUnit.MicroradianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in MillidegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in MillidegreesPerSecond.
         /// </summary>
         public double MillidegreesPerSecond => As(RotationalSpeedUnit.MillidegreePerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in MilliradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in MilliradiansPerSecond.
         /// </summary>
         public double MilliradiansPerSecond => As(RotationalSpeedUnit.MilliradianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in NanodegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in NanodegreesPerSecond.
         /// </summary>
         public double NanodegreesPerSecond => As(RotationalSpeedUnit.NanodegreePerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in NanoradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in NanoradiansPerSecond.
         /// </summary>
         public double NanoradiansPerSecond => As(RotationalSpeedUnit.NanoradianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in RadiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond => As(RotationalSpeedUnit.RadianPerSecond);
 
         /// <summary>
-        ///     Get RotationalSpeed in RevolutionsPerMinute.
+        ///     Get <see cref="RotationalSpeed{T}" /> in RevolutionsPerMinute.
         /// </summary>
         public double RevolutionsPerMinute => As(RotationalSpeedUnit.RevolutionPerMinute);
 
         /// <summary>
-        ///     Get RotationalSpeed in RevolutionsPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> in RevolutionsPerSecond.
         /// </summary>
         public double RevolutionsPerSecond => As(RotationalSpeedUnit.RevolutionPerSecond);
 
@@ -270,132 +270,132 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RotationalSpeed from CentiradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from CentiradiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromCentiradiansPerSecond(QuantityValue centiradianspersecond)
+        public static RotationalSpeed<T> FromCentiradiansPerSecond(QuantityValue centiradianspersecond)
         {
             double value = (double) centiradianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.CentiradianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.CentiradianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from DeciradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from DeciradiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromDeciradiansPerSecond(QuantityValue deciradianspersecond)
+        public static RotationalSpeed<T> FromDeciradiansPerSecond(QuantityValue deciradianspersecond)
         {
             double value = (double) deciradianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.DeciradianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.DeciradianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from DegreesPerMinute.
+        ///     Get <see cref="RotationalSpeed{T}" /> from DegreesPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromDegreesPerMinute(QuantityValue degreesperminute)
+        public static RotationalSpeed<T> FromDegreesPerMinute(QuantityValue degreesperminute)
         {
             double value = (double) degreesperminute;
-            return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerMinute);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.DegreePerMinute);
         }
         /// <summary>
-        ///     Get RotationalSpeed from DegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from DegreesPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromDegreesPerSecond(QuantityValue degreespersecond)
+        public static RotationalSpeed<T> FromDegreesPerSecond(QuantityValue degreespersecond)
         {
             double value = (double) degreespersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.DegreePerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from MicrodegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from MicrodegreesPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromMicrodegreesPerSecond(QuantityValue microdegreespersecond)
+        public static RotationalSpeed<T> FromMicrodegreesPerSecond(QuantityValue microdegreespersecond)
         {
             double value = (double) microdegreespersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.MicrodegreePerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.MicrodegreePerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from MicroradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from MicroradiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromMicroradiansPerSecond(QuantityValue microradianspersecond)
+        public static RotationalSpeed<T> FromMicroradiansPerSecond(QuantityValue microradianspersecond)
         {
             double value = (double) microradianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.MicroradianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.MicroradianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from MillidegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from MillidegreesPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromMillidegreesPerSecond(QuantityValue millidegreespersecond)
+        public static RotationalSpeed<T> FromMillidegreesPerSecond(QuantityValue millidegreespersecond)
         {
             double value = (double) millidegreespersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.MillidegreePerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.MillidegreePerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from MilliradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from MilliradiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromMilliradiansPerSecond(QuantityValue milliradianspersecond)
+        public static RotationalSpeed<T> FromMilliradiansPerSecond(QuantityValue milliradianspersecond)
         {
             double value = (double) milliradianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.MilliradianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.MilliradianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from NanodegreesPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from NanodegreesPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromNanodegreesPerSecond(QuantityValue nanodegreespersecond)
+        public static RotationalSpeed<T> FromNanodegreesPerSecond(QuantityValue nanodegreespersecond)
         {
             double value = (double) nanodegreespersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.NanodegreePerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.NanodegreePerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from NanoradiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from NanoradiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromNanoradiansPerSecond(QuantityValue nanoradianspersecond)
+        public static RotationalSpeed<T> FromNanoradiansPerSecond(QuantityValue nanoradianspersecond)
         {
             double value = (double) nanoradianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.NanoradianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.NanoradianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from RadiansPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from RadiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromRadiansPerSecond(QuantityValue radianspersecond)
+        public static RotationalSpeed<T> FromRadiansPerSecond(QuantityValue radianspersecond)
         {
             double value = (double) radianspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.RadianPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.RadianPerSecond);
         }
         /// <summary>
-        ///     Get RotationalSpeed from RevolutionsPerMinute.
+        ///     Get <see cref="RotationalSpeed{T}" /> from RevolutionsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromRevolutionsPerMinute(QuantityValue revolutionsperminute)
+        public static RotationalSpeed<T> FromRevolutionsPerMinute(QuantityValue revolutionsperminute)
         {
             double value = (double) revolutionsperminute;
-            return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerMinute);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.RevolutionPerMinute);
         }
         /// <summary>
-        ///     Get RotationalSpeed from RevolutionsPerSecond.
+        ///     Get <see cref="RotationalSpeed{T}" /> from RevolutionsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalSpeed FromRevolutionsPerSecond(QuantityValue revolutionspersecond)
+        public static RotationalSpeed<T> FromRevolutionsPerSecond(QuantityValue revolutionspersecond)
         {
             double value = (double) revolutionspersecond;
-            return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerSecond);
+            return new RotationalSpeed<T>(value, RotationalSpeedUnit.RevolutionPerSecond);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
+        ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RotationalSpeed unit value.</returns>
-        public static RotationalSpeed From(QuantityValue value, RotationalSpeedUnit fromUnit)
+        /// <returns><see cref="RotationalSpeed{T}" /> unit value.</returns>
+        public static RotationalSpeed<T> From(QuantityValue value, RotationalSpeedUnit fromUnit)
         {
-            return new RotationalSpeed((double)value, fromUnit);
+            return new RotationalSpeed<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -424,7 +424,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RotationalSpeed Parse(string str)
+        public static RotationalSpeed<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -452,9 +452,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static RotationalSpeed Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static RotationalSpeed<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<RotationalSpeed, RotationalSpeedUnit>(
+            return QuantityParser.Default.Parse<RotationalSpeed<T>, RotationalSpeedUnit>(
                 str,
                 provider,
                 From);
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out RotationalSpeed result)
+        public static bool TryParse([CanBeNull] string str, out RotationalSpeed<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -483,9 +483,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RotationalSpeed result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RotationalSpeed<T> result)
         {
-            return QuantityParser.Default.TryParse<RotationalSpeed, RotationalSpeedUnit>(
+            return QuantityParser.Default.TryParse<RotationalSpeed<T>, RotationalSpeedUnit>(
                 str,
                 provider,
                 From,
@@ -547,43 +547,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static RotationalSpeed operator -(RotationalSpeed right)
+        public static RotationalSpeed<T> operator -(RotationalSpeed<T> right)
         {
-            return new RotationalSpeed(-right.Value, right.Unit);
+            return new RotationalSpeed<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RotationalSpeed"/> from adding two <see cref="RotationalSpeed"/>.</summary>
-        public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from adding two <see cref="RotationalSpeed{T}"/>.</summary>
+        public static RotationalSpeed<T> operator +(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
-            return new RotationalSpeed(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new RotationalSpeed<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RotationalSpeed"/> from subtracting two <see cref="RotationalSpeed"/>.</summary>
-        public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from subtracting two <see cref="RotationalSpeed{T}"/>.</summary>
+        public static RotationalSpeed<T> operator -(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
-            return new RotationalSpeed(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new RotationalSpeed<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RotationalSpeed"/> from multiplying value and <see cref="RotationalSpeed"/>.</summary>
-        public static RotationalSpeed operator *(double left, RotationalSpeed right)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from multiplying value and <see cref="RotationalSpeed{T}"/>.</summary>
+        public static RotationalSpeed<T> operator *(double left, RotationalSpeed<T> right)
         {
-            return new RotationalSpeed(left * right.Value, right.Unit);
+            return new RotationalSpeed<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RotationalSpeed"/> from multiplying value and <see cref="RotationalSpeed"/>.</summary>
-        public static RotationalSpeed operator *(RotationalSpeed left, double right)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from multiplying value and <see cref="RotationalSpeed{T}"/>.</summary>
+        public static RotationalSpeed<T> operator *(RotationalSpeed<T> left, double right)
         {
-            return new RotationalSpeed(left.Value * right, left.Unit);
+            return new RotationalSpeed<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="RotationalSpeed"/> from dividing <see cref="RotationalSpeed"/> by value.</summary>
-        public static RotationalSpeed operator /(RotationalSpeed left, double right)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from dividing <see cref="RotationalSpeed{T}"/> by value.</summary>
+        public static RotationalSpeed<T> operator /(RotationalSpeed<T> left, double right)
         {
-            return new RotationalSpeed(left.Value / right, left.Unit);
+            return new RotationalSpeed<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="RotationalSpeed"/> by <see cref="RotationalSpeed"/>.</summary>
-        public static double operator /(RotationalSpeed left, RotationalSpeed right)
+        /// <summary>Get ratio value from dividing <see cref="RotationalSpeed{T}"/> by <see cref="RotationalSpeed{T}"/>.</summary>
+        public static double operator /(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.RadiansPerSecond / right.RadiansPerSecond;
         }
@@ -593,39 +593,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator <=(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator >=(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator <(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator >(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(RotationalSpeed<T> left, RotationalSpeed<T> right)
         {
             return !(left == right);
         }
@@ -634,37 +634,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RotationalSpeed objRotationalSpeed)) throw new ArgumentException("Expected type RotationalSpeed.", nameof(obj));
+            if(!(obj is RotationalSpeed<T> objRotationalSpeed)) throw new ArgumentException("Expected type RotationalSpeed.", nameof(obj));
 
             return CompareTo(objRotationalSpeed);
         }
 
         /// <inheritdoc />
-        public int CompareTo(RotationalSpeed other)
+        public int CompareTo(RotationalSpeed<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is RotationalSpeed objRotationalSpeed))
+            if(obj is null || !(obj is RotationalSpeed<T> objRotationalSpeed))
                 return false;
 
             return Equals(objRotationalSpeed);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(RotationalSpeed other)
+        /// <remarks>Consider using <see cref="Equals(RotationalSpeed{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(RotationalSpeed<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another RotationalSpeed within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="RotationalSpeed{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -702,7 +702,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RotationalSpeed other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RotationalSpeed<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -716,7 +716,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current RotationalSpeed.</returns>
+        /// <returns>A hash code for the current <see cref="RotationalSpeed{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -764,13 +764,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="RotationalSpeed{T}" /> to another <see cref="RotationalSpeed{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A RotationalSpeed with the specified unit.</returns>
-        public RotationalSpeed ToUnit(RotationalSpeedUnit unit)
+        /// <returns>A <see cref="RotationalSpeed{T}" /> with the specified unit.</returns>
+        public RotationalSpeed<T> ToUnit(RotationalSpeedUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new RotationalSpeed(convertedValue, unit);
+            return new RotationalSpeed<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -783,7 +783,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RotationalSpeed ToUnit(UnitSystem unitSystem)
+        public RotationalSpeed<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -838,10 +838,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RotationalSpeed ToBaseUnit()
+        internal RotationalSpeed<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RotationalSpeed(baseUnitValue, BaseUnit);
+            return new RotationalSpeed<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(RotationalSpeedUnit unit)
@@ -962,7 +962,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RotationalSpeed)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RotationalSpeed<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -972,12 +972,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RotationalSpeed)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RotationalSpeed<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RotationalSpeed)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RotationalSpeed<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1022,16 +1022,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RotationalSpeed))
+            if(conversionType == typeof(RotationalSpeed<T>))
                 return this;
             else if(conversionType == typeof(RotationalSpeedUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return RotationalSpeed.QuantityType;
+                return RotationalSpeed<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return RotationalSpeed.BaseDimensions;
+                return RotationalSpeed<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(RotationalSpeed)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(RotationalSpeed<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
-    public partial struct Acceleration : IQuantity<AccelerationUnit>, IEquatable<Acceleration>, IComparable, IComparable<Acceleration>, IConvertible, IFormattable
+    public partial struct Acceleration<T> : IQuantity<AccelerationUnit>, IEquatable<Acceleration<T>>, IComparable, IComparable<Acceleration<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -112,19 +112,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
+        ///     The base unit of <see cref="Acceleration{T}" />, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
         public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
-        /// Represents the largest possible value of Acceleration
+        /// Represents the largest possible value of <see cref="Acceleration{T}" />
         /// </summary>
-        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration<T> MaxValue { get; } = new Acceleration<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Acceleration
+        /// Represents the smallest possible value of <see cref="Acceleration{T}" />
         /// </summary>
-        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration<T> MinValue { get; } = new Acceleration<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -132,14 +132,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
 
         /// <summary>
-        ///     All units of measurement for the Acceleration quantity.
+        ///     All units of measurement for the <see cref="Acceleration{T}" /> quantity.
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
+        public static Acceleration<T> Zero { get; } = new Acceleration<T>(0, BaseUnit);
 
         #endregion
 
@@ -164,79 +164,79 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Acceleration.QuantityType;
+        public QuantityType Type => Acceleration<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Acceleration.BaseDimensions;
+        public BaseDimensions Dimensions => Acceleration<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Acceleration in CentimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in CentimetersPerSecondSquared.
         /// </summary>
         public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in DecimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in DecimetersPerSecondSquared.
         /// </summary>
         public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in FeetPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in FeetPerSecondSquared.
         /// </summary>
         public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in InchesPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in InchesPerSecondSquared.
         /// </summary>
         public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in KilometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in KilometersPerSecondSquared.
         /// </summary>
         public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerHour.
+        ///     Get <see cref="Acceleration{T}" /> in KnotsPerHour.
         /// </summary>
         public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerMinute.
+        ///     Get <see cref="Acceleration{T}" /> in KnotsPerMinute.
         /// </summary>
         public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerSecond.
+        ///     Get <see cref="Acceleration{T}" /> in KnotsPerSecond.
         /// </summary>
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
 
         /// <summary>
-        ///     Get Acceleration in MetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in MetersPerSecondSquared.
         /// </summary>
         public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in MicrometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in MicrometersPerSecondSquared.
         /// </summary>
         public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in MillimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in MillimetersPerSecondSquared.
         /// </summary>
         public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in NanometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> in NanometersPerSecondSquared.
         /// </summary>
         public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in StandardGravity.
+        ///     Get <see cref="Acceleration{T}" /> in StandardGravity.
         /// </summary>
         public double StandardGravity => As(AccelerationUnit.StandardGravity);
 
@@ -270,132 +270,132 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Acceleration from CentimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from CentimetersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
+        public static Acceleration<T> FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
         {
             double value = (double) centimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.CentimeterPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from DecimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from DecimetersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
+        public static Acceleration<T> FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
         {
             double value = (double) decimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from FeetPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from FeetPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
+        public static Acceleration<T> FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
         {
             double value = (double) feetpersecondsquared;
-            return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.FootPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from InchesPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from InchesPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
+        public static Acceleration<T> FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
         {
             double value = (double) inchespersecondsquared;
-            return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.InchPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from KilometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from KilometersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
+        public static Acceleration<T> FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
         {
             double value = (double) kilometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.KilometerPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from KnotsPerHour.
+        ///     Get <see cref="Acceleration{T}" /> from KnotsPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerHour(QuantityValue knotsperhour)
+        public static Acceleration<T> FromKnotsPerHour(QuantityValue knotsperhour)
         {
             double value = (double) knotsperhour;
-            return new Acceleration(value, AccelerationUnit.KnotPerHour);
+            return new Acceleration<T>(value, AccelerationUnit.KnotPerHour);
         }
         /// <summary>
-        ///     Get Acceleration from KnotsPerMinute.
+        ///     Get <see cref="Acceleration{T}" /> from KnotsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerMinute(QuantityValue knotsperminute)
+        public static Acceleration<T> FromKnotsPerMinute(QuantityValue knotsperminute)
         {
             double value = (double) knotsperminute;
-            return new Acceleration(value, AccelerationUnit.KnotPerMinute);
+            return new Acceleration<T>(value, AccelerationUnit.KnotPerMinute);
         }
         /// <summary>
-        ///     Get Acceleration from KnotsPerSecond.
+        ///     Get <see cref="Acceleration{T}" /> from KnotsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerSecond(QuantityValue knotspersecond)
+        public static Acceleration<T> FromKnotsPerSecond(QuantityValue knotspersecond)
         {
             double value = (double) knotspersecond;
-            return new Acceleration(value, AccelerationUnit.KnotPerSecond);
+            return new Acceleration<T>(value, AccelerationUnit.KnotPerSecond);
         }
         /// <summary>
-        ///     Get Acceleration from MetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from MetersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
+        public static Acceleration<T> FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
         {
             double value = (double) meterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.MeterPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from MicrometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from MicrometersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
+        public static Acceleration<T> FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
         {
             double value = (double) micrometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.MicrometerPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from MillimetersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from MillimetersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
+        public static Acceleration<T> FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
         {
             double value = (double) millimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.MillimeterPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from NanometersPerSecondSquared.
+        ///     Get <see cref="Acceleration{T}" /> from NanometersPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
+        public static Acceleration<T> FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
         {
             double value = (double) nanometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
+            return new Acceleration<T>(value, AccelerationUnit.NanometerPerSecondSquared);
         }
         /// <summary>
-        ///     Get Acceleration from StandardGravity.
+        ///     Get <see cref="Acceleration{T}" /> from StandardGravity.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromStandardGravity(QuantityValue standardgravity)
+        public static Acceleration<T> FromStandardGravity(QuantityValue standardgravity)
         {
             double value = (double) standardgravity;
-            return new Acceleration(value, AccelerationUnit.StandardGravity);
+            return new Acceleration<T>(value, AccelerationUnit.StandardGravity);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
+        ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Acceleration unit value.</returns>
-        public static Acceleration From(QuantityValue value, AccelerationUnit fromUnit)
+        /// <returns><see cref="Acceleration{T}" /> unit value.</returns>
+        public static Acceleration<T> From(QuantityValue value, AccelerationUnit fromUnit)
         {
-            return new Acceleration((double)value, fromUnit);
+            return new Acceleration<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -424,7 +424,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Acceleration Parse(string str)
+        public static Acceleration<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -452,9 +452,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Acceleration Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Acceleration<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Acceleration, AccelerationUnit>(
+            return QuantityParser.Default.Parse<Acceleration<T>, AccelerationUnit>(
                 str,
                 provider,
                 From);
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Acceleration result)
+        public static bool TryParse([CanBeNull] string str, out Acceleration<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -483,9 +483,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Acceleration result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Acceleration<T> result)
         {
-            return QuantityParser.Default.TryParse<Acceleration, AccelerationUnit>(
+            return QuantityParser.Default.TryParse<Acceleration<T>, AccelerationUnit>(
                 str,
                 provider,
                 From,
@@ -547,43 +547,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Acceleration operator -(Acceleration right)
+        public static Acceleration<T> operator -(Acceleration<T> right)
         {
-            return new Acceleration(-right.Value, right.Unit);
+            return new Acceleration<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from adding two <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator +(Acceleration left, Acceleration right)
+        /// <summary>Get <see cref="Acceleration{T}"/> from adding two <see cref="Acceleration{T}"/>.</summary>
+        public static Acceleration<T> operator +(Acceleration<T> left, Acceleration<T> right)
         {
-            return new Acceleration(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Acceleration<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from subtracting two <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator -(Acceleration left, Acceleration right)
+        /// <summary>Get <see cref="Acceleration{T}"/> from subtracting two <see cref="Acceleration{T}"/>.</summary>
+        public static Acceleration<T> operator -(Acceleration<T> left, Acceleration<T> right)
         {
-            return new Acceleration(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Acceleration<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator *(double left, Acceleration right)
+        /// <summary>Get <see cref="Acceleration{T}"/> from multiplying value and <see cref="Acceleration{T}"/>.</summary>
+        public static Acceleration<T> operator *(double left, Acceleration<T> right)
         {
-            return new Acceleration(left * right.Value, right.Unit);
+            return new Acceleration<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator *(Acceleration left, double right)
+        /// <summary>Get <see cref="Acceleration{T}"/> from multiplying value and <see cref="Acceleration{T}"/>.</summary>
+        public static Acceleration<T> operator *(Acceleration<T> left, double right)
         {
-            return new Acceleration(left.Value * right, left.Unit);
+            return new Acceleration<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from dividing <see cref="Acceleration"/> by value.</summary>
-        public static Acceleration operator /(Acceleration left, double right)
+        /// <summary>Get <see cref="Acceleration{T}"/> from dividing <see cref="Acceleration{T}"/> by value.</summary>
+        public static Acceleration<T> operator /(Acceleration<T> left, double right)
         {
-            return new Acceleration(left.Value / right, left.Unit);
+            return new Acceleration<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Acceleration"/> by <see cref="Acceleration"/>.</summary>
-        public static double operator /(Acceleration left, Acceleration right)
+        /// <summary>Get ratio value from dividing <see cref="Acceleration{T}"/> by <see cref="Acceleration{T}"/>.</summary>
+        public static double operator /(Acceleration<T> left, Acceleration<T> right)
         {
             return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
         }
@@ -593,39 +593,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Acceleration left, Acceleration right)
+        public static bool operator <=(Acceleration<T> left, Acceleration<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Acceleration left, Acceleration right)
+        public static bool operator >=(Acceleration<T> left, Acceleration<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Acceleration left, Acceleration right)
+        public static bool operator <(Acceleration<T> left, Acceleration<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Acceleration left, Acceleration right)
+        public static bool operator >(Acceleration<T> left, Acceleration<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Acceleration left, Acceleration right)
+        /// <remarks>Consider using <see cref="Equals(Acceleration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Acceleration<T> left, Acceleration<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Acceleration left, Acceleration right)
+        /// <remarks>Consider using <see cref="Equals(Acceleration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Acceleration<T> left, Acceleration<T> right)
         {
             return !(left == right);
         }
@@ -634,37 +634,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Acceleration objAcceleration)) throw new ArgumentException("Expected type Acceleration.", nameof(obj));
+            if(!(obj is Acceleration<T> objAcceleration)) throw new ArgumentException("Expected type Acceleration.", nameof(obj));
 
             return CompareTo(objAcceleration);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Acceleration other)
+        public int CompareTo(Acceleration<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Acceleration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Acceleration objAcceleration))
+            if(obj is null || !(obj is Acceleration<T> objAcceleration))
                 return false;
 
             return Equals(objAcceleration);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Acceleration other)
+        /// <remarks>Consider using <see cref="Equals(Acceleration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Acceleration<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Acceleration within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Acceleration{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -702,7 +702,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Acceleration other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Acceleration<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -716,7 +716,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Acceleration.</returns>
+        /// <returns>A hash code for the current <see cref="Acceleration{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -764,13 +764,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Acceleration{T}" /> to another <see cref="Acceleration{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Acceleration with the specified unit.</returns>
-        public Acceleration ToUnit(AccelerationUnit unit)
+        /// <returns>A <see cref="Acceleration{T}" /> with the specified unit.</returns>
+        public Acceleration<T> ToUnit(AccelerationUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Acceleration(convertedValue, unit);
+            return new Acceleration<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -783,7 +783,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Acceleration ToUnit(UnitSystem unitSystem)
+        public Acceleration<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -838,10 +838,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Acceleration ToBaseUnit()
+        internal Acceleration<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Acceleration(baseUnitValue, BaseUnit);
+            return new Acceleration<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(AccelerationUnit unit)
@@ -962,7 +962,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Acceleration)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Acceleration<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -972,12 +972,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Acceleration)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Acceleration<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Acceleration)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Acceleration<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -1022,16 +1022,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Acceleration))
+            if(conversionType == typeof(Acceleration<T>))
                 return this;
             else if(conversionType == typeof(AccelerationUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Acceleration.QuantityType;
+                return Acceleration<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Acceleration.BaseDimensions;
+                return Acceleration<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Acceleration)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Acceleration<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

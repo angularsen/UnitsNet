@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
-    public partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    public partial struct Molarity<T> : IQuantity<MolarityUnit>, IEquatable<Molarity<T>>, IComparable, IComparable<Molarity<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -110,19 +110,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
+        ///     The base unit of <see cref="Molarity{T}" />, which is MolesPerCubicMeter. All conversions go via this value.
         /// </summary>
         public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Molarity
+        /// Represents the largest possible value of <see cref="Molarity{T}" />
         /// </summary>
-        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
+        public static Molarity<T> MaxValue { get; } = new Molarity<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Molarity
+        /// Represents the smallest possible value of <see cref="Molarity{T}" />
         /// </summary>
-        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
+        public static Molarity<T> MinValue { get; } = new Molarity<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,14 +130,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Molarity;
 
         /// <summary>
-        ///     All units of measurement for the Molarity quantity.
+        ///     All units of measurement for the <see cref="Molarity{T}" /> quantity.
         /// </summary>
         public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
-        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
+        public static Molarity<T> Zero { get; } = new Molarity<T>(0, BaseUnit);
 
         #endregion
 
@@ -162,54 +162,54 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Molarity.QuantityType;
+        public QuantityType Type => Molarity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Molarity.BaseDimensions;
+        public BaseDimensions Dimensions => Molarity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in CentimolesPerLiter.
         /// </summary>
         public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in DecimolesPerLiter.
         /// </summary>
         public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in MicromolesPerLiter.
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in MillimolesPerLiter.
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
+        ///     Get <see cref="Molarity{T}" /> in MolesPerCubicMeter.
         /// </summary>
         public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in MolesPerLiter.
         /// </summary>
         public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in NanomolesPerLiter.
         /// </summary>
         public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
 
         /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> in PicomolesPerLiter.
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
 
@@ -243,87 +243,87 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from CentimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromCentimolesPerLiter(QuantityValue centimolesperliter)
+        public static Molarity<T> FromCentimolesPerLiter(QuantityValue centimolesperliter)
         {
             double value = (double) centimolesperliter;
-            return new Molarity(value, MolarityUnit.CentimolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.CentimolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from DecimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromDecimolesPerLiter(QuantityValue decimolesperliter)
+        public static Molarity<T> FromDecimolesPerLiter(QuantityValue decimolesperliter)
         {
             double value = (double) decimolesperliter;
-            return new Molarity(value, MolarityUnit.DecimolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.DecimolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from MicromolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolesPerLiter(QuantityValue micromolesperliter)
+        public static Molarity<T> FromMicromolesPerLiter(QuantityValue micromolesperliter)
         {
             double value = (double) micromolesperliter;
-            return new Molarity(value, MolarityUnit.MicromolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.MicromolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from MillimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolesPerLiter(QuantityValue millimolesperliter)
+        public static Molarity<T> FromMillimolesPerLiter(QuantityValue millimolesperliter)
         {
             double value = (double) millimolesperliter;
-            return new Molarity(value, MolarityUnit.MillimolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.MillimolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
+        ///     Get <see cref="Molarity{T}" /> from MolesPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerCubicMeter(QuantityValue molespercubicmeter)
+        public static Molarity<T> FromMolesPerCubicMeter(QuantityValue molespercubicmeter)
         {
             double value = (double) molespercubicmeter;
-            return new Molarity(value, MolarityUnit.MolesPerCubicMeter);
+            return new Molarity<T>(value, MolarityUnit.MolesPerCubicMeter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from MolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerLiter(QuantityValue molesperliter)
+        public static Molarity<T> FromMolesPerLiter(QuantityValue molesperliter)
         {
             double value = (double) molesperliter;
-            return new Molarity(value, MolarityUnit.MolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.MolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from NanomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolesPerLiter(QuantityValue nanomolesperliter)
+        public static Molarity<T> FromNanomolesPerLiter(QuantityValue nanomolesperliter)
         {
             double value = (double) nanomolesperliter;
-            return new Molarity(value, MolarityUnit.NanomolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.NanomolesPerLiter);
         }
         /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
+        ///     Get <see cref="Molarity{T}" /> from PicomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolesPerLiter(QuantityValue picomolesperliter)
+        public static Molarity<T> FromPicomolesPerLiter(QuantityValue picomolesperliter)
         {
             double value = (double) picomolesperliter;
-            return new Molarity(value, MolarityUnit.PicomolesPerLiter);
+            return new Molarity<T>(value, MolarityUnit.PicomolesPerLiter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
+        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Molarity unit value.</returns>
-        public static Molarity From(QuantityValue value, MolarityUnit fromUnit)
+        /// <returns><see cref="Molarity{T}" /> unit value.</returns>
+        public static Molarity<T> From(QuantityValue value, MolarityUnit fromUnit)
         {
-            return new Molarity((double)value, fromUnit);
+            return new Molarity<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -352,7 +352,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Molarity Parse(string str)
+        public static Molarity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -380,9 +380,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Molarity Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Molarity<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.Parse<Molarity<T>, MolarityUnit>(
                 str,
                 provider,
                 From);
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, out Molarity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -411,9 +411,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Molarity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Molarity<T> result)
         {
-            return QuantityParser.Default.TryParse<Molarity, MolarityUnit>(
+            return QuantityParser.Default.TryParse<Molarity<T>, MolarityUnit>(
                 str,
                 provider,
                 From,
@@ -475,43 +475,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Molarity operator -(Molarity right)
+        public static Molarity<T> operator -(Molarity<T> right)
         {
-            return new Molarity(-right.Value, right.Unit);
+            return new Molarity<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from adding two <see cref="Molarity"/>.</summary>
-        public static Molarity operator +(Molarity left, Molarity right)
+        /// <summary>Get <see cref="Molarity{T}"/> from adding two <see cref="Molarity{T}"/>.</summary>
+        public static Molarity<T> operator +(Molarity<T> left, Molarity<T> right)
         {
-            return new Molarity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Molarity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from subtracting two <see cref="Molarity"/>.</summary>
-        public static Molarity operator -(Molarity left, Molarity right)
+        /// <summary>Get <see cref="Molarity{T}"/> from subtracting two <see cref="Molarity{T}"/>.</summary>
+        public static Molarity<T> operator -(Molarity<T> left, Molarity<T> right)
         {
-            return new Molarity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Molarity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(double left, Molarity right)
+        /// <summary>Get <see cref="Molarity{T}"/> from multiplying value and <see cref="Molarity{T}"/>.</summary>
+        public static Molarity<T> operator *(double left, Molarity<T> right)
         {
-            return new Molarity(left * right.Value, right.Unit);
+            return new Molarity<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(Molarity left, double right)
+        /// <summary>Get <see cref="Molarity{T}"/> from multiplying value and <see cref="Molarity{T}"/>.</summary>
+        public static Molarity<T> operator *(Molarity<T> left, double right)
         {
-            return new Molarity(left.Value * right, left.Unit);
+            return new Molarity<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="Molarity"/> from dividing <see cref="Molarity"/> by value.</summary>
-        public static Molarity operator /(Molarity left, double right)
+        /// <summary>Get <see cref="Molarity{T}"/> from dividing <see cref="Molarity{T}"/> by value.</summary>
+        public static Molarity<T> operator /(Molarity<T> left, double right)
         {
-            return new Molarity(left.Value / right, left.Unit);
+            return new Molarity<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Molarity"/> by <see cref="Molarity"/>.</summary>
-        public static double operator /(Molarity left, Molarity right)
+        /// <summary>Get ratio value from dividing <see cref="Molarity{T}"/> by <see cref="Molarity{T}"/>.</summary>
+        public static double operator /(Molarity<T> left, Molarity<T> right)
         {
             return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
         }
@@ -521,39 +521,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Molarity left, Molarity right)
+        public static bool operator <=(Molarity<T> left, Molarity<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Molarity left, Molarity right)
+        public static bool operator >=(Molarity<T> left, Molarity<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Molarity left, Molarity right)
+        public static bool operator <(Molarity<T> left, Molarity<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Molarity left, Molarity right)
+        public static bool operator >(Molarity<T> left, Molarity<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Molarity left, Molarity right)
+        /// <remarks>Consider using <see cref="Equals(Molarity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Molarity<T> left, Molarity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Molarity left, Molarity right)
+        /// <remarks>Consider using <see cref="Equals(Molarity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Molarity<T> left, Molarity<T> right)
         {
             return !(left == right);
         }
@@ -562,37 +562,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Molarity objMolarity)) throw new ArgumentException("Expected type Molarity.", nameof(obj));
+            if(!(obj is Molarity<T> objMolarity)) throw new ArgumentException("Expected type Molarity.", nameof(obj));
 
             return CompareTo(objMolarity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Molarity other)
+        public int CompareTo(Molarity<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Molarity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Molarity objMolarity))
+            if(obj is null || !(obj is Molarity<T> objMolarity))
                 return false;
 
             return Equals(objMolarity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Molarity other)
+        /// <remarks>Consider using <see cref="Equals(Molarity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Molarity<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Molarity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Molarity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -630,7 +630,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Molarity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Molarity<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -644,7 +644,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Molarity.</returns>
+        /// <returns>A hash code for the current <see cref="Molarity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -692,13 +692,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Molarity{T}" /> to another <see cref="Molarity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Molarity with the specified unit.</returns>
-        public Molarity ToUnit(MolarityUnit unit)
+        /// <returns>A <see cref="Molarity{T}" /> with the specified unit.</returns>
+        public Molarity<T> ToUnit(MolarityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Molarity(convertedValue, unit);
+            return new Molarity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -711,7 +711,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Molarity ToUnit(UnitSystem unitSystem)
+        public Molarity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -761,10 +761,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Molarity ToBaseUnit()
+        internal Molarity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Molarity(baseUnitValue, BaseUnit);
+            return new Molarity<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(MolarityUnit unit)
@@ -880,7 +880,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Molarity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -890,12 +890,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Molarity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Molarity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -940,16 +940,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Molarity))
+            if(conversionType == typeof(Molarity<T>))
                 return this;
             else if(conversionType == typeof(MolarityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Molarity.QuantityType;
+                return Molarity<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return Molarity.BaseDimensions;
+                return Molarity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Molarity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Molarity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

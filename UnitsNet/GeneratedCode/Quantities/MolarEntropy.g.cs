@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
-    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
+    public partial struct MolarEntropy<T> : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy<T>>, IComparable, IComparable<MolarEntropy<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -102,19 +102,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of MolarEntropy, which is JoulePerMoleKelvin. All conversions go via this value.
+        ///     The base unit of <see cref="MolarEntropy{T}" />, which is JoulePerMoleKelvin. All conversions go via this value.
         /// </summary>
         public static MolarEntropyUnit BaseUnit { get; } = MolarEntropyUnit.JoulePerMoleKelvin;
 
         /// <summary>
-        /// Represents the largest possible value of MolarEntropy
+        /// Represents the largest possible value of <see cref="MolarEntropy{T}" />
         /// </summary>
-        public static MolarEntropy MaxValue { get; } = new MolarEntropy(double.MaxValue, BaseUnit);
+        public static MolarEntropy<T> MaxValue { get; } = new MolarEntropy<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of MolarEntropy
+        /// Represents the smallest possible value of <see cref="MolarEntropy{T}" />
         /// </summary>
-        public static MolarEntropy MinValue { get; } = new MolarEntropy(double.MinValue, BaseUnit);
+        public static MolarEntropy<T> MinValue { get; } = new MolarEntropy<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -122,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.MolarEntropy;
 
         /// <summary>
-        ///     All units of measurement for the MolarEntropy quantity.
+        ///     All units of measurement for the <see cref="MolarEntropy{T}" /> quantity.
         /// </summary>
         public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMoleKelvin.
         /// </summary>
-        public static MolarEntropy Zero { get; } = new MolarEntropy(0, BaseUnit);
+        public static MolarEntropy<T> Zero { get; } = new MolarEntropy<T>(0, BaseUnit);
 
         #endregion
 
@@ -154,29 +154,29 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => MolarEntropy.QuantityType;
+        public QuantityType Type => MolarEntropy<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => MolarEntropy.BaseDimensions;
+        public BaseDimensions Dimensions => MolarEntropy<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarEntropy in JoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> in JoulesPerMoleKelvin.
         /// </summary>
         public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
 
         /// <summary>
-        ///     Get MolarEntropy in KilojoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> in KilojoulesPerMoleKelvin.
         /// </summary>
         public double KilojoulesPerMoleKelvin => As(MolarEntropyUnit.KilojoulePerMoleKelvin);
 
         /// <summary>
-        ///     Get MolarEntropy in MegajoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> in MegajoulesPerMoleKelvin.
         /// </summary>
         public double MegajoulesPerMoleKelvin => As(MolarEntropyUnit.MegajoulePerMoleKelvin);
 
@@ -210,42 +210,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> from JoulesPerMoleKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromJoulesPerMoleKelvin(QuantityValue joulespermolekelvin)
+        public static MolarEntropy<T> FromJoulesPerMoleKelvin(QuantityValue joulespermolekelvin)
         {
             double value = (double) joulespermolekelvin;
-            return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
+            return new MolarEntropy<T>(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> from KilojoulesPerMoleKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(QuantityValue kilojoulespermolekelvin)
+        public static MolarEntropy<T> FromKilojoulesPerMoleKelvin(QuantityValue kilojoulespermolekelvin)
         {
             double value = (double) kilojoulespermolekelvin;
-            return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
+            return new MolarEntropy<T>(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
         /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
+        ///     Get <see cref="MolarEntropy{T}" /> from MegajoulesPerMoleKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(QuantityValue megajoulespermolekelvin)
+        public static MolarEntropy<T> FromMegajoulesPerMoleKelvin(QuantityValue megajoulespermolekelvin)
         {
             double value = (double) megajoulespermolekelvin;
-            return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
+            return new MolarEntropy<T>(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
+        ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(QuantityValue value, MolarEntropyUnit fromUnit)
+        /// <returns><see cref="MolarEntropy{T}" /> unit value.</returns>
+        public static MolarEntropy<T> From(QuantityValue value, MolarEntropyUnit fromUnit)
         {
-            return new MolarEntropy((double)value, fromUnit);
+            return new MolarEntropy<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -274,7 +274,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MolarEntropy Parse(string str)
+        public static MolarEntropy<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -302,9 +302,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MolarEntropy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static MolarEntropy<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<MolarEntropy, MolarEntropyUnit>(
+            return QuantityParser.Default.Parse<MolarEntropy<T>, MolarEntropyUnit>(
                 str,
                 provider,
                 From);
@@ -318,7 +318,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out MolarEntropy result)
+        public static bool TryParse([CanBeNull] string str, out MolarEntropy<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -333,9 +333,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MolarEntropy result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MolarEntropy<T> result)
         {
-            return QuantityParser.Default.TryParse<MolarEntropy, MolarEntropyUnit>(
+            return QuantityParser.Default.TryParse<MolarEntropy<T>, MolarEntropyUnit>(
                 str,
                 provider,
                 From,
@@ -397,43 +397,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static MolarEntropy operator -(MolarEntropy right)
+        public static MolarEntropy<T> operator -(MolarEntropy<T> right)
         {
-            return new MolarEntropy(-right.Value, right.Unit);
+            return new MolarEntropy<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MolarEntropy"/> from adding two <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
+        /// <summary>Get <see cref="MolarEntropy{T}"/> from adding two <see cref="MolarEntropy{T}"/>.</summary>
+        public static MolarEntropy<T> operator +(MolarEntropy<T> left, MolarEntropy<T> right)
         {
-            return new MolarEntropy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MolarEntropy<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="MolarEntropy"/> from subtracting two <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
+        /// <summary>Get <see cref="MolarEntropy{T}"/> from subtracting two <see cref="MolarEntropy{T}"/>.</summary>
+        public static MolarEntropy<T> operator -(MolarEntropy<T> left, MolarEntropy<T> right)
         {
-            return new MolarEntropy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MolarEntropy<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(double left, MolarEntropy right)
+        /// <summary>Get <see cref="MolarEntropy{T}"/> from multiplying value and <see cref="MolarEntropy{T}"/>.</summary>
+        public static MolarEntropy<T> operator *(double left, MolarEntropy<T> right)
         {
-            return new MolarEntropy(left * right.Value, right.Unit);
+            return new MolarEntropy<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(MolarEntropy left, double right)
+        /// <summary>Get <see cref="MolarEntropy{T}"/> from multiplying value and <see cref="MolarEntropy{T}"/>.</summary>
+        public static MolarEntropy<T> operator *(MolarEntropy<T> left, double right)
         {
-            return new MolarEntropy(left.Value * right, left.Unit);
+            return new MolarEntropy<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="MolarEntropy"/> from dividing <see cref="MolarEntropy"/> by value.</summary>
-        public static MolarEntropy operator /(MolarEntropy left, double right)
+        /// <summary>Get <see cref="MolarEntropy{T}"/> from dividing <see cref="MolarEntropy{T}"/> by value.</summary>
+        public static MolarEntropy<T> operator /(MolarEntropy<T> left, double right)
         {
-            return new MolarEntropy(left.Value / right, left.Unit);
+            return new MolarEntropy<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="MolarEntropy"/> by <see cref="MolarEntropy"/>.</summary>
-        public static double operator /(MolarEntropy left, MolarEntropy right)
+        /// <summary>Get ratio value from dividing <see cref="MolarEntropy{T}"/> by <see cref="MolarEntropy{T}"/>.</summary>
+        public static double operator /(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.JoulesPerMoleKelvin / right.JoulesPerMoleKelvin;
         }
@@ -443,39 +443,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(MolarEntropy left, MolarEntropy right)
+        public static bool operator <=(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(MolarEntropy left, MolarEntropy right)
+        public static bool operator >=(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(MolarEntropy left, MolarEntropy right)
+        public static bool operator <(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(MolarEntropy left, MolarEntropy right)
+        public static bool operator >(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MolarEntropy<T> left, MolarEntropy<T> right)
         {
             return !(left == right);
         }
@@ -484,37 +484,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MolarEntropy objMolarEntropy)) throw new ArgumentException("Expected type MolarEntropy.", nameof(obj));
+            if(!(obj is MolarEntropy<T> objMolarEntropy)) throw new ArgumentException("Expected type MolarEntropy.", nameof(obj));
 
             return CompareTo(objMolarEntropy);
         }
 
         /// <inheritdoc />
-        public int CompareTo(MolarEntropy other)
+        public int CompareTo(MolarEntropy<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MolarEntropy objMolarEntropy))
+            if(obj is null || !(obj is MolarEntropy<T> objMolarEntropy))
                 return false;
 
             return Equals(objMolarEntropy);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MolarEntropy other)
+        /// <remarks>Consider using <see cref="Equals(MolarEntropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MolarEntropy<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another MolarEntropy within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="MolarEntropy{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -552,7 +552,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MolarEntropy other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MolarEntropy<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -566,7 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current MolarEntropy.</returns>
+        /// <returns>A hash code for the current <see cref="MolarEntropy{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -614,13 +614,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="MolarEntropy{T}" /> to another <see cref="MolarEntropy{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A MolarEntropy with the specified unit.</returns>
-        public MolarEntropy ToUnit(MolarEntropyUnit unit)
+        /// <returns>A <see cref="MolarEntropy{T}" /> with the specified unit.</returns>
+        public MolarEntropy<T> ToUnit(MolarEntropyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new MolarEntropy(convertedValue, unit);
+            return new MolarEntropy<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -633,7 +633,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarEntropy ToUnit(UnitSystem unitSystem)
+        public MolarEntropy<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -678,10 +678,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MolarEntropy ToBaseUnit()
+        internal MolarEntropy<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MolarEntropy(baseUnitValue, BaseUnit);
+            return new MolarEntropy<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(MolarEntropyUnit unit)
@@ -792,7 +792,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MolarEntropy<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -802,12 +802,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MolarEntropy<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MolarEntropy<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -852,16 +852,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MolarEntropy))
+            if(conversionType == typeof(MolarEntropy<T>))
                 return this;
             else if(conversionType == typeof(MolarEntropyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return MolarEntropy.QuantityType;
+                return MolarEntropy<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return MolarEntropy.BaseDimensions;
+                return MolarEntropy<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MolarEntropy<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

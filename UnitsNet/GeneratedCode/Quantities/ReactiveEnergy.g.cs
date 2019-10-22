@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
-    public partial struct ReactiveEnergy : IQuantity<ReactiveEnergyUnit>, IEquatable<ReactiveEnergy>, IComparable, IComparable<ReactiveEnergy>, IConvertible, IFormattable
+    public partial struct ReactiveEnergy<T> : IQuantity<ReactiveEnergyUnit>, IEquatable<ReactiveEnergy<T>>, IComparable, IComparable<ReactiveEnergy<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -102,19 +102,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ReactiveEnergy, which is VoltampereReactiveHour. All conversions go via this value.
+        ///     The base unit of <see cref="ReactiveEnergy{T}" />, which is VoltampereReactiveHour. All conversions go via this value.
         /// </summary>
         public static ReactiveEnergyUnit BaseUnit { get; } = ReactiveEnergyUnit.VoltampereReactiveHour;
 
         /// <summary>
-        /// Represents the largest possible value of ReactiveEnergy
+        /// Represents the largest possible value of <see cref="ReactiveEnergy{T}" />
         /// </summary>
-        public static ReactiveEnergy MaxValue { get; } = new ReactiveEnergy(double.MaxValue, BaseUnit);
+        public static ReactiveEnergy<T> MaxValue { get; } = new ReactiveEnergy<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ReactiveEnergy
+        /// Represents the smallest possible value of <see cref="ReactiveEnergy{T}" />
         /// </summary>
-        public static ReactiveEnergy MinValue { get; } = new ReactiveEnergy(double.MinValue, BaseUnit);
+        public static ReactiveEnergy<T> MinValue { get; } = new ReactiveEnergy<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -122,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ReactiveEnergy;
 
         /// <summary>
-        ///     All units of measurement for the ReactiveEnergy quantity.
+        ///     All units of measurement for the <see cref="ReactiveEnergy{T}" /> quantity.
         /// </summary>
         public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactiveHour.
         /// </summary>
-        public static ReactiveEnergy Zero { get; } = new ReactiveEnergy(0, BaseUnit);
+        public static ReactiveEnergy<T> Zero { get; } = new ReactiveEnergy<T>(0, BaseUnit);
 
         #endregion
 
@@ -154,29 +154,29 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ReactiveEnergy.QuantityType;
+        public QuantityType Type => ReactiveEnergy<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ReactiveEnergy.BaseDimensions;
+        public BaseDimensions Dimensions => ReactiveEnergy<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReactiveEnergy in KilovoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> in KilovoltampereReactiveHours.
         /// </summary>
         public double KilovoltampereReactiveHours => As(ReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy in MegavoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> in MegavoltampereReactiveHours.
         /// </summary>
         public double MegavoltampereReactiveHours => As(ReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy in VoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> in VoltampereReactiveHours.
         /// </summary>
         public double VoltampereReactiveHours => As(ReactiveEnergyUnit.VoltampereReactiveHour);
 
@@ -210,42 +210,42 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReactiveEnergy from KilovoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> from KilovoltampereReactiveHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromKilovoltampereReactiveHours(QuantityValue kilovoltamperereactivehours)
+        public static ReactiveEnergy<T> FromKilovoltampereReactiveHours(QuantityValue kilovoltamperereactivehours)
         {
             double value = (double) kilovoltamperereactivehours;
-            return new ReactiveEnergy(value, ReactiveEnergyUnit.KilovoltampereReactiveHour);
+            return new ReactiveEnergy<T>(value, ReactiveEnergyUnit.KilovoltampereReactiveHour);
         }
         /// <summary>
-        ///     Get ReactiveEnergy from MegavoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> from MegavoltampereReactiveHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromMegavoltampereReactiveHours(QuantityValue megavoltamperereactivehours)
+        public static ReactiveEnergy<T> FromMegavoltampereReactiveHours(QuantityValue megavoltamperereactivehours)
         {
             double value = (double) megavoltamperereactivehours;
-            return new ReactiveEnergy(value, ReactiveEnergyUnit.MegavoltampereReactiveHour);
+            return new ReactiveEnergy<T>(value, ReactiveEnergyUnit.MegavoltampereReactiveHour);
         }
         /// <summary>
-        ///     Get ReactiveEnergy from VoltampereReactiveHours.
+        ///     Get <see cref="ReactiveEnergy{T}" /> from VoltampereReactiveHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromVoltampereReactiveHours(QuantityValue voltamperereactivehours)
+        public static ReactiveEnergy<T> FromVoltampereReactiveHours(QuantityValue voltamperereactivehours)
         {
             double value = (double) voltamperereactivehours;
-            return new ReactiveEnergy(value, ReactiveEnergyUnit.VoltampereReactiveHour);
+            return new ReactiveEnergy<T>(value, ReactiveEnergyUnit.VoltampereReactiveHour);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
+        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ReactiveEnergy unit value.</returns>
-        public static ReactiveEnergy From(QuantityValue value, ReactiveEnergyUnit fromUnit)
+        /// <returns><see cref="ReactiveEnergy{T}" /> unit value.</returns>
+        public static ReactiveEnergy<T> From(QuantityValue value, ReactiveEnergyUnit fromUnit)
         {
-            return new ReactiveEnergy((double)value, fromUnit);
+            return new ReactiveEnergy<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -274,7 +274,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ReactiveEnergy Parse(string str)
+        public static ReactiveEnergy<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -302,9 +302,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ReactiveEnergy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ReactiveEnergy<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<ReactiveEnergy, ReactiveEnergyUnit>(
+            return QuantityParser.Default.Parse<ReactiveEnergy<T>, ReactiveEnergyUnit>(
                 str,
                 provider,
                 From);
@@ -318,7 +318,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ReactiveEnergy result)
+        public static bool TryParse([CanBeNull] string str, out ReactiveEnergy<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -333,9 +333,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ReactiveEnergy result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ReactiveEnergy<T> result)
         {
-            return QuantityParser.Default.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(
+            return QuantityParser.Default.TryParse<ReactiveEnergy<T>, ReactiveEnergyUnit>(
                 str,
                 provider,
                 From,
@@ -397,43 +397,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ReactiveEnergy operator -(ReactiveEnergy right)
+        public static ReactiveEnergy<T> operator -(ReactiveEnergy<T> right)
         {
-            return new ReactiveEnergy(-right.Value, right.Unit);
+            return new ReactiveEnergy<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ReactiveEnergy"/> from adding two <see cref="ReactiveEnergy"/>.</summary>
-        public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
+        /// <summary>Get <see cref="ReactiveEnergy{T}"/> from adding two <see cref="ReactiveEnergy{T}"/>.</summary>
+        public static ReactiveEnergy<T> operator +(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
-            return new ReactiveEnergy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ReactiveEnergy<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactiveEnergy"/> from subtracting two <see cref="ReactiveEnergy"/>.</summary>
-        public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
+        /// <summary>Get <see cref="ReactiveEnergy{T}"/> from subtracting two <see cref="ReactiveEnergy{T}"/>.</summary>
+        public static ReactiveEnergy<T> operator -(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
-            return new ReactiveEnergy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ReactiveEnergy<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactiveEnergy"/> from multiplying value and <see cref="ReactiveEnergy"/>.</summary>
-        public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
+        /// <summary>Get <see cref="ReactiveEnergy{T}"/> from multiplying value and <see cref="ReactiveEnergy{T}"/>.</summary>
+        public static ReactiveEnergy<T> operator *(double left, ReactiveEnergy<T> right)
         {
-            return new ReactiveEnergy(left * right.Value, right.Unit);
+            return new ReactiveEnergy<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ReactiveEnergy"/> from multiplying value and <see cref="ReactiveEnergy"/>.</summary>
-        public static ReactiveEnergy operator *(ReactiveEnergy left, double right)
+        /// <summary>Get <see cref="ReactiveEnergy{T}"/> from multiplying value and <see cref="ReactiveEnergy{T}"/>.</summary>
+        public static ReactiveEnergy<T> operator *(ReactiveEnergy<T> left, double right)
         {
-            return new ReactiveEnergy(left.Value * right, left.Unit);
+            return new ReactiveEnergy<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactiveEnergy"/> from dividing <see cref="ReactiveEnergy"/> by value.</summary>
-        public static ReactiveEnergy operator /(ReactiveEnergy left, double right)
+        /// <summary>Get <see cref="ReactiveEnergy{T}"/> from dividing <see cref="ReactiveEnergy{T}"/> by value.</summary>
+        public static ReactiveEnergy<T> operator /(ReactiveEnergy<T> left, double right)
         {
-            return new ReactiveEnergy(left.Value / right, left.Unit);
+            return new ReactiveEnergy<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ReactiveEnergy"/> by <see cref="ReactiveEnergy"/>.</summary>
-        public static double operator /(ReactiveEnergy left, ReactiveEnergy right)
+        /// <summary>Get ratio value from dividing <see cref="ReactiveEnergy{T}"/> by <see cref="ReactiveEnergy{T}"/>.</summary>
+        public static double operator /(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.VoltampereReactiveHours / right.VoltampereReactiveHours;
         }
@@ -443,39 +443,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ReactiveEnergy left, ReactiveEnergy right)
+        public static bool operator <=(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ReactiveEnergy left, ReactiveEnergy right)
+        public static bool operator >=(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ReactiveEnergy left, ReactiveEnergy right)
+        public static bool operator <(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ReactiveEnergy left, ReactiveEnergy right)
+        public static bool operator >(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)
+        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)
+        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ReactiveEnergy<T> left, ReactiveEnergy<T> right)
         {
             return !(left == right);
         }
@@ -484,37 +484,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ReactiveEnergy objReactiveEnergy)) throw new ArgumentException("Expected type ReactiveEnergy.", nameof(obj));
+            if(!(obj is ReactiveEnergy<T> objReactiveEnergy)) throw new ArgumentException("Expected type ReactiveEnergy.", nameof(obj));
 
             return CompareTo(objReactiveEnergy);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ReactiveEnergy other)
+        public int CompareTo(ReactiveEnergy<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ReactiveEnergy objReactiveEnergy))
+            if(obj is null || !(obj is ReactiveEnergy<T> objReactiveEnergy))
                 return false;
 
             return Equals(objReactiveEnergy);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ReactiveEnergy other)
+        /// <remarks>Consider using <see cref="Equals(ReactiveEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ReactiveEnergy<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ReactiveEnergy within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ReactiveEnergy{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -552,7 +552,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ReactiveEnergy other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ReactiveEnergy<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -566,7 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ReactiveEnergy.</returns>
+        /// <returns>A hash code for the current <see cref="ReactiveEnergy{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -614,13 +614,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ReactiveEnergy to another ReactiveEnergy with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ReactiveEnergy{T}" /> to another <see cref="ReactiveEnergy{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ReactiveEnergy with the specified unit.</returns>
-        public ReactiveEnergy ToUnit(ReactiveEnergyUnit unit)
+        /// <returns>A <see cref="ReactiveEnergy{T}" /> with the specified unit.</returns>
+        public ReactiveEnergy<T> ToUnit(ReactiveEnergyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ReactiveEnergy(convertedValue, unit);
+            return new ReactiveEnergy<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -633,7 +633,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ReactiveEnergy ToUnit(UnitSystem unitSystem)
+        public ReactiveEnergy<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -678,10 +678,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ReactiveEnergy ToBaseUnit()
+        internal ReactiveEnergy<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ReactiveEnergy(baseUnitValue, BaseUnit);
+            return new ReactiveEnergy<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(ReactiveEnergyUnit unit)
@@ -792,7 +792,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -802,12 +802,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactiveEnergy<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -852,16 +852,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ReactiveEnergy))
+            if(conversionType == typeof(ReactiveEnergy<T>))
                 return this;
             else if(conversionType == typeof(ReactiveEnergyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ReactiveEnergy.QuantityType;
+                return ReactiveEnergy<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return ReactiveEnergy.BaseDimensions;
+                return ReactiveEnergy<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ReactiveEnergy)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ReactiveEnergy<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

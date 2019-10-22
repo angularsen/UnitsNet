@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
-    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
+    public partial struct AreaDensity<T> : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity<T>>, IComparable, IComparable<AreaDensity<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -100,19 +100,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
+        ///     The base unit of <see cref="AreaDensity{T}" />, which is KilogramPerSquareMeter. All conversions go via this value.
         /// </summary>
         public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of AreaDensity
+        /// Represents the largest possible value of <see cref="AreaDensity{T}" />
         /// </summary>
-        public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
+        public static AreaDensity<T> MaxValue { get; } = new AreaDensity<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of AreaDensity
+        /// Represents the smallest possible value of <see cref="AreaDensity{T}" />
         /// </summary>
-        public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
+        public static AreaDensity<T> MinValue { get; } = new AreaDensity<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -120,14 +120,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
 
         /// <summary>
-        ///     All units of measurement for the AreaDensity quantity.
+        ///     All units of measurement for the <see cref="AreaDensity{T}" /> quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
-        public static AreaDensity Zero { get; } = new AreaDensity(0, BaseUnit);
+        public static AreaDensity<T> Zero { get; } = new AreaDensity<T>(0, BaseUnit);
 
         #endregion
 
@@ -152,19 +152,19 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => AreaDensity.QuantityType;
+        public QuantityType Type => AreaDensity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => AreaDensity.BaseDimensions;
+        public BaseDimensions Dimensions => AreaDensity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AreaDensity in KilogramsPerSquareMeter.
+        ///     Get <see cref="AreaDensity{T}" /> in KilogramsPerSquareMeter.
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
 
@@ -198,24 +198,24 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AreaDensity from KilogramsPerSquareMeter.
+        ///     Get <see cref="AreaDensity{T}" /> from KilogramsPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
+        public static AreaDensity<T> FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
         {
             double value = (double) kilogramspersquaremeter;
-            return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
+            return new AreaDensity<T>(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity" />.
+        ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AreaDensity unit value.</returns>
-        public static AreaDensity From(QuantityValue value, AreaDensityUnit fromUnit)
+        /// <returns><see cref="AreaDensity{T}" /> unit value.</returns>
+        public static AreaDensity<T> From(QuantityValue value, AreaDensityUnit fromUnit)
         {
-            return new AreaDensity((double)value, fromUnit);
+            return new AreaDensity<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -244,7 +244,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AreaDensity Parse(string str)
+        public static AreaDensity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -272,9 +272,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static AreaDensity Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static AreaDensity<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<AreaDensity, AreaDensityUnit>(
+            return QuantityParser.Default.Parse<AreaDensity<T>, AreaDensityUnit>(
                 str,
                 provider,
                 From);
@@ -288,7 +288,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out AreaDensity result)
+        public static bool TryParse([CanBeNull] string str, out AreaDensity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -303,9 +303,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AreaDensity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AreaDensity<T> result)
         {
-            return QuantityParser.Default.TryParse<AreaDensity, AreaDensityUnit>(
+            return QuantityParser.Default.TryParse<AreaDensity<T>, AreaDensityUnit>(
                 str,
                 provider,
                 From,
@@ -367,43 +367,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static AreaDensity operator -(AreaDensity right)
+        public static AreaDensity<T> operator -(AreaDensity<T> right)
         {
-            return new AreaDensity(-right.Value, right.Unit);
+            return new AreaDensity<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from adding two <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator +(AreaDensity left, AreaDensity right)
+        /// <summary>Get <see cref="AreaDensity{T}"/> from adding two <see cref="AreaDensity{T}"/>.</summary>
+        public static AreaDensity<T> operator +(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return new AreaDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new AreaDensity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from subtracting two <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator -(AreaDensity left, AreaDensity right)
+        /// <summary>Get <see cref="AreaDensity{T}"/> from subtracting two <see cref="AreaDensity{T}"/>.</summary>
+        public static AreaDensity<T> operator -(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return new AreaDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new AreaDensity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(double left, AreaDensity right)
+        /// <summary>Get <see cref="AreaDensity{T}"/> from multiplying value and <see cref="AreaDensity{T}"/>.</summary>
+        public static AreaDensity<T> operator *(double left, AreaDensity<T> right)
         {
-            return new AreaDensity(left * right.Value, right.Unit);
+            return new AreaDensity<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(AreaDensity left, double right)
+        /// <summary>Get <see cref="AreaDensity{T}"/> from multiplying value and <see cref="AreaDensity{T}"/>.</summary>
+        public static AreaDensity<T> operator *(AreaDensity<T> left, double right)
         {
-            return new AreaDensity(left.Value * right, left.Unit);
+            return new AreaDensity<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from dividing <see cref="AreaDensity"/> by value.</summary>
-        public static AreaDensity operator /(AreaDensity left, double right)
+        /// <summary>Get <see cref="AreaDensity{T}"/> from dividing <see cref="AreaDensity{T}"/> by value.</summary>
+        public static AreaDensity<T> operator /(AreaDensity<T> left, double right)
         {
-            return new AreaDensity(left.Value / right, left.Unit);
+            return new AreaDensity<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="AreaDensity"/> by <see cref="AreaDensity"/>.</summary>
-        public static double operator /(AreaDensity left, AreaDensity right)
+        /// <summary>Get ratio value from dividing <see cref="AreaDensity{T}"/> by <see cref="AreaDensity{T}"/>.</summary>
+        public static double operator /(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
         }
@@ -413,39 +413,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(AreaDensity left, AreaDensity right)
+        public static bool operator <=(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(AreaDensity left, AreaDensity right)
+        public static bool operator >=(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(AreaDensity left, AreaDensity right)
+        public static bool operator <(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(AreaDensity left, AreaDensity right)
+        public static bool operator >(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(AreaDensity left, AreaDensity right)
+        /// <remarks>Consider using <see cref="Equals(AreaDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(AreaDensity<T> left, AreaDensity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(AreaDensity left, AreaDensity right)
+        /// <remarks>Consider using <see cref="Equals(AreaDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(AreaDensity<T> left, AreaDensity<T> right)
         {
             return !(left == right);
         }
@@ -454,37 +454,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AreaDensity objAreaDensity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
+            if(!(obj is AreaDensity<T> objAreaDensity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
 
             return CompareTo(objAreaDensity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(AreaDensity other)
+        public int CompareTo(AreaDensity<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is AreaDensity objAreaDensity))
+            if(obj is null || !(obj is AreaDensity<T> objAreaDensity))
                 return false;
 
             return Equals(objAreaDensity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(AreaDensity other)
+        /// <remarks>Consider using <see cref="Equals(AreaDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(AreaDensity<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another AreaDensity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="AreaDensity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -522,7 +522,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AreaDensity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(AreaDensity<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -536,7 +536,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current AreaDensity.</returns>
+        /// <returns>A hash code for the current <see cref="AreaDensity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -584,13 +584,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="AreaDensity{T}" /> to another <see cref="AreaDensity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A AreaDensity with the specified unit.</returns>
-        public AreaDensity ToUnit(AreaDensityUnit unit)
+        /// <returns>A <see cref="AreaDensity{T}" /> with the specified unit.</returns>
+        public AreaDensity<T> ToUnit(AreaDensityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new AreaDensity(convertedValue, unit);
+            return new AreaDensity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -603,7 +603,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AreaDensity ToUnit(UnitSystem unitSystem)
+        public AreaDensity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -646,10 +646,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AreaDensity ToBaseUnit()
+        internal AreaDensity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AreaDensity(baseUnitValue, BaseUnit);
+            return new AreaDensity<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(AreaDensityUnit unit)
@@ -758,7 +758,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaDensity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -768,12 +768,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaDensity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(AreaDensity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(AreaDensity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -818,16 +818,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(AreaDensity))
+            if(conversionType == typeof(AreaDensity<T>))
                 return this;
             else if(conversionType == typeof(AreaDensityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return AreaDensity.QuantityType;
+                return AreaDensity<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return AreaDensity.BaseDimensions;
+                return AreaDensity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(AreaDensity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(AreaDensity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

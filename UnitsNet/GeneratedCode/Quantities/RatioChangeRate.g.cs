@@ -32,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     The change in ratio per unit of time.
     /// </summary>
-    public partial struct RatioChangeRate : IQuantity<RatioChangeRateUnit>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
+    public partial struct RatioChangeRate<T> : IQuantity<RatioChangeRateUnit>, IEquatable<RatioChangeRate<T>>, IComparable, IComparable<RatioChangeRate<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -101,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
+        ///     The base unit of <see cref="RatioChangeRate{T}" />, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
         public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of RatioChangeRate
+        /// Represents the largest possible value of <see cref="RatioChangeRate{T}" />
         /// </summary>
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static RatioChangeRate<T> MaxValue { get; } = new RatioChangeRate<T>(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of RatioChangeRate
+        /// Represents the smallest possible value of <see cref="RatioChangeRate{T}" />
         /// </summary>
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static RatioChangeRate<T> MinValue { get; } = new RatioChangeRate<T>(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -121,14 +121,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
 
         /// <summary>
-        ///     All units of measurement for the RatioChangeRate quantity.
+        ///     All units of measurement for the <see cref="RatioChangeRate{T}" /> quantity.
         /// </summary>
         public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static RatioChangeRate<T> Zero { get; } = new RatioChangeRate<T>(0, BaseUnit);
 
         #endregion
 
@@ -153,24 +153,24 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => RatioChangeRate.QuantityType;
+        public QuantityType Type => RatioChangeRate<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => RatioChangeRate.BaseDimensions;
+        public BaseDimensions Dimensions => RatioChangeRate<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RatioChangeRate in DecimalFractionsPerSecond.
+        ///     Get <see cref="RatioChangeRate{T}" /> in DecimalFractionsPerSecond.
         /// </summary>
         public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Get RatioChangeRate in PercentsPerSecond.
+        ///     Get <see cref="RatioChangeRate{T}" /> in PercentsPerSecond.
         /// </summary>
         public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
 
@@ -204,33 +204,33 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RatioChangeRate from DecimalFractionsPerSecond.
+        ///     Get <see cref="RatioChangeRate{T}" /> from DecimalFractionsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
+        public static RatioChangeRate<T> FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
         {
             double value = (double) decimalfractionspersecond;
-            return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
+            return new RatioChangeRate<T>(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
         /// <summary>
-        ///     Get RatioChangeRate from PercentsPerSecond.
+        ///     Get <see cref="RatioChangeRate{T}" /> from PercentsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromPercentsPerSecond(QuantityValue percentspersecond)
+        public static RatioChangeRate<T> FromPercentsPerSecond(QuantityValue percentspersecond)
         {
             double value = (double) percentspersecond;
-            return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
+            return new RatioChangeRate<T>(value, RatioChangeRateUnit.PercentPerSecond);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(QuantityValue value, RatioChangeRateUnit fromUnit)
+        /// <returns><see cref="RatioChangeRate{T}" /> unit value.</returns>
+        public static RatioChangeRate<T> From(QuantityValue value, RatioChangeRateUnit fromUnit)
         {
-            return new RatioChangeRate((double)value, fromUnit);
+            return new RatioChangeRate<T>((double)value, fromUnit);
         }
 
         #endregion
@@ -259,7 +259,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RatioChangeRate Parse(string str)
+        public static RatioChangeRate<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -287,9 +287,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static RatioChangeRate Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static RatioChangeRate<T> Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            return QuantityParser.Default.Parse<RatioChangeRate, RatioChangeRateUnit>(
+            return QuantityParser.Default.Parse<RatioChangeRate<T>, RatioChangeRateUnit>(
                 str,
                 provider,
                 From);
@@ -303,7 +303,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out RatioChangeRate result)
+        public static bool TryParse([CanBeNull] string str, out RatioChangeRate<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -318,9 +318,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RatioChangeRate result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RatioChangeRate<T> result)
         {
-            return QuantityParser.Default.TryParse<RatioChangeRate, RatioChangeRateUnit>(
+            return QuantityParser.Default.TryParse<RatioChangeRate<T>, RatioChangeRateUnit>(
                 str,
                 provider,
                 From,
@@ -382,43 +382,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static RatioChangeRate operator -(RatioChangeRate right)
+        public static RatioChangeRate<T> operator -(RatioChangeRate<T> right)
         {
-            return new RatioChangeRate(-right.Value, right.Unit);
+            return new RatioChangeRate<T>(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from adding two <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator +(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get <see cref="RatioChangeRate{T}"/> from adding two <see cref="RatioChangeRate{T}"/>.</summary>
+        public static RatioChangeRate<T> operator +(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
-            return new RatioChangeRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new RatioChangeRate<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from subtracting two <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator -(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get <see cref="RatioChangeRate{T}"/> from subtracting two <see cref="RatioChangeRate{T}"/>.</summary>
+        public static RatioChangeRate<T> operator -(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
-            return new RatioChangeRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new RatioChangeRate<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(double left, RatioChangeRate right)
+        /// <summary>Get <see cref="RatioChangeRate{T}"/> from multiplying value and <see cref="RatioChangeRate{T}"/>.</summary>
+        public static RatioChangeRate<T> operator *(double left, RatioChangeRate<T> right)
         {
-            return new RatioChangeRate(left * right.Value, right.Unit);
+            return new RatioChangeRate<T>(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(RatioChangeRate left, double right)
+        /// <summary>Get <see cref="RatioChangeRate{T}"/> from multiplying value and <see cref="RatioChangeRate{T}"/>.</summary>
+        public static RatioChangeRate<T> operator *(RatioChangeRate<T> left, double right)
         {
-            return new RatioChangeRate(left.Value * right, left.Unit);
+            return new RatioChangeRate<T>(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="RatioChangeRate"/> from dividing <see cref="RatioChangeRate"/> by value.</summary>
-        public static RatioChangeRate operator /(RatioChangeRate left, double right)
+        /// <summary>Get <see cref="RatioChangeRate{T}"/> from dividing <see cref="RatioChangeRate{T}"/> by value.</summary>
+        public static RatioChangeRate<T> operator /(RatioChangeRate<T> left, double right)
         {
-            return new RatioChangeRate(left.Value / right, left.Unit);
+            return new RatioChangeRate<T>(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
-        public static double operator /(RatioChangeRate left, RatioChangeRate right)
+        /// <summary>Get ratio value from dividing <see cref="RatioChangeRate{T}"/> by <see cref="RatioChangeRate{T}"/>.</summary>
+        public static double operator /(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
         }
@@ -428,39 +428,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator <=(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.Value <= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator >=(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.Value >= right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator <(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.Value < right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(RatioChangeRate left, RatioChangeRate right)
+        public static bool operator >(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.Value > right.GetValueAs(left.Unit);
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(RatioChangeRate left, RatioChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(RatioChangeRate left, RatioChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(RatioChangeRate<T> left, RatioChangeRate<T> right)
         {
             return !(left == right);
         }
@@ -469,37 +469,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RatioChangeRate objRatioChangeRate)) throw new ArgumentException("Expected type RatioChangeRate.", nameof(obj));
+            if(!(obj is RatioChangeRate<T> objRatioChangeRate)) throw new ArgumentException("Expected type RatioChangeRate.", nameof(obj));
 
             return CompareTo(objRatioChangeRate);
         }
 
         /// <inheritdoc />
-        public int CompareTo(RatioChangeRate other)
+        public int CompareTo(RatioChangeRate<T> other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is RatioChangeRate objRatioChangeRate))
+            if(obj is null || !(obj is RatioChangeRate<T> objRatioChangeRate))
                 return false;
 
             return Equals(objRatioChangeRate);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(RatioChangeRate other)
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(RatioChangeRate<T> other)
         {
             return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another RatioChangeRate within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="RatioChangeRate{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -537,7 +537,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RatioChangeRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RatioChangeRate<T> other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -551,7 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current RatioChangeRate.</returns>
+        /// <returns>A hash code for the current <see cref="RatioChangeRate{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -599,13 +599,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this RatioChangeRate to another RatioChangeRate with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="RatioChangeRate{T}" /> to another <see cref="RatioChangeRate{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A RatioChangeRate with the specified unit.</returns>
-        public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
+        /// <returns>A <see cref="RatioChangeRate{T}" /> with the specified unit.</returns>
+        public RatioChangeRate<T> ToUnit(RatioChangeRateUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            return new RatioChangeRate<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -618,7 +618,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RatioChangeRate ToUnit(UnitSystem unitSystem)
+        public RatioChangeRate<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -662,10 +662,10 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RatioChangeRate ToBaseUnit()
+        internal RatioChangeRate<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RatioChangeRate(baseUnitValue, BaseUnit);
+            return new RatioChangeRate<T>(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(RatioChangeRateUnit unit)
@@ -775,7 +775,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RatioChangeRate<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
@@ -785,12 +785,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RatioChangeRate<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RatioChangeRate<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
@@ -835,16 +835,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RatioChangeRate))
+            if(conversionType == typeof(RatioChangeRate<T>))
                 return this;
             else if(conversionType == typeof(RatioChangeRateUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return RatioChangeRate.QuantityType;
+                return RatioChangeRate<T>.QuantityType;
             else if(conversionType == typeof(BaseDimensions))
-                return RatioChangeRate.BaseDimensions;
+                return RatioChangeRate<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(RatioChangeRate)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(RatioChangeRate<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
