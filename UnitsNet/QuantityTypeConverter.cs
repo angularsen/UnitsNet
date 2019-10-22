@@ -80,7 +80,7 @@ namespace UnitsNet
     /// </para>
     ///   <para>For basic understanding of TypeConverters consult the .NET documentation.</para>
     /// </summary>
-    /// <typeparam name="TQuantity">Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.</typeparam>
+    /// <typeparam name="TQuantity">Quantity value type, such as <see cref="Length{T}"/> or <see cref="Mass{T}"/>.</typeparam>
     /// <remarks>
     /// <para>
     ///     When a string is converted a Quantity the unit given by the string is used.
@@ -150,7 +150,7 @@ namespace UnitsNet
                 QuantityType expected = default(TQuantity).Type;
                 QuantityType actual = QuantityType.Undefined;
 
-                if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;
+                if (attribute.UnitType != null) actual = Quantity.From<double>(1, attribute.UnitType).Type;
                 if (actual != QuantityType.Undefined && expected != actual)
                 {
                     throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
@@ -180,11 +180,11 @@ namespace UnitsNet
                 {
                     DefaultUnitAttribute defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
 
-                    result = Quantity.From(dvalue, defaultUnit.UnitType);
+                    result = Quantity.From<double>(dvalue, defaultUnit.UnitType);
                 }
                 else
                 {
-                    result = Quantity.Parse(culture, typeof(TQuantity), stringValue);
+                    result = Quantity.Parse<double>(culture, typeof(TQuantity), stringValue);
                 }
 
                 ConvertToUnitAttribute convertToUnit = GetAttribute<ConvertToUnitAttribute>(context);

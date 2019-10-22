@@ -33,7 +33,7 @@ namespace UnitsNet
             return Energy<T>.FromJoules(power.Watts * time.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Energy{T}"/> from <see cref="Power{T}"/> times <see cref="Duration"/>.</summary>
+        /// <summary>Get <see cref="Energy{T}"/> from <see cref="Power{T}"/> times <see cref="Duration{T}"/>.</summary>
         public static Energy<T> operator *(Power<T> power, Duration<T> duration )
         {
             return Energy<T>.FromJoules(power.Watts * duration.Seconds);

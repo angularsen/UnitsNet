@@ -23,7 +23,7 @@ namespace UnitsNet
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
-        private static readonly Type[] UnitEnumTypes = typeof(Length)
+        private static readonly Type[] UnitEnumTypes = typeof(Length<double>)
             .Wrap()
             .Assembly
             .GetExportedTypes()
@@ -106,7 +106,7 @@ namespace UnitsNet
         public Enum BaseUnit { get; }
 
         /// <summary>
-        ///     Zero value of quantity, such as <see cref="Length.Zero" />.
+        ///     Zero value of quantity, such as <see cref="Length{T}.Zero" />.
         /// </summary>
         public IQuantity Zero { get; }
 
@@ -116,7 +116,7 @@ namespace UnitsNet
         public Type UnitType { get; }
 
         /// <summary>
-        ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
+        ///     Quantity value type, such as <see cref="Length{T}"/> or <see cref="Mass{T}"/>.
         /// </summary>
         public Type ValueType { get; }
 
@@ -171,8 +171,8 @@ namespace UnitsNet
     /// <inheritdoc cref="QuantityInfo" />
     /// <remarks>
     ///     This is a specialization of <see cref="QuantityInfo" />, for when the unit type is known.
-    ///     Typically you obtain this by looking it up statically from <see cref="Length.Info" /> or
-    ///     <see cref="Length.QuantityInfo" />, or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
+    ///     Typically you obtain this by looking it up statically from <see cref="Length{T}.Info" /> or
+    ///     <see cref="Length{T}.QuantityInfo" />, or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
     /// </remarks>
     /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
     public class QuantityInfo<TUnit> : QuantityInfo

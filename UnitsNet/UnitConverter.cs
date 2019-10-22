@@ -32,19 +32,19 @@ namespace UnitsNet
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
     [PublicAPI]
-    public sealed partial class UnitConverter
+    public sealed partial class UnitConverter<T>
     {
         /// <summary>
         /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
         /// as adding your own third-party units and quantities to convert between.
         /// </summary>
-        public static UnitConverter Default { get; }
+        public static UnitConverter<T> Default { get; }
 
         private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
 
         static UnitConverter()
         {
-            Default = new UnitConverter();
+            Default = new UnitConverter<T>();
             RegisterDefaultConversions(Default);
         }
 
@@ -237,7 +237,7 @@ namespace UnitsNet
         public static double Convert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
-                .From(fromValue, fromUnitValue)
+                .From<T>( fromValue, fromUnitValue)
                 .As(toUnitValue);
         }
 
@@ -252,7 +252,7 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity fromQuantity)) return false;
+            if (!Quantity.TryFrom<T>( fromValue, fromUnitValue, out IQuantity fromQuantity)) return false;
 
             try
             {
@@ -431,7 +431,7 @@ namespace UnitsNet
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
             var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            var fromQuantity = Quantity.From(fromValue, fromUnit);
+            var fromQuantity = Quantity.From<T>( fromValue, fromUnit);
 
             var toUnit = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
             return fromQuantity.As(toUnit);
@@ -513,7 +513,7 @@ namespace UnitsNet
             if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            var fromQuantity = Quantity.From(fromValue, fromUnit);
+            var fromQuantity = Quantity.From<T>( fromValue, fromUnit);
             result = fromQuantity.As(toUnit);
 
             return true;

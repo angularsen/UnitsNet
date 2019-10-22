@@ -7,7 +7,7 @@ namespace UnitsNet
 {
     /// <summary>
     ///     Quantity type was not found. This is typically thrown for dynamic conversions,
-    ///     such as <see cref="UnitConverter.ConvertByName" />.
+    ///     such as <see cref="UnitConverter{T}.ConvertByName" />.
     /// </summary>
     [Obsolete("")]
     public class QuantityNotFoundException : UnitsNetException

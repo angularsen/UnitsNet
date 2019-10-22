@@ -31,7 +31,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets the value in the given unit.
         /// </summary>
-        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length{T}"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
         double As(Enum unit);
@@ -57,7 +57,7 @@ namespace UnitsNet
         /// <summary>
         ///     Converts to a quantity with the given unit representation, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
-        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length{T}"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>A new quantity with the given unit.</returns>
         IQuantity ToUnit(Enum unit);
 

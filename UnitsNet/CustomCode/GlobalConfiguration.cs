@@ -9,8 +9,8 @@ using System.Threading;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Global configuration for culture, used as default culture in methods like <see cref="Length.ToString()" /> and
-    ///     <see cref="Length.Parse(string)" />.
+    ///     Global configuration for culture, used as default culture in methods like <see cref="Length{T}.ToString()" /> and
+    ///     <see cref="Length{T}.Parse(string)" />.
     /// </summary>
     [Obsolete("The only property DefaultCulture is now deprecated. Manipulate Thread.CurrentThread.CurrentUICulture instead.")]
     public static class GlobalConfiguration
