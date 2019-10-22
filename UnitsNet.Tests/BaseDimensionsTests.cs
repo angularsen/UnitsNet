@@ -379,35 +379,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnStaticProperty()
         {
-            var calculatedDimensions = Length.BaseDimensions.Divide(Duration.BaseDimensions);
-            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+            var calculatedDimensions = Length<double>.BaseDimensions.Divide(Duration<double>.BaseDimensions);
+            Assert.True(calculatedDimensions == Speed<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnInstanceProperty()
         {
-            var length = Length.FromKilometers(100);
-            var duration = Duration.FromHours(1);
+            var length = Length<double>.FromKilometers(100);
+            var duration = Duration<double>.FromHours(1);
 
             var calculatedDimensions = length.Dimensions.Divide(duration.Dimensions);
-            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+            Assert.True(calculatedDimensions == Speed<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnStaticProperty()
         {
-            var calculatedDimensions = Mass.BaseDimensions.Multiply(Acceleration.BaseDimensions);
-            Assert.True(calculatedDimensions == Force.BaseDimensions);
+            var calculatedDimensions = Mass<double>.BaseDimensions.Multiply(Acceleration<double>.BaseDimensions);
+            Assert.True(calculatedDimensions == Force<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnInstanceProperty()
         {
-            var mass = Mass.FromPounds(205);
-            var acceleration = Acceleration.FromMetersPerSecondSquared(9.8);
+            var mass = Mass<double>.FromPounds(205);
+            var acceleration = Acceleration<double>.FromMetersPerSecondSquared(9.8);
 
             var calculatedDimensions = mass.Dimensions.Multiply(acceleration.Dimensions);
-            Assert.True(calculatedDimensions == Force.BaseDimensions);
+            Assert.True(calculatedDimensions == Force<double>.BaseDimensions);
         }
 
         [Fact]
@@ -661,41 +661,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnStaticPropertyWithOperatorOverloads()
         {
-            var calculatedDimensions = Length.BaseDimensions / Duration.BaseDimensions;
-            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+            var calculatedDimensions = Length<double>.BaseDimensions / Duration<double>.BaseDimensions;
+            Assert.True(calculatedDimensions == Speed<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnInstancePropertyWithOperatorOverloads()
         {
-            var length = Length.FromKilometers(100);
-            var duration = Duration.FromHours(1);
+            var length = Length<double>.FromKilometers(100);
+            var duration = Duration<double>.FromHours(1);
 
             var calculatedDimensions = length.Dimensions / duration.Dimensions;
-            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+            Assert.True(calculatedDimensions == Speed<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnStaticPropertyWithOperatorOverloads()
         {
-            var calculatedDimensions = Mass.BaseDimensions * Acceleration.BaseDimensions;
-            Assert.True(calculatedDimensions == Force.BaseDimensions);
+            var calculatedDimensions = Mass<double>.BaseDimensions * Acceleration<double>.BaseDimensions;
+            Assert.True(calculatedDimensions == Force<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnInstancePropertyWithOperatorOverloads()
         {
-            var mass = Mass.FromPounds(205);
-            var acceleration = Acceleration.FromMetersPerSecondSquared(9.8);
+            var mass = Mass<double>.FromPounds(205);
+            var acceleration = Acceleration<double>.FromMetersPerSecondSquared(9.8);
 
             var calculatedDimensions = mass.Dimensions * acceleration.Dimensions;
-            Assert.True(calculatedDimensions == Force.BaseDimensions);
+            Assert.True(calculatedDimensions == Force<double>.BaseDimensions);
         }
 
         [Fact]
         public void CheckToStringUsingMolarEntropy()
         {
-            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
+            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy<double>.BaseDimensions.ToString());
         }
 
         [Fact]
@@ -736,7 +736,7 @@ namespace UnitsNet.Tests
             Assert.False(BaseDimensions.Dimensionless.IsDerivedQuantity());
 
             // Example case
-            Assert.True(Level.BaseDimensions.IsDimensionless());
+            Assert.True(Level<double>.BaseDimensions.IsDimensionless());
         }
     }
 }

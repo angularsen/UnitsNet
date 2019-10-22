@@ -105,26 +105,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Speed((double)0.0, SpeedUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Speed<double>((double)0.0, SpeedUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new Speed(double.NegativeInfinity, SpeedUnit.MeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new Speed<double>(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new Speed<double>(double.NegativeInfinity, SpeedUnit.MeterPerSecond));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new Speed<double>(double.NaN, SpeedUnit.MeterPerSecond));
         }
 
         [Fact]
         public void MeterPerSecondToSpeedUnits()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             AssertEx.EqualTolerance(CentimetersPerHourInOneMeterPerSecond, meterpersecond.CentimetersPerHour, CentimetersPerHourTolerance);
             AssertEx.EqualTolerance(CentimetersPerMinutesInOneMeterPerSecond, meterpersecond.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
             AssertEx.EqualTolerance(CentimetersPerSecondInOneMeterPerSecond, meterpersecond.CentimetersPerSecond, CentimetersPerSecondTolerance);
@@ -162,57 +162,57 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerHour).CentimetersPerHour, CentimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerMinute).CentimetersPerMinutes, CentimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerSecond).CentimetersPerSecond, CentimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.DecimeterPerMinute).DecimetersPerMinutes, DecimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.DecimeterPerSecond).DecimetersPerSecond, DecimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerHour).FeetPerHour, FeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerMinute).FeetPerMinute, FeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, FeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerHour).InchesPerHour, InchesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerMinute).InchesPerMinute, InchesPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerSecond).InchesPerSecond, InchesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, KilometersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerMinute).KilometersPerMinutes, KilometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerSecond).KilometersPerSecond, KilometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.Knot).Knots, KnotsTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerHour).MetersPerHour, MetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerMinute).MetersPerMinutes, MetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MicrometerPerMinute).MicrometersPerMinutes, MicrometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MicrometerPerSecond).MicrometersPerSecond, MicrometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, MilesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerHour).MillimetersPerHour, MillimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerMinute).MillimetersPerMinutes, MillimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerSecond).MillimetersPerSecond, MillimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.NanometerPerMinute).NanometersPerMinutes, NanometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.NanometerPerSecond).NanometersPerSecond, NanometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerHour).UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerMinute).UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerSecond).UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerHour).YardsPerHour, YardsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerMinute).YardsPerMinute, YardsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerSecond).YardsPerSecond, YardsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.CentimeterPerHour).CentimetersPerHour, CentimetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.CentimeterPerMinute).CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.CentimeterPerSecond).CentimetersPerSecond, CentimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.DecimeterPerMinute).DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.DecimeterPerSecond).DecimetersPerSecond, DecimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.FootPerHour).FeetPerHour, FeetPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.FootPerMinute).FeetPerMinute, FeetPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, FeetPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.InchPerHour).InchesPerHour, InchesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.InchPerMinute).InchesPerMinute, InchesPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.InchPerSecond).InchesPerSecond, InchesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, KilometersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.KilometerPerMinute).KilometersPerMinutes, KilometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.KilometerPerSecond).KilometersPerSecond, KilometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.Knot).Knots, KnotsTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MeterPerHour).MetersPerHour, MetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MeterPerMinute).MetersPerMinutes, MetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, MetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MicrometerPerMinute).MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MicrometerPerSecond).MicrometersPerSecond, MicrometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MilePerHour).MilesPerHour, MilesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MillimeterPerHour).MillimetersPerHour, MillimetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MillimeterPerMinute).MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.MillimeterPerSecond).MillimetersPerSecond, MillimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.NanometerPerMinute).NanometersPerMinutes, NanometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.NanometerPerSecond).NanometersPerSecond, NanometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.UsSurveyFootPerHour).UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.UsSurveyFootPerMinute).UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.UsSurveyFootPerSecond).UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.YardPerHour).YardsPerHour, YardsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.YardPerMinute).YardsPerMinute, YardsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.From(1, SpeedUnit.YardPerSecond).YardsPerSecond, YardsPerSecondTolerance);
         }
 
         [Fact]
         public void FromMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Speed<double>.FromMetersPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Speed<double>.FromMetersPerSecond(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMetersPerSecond_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NaN));
+            Assert.Throws<ArgumentException>(() => Speed<double>.FromMetersPerSecond(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var meterpersecond = Speed.FromMetersPerSecond(1);
+            var meterpersecond = Speed<double>.FromMetersPerSecond(1);
             AssertEx.EqualTolerance(CentimetersPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.CentimeterPerHour), CentimetersPerHourTolerance);
             AssertEx.EqualTolerance(CentimetersPerMinutesInOneMeterPerSecond, meterpersecond.As(SpeedUnit.CentimeterPerMinute), CentimetersPerMinutesTolerance);
             AssertEx.EqualTolerance(CentimetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.CentimeterPerSecond), CentimetersPerSecondTolerance);
@@ -250,7 +250,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var meterpersecond = Speed.FromMetersPerSecond(1);
+            var meterpersecond = Speed<double>.FromMetersPerSecond(1);
 
             var centimeterperhourQuantity = meterpersecond.ToUnit(SpeedUnit.CentimeterPerHour);
             AssertEx.EqualTolerance(CentimetersPerHourInOneMeterPerSecond, (double)centimeterperhourQuantity.Value, CentimetersPerHourTolerance);
@@ -384,59 +384,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
-            AssertEx.EqualTolerance(1, Speed.FromCentimetersPerHour(meterpersecond.CentimetersPerHour).MetersPerSecond, CentimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromCentimetersPerMinutes(meterpersecond.CentimetersPerMinutes).MetersPerSecond, CentimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromCentimetersPerSecond(meterpersecond.CentimetersPerSecond).MetersPerSecond, CentimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromDecimetersPerMinutes(meterpersecond.DecimetersPerMinutes).MetersPerSecond, DecimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromDecimetersPerSecond(meterpersecond.DecimetersPerSecond).MetersPerSecond, DecimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromFeetPerHour(meterpersecond.FeetPerHour).MetersPerSecond, FeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromFeetPerMinute(meterpersecond.FeetPerMinute).MetersPerSecond, FeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromFeetPerSecond(meterpersecond.FeetPerSecond).MetersPerSecond, FeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromInchesPerHour(meterpersecond.InchesPerHour).MetersPerSecond, InchesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromInchesPerMinute(meterpersecond.InchesPerMinute).MetersPerSecond, InchesPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromInchesPerSecond(meterpersecond.InchesPerSecond).MetersPerSecond, InchesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromKilometersPerHour(meterpersecond.KilometersPerHour).MetersPerSecond, KilometersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromKilometersPerMinutes(meterpersecond.KilometersPerMinutes).MetersPerSecond, KilometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromKilometersPerSecond(meterpersecond.KilometersPerSecond).MetersPerSecond, KilometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromKnots(meterpersecond.Knots).MetersPerSecond, KnotsTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMetersPerHour(meterpersecond.MetersPerHour).MetersPerSecond, MetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMetersPerMinutes(meterpersecond.MetersPerMinutes).MetersPerSecond, MetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMetersPerSecond(meterpersecond.MetersPerSecond).MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMicrometersPerMinutes(meterpersecond.MicrometersPerMinutes).MetersPerSecond, MicrometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMicrometersPerSecond(meterpersecond.MicrometersPerSecond).MetersPerSecond, MicrometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMilesPerHour(meterpersecond.MilesPerHour).MetersPerSecond, MilesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMillimetersPerHour(meterpersecond.MillimetersPerHour).MetersPerSecond, MillimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMillimetersPerMinutes(meterpersecond.MillimetersPerMinutes).MetersPerSecond, MillimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromMillimetersPerSecond(meterpersecond.MillimetersPerSecond).MetersPerSecond, MillimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromNanometersPerMinutes(meterpersecond.NanometersPerMinutes).MetersPerSecond, NanometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromNanometersPerSecond(meterpersecond.NanometersPerSecond).MetersPerSecond, NanometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromUsSurveyFeetPerHour(meterpersecond.UsSurveyFeetPerHour).MetersPerSecond, UsSurveyFeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromUsSurveyFeetPerMinute(meterpersecond.UsSurveyFeetPerMinute).MetersPerSecond, UsSurveyFeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromUsSurveyFeetPerSecond(meterpersecond.UsSurveyFeetPerSecond).MetersPerSecond, UsSurveyFeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromYardsPerHour(meterpersecond.YardsPerHour).MetersPerSecond, YardsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromYardsPerMinute(meterpersecond.YardsPerMinute).MetersPerSecond, YardsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.FromYardsPerSecond(meterpersecond.YardsPerSecond).MetersPerSecond, YardsPerSecondTolerance);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
+            AssertEx.EqualTolerance(1, Speed<double>.FromCentimetersPerHour(meterpersecond.CentimetersPerHour).MetersPerSecond, CentimetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromCentimetersPerMinutes(meterpersecond.CentimetersPerMinutes).MetersPerSecond, CentimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromCentimetersPerSecond(meterpersecond.CentimetersPerSecond).MetersPerSecond, CentimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromDecimetersPerMinutes(meterpersecond.DecimetersPerMinutes).MetersPerSecond, DecimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromDecimetersPerSecond(meterpersecond.DecimetersPerSecond).MetersPerSecond, DecimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromFeetPerHour(meterpersecond.FeetPerHour).MetersPerSecond, FeetPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromFeetPerMinute(meterpersecond.FeetPerMinute).MetersPerSecond, FeetPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromFeetPerSecond(meterpersecond.FeetPerSecond).MetersPerSecond, FeetPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromInchesPerHour(meterpersecond.InchesPerHour).MetersPerSecond, InchesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromInchesPerMinute(meterpersecond.InchesPerMinute).MetersPerSecond, InchesPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromInchesPerSecond(meterpersecond.InchesPerSecond).MetersPerSecond, InchesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromKilometersPerHour(meterpersecond.KilometersPerHour).MetersPerSecond, KilometersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromKilometersPerMinutes(meterpersecond.KilometersPerMinutes).MetersPerSecond, KilometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromKilometersPerSecond(meterpersecond.KilometersPerSecond).MetersPerSecond, KilometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromKnots(meterpersecond.Knots).MetersPerSecond, KnotsTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMetersPerHour(meterpersecond.MetersPerHour).MetersPerSecond, MetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMetersPerMinutes(meterpersecond.MetersPerMinutes).MetersPerSecond, MetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMetersPerSecond(meterpersecond.MetersPerSecond).MetersPerSecond, MetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMicrometersPerMinutes(meterpersecond.MicrometersPerMinutes).MetersPerSecond, MicrometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMicrometersPerSecond(meterpersecond.MicrometersPerSecond).MetersPerSecond, MicrometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMilesPerHour(meterpersecond.MilesPerHour).MetersPerSecond, MilesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMillimetersPerHour(meterpersecond.MillimetersPerHour).MetersPerSecond, MillimetersPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMillimetersPerMinutes(meterpersecond.MillimetersPerMinutes).MetersPerSecond, MillimetersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromMillimetersPerSecond(meterpersecond.MillimetersPerSecond).MetersPerSecond, MillimetersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromNanometersPerMinutes(meterpersecond.NanometersPerMinutes).MetersPerSecond, NanometersPerMinutesTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromNanometersPerSecond(meterpersecond.NanometersPerSecond).MetersPerSecond, NanometersPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromUsSurveyFeetPerHour(meterpersecond.UsSurveyFeetPerHour).MetersPerSecond, UsSurveyFeetPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromUsSurveyFeetPerMinute(meterpersecond.UsSurveyFeetPerMinute).MetersPerSecond, UsSurveyFeetPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromUsSurveyFeetPerSecond(meterpersecond.UsSurveyFeetPerSecond).MetersPerSecond, UsSurveyFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromYardsPerHour(meterpersecond.YardsPerHour).MetersPerSecond, YardsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromYardsPerMinute(meterpersecond.YardsPerMinute).MetersPerSecond, YardsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, Speed<double>.FromYardsPerSecond(meterpersecond.YardsPerSecond).MetersPerSecond, YardsPerSecondTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Speed v = Speed.FromMetersPerSecond(1);
+            Speed<double> v = Speed<double>.FromMetersPerSecond(1);
             AssertEx.EqualTolerance(-1, -v.MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (Speed.FromMetersPerSecond(3)-v).MetersPerSecond, MetersPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (Speed<double>.FromMetersPerSecond(3)-v).MetersPerSecond, MetersPerSecondTolerance);
             AssertEx.EqualTolerance(2, (v + v).MetersPerSecond, MetersPerSecondTolerance);
             AssertEx.EqualTolerance(10, (v*10).MetersPerSecond, MetersPerSecondTolerance);
             AssertEx.EqualTolerance(10, (10*v).MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (Speed.FromMetersPerSecond(10)/5).MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), MetersPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (Speed<double>.FromMetersPerSecond(10)/5).MetersPerSecond, MetersPerSecondTolerance);
+            AssertEx.EqualTolerance(2, Speed<double>.FromMetersPerSecond(10)/Speed<double>.FromMetersPerSecond(5), MetersPerSecondTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Speed oneMeterPerSecond = Speed.FromMetersPerSecond(1);
-            Speed twoMetersPerSecond = Speed.FromMetersPerSecond(2);
+            Speed<double> oneMeterPerSecond = Speed<double>.FromMetersPerSecond(1);
+            Speed<double> twoMetersPerSecond = Speed<double>.FromMetersPerSecond(2);
 
             Assert.True(oneMeterPerSecond < twoMetersPerSecond);
             Assert.True(oneMeterPerSecond <= twoMetersPerSecond);
@@ -452,31 +452,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             Assert.Equal(0, meterpersecond.CompareTo(meterpersecond));
-            Assert.True(meterpersecond.CompareTo(Speed.Zero) > 0);
-            Assert.True(Speed.Zero.CompareTo(meterpersecond) < 0);
+            Assert.True(meterpersecond.CompareTo(Speed<double>.Zero) > 0);
+            Assert.True(Speed<double>.Zero.CompareTo(meterpersecond) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             Assert.Throws<ArgumentException>(() => meterpersecond.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             Assert.Throws<ArgumentNullException>(() => meterpersecond.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Speed.FromMetersPerSecond(1);
-            var b = Speed.FromMetersPerSecond(2);
+            var a = Speed<double>.FromMetersPerSecond(1);
+            var b = Speed<double>.FromMetersPerSecond(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -495,8 +495,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Speed.FromMetersPerSecond(1);
-            var b = Speed.FromMetersPerSecond(2);
+            var a = Speed<double>.FromMetersPerSecond(1);
+            var b = Speed<double>.FromMetersPerSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -506,29 +506,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Speed.FromMetersPerSecond(1);
-            Assert.True(v.Equals(Speed.FromMetersPerSecond(1), MetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Speed.Zero, MetersPerSecondTolerance, ComparisonType.Relative));
+            var v = Speed<double>.FromMetersPerSecond(1);
+            Assert.True(v.Equals(Speed<double>.FromMetersPerSecond(1), MetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Speed<double>.Zero, MetersPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             Assert.False(meterpersecond.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Speed<double> meterpersecond = Speed<double>.FromMetersPerSecond(1);
             Assert.False(meterpersecond.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(SpeedUnit.Undefined, Speed.Units);
+            Assert.DoesNotContain(SpeedUnit.Undefined, Speed<double>.Units);
         }
 
         [Fact]
@@ -547,7 +547,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Speed.BaseDimensions is null);
+            Assert.False(Speed<double>.BaseDimensions is null);
         }
     }
 }

@@ -17,13 +17,13 @@ namespace UnitsNet.Tests
             public void CreatedByDefaultCtor_ReturnsValueInBaseUnit()
             {
                 // double types
-                Assert.Equal("0 kg", new Mass().ToString());
+                Assert.Equal("0 kg", new Mass<double>().ToString());
 
                 // decimal types
-                Assert.Equal("0 b", new Information().ToString());
+                Assert.Equal("0 b", new Information<decimal>().ToString());
 
                 // logarithmic types
-                Assert.Equal("0 dB", new Level().ToString());
+                Assert.Equal("0 dB", new Level<double>().ToString());
             }
 
             [Fact]
@@ -31,16 +31,16 @@ namespace UnitsNet.Tests
             {
 #pragma warning disable 618
                 // double types
-                Assert.Equal("5 kg", new Mass(5L, MassUnit.Kilogram).ToString());
-                Assert.Equal("5 kg", new Mass(5d, MassUnit.Kilogram).ToString());
+                Assert.Equal("5 kg", new Mass<double>(5L, MassUnit.Kilogram).ToString());
+                Assert.Equal("5 kg", new Mass<double>(5d, MassUnit.Kilogram).ToString());
 
                 // decimal types
-                Assert.Equal("5 b", new Information(5L, InformationUnit.Bit).ToString());
-                Assert.Equal("5 b", new Information(5m, InformationUnit.Bit).ToString());
+                Assert.Equal("5 b", new Information<decimal>(5L, InformationUnit.Bit).ToString());
+                Assert.Equal("5 b", new Information<decimal>(5m, InformationUnit.Bit).ToString());
 
                 // logarithmic types
-                Assert.Equal("5 dB", new Level(5L, LevelUnit.Decibel).ToString());
-                Assert.Equal("5 dB", new Level(5d, LevelUnit.Decibel).ToString());
+                Assert.Equal("5 dB", new Level<double>(5L, LevelUnit.Decibel).ToString());
+                Assert.Equal("5 dB", new Level<double>(5d, LevelUnit.Decibel).ToString());
 #pragma warning restore 618
             }
 
@@ -49,13 +49,13 @@ namespace UnitsNet.Tests
             {
 #pragma warning disable 618
                 // double types
-                Assert.Equal("5 hg", new Mass(5, MassUnit.Hectogram).ToString());
+                Assert.Equal("5 hg", new Mass<double>(5, MassUnit.Hectogram).ToString());
 
                 // decimal types
-                Assert.Equal("8 B", new Information(8, InformationUnit.Byte).ToString());
+                Assert.Equal("8 B", new Information<decimal>(8, InformationUnit.Byte).ToString());
 
                 // logarithmic types
-                Assert.Equal("5 Np", new Level(5, LevelUnit.Neper).ToString());
+                Assert.Equal("5 Np", new Level<double>(5, LevelUnit.Neper).ToString());
 #pragma warning restore 618
             }
 
@@ -66,15 +66,15 @@ namespace UnitsNet.Tests
                 try
                 {
                     CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("5 kg", Mass.FromKilograms(5).ToString());
-                    Assert.Equal("5,000 g", Mass.FromGrams(5000).ToString());
-                    Assert.Equal("1e-04 long tn", Mass.FromLongTons(1e-4).ToString());
-                    Assert.Equal("3.46e-04 dN/m", ForcePerLength.FromDecinewtonsPerMeter(0.00034567).ToString());
-                    Assert.Equal("0.0069 dB", Level.FromDecibels(0.0069).ToString());
-                    Assert.Equal("0.011 kWh/kg", SpecificEnergy.FromKilowattHoursPerKilogram(0.011).ToString());
+                    Assert.Equal("5 kg", Mass<double>.FromKilograms(5).ToString());
+                    Assert.Equal("5,000 g", Mass<double>.FromGrams(5000).ToString());
+                    Assert.Equal("1e-04 long tn", Mass<double>.FromLongTons(1e-4).ToString());
+                    Assert.Equal("3.46e-04 dN/m", ForcePerLength<double>.FromDecinewtonsPerMeter(0.00034567).ToString());
+                    Assert.Equal("0.0069 dB", Level<double>.FromDecibels(0.0069).ToString());
+                    Assert.Equal("0.011 kWh/kg", SpecificEnergy<double>.FromKilowattHoursPerKilogram(0.011).ToString());
                     //                Assert.Equal("0.1 MJ/kg·C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString());
-                    Assert.Equal("0.1 MJ/kg.C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString());
-                    Assert.Equal("5 cm", Length.FromCentimeters(5).ToString());
+                    Assert.Equal("0.1 MJ/kg.C", SpecificEntropy<double>.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString());
+                    Assert.Equal("5 cm", Length<double>.FromCentimeters(5).ToString());
                 }
                 finally
                 {
@@ -89,10 +89,10 @@ namespace UnitsNet.Tests
                 try
                 {
                     CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("5,000 g", Mass.FromKilograms(5).ToUnit(MassUnit.Gram).ToString());
-                    Assert.Equal("5 kg", Mass.FromGrams(5000).ToUnit(MassUnit.Kilogram).ToString());
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString());
-                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString());
+                    Assert.Equal("5,000 g", Mass<double>.FromKilograms(5).ToUnit(MassUnit.Gram).ToString());
+                    Assert.Equal("5 kg", Mass<double>.FromGrams(5000).ToUnit(MassUnit.Kilogram).ToString());
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString());
+                    Assert.Equal("1.97 in", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString());
                 }
                 finally
                 {
@@ -107,9 +107,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider)null));
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
-                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider)null));
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
+                    Assert.Equal("0,05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
                 }
                 finally
                 {
@@ -124,9 +124,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString("s4"));
-                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s2"));
-                    Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s4"));
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString("s4"));
+                    Assert.Equal("1.97 in", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s2"));
+                    Assert.Equal("1.9685 in", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString("s4"));
                 }
                 finally
                 {

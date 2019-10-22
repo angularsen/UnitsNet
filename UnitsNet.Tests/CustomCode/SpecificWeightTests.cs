@@ -44,22 +44,22 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void SpecificWeightTimesLengthEqualsPressure()
         {
-            Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
-            Assert.Equal(Pressure.FromPascals(20), pressure);
+            var pressure = SpecificWeight<double>.FromNewtonsPerCubicMeter(10) * Length<double>.FromMeters(2);
+            Assert.Equal(Pressure<double>.FromPascals(20), pressure);
         }
 
         [Fact]
         public void SpecificWeightDividedByDensityEqualsAcceleration()
         {
-            Acceleration acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
-            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
+            var acceleration = SpecificWeight<double>.FromNewtonsPerCubicMeter(40) / Density<double>.FromKilogramsPerCubicMeter(4);
+            Assert.Equal(Acceleration<double>.FromMetersPerSecondSquared(10), acceleration);
         }
 
         [Fact]
         public void SpecificWeightDividedByAccelerationEqualsDensity()
         {
-            Density density = SpecificWeight.FromNewtonsPerCubicMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
-            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
+            var density = SpecificWeight<double>.FromNewtonsPerCubicMeter(20) / Acceleration<double>.FromMetersPerSecondSquared(2);
+            Assert.Equal(Density<double>.FromKilogramsPerCubicMeter(10), density);
         }
     }
 }

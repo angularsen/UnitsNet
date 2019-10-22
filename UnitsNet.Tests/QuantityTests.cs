@@ -12,8 +12,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetHashCodeForDifferentQuantitiesWithSameValuesAreNotEqual()
         {
-            var length = new Length(1.0, (LengthUnit)2);
-            var area = new Area(1.0, (AreaUnit)2);
+            var length = new Length<double>(1.0, (LengthUnit)2);
+            var area = new Area<double>(1.0, (AreaUnit)2);
 
             Assert.NotEqual(length.GetHashCode(), area.GetHashCode());
         }
@@ -21,7 +21,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Length_QuantityInfo_ReturnsQuantityInfoAboutLength()
         {
-            var length = new Length(1, LengthUnit.Centimeter);
+            var length = new Length<double>(1, LengthUnit.Centimeter);
 
             QuantityInfo<LengthUnit> quantityInfo = length.QuantityInfo;
 
@@ -31,14 +31,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Length_Info_ReturnsQuantityInfoAboutLength()
         {
-            QuantityInfo<LengthUnit> quantityInfo = Length.Info;
+            QuantityInfo<LengthUnit> quantityInfo = Length<double>.Info;
 
             AssertQuantityInfoRepresentsLength(quantityInfo);
         }
 
         private static void AssertQuantityInfoRepresentsLength(QuantityInfo<LengthUnit> quantityInfo)
         {
-            Assert.Equal(Length.Zero, quantityInfo.Zero);
+            Assert.Equal(Length<double>.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 

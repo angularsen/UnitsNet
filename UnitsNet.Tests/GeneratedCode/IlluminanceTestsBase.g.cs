@@ -49,26 +49,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Illuminance((double)0.0, IlluminanceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Illuminance<double>((double)0.0, IlluminanceUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NegativeInfinity, IlluminanceUnit.Lux));
+            Assert.Throws<ArgumentException>(() => new Illuminance<double>(double.PositiveInfinity, IlluminanceUnit.Lux));
+            Assert.Throws<ArgumentException>(() => new Illuminance<double>(double.NegativeInfinity, IlluminanceUnit.Lux));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NaN, IlluminanceUnit.Lux));
+            Assert.Throws<ArgumentException>(() => new Illuminance<double>(double.NaN, IlluminanceUnit.Lux));
         }
 
         [Fact]
         public void LuxToIlluminanceUnits()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             AssertEx.EqualTolerance(KiloluxInOneLux, lux.Kilolux, KiloluxTolerance);
             AssertEx.EqualTolerance(LuxInOneLux, lux.Lux, LuxTolerance);
             AssertEx.EqualTolerance(MegaluxInOneLux, lux.Megalux, MegaluxTolerance);
@@ -78,29 +78,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Kilolux).Kilolux, KiloluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Lux).Lux, LuxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Megalux).Megalux, MegaluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Millilux).Millilux, MilliluxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.From(1, IlluminanceUnit.Kilolux).Kilolux, KiloluxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.From(1, IlluminanceUnit.Lux).Lux, LuxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.From(1, IlluminanceUnit.Megalux).Megalux, MegaluxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.From(1, IlluminanceUnit.Millilux).Millilux, MilliluxTolerance);
         }
 
         [Fact]
         public void FromLux_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Illuminance<double>.FromLux(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Illuminance<double>.FromLux(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromLux_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NaN));
+            Assert.Throws<ArgumentException>(() => Illuminance<double>.FromLux(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var lux = Illuminance.FromLux(1);
+            var lux = Illuminance<double>.FromLux(1);
             AssertEx.EqualTolerance(KiloluxInOneLux, lux.As(IlluminanceUnit.Kilolux), KiloluxTolerance);
             AssertEx.EqualTolerance(LuxInOneLux, lux.As(IlluminanceUnit.Lux), LuxTolerance);
             AssertEx.EqualTolerance(MegaluxInOneLux, lux.As(IlluminanceUnit.Megalux), MegaluxTolerance);
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var lux = Illuminance.FromLux(1);
+            var lux = Illuminance<double>.FromLux(1);
 
             var kiloluxQuantity = lux.ToUnit(IlluminanceUnit.Kilolux);
             AssertEx.EqualTolerance(KiloluxInOneLux, (double)kiloluxQuantity.Value, KiloluxTolerance);
@@ -132,31 +132,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Illuminance lux = Illuminance.FromLux(1);
-            AssertEx.EqualTolerance(1, Illuminance.FromKilolux(lux.Kilolux).Lux, KiloluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.FromLux(lux.Lux).Lux, LuxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.FromMegalux(lux.Megalux).Lux, MegaluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.FromMillilux(lux.Millilux).Lux, MilliluxTolerance);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
+            AssertEx.EqualTolerance(1, Illuminance<double>.FromKilolux(lux.Kilolux).Lux, KiloluxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.FromLux(lux.Lux).Lux, LuxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.FromMegalux(lux.Megalux).Lux, MegaluxTolerance);
+            AssertEx.EqualTolerance(1, Illuminance<double>.FromMillilux(lux.Millilux).Lux, MilliluxTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Illuminance v = Illuminance.FromLux(1);
+            Illuminance<double> v = Illuminance<double>.FromLux(1);
             AssertEx.EqualTolerance(-1, -v.Lux, LuxTolerance);
-            AssertEx.EqualTolerance(2, (Illuminance.FromLux(3)-v).Lux, LuxTolerance);
+            AssertEx.EqualTolerance(2, (Illuminance<double>.FromLux(3)-v).Lux, LuxTolerance);
             AssertEx.EqualTolerance(2, (v + v).Lux, LuxTolerance);
             AssertEx.EqualTolerance(10, (v*10).Lux, LuxTolerance);
             AssertEx.EqualTolerance(10, (10*v).Lux, LuxTolerance);
-            AssertEx.EqualTolerance(2, (Illuminance.FromLux(10)/5).Lux, LuxTolerance);
-            AssertEx.EqualTolerance(2, Illuminance.FromLux(10)/Illuminance.FromLux(5), LuxTolerance);
+            AssertEx.EqualTolerance(2, (Illuminance<double>.FromLux(10)/5).Lux, LuxTolerance);
+            AssertEx.EqualTolerance(2, Illuminance<double>.FromLux(10)/Illuminance<double>.FromLux(5), LuxTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Illuminance oneLux = Illuminance.FromLux(1);
-            Illuminance twoLux = Illuminance.FromLux(2);
+            Illuminance<double> oneLux = Illuminance<double>.FromLux(1);
+            Illuminance<double> twoLux = Illuminance<double>.FromLux(2);
 
             Assert.True(oneLux < twoLux);
             Assert.True(oneLux <= twoLux);
@@ -172,31 +172,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             Assert.Equal(0, lux.CompareTo(lux));
-            Assert.True(lux.CompareTo(Illuminance.Zero) > 0);
-            Assert.True(Illuminance.Zero.CompareTo(lux) < 0);
+            Assert.True(lux.CompareTo(Illuminance<double>.Zero) > 0);
+            Assert.True(Illuminance<double>.Zero.CompareTo(lux) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             Assert.Throws<ArgumentException>(() => lux.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             Assert.Throws<ArgumentNullException>(() => lux.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Illuminance.FromLux(1);
-            var b = Illuminance.FromLux(2);
+            var a = Illuminance<double>.FromLux(1);
+            var b = Illuminance<double>.FromLux(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -215,8 +215,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Illuminance.FromLux(1);
-            var b = Illuminance.FromLux(2);
+            var a = Illuminance<double>.FromLux(1);
+            var b = Illuminance<double>.FromLux(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -226,29 +226,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Illuminance.FromLux(1);
-            Assert.True(v.Equals(Illuminance.FromLux(1), LuxTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Illuminance.Zero, LuxTolerance, ComparisonType.Relative));
+            var v = Illuminance<double>.FromLux(1);
+            Assert.True(v.Equals(Illuminance<double>.FromLux(1), LuxTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Illuminance<double>.Zero, LuxTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             Assert.False(lux.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Illuminance lux = Illuminance.FromLux(1);
+            Illuminance<double> lux = Illuminance<double>.FromLux(1);
             Assert.False(lux.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(IlluminanceUnit.Undefined, Illuminance.Units);
+            Assert.DoesNotContain(IlluminanceUnit.Undefined, Illuminance<double>.Units);
         }
 
         [Fact]
@@ -267,7 +267,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Illuminance.BaseDimensions is null);
+            Assert.False(Illuminance<double>.BaseDimensions is null);
         }
     }
 }

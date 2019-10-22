@@ -45,26 +45,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity((double)0.0, ThermalConductivityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity<double>((double)0.0, ThermalConductivityUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NegativeInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity<double>(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity<double>(double.NegativeInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity<double>(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
         }
 
         [Fact]
         public void WattPerMeterKelvinToThermalConductivityUnits()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
@@ -72,27 +72,27 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ThermalConductivity.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, ThermalConductivity.From(1, ThermalConductivityUnit.WattPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            AssertEx.EqualTolerance(1, ThermalConductivity<double>.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, ThermalConductivity<double>.From(1, ThermalConductivityUnit.WattPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
 
         [Fact]
         public void FromWattsPerMeterKelvin_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ThermalConductivity<double>.FromWattsPerMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ThermalConductivity<double>.FromWattsPerMeterKelvin(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromWattsPerMeterKelvin_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NaN));
+            Assert.Throws<ArgumentException>(() => ThermalConductivity<double>.FromWattsPerMeterKelvin(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            var wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit), BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.WattPerMeterKelvin), WattsPerMeterKelvinTolerance);
         }
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            var wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
 
             var btuperhourfootfahrenheitQuantity = wattpermeterkelvin.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, (double)btuperhourfootfahrenheitQuantity.Value, BtusPerHourFootFahrenheitTolerance);
@@ -114,29 +114,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            AssertEx.EqualTolerance(1, ThermalConductivity.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin, BtusPerHourFootFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, ThermalConductivity.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
+            AssertEx.EqualTolerance(1, ThermalConductivity<double>.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin, BtusPerHourFootFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, ThermalConductivity<double>.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ThermalConductivity v = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> v = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             AssertEx.EqualTolerance(-1, -v.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (ThermalConductivity.FromWattsPerMeterKelvin(3)-v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, (ThermalConductivity<double>.FromWattsPerMeterKelvin(3)-v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
             AssertEx.EqualTolerance(2, (v + v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
             AssertEx.EqualTolerance(10, (v*10).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
             AssertEx.EqualTolerance(10, (10*v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (ThermalConductivity.FromWattsPerMeterKelvin(10)/5).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, ThermalConductivity.FromWattsPerMeterKelvin(10)/ThermalConductivity.FromWattsPerMeterKelvin(5), WattsPerMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, (ThermalConductivity<double>.FromWattsPerMeterKelvin(10)/5).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, ThermalConductivity<double>.FromWattsPerMeterKelvin(10)/ThermalConductivity<double>.FromWattsPerMeterKelvin(5), WattsPerMeterKelvinTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ThermalConductivity oneWattPerMeterKelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            ThermalConductivity twoWattsPerMeterKelvin = ThermalConductivity.FromWattsPerMeterKelvin(2);
+            ThermalConductivity<double> oneWattPerMeterKelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> twoWattsPerMeterKelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(2);
 
             Assert.True(oneWattPerMeterKelvin < twoWattsPerMeterKelvin);
             Assert.True(oneWattPerMeterKelvin <= twoWattsPerMeterKelvin);
@@ -152,31 +152,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             Assert.Equal(0, wattpermeterkelvin.CompareTo(wattpermeterkelvin));
-            Assert.True(wattpermeterkelvin.CompareTo(ThermalConductivity.Zero) > 0);
-            Assert.True(ThermalConductivity.Zero.CompareTo(wattpermeterkelvin) < 0);
+            Assert.True(wattpermeterkelvin.CompareTo(ThermalConductivity<double>.Zero) > 0);
+            Assert.True(ThermalConductivity<double>.Zero.CompareTo(wattpermeterkelvin) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             Assert.Throws<ArgumentException>(() => wattpermeterkelvin.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             Assert.Throws<ArgumentNullException>(() => wattpermeterkelvin.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            var b = ThermalConductivity.FromWattsPerMeterKelvin(2);
+            var a = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
+            var b = ThermalConductivity<double>.FromWattsPerMeterKelvin(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -195,8 +195,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            var b = ThermalConductivity.FromWattsPerMeterKelvin(2);
+            var a = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
+            var b = ThermalConductivity<double>.FromWattsPerMeterKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -206,29 +206,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            Assert.True(v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), WattsPerMeterKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ThermalConductivity.Zero, WattsPerMeterKelvinTolerance, ComparisonType.Relative));
+            var v = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
+            Assert.True(v.Equals(ThermalConductivity<double>.FromWattsPerMeterKelvin(1), WattsPerMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ThermalConductivity<double>.Zero, WattsPerMeterKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             Assert.False(wattpermeterkelvin.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            ThermalConductivity<double> wattpermeterkelvin = ThermalConductivity<double>.FromWattsPerMeterKelvin(1);
             Assert.False(wattpermeterkelvin.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ThermalConductivityUnit.Undefined, ThermalConductivity.Units);
+            Assert.DoesNotContain(ThermalConductivityUnit.Undefined, ThermalConductivity<double>.Units);
         }
 
         [Fact]
@@ -247,7 +247,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ThermalConductivity.BaseDimensions is null);
+            Assert.False(ThermalConductivity<double>.BaseDimensions is null);
         }
     }
 }

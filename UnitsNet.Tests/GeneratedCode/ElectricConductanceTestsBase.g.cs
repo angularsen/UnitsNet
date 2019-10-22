@@ -47,26 +47,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricConductance((double)0.0, ElectricConductanceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance<double>((double)0.0, ElectricConductanceUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.PositiveInfinity, ElectricConductanceUnit.Siemens));
-            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NegativeInfinity, ElectricConductanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance<double>(double.PositiveInfinity, ElectricConductanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance<double>(double.NegativeInfinity, ElectricConductanceUnit.Siemens));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NaN, ElectricConductanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance<double>(double.NaN, ElectricConductanceUnit.Siemens));
         }
 
         [Fact]
         public void SiemensToElectricConductanceUnits()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.Microsiemens, MicrosiemensTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.Millisiemens, MillisiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.Siemens, SiemensTolerance);
@@ -75,28 +75,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens).Microsiemens, MicrosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens).Millisiemens, MillisiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Siemens).Siemens, SiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.From(1, ElectricConductanceUnit.Microsiemens).Microsiemens, MicrosiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.From(1, ElectricConductanceUnit.Millisiemens).Millisiemens, MillisiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.From(1, ElectricConductanceUnit.Siemens).Siemens, SiemensTolerance);
         }
 
         [Fact]
         public void FromSiemens_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricConductance<double>.FromSiemens(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricConductance<double>.FromSiemens(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromSiemens_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricConductance<double>.FromSiemens(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var siemens = ElectricConductance.FromSiemens(1);
+            var siemens = ElectricConductance<double>.FromSiemens(1);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Microsiemens), MicrosiemensTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Millisiemens), MillisiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Siemens), SiemensTolerance);
@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var siemens = ElectricConductance.FromSiemens(1);
+            var siemens = ElectricConductance<double>.FromSiemens(1);
 
             var microsiemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Microsiemens);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
@@ -123,30 +123,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMicrosiemens(siemens.Microsiemens).Siemens, MicrosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMillisiemens(siemens.Millisiemens).Siemens, MillisiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromSiemens(siemens.Siemens).Siemens, SiemensTolerance);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.FromMicrosiemens(siemens.Microsiemens).Siemens, MicrosiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.FromMillisiemens(siemens.Millisiemens).Siemens, MillisiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance<double>.FromSiemens(siemens.Siemens).Siemens, SiemensTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricConductance v = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> v = ElectricConductance<double>.FromSiemens(1);
             AssertEx.EqualTolerance(-1, -v.Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductance.FromSiemens(3)-v).Siemens, SiemensTolerance);
+            AssertEx.EqualTolerance(2, (ElectricConductance<double>.FromSiemens(3)-v).Siemens, SiemensTolerance);
             AssertEx.EqualTolerance(2, (v + v).Siemens, SiemensTolerance);
             AssertEx.EqualTolerance(10, (v*10).Siemens, SiemensTolerance);
             AssertEx.EqualTolerance(10, (10*v).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductance.FromSiemens(10)/5).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, ElectricConductance.FromSiemens(10)/ElectricConductance.FromSiemens(5), SiemensTolerance);
+            AssertEx.EqualTolerance(2, (ElectricConductance<double>.FromSiemens(10)/5).Siemens, SiemensTolerance);
+            AssertEx.EqualTolerance(2, ElectricConductance<double>.FromSiemens(10)/ElectricConductance<double>.FromSiemens(5), SiemensTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricConductance oneSiemens = ElectricConductance.FromSiemens(1);
-            ElectricConductance twoSiemens = ElectricConductance.FromSiemens(2);
+            ElectricConductance<double> oneSiemens = ElectricConductance<double>.FromSiemens(1);
+            ElectricConductance<double> twoSiemens = ElectricConductance<double>.FromSiemens(2);
 
             Assert.True(oneSiemens < twoSiemens);
             Assert.True(oneSiemens <= twoSiemens);
@@ -162,31 +162,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             Assert.Equal(0, siemens.CompareTo(siemens));
-            Assert.True(siemens.CompareTo(ElectricConductance.Zero) > 0);
-            Assert.True(ElectricConductance.Zero.CompareTo(siemens) < 0);
+            Assert.True(siemens.CompareTo(ElectricConductance<double>.Zero) > 0);
+            Assert.True(ElectricConductance<double>.Zero.CompareTo(siemens) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             Assert.Throws<ArgumentException>(() => siemens.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             Assert.Throws<ArgumentNullException>(() => siemens.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricConductance.FromSiemens(1);
-            var b = ElectricConductance.FromSiemens(2);
+            var a = ElectricConductance<double>.FromSiemens(1);
+            var b = ElectricConductance<double>.FromSiemens(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -205,8 +205,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ElectricConductance.FromSiemens(1);
-            var b = ElectricConductance.FromSiemens(2);
+            var a = ElectricConductance<double>.FromSiemens(1);
+            var b = ElectricConductance<double>.FromSiemens(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -216,29 +216,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ElectricConductance.FromSiemens(1);
-            Assert.True(v.Equals(ElectricConductance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricConductance.Zero, SiemensTolerance, ComparisonType.Relative));
+            var v = ElectricConductance<double>.FromSiemens(1);
+            Assert.True(v.Equals(ElectricConductance<double>.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricConductance<double>.Zero, SiemensTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             Assert.False(siemens.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            ElectricConductance<double> siemens = ElectricConductance<double>.FromSiemens(1);
             Assert.False(siemens.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricConductanceUnit.Undefined, ElectricConductance.Units);
+            Assert.DoesNotContain(ElectricConductanceUnit.Undefined, ElectricConductance<double>.Units);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricConductance.BaseDimensions is null);
+            Assert.False(ElectricConductance<double>.BaseDimensions is null);
         }
     }
 }

@@ -60,10 +60,10 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassFractionFromMassesConstructedCorrectly()
         {
-            var one_kg = Mass.FromKilograms(1);
-            var two_kg = Mass.FromKilograms(2);
+            var one_kg = Mass<double>.FromKilograms(1);
+            var two_kg = Mass<double>.FromKilograms(2);
 
-            var massFraction = MassFraction.FromMasses(one_kg, two_kg);
+            var massFraction = MassFraction<double>.FromMasses(one_kg, two_kg);
 
             AssertEx.EqualTolerance(50, massFraction.Percent, PercentTolerance);
         }
@@ -71,8 +71,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TotalMassFromMassFraction()
         {
-            var componentMass = Mass.FromKilograms(1);
-            var massFraction = MassFraction.FromPercent(50);
+            var componentMass = Mass<double>.FromKilograms(1);
+            var massFraction = MassFraction<double>.FromPercent(50);
 
             var totalMass = massFraction.GetTotalMass(componentMass);
 
@@ -82,8 +82,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void ComponentMassFromMassFraction()
         {
-            var totalMass = Mass.FromKilograms(2);
-            var massFraction = MassFraction.FromPercent(50);
+            var totalMass = Mass<double>.FromKilograms(2);
+            var massFraction = MassFraction<double>.FromPercent(50);
 
             var componentMass = massFraction.GetComponentMass(totalMass);
 

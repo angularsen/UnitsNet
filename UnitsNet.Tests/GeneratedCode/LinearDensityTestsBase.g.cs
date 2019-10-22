@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of LinearDensity.
+    /// Test of LinearDensity<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LinearDensityTestsBase
@@ -47,26 +47,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearDensity((double)0.0, LinearDensityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new LinearDensity<double>((double)0.0, LinearDensityUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.NegativeInfinity, LinearDensityUnit.KilogramPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearDensity<double>(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearDensity<double>(double.NegativeInfinity, LinearDensityUnit.KilogramPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.NaN, LinearDensityUnit.KilogramPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearDensity<double>(double.NaN, LinearDensityUnit.KilogramPerMeter));
         }
 
         [Fact]
         public void KilogramPerMeterToLinearDensityUnits()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             AssertEx.EqualTolerance(GramsPerMeterInOneKilogramPerMeter, kilogrampermeter.GramsPerMeter, GramsPerMeterTolerance);
             AssertEx.EqualTolerance(KilogramsPerMeterInOneKilogramPerMeter, kilogrampermeter.KilogramsPerMeter, KilogramsPerMeterTolerance);
             AssertEx.EqualTolerance(PoundsPerFootInOneKilogramPerMeter, kilogrampermeter.PoundsPerFoot, PoundsPerFootTolerance);
@@ -75,28 +75,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.GramPerMeter).GramsPerMeter, GramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.KilogramPerMeter).KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.PoundPerFoot).PoundsPerFoot, PoundsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.From(1, LinearDensityUnit.GramPerMeter).GramsPerMeter, GramsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.From(1, LinearDensityUnit.KilogramPerMeter).KilogramsPerMeter, KilogramsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.From(1, LinearDensityUnit.PoundPerFoot).PoundsPerFoot, PoundsPerFootTolerance);
         }
 
         [Fact]
         public void FromKilogramsPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => LinearDensity<double>.FromKilogramsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => LinearDensity<double>.FromKilogramsPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromKilogramsPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => LinearDensity<double>.FromKilogramsPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            var kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             AssertEx.EqualTolerance(GramsPerMeterInOneKilogramPerMeter, kilogrampermeter.As(LinearDensityUnit.GramPerMeter), GramsPerMeterTolerance);
             AssertEx.EqualTolerance(KilogramsPerMeterInOneKilogramPerMeter, kilogrampermeter.As(LinearDensityUnit.KilogramPerMeter), KilogramsPerMeterTolerance);
             AssertEx.EqualTolerance(PoundsPerFootInOneKilogramPerMeter, kilogrampermeter.As(LinearDensityUnit.PoundPerFoot), PoundsPerFootTolerance);
@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            var kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
 
             var grampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.GramPerMeter);
             AssertEx.EqualTolerance(GramsPerMeterInOneKilogramPerMeter, (double)grampermeterQuantity.Value, GramsPerMeterTolerance);
@@ -123,30 +123,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
-            AssertEx.EqualTolerance(1, LinearDensity.FromGramsPerMeter(kilogrampermeter.GramsPerMeter).KilogramsPerMeter, GramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.FromKilogramsPerMeter(kilogrampermeter.KilogramsPerMeter).KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.FromPoundsPerFoot(kilogrampermeter.PoundsPerFoot).KilogramsPerMeter, PoundsPerFootTolerance);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.FromGramsPerMeter(kilogrampermeter.GramsPerMeter).KilogramsPerMeter, GramsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.FromKilogramsPerMeter(kilogrampermeter.KilogramsPerMeter).KilogramsPerMeter, KilogramsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearDensity<double>.FromPoundsPerFoot(kilogrampermeter.PoundsPerFoot).KilogramsPerMeter, PoundsPerFootTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            LinearDensity v = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> v = LinearDensity<double>.FromKilogramsPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LinearDensity.FromKilogramsPerMeter(3)-v).KilogramsPerMeter, KilogramsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (LinearDensity<double>.FromKilogramsPerMeter(3)-v).KilogramsPerMeter, KilogramsPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).KilogramsPerMeter, KilogramsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).KilogramsPerMeter, KilogramsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LinearDensity.FromKilogramsPerMeter(10)/5).KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, LinearDensity.FromKilogramsPerMeter(10)/LinearDensity.FromKilogramsPerMeter(5), KilogramsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (LinearDensity<double>.FromKilogramsPerMeter(10)/5).KilogramsPerMeter, KilogramsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, LinearDensity<double>.FromKilogramsPerMeter(10)/LinearDensity<double>.FromKilogramsPerMeter(5), KilogramsPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            LinearDensity oneKilogramPerMeter = LinearDensity.FromKilogramsPerMeter(1);
-            LinearDensity twoKilogramsPerMeter = LinearDensity.FromKilogramsPerMeter(2);
+            LinearDensity<double> oneKilogramPerMeter = LinearDensity<double>.FromKilogramsPerMeter(1);
+            LinearDensity<double> twoKilogramsPerMeter = LinearDensity<double>.FromKilogramsPerMeter(2);
 
             Assert.True(oneKilogramPerMeter < twoKilogramsPerMeter);
             Assert.True(oneKilogramPerMeter <= twoKilogramsPerMeter);
@@ -162,31 +162,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             Assert.Equal(0, kilogrampermeter.CompareTo(kilogrampermeter));
-            Assert.True(kilogrampermeter.CompareTo(LinearDensity.Zero) > 0);
-            Assert.True(LinearDensity.Zero.CompareTo(kilogrampermeter) < 0);
+            Assert.True(kilogrampermeter.CompareTo(LinearDensity<double>.Zero) > 0);
+            Assert.True(LinearDensity<double>.Zero.CompareTo(kilogrampermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             Assert.Throws<ArgumentException>(() => kilogrampermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => kilogrampermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = LinearDensity.FromKilogramsPerMeter(1);
-            var b = LinearDensity.FromKilogramsPerMeter(2);
+            var a = LinearDensity<double>.FromKilogramsPerMeter(1);
+            var b = LinearDensity<double>.FromKilogramsPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -205,8 +205,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = LinearDensity.FromKilogramsPerMeter(1);
-            var b = LinearDensity.FromKilogramsPerMeter(2);
+            var a = LinearDensity<double>.FromKilogramsPerMeter(1);
+            var b = LinearDensity<double>.FromKilogramsPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -216,29 +216,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = LinearDensity.FromKilogramsPerMeter(1);
-            Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(LinearDensity.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
+            var v = LinearDensity<double>.FromKilogramsPerMeter(1);
+            Assert.True(v.Equals(LinearDensity<double>.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LinearDensity<double>.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             Assert.False(kilogrampermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            LinearDensity<double> kilogrampermeter = LinearDensity<double>.FromKilogramsPerMeter(1);
             Assert.False(kilogrampermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(LinearDensityUnit.Undefined, LinearDensity.Units);
+            Assert.DoesNotContain(LinearDensityUnit.Undefined, LinearDensity<double>.Units);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(LinearDensity.BaseDimensions is null);
+            Assert.False(LinearDensity<double>.BaseDimensions is null);
         }
     }
 }

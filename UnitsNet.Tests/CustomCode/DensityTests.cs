@@ -90,36 +90,36 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
-            Mass mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
-            Assert.Equal(mass, Mass.FromKilograms(6));
+            var mass = Density<double>.FromKilogramsPerCubicMeter(2) * Volume<double>.FromCubicMeters(3);
+            Assert.Equal(mass, Mass<double>.FromKilograms(6));
         }
 
         [Fact]
         public static void VolumeTimesDensityEqualsMass()
         {
-            Mass mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(mass, Mass.FromKilograms(6));
+            var mass = Volume<double>.FromCubicMeters(3) * Density<double>.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(mass, Mass<double>.FromKilograms(6));
         }
 
         [Fact]
         public static void DensityTimesKinematicViscosityEqualsDynamicViscosity()
         {
-            DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
-            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+            var dynamicViscosity = Density<double>.FromKilogramsPerCubicMeter(2) * KinematicViscosity<double>.FromSquareMetersPerSecond(10);
+            Assert.Equal(dynamicViscosity, DynamicViscosity<double>.FromNewtonSecondsPerMeterSquared(20));
         }
         
         [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {
-            MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
-            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
+            var massFlux = Density<double>.FromKilogramsPerCubicMeter(20) * Speed<double>.FromMetersPerSecond(2);
+            Assert.Equal(massFlux, MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(40));
         }
 
         [Fact]
         public void DensityTimesAccelerationEqualsSpecificWeight()
         {
-            SpecificWeight specificWeight = Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+            var specificWeight = Density<double>.FromKilogramsPerCubicMeter(10) * Acceleration<double>.FromMetersPerSecondSquared(2);
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMeter(20), specificWeight);
         }
     }
 }

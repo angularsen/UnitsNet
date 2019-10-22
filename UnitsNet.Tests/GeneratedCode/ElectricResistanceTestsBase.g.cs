@@ -51,26 +51,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricResistance((double)0.0, ElectricResistanceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricResistance<double>((double)0.0, ElectricResistanceUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.PositiveInfinity, ElectricResistanceUnit.Ohm));
-            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.NegativeInfinity, ElectricResistanceUnit.Ohm));
+            Assert.Throws<ArgumentException>(() => new ElectricResistance<double>(double.PositiveInfinity, ElectricResistanceUnit.Ohm));
+            Assert.Throws<ArgumentException>(() => new ElectricResistance<double>(double.NegativeInfinity, ElectricResistanceUnit.Ohm));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.NaN, ElectricResistanceUnit.Ohm));
+            Assert.Throws<ArgumentException>(() => new ElectricResistance<double>(double.NaN, ElectricResistanceUnit.Ohm));
         }
 
         [Fact]
         public void OhmToElectricResistanceUnits()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             AssertEx.EqualTolerance(GigaohmsInOneOhm, ohm.Gigaohms, GigaohmsTolerance);
             AssertEx.EqualTolerance(KiloohmsInOneOhm, ohm.Kiloohms, KiloohmsTolerance);
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.Megaohms, MegaohmsTolerance);
@@ -81,30 +81,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Gigaohm).Gigaohms, GigaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Kiloohm).Kiloohms, KiloohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Megaohm).Megaohms, MegaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Milliohm).Milliohms, MilliohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Ohm).Ohms, OhmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.From(1, ElectricResistanceUnit.Gigaohm).Gigaohms, GigaohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.From(1, ElectricResistanceUnit.Kiloohm).Kiloohms, KiloohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.From(1, ElectricResistanceUnit.Megaohm).Megaohms, MegaohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.From(1, ElectricResistanceUnit.Milliohm).Milliohms, MilliohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.From(1, ElectricResistanceUnit.Ohm).Ohms, OhmsTolerance);
         }
 
         [Fact]
         public void FromOhms_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricResistance<double>.FromOhms(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricResistance<double>.FromOhms(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromOhms_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricResistance<double>.FromOhms(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var ohm = ElectricResistance.FromOhms(1);
+            var ohm = ElectricResistance<double>.FromOhms(1);
             AssertEx.EqualTolerance(GigaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Gigaohm), GigaohmsTolerance);
             AssertEx.EqualTolerance(KiloohmsInOneOhm, ohm.As(ElectricResistanceUnit.Kiloohm), KiloohmsTolerance);
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Megaohm), MegaohmsTolerance);
@@ -115,7 +115,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var ohm = ElectricResistance.FromOhms(1);
+            var ohm = ElectricResistance<double>.FromOhms(1);
 
             var gigaohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Gigaohm);
             AssertEx.EqualTolerance(GigaohmsInOneOhm, (double)gigaohmQuantity.Value, GigaohmsTolerance);
@@ -141,32 +141,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
-            AssertEx.EqualTolerance(1, ElectricResistance.FromGigaohms(ohm.Gigaohms).Ohms, GigaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.FromGigaohms(ohm.Gigaohms).Ohms, GigaohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance<double>.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricResistance v = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> v = ElectricResistance<double>.FromOhms(1);
             AssertEx.EqualTolerance(-1, -v.Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricResistance.FromOhms(3)-v).Ohms, OhmsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricResistance<double>.FromOhms(3)-v).Ohms, OhmsTolerance);
             AssertEx.EqualTolerance(2, (v + v).Ohms, OhmsTolerance);
             AssertEx.EqualTolerance(10, (v*10).Ohms, OhmsTolerance);
             AssertEx.EqualTolerance(10, (10*v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricResistance.FromOhms(10)/5).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, ElectricResistance.FromOhms(10)/ElectricResistance.FromOhms(5), OhmsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricResistance<double>.FromOhms(10)/5).Ohms, OhmsTolerance);
+            AssertEx.EqualTolerance(2, ElectricResistance<double>.FromOhms(10)/ElectricResistance<double>.FromOhms(5), OhmsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricResistance oneOhm = ElectricResistance.FromOhms(1);
-            ElectricResistance twoOhms = ElectricResistance.FromOhms(2);
+            ElectricResistance<double> oneOhm = ElectricResistance<double>.FromOhms(1);
+            ElectricResistance<double> twoOhms = ElectricResistance<double>.FromOhms(2);
 
             Assert.True(oneOhm < twoOhms);
             Assert.True(oneOhm <= twoOhms);
@@ -182,31 +182,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             Assert.Equal(0, ohm.CompareTo(ohm));
-            Assert.True(ohm.CompareTo(ElectricResistance.Zero) > 0);
-            Assert.True(ElectricResistance.Zero.CompareTo(ohm) < 0);
+            Assert.True(ohm.CompareTo(ElectricResistance<double>.Zero) > 0);
+            Assert.True(ElectricResistance<double>.Zero.CompareTo(ohm) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             Assert.Throws<ArgumentException>(() => ohm.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             Assert.Throws<ArgumentNullException>(() => ohm.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricResistance.FromOhms(1);
-            var b = ElectricResistance.FromOhms(2);
+            var a = ElectricResistance<double>.FromOhms(1);
+            var b = ElectricResistance<double>.FromOhms(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -225,8 +225,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ElectricResistance.FromOhms(1);
-            var b = ElectricResistance.FromOhms(2);
+            var a = ElectricResistance<double>.FromOhms(1);
+            var b = ElectricResistance<double>.FromOhms(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -236,29 +236,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ElectricResistance.FromOhms(1);
-            Assert.True(v.Equals(ElectricResistance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricResistance.Zero, OhmsTolerance, ComparisonType.Relative));
+            var v = ElectricResistance<double>.FromOhms(1);
+            Assert.True(v.Equals(ElectricResistance<double>.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricResistance<double>.Zero, OhmsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             Assert.False(ohm.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
+            ElectricResistance<double> ohm = ElectricResistance<double>.FromOhms(1);
             Assert.False(ohm.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricResistanceUnit.Undefined, ElectricResistance.Units);
+            Assert.DoesNotContain(ElectricResistanceUnit.Undefined, ElectricResistance<double>.Units);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricResistance.BaseDimensions is null);
+            Assert.False(ElectricResistance<double>.BaseDimensions is null);
         }
     }
 }

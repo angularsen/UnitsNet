@@ -64,19 +64,19 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void OneKBHas1000Bytes()
         {
-            Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
+            Assert.Equal(1000, Information<decimal>.FromKilobytes(1).Bytes);
         }
 
         [Fact]
         public void MaxValueIsCorrectForUnitWithBaseTypeDecimal()
         {
-            Assert.Equal((double) decimal.MaxValue, Information.MaxValue.Bits);
+            Assert.Equal((double) decimal.MaxValue, Information<decimal>.MaxValue.Bits);
         }
 
         [Fact]
         public void MinValueIsCorrectForUnitWithBaseTypeDecimal()
         {
-            Assert.Equal((double) decimal.MinValue, Information.MinValue.Bits);
+            Assert.Equal((double) decimal.MinValue, Information<decimal>.MinValue.Bits);
         }
     }
 }

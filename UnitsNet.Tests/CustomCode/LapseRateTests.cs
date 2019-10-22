@@ -33,29 +33,29 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaDividedByLapseRateEqualsLength()
         {
-            Length length = TemperatureDelta.FromDegreesCelsius(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
-            Assert.Equal(length, Length.FromKilometers(10));
+            var length = TemperatureDelta<double>.FromDegreesCelsius(50) / LapseRate<double>.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(length, Length<double>.FromKilometers(10));
         }
 
         [Fact]
         public void TemperatureDeltaDividedByLengthEqualsLapseRate()
         {
-            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
-            Assert.Equal(lapseRate, LapseRate.FromDegreesCelciusPerKilometer(5));
+            var lapseRate = TemperatureDelta<double>.FromDegreesCelsius(50) / Length<double>.FromKilometers(10);
+            Assert.Equal(lapseRate, LapseRate<double>.FromDegreesCelciusPerKilometer(5));
         }
 
         [Fact]
         public void LengthMultipliedByLapseRateEqualsTemperatureDelta()
         {
-            TemperatureDelta temperatureDelta = Length.FromKilometers(10) * LapseRate.FromDegreesCelciusPerKilometer(5);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
+            var temperatureDelta = Length<double>.FromKilometers(10) * LapseRate<double>.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(temperatureDelta, TemperatureDelta<double>.FromDegreesCelsius(50));
         }
 
         [Fact]
         public void LapseRateMultipliedByLengthEqualsTemperatureDelta()
         {
-            TemperatureDelta temperatureDelta = LapseRate.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
+            var temperatureDelta = LapseRate<double>.FromDegreesCelciusPerKilometer(5) * Length<double>.FromKilometers(10);
+            Assert.Equal(temperatureDelta, TemperatureDelta<double>.FromDegreesCelsius(50));
         }
     }
 }

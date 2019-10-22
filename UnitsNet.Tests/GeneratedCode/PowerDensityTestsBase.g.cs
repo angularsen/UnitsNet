@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of PowerDensity.
+    /// Test of PowerDensity<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerDensityTestsBase
@@ -129,26 +129,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerDensity((double)0.0, PowerDensityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new PowerDensity<double>((double)0.0, PowerDensityUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NegativeInfinity, PowerDensityUnit.WattPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new PowerDensity<double>(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new PowerDensity<double>(double.NegativeInfinity, PowerDensityUnit.WattPerCubicMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NaN, PowerDensityUnit.WattPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new PowerDensity<double>(double.NaN, PowerDensityUnit.WattPerCubicMeter));
         }
 
         [Fact]
         public void WattPerCubicMeterToPowerDensityUnits()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             AssertEx.EqualTolerance(DecawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicFoot, DecawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicInch, DecawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
@@ -198,69 +198,69 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicFoot).DecawattsPerCubicFoot, DecawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicInch).DecawattsPerCubicInch, DecawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DecawattPerCubicMeter).DecawattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DecawattPerLiter).DecawattsPerLiter, DecawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicFoot).DeciwattsPerCubicFoot, DeciwattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicInch).DeciwattsPerCubicInch, DeciwattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicMeter).DeciwattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerLiter).DeciwattsPerLiter, DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicFoot).GigawattsPerCubicFoot, GigawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicInch).GigawattsPerCubicInch, GigawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicMeter).GigawattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerLiter).GigawattsPerLiter, GigawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicFoot).KilowattsPerCubicFoot, KilowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicInch).KilowattsPerCubicInch, KilowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.KilowattPerCubicMeter).KilowattsPerCubicMeter, KilowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.KilowattPerLiter).KilowattsPerLiter, KilowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicFoot).MegawattsPerCubicFoot, MegawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicInch).MegawattsPerCubicInch, MegawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MegawattPerCubicMeter).MegawattsPerCubicMeter, MegawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MegawattPerLiter).MegawattsPerLiter, MegawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicFoot).MicrowattsPerCubicFoot, MicrowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicInch).MicrowattsPerCubicInch, MicrowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MicrowattPerCubicMeter).MicrowattsPerCubicMeter, MicrowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MicrowattPerLiter).MicrowattsPerLiter, MicrowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicFoot).MilliwattsPerCubicFoot, MilliwattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicInch).MilliwattsPerCubicInch, MilliwattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MilliwattPerCubicMeter).MilliwattsPerCubicMeter, MilliwattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.MilliwattPerLiter).MilliwattsPerLiter, MilliwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicFoot).NanowattsPerCubicFoot, NanowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicInch).NanowattsPerCubicInch, NanowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicMeter).NanowattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerLiter).NanowattsPerLiter, NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicFoot).PicowattsPerCubicFoot, PicowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicInch).PicowattsPerCubicInch, PicowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicMeter).PicowattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerLiter).PicowattsPerLiter, PicowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicFoot).TerawattsPerCubicFoot, TerawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicInch).TerawattsPerCubicInch, TerawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.TerawattPerCubicMeter).TerawattsPerCubicMeter, TerawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.TerawattPerLiter).TerawattsPerLiter, TerawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerCubicFoot).WattsPerCubicFoot, WattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerCubicInch).WattsPerCubicInch, WattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerCubicMeter).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerLiter).WattsPerLiter, WattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DecawattPerCubicFoot).DecawattsPerCubicFoot, DecawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DecawattPerCubicInch).DecawattsPerCubicInch, DecawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DecawattPerCubicMeter).DecawattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DecawattPerLiter).DecawattsPerLiter, DecawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DeciwattPerCubicFoot).DeciwattsPerCubicFoot, DeciwattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DeciwattPerCubicInch).DeciwattsPerCubicInch, DeciwattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DeciwattPerCubicMeter).DeciwattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.DeciwattPerLiter).DeciwattsPerLiter, DeciwattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.GigawattPerCubicFoot).GigawattsPerCubicFoot, GigawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.GigawattPerCubicInch).GigawattsPerCubicInch, GigawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.GigawattPerCubicMeter).GigawattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.GigawattPerLiter).GigawattsPerLiter, GigawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.KilowattPerCubicFoot).KilowattsPerCubicFoot, KilowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.KilowattPerCubicInch).KilowattsPerCubicInch, KilowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.KilowattPerCubicMeter).KilowattsPerCubicMeter, KilowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.KilowattPerLiter).KilowattsPerLiter, KilowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MegawattPerCubicFoot).MegawattsPerCubicFoot, MegawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MegawattPerCubicInch).MegawattsPerCubicInch, MegawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MegawattPerCubicMeter).MegawattsPerCubicMeter, MegawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MegawattPerLiter).MegawattsPerLiter, MegawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MicrowattPerCubicFoot).MicrowattsPerCubicFoot, MicrowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MicrowattPerCubicInch).MicrowattsPerCubicInch, MicrowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MicrowattPerCubicMeter).MicrowattsPerCubicMeter, MicrowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MicrowattPerLiter).MicrowattsPerLiter, MicrowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MilliwattPerCubicFoot).MilliwattsPerCubicFoot, MilliwattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MilliwattPerCubicInch).MilliwattsPerCubicInch, MilliwattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MilliwattPerCubicMeter).MilliwattsPerCubicMeter, MilliwattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.MilliwattPerLiter).MilliwattsPerLiter, MilliwattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.NanowattPerCubicFoot).NanowattsPerCubicFoot, NanowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.NanowattPerCubicInch).NanowattsPerCubicInch, NanowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.NanowattPerCubicMeter).NanowattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.NanowattPerLiter).NanowattsPerLiter, NanowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.PicowattPerCubicFoot).PicowattsPerCubicFoot, PicowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.PicowattPerCubicInch).PicowattsPerCubicInch, PicowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.PicowattPerCubicMeter).PicowattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.PicowattPerLiter).PicowattsPerLiter, PicowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.TerawattPerCubicFoot).TerawattsPerCubicFoot, TerawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.TerawattPerCubicInch).TerawattsPerCubicInch, TerawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.TerawattPerCubicMeter).TerawattsPerCubicMeter, TerawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.TerawattPerLiter).TerawattsPerLiter, TerawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.WattPerCubicFoot).WattsPerCubicFoot, WattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.WattPerCubicInch).WattsPerCubicInch, WattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.WattPerCubicMeter).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.From(1, PowerDensityUnit.WattPerLiter).WattsPerLiter, WattsPerLiterTolerance);
         }
 
         [Fact]
         public void FromWattsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => PowerDensity<double>.FromWattsPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => PowerDensity<double>.FromWattsPerCubicMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromWattsPerCubicMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => PowerDensity<double>.FromWattsPerCubicMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            var wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             AssertEx.EqualTolerance(DecawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicFoot), DecawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicInch), DecawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicMeter), DecawattsPerCubicMeterTolerance);
@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            var wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
 
             var decawattpercubicfootQuantity = wattpercubicmeter.ToUnit(PowerDensityUnit.DecawattPerCubicFoot);
             AssertEx.EqualTolerance(DecawattsPerCubicFootInOneWattPerCubicMeter, (double)decawattpercubicfootQuantity.Value, DecawattsPerCubicFootTolerance);
@@ -492,71 +492,71 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicFoot(wattpercubicmeter.DecawattsPerCubicFoot).WattsPerCubicMeter, DecawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicInch(wattpercubicmeter.DecawattsPerCubicInch).WattsPerCubicMeter, DecawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicMeter(wattpercubicmeter.DecawattsPerCubicMeter).WattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerLiter(wattpercubicmeter.DecawattsPerLiter).WattsPerCubicMeter, DecawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerCubicFoot(wattpercubicmeter.DeciwattsPerCubicFoot).WattsPerCubicMeter, DeciwattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerCubicInch(wattpercubicmeter.DeciwattsPerCubicInch).WattsPerCubicMeter, DeciwattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerCubicMeter(wattpercubicmeter.DeciwattsPerCubicMeter).WattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerLiter(wattpercubicmeter.DeciwattsPerLiter).WattsPerCubicMeter, DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicFoot(wattpercubicmeter.GigawattsPerCubicFoot).WattsPerCubicMeter, GigawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicInch(wattpercubicmeter.GigawattsPerCubicInch).WattsPerCubicMeter, GigawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicMeter(wattpercubicmeter.GigawattsPerCubicMeter).WattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerLiter(wattpercubicmeter.GigawattsPerLiter).WattsPerCubicMeter, GigawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromKilowattsPerCubicFoot(wattpercubicmeter.KilowattsPerCubicFoot).WattsPerCubicMeter, KilowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromKilowattsPerCubicInch(wattpercubicmeter.KilowattsPerCubicInch).WattsPerCubicMeter, KilowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromKilowattsPerCubicMeter(wattpercubicmeter.KilowattsPerCubicMeter).WattsPerCubicMeter, KilowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromKilowattsPerLiter(wattpercubicmeter.KilowattsPerLiter).WattsPerCubicMeter, KilowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMegawattsPerCubicFoot(wattpercubicmeter.MegawattsPerCubicFoot).WattsPerCubicMeter, MegawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMegawattsPerCubicInch(wattpercubicmeter.MegawattsPerCubicInch).WattsPerCubicMeter, MegawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMegawattsPerCubicMeter(wattpercubicmeter.MegawattsPerCubicMeter).WattsPerCubicMeter, MegawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMegawattsPerLiter(wattpercubicmeter.MegawattsPerLiter).WattsPerCubicMeter, MegawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMicrowattsPerCubicFoot(wattpercubicmeter.MicrowattsPerCubicFoot).WattsPerCubicMeter, MicrowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMicrowattsPerCubicInch(wattpercubicmeter.MicrowattsPerCubicInch).WattsPerCubicMeter, MicrowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMicrowattsPerCubicMeter(wattpercubicmeter.MicrowattsPerCubicMeter).WattsPerCubicMeter, MicrowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMicrowattsPerLiter(wattpercubicmeter.MicrowattsPerLiter).WattsPerCubicMeter, MicrowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMilliwattsPerCubicFoot(wattpercubicmeter.MilliwattsPerCubicFoot).WattsPerCubicMeter, MilliwattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMilliwattsPerCubicInch(wattpercubicmeter.MilliwattsPerCubicInch).WattsPerCubicMeter, MilliwattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMilliwattsPerCubicMeter(wattpercubicmeter.MilliwattsPerCubicMeter).WattsPerCubicMeter, MilliwattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromMilliwattsPerLiter(wattpercubicmeter.MilliwattsPerLiter).WattsPerCubicMeter, MilliwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerCubicFoot(wattpercubicmeter.NanowattsPerCubicFoot).WattsPerCubicMeter, NanowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerCubicInch(wattpercubicmeter.NanowattsPerCubicInch).WattsPerCubicMeter, NanowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerCubicMeter(wattpercubicmeter.NanowattsPerCubicMeter).WattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerLiter(wattpercubicmeter.NanowattsPerLiter).WattsPerCubicMeter, NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicFoot(wattpercubicmeter.PicowattsPerCubicFoot).WattsPerCubicMeter, PicowattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicInch(wattpercubicmeter.PicowattsPerCubicInch).WattsPerCubicMeter, PicowattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicMeter(wattpercubicmeter.PicowattsPerCubicMeter).WattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerLiter(wattpercubicmeter.PicowattsPerLiter).WattsPerCubicMeter, PicowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromTerawattsPerCubicFoot(wattpercubicmeter.TerawattsPerCubicFoot).WattsPerCubicMeter, TerawattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromTerawattsPerCubicInch(wattpercubicmeter.TerawattsPerCubicInch).WattsPerCubicMeter, TerawattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromTerawattsPerCubicMeter(wattpercubicmeter.TerawattsPerCubicMeter).WattsPerCubicMeter, TerawattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromTerawattsPerLiter(wattpercubicmeter.TerawattsPerLiter).WattsPerCubicMeter, TerawattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromWattsPerCubicFoot(wattpercubicmeter.WattsPerCubicFoot).WattsPerCubicMeter, WattsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromWattsPerCubicInch(wattpercubicmeter.WattsPerCubicInch).WattsPerCubicMeter, WattsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromWattsPerCubicMeter(wattpercubicmeter.WattsPerCubicMeter).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromWattsPerLiter(wattpercubicmeter.WattsPerLiter).WattsPerCubicMeter, WattsPerLiterTolerance);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDecawattsPerCubicFoot(wattpercubicmeter.DecawattsPerCubicFoot).WattsPerCubicMeter, DecawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDecawattsPerCubicInch(wattpercubicmeter.DecawattsPerCubicInch).WattsPerCubicMeter, DecawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDecawattsPerCubicMeter(wattpercubicmeter.DecawattsPerCubicMeter).WattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDecawattsPerLiter(wattpercubicmeter.DecawattsPerLiter).WattsPerCubicMeter, DecawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDeciwattsPerCubicFoot(wattpercubicmeter.DeciwattsPerCubicFoot).WattsPerCubicMeter, DeciwattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDeciwattsPerCubicInch(wattpercubicmeter.DeciwattsPerCubicInch).WattsPerCubicMeter, DeciwattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDeciwattsPerCubicMeter(wattpercubicmeter.DeciwattsPerCubicMeter).WattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromDeciwattsPerLiter(wattpercubicmeter.DeciwattsPerLiter).WattsPerCubicMeter, DeciwattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromGigawattsPerCubicFoot(wattpercubicmeter.GigawattsPerCubicFoot).WattsPerCubicMeter, GigawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromGigawattsPerCubicInch(wattpercubicmeter.GigawattsPerCubicInch).WattsPerCubicMeter, GigawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromGigawattsPerCubicMeter(wattpercubicmeter.GigawattsPerCubicMeter).WattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromGigawattsPerLiter(wattpercubicmeter.GigawattsPerLiter).WattsPerCubicMeter, GigawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromKilowattsPerCubicFoot(wattpercubicmeter.KilowattsPerCubicFoot).WattsPerCubicMeter, KilowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromKilowattsPerCubicInch(wattpercubicmeter.KilowattsPerCubicInch).WattsPerCubicMeter, KilowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromKilowattsPerCubicMeter(wattpercubicmeter.KilowattsPerCubicMeter).WattsPerCubicMeter, KilowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromKilowattsPerLiter(wattpercubicmeter.KilowattsPerLiter).WattsPerCubicMeter, KilowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMegawattsPerCubicFoot(wattpercubicmeter.MegawattsPerCubicFoot).WattsPerCubicMeter, MegawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMegawattsPerCubicInch(wattpercubicmeter.MegawattsPerCubicInch).WattsPerCubicMeter, MegawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMegawattsPerCubicMeter(wattpercubicmeter.MegawattsPerCubicMeter).WattsPerCubicMeter, MegawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMegawattsPerLiter(wattpercubicmeter.MegawattsPerLiter).WattsPerCubicMeter, MegawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMicrowattsPerCubicFoot(wattpercubicmeter.MicrowattsPerCubicFoot).WattsPerCubicMeter, MicrowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMicrowattsPerCubicInch(wattpercubicmeter.MicrowattsPerCubicInch).WattsPerCubicMeter, MicrowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMicrowattsPerCubicMeter(wattpercubicmeter.MicrowattsPerCubicMeter).WattsPerCubicMeter, MicrowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMicrowattsPerLiter(wattpercubicmeter.MicrowattsPerLiter).WattsPerCubicMeter, MicrowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMilliwattsPerCubicFoot(wattpercubicmeter.MilliwattsPerCubicFoot).WattsPerCubicMeter, MilliwattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMilliwattsPerCubicInch(wattpercubicmeter.MilliwattsPerCubicInch).WattsPerCubicMeter, MilliwattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMilliwattsPerCubicMeter(wattpercubicmeter.MilliwattsPerCubicMeter).WattsPerCubicMeter, MilliwattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromMilliwattsPerLiter(wattpercubicmeter.MilliwattsPerLiter).WattsPerCubicMeter, MilliwattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromNanowattsPerCubicFoot(wattpercubicmeter.NanowattsPerCubicFoot).WattsPerCubicMeter, NanowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromNanowattsPerCubicInch(wattpercubicmeter.NanowattsPerCubicInch).WattsPerCubicMeter, NanowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromNanowattsPerCubicMeter(wattpercubicmeter.NanowattsPerCubicMeter).WattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromNanowattsPerLiter(wattpercubicmeter.NanowattsPerLiter).WattsPerCubicMeter, NanowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromPicowattsPerCubicFoot(wattpercubicmeter.PicowattsPerCubicFoot).WattsPerCubicMeter, PicowattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromPicowattsPerCubicInch(wattpercubicmeter.PicowattsPerCubicInch).WattsPerCubicMeter, PicowattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromPicowattsPerCubicMeter(wattpercubicmeter.PicowattsPerCubicMeter).WattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromPicowattsPerLiter(wattpercubicmeter.PicowattsPerLiter).WattsPerCubicMeter, PicowattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromTerawattsPerCubicFoot(wattpercubicmeter.TerawattsPerCubicFoot).WattsPerCubicMeter, TerawattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromTerawattsPerCubicInch(wattpercubicmeter.TerawattsPerCubicInch).WattsPerCubicMeter, TerawattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromTerawattsPerCubicMeter(wattpercubicmeter.TerawattsPerCubicMeter).WattsPerCubicMeter, TerawattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromTerawattsPerLiter(wattpercubicmeter.TerawattsPerLiter).WattsPerCubicMeter, TerawattsPerLiterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromWattsPerCubicFoot(wattpercubicmeter.WattsPerCubicFoot).WattsPerCubicMeter, WattsPerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromWattsPerCubicInch(wattpercubicmeter.WattsPerCubicInch).WattsPerCubicMeter, WattsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromWattsPerCubicMeter(wattpercubicmeter.WattsPerCubicMeter).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity<double>.FromWattsPerLiter(wattpercubicmeter.WattsPerLiter).WattsPerCubicMeter, WattsPerLiterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            PowerDensity v = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> v = PowerDensity<double>.FromWattsPerCubicMeter(1);
             AssertEx.EqualTolerance(-1, -v.WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (PowerDensity.FromWattsPerCubicMeter(3)-v).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (PowerDensity<double>.FromWattsPerCubicMeter(3)-v).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (PowerDensity.FromWattsPerCubicMeter(10)/5).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, PowerDensity.FromWattsPerCubicMeter(10)/PowerDensity.FromWattsPerCubicMeter(5), WattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (PowerDensity<double>.FromWattsPerCubicMeter(10)/5).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, PowerDensity<double>.FromWattsPerCubicMeter(10)/PowerDensity<double>.FromWattsPerCubicMeter(5), WattsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            PowerDensity oneWattPerCubicMeter = PowerDensity.FromWattsPerCubicMeter(1);
-            PowerDensity twoWattsPerCubicMeter = PowerDensity.FromWattsPerCubicMeter(2);
+            PowerDensity<double> oneWattPerCubicMeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
+            PowerDensity<double> twoWattsPerCubicMeter = PowerDensity<double>.FromWattsPerCubicMeter(2);
 
             Assert.True(oneWattPerCubicMeter < twoWattsPerCubicMeter);
             Assert.True(oneWattPerCubicMeter <= twoWattsPerCubicMeter);
@@ -572,31 +572,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             Assert.Equal(0, wattpercubicmeter.CompareTo(wattpercubicmeter));
-            Assert.True(wattpercubicmeter.CompareTo(PowerDensity.Zero) > 0);
-            Assert.True(PowerDensity.Zero.CompareTo(wattpercubicmeter) < 0);
+            Assert.True(wattpercubicmeter.CompareTo(PowerDensity<double>.Zero) > 0);
+            Assert.True(PowerDensity<double>.Zero.CompareTo(wattpercubicmeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             Assert.Throws<ArgumentException>(() => wattpercubicmeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             Assert.Throws<ArgumentNullException>(() => wattpercubicmeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = PowerDensity.FromWattsPerCubicMeter(1);
-            var b = PowerDensity.FromWattsPerCubicMeter(2);
+            var a = PowerDensity<double>.FromWattsPerCubicMeter(1);
+            var b = PowerDensity<double>.FromWattsPerCubicMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -615,8 +615,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = PowerDensity.FromWattsPerCubicMeter(1);
-            var b = PowerDensity.FromWattsPerCubicMeter(2);
+            var a = PowerDensity<double>.FromWattsPerCubicMeter(1);
+            var b = PowerDensity<double>.FromWattsPerCubicMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -626,29 +626,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = PowerDensity.FromWattsPerCubicMeter(1);
-            Assert.True(v.Equals(PowerDensity.FromWattsPerCubicMeter(1), WattsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(PowerDensity.Zero, WattsPerCubicMeterTolerance, ComparisonType.Relative));
+            var v = PowerDensity<double>.FromWattsPerCubicMeter(1);
+            Assert.True(v.Equals(PowerDensity<double>.FromWattsPerCubicMeter(1), WattsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(PowerDensity<double>.Zero, WattsPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             Assert.False(wattpercubicmeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            PowerDensity<double> wattpercubicmeter = PowerDensity<double>.FromWattsPerCubicMeter(1);
             Assert.False(wattpercubicmeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(PowerDensityUnit.Undefined, PowerDensity.Units);
+            Assert.DoesNotContain(PowerDensityUnit.Undefined, PowerDensity<double>.Units);
         }
 
         [Fact]
@@ -667,7 +667,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(PowerDensity.BaseDimensions is null);
+            Assert.False(PowerDensity<double>.BaseDimensions is null);
         }
     }
 }

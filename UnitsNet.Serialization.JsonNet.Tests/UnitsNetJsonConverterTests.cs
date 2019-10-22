@@ -32,7 +32,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Information_CanSerializeVeryLargeValues()
             {
-                Information i = Information.FromExabytes(1E+9);
+                Information<double> i = Information<double>.FromExabytes(1E+9);
                 var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0\n}";
 
                 string json = SerializeObject(i);
@@ -43,7 +43,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Mass_ExpectConstructedValueAndUnit()
             {
-                Mass mass = Mass.FromPounds(200);
+                Mass<double> mass = Mass<double>.FromPounds(200);
                 var expectedJson = "{\n  \"Unit\": \"MassUnit.Pound\",\n  \"Value\": 200.0\n}";
 
                 string json = SerializeObject(mass);
@@ -54,7 +54,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Information_ExpectConstructedValueAndUnit()
             {
-                Information quantity = Information.FromKilobytes(54);
+                Information<double> quantity = Information<double>.FromKilobytes(54);
                 var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0\n}";
 
                 string json = SerializeObject(quantity);
@@ -65,7 +65,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void NonNullNullableValue_ExpectJsonUnaffected()
             {
-                Mass? nullableMass = Mass.FromKilograms(10);
+                Mass<double>? nullableMass = Mass<double>.FromKilograms(10);
                 var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 10.0\n}";
 
                 string json = SerializeObject(nullableMass);
@@ -79,8 +79,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             {
                 var testObj = new TestObj
                 {
-                    NullableFrequency = Frequency.FromHertz(10),
-                    NonNullableFrequency = Frequency.FromHertz(10)
+                    NullableFrequency = Frequency<double>.FromHertz(10),
+                    NonNullableFrequency = Frequency<double>.FromHertz(10)
                 };
                 // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
                 //  on the build server (i.e. the build server uses '\r' instead of '\n')
@@ -110,7 +110,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
-                Ratio ratio = Ratio.FromPartsPerThousand(250);
+                Ratio<double> ratio = Ratio<double>.FromPartsPerThousand(250);
                 var expectedJson = "{\n  \"Unit\": \"RatioUnit.PartPerThousand\",\n  \"Value\": 250.0\n}";
 
                 string json = SerializeObject(ratio);
@@ -124,9 +124,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Information_CanDeserializeVeryLargeValues()
             {
-                Information original = Information.FromExabytes(1E+9);
+                Information<double> original = Information<double>.FromExabytes(1E+9);
                 string json = SerializeObject(original);
-                var deserialized = DeserializeObject<Information>(json);
+                var deserialized = DeserializeObject<Information<double>>(json);
 
                 Assert.Equal(original, deserialized);
             }
@@ -134,10 +134,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Mass_ExpectJsonCorrectlyDeserialized()
             {
-                Mass originalMass = Mass.FromKilograms(33.33);
+                Mass<double> originalMass = Mass<double>.FromKilograms(33.33);
                 string json = SerializeObject(originalMass);
 
-                var deserializedMass = DeserializeObject<Mass>(json);
+                var deserializedMass = DeserializeObject<Mass<double>>(json);
 
                 Assert.Equal(originalMass, deserializedMass);
             }
@@ -145,10 +145,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void NonNullNullableValue_ExpectValueDeserializedCorrectly()
             {
-                Mass? nullableMass = Mass.FromKilograms(10);
+                Mass<double>? nullableMass = Mass<double>.FromKilograms(10);
                 string json = SerializeObject(nullableMass);
 
-                Mass? deserializedNullableMass = DeserializeObject<Mass?>(json);
+                Mass<double>? deserializedNullableMass = DeserializeObject<Mass<double>?>(json);
 
                 Assert.Equal(nullableMass.Value, deserializedNullableMass);
             }
@@ -158,8 +158,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             {
                 var testObj = new TestObj
                 {
-                    NullableFrequency = Frequency.FromHertz(10),
-                    NonNullableFrequency = Frequency.FromHertz(10)
+                    NullableFrequency = Frequency<double>.FromHertz(10),
+                    NonNullableFrequency = Frequency<double>.FromHertz(10)
                 };
                 string json = SerializeObject(testObj);
 
@@ -172,7 +172,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void NullValue_ExpectNullReturned()
             {
                 string json = SerializeObject(null);
-                var deserializedNullMass = DeserializeObject<Mass?>(json);
+                var deserializedNullMass = DeserializeObject<Mass<double>?>(json);
 
                 Assert.Null(deserializedNullMass);
             }
@@ -183,7 +183,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var testObj = new TestObj
                 {
                     NullableFrequency = null,
-                    NonNullableFrequency = Frequency.FromHertz(10)
+                    NonNullableFrequency = Frequency<double>.FromHertz(10)
                 };
                 string json = SerializeObject(testObj);
 
@@ -195,13 +195,13 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void UnitEnumChangedAfterSerialization_ExpectUnitCorrectlyDeserialized()
             {
-                Mass originalMass = Mass.FromKilograms(33.33);
+                Mass<double> originalMass = Mass<double>.FromKilograms(33.33);
                 string json = SerializeObject(originalMass);
                 // Someone manually changed the serialized JSON string to 1000 grams.
                 json = json.Replace("33.33", "1000");
                 json = json.Replace("MassUnit.Kilogram", "MassUnit.Gram");
 
-                var deserializedMass = DeserializeObject<Mass>(json);
+                var deserializedMass = DeserializeObject<Mass<double>>(json);
 
                 // The original value serialized was 33.33 kg, but someone edited the JSON to be 1000 g. We expect the JSON is
                 //  still deserializable, and the correct value of 1000 g is obtained.
@@ -213,7 +213,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             {
                 TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
                 {
-                    Value = Power.FromWatts(10)
+                    Value = Power<double>.FromWatts(10)
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
 
@@ -221,8 +221,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
 
-                Assert.Equal(typeof(Power), deserializedTestObject.Value.GetType());
-                Assert.Equal(Power.FromWatts(10), (Power)deserializedTestObject.Value);
+                Assert.Equal(typeof(Power<double>), deserializedTestObject.Value.GetType());
+                Assert.Equal(Power<double>.FromWatts(10), (Power<double>)deserializedTestObject.Value);
             }
 
             [Fact]
@@ -282,7 +282,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 TestObjWithThreeIComparable testObjWithIComparable = new TestObjWithThreeIComparable()
                 {
                     Value1 = 10.0,
-                    Value2 = Power.FromWatts(19),
+                    Value2 = Power<double>.FromWatts(19),
                     Value3 = new ComparableClass() { Value = 10 },
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
@@ -292,8 +292,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 Assert.Equal(typeof(double), deserializedTestObject.Value1.GetType());
                 Assert.Equal(10d, deserializedTestObject.Value1);
-                Assert.Equal(typeof(Power), deserializedTestObject.Value2.GetType());
-                Assert.Equal(Power.FromWatts(19), deserializedTestObject.Value2);
+                Assert.Equal(typeof(Power<double>), deserializedTestObject.Value2.GetType());
+                Assert.Equal(Power<double>.FromWatts(19), deserializedTestObject.Value2);
                 Assert.Equal(typeof(ComparableClass), deserializedTestObject.Value3.GetType());
                 Assert.Equal(testObjWithIComparable.Value3, deserializedTestObject.Value3);
             }
@@ -312,8 +312,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         private class TestObj
         {
-            public Frequency? NullableFrequency { get; set; }
-            public Frequency NonNullableFrequency { get; set; }
+            public Frequency<double>? NullableFrequency { get; set; }
+            public Frequency<double> NonNullableFrequency { get; set; }
         }
 
         private class TestObjWithValueAndUnit : IComparable

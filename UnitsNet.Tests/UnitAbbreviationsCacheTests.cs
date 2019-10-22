@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
         [InlineData(0.115, "0.12 m")]
         public void DefaultToStringFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -59,7 +59,7 @@ namespace UnitsNet.Tests
         [InlineData("it-IT")]
         public void CommaRadixPointCultureFormatting(string culture)
         {
-            Assert.Equal("0,12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
+            Assert.Equal("0,12 m", Length<double>.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
         // These cultures all use a decimal point for the radix point
@@ -71,7 +71,7 @@ namespace UnitsNet.Tests
         [InlineData("es-MX")]
         public void DecimalRadixPointCultureFormatting(string culture)
         {
-            Assert.Equal("0.12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
+            Assert.Equal("0.12 m", Length<double>.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
         // These cultures all use a comma in digit grouping
@@ -84,14 +84,14 @@ namespace UnitsNet.Tests
         public void CommaDigitGroupingCultureFormatting(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
-            Assert.Equal("1,111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(culture));
+            Assert.Equal("1,111 m", Length<double>.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(culture));
 
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
             Assert.Equal("2,222 ft 3 in",
-                Length.FromFeetInches(2222, 3).FeetInches.ToString(culture));
+                Length<double>.FromFeetInches(2222, 3).FeetInches.ToString(culture));
             Assert.Equal("3,333 st 7 lb",
-                Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
+                Mass<double>.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
 
         // These cultures use a thin space in digit grouping
@@ -101,7 +101,7 @@ namespace UnitsNet.Tests
         public void SpaceDigitGroupingCultureFormatting(string culture)
         {
             // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
-            Assert.Equal("1 111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
+            Assert.Equal("1 111 m", Length<double>.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
         // These cultures all use a decimal point in digit grouping
@@ -113,7 +113,7 @@ namespace UnitsNet.Tests
         [InlineData("it-IT")]
         public void DecimalPointDigitGroupingCultureFormatting(string culture)
         {
-            Assert.Equal("1.111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
+            Assert.Equal("1.111 m", Length<double>.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
         }
 
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
@@ -127,7 +127,7 @@ namespace UnitsNet.Tests
         public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
             string significantDigitsAfterRadixFormatString, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -139,7 +139,7 @@ namespace UnitsNet.Tests
         [InlineData(1.99e-4, "1.99e-04 m")]
         public void ScientificNotationLowerInterval(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [InlineData(999.99, "999.99 m")]
         public void FixedPointNotationIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [InlineData(999999.99, "999,999.99 m")]
         public void FixedPointNotationWithDigitGroupingIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -173,62 +173,62 @@ namespace UnitsNet.Tests
         [InlineData(double.MaxValue, "1.8e+308 m")]
         public void ScientificNotationUpperIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
+            string actual = Length<double>.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToString());
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString());
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString());
-            Assert.Equal("1 N", Force.FromNewtons(1).ToString());
-            Assert.Equal("1 m", Length.FromMeters(1).ToString());
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString());
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString());
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString());
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString());
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString());
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString());
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString());
+            Assert.Equal("1 °", Angle<double>.FromDegrees(1).ToString());
+            Assert.Equal("1 m²", Area<double>.FromSquareMeters(1).ToString());
+            Assert.Equal("1 V", ElectricPotential<double>.FromVolts(1).ToString());
+            Assert.Equal("1 N", Force<double>.FromNewtons(1).ToString());
+            Assert.Equal("1 m", Length<double>.FromMeters(1).ToString());
+            Assert.Equal("1 kg", Mass<double>.FromKilograms(1).ToString());
+            Assert.Equal("1 Pa", Pressure<double>.FromPascals(1).ToString());
+            Assert.Equal("1 rad/s", RotationalSpeed<double>.FromRadiansPerSecond(1).ToString());
+            Assert.Equal("1 K", Temperature<double>.FromKelvins(1).ToString());
+            Assert.Equal("1 N·m", Torque<double>.FromNewtonMeters(1).ToString());
+            Assert.Equal("1 m³", Volume<double>.FromCubicMeters(1).ToString());
+            Assert.Equal("1 m³/s", VolumeFlow<double>.FromCubicMetersPerSecond(1).ToString());
 
-            Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
-            Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
+            Assert.Equal("2 ft 3 in", Length<double>.FromFeetInches(2, 3).FeetInches.ToString());
+            Assert.Equal("3 st 7 lb", Mass<double>.FromStonePounds(3, 7).StonePounds.ToString());
         }
 
         [Fact]
         public void ToString_WithNorwegianCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(NorwegianCulture));
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(NorwegianCulture));
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(NorwegianCulture));
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(NorwegianCulture));
-            Assert.Equal("1 N", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(NorwegianCulture));
-            Assert.Equal("1 m", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(NorwegianCulture));
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(NorwegianCulture));
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(NorwegianCulture));
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(NorwegianCulture));
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(NorwegianCulture));
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(NorwegianCulture));
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(NorwegianCulture));
+            Assert.Equal("1 °", Angle<double>.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(NorwegianCulture));
+            Assert.Equal("1 m²", Area<double>.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(NorwegianCulture));
+            Assert.Equal("1 V", ElectricPotential<double>.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(NorwegianCulture));
+            Assert.Equal("1 m³/s", VolumeFlow<double>.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(NorwegianCulture));
+            Assert.Equal("1 N", Force<double>.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(NorwegianCulture));
+            Assert.Equal("1 m", Length<double>.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(NorwegianCulture));
+            Assert.Equal("1 kg", Mass<double>.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(NorwegianCulture));
+            Assert.Equal("1 Pa", Pressure<double>.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(NorwegianCulture));
+            Assert.Equal("1 rad/s", RotationalSpeed<double>.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(NorwegianCulture));
+            Assert.Equal("1 K", Temperature<double>.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(NorwegianCulture));
+            Assert.Equal("1 N·m", Torque<double>.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(NorwegianCulture));
+            Assert.Equal("1 m³", Volume<double>.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(NorwegianCulture));
         }
 
         [Fact]
         public void ToString_WithRussianCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(RussianCulture));
-            Assert.Equal("1 м²", Area.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(RussianCulture));
-            Assert.Equal("1 В", ElectricPotential.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(RussianCulture));
-            Assert.Equal("1 м³/с", VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(RussianCulture));
-            Assert.Equal("1 Н", Force.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(RussianCulture));
-            Assert.Equal("1 м", Length.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(RussianCulture));
-            Assert.Equal("1 кг", Mass.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(RussianCulture));
-            Assert.Equal("1 Па", Pressure.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(RussianCulture));
-            Assert.Equal("1 рад/с", RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(RussianCulture));
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(RussianCulture));
-            Assert.Equal("1 Н·м", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(RussianCulture));
-            Assert.Equal("1 м³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(RussianCulture));
+            Assert.Equal("1 °", Angle<double>.FromDegrees(1).ToUnit(AngleUnit.Degree).ToString(RussianCulture));
+            Assert.Equal("1 м²", Area<double>.FromSquareMeters(1).ToUnit(AreaUnit.SquareMeter).ToString(RussianCulture));
+            Assert.Equal("1 В", ElectricPotential<double>.FromVolts(1).ToUnit(ElectricPotentialUnit.Volt).ToString(RussianCulture));
+            Assert.Equal("1 м³/с", VolumeFlow<double>.FromCubicMetersPerSecond(1).ToUnit(VolumeFlowUnit.CubicMeterPerSecond).ToString(RussianCulture));
+            Assert.Equal("1 Н", Force<double>.FromNewtons(1).ToUnit(ForceUnit.Newton).ToString(RussianCulture));
+            Assert.Equal("1 м", Length<double>.FromMeters(1).ToUnit(LengthUnit.Meter).ToString(RussianCulture));
+            Assert.Equal("1 кг", Mass<double>.FromKilograms(1).ToUnit(MassUnit.Kilogram).ToString(RussianCulture));
+            Assert.Equal("1 Па", Pressure<double>.FromPascals(1).ToUnit(PressureUnit.Pascal).ToString(RussianCulture));
+            Assert.Equal("1 рад/с", RotationalSpeed<double>.FromRadiansPerSecond(1).ToUnit(RotationalSpeedUnit.RadianPerSecond).ToString(RussianCulture));
+            Assert.Equal("1 K", Temperature<double>.FromKelvins(1).ToUnit(TemperatureUnit.Kelvin).ToString(RussianCulture));
+            Assert.Equal("1 Н·м", Torque<double>.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(RussianCulture));
+            Assert.Equal("1 м³", Volume<double>.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(RussianCulture));
         }
 
         [Fact]
@@ -293,7 +293,7 @@ namespace UnitsNet.Tests
             var newZealandCulture = GetCulture("en-NZ");
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
-            Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+            Assert.Equal("1 m^2", Area<double>.FromSquareMeters(1).ToString(newZealandCulture));
         }
 
         /// <summary>

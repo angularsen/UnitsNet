@@ -49,26 +49,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactivePower((double)0.0, ReactivePowerUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ReactivePower<double>((double)0.0, ReactivePowerUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.NegativeInfinity, ReactivePowerUnit.VoltampereReactive));
+            Assert.Throws<ArgumentException>(() => new ReactivePower<double>(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
+            Assert.Throws<ArgumentException>(() => new ReactivePower<double>(double.NegativeInfinity, ReactivePowerUnit.VoltampereReactive));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.NaN, ReactivePowerUnit.VoltampereReactive));
+            Assert.Throws<ArgumentException>(() => new ReactivePower<double>(double.NaN, ReactivePowerUnit.VoltampereReactive));
         }
 
         [Fact]
         public void VoltampereReactiveToReactivePowerUnits()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
@@ -78,29 +78,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.GigavoltampereReactive).GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.KilovoltampereReactive).KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.MegavoltampereReactive).MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.VoltampereReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.From(1, ReactivePowerUnit.GigavoltampereReactive).GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.From(1, ReactivePowerUnit.KilovoltampereReactive).KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.From(1, ReactivePowerUnit.MegavoltampereReactive).MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.From(1, ReactivePowerUnit.VoltampereReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
         }
 
         [Fact]
         public void FromVoltamperesReactive_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ReactivePower<double>.FromVoltamperesReactive(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ReactivePower<double>.FromVoltamperesReactive(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromVoltamperesReactive_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.NaN));
+            Assert.Throws<ArgumentException>(() => ReactivePower<double>.FromVoltamperesReactive(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            var voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.GigavoltampereReactive), GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.KilovoltampereReactive), KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.MegavoltampereReactive), MegavoltamperesReactiveTolerance);
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            var voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
 
             var gigavoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.GigavoltampereReactive);
             AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, (double)gigavoltamperereactiveQuantity.Value, GigavoltamperesReactiveTolerance);
@@ -132,31 +132,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
-            AssertEx.EqualTolerance(1, ReactivePower.FromGigavoltamperesReactive(voltamperereactive.GigavoltamperesReactive).VoltamperesReactive, GigavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.FromKilovoltamperesReactive(voltamperereactive.KilovoltamperesReactive).VoltamperesReactive, KilovoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.FromMegavoltamperesReactive(voltamperereactive.MegavoltamperesReactive).VoltamperesReactive, MegavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.FromVoltamperesReactive(voltamperereactive.VoltamperesReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.FromGigavoltamperesReactive(voltamperereactive.GigavoltamperesReactive).VoltamperesReactive, GigavoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.FromKilovoltamperesReactive(voltamperereactive.KilovoltamperesReactive).VoltamperesReactive, KilovoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.FromMegavoltamperesReactive(voltamperereactive.MegavoltamperesReactive).VoltamperesReactive, MegavoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(1, ReactivePower<double>.FromVoltamperesReactive(voltamperereactive.VoltamperesReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ReactivePower v = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> v = ReactivePower<double>.FromVoltamperesReactive(1);
             AssertEx.EqualTolerance(-1, -v.VoltamperesReactive, VoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(2, (ReactivePower.FromVoltamperesReactive(3)-v).VoltamperesReactive, VoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(2, (ReactivePower<double>.FromVoltamperesReactive(3)-v).VoltamperesReactive, VoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(2, (v + v).VoltamperesReactive, VoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(10, (v*10).VoltamperesReactive, VoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(10, (10*v).VoltamperesReactive, VoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(2, (ReactivePower.FromVoltamperesReactive(10)/5).VoltamperesReactive, VoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(2, ReactivePower.FromVoltamperesReactive(10)/ReactivePower.FromVoltamperesReactive(5), VoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(2, (ReactivePower<double>.FromVoltamperesReactive(10)/5).VoltamperesReactive, VoltamperesReactiveTolerance);
+            AssertEx.EqualTolerance(2, ReactivePower<double>.FromVoltamperesReactive(10)/ReactivePower<double>.FromVoltamperesReactive(5), VoltamperesReactiveTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ReactivePower oneVoltampereReactive = ReactivePower.FromVoltamperesReactive(1);
-            ReactivePower twoVoltamperesReactive = ReactivePower.FromVoltamperesReactive(2);
+            ReactivePower<double> oneVoltampereReactive = ReactivePower<double>.FromVoltamperesReactive(1);
+            ReactivePower<double> twoVoltamperesReactive = ReactivePower<double>.FromVoltamperesReactive(2);
 
             Assert.True(oneVoltampereReactive < twoVoltamperesReactive);
             Assert.True(oneVoltampereReactive <= twoVoltamperesReactive);
@@ -172,31 +172,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             Assert.Equal(0, voltamperereactive.CompareTo(voltamperereactive));
-            Assert.True(voltamperereactive.CompareTo(ReactivePower.Zero) > 0);
-            Assert.True(ReactivePower.Zero.CompareTo(voltamperereactive) < 0);
+            Assert.True(voltamperereactive.CompareTo(ReactivePower<double>.Zero) > 0);
+            Assert.True(ReactivePower<double>.Zero.CompareTo(voltamperereactive) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             Assert.Throws<ArgumentException>(() => voltamperereactive.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             Assert.Throws<ArgumentNullException>(() => voltamperereactive.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ReactivePower.FromVoltamperesReactive(1);
-            var b = ReactivePower.FromVoltamperesReactive(2);
+            var a = ReactivePower<double>.FromVoltamperesReactive(1);
+            var b = ReactivePower<double>.FromVoltamperesReactive(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -215,8 +215,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ReactivePower.FromVoltamperesReactive(1);
-            var b = ReactivePower.FromVoltamperesReactive(2);
+            var a = ReactivePower<double>.FromVoltamperesReactive(1);
+            var b = ReactivePower<double>.FromVoltamperesReactive(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -226,29 +226,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ReactivePower.FromVoltamperesReactive(1);
-            Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1), VoltamperesReactiveTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ReactivePower.Zero, VoltamperesReactiveTolerance, ComparisonType.Relative));
+            var v = ReactivePower<double>.FromVoltamperesReactive(1);
+            Assert.True(v.Equals(ReactivePower<double>.FromVoltamperesReactive(1), VoltamperesReactiveTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ReactivePower<double>.Zero, VoltamperesReactiveTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             Assert.False(voltamperereactive.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower<double> voltamperereactive = ReactivePower<double>.FromVoltamperesReactive(1);
             Assert.False(voltamperereactive.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ReactivePowerUnit.Undefined, ReactivePower.Units);
+            Assert.DoesNotContain(ReactivePowerUnit.Undefined, ReactivePower<double>.Units);
         }
 
         [Fact]
@@ -267,7 +267,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ReactivePower.BaseDimensions is null);
+            Assert.False(ReactivePower<double>.BaseDimensions is null);
         }
     }
 }

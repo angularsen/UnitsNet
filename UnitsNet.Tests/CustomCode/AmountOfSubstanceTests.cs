@@ -47,17 +47,17 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
         {
-            var oneMole = AmountOfSubstance.FromMoles(1);
+            var oneMole = AmountOfSubstance<double>.FromMoles(1);
             var numberOfParticles = oneMole.NumberOfParticles();
-            Assert.Equal(AmountOfSubstance.AvogadroConstant, numberOfParticles);
+            Assert.Equal(AmountOfSubstance<double>.AvogadroConstant, numberOfParticles);
         }
 
         [Fact]
         public void NumberOfParticlesInTwoMolesIsDoubleAvogadroConstant()
         {
-            var twoMoles = AmountOfSubstance.FromMoles(2);
+            var twoMoles = AmountOfSubstance<double>.FromMoles(2);
             var numberOfParticles = twoMoles.NumberOfParticles();
-            Assert.Equal(AmountOfSubstance.AvogadroConstant * 2, numberOfParticles);
+            Assert.Equal(AmountOfSubstance<double>.AvogadroConstant * 2, numberOfParticles);
         }
 
         [Theory]
@@ -69,10 +69,10 @@ namespace UnitsNet.Tests.CustomCode
             double molarMassValue, MolarMassUnit molarMassUnit,
             double expectedMass, MassUnit expectedMassUnit, double tolerence = 1e-5)
         {
-            AmountOfSubstance amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
-            MolarMass molarMass = new MolarMass(molarMassValue, molarMassUnit);
+            var amountOfSubstance = new AmountOfSubstance<double>(amountOfSubstanceValue, amountOfSubstanceUnit);
+            var molarMass = new MolarMass<double>( molarMassValue, molarMassUnit);
             
-            Mass mass = amountOfSubstance * molarMass;
+            var mass = amountOfSubstance * molarMass;
 
             AssertEx.EqualTolerance(expectedMass, mass.As(expectedMassUnit), tolerence);
         }
@@ -88,12 +88,12 @@ namespace UnitsNet.Tests.CustomCode
             double solutionVolumeValue, VolumeUnit solutionVolumeUnit,
             double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
         {
-            var componentMass = new Mass(componentMassValue, componentMassUnit);
-            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
-            var volumeSolution = new Volume(solutionVolumeValue, solutionVolumeUnit);
-            AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+            var componentMass = new Mass<double>(componentMassValue, componentMassUnit);
+            var componentMolarMass = new MolarMass<double>( componentMolarMassValue, componentMolarMassUnit);
+            var volumeSolution = new Volume<double>( solutionVolumeValue, solutionVolumeUnit);
+            var amountOfSubstance = componentMass / componentMolarMass;
 
-            Molarity molarity = amountOfSubstance / volumeSolution;
+            var molarity = amountOfSubstance / volumeSolution;
 
             AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerence);
         }
@@ -109,12 +109,12 @@ namespace UnitsNet.Tests.CustomCode
             double desiredMolarityValue, MolarityUnit desiredMolarityUnit,
             double expectedSolutionVolumeValue, VolumeUnit expectedSolutionVolumeUnit, double tolerence = 1e-5)
         {
-            var componentMass = new Mass(componentMassValue, componentMassUnit);
-            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
-            var desiredMolarity = new Molarity(desiredMolarityValue, desiredMolarityUnit);
-            AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+            var componentMass = new Mass<double>(componentMassValue, componentMassUnit);
+            var componentMolarMass = new MolarMass<double>(componentMolarMassValue, componentMolarMassUnit);
+            var desiredMolarity = new Molarity<double>( desiredMolarityValue, desiredMolarityUnit);
+            var amountOfSubstance = componentMass / componentMolarMass;
 
-            Volume volumeSolution = amountOfSubstance / desiredMolarity;
+            var volumeSolution = amountOfSubstance / desiredMolarity;
 
             AssertEx.EqualTolerance(expectedSolutionVolumeValue, volumeSolution.As(expectedSolutionVolumeUnit), tolerence);
         }

@@ -61,26 +61,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate((double)0.0, TemperatureChangeRateUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate<double>((double)0.0, TemperatureChangeRateUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate(double.PositiveInfinity, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
-            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate(double.NegativeInfinity, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate<double>(double.PositiveInfinity, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate<double>(double.NegativeInfinity, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate(double.NaN, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate<double>(double.NaN, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
         }
 
         [Fact]
         public void DegreeCelsiusPerSecondToTemperatureChangeRateUnits()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
@@ -96,35 +96,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond).MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
         }
 
         [Fact]
         public void FromDegreesCelsiusPerSecond_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromDegreesCelsiusPerSecond_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.NaN));
+            Assert.Throws<ArgumentException>(() => TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            var degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond), CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond), DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond), DecidegreesCelsiusPerSecondTolerance);
@@ -140,7 +140,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            var degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
 
             var centidegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)centidegreecelsiuspersecondQuantity.Value, CentidegreesCelsiusPerSecondTolerance);
@@ -186,37 +186,37 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(degreecelsiuspersecond.CentidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(degreecelsiuspersecond.DecadegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(degreecelsiuspersecond.DecidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerMinute(degreecelsiuspersecond.DegreesCelsiusPerMinute).DegreesCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerSecond(degreecelsiuspersecond.DegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(degreecelsiuspersecond.HectodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(degreecelsiuspersecond.KilodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(degreecelsiuspersecond.MicrodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(degreecelsiuspersecond.MillidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(degreecelsiuspersecond.NanodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromCentidegreesCelsiusPerSecond(degreecelsiuspersecond.CentidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromDecadegreesCelsiusPerSecond(degreecelsiuspersecond.DecadegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromDecidegreesCelsiusPerSecond(degreecelsiuspersecond.DecidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromDegreesCelsiusPerMinute(degreecelsiuspersecond.DegreesCelsiusPerMinute).DegreesCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(degreecelsiuspersecond.DegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromHectodegreesCelsiusPerSecond(degreecelsiuspersecond.HectodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromKilodegreesCelsiusPerSecond(degreecelsiuspersecond.KilodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromMicrodegreesCelsiusPerSecond(degreecelsiuspersecond.MicrodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromMillidegreesCelsiusPerSecond(degreecelsiuspersecond.MillidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate<double>.FromNanodegreesCelsiusPerSecond(degreecelsiuspersecond.NanodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            TemperatureChangeRate v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> v = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             AssertEx.EqualTolerance(-1, -v.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (TemperatureChangeRate.FromDegreesCelsiusPerSecond(3)-v).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(3)-v).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(2, (v + v).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(10, (v*10).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(10, (10*v).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (TemperatureChangeRate.FromDegreesCelsiusPerSecond(10)/5).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
-            AssertEx.EqualTolerance(2, TemperatureChangeRate.FromDegreesCelsiusPerSecond(10)/TemperatureChangeRate.FromDegreesCelsiusPerSecond(5), DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(10)/5).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(2, TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(10)/TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(5), DegreesCelsiusPerSecondTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            TemperatureChangeRate oneDegreeCelsiusPerSecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            TemperatureChangeRate twoDegreesCelsiusPerSecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
+            TemperatureChangeRate<double> oneDegreeCelsiusPerSecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> twoDegreesCelsiusPerSecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(2);
 
             Assert.True(oneDegreeCelsiusPerSecond < twoDegreesCelsiusPerSecond);
             Assert.True(oneDegreeCelsiusPerSecond <= twoDegreesCelsiusPerSecond);
@@ -232,31 +232,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             Assert.Equal(0, degreecelsiuspersecond.CompareTo(degreecelsiuspersecond));
-            Assert.True(degreecelsiuspersecond.CompareTo(TemperatureChangeRate.Zero) > 0);
-            Assert.True(TemperatureChangeRate.Zero.CompareTo(degreecelsiuspersecond) < 0);
+            Assert.True(degreecelsiuspersecond.CompareTo(TemperatureChangeRate<double>.Zero) > 0);
+            Assert.True(TemperatureChangeRate<double>.Zero.CompareTo(degreecelsiuspersecond) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             Assert.Throws<ArgumentException>(() => degreecelsiuspersecond.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             Assert.Throws<ArgumentNullException>(() => degreecelsiuspersecond.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            var b = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
+            var a = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
+            var b = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -275,8 +275,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            var b = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
+            var a = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
+            var b = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -286,29 +286,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(TemperatureChangeRate.Zero, DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
+            var v = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
+            Assert.True(v.Equals(TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1), DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(TemperatureChangeRate<double>.Zero, DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             Assert.False(degreecelsiuspersecond.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            TemperatureChangeRate<double> degreecelsiuspersecond = TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(1);
             Assert.False(degreecelsiuspersecond.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(TemperatureChangeRateUnit.Undefined, TemperatureChangeRate.Units);
+            Assert.DoesNotContain(TemperatureChangeRateUnit.Undefined, TemperatureChangeRate<double>.Units);
         }
 
         [Fact]
@@ -327,7 +327,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(TemperatureChangeRate.BaseDimensions is null);
+            Assert.False(TemperatureChangeRate<double>.BaseDimensions is null);
         }
     }
 }

@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -45,7 +45,7 @@ namespace UnitsNet.Tests
                 // Example: LengthUnit.Centimeter
                 var unitEnumNameAndValue = $"{quantity.Name}Unit.{lastUnit.SingularName}";
                 Writer.WL($@"
-            Assertion(3, {unitEnumNameAndValue}, Quantity.From(3, {unitEnumNameAndValue}));");
+            Assertion(3, {unitEnumNameAndValue}, Quantity.From<double>(3, {unitEnumNameAndValue}));");
             }
             Writer.WL($@"
         }}
@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
             void Assertion(QuantityInfo expected, IQuantity quantity) => Assert.Same(expected, quantity.QuantityInfo);
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.Info, {quantity.Name}.Zero);");
+            Assertion({quantity.Name}<double>.Info, {quantity.Name}<double>.Zero);");
             Writer.WL($@"
         }}
 
@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             void Assertion(QuantityType expected, IQuantity quantity) => Assert.Equal(expected, quantity.Type);
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.QuantityType, {quantity.Name}.Zero);");
+            Assertion({quantity.Name}<double>.QuantityType, {quantity.Name}<double>.Zero);" );
             Writer.WL($@"
         }}
 
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             void Assertion(BaseDimensions expected, IQuantity quantity) => Assert.Equal(expected, quantity.Dimensions);
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.BaseDimensions, {quantity.Name}.Zero);");
+            Assertion({quantity.Name}<double>.BaseDimensions, {quantity.Name}<double>.Zero);" );
             Writer.WL($@"
         }}
     }}

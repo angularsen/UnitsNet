@@ -34,57 +34,57 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void ForceDividedByAreaEqualsPressure()
         {
-            Pressure pressure = Force.FromNewtons(90)/Area.FromSquareMeters(9);
-            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(10));
+            var pressure = Force<double>.FromNewtons(90)/Area<double>.FromSquareMeters(9);
+            Assert.Equal(pressure, Pressure<double>.FromNewtonsPerSquareMeter(10));
         }
 
         [Fact]
         public void PressureByAreaEqualsForce()
         {
-            Force force = Force.FromPressureByArea(Pressure.FromNewtonsPerSquareMeter(5), Area.FromSquareMeters(7));
-            Assert.Equal(force, Force.FromNewtons(35));
+            var force = Force<double>.FromPressureByArea(Pressure<double>.FromNewtonsPerSquareMeter(5), Area<double>.FromSquareMeters(7));
+            Assert.Equal(force, Force<double>.FromNewtons(35));
         }
 
         [Fact]
         public void ForceDividedByMassEqualsAcceleration()
         {
-            Acceleration acceleration = Force.FromNewtons(27)/Mass.FromKilograms(9);
-            Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(3));
+            var acceleration = Force<double>.FromNewtons(27)/Mass<double>.FromKilograms(9);
+            Assert.Equal(acceleration, Acceleration<double>.FromMetersPerSecondSquared(3));
         }
 
         [Fact]
         public void ForceDividedByAccelerationEqualsMass()
         {
-          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMetersPerSecondSquared(50);
-          Assert.Equal(acceleration, Mass.FromKilograms(4));
+          var mass = Force<double>.FromNewtons(200)/Acceleration<double>.FromMetersPerSecondSquared(50);
+          Assert.Equal(mass, Mass<double>.FromKilograms(4));
         }
 
         [Fact]
         public void ForceDividedByLengthEqualsForcePerLength()
         {
-            ForcePerLength forcePerLength = Force.FromNewtons(200) / Length.FromMeters(50);
-            Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(4));
+            var forcePerLength = Force<double>.FromNewtons(200) / Length<double>.FromMeters(50);
+            Assert.Equal(forcePerLength, ForcePerLength<double>.FromNewtonsPerMeter(4));
         }
 
         [Fact]
         public void MassByAccelerationEqualsForce()
         {
-            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));
-            Assert.Equal(force, Force.FromNewtons(-340));
+            var force = Force<double>.FromMassByAcceleration(Mass<double>.FromKilograms(85), Acceleration<double>.FromMetersPerSecondSquared(-4));
+            Assert.Equal(force, Force<double>.FromNewtons(-340));
         }
 
         [Fact]
         public void ForceTimesSpeedEqualsPower()
         {
-            Power power = Force.FromNewtons(27.0)*Speed.FromMetersPerSecond(10.0);
-            Assert.Equal(power, Power.FromWatts(270));
+            var power = Force<double>.FromNewtons(27.0)*Speed<double>.FromMetersPerSecond(10.0);
+            Assert.Equal(power, Power<double>.FromWatts(270));
         }
 
         [Fact]
         public void SpeedTimesForceEqualsPower()
         {
-            Power power = Speed.FromMetersPerSecond(10.0)*Force.FromNewtons(27.0);
-            Assert.Equal(power, Power.FromWatts(270));
+            var power = Speed<double>.FromMetersPerSecond(10.0)*Force<double>.FromNewtons(27.0);
+            Assert.Equal(power, Power<double>.FromWatts(270));
         }
     }
 }

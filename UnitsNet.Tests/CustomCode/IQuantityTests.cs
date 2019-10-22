@@ -12,42 +12,42 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_GivenWrongUnitType_ThrowsArgumentException()
         {
-            IQuantity length = Length.FromMeters(1.2345);
+            IQuantity length = Length<double>.FromMeters(1.2345);
             Assert.Throws<ArgumentException>(() => length.As(MassUnit.Kilogram));
         }
 
         [Fact]
         public void As_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
-            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            IQuantity imperialLengthQuantity = new Length<double>(2.0, LengthUnit.Inch);
             Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem)null));
         }
 
         [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            IQuantity inches = new Length(2.0, LengthUnit.Inch);
+            IQuantity inches = new Length<double>(2.0, LengthUnit.Inch);
             Assert.Equal(0.0508, inches.As(UnitSystem.SI));
         }
 
         [Fact]
         public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
         {
-            IQuantity length = Length.FromMeters(1.2345);
+            IQuantity length = Length<double>.FromMeters(1.2345);
             Assert.Throws<ArgumentException>(() => length.ToUnit(MassUnit.Kilogram));
         }
 
         [Fact]
         public void ToUnit_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
-            IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
+            IQuantity imperialLengthQuantity = new Length<double>(2.0, LengthUnit.Inch);
             Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem)null));
         }
 
         [Fact]
         public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            IQuantity inches = new Length(2.0, LengthUnit.Inch);
+            IQuantity inches = new Length<double>(2.0, LengthUnit.Inch);
 
             IQuantity inSI = inches.ToUnit(UnitSystem.SI);
 

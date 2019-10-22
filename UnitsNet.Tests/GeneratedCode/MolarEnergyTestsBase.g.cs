@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of MolarEnergy.
+    /// Test of MolarEnergy<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MolarEnergyTestsBase
@@ -47,26 +47,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEnergy((double)0.0, MolarEnergyUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy<double>((double)0.0, MolarEnergyUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.PositiveInfinity, MolarEnergyUnit.JoulePerMole));
-            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NegativeInfinity, MolarEnergyUnit.JoulePerMole));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy<double>(double.PositiveInfinity, MolarEnergyUnit.JoulePerMole));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy<double>(double.NegativeInfinity, MolarEnergyUnit.JoulePerMole));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NaN, MolarEnergyUnit.JoulePerMole));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy<double>(double.NaN, MolarEnergyUnit.JoulePerMole));
         }
 
         [Fact]
         public void JoulePerMoleToMolarEnergyUnits()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, joulepermole.JoulesPerMole, JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, joulepermole.KilojoulesPerMole, KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, joulepermole.MegajoulesPerMole, MegajoulesPerMoleTolerance);
@@ -75,28 +75,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole).JoulesPerMole, JoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole).KilojoulesPerMole, KilojoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole).MegajoulesPerMole, MegajoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.From(1, MolarEnergyUnit.JoulePerMole).JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.From(1, MolarEnergyUnit.KilojoulePerMole).KilojoulesPerMole, KilojoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.From(1, MolarEnergyUnit.MegajoulePerMole).MegajoulesPerMole, MegajoulesPerMoleTolerance);
         }
 
         [Fact]
         public void FromJoulesPerMole_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => MolarEnergy<double>.FromJoulesPerMole(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MolarEnergy<double>.FromJoulesPerMole(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromJoulesPerMole_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NaN));
+            Assert.Throws<ArgumentException>(() => MolarEnergy<double>.FromJoulesPerMole(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            var joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.JoulePerMole), JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.KilojoulePerMole), KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.MegajoulePerMole), MegajoulesPerMoleTolerance);
@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            var joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
 
             var joulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.JoulePerMole);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, (double)joulepermoleQuantity.Value, JoulesPerMoleTolerance);
@@ -123,30 +123,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
-            AssertEx.EqualTolerance(1, MolarEnergy.FromJoulesPerMole(joulepermole.JoulesPerMole).JoulesPerMole, JoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(1, MolarEnergy.FromKilojoulesPerMole(joulepermole.KilojoulesPerMole).JoulesPerMole, KilojoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(1, MolarEnergy.FromMegajoulesPerMole(joulepermole.MegajoulesPerMole).JoulesPerMole, MegajoulesPerMoleTolerance);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.FromJoulesPerMole(joulepermole.JoulesPerMole).JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.FromKilojoulesPerMole(joulepermole.KilojoulesPerMole).JoulesPerMole, KilojoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy<double>.FromMegajoulesPerMole(joulepermole.MegajoulesPerMole).JoulesPerMole, MegajoulesPerMoleTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            MolarEnergy v = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> v = MolarEnergy<double>.FromJoulesPerMole(1);
             AssertEx.EqualTolerance(-1, -v.JoulesPerMole, JoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(2, (MolarEnergy.FromJoulesPerMole(3)-v).JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(2, (MolarEnergy<double>.FromJoulesPerMole(3)-v).JoulesPerMole, JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(2, (v + v).JoulesPerMole, JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(10, (v*10).JoulesPerMole, JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(10, (10*v).JoulesPerMole, JoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(2, (MolarEnergy.FromJoulesPerMole(10)/5).JoulesPerMole, JoulesPerMoleTolerance);
-            AssertEx.EqualTolerance(2, MolarEnergy.FromJoulesPerMole(10)/MolarEnergy.FromJoulesPerMole(5), JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(2, (MolarEnergy<double>.FromJoulesPerMole(10)/5).JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(2, MolarEnergy<double>.FromJoulesPerMole(10)/MolarEnergy<double>.FromJoulesPerMole(5), JoulesPerMoleTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            MolarEnergy oneJoulePerMole = MolarEnergy.FromJoulesPerMole(1);
-            MolarEnergy twoJoulesPerMole = MolarEnergy.FromJoulesPerMole(2);
+            MolarEnergy<double> oneJoulePerMole = MolarEnergy<double>.FromJoulesPerMole(1);
+            MolarEnergy<double> twoJoulesPerMole = MolarEnergy<double>.FromJoulesPerMole(2);
 
             Assert.True(oneJoulePerMole < twoJoulesPerMole);
             Assert.True(oneJoulePerMole <= twoJoulesPerMole);
@@ -162,31 +162,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             Assert.Equal(0, joulepermole.CompareTo(joulepermole));
-            Assert.True(joulepermole.CompareTo(MolarEnergy.Zero) > 0);
-            Assert.True(MolarEnergy.Zero.CompareTo(joulepermole) < 0);
+            Assert.True(joulepermole.CompareTo(MolarEnergy<double>.Zero) > 0);
+            Assert.True(MolarEnergy<double>.Zero.CompareTo(joulepermole) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             Assert.Throws<ArgumentException>(() => joulepermole.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             Assert.Throws<ArgumentNullException>(() => joulepermole.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = MolarEnergy.FromJoulesPerMole(1);
-            var b = MolarEnergy.FromJoulesPerMole(2);
+            var a = MolarEnergy<double>.FromJoulesPerMole(1);
+            var b = MolarEnergy<double>.FromJoulesPerMole(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -205,8 +205,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = MolarEnergy.FromJoulesPerMole(1);
-            var b = MolarEnergy.FromJoulesPerMole(2);
+            var a = MolarEnergy<double>.FromJoulesPerMole(1);
+            var b = MolarEnergy<double>.FromJoulesPerMole(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -216,29 +216,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = MolarEnergy.FromJoulesPerMole(1);
-            Assert.True(v.Equals(MolarEnergy.FromJoulesPerMole(1), JoulesPerMoleTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(MolarEnergy.Zero, JoulesPerMoleTolerance, ComparisonType.Relative));
+            var v = MolarEnergy<double>.FromJoulesPerMole(1);
+            Assert.True(v.Equals(MolarEnergy<double>.FromJoulesPerMole(1), JoulesPerMoleTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MolarEnergy<double>.Zero, JoulesPerMoleTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             Assert.False(joulepermole.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            MolarEnergy<double> joulepermole = MolarEnergy<double>.FromJoulesPerMole(1);
             Assert.False(joulepermole.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MolarEnergyUnit.Undefined, MolarEnergy.Units);
+            Assert.DoesNotContain(MolarEnergyUnit.Undefined, MolarEnergy<double>.Units);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(MolarEnergy.BaseDimensions is null);
+            Assert.False(MolarEnergy<double>.BaseDimensions is null);
         }
     }
 }

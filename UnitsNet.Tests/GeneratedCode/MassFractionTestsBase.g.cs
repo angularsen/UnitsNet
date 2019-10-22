@@ -89,26 +89,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFraction((double)0.0, MassFractionUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new MassFraction<double>((double)0.0, MassFractionUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.PositiveInfinity, MassFractionUnit.DecimalFraction));
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.NegativeInfinity, MassFractionUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new MassFraction<double>(double.PositiveInfinity, MassFractionUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new MassFraction<double>(double.NegativeInfinity, MassFractionUnit.DecimalFraction));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.NaN, MassFractionUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new MassFraction<double>(double.NaN, MassFractionUnit.DecimalFraction));
         }
 
         [Fact]
         public void DecimalFractionToMassFractionUnits()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             AssertEx.EqualTolerance(CentigramsPerGramInOneDecimalFraction, decimalfraction.CentigramsPerGram, CentigramsPerGramTolerance);
             AssertEx.EqualTolerance(CentigramsPerKilogramInOneDecimalFraction, decimalfraction.CentigramsPerKilogram, CentigramsPerKilogramTolerance);
             AssertEx.EqualTolerance(DecagramsPerGramInOneDecimalFraction, decimalfraction.DecagramsPerGram, DecagramsPerGramTolerance);
@@ -138,49 +138,49 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.CentigramPerGram).CentigramsPerGram, CentigramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.CentigramPerKilogram).CentigramsPerKilogram, CentigramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.DecagramPerGram).DecagramsPerGram, DecagramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.DecagramPerKilogram).DecagramsPerKilogram, DecagramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.DecigramPerGram).DecigramsPerGram, DecigramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.DecigramPerKilogram).DecigramsPerKilogram, DecigramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.DecimalFraction).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.GramPerGram).GramsPerGram, GramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.GramPerKilogram).GramsPerKilogram, GramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.HectogramPerGram).HectogramsPerGram, HectogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.HectogramPerKilogram).HectogramsPerKilogram, HectogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.KilogramPerGram).KilogramsPerGram, KilogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.KilogramPerKilogram).KilogramsPerKilogram, KilogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.MicrogramPerGram).MicrogramsPerGram, MicrogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.MicrogramPerKilogram).MicrogramsPerKilogram, MicrogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.MilligramPerGram).MilligramsPerGram, MilligramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.MilligramPerKilogram).MilligramsPerKilogram, MilligramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.NanogramPerGram).NanogramsPerGram, NanogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.NanogramPerKilogram).NanogramsPerKilogram, NanogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.PartPerBillion).PartsPerBillion, PartsPerBillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.PartPerMillion).PartsPerMillion, PartsPerMillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.PartPerThousand).PartsPerThousand, PartsPerThousandTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.PartPerTrillion).PartsPerTrillion, PartsPerTrillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.From(1, MassFractionUnit.Percent).Percent, PercentTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.CentigramPerGram).CentigramsPerGram, CentigramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.CentigramPerKilogram).CentigramsPerKilogram, CentigramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.DecagramPerGram).DecagramsPerGram, DecagramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.DecagramPerKilogram).DecagramsPerKilogram, DecagramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.DecigramPerGram).DecigramsPerGram, DecigramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.DecigramPerKilogram).DecigramsPerKilogram, DecigramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.DecimalFraction).DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.GramPerGram).GramsPerGram, GramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.GramPerKilogram).GramsPerKilogram, GramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.HectogramPerGram).HectogramsPerGram, HectogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.HectogramPerKilogram).HectogramsPerKilogram, HectogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.KilogramPerGram).KilogramsPerGram, KilogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.KilogramPerKilogram).KilogramsPerKilogram, KilogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.MicrogramPerGram).MicrogramsPerGram, MicrogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.MicrogramPerKilogram).MicrogramsPerKilogram, MicrogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.MilligramPerGram).MilligramsPerGram, MilligramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.MilligramPerKilogram).MilligramsPerKilogram, MilligramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.NanogramPerGram).NanogramsPerGram, NanogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.NanogramPerKilogram).NanogramsPerKilogram, NanogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.PartPerBillion).PartsPerBillion, PartsPerBillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.PartPerMillion).PartsPerMillion, PartsPerMillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.PartPerThousand).PartsPerThousand, PartsPerThousandTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.PartPerTrillion).PartsPerTrillion, PartsPerTrillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.From(1, MassFractionUnit.Percent).Percent, PercentTolerance);
         }
 
         [Fact]
         public void FromDecimalFractions_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => MassFraction<double>.FromDecimalFractions(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassFraction<double>.FromDecimalFractions(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromDecimalFractions_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.NaN));
+            Assert.Throws<ArgumentException>(() => MassFraction<double>.FromDecimalFractions(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var decimalfraction = MassFraction.FromDecimalFractions(1);
+            var decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             AssertEx.EqualTolerance(CentigramsPerGramInOneDecimalFraction, decimalfraction.As(MassFractionUnit.CentigramPerGram), CentigramsPerGramTolerance);
             AssertEx.EqualTolerance(CentigramsPerKilogramInOneDecimalFraction, decimalfraction.As(MassFractionUnit.CentigramPerKilogram), CentigramsPerKilogramTolerance);
             AssertEx.EqualTolerance(DecagramsPerGramInOneDecimalFraction, decimalfraction.As(MassFractionUnit.DecagramPerGram), DecagramsPerGramTolerance);
@@ -210,7 +210,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var decimalfraction = MassFraction.FromDecimalFractions(1);
+            var decimalfraction = MassFraction<double>.FromDecimalFractions(1);
 
             var centigrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.CentigramPerGram);
             AssertEx.EqualTolerance(CentigramsPerGramInOneDecimalFraction, (double)centigrampergramQuantity.Value, CentigramsPerGramTolerance);
@@ -312,51 +312,51 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
-            AssertEx.EqualTolerance(1, MassFraction.FromCentigramsPerGram(decimalfraction.CentigramsPerGram).DecimalFractions, CentigramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromCentigramsPerKilogram(decimalfraction.CentigramsPerKilogram).DecimalFractions, CentigramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromDecagramsPerGram(decimalfraction.DecagramsPerGram).DecimalFractions, DecagramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromDecagramsPerKilogram(decimalfraction.DecagramsPerKilogram).DecimalFractions, DecagramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromDecigramsPerGram(decimalfraction.DecigramsPerGram).DecimalFractions, DecigramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromDecigramsPerKilogram(decimalfraction.DecigramsPerKilogram).DecimalFractions, DecigramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromDecimalFractions(decimalfraction.DecimalFractions).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromGramsPerGram(decimalfraction.GramsPerGram).DecimalFractions, GramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromGramsPerKilogram(decimalfraction.GramsPerKilogram).DecimalFractions, GramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromHectogramsPerGram(decimalfraction.HectogramsPerGram).DecimalFractions, HectogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromHectogramsPerKilogram(decimalfraction.HectogramsPerKilogram).DecimalFractions, HectogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromKilogramsPerGram(decimalfraction.KilogramsPerGram).DecimalFractions, KilogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromKilogramsPerKilogram(decimalfraction.KilogramsPerKilogram).DecimalFractions, KilogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromMicrogramsPerGram(decimalfraction.MicrogramsPerGram).DecimalFractions, MicrogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromMicrogramsPerKilogram(decimalfraction.MicrogramsPerKilogram).DecimalFractions, MicrogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromMilligramsPerGram(decimalfraction.MilligramsPerGram).DecimalFractions, MilligramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromMilligramsPerKilogram(decimalfraction.MilligramsPerKilogram).DecimalFractions, MilligramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromNanogramsPerGram(decimalfraction.NanogramsPerGram).DecimalFractions, NanogramsPerGramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromNanogramsPerKilogram(decimalfraction.NanogramsPerKilogram).DecimalFractions, NanogramsPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromPartsPerBillion(decimalfraction.PartsPerBillion).DecimalFractions, PartsPerBillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromPartsPerMillion(decimalfraction.PartsPerMillion).DecimalFractions, PartsPerMillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromPartsPerThousand(decimalfraction.PartsPerThousand).DecimalFractions, PartsPerThousandTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromPartsPerTrillion(decimalfraction.PartsPerTrillion).DecimalFractions, PartsPerTrillionTolerance);
-            AssertEx.EqualTolerance(1, MassFraction.FromPercent(decimalfraction.Percent).DecimalFractions, PercentTolerance);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromCentigramsPerGram(decimalfraction.CentigramsPerGram).DecimalFractions, CentigramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromCentigramsPerKilogram(decimalfraction.CentigramsPerKilogram).DecimalFractions, CentigramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromDecagramsPerGram(decimalfraction.DecagramsPerGram).DecimalFractions, DecagramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromDecagramsPerKilogram(decimalfraction.DecagramsPerKilogram).DecimalFractions, DecagramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromDecigramsPerGram(decimalfraction.DecigramsPerGram).DecimalFractions, DecigramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromDecigramsPerKilogram(decimalfraction.DecigramsPerKilogram).DecimalFractions, DecigramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromDecimalFractions(decimalfraction.DecimalFractions).DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromGramsPerGram(decimalfraction.GramsPerGram).DecimalFractions, GramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromGramsPerKilogram(decimalfraction.GramsPerKilogram).DecimalFractions, GramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromHectogramsPerGram(decimalfraction.HectogramsPerGram).DecimalFractions, HectogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromHectogramsPerKilogram(decimalfraction.HectogramsPerKilogram).DecimalFractions, HectogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromKilogramsPerGram(decimalfraction.KilogramsPerGram).DecimalFractions, KilogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromKilogramsPerKilogram(decimalfraction.KilogramsPerKilogram).DecimalFractions, KilogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromMicrogramsPerGram(decimalfraction.MicrogramsPerGram).DecimalFractions, MicrogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromMicrogramsPerKilogram(decimalfraction.MicrogramsPerKilogram).DecimalFractions, MicrogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromMilligramsPerGram(decimalfraction.MilligramsPerGram).DecimalFractions, MilligramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromMilligramsPerKilogram(decimalfraction.MilligramsPerKilogram).DecimalFractions, MilligramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromNanogramsPerGram(decimalfraction.NanogramsPerGram).DecimalFractions, NanogramsPerGramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromNanogramsPerKilogram(decimalfraction.NanogramsPerKilogram).DecimalFractions, NanogramsPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromPartsPerBillion(decimalfraction.PartsPerBillion).DecimalFractions, PartsPerBillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromPartsPerMillion(decimalfraction.PartsPerMillion).DecimalFractions, PartsPerMillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromPartsPerThousand(decimalfraction.PartsPerThousand).DecimalFractions, PartsPerThousandTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromPartsPerTrillion(decimalfraction.PartsPerTrillion).DecimalFractions, PartsPerTrillionTolerance);
+            AssertEx.EqualTolerance(1, MassFraction<double>.FromPercent(decimalfraction.Percent).DecimalFractions, PercentTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            MassFraction v = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> v = MassFraction<double>.FromDecimalFractions(1);
             AssertEx.EqualTolerance(-1, -v.DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, (MassFraction.FromDecimalFractions(3)-v).DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(2, (MassFraction<double>.FromDecimalFractions(3)-v).DecimalFractions, DecimalFractionsTolerance);
             AssertEx.EqualTolerance(2, (v + v).DecimalFractions, DecimalFractionsTolerance);
             AssertEx.EqualTolerance(10, (v*10).DecimalFractions, DecimalFractionsTolerance);
             AssertEx.EqualTolerance(10, (10*v).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, (MassFraction.FromDecimalFractions(10)/5).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, MassFraction.FromDecimalFractions(10)/MassFraction.FromDecimalFractions(5), DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(2, (MassFraction<double>.FromDecimalFractions(10)/5).DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(2, MassFraction<double>.FromDecimalFractions(10)/MassFraction<double>.FromDecimalFractions(5), DecimalFractionsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            MassFraction oneDecimalFraction = MassFraction.FromDecimalFractions(1);
-            MassFraction twoDecimalFractions = MassFraction.FromDecimalFractions(2);
+            MassFraction<double> oneDecimalFraction = MassFraction<double>.FromDecimalFractions(1);
+            MassFraction<double> twoDecimalFractions = MassFraction<double>.FromDecimalFractions(2);
 
             Assert.True(oneDecimalFraction < twoDecimalFractions);
             Assert.True(oneDecimalFraction <= twoDecimalFractions);
@@ -372,31 +372,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             Assert.Equal(0, decimalfraction.CompareTo(decimalfraction));
-            Assert.True(decimalfraction.CompareTo(MassFraction.Zero) > 0);
-            Assert.True(MassFraction.Zero.CompareTo(decimalfraction) < 0);
+            Assert.True(decimalfraction.CompareTo(MassFraction<double>.Zero) > 0);
+            Assert.True(MassFraction<double>.Zero.CompareTo(decimalfraction) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             Assert.Throws<ArgumentException>(() => decimalfraction.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             Assert.Throws<ArgumentNullException>(() => decimalfraction.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = MassFraction.FromDecimalFractions(1);
-            var b = MassFraction.FromDecimalFractions(2);
+            var a = MassFraction<double>.FromDecimalFractions(1);
+            var b = MassFraction<double>.FromDecimalFractions(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -415,8 +415,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = MassFraction.FromDecimalFractions(1);
-            var b = MassFraction.FromDecimalFractions(2);
+            var a = MassFraction<double>.FromDecimalFractions(1);
+            var b = MassFraction<double>.FromDecimalFractions(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -426,29 +426,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = MassFraction.FromDecimalFractions(1);
-            Assert.True(v.Equals(MassFraction.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(MassFraction.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+            var v = MassFraction<double>.FromDecimalFractions(1);
+            Assert.True(v.Equals(MassFraction<double>.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassFraction<double>.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             Assert.False(decimalfraction.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            MassFraction decimalfraction = MassFraction.FromDecimalFractions(1);
+            MassFraction<double> decimalfraction = MassFraction<double>.FromDecimalFractions(1);
             Assert.False(decimalfraction.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MassFractionUnit.Undefined, MassFraction.Units);
+            Assert.DoesNotContain(MassFractionUnit.Undefined, MassFraction<double>.Units);
         }
 
         [Fact]
@@ -467,7 +467,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(MassFraction.BaseDimensions is null);
+            Assert.False(MassFraction<double>.BaseDimensions is null);
         }
     }
 }

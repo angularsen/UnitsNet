@@ -93,29 +93,29 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {
-            Force force = Area.FromSquareMeters(3)*Pressure.FromPascals(20);
-            Assert.Equal(force, Force.FromNewtons(60));
+            var force = Area<double>.FromSquareMeters(3)*Pressure<double>.FromPascals(20);
+            Assert.Equal(force, Force<double>.FromNewtons(60));
         }
 
         [Fact]
         public void PressureTimesAreaEqualsForce()
         {
-            Force force = Pressure.FromPascals(20)*Area.FromSquareMeters(3);
-            Assert.Equal(force, Force.FromNewtons(60));
+            var force = Pressure<double>.FromPascals(20)*Area<double>.FromSquareMeters(3);
+            Assert.Equal(force, Force<double>.FromNewtons(60));
         }
 
         [Fact]
         public void PressureDividedBySpecificWeightEqualsLength()
         {
-            Length length = Pressure.FromPascals(20) / SpecificWeight.FromNewtonsPerCubicMeter(2);
-            Assert.Equal(Length.FromMeters(10), length);
+            var length = Pressure<double>.FromPascals(20) / SpecificWeight<double>.FromNewtonsPerCubicMeter(2);
+            Assert.Equal(Length<double>.FromMeters(10), length);
         }
 
         [Fact]
         public void PressureDividedByLengthEqualsSpecificWeight()
         {
-            SpecificWeight specificWeight = Pressure.FromPascals(20) / Length.FromMeters(2);
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(10), specificWeight);
+            var specificWeight = Pressure<double>.FromPascals(20) / Length<double>.FromMeters(2);
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMeter(10), specificWeight);
         }
     }
 }

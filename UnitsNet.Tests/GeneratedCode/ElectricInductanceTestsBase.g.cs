@@ -49,26 +49,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance((double)0.0, ElectricInductanceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance<double>((double)0.0, ElectricInductanceUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NegativeInfinity, ElectricInductanceUnit.Henry));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance<double>(double.PositiveInfinity, ElectricInductanceUnit.Henry));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance<double>(double.NegativeInfinity, ElectricInductanceUnit.Henry));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance<double>(double.NaN, ElectricInductanceUnit.Henry));
         }
 
         [Fact]
         public void HenryToElectricInductanceUnits()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             AssertEx.EqualTolerance(HenriesInOneHenry, henry.Henries, HenriesTolerance);
             AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.Microhenries, MicrohenriesTolerance);
             AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.Millihenries, MillihenriesTolerance);
@@ -78,29 +78,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Henry).Henries, HenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Microhenry).Microhenries, MicrohenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Millihenry).Millihenries, MillihenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Nanohenry).Nanohenries, NanohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.From(1, ElectricInductanceUnit.Henry).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.From(1, ElectricInductanceUnit.Microhenry).Microhenries, MicrohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.From(1, ElectricInductanceUnit.Millihenry).Millihenries, MillihenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.From(1, ElectricInductanceUnit.Nanohenry).Nanohenries, NanohenriesTolerance);
         }
 
         [Fact]
         public void FromHenries_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricInductance<double>.FromHenries(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricInductance<double>.FromHenries(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromHenries_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricInductance<double>.FromHenries(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var henry = ElectricInductance.FromHenries(1);
+            var henry = ElectricInductance<double>.FromHenries(1);
             AssertEx.EqualTolerance(HenriesInOneHenry, henry.As(ElectricInductanceUnit.Henry), HenriesTolerance);
             AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.As(ElectricInductanceUnit.Microhenry), MicrohenriesTolerance);
             AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.As(ElectricInductanceUnit.Millihenry), MillihenriesTolerance);
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var henry = ElectricInductance.FromHenries(1);
+            var henry = ElectricInductance<double>.FromHenries(1);
 
             var henryQuantity = henry.ToUnit(ElectricInductanceUnit.Henry);
             AssertEx.EqualTolerance(HenriesInOneHenry, (double)henryQuantity.Value, HenriesTolerance);
@@ -132,31 +132,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
-            AssertEx.EqualTolerance(1, ElectricInductance.FromHenries(henry.Henries).Henries, HenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.FromMicrohenries(henry.Microhenries).Henries, MicrohenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.FromMillihenries(henry.Millihenries).Henries, MillihenriesTolerance);
-            AssertEx.EqualTolerance(1, ElectricInductance.FromNanohenries(henry.Nanohenries).Henries, NanohenriesTolerance);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.FromHenries(henry.Henries).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.FromMicrohenries(henry.Microhenries).Henries, MicrohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.FromMillihenries(henry.Millihenries).Henries, MillihenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance<double>.FromNanohenries(henry.Nanohenries).Henries, NanohenriesTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricInductance v = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> v = ElectricInductance<double>.FromHenries(1);
             AssertEx.EqualTolerance(-1, -v.Henries, HenriesTolerance);
-            AssertEx.EqualTolerance(2, (ElectricInductance.FromHenries(3)-v).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(2, (ElectricInductance<double>.FromHenries(3)-v).Henries, HenriesTolerance);
             AssertEx.EqualTolerance(2, (v + v).Henries, HenriesTolerance);
             AssertEx.EqualTolerance(10, (v*10).Henries, HenriesTolerance);
             AssertEx.EqualTolerance(10, (10*v).Henries, HenriesTolerance);
-            AssertEx.EqualTolerance(2, (ElectricInductance.FromHenries(10)/5).Henries, HenriesTolerance);
-            AssertEx.EqualTolerance(2, ElectricInductance.FromHenries(10)/ElectricInductance.FromHenries(5), HenriesTolerance);
+            AssertEx.EqualTolerance(2, (ElectricInductance<double>.FromHenries(10)/5).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(2, ElectricInductance<double>.FromHenries(10)/ElectricInductance<double>.FromHenries(5), HenriesTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricInductance oneHenry = ElectricInductance.FromHenries(1);
-            ElectricInductance twoHenries = ElectricInductance.FromHenries(2);
+            ElectricInductance<double> oneHenry = ElectricInductance<double>.FromHenries(1);
+            ElectricInductance<double> twoHenries = ElectricInductance<double>.FromHenries(2);
 
             Assert.True(oneHenry < twoHenries);
             Assert.True(oneHenry <= twoHenries);
@@ -172,31 +172,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             Assert.Equal(0, henry.CompareTo(henry));
-            Assert.True(henry.CompareTo(ElectricInductance.Zero) > 0);
-            Assert.True(ElectricInductance.Zero.CompareTo(henry) < 0);
+            Assert.True(henry.CompareTo(ElectricInductance<double>.Zero) > 0);
+            Assert.True(ElectricInductance<double>.Zero.CompareTo(henry) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             Assert.Throws<ArgumentException>(() => henry.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             Assert.Throws<ArgumentNullException>(() => henry.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricInductance.FromHenries(1);
-            var b = ElectricInductance.FromHenries(2);
+            var a = ElectricInductance<double>.FromHenries(1);
+            var b = ElectricInductance<double>.FromHenries(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -215,8 +215,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ElectricInductance.FromHenries(1);
-            var b = ElectricInductance.FromHenries(2);
+            var a = ElectricInductance<double>.FromHenries(1);
+            var b = ElectricInductance<double>.FromHenries(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -226,29 +226,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ElectricInductance.FromHenries(1);
-            Assert.True(v.Equals(ElectricInductance.FromHenries(1), HenriesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricInductance.Zero, HenriesTolerance, ComparisonType.Relative));
+            var v = ElectricInductance<double>.FromHenries(1);
+            Assert.True(v.Equals(ElectricInductance<double>.FromHenries(1), HenriesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricInductance<double>.Zero, HenriesTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             Assert.False(henry.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricInductance henry = ElectricInductance.FromHenries(1);
+            ElectricInductance<double> henry = ElectricInductance<double>.FromHenries(1);
             Assert.False(henry.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricInductanceUnit.Undefined, ElectricInductance.Units);
+            Assert.DoesNotContain(ElectricInductanceUnit.Undefined, ElectricInductance<double>.Units);
         }
 
         [Fact]
@@ -267,7 +267,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricInductance.BaseDimensions is null);
+            Assert.False(ElectricInductance<double>.BaseDimensions is null);
         }
     }
 }

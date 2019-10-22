@@ -53,26 +53,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia((double)0.0, AreaMomentOfInertiaUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia<double>((double)0.0, AreaMomentOfInertiaUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.PositiveInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
-            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.NegativeInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia<double>(double.PositiveInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia<double>(double.NegativeInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.NaN, AreaMomentOfInertiaUnit.MeterToTheFourth));
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia<double>(double.NaN, AreaMomentOfInertiaUnit.MeterToTheFourth));
         }
 
         [Fact]
         public void MeterToTheFourthToAreaMomentOfInertiaUnits()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             AssertEx.EqualTolerance(CentimetersToTheFourthInOneMeterToTheFourth, metertothefourth.CentimetersToTheFourth, CentimetersToTheFourthTolerance);
             AssertEx.EqualTolerance(DecimetersToTheFourthInOneMeterToTheFourth, metertothefourth.DecimetersToTheFourth, DecimetersToTheFourthTolerance);
             AssertEx.EqualTolerance(FeetToTheFourthInOneMeterToTheFourth, metertothefourth.FeetToTheFourth, FeetToTheFourthTolerance);
@@ -84,31 +84,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth).CentimetersToTheFourth, CentimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth).DecimetersToTheFourth, DecimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.FootToTheFourth).FeetToTheFourth, FeetToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.InchToTheFourth).InchesToTheFourth, InchesToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MeterToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).MillimetersToTheFourth, MillimetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.CentimeterToTheFourth).CentimetersToTheFourth, CentimetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.DecimeterToTheFourth).DecimetersToTheFourth, DecimetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.FootToTheFourth).FeetToTheFourth, FeetToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.InchToTheFourth).InchesToTheFourth, InchesToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.MeterToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.From(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).MillimetersToTheFourth, MillimetersToTheFourthTolerance);
         }
 
         [Fact]
         public void FromMetersToTheFourth_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia<double>.FromMetersToTheFourth(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia<double>.FromMetersToTheFourth(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMetersToTheFourth_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.NaN));
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia<double>.FromMetersToTheFourth(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            var metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             AssertEx.EqualTolerance(CentimetersToTheFourthInOneMeterToTheFourth, metertothefourth.As(AreaMomentOfInertiaUnit.CentimeterToTheFourth), CentimetersToTheFourthTolerance);
             AssertEx.EqualTolerance(DecimetersToTheFourthInOneMeterToTheFourth, metertothefourth.As(AreaMomentOfInertiaUnit.DecimeterToTheFourth), DecimetersToTheFourthTolerance);
             AssertEx.EqualTolerance(FeetToTheFourthInOneMeterToTheFourth, metertothefourth.As(AreaMomentOfInertiaUnit.FootToTheFourth), FeetToTheFourthTolerance);
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            var metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
 
             var centimetertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
             AssertEx.EqualTolerance(CentimetersToTheFourthInOneMeterToTheFourth, (double)centimetertothefourthQuantity.Value, CentimetersToTheFourthTolerance);
@@ -150,33 +150,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromCentimetersToTheFourth(metertothefourth.CentimetersToTheFourth).MetersToTheFourth, CentimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromDecimetersToTheFourth(metertothefourth.DecimetersToTheFourth).MetersToTheFourth, DecimetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromFeetToTheFourth(metertothefourth.FeetToTheFourth).MetersToTheFourth, FeetToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromInchesToTheFourth(metertothefourth.InchesToTheFourth).MetersToTheFourth, InchesToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromMetersToTheFourth(metertothefourth.MetersToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(1, AreaMomentOfInertia.FromMillimetersToTheFourth(metertothefourth.MillimetersToTheFourth).MetersToTheFourth, MillimetersToTheFourthTolerance);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromCentimetersToTheFourth(metertothefourth.CentimetersToTheFourth).MetersToTheFourth, CentimetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromDecimetersToTheFourth(metertothefourth.DecimetersToTheFourth).MetersToTheFourth, DecimetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromFeetToTheFourth(metertothefourth.FeetToTheFourth).MetersToTheFourth, FeetToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromInchesToTheFourth(metertothefourth.InchesToTheFourth).MetersToTheFourth, InchesToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromMetersToTheFourth(metertothefourth.MetersToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(1, AreaMomentOfInertia<double>.FromMillimetersToTheFourth(metertothefourth.MillimetersToTheFourth).MetersToTheFourth, MillimetersToTheFourthTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            AreaMomentOfInertia v = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> v = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             AssertEx.EqualTolerance(-1, -v.MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, (AreaMomentOfInertia.FromMetersToTheFourth(3)-v).MetersToTheFourth, MetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(2, (AreaMomentOfInertia<double>.FromMetersToTheFourth(3)-v).MetersToTheFourth, MetersToTheFourthTolerance);
             AssertEx.EqualTolerance(2, (v + v).MetersToTheFourth, MetersToTheFourthTolerance);
             AssertEx.EqualTolerance(10, (v*10).MetersToTheFourth, MetersToTheFourthTolerance);
             AssertEx.EqualTolerance(10, (10*v).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, (AreaMomentOfInertia.FromMetersToTheFourth(10)/5).MetersToTheFourth, MetersToTheFourthTolerance);
-            AssertEx.EqualTolerance(2, AreaMomentOfInertia.FromMetersToTheFourth(10)/AreaMomentOfInertia.FromMetersToTheFourth(5), MetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(2, (AreaMomentOfInertia<double>.FromMetersToTheFourth(10)/5).MetersToTheFourth, MetersToTheFourthTolerance);
+            AssertEx.EqualTolerance(2, AreaMomentOfInertia<double>.FromMetersToTheFourth(10)/AreaMomentOfInertia<double>.FromMetersToTheFourth(5), MetersToTheFourthTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            AreaMomentOfInertia oneMeterToTheFourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            AreaMomentOfInertia twoMetersToTheFourth = AreaMomentOfInertia.FromMetersToTheFourth(2);
+            AreaMomentOfInertia<double> oneMeterToTheFourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> twoMetersToTheFourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(2);
 
             Assert.True(oneMeterToTheFourth < twoMetersToTheFourth);
             Assert.True(oneMeterToTheFourth <= twoMetersToTheFourth);
@@ -192,31 +192,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             Assert.Equal(0, metertothefourth.CompareTo(metertothefourth));
-            Assert.True(metertothefourth.CompareTo(AreaMomentOfInertia.Zero) > 0);
-            Assert.True(AreaMomentOfInertia.Zero.CompareTo(metertothefourth) < 0);
+            Assert.True(metertothefourth.CompareTo(AreaMomentOfInertia<double>.Zero) > 0);
+            Assert.True(AreaMomentOfInertia<double>.Zero.CompareTo(metertothefourth) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             Assert.Throws<ArgumentException>(() => metertothefourth.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             Assert.Throws<ArgumentNullException>(() => metertothefourth.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            var b = AreaMomentOfInertia.FromMetersToTheFourth(2);
+            var a = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
+            var b = AreaMomentOfInertia<double>.FromMetersToTheFourth(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -235,8 +235,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            var b = AreaMomentOfInertia.FromMetersToTheFourth(2);
+            var a = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
+            var b = AreaMomentOfInertia<double>.FromMetersToTheFourth(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -246,29 +246,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(AreaMomentOfInertia.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
+            var v = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
+            Assert.True(v.Equals(AreaMomentOfInertia<double>.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AreaMomentOfInertia<double>.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             Assert.False(metertothefourth.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            AreaMomentOfInertia<double> metertothefourth = AreaMomentOfInertia<double>.FromMetersToTheFourth(1);
             Assert.False(metertothefourth.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(AreaMomentOfInertiaUnit.Undefined, AreaMomentOfInertia.Units);
+            Assert.DoesNotContain(AreaMomentOfInertiaUnit.Undefined, AreaMomentOfInertia<double>.Units);
         }
 
         [Fact]
@@ -287,7 +287,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(AreaMomentOfInertia.BaseDimensions is null);
+            Assert.False(AreaMomentOfInertia<double>.BaseDimensions is null);
         }
     }
 }

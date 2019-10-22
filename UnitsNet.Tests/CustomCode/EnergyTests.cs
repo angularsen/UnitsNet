@@ -59,21 +59,21 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
-            var energy = new Energy(1.0, UnitSystem.SI);
+            var energy = new Energy<double>(1.0, UnitSystem.SI);
             Assert.Equal(EnergyUnit.Joule, energy.Unit);
         }
 
         [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            var btus = new Energy<double>(2.0, EnergyUnit.BritishThermalUnit);
             Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
         }
 
         [Fact]
         public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            var btus = new Energy<double>(2.0, EnergyUnit.BritishThermalUnit);
 
             var inSI = btus.ToUnit(UnitSystem.SI);
 

@@ -105,26 +105,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Length<double>((double)0.0, LengthUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
-            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length<double>(double.PositiveInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length<double>(double.NegativeInfinity, LengthUnit.Meter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length<double>(double.NaN, LengthUnit.Meter));
         }
 
         [Fact]
         public void MeterToLengthUnits()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             AssertEx.EqualTolerance(AstronomicalUnitsInOneMeter, meter.AstronomicalUnits, AstronomicalUnitsTolerance);
             AssertEx.EqualTolerance(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
             AssertEx.EqualTolerance(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
@@ -162,57 +162,57 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.AstronomicalUnit).AstronomicalUnits, AstronomicalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.DtpPica).DtpPicas, DtpPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.DtpPoint).DtpPoints, DtpPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Fathom).Fathoms, FathomsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Hand).Hands, HandsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Hectometer).Hectometers, HectometersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.KilolightYear).KilolightYears, KilolightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Kiloparsec).Kiloparsecs, KiloparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.LightYear).LightYears, LightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.MegalightYear).MegalightYears, MegalightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Megaparsec).Megaparsecs, MegaparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Mil).Mils, MilsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Mile).Miles, MilesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Parsec).Parsecs, ParsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.PrinterPica).PrinterPicas, PrinterPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.PrinterPoint).PrinterPoints, PrinterPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Shackle).Shackles, ShacklesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.SolarRadius).SolarRadiuses, SolarRadiusesTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Twip).Twips, TwipsTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.AstronomicalUnit).AstronomicalUnits, AstronomicalUnitsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.DtpPica).DtpPicas, DtpPicasTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.DtpPoint).DtpPoints, DtpPointsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Fathom).Fathoms, FathomsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Foot).Feet, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Hand).Hands, HandsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Hectometer).Hectometers, HectometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Inch).Inches, InchesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.KilolightYear).KilolightYears, KilolightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Kiloparsec).Kiloparsecs, KiloparsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.LightYear).LightYears, LightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.MegalightYear).MegalightYears, MegalightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Megaparsec).Megaparsecs, MegaparsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Meter).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Mil).Mils, MilsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Mile).Miles, MilesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Parsec).Parsecs, ParsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.PrinterPica).PrinterPicas, PrinterPicasTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.PrinterPoint).PrinterPoints, PrinterPointsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Shackle).Shackles, ShacklesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.SolarRadius).SolarRadiuses, SolarRadiusesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Twip).Twips, TwipsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.From(1, LengthUnit.Yard).Yards, YardsTolerance);
         }
 
         [Fact]
         public void FromMeters_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Length<double>.FromMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Length<double>.FromMeters(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMeters_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
+            Assert.Throws<ArgumentException>(() => Length<double>.FromMeters(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var meter = Length.FromMeters(1);
+            var meter = Length<double>.FromMeters(1);
             AssertEx.EqualTolerance(AstronomicalUnitsInOneMeter, meter.As(LengthUnit.AstronomicalUnit), AstronomicalUnitsTolerance);
             AssertEx.EqualTolerance(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
             AssertEx.EqualTolerance(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
@@ -250,7 +250,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var meter = Length.FromMeters(1);
+            var meter = Length<double>.FromMeters(1);
 
             var astronomicalunitQuantity = meter.ToUnit(LengthUnit.AstronomicalUnit);
             AssertEx.EqualTolerance(AstronomicalUnitsInOneMeter, (double)astronomicalunitQuantity.Value, AstronomicalUnitsTolerance);
@@ -384,59 +384,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Length meter = Length.FromMeters(1);
-            AssertEx.EqualTolerance(1, Length.FromAstronomicalUnits(meter.AstronomicalUnits).Meters, AstronomicalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDtpPicas(meter.DtpPicas).Meters, DtpPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDtpPoints(meter.DtpPoints).Meters, DtpPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
-            AssertEx.EqualTolerance(1, Length.FromHands(meter.Hands).Meters, HandsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromHectometers(meter.Hectometers).Meters, HectometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKilolightYears(meter.KilolightYears).Meters, KilolightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKiloparsecs(meter.Kiloparsecs).Meters, KiloparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromLightYears(meter.LightYears).Meters, LightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMegalightYears(meter.MegalightYears).Meters, MegalightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMegaparsecs(meter.Megaparsecs).Meters, MegaparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMils(meter.Mils).Meters, MilsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromParsecs(meter.Parsecs).Meters, ParsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromPrinterPicas(meter.PrinterPicas).Meters, PrinterPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.FromPrinterPoints(meter.PrinterPoints).Meters, PrinterPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromShackles(meter.Shackles).Meters, ShacklesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromSolarRadiuses(meter.SolarRadiuses).Meters, SolarRadiusesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromTwips(meter.Twips).Meters, TwipsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
+            Length<double> meter = Length<double>.FromMeters(1);
+            AssertEx.EqualTolerance(1, Length<double>.FromAstronomicalUnits(meter.AstronomicalUnits).Meters, AstronomicalUnitsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromDtpPicas(meter.DtpPicas).Meters, DtpPicasTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromDtpPoints(meter.DtpPoints).Meters, DtpPointsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromFeet(meter.Feet).Meters, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromHands(meter.Hands).Meters, HandsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromHectometers(meter.Hectometers).Meters, HectometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromInches(meter.Inches).Meters, InchesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromKilolightYears(meter.KilolightYears).Meters, KilolightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromKiloparsecs(meter.Kiloparsecs).Meters, KiloparsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromLightYears(meter.LightYears).Meters, LightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMegalightYears(meter.MegalightYears).Meters, MegalightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMegaparsecs(meter.Megaparsecs).Meters, MegaparsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMeters(meter.Meters).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMils(meter.Mils).Meters, MilsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMiles(meter.Miles).Meters, MilesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromParsecs(meter.Parsecs).Meters, ParsecsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromPrinterPicas(meter.PrinterPicas).Meters, PrinterPicasTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromPrinterPoints(meter.PrinterPoints).Meters, PrinterPointsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromShackles(meter.Shackles).Meters, ShacklesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromSolarRadiuses(meter.SolarRadiuses).Meters, SolarRadiusesTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromTwips(meter.Twips).Meters, TwipsTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(1, Length<double>.FromYards(meter.Yards).Meters, YardsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Length v = Length.FromMeters(1);
+            Length<double> v = Length<double>.FromMeters(1);
             AssertEx.EqualTolerance(-1, -v.Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, (Length.FromMeters(3)-v).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, (Length<double>.FromMeters(3)-v).Meters, MetersTolerance);
             AssertEx.EqualTolerance(2, (v + v).Meters, MetersTolerance);
             AssertEx.EqualTolerance(10, (v*10).Meters, MetersTolerance);
             AssertEx.EqualTolerance(10, (10*v).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, (Length.FromMeters(10)/5).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, Length.FromMeters(10)/Length.FromMeters(5), MetersTolerance);
+            AssertEx.EqualTolerance(2, (Length<double>.FromMeters(10)/5).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, Length<double>.FromMeters(10)/Length<double>.FromMeters(5), MetersTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Length oneMeter = Length.FromMeters(1);
-            Length twoMeters = Length.FromMeters(2);
+            Length<double> oneMeter = Length<double>.FromMeters(1);
+            Length<double> twoMeters = Length<double>.FromMeters(2);
 
             Assert.True(oneMeter < twoMeters);
             Assert.True(oneMeter <= twoMeters);
@@ -452,31 +452,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             Assert.Equal(0, meter.CompareTo(meter));
-            Assert.True(meter.CompareTo(Length.Zero) > 0);
-            Assert.True(Length.Zero.CompareTo(meter) < 0);
+            Assert.True(meter.CompareTo(Length<double>.Zero) > 0);
+            Assert.True(Length<double>.Zero.CompareTo(meter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             Assert.Throws<ArgumentException>(() => meter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Length.FromMeters(1);
-            var b = Length.FromMeters(2);
+            var a = Length<double>.FromMeters(1);
+            var b = Length<double>.FromMeters(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -495,8 +495,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Length.FromMeters(1);
-            var b = Length.FromMeters(2);
+            var a = Length<double>.FromMeters(1);
+            var b = Length<double>.FromMeters(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -506,29 +506,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Length.FromMeters(1);
-            Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
+            var v = Length<double>.FromMeters(1);
+            Assert.True(v.Equals(Length<double>.FromMeters(1), MetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Length<double>.Zero, MetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             Assert.False(meter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Length meter = Length.FromMeters(1);
+            Length<double> meter = Length<double>.FromMeters(1);
             Assert.False(meter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
+            Assert.DoesNotContain(LengthUnit.Undefined, Length<double>.Units);
         }
 
         [Fact]
@@ -547,7 +547,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Length.BaseDimensions is null);
+            Assert.False(Length<double>.BaseDimensions is null);
         }
     }
 }

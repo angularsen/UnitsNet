@@ -29,9 +29,9 @@ namespace UnitsNet
     public sealed partial class UnitConverter<T>
     {{
         /// <summary>
-        /// Registers the default conversion functions in the given <see cref=""UnitConverter""/> instance.
+        /// Registers the default conversion functions in the given <see cref=""UnitConverter{{T}}""/> instance.
         /// </summary>
-        /// <param name=""unitConverter"">The <see cref=""UnitConverter""/> to register the default conversion functions in.</param>
+        /// <param name=""unitConverter"">The <see cref=""UnitConverter{{T}}""/> to register the default conversion functions in.</param>
         public static void RegisterDefaultConversions(UnitConverter<T> unitConverter)
         {{" );
             foreach (Quantity quantity in _quantities)

@@ -10,14 +10,14 @@ namespace UnitsNet.Tests
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromDecimalReturnsCorrectValue()
         {
-            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(1m);
+            var acceleration = Acceleration<double>.FromMetersPerSecondSquared(1m);
             Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDecimalBackingFieldFromDecimalReturnsCorrectValue()
         {
-            Power power = Power.FromWatts(1m);
+            var power = Power<double>.FromWatts(1m);
             Assert.Equal(1.0, power.Watts);
         }
     }

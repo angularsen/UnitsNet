@@ -43,8 +43,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AreaMomentOfInertiaDividedByLengthEqualsVolume()
         {
-            Volume volume = AreaMomentOfInertia.FromMetersToTheFourth(20) / Length.FromMeters(10);
-            Assert.Equal(Volume.FromCubicMeters(2), volume);
+            var volume = AreaMomentOfInertia<double>.FromMetersToTheFourth(20) / Length<double>.FromMeters(10);
+            Assert.Equal(Volume<double>.FromCubicMeters(2), volume);
         }
     }
 }

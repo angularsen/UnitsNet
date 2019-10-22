@@ -7,8 +7,8 @@ namespace UnitsNet.Tests
 {
     public class QuantityIConvertibleTests
     {
-        private static Length length = Length.FromMeters(3.0);
-        private static IConvertible lengthAsIConvertible = Length.FromMeters(3.0);
+        private static Length<double> length = Length<double>.FromMeters(3.0);
+        private static IConvertible lengthAsIConvertible = Length<double>.FromMeters(3.0);
 
         [Fact]
         public void GetTypeCodeTest()
@@ -126,28 +126,28 @@ namespace UnitsNet.Tests
         public void ToTypeTest()
         {
             // Same quantity type
-            Assert.Equal(length, lengthAsIConvertible.ToType(typeof(Length), null));
-            Assert.Equal(length, Convert.ChangeType(length, typeof(Length)));
+            Assert.Equal(length, lengthAsIConvertible.ToType(typeof(Length<double>), null));
+            Assert.Equal(length, Convert.ChangeType(length, typeof(Length<double>)));
 
             // Same unit type
             Assert.Equal(length.Unit, lengthAsIConvertible.ToType(typeof(LengthUnit), null));
             Assert.Equal(length.Unit, Convert.ChangeType(length, typeof(LengthUnit)));
 
             // Different type
-            Assert.Throws<InvalidCastException>(() => lengthAsIConvertible.ToType(typeof(Duration), null));
-            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(Duration)));
+            Assert.Throws<InvalidCastException>(() => lengthAsIConvertible.ToType(typeof(Duration<double>), null));
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(Duration<double>)));
 
             // Different unit type
             Assert.Throws<InvalidCastException>(() => lengthAsIConvertible.ToType(typeof(DurationUnit), null));
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(DurationUnit)));
 
             // QuantityType
-            Assert.Equal(Length.QuantityType, lengthAsIConvertible.ToType(typeof(QuantityType), null));
-            Assert.Equal(Length.QuantityType, Convert.ChangeType(length, typeof(QuantityType)));
+            Assert.Equal(Length<double>.QuantityType, lengthAsIConvertible.ToType(typeof(QuantityType), null));
+            Assert.Equal(Length<double>.QuantityType, Convert.ChangeType(length, typeof(QuantityType)));
 
             // BaseDimensions
-            Assert.Equal(Length.BaseDimensions, lengthAsIConvertible.ToType(typeof(BaseDimensions), null));
-            Assert.Equal(Length.BaseDimensions, Convert.ChangeType(length, typeof(BaseDimensions)));
+            Assert.Equal(Length<double>.BaseDimensions, lengthAsIConvertible.ToType(typeof(BaseDimensions), null));
+            Assert.Equal(Length<double>.BaseDimensions, Convert.ChangeType(length, typeof(BaseDimensions)));
         }
 
         [Fact]

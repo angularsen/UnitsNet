@@ -21,8 +21,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void DynamicViscosityDividedByDensityEqualsKinematicViscosity()
         {
-            KinematicViscosity kinematicViscosity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(kinematicViscosity, KinematicViscosity.FromSquareMetersPerSecond(5));
+            var kinematicViscosity = DynamicViscosity<double>.FromNewtonSecondsPerMeterSquared(10) / Density<double>.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(kinematicViscosity, KinematicViscosity<double>.FromSquareMetersPerSecond(5));
         }
     }
 }

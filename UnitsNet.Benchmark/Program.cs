@@ -7,17 +7,17 @@ namespace UnitsNet.Benchmark
     [MemoryDiagnoser]
     public class UnitsNetBenchmarks
     {
-        private Length length = Length.FromMeters(3.0);
-        private IQuantity lengthIQuantity = Length.FromMeters(3.0);
+        private Length<double> length = Length<double>.FromMeters(3.0);
+        private IQuantity lengthIQuantity = Length<double>.FromMeters(3.0);
 
         [Benchmark]
-        public Length Constructor() => new Length(3.0, LengthUnit.Meter);
+        public Length<double> Constructor() => new Length<double>( 3.0, LengthUnit.Meter);
 
         [Benchmark]
-        public Length Constructor_SI() => new Length(3.0, UnitSystem.SI);
+        public Length<double> Constructor_SI() => new Length<double>( 3.0, UnitSystem.SI);
 
         [Benchmark]
-        public Length FromMethod() => Length.FromMeters(3.0);
+        public Length<double> FromMethod() => Length<double>.FromMeters(3.0);
 
         [Benchmark]
         public double ToProperty() => length.Centimeters;
@@ -29,25 +29,25 @@ namespace UnitsNet.Benchmark
         public double As_SI() => length.As(UnitSystem.SI);
 
         [Benchmark]
-        public Length ToUnit() => length.ToUnit(LengthUnit.Centimeter);
+        public Length<double> ToUnit() => length.ToUnit(LengthUnit.Centimeter);
 
         [Benchmark]
-        public Length ToUnit_SI() => length.ToUnit(UnitSystem.SI);
+        public Length<double> ToUnit_SI() => length.ToUnit(UnitSystem.SI);
 
         [Benchmark]
         public string ToStringTest() => length.ToString();
 
         [Benchmark]
-        public Length Parse() => Length.Parse("3.0 m");
+        public Length<double> Parse() => Length<double>.Parse("3.0 m");
 
         [Benchmark]
-        public bool TryParseValid() => Length.TryParse("3.0 m", out var l);
+        public bool TryParseValid() => Length<double>.TryParse("3.0 m", out var l);
 
         [Benchmark]
-        public bool TryParseInvalid() => Length.TryParse("3.0 zoom", out var l);
+        public bool TryParseInvalid() => Length<double>.TryParse("3.0 zoom", out var l);
 
         [Benchmark]
-        public IQuantity QuantityFrom() => Quantity.From(3.0, LengthUnit.Meter);
+        public IQuantity QuantityFrom() => Quantity.From<double>( 3.0, LengthUnit.Meter);
 
         [Benchmark]
         public double IQuantity_As() => lengthIQuantity.As(LengthUnit.Centimeter);

@@ -79,77 +79,77 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
         {
-            Mass mass = Duration.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
+            var mass = Duration<double>.FromSeconds(4.0) * MassFlow<double>.FromKilogramsPerSecond(20.0);
+            Assert.Equal(mass, Mass<double>.FromKilograms(80.0));
         }
 
         [Fact]
         public void MassFlowTimesDurationEqualsMass()
         {
-            Mass mass = MassFlow.FromKilogramsPerSecond(20.0) * Duration.FromSeconds(4.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
+            var mass = MassFlow<double>.FromKilogramsPerSecond(20.0) * Duration<double>.FromSeconds(4.0);
+            Assert.Equal(mass, Mass<double>.FromKilograms(80.0));
         }
 
         [Fact]
         public void MassFlowTimesTimeSpanEqualsMass()
         {
-            Mass mass = MassFlow.FromKilogramsPerSecond(20.0) * TimeSpan.FromSeconds(4.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
+            var mass = MassFlow<double>.FromKilogramsPerSecond(20.0) * TimeSpan.FromSeconds(4.0);
+            Assert.Equal(mass, Mass<double>.FromKilograms(80.0));
         }
 
         [Fact]
         public void TimeSpanTimesMassFlowEqualsMass()
         {
-            Mass mass = TimeSpan.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
+            var mass = TimeSpan.FromSeconds(4.0) * MassFlow<double>.FromKilogramsPerSecond(20.0);
+            Assert.Equal(mass, Mass<double>.FromKilograms(80.0));
         }
 
         [Fact]
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
-            Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
+            var power = MassFlow<double>.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption<double>.FromGramsPerKiloWattHour(180.0);
             Assert.Equal(20.0 / 24.0 * 1e6 / 180.0, power.Kilowatts);
         }
 
         [Fact]
         public void MassFlowDividedByPowerEqualsBrakeSpecificFuelConsumption()
         {
-            BrakeSpecificFuelConsumption bsfc = MassFlow.FromTonnesPerDay(20) / Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
+            var bsfc = MassFlow<double>.FromTonnesPerDay(20) / Power<double>.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
             AssertEx.EqualTolerance(180.0, bsfc.GramsPerKiloWattHour, 1e-11);
         }
 
         [Fact]
         public void MassFlowTimesSpecificEnergyEqualsPower()
         {
-            Power power = MassFlow.FromKilogramsPerSecond(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
+            var power = MassFlow<double>.FromKilogramsPerSecond(20.0) * SpecificEnergy<double>.FromJoulesPerKilogram(10.0);
             Assert.Equal(200, power.Watts);
         }
 
         [Fact]
         public void MassFlowDividedByAreaEqualsMassFlux()
         {
-            MassFlux massFlux = MassFlow.FromKilogramsPerSecond(20) / Area.FromSquareMeters(2);
+            var massFlux = MassFlow<double>.FromKilogramsPerSecond(20) / Area<double>.FromSquareMeters(2);
             Assert.Equal(10, massFlux.KilogramsPerSecondPerSquareMeter);
         }
 
         [Fact]
         public void MassFlowDividedByMassFluxEqualsArea()
         {
-            Area area = MassFlow.FromKilogramsPerSecond(20) / MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            var area = MassFlow<double>.FromKilogramsPerSecond(20) / MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(2);
             Assert.Equal(10, area.SquareMeters);
         }
 
         [Fact]
         public void MassFlowDividedByVolumeFlowEqualsDensity()
         {
-            Density density = MassFlow.FromKilogramsPerSecond(12) / VolumeFlow.FromCubicMetersPerSecond(3);
+            var density = MassFlow<double>.FromKilogramsPerSecond(12) / VolumeFlow<double>.FromCubicMetersPerSecond(3);
             Assert.Equal(4, density.KilogramsPerCubicMeter);
         }
 
         [Fact]
         public void MassFlowDividedByDensityEqualsVolumeFlow()
         {
-            VolumeFlow volumeFlow = MassFlow.FromKilogramsPerSecond(20) / Density.FromKilogramsPerCubicMeter(4);
+            var volumeFlow = MassFlow<double>.FromKilogramsPerSecond(20) / Density<double>.FromKilogramsPerCubicMeter(4);
             Assert.Equal(5, volumeFlow.CubicMetersPerSecond);
         }
     }

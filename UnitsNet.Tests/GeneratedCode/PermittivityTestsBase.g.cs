@@ -43,59 +43,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permittivity((double)0.0, PermittivityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Permittivity<double>((double)0.0, PermittivityUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.PositiveInfinity, PermittivityUnit.FaradPerMeter));
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.NegativeInfinity, PermittivityUnit.FaradPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permittivity<double>(double.PositiveInfinity, PermittivityUnit.FaradPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permittivity<double>(double.NegativeInfinity, PermittivityUnit.FaradPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.NaN, PermittivityUnit.FaradPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permittivity<double>(double.NaN, PermittivityUnit.FaradPerMeter));
         }
 
         [Fact]
         public void FaradPerMeterToPermittivityUnits()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, faradpermeter.FaradsPerMeter, FaradsPerMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Permittivity.From(1, PermittivityUnit.FaradPerMeter).FaradsPerMeter, FaradsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, Permittivity<double>.From(1, PermittivityUnit.FaradPerMeter).FaradsPerMeter, FaradsPerMeterTolerance);
         }
 
         [Fact]
         public void FromFaradsPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Permittivity<double>.FromFaradsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Permittivity<double>.FromFaradsPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromFaradsPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => Permittivity<double>.FromFaradsPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            var faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, faradpermeter.As(PermittivityUnit.FaradPerMeter), FaradsPerMeterTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            var faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
 
             var faradpermeterQuantity = faradpermeter.ToUnit(PermittivityUnit.FaradPerMeter);
             AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, (double)faradpermeterQuantity.Value, FaradsPerMeterTolerance);
@@ -105,28 +105,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
-            AssertEx.EqualTolerance(1, Permittivity.FromFaradsPerMeter(faradpermeter.FaradsPerMeter).FaradsPerMeter, FaradsPerMeterTolerance);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
+            AssertEx.EqualTolerance(1, Permittivity<double>.FromFaradsPerMeter(faradpermeter.FaradsPerMeter).FaradsPerMeter, FaradsPerMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Permittivity v = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> v = Permittivity<double>.FromFaradsPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.FaradsPerMeter, FaradsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Permittivity.FromFaradsPerMeter(3)-v).FaradsPerMeter, FaradsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Permittivity<double>.FromFaradsPerMeter(3)-v).FaradsPerMeter, FaradsPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).FaradsPerMeter, FaradsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).FaradsPerMeter, FaradsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).FaradsPerMeter, FaradsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Permittivity.FromFaradsPerMeter(10)/5).FaradsPerMeter, FaradsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, Permittivity.FromFaradsPerMeter(10)/Permittivity.FromFaradsPerMeter(5), FaradsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Permittivity<double>.FromFaradsPerMeter(10)/5).FaradsPerMeter, FaradsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, Permittivity<double>.FromFaradsPerMeter(10)/Permittivity<double>.FromFaradsPerMeter(5), FaradsPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Permittivity oneFaradPerMeter = Permittivity.FromFaradsPerMeter(1);
-            Permittivity twoFaradsPerMeter = Permittivity.FromFaradsPerMeter(2);
+            Permittivity<double> oneFaradPerMeter = Permittivity<double>.FromFaradsPerMeter(1);
+            Permittivity<double> twoFaradsPerMeter = Permittivity<double>.FromFaradsPerMeter(2);
 
             Assert.True(oneFaradPerMeter < twoFaradsPerMeter);
             Assert.True(oneFaradPerMeter <= twoFaradsPerMeter);
@@ -142,31 +142,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             Assert.Equal(0, faradpermeter.CompareTo(faradpermeter));
-            Assert.True(faradpermeter.CompareTo(Permittivity.Zero) > 0);
-            Assert.True(Permittivity.Zero.CompareTo(faradpermeter) < 0);
+            Assert.True(faradpermeter.CompareTo(Permittivity<double>.Zero) > 0);
+            Assert.True(Permittivity<double>.Zero.CompareTo(faradpermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             Assert.Throws<ArgumentException>(() => faradpermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => faradpermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Permittivity.FromFaradsPerMeter(1);
-            var b = Permittivity.FromFaradsPerMeter(2);
+            var a = Permittivity<double>.FromFaradsPerMeter(1);
+            var b = Permittivity<double>.FromFaradsPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -185,8 +185,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Permittivity.FromFaradsPerMeter(1);
-            var b = Permittivity.FromFaradsPerMeter(2);
+            var a = Permittivity<double>.FromFaradsPerMeter(1);
+            var b = Permittivity<double>.FromFaradsPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -196,29 +196,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Permittivity.FromFaradsPerMeter(1);
-            Assert.True(v.Equals(Permittivity.FromFaradsPerMeter(1), FaradsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Permittivity.Zero, FaradsPerMeterTolerance, ComparisonType.Relative));
+            var v = Permittivity<double>.FromFaradsPerMeter(1);
+            Assert.True(v.Equals(Permittivity<double>.FromFaradsPerMeter(1), FaradsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Permittivity<double>.Zero, FaradsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             Assert.False(faradpermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            Permittivity<double> faradpermeter = Permittivity<double>.FromFaradsPerMeter(1);
             Assert.False(faradpermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(PermittivityUnit.Undefined, Permittivity.Units);
+            Assert.DoesNotContain(PermittivityUnit.Undefined, Permittivity<double>.Units);
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Permittivity.BaseDimensions is null);
+            Assert.False(Permittivity<double>.BaseDimensions is null);
         }
     }
 }

@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of SolidAngle.
+    /// Test of SolidAngle<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SolidAngleTestsBase
@@ -43,59 +43,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SolidAngle((double)0.0, SolidAngleUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new SolidAngle<double>((double)0.0, SolidAngleUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SolidAngle(double.PositiveInfinity, SolidAngleUnit.Steradian));
-            Assert.Throws<ArgumentException>(() => new SolidAngle(double.NegativeInfinity, SolidAngleUnit.Steradian));
+            Assert.Throws<ArgumentException>(() => new SolidAngle<double>(double.PositiveInfinity, SolidAngleUnit.Steradian));
+            Assert.Throws<ArgumentException>(() => new SolidAngle<double>(double.NegativeInfinity, SolidAngleUnit.Steradian));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SolidAngle(double.NaN, SolidAngleUnit.Steradian));
+            Assert.Throws<ArgumentException>(() => new SolidAngle<double>(double.NaN, SolidAngleUnit.Steradian));
         }
 
         [Fact]
         public void SteradianToSolidAngleUnits()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, steradian.Steradians, SteradiansTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, SolidAngle.From(1, SolidAngleUnit.Steradian).Steradians, SteradiansTolerance);
+            AssertEx.EqualTolerance(1, SolidAngle<double>.From(1, SolidAngleUnit.Steradian).Steradians, SteradiansTolerance);
         }
 
         [Fact]
         public void FromSteradians_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => SolidAngle<double>.FromSteradians(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SolidAngle<double>.FromSteradians(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromSteradians_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.NaN));
+            Assert.Throws<ArgumentException>(() => SolidAngle<double>.FromSteradians(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var steradian = SolidAngle.FromSteradians(1);
+            var steradian = SolidAngle<double>.FromSteradians(1);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, steradian.As(SolidAngleUnit.Steradian), SteradiansTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var steradian = SolidAngle.FromSteradians(1);
+            var steradian = SolidAngle<double>.FromSteradians(1);
 
             var steradianQuantity = steradian.ToUnit(SolidAngleUnit.Steradian);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, (double)steradianQuantity.Value, SteradiansTolerance);
@@ -105,28 +105,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
-            AssertEx.EqualTolerance(1, SolidAngle.FromSteradians(steradian.Steradians).Steradians, SteradiansTolerance);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
+            AssertEx.EqualTolerance(1, SolidAngle<double>.FromSteradians(steradian.Steradians).Steradians, SteradiansTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            SolidAngle v = SolidAngle.FromSteradians(1);
+            SolidAngle<double> v = SolidAngle<double>.FromSteradians(1);
             AssertEx.EqualTolerance(-1, -v.Steradians, SteradiansTolerance);
-            AssertEx.EqualTolerance(2, (SolidAngle.FromSteradians(3)-v).Steradians, SteradiansTolerance);
+            AssertEx.EqualTolerance(2, (SolidAngle<double>.FromSteradians(3)-v).Steradians, SteradiansTolerance);
             AssertEx.EqualTolerance(2, (v + v).Steradians, SteradiansTolerance);
             AssertEx.EqualTolerance(10, (v*10).Steradians, SteradiansTolerance);
             AssertEx.EqualTolerance(10, (10*v).Steradians, SteradiansTolerance);
-            AssertEx.EqualTolerance(2, (SolidAngle.FromSteradians(10)/5).Steradians, SteradiansTolerance);
-            AssertEx.EqualTolerance(2, SolidAngle.FromSteradians(10)/SolidAngle.FromSteradians(5), SteradiansTolerance);
+            AssertEx.EqualTolerance(2, (SolidAngle<double>.FromSteradians(10)/5).Steradians, SteradiansTolerance);
+            AssertEx.EqualTolerance(2, SolidAngle<double>.FromSteradians(10)/SolidAngle<double>.FromSteradians(5), SteradiansTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            SolidAngle oneSteradian = SolidAngle.FromSteradians(1);
-            SolidAngle twoSteradians = SolidAngle.FromSteradians(2);
+            SolidAngle<double> oneSteradian = SolidAngle<double>.FromSteradians(1);
+            SolidAngle<double> twoSteradians = SolidAngle<double>.FromSteradians(2);
 
             Assert.True(oneSteradian < twoSteradians);
             Assert.True(oneSteradian <= twoSteradians);
@@ -142,31 +142,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             Assert.Equal(0, steradian.CompareTo(steradian));
-            Assert.True(steradian.CompareTo(SolidAngle.Zero) > 0);
-            Assert.True(SolidAngle.Zero.CompareTo(steradian) < 0);
+            Assert.True(steradian.CompareTo(SolidAngle<double>.Zero) > 0);
+            Assert.True(SolidAngle<double>.Zero.CompareTo(steradian) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             Assert.Throws<ArgumentException>(() => steradian.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             Assert.Throws<ArgumentNullException>(() => steradian.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = SolidAngle.FromSteradians(1);
-            var b = SolidAngle.FromSteradians(2);
+            var a = SolidAngle<double>.FromSteradians(1);
+            var b = SolidAngle<double>.FromSteradians(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -185,8 +185,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = SolidAngle.FromSteradians(1);
-            var b = SolidAngle.FromSteradians(2);
+            var a = SolidAngle<double>.FromSteradians(1);
+            var b = SolidAngle<double>.FromSteradians(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -196,29 +196,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = SolidAngle.FromSteradians(1);
-            Assert.True(v.Equals(SolidAngle.FromSteradians(1), SteradiansTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SolidAngle.Zero, SteradiansTolerance, ComparisonType.Relative));
+            var v = SolidAngle<double>.FromSteradians(1);
+            Assert.True(v.Equals(SolidAngle<double>.FromSteradians(1), SteradiansTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SolidAngle<double>.Zero, SteradiansTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             Assert.False(steradian.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            SolidAngle steradian = SolidAngle.FromSteradians(1);
+            SolidAngle<double> steradian = SolidAngle<double>.FromSteradians(1);
             Assert.False(steradian.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(SolidAngleUnit.Undefined, SolidAngle.Units);
+            Assert.DoesNotContain(SolidAngleUnit.Undefined, SolidAngle<double>.Units);
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(SolidAngle.BaseDimensions is null);
+            Assert.False(SolidAngle<double>.BaseDimensions is null);
         }
     }
 }

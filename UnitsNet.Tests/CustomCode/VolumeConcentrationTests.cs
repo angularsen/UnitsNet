@@ -67,10 +67,10 @@ namespace UnitsNet.Tests.CustomCode
             double expectedMassConcValue, MassConcentrationUnit expectedMassConcUnit,
             double tolerence = 1e-5)
         {
-            var volumeConcentration = new VolumeConcentration(volumeConcValue, volumeConcUnit);
-            var componentDensity = new Density(componentDensityValue, componentDensityUnit);
+            var volumeConcentration = new VolumeConcentration<double>(volumeConcValue, volumeConcUnit);
+            var componentDensity = new Density<double>( componentDensityValue, componentDensityUnit);
 
-            MassConcentration massConcentration = volumeConcentration.ToMassConcentration(componentDensity); // volumeConcentration * density
+            var massConcentration = volumeConcentration.ToMassConcentration(componentDensity); // volumeConcentration * density
 
             AssertEx.EqualTolerance(expectedMassConcValue, massConcentration.As(expectedMassConcUnit), tolerence);
         }
@@ -86,14 +86,13 @@ namespace UnitsNet.Tests.CustomCode
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
             double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
         {
-            var volumeConcentration = new VolumeConcentration(volumeConcValue, volumeConcUnit);
-            var componentDensity = new Density(componentDensityValue, componetDensityUnit);
-            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
+            var volumeConcentration = new VolumeConcentration<double>( volumeConcValue, volumeConcUnit);
+            var componentDensity = new Density<double>( componentDensityValue, componetDensityUnit);
+            var componentMolarMass = new MolarMass<double>( componentMolarMassValue, componentMolarMassUnit);
 
-            Molarity molarity = volumeConcentration.ToMolarity(componentDensity, componentMolarMass); // volumeConcentration * density / molarMass
+            var molarity = volumeConcentration.ToMolarity(componentDensity, componentMolarMass); // volumeConcentration * density / molarMass
 
             AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerence);
         }
-
     }
 }

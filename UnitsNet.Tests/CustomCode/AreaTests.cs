@@ -40,15 +40,15 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AreaDividedByLengthEqualsLength()
         {
-            Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
-            Assert.Equal(length, Length.FromMeters(10));
+            var length = Area<double>.FromSquareMeters(50)/Length<double>.FromMeters(5);
+            Assert.Equal(length, Length<double>.FromMeters(10));
         }
 
         [Fact]
         public void AreaTimesMassFluxEqualsMassFlow()
         {
-            MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            var massFlow = Area<double>.FromSquareMeters(20) * MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(massFlow, MassFlow<double>.FromKilogramsPerSecond(40));
         }
 
         [Theory]
@@ -58,9 +58,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2, 3.141592653589793)]
         public void AreaFromCicleDiameterCalculatedCorrectly(double diameterMeters, double expected)
         {
-            Length diameter = Length.FromMeters(diameterMeters);
+            var diameter = Length<double>.FromMeters(diameterMeters);
 
-            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
+            double actual = Area<double>.FromCircleDiameter(diameter).SquareMeters;
 
             Assert.Equal(expected, actual);
         }
@@ -72,9 +72,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2, 12.566370614359173)]
         public void AreaFromCicleRadiusCalculatedCorrectly(double radiusMeters, double expected)
         {
-            Length radius = Length.FromMeters(radiusMeters);
+            var radius = Length<double>.FromMeters(radiusMeters);
 
-            double actual = Area.FromCircleRadius(radius).SquareMeters;
+            double actual = Area<double>.FromCircleRadius(radius).SquareMeters;
 
             Assert.Equal(expected, actual);
         }
@@ -82,28 +82,28 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AreaTimesSpeedEqualsVolumeFlow()
         {
-            VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
+            var volumeFlow = Area<double>.FromSquareMeters(20) * Speed<double>.FromMetersPerSecond(2);
+            Assert.Equal(VolumeFlow<double>.FromCubicMetersPerSecond(40), volumeFlow);
         }
 
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
-            var area = new Area(1.0, UnitSystem.SI);
+            var area = new Area<double>(1.0, UnitSystem.SI);
             Assert.Equal(AreaUnit.SquareMeter, area.Unit);
         }
 
         [Fact]
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
-            var squareInches = new Area(2.0, AreaUnit.SquareInch);
+            var squareInches = new Area<double>(2.0, AreaUnit.SquareInch);
             Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
         }
 
         [Fact]
         public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
         {
-            var squareInches = new Area(2.0, AreaUnit.SquareInch);
+            var squareInches = new Area<double>(2.0, AreaUnit.SquareInch);
 
             var inSI = squareInches.ToUnit(UnitSystem.SI);
 

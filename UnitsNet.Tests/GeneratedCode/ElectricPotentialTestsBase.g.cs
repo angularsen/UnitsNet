@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of ElectricPotential.
+    /// Test of ElectricPotential<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialTestsBase
@@ -51,26 +51,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotential((double)0.0, ElectricPotentialUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricPotential<double>((double)0.0, ElectricPotentialUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.PositiveInfinity, ElectricPotentialUnit.Volt));
-            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.NegativeInfinity, ElectricPotentialUnit.Volt));
+            Assert.Throws<ArgumentException>(() => new ElectricPotential<double>(double.PositiveInfinity, ElectricPotentialUnit.Volt));
+            Assert.Throws<ArgumentException>(() => new ElectricPotential<double>(double.NegativeInfinity, ElectricPotentialUnit.Volt));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.NaN, ElectricPotentialUnit.Volt));
+            Assert.Throws<ArgumentException>(() => new ElectricPotential<double>(double.NaN, ElectricPotentialUnit.Volt));
         }
 
         [Fact]
         public void VoltToElectricPotentialUnits()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             AssertEx.EqualTolerance(KilovoltsInOneVolt, volt.Kilovolts, KilovoltsTolerance);
             AssertEx.EqualTolerance(MegavoltsInOneVolt, volt.Megavolts, MegavoltsTolerance);
             AssertEx.EqualTolerance(MicrovoltsInOneVolt, volt.Microvolts, MicrovoltsTolerance);
@@ -81,30 +81,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Kilovolt).Kilovolts, KilovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Megavolt).Megavolts, MegavoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Microvolt).Microvolts, MicrovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Millivolt).Millivolts, MillivoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, VoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.From(1, ElectricPotentialUnit.Kilovolt).Kilovolts, KilovoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.From(1, ElectricPotentialUnit.Megavolt).Megavolts, MegavoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.From(1, ElectricPotentialUnit.Microvolt).Microvolts, MicrovoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.From(1, ElectricPotentialUnit.Millivolt).Millivolts, MillivoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.From(1, ElectricPotentialUnit.Volt).Volts, VoltsTolerance);
         }
 
         [Fact]
         public void FromVolts_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricPotential<double>.FromVolts(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricPotential<double>.FromVolts(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromVolts_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricPotential<double>.FromVolts(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var volt = ElectricPotential.FromVolts(1);
+            var volt = ElectricPotential<double>.FromVolts(1);
             AssertEx.EqualTolerance(KilovoltsInOneVolt, volt.As(ElectricPotentialUnit.Kilovolt), KilovoltsTolerance);
             AssertEx.EqualTolerance(MegavoltsInOneVolt, volt.As(ElectricPotentialUnit.Megavolt), MegavoltsTolerance);
             AssertEx.EqualTolerance(MicrovoltsInOneVolt, volt.As(ElectricPotentialUnit.Microvolt), MicrovoltsTolerance);
@@ -115,7 +115,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var volt = ElectricPotential.FromVolts(1);
+            var volt = ElectricPotential<double>.FromVolts(1);
 
             var kilovoltQuantity = volt.ToUnit(ElectricPotentialUnit.Kilovolt);
             AssertEx.EqualTolerance(KilovoltsInOneVolt, (double)kilovoltQuantity.Value, KilovoltsTolerance);
@@ -141,32 +141,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromKilovolts(volt.Kilovolts).Volts, KilovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMegavolts(volt.Megavolts).Volts, MegavoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMicrovolts(volt.Microvolts).Volts, MicrovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMillivolts(volt.Millivolts).Volts, MillivoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromVolts(volt.Volts).Volts, VoltsTolerance);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.FromKilovolts(volt.Kilovolts).Volts, KilovoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.FromMegavolts(volt.Megavolts).Volts, MegavoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.FromMicrovolts(volt.Microvolts).Volts, MicrovoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.FromMillivolts(volt.Millivolts).Volts, MillivoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential<double>.FromVolts(volt.Volts).Volts, VoltsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricPotential v = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> v = ElectricPotential<double>.FromVolts(1);
             AssertEx.EqualTolerance(-1, -v.Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricPotential.FromVolts(3)-v).Volts, VoltsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricPotential<double>.FromVolts(3)-v).Volts, VoltsTolerance);
             AssertEx.EqualTolerance(2, (v + v).Volts, VoltsTolerance);
             AssertEx.EqualTolerance(10, (v*10).Volts, VoltsTolerance);
             AssertEx.EqualTolerance(10, (10*v).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricPotential.FromVolts(10)/5).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, ElectricPotential.FromVolts(10)/ElectricPotential.FromVolts(5), VoltsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricPotential<double>.FromVolts(10)/5).Volts, VoltsTolerance);
+            AssertEx.EqualTolerance(2, ElectricPotential<double>.FromVolts(10)/ElectricPotential<double>.FromVolts(5), VoltsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricPotential oneVolt = ElectricPotential.FromVolts(1);
-            ElectricPotential twoVolts = ElectricPotential.FromVolts(2);
+            ElectricPotential<double> oneVolt = ElectricPotential<double>.FromVolts(1);
+            ElectricPotential<double> twoVolts = ElectricPotential<double>.FromVolts(2);
 
             Assert.True(oneVolt < twoVolts);
             Assert.True(oneVolt <= twoVolts);
@@ -182,31 +182,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             Assert.Equal(0, volt.CompareTo(volt));
-            Assert.True(volt.CompareTo(ElectricPotential.Zero) > 0);
-            Assert.True(ElectricPotential.Zero.CompareTo(volt) < 0);
+            Assert.True(volt.CompareTo(ElectricPotential<double>.Zero) > 0);
+            Assert.True(ElectricPotential<double>.Zero.CompareTo(volt) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             Assert.Throws<ArgumentException>(() => volt.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             Assert.Throws<ArgumentNullException>(() => volt.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricPotential.FromVolts(1);
-            var b = ElectricPotential.FromVolts(2);
+            var a = ElectricPotential<double>.FromVolts(1);
+            var b = ElectricPotential<double>.FromVolts(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -225,8 +225,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = ElectricPotential.FromVolts(1);
-            var b = ElectricPotential.FromVolts(2);
+            var a = ElectricPotential<double>.FromVolts(1);
+            var b = ElectricPotential<double>.FromVolts(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -236,29 +236,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = ElectricPotential.FromVolts(1);
-            Assert.True(v.Equals(ElectricPotential.FromVolts(1), VoltsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricPotential.Zero, VoltsTolerance, ComparisonType.Relative));
+            var v = ElectricPotential<double>.FromVolts(1);
+            Assert.True(v.Equals(ElectricPotential<double>.FromVolts(1), VoltsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricPotential<double>.Zero, VoltsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             Assert.False(volt.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            ElectricPotential<double> volt = ElectricPotential<double>.FromVolts(1);
             Assert.False(volt.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricPotentialUnit.Undefined, ElectricPotential.Units);
+            Assert.DoesNotContain(ElectricPotentialUnit.Undefined, ElectricPotential<double>.Units);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricPotential.BaseDimensions is null);
+            Assert.False(ElectricPotential<double>.BaseDimensions is null);
         }
     }
 }

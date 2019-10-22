@@ -43,59 +43,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticFlux((double)0.0, MagneticFluxUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux<double>((double)0.0, MagneticFluxUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.PositiveInfinity, MagneticFluxUnit.Weber));
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NegativeInfinity, MagneticFluxUnit.Weber));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux<double>(double.PositiveInfinity, MagneticFluxUnit.Weber));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux<double>(double.NegativeInfinity, MagneticFluxUnit.Weber));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NaN, MagneticFluxUnit.Weber));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux<double>(double.NaN, MagneticFluxUnit.Weber));
         }
 
         [Fact]
         public void WeberToMagneticFluxUnits()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             AssertEx.EqualTolerance(WebersInOneWeber, weber.Webers, WebersTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, MagneticFlux.From(1, MagneticFluxUnit.Weber).Webers, WebersTolerance);
+            AssertEx.EqualTolerance(1, MagneticFlux<double>.From(1, MagneticFluxUnit.Weber).Webers, WebersTolerance);
         }
 
         [Fact]
         public void FromWebers_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticFlux<double>.FromWebers(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticFlux<double>.FromWebers(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromWebers_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NaN));
+            Assert.Throws<ArgumentException>(() => MagneticFlux<double>.FromWebers(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var weber = MagneticFlux.FromWebers(1);
+            var weber = MagneticFlux<double>.FromWebers(1);
             AssertEx.EqualTolerance(WebersInOneWeber, weber.As(MagneticFluxUnit.Weber), WebersTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var weber = MagneticFlux.FromWebers(1);
+            var weber = MagneticFlux<double>.FromWebers(1);
 
             var weberQuantity = weber.ToUnit(MagneticFluxUnit.Weber);
             AssertEx.EqualTolerance(WebersInOneWeber, (double)weberQuantity.Value, WebersTolerance);
@@ -105,28 +105,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
-            AssertEx.EqualTolerance(1, MagneticFlux.FromWebers(weber.Webers).Webers, WebersTolerance);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
+            AssertEx.EqualTolerance(1, MagneticFlux<double>.FromWebers(weber.Webers).Webers, WebersTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            MagneticFlux v = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> v = MagneticFlux<double>.FromWebers(1);
             AssertEx.EqualTolerance(-1, -v.Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, (MagneticFlux.FromWebers(3)-v).Webers, WebersTolerance);
+            AssertEx.EqualTolerance(2, (MagneticFlux<double>.FromWebers(3)-v).Webers, WebersTolerance);
             AssertEx.EqualTolerance(2, (v + v).Webers, WebersTolerance);
             AssertEx.EqualTolerance(10, (v*10).Webers, WebersTolerance);
             AssertEx.EqualTolerance(10, (10*v).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, (MagneticFlux.FromWebers(10)/5).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, MagneticFlux.FromWebers(10)/MagneticFlux.FromWebers(5), WebersTolerance);
+            AssertEx.EqualTolerance(2, (MagneticFlux<double>.FromWebers(10)/5).Webers, WebersTolerance);
+            AssertEx.EqualTolerance(2, MagneticFlux<double>.FromWebers(10)/MagneticFlux<double>.FromWebers(5), WebersTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            MagneticFlux oneWeber = MagneticFlux.FromWebers(1);
-            MagneticFlux twoWebers = MagneticFlux.FromWebers(2);
+            MagneticFlux<double> oneWeber = MagneticFlux<double>.FromWebers(1);
+            MagneticFlux<double> twoWebers = MagneticFlux<double>.FromWebers(2);
 
             Assert.True(oneWeber < twoWebers);
             Assert.True(oneWeber <= twoWebers);
@@ -142,31 +142,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             Assert.Equal(0, weber.CompareTo(weber));
-            Assert.True(weber.CompareTo(MagneticFlux.Zero) > 0);
-            Assert.True(MagneticFlux.Zero.CompareTo(weber) < 0);
+            Assert.True(weber.CompareTo(MagneticFlux<double>.Zero) > 0);
+            Assert.True(MagneticFlux<double>.Zero.CompareTo(weber) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             Assert.Throws<ArgumentException>(() => weber.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             Assert.Throws<ArgumentNullException>(() => weber.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = MagneticFlux.FromWebers(1);
-            var b = MagneticFlux.FromWebers(2);
+            var a = MagneticFlux<double>.FromWebers(1);
+            var b = MagneticFlux<double>.FromWebers(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -185,8 +185,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = MagneticFlux.FromWebers(1);
-            var b = MagneticFlux.FromWebers(2);
+            var a = MagneticFlux<double>.FromWebers(1);
+            var b = MagneticFlux<double>.FromWebers(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -196,29 +196,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = MagneticFlux.FromWebers(1);
-            Assert.True(v.Equals(MagneticFlux.FromWebers(1), WebersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(MagneticFlux.Zero, WebersTolerance, ComparisonType.Relative));
+            var v = MagneticFlux<double>.FromWebers(1);
+            Assert.True(v.Equals(MagneticFlux<double>.FromWebers(1), WebersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MagneticFlux<double>.Zero, WebersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             Assert.False(weber.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
+            MagneticFlux<double> weber = MagneticFlux<double>.FromWebers(1);
             Assert.False(weber.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MagneticFluxUnit.Undefined, MagneticFlux.Units);
+            Assert.DoesNotContain(MagneticFluxUnit.Undefined, MagneticFlux<double>.Units);
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(MagneticFlux.BaseDimensions is null);
+            Assert.False(MagneticFlux<double>.BaseDimensions is null);
         }
     }
 }

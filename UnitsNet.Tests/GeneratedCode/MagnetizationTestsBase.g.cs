@@ -43,59 +43,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Magnetization((double)0.0, MagnetizationUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Magnetization<double>((double)0.0, MagnetizationUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.NegativeInfinity, MagnetizationUnit.AmperePerMeter));
+            Assert.Throws<ArgumentException>(() => new Magnetization<double>(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
+            Assert.Throws<ArgumentException>(() => new Magnetization<double>(double.NegativeInfinity, MagnetizationUnit.AmperePerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.NaN, MagnetizationUnit.AmperePerMeter));
+            Assert.Throws<ArgumentException>(() => new Magnetization<double>(double.NaN, MagnetizationUnit.AmperePerMeter));
         }
 
         [Fact]
         public void AmperePerMeterToMagnetizationUnits()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, amperepermeter.AmperesPerMeter, AmperesPerMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Magnetization.From(1, MagnetizationUnit.AmperePerMeter).AmperesPerMeter, AmperesPerMeterTolerance);
+            AssertEx.EqualTolerance(1, Magnetization<double>.From(1, MagnetizationUnit.AmperePerMeter).AmperesPerMeter, AmperesPerMeterTolerance);
         }
 
         [Fact]
         public void FromAmperesPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Magnetization<double>.FromAmperesPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Magnetization<double>.FromAmperesPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromAmperesPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => Magnetization<double>.FromAmperesPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            var amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, amperepermeter.As(MagnetizationUnit.AmperePerMeter), AmperesPerMeterTolerance);
         }
 
         [Fact]
         public void ToUnit()
         {
-            var amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            var amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
 
             var amperepermeterQuantity = amperepermeter.ToUnit(MagnetizationUnit.AmperePerMeter);
             AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, (double)amperepermeterQuantity.Value, AmperesPerMeterTolerance);
@@ -105,28 +105,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
-            AssertEx.EqualTolerance(1, Magnetization.FromAmperesPerMeter(amperepermeter.AmperesPerMeter).AmperesPerMeter, AmperesPerMeterTolerance);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
+            AssertEx.EqualTolerance(1, Magnetization<double>.FromAmperesPerMeter(amperepermeter.AmperesPerMeter).AmperesPerMeter, AmperesPerMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Magnetization v = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> v = Magnetization<double>.FromAmperesPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.AmperesPerMeter, AmperesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Magnetization.FromAmperesPerMeter(3)-v).AmperesPerMeter, AmperesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Magnetization<double>.FromAmperesPerMeter(3)-v).AmperesPerMeter, AmperesPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).AmperesPerMeter, AmperesPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).AmperesPerMeter, AmperesPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).AmperesPerMeter, AmperesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Magnetization.FromAmperesPerMeter(10)/5).AmperesPerMeter, AmperesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, Magnetization.FromAmperesPerMeter(10)/Magnetization.FromAmperesPerMeter(5), AmperesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Magnetization<double>.FromAmperesPerMeter(10)/5).AmperesPerMeter, AmperesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, Magnetization<double>.FromAmperesPerMeter(10)/Magnetization<double>.FromAmperesPerMeter(5), AmperesPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Magnetization oneAmperePerMeter = Magnetization.FromAmperesPerMeter(1);
-            Magnetization twoAmperesPerMeter = Magnetization.FromAmperesPerMeter(2);
+            Magnetization<double> oneAmperePerMeter = Magnetization<double>.FromAmperesPerMeter(1);
+            Magnetization<double> twoAmperesPerMeter = Magnetization<double>.FromAmperesPerMeter(2);
 
             Assert.True(oneAmperePerMeter < twoAmperesPerMeter);
             Assert.True(oneAmperePerMeter <= twoAmperesPerMeter);
@@ -142,31 +142,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             Assert.Equal(0, amperepermeter.CompareTo(amperepermeter));
-            Assert.True(amperepermeter.CompareTo(Magnetization.Zero) > 0);
-            Assert.True(Magnetization.Zero.CompareTo(amperepermeter) < 0);
+            Assert.True(amperepermeter.CompareTo(Magnetization<double>.Zero) > 0);
+            Assert.True(Magnetization<double>.Zero.CompareTo(amperepermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             Assert.Throws<ArgumentException>(() => amperepermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => amperepermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Magnetization.FromAmperesPerMeter(1);
-            var b = Magnetization.FromAmperesPerMeter(2);
+            var a = Magnetization<double>.FromAmperesPerMeter(1);
+            var b = Magnetization<double>.FromAmperesPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -185,8 +185,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Magnetization.FromAmperesPerMeter(1);
-            var b = Magnetization.FromAmperesPerMeter(2);
+            var a = Magnetization<double>.FromAmperesPerMeter(1);
+            var b = Magnetization<double>.FromAmperesPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -196,29 +196,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Magnetization.FromAmperesPerMeter(1);
-            Assert.True(v.Equals(Magnetization.FromAmperesPerMeter(1), AmperesPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Magnetization.Zero, AmperesPerMeterTolerance, ComparisonType.Relative));
+            var v = Magnetization<double>.FromAmperesPerMeter(1);
+            Assert.True(v.Equals(Magnetization<double>.FromAmperesPerMeter(1), AmperesPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Magnetization<double>.Zero, AmperesPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             Assert.False(amperepermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            Magnetization<double> amperepermeter = Magnetization<double>.FromAmperesPerMeter(1);
             Assert.False(amperepermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MagnetizationUnit.Undefined, Magnetization.Units);
+            Assert.DoesNotContain(MagnetizationUnit.Undefined, Magnetization<double>.Units);
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Magnetization.BaseDimensions is null);
+            Assert.False(Magnetization<double>.BaseDimensions is null);
         }
     }
 }

@@ -47,26 +47,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient((double)0.0, HeatTransferCoefficientUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient<double>((double)0.0, HeatTransferCoefficientUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.PositiveInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
-            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NegativeInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient<double>(double.PositiveInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient<double>(double.NegativeInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NaN, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient<double>(double.NaN, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
         }
 
         [Fact]
         public void WattPerSquareMeterKelvinToHeatTransferCoefficientUnits()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.BtusPerSquareFootDegreeFahrenheit, BtusPerSquareFootDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
@@ -75,28 +75,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit).BtusPerSquareFootDegreeFahrenheit, BtusPerSquareFootDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.From(1, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit).BtusPerSquareFootDegreeFahrenheit, BtusPerSquareFootDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
         }
 
         [Fact]
         public void FromWattsPerSquareMeterKelvin_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromWattsPerSquareMeterKelvin_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NaN));
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            var wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit), BtusPerSquareFootDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius), WattsPerSquareMeterCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin), WattsPerSquareMeterKelvinTolerance);
@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            var wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
 
             var btupersquarefootdegreefahrenheitQuantity = wattpersquaremeterkelvin.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
             AssertEx.EqualTolerance(BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, (double)btupersquarefootdegreefahrenheitQuantity.Value, BtusPerSquareFootDegreeFahrenheitTolerance);
@@ -123,30 +123,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(wattpersquaremeterkelvin.BtusPerSquareFootDegreeFahrenheit).WattsPerSquareMeterKelvin, BtusPerSquareFootDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(wattpersquaremeterkelvin.WattsPerSquareMeterCelsius).WattsPerSquareMeterKelvin, WattsPerSquareMeterCelsiusTolerance);
-            AssertEx.EqualTolerance(1, HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(wattpersquaremeterkelvin.WattsPerSquareMeterKelvin).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.FromBtusPerSquareFootDegreeFahrenheit(wattpersquaremeterkelvin.BtusPerSquareFootDegreeFahrenheit).WattsPerSquareMeterKelvin, BtusPerSquareFootDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.FromWattsPerSquareMeterCelsius(wattpersquaremeterkelvin.WattsPerSquareMeterCelsius).WattsPerSquareMeterKelvin, WattsPerSquareMeterCelsiusTolerance);
+            AssertEx.EqualTolerance(1, HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(wattpersquaremeterkelvin.WattsPerSquareMeterKelvin).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            HeatTransferCoefficient v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> v = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             AssertEx.EqualTolerance(-1, -v.WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(3)-v).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, (HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(3)-v).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
             AssertEx.EqualTolerance(2, (v + v).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
             AssertEx.EqualTolerance(10, (v*10).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
             AssertEx.EqualTolerance(10, (10*v).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(10)/5).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(10)/HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(5), WattsPerSquareMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, (HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(10)/5).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+            AssertEx.EqualTolerance(2, HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(10)/HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(5), WattsPerSquareMeterKelvinTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            HeatTransferCoefficient oneWattPerSquareMeterKelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            HeatTransferCoefficient twoWattsPerSquareMeterKelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2);
+            HeatTransferCoefficient<double> oneWattPerSquareMeterKelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> twoWattsPerSquareMeterKelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(2);
 
             Assert.True(oneWattPerSquareMeterKelvin < twoWattsPerSquareMeterKelvin);
             Assert.True(oneWattPerSquareMeterKelvin <= twoWattsPerSquareMeterKelvin);
@@ -162,31 +162,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             Assert.Equal(0, wattpersquaremeterkelvin.CompareTo(wattpersquaremeterkelvin));
-            Assert.True(wattpersquaremeterkelvin.CompareTo(HeatTransferCoefficient.Zero) > 0);
-            Assert.True(HeatTransferCoefficient.Zero.CompareTo(wattpersquaremeterkelvin) < 0);
+            Assert.True(wattpersquaremeterkelvin.CompareTo(HeatTransferCoefficient<double>.Zero) > 0);
+            Assert.True(HeatTransferCoefficient<double>.Zero.CompareTo(wattpersquaremeterkelvin) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             Assert.Throws<ArgumentException>(() => wattpersquaremeterkelvin.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             Assert.Throws<ArgumentNullException>(() => wattpersquaremeterkelvin.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            var b = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2);
+            var a = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
+            var b = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -205,8 +205,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            var b = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2);
+            var a = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
+            var b = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -216,29 +216,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(HeatTransferCoefficient.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
+            var v = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
+            Assert.True(v.Equals(HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(HeatTransferCoefficient<double>.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             Assert.False(wattpersquaremeterkelvin.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            HeatTransferCoefficient<double> wattpersquaremeterkelvin = HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(1);
             Assert.False(wattpersquaremeterkelvin.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(HeatTransferCoefficientUnit.Undefined, HeatTransferCoefficient.Units);
+            Assert.DoesNotContain(HeatTransferCoefficientUnit.Undefined, HeatTransferCoefficient<double>.Units);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(HeatTransferCoefficient.BaseDimensions is null);
+            Assert.False(HeatTransferCoefficient<double>.BaseDimensions is null);
         }
     }
 }

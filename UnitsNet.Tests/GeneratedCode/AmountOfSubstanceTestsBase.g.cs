@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of AmountOfSubstance.
+    /// Test of AmountOfSubstance<double>.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AmountOfSubstanceTestsBase
@@ -71,26 +71,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance((double)0.0, AmountOfSubstanceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance<double>((double)0.0, AmountOfSubstanceUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NegativeInfinity, AmountOfSubstanceUnit.Mole));
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance<double>(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance<double>(double.NegativeInfinity, AmountOfSubstanceUnit.Mole));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NaN, AmountOfSubstanceUnit.Mole));
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance<double>(double.NaN, AmountOfSubstanceUnit.Mole));
         }
 
         [Fact]
         public void MoleToAmountOfSubstanceUnits()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             AssertEx.EqualTolerance(CentimolesInOneMole, mole.Centimoles, CentimolesTolerance);
             AssertEx.EqualTolerance(CentipoundMolesInOneMole, mole.CentipoundMoles, CentipoundMolesTolerance);
             AssertEx.EqualTolerance(DecimolesInOneMole, mole.Decimoles, DecimolesTolerance);
@@ -111,40 +111,40 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Centimole).Centimoles, CentimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.CentipoundMole).CentipoundMoles, CentipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Decimole).Decimoles, DecimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.DecipoundMole).DecipoundMoles, DecipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Kilomole).Kilomoles, KilomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.KilopoundMole).KilopoundMoles, KilopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Megamole).Megamoles, MegamolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Micromole).Micromoles, MicromolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.MicropoundMole).MicropoundMoles, MicropoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Millimole).Millimoles, MillimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.MillipoundMole).MillipoundMoles, MillipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Mole).Moles, MolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Nanomole).Nanomoles, NanomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.NanopoundMole).NanopoundMoles, NanopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.PoundMole).PoundMoles, PoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Centimole).Centimoles, CentimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.CentipoundMole).CentipoundMoles, CentipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Decimole).Decimoles, DecimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.DecipoundMole).DecipoundMoles, DecipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Kilomole).Kilomoles, KilomolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.KilopoundMole).KilopoundMoles, KilopoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Megamole).Megamoles, MegamolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Micromole).Micromoles, MicromolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.MicropoundMole).MicropoundMoles, MicropoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Millimole).Millimoles, MillimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.MillipoundMole).MillipoundMoles, MillipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Mole).Moles, MolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.Nanomole).Nanomoles, NanomolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.NanopoundMole).NanopoundMoles, NanopoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.From(1, AmountOfSubstanceUnit.PoundMole).PoundMoles, PoundMolesTolerance);
         }
 
         [Fact]
         public void FromMoles_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance<double>.FromMoles(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance<double>.FromMoles(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMoles_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NaN));
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance<double>.FromMoles(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var mole = AmountOfSubstance.FromMoles(1);
+            var mole = AmountOfSubstance<double>.FromMoles(1);
             AssertEx.EqualTolerance(CentimolesInOneMole, mole.As(AmountOfSubstanceUnit.Centimole), CentimolesTolerance);
             AssertEx.EqualTolerance(CentipoundMolesInOneMole, mole.As(AmountOfSubstanceUnit.CentipoundMole), CentipoundMolesTolerance);
             AssertEx.EqualTolerance(DecimolesInOneMole, mole.As(AmountOfSubstanceUnit.Decimole), DecimolesTolerance);
@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var mole = AmountOfSubstance.FromMoles(1);
+            var mole = AmountOfSubstance<double>.FromMoles(1);
 
             var centimoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Centimole);
             AssertEx.EqualTolerance(CentimolesInOneMole, (double)centimoleQuantity.Value, CentimolesTolerance);
@@ -231,42 +231,42 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromCentimoles(mole.Centimoles).Moles, CentimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromCentipoundMoles(mole.CentipoundMoles).Moles, CentipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromDecimoles(mole.Decimoles).Moles, DecimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromDecipoundMoles(mole.DecipoundMoles).Moles, DecipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromKilomoles(mole.Kilomoles).Moles, KilomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromKilopoundMoles(mole.KilopoundMoles).Moles, KilopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMegamoles(mole.Megamoles).Moles, MegamolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMicromoles(mole.Micromoles).Moles, MicromolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMicropoundMoles(mole.MicropoundMoles).Moles, MicropoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMillimoles(mole.Millimoles).Moles, MillimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMillipoundMoles(mole.MillipoundMoles).Moles, MillipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromMoles(mole.Moles).Moles, MolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromNanomoles(mole.Nanomoles).Moles, NanomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromNanopoundMoles(mole.NanopoundMoles).Moles, NanopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.FromPoundMoles(mole.PoundMoles).Moles, PoundMolesTolerance);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromCentimoles(mole.Centimoles).Moles, CentimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromCentipoundMoles(mole.CentipoundMoles).Moles, CentipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromDecimoles(mole.Decimoles).Moles, DecimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromDecipoundMoles(mole.DecipoundMoles).Moles, DecipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromKilomoles(mole.Kilomoles).Moles, KilomolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromKilopoundMoles(mole.KilopoundMoles).Moles, KilopoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMegamoles(mole.Megamoles).Moles, MegamolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMicromoles(mole.Micromoles).Moles, MicromolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMicropoundMoles(mole.MicropoundMoles).Moles, MicropoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMillimoles(mole.Millimoles).Moles, MillimolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMillipoundMoles(mole.MillipoundMoles).Moles, MillipoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromMoles(mole.Moles).Moles, MolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromNanomoles(mole.Nanomoles).Moles, NanomolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromNanopoundMoles(mole.NanopoundMoles).Moles, NanopoundMolesTolerance);
+            AssertEx.EqualTolerance(1, AmountOfSubstance<double>.FromPoundMoles(mole.PoundMoles).Moles, PoundMolesTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            AmountOfSubstance v = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> v = AmountOfSubstance<double>.FromMoles(1);
             AssertEx.EqualTolerance(-1, -v.Moles, MolesTolerance);
-            AssertEx.EqualTolerance(2, (AmountOfSubstance.FromMoles(3)-v).Moles, MolesTolerance);
+            AssertEx.EqualTolerance(2, (AmountOfSubstance<double>.FromMoles(3)-v).Moles, MolesTolerance);
             AssertEx.EqualTolerance(2, (v + v).Moles, MolesTolerance);
             AssertEx.EqualTolerance(10, (v*10).Moles, MolesTolerance);
             AssertEx.EqualTolerance(10, (10*v).Moles, MolesTolerance);
-            AssertEx.EqualTolerance(2, (AmountOfSubstance.FromMoles(10)/5).Moles, MolesTolerance);
-            AssertEx.EqualTolerance(2, AmountOfSubstance.FromMoles(10)/AmountOfSubstance.FromMoles(5), MolesTolerance);
+            AssertEx.EqualTolerance(2, (AmountOfSubstance<double>.FromMoles(10)/5).Moles, MolesTolerance);
+            AssertEx.EqualTolerance(2, AmountOfSubstance<double>.FromMoles(10)/AmountOfSubstance<double>.FromMoles(5), MolesTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            AmountOfSubstance oneMole = AmountOfSubstance.FromMoles(1);
-            AmountOfSubstance twoMoles = AmountOfSubstance.FromMoles(2);
+            AmountOfSubstance<double> oneMole = AmountOfSubstance<double>.FromMoles(1);
+            AmountOfSubstance<double> twoMoles = AmountOfSubstance<double>.FromMoles(2);
 
             Assert.True(oneMole < twoMoles);
             Assert.True(oneMole <= twoMoles);
@@ -282,31 +282,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             Assert.Equal(0, mole.CompareTo(mole));
-            Assert.True(mole.CompareTo(AmountOfSubstance.Zero) > 0);
-            Assert.True(AmountOfSubstance.Zero.CompareTo(mole) < 0);
+            Assert.True(mole.CompareTo(AmountOfSubstance<double>.Zero) > 0);
+            Assert.True(AmountOfSubstance<double>.Zero.CompareTo(mole) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             Assert.Throws<ArgumentException>(() => mole.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             Assert.Throws<ArgumentNullException>(() => mole.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = AmountOfSubstance.FromMoles(1);
-            var b = AmountOfSubstance.FromMoles(2);
+            var a = AmountOfSubstance<double>.FromMoles(1);
+            var b = AmountOfSubstance<double>.FromMoles(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -325,8 +325,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = AmountOfSubstance.FromMoles(1);
-            var b = AmountOfSubstance.FromMoles(2);
+            var a = AmountOfSubstance<double>.FromMoles(1);
+            var b = AmountOfSubstance<double>.FromMoles(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -336,29 +336,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = AmountOfSubstance.FromMoles(1);
-            Assert.True(v.Equals(AmountOfSubstance.FromMoles(1), MolesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(AmountOfSubstance.Zero, MolesTolerance, ComparisonType.Relative));
+            var v = AmountOfSubstance<double>.FromMoles(1);
+            Assert.True(v.Equals(AmountOfSubstance<double>.FromMoles(1), MolesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AmountOfSubstance<double>.Zero, MolesTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             Assert.False(mole.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
+            AmountOfSubstance<double> mole = AmountOfSubstance<double>.FromMoles(1);
             Assert.False(mole.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(AmountOfSubstanceUnit.Undefined, AmountOfSubstance.Units);
+            Assert.DoesNotContain(AmountOfSubstanceUnit.Undefined, AmountOfSubstance<double>.Units);
         }
 
         [Fact]
@@ -377,7 +377,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(AmountOfSubstance.BaseDimensions is null);
+            Assert.False(AmountOfSubstance<double>.BaseDimensions is null);
         }
     }
 }

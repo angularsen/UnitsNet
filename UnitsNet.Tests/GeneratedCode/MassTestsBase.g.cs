@@ -91,26 +91,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Mass((double)0.0, MassUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Mass<double>((double)0.0, MassUnit.Undefined));
         }
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Mass(double.PositiveInfinity, MassUnit.Kilogram));
-            Assert.Throws<ArgumentException>(() => new Mass(double.NegativeInfinity, MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Mass<double>(double.PositiveInfinity, MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Mass<double>(double.NegativeInfinity, MassUnit.Kilogram));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Mass(double.NaN, MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Mass<double>(double.NaN, MassUnit.Kilogram));
         }
 
         [Fact]
         public void KilogramToMassUnits()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.Centigrams, CentigramsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.Decagrams, DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.Decigrams, DecigramsTolerance);
@@ -141,50 +141,50 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Centigram).Centigrams, CentigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decagram).Decagrams, DecagramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decigram).Decigrams, DecigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.EarthMass).EarthMasses, EarthMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Grain).Grains, GrainsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Gram).Grams, GramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilogram).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilopound).Kilopounds, KilopoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, KilotonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongHundredweight).LongHundredweight, LongHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongTon).LongTons, LongTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megapound).Megapounds, MegapoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, MegatonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Nanogram).Nanograms, NanogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Ounce).Ounces, OuncesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Pound).Pounds, PoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortHundredweight).ShortHundredweight, ShortHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Slug).Slugs, SlugsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.SolarMass).SolarMasses, SolarMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Stone).Stone, StoneTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Centigram).Centigrams, CentigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Decagram).Decagrams, DecagramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Decigram).Decigrams, DecigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.EarthMass).EarthMasses, EarthMassesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Grain).Grains, GrainsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Gram).Grams, GramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Kilogram).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Kilopound).Kilopounds, KilopoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Kilotonne).Kilotonnes, KilotonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.LongHundredweight).LongHundredweight, LongHundredweightTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.LongTon).LongTons, LongTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Megapound).Megapounds, MegapoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Megatonne).Megatonnes, MegatonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Nanogram).Nanograms, NanogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Ounce).Ounces, OuncesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Pound).Pounds, PoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.ShortHundredweight).ShortHundredweight, ShortHundredweightTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Slug).Slugs, SlugsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.SolarMass).SolarMasses, SolarMassesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Stone).Stone, StoneTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
         }
 
         [Fact]
         public void FromKilograms_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Mass<double>.FromKilograms(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Mass<double>.FromKilograms(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromKilograms_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NaN));
+            Assert.Throws<ArgumentException>(() => Mass<double>.FromKilograms(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var kilogram = Mass.FromKilograms(1);
+            var kilogram = Mass<double>.FromKilograms(1);
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), CentigramsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), DecigramsTolerance);
@@ -215,7 +215,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var kilogram = Mass.FromKilograms(1);
+            var kilogram = Mass<double>.FromKilograms(1);
 
             var centigramQuantity = kilogram.ToUnit(MassUnit.Centigram);
             AssertEx.EqualTolerance(CentigramsInOneKilogram, (double)centigramQuantity.Value, CentigramsTolerance);
@@ -321,52 +321,52 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Mass kilogram = Mass.FromKilograms(1);
-            AssertEx.EqualTolerance(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromOunces(kilogram.Ounces).Kilograms, OuncesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms, ShortHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSlugs(kilogram.Slugs).Kilograms, SlugsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
+            AssertEx.EqualTolerance(1, Mass<double>.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromOunces(kilogram.Ounces).Kilograms, OuncesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms, ShortHundredweightTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromSlugs(kilogram.Slugs).Kilograms, SlugsTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
+            AssertEx.EqualTolerance(1, Mass<double>.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Mass v = Mass.FromKilograms(1);
+            Mass<double> v = Mass<double>.FromKilograms(1);
             AssertEx.EqualTolerance(-1, -v.Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(3)-v).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(2, (Mass<double>.FromKilograms(3)-v).Kilograms, KilogramsTolerance);
             AssertEx.EqualTolerance(2, (v + v).Kilograms, KilogramsTolerance);
             AssertEx.EqualTolerance(10, (v*10).Kilograms, KilogramsTolerance);
             AssertEx.EqualTolerance(10, (10*v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(10)/5).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), KilogramsTolerance);
+            AssertEx.EqualTolerance(2, (Mass<double>.FromKilograms(10)/5).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(2, Mass<double>.FromKilograms(10)/Mass<double>.FromKilograms(5), KilogramsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Mass oneKilogram = Mass.FromKilograms(1);
-            Mass twoKilograms = Mass.FromKilograms(2);
+            Mass<double> oneKilogram = Mass<double>.FromKilograms(1);
+            Mass<double> twoKilograms = Mass<double>.FromKilograms(2);
 
             Assert.True(oneKilogram < twoKilograms);
             Assert.True(oneKilogram <= twoKilograms);
@@ -382,31 +382,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             Assert.Equal(0, kilogram.CompareTo(kilogram));
-            Assert.True(kilogram.CompareTo(Mass.Zero) > 0);
-            Assert.True(Mass.Zero.CompareTo(kilogram) < 0);
+            Assert.True(kilogram.CompareTo(Mass<double>.Zero) > 0);
+            Assert.True(Mass<double>.Zero.CompareTo(kilogram) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             Assert.Throws<ArgumentException>(() => kilogram.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             Assert.Throws<ArgumentNullException>(() => kilogram.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Mass.FromKilograms(1);
-            var b = Mass.FromKilograms(2);
+            var a = Mass<double>.FromKilograms(1);
+            var b = Mass<double>.FromKilograms(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -425,8 +425,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            var a = Mass.FromKilograms(1);
-            var b = Mass.FromKilograms(2);
+            var a = Mass<double>.FromKilograms(1);
+            var b = Mass<double>.FromKilograms(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -436,29 +436,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsRelativeToleranceIsImplemented()
         {
-            var v = Mass.FromKilograms(1);
-            Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
+            var v = Mass<double>.FromKilograms(1);
+            Assert.True(v.Equals(Mass<double>.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Mass<double>.Zero, KilogramsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             Assert.False(kilogram.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Mass kilogram = Mass.FromKilograms(1);
+            Mass<double> kilogram = Mass<double>.FromKilograms(1);
             Assert.False(kilogram.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MassUnit.Undefined, Mass.Units);
+            Assert.DoesNotContain(MassUnit.Undefined, Mass<double>.Units);
         }
 
         [Fact]
@@ -477,7 +477,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Mass.BaseDimensions is null);
+            Assert.False(Mass<double>.BaseDimensions is null);
         }
     }
 }
