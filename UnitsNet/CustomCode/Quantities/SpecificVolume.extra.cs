@@ -3,18 +3,18 @@
 
 namespace UnitsNet
 {
-    public partial struct SpecificVolume
+    public partial struct SpecificVolume<T>
     {
-        /// <summary>Get <see cref="Density"/> from <see cref="double"/> divided by <see cref="SpecificVolume"/>.</summary>
-        public static Density operator /(double constant, SpecificVolume volume)
+        /// <summary>Get <see cref="Density{T}"/> from <see cref="double"/> divided by <see cref="SpecificVolume{T}"/>.</summary>
+        public static Density<T> operator /(double constant, SpecificVolume<T> volume )
         {
-            return Density.FromKilogramsPerCubicMeter(constant / volume.CubicMetersPerKilogram);
+            return Density<T>.FromKilogramsPerCubicMeter(constant / volume.CubicMetersPerKilogram);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> times <see cref="Mass"/>.</summary>
-        public static Volume operator *(SpecificVolume volume, Mass mass)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="SpecificVolume{T}"/> times <see cref="Mass{T}"/>.</summary>
+        public static Volume<T> operator *(SpecificVolume<T> volume, Mass<T> mass )
         {
-            return Volume.FromCubicMeters(volume.CubicMetersPerKilogram * mass.Kilograms);
+            return Volume<T>.FromCubicMeters(volume.CubicMetersPerKilogram * mass.Kilograms);
         }
     }
 }

@@ -5,34 +5,34 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct Volume
+    public partial struct Volume<T>
     {
-        /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> divided by <see cref="Length"/>.</summary>
-        public static Area operator /(Volume volume, Length length)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="Volume{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static Area<T> operator /(Volume<T> volume, Length<T> length )
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Area<T>.FromSquareMeters(volume.CubicMeters / length.Meters);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Volume"/> divided by <see cref="Area"/>.</summary>
-        public static Length operator /(Volume volume, Area area)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Volume{T}"/> divided by <see cref="Area{T}"/>.</summary>
+        public static Length<T> operator /(Volume<T> volume, Area<T> area )
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+            return Length<T>.FromMeters(volume.CubicMeters / area.SquareMeters);
         }
 
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Volume"/> divided by <see cref="Duration"/>.</summary>
-        public static VolumeFlow operator /(Volume volume, Duration duration)
+        /// <summary>Get <see cref="VolumeFlow{T}"/> from <see cref="Volume{T}"/> divided by <see cref="Duration{T}"/>.</summary>
+        public static VolumeFlow<T> operator /(Volume<T> volume, Duration<T> duration )
         {
-            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / duration.Seconds);
+            return VolumeFlow<T>.FromCubicMetersPerSecond(volume.CubicMeters / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Volume"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static VolumeFlow operator /(Volume volume, TimeSpan timeSpan)
+        /// <summary>Get <see cref="VolumeFlow{T}"/> from <see cref="Volume{T}"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static VolumeFlow<T> operator /(Volume<T> volume, TimeSpan timeSpan)
         {
-            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.TotalSeconds);
+            return VolumeFlow<T>.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="TimeSpan"/> from <see cref="Volume"/> divided by <see cref="VolumeFlow"/>.</summary>
-        public static TimeSpan operator /(Volume volume, VolumeFlow volumeFlow)
+        /// <summary>Get <see cref="TimeSpan"/> from <see cref="Volume{T}"/> divided by <see cref="VolumeFlow{T}"/>.</summary>
+        public static TimeSpan operator /(Volume<T> volume, VolumeFlow<T> volumeFlow )
         {
             return TimeSpan.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
         }

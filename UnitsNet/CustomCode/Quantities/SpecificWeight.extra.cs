@@ -5,36 +5,36 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct SpecificWeight
+    public partial struct SpecificWeight<T>
     {
-        /// <summary>Get <see cref="Pressure"/> from <see cref="SpecificWeight"/> times <see cref="Length"/>.</summary>
-        public static Pressure operator *(SpecificWeight specificWeight, Length length)
+        /// <summary>Get <see cref="Pressure{T}"/> from <see cref="SpecificWeight{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static Pressure<T> operator *(SpecificWeight<T> specificWeight, Length<T> length )
         {
-            return new Pressure(specificWeight.NewtonsPerCubicMeter * length.Meters, UnitsNet.Units.PressureUnit.Pascal);
+            return new Pressure<T>( specificWeight.NewtonsPerCubicMeter * length.Meters, UnitsNet.Units.PressureUnit.Pascal);
         }
 
-        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="SpecificWeight"/> times <see cref="Area"/>.</summary>
-        public static ForcePerLength operator *(SpecificWeight specificWeight, Area area)
+        /// <summary>Get <see cref="ForcePerLength{T}"/> from <see cref="SpecificWeight{T}"/> times <see cref="Area{T}"/>.</summary>
+        public static ForcePerLength<T> operator *(SpecificWeight<T> specificWeight, Area<T> area )
         {
-            return new ForcePerLength(specificWeight.NewtonsPerCubicMeter * area.SquareMeters, ForcePerLengthUnit.NewtonPerMeter);
+            return new ForcePerLength<T>( specificWeight.NewtonsPerCubicMeter * area.SquareMeters, ForcePerLengthUnit.NewtonPerMeter);
         }
 
-        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Area"/> times <see cref="SpecificWeight"/>.</summary>
-        public static ForcePerLength operator *(Area area, SpecificWeight specificWeight)
+        /// <summary>Get <see cref="ForcePerLength{T}"/> from <see cref="Area{T}"/> times <see cref="SpecificWeight{T}"/>.</summary>
+        public static ForcePerLength<T> operator *(Area<T> area, SpecificWeight<T> specificWeight )
         {
-            return new ForcePerLength(area.SquareMeters * specificWeight.NewtonsPerCubicMeter, ForcePerLengthUnit.NewtonPerMeter);
+            return new ForcePerLength<T>( area.SquareMeters * specificWeight.NewtonsPerCubicMeter, ForcePerLengthUnit.NewtonPerMeter);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from <see cref="SpecificWeight"/> divided by <see cref="Density"/>.</summary>
-        public static Acceleration operator /(SpecificWeight specificWeight, Density density)
+        /// <summary>Get <see cref="Acceleration{T}"/> from <see cref="SpecificWeight{T}"/> divided by <see cref="Density{T}"/>.</summary>
+        public static Acceleration<T> operator /(SpecificWeight<T> specificWeight, Density<T> density )
         {
-            return new Acceleration(specificWeight.NewtonsPerCubicMeter / density.KilogramsPerCubicMeter, UnitsNet.Units.AccelerationUnit.MeterPerSecondSquared);
+            return new Acceleration<T>( specificWeight.NewtonsPerCubicMeter / density.KilogramsPerCubicMeter, UnitsNet.Units.AccelerationUnit.MeterPerSecondSquared);
         }
 
-        /// <summary>Get <see cref="Density"/> from <see cref="SpecificWeight"/> divided by <see cref="Acceleration"/>.</summary>
-        public static Density operator /(SpecificWeight specific, Acceleration acceleration)
+        /// <summary>Get <see cref="Density{T}"/> from <see cref="SpecificWeight{T}"/> divided by <see cref="Acceleration{T}"/>.</summary>
+        public static Density<T> operator /(SpecificWeight<T> specific, Acceleration<T> acceleration )
         {
-            return new Density(specific.NewtonsPerCubicMeter / acceleration.MetersPerSecondSquared, UnitsNet.Units.DensityUnit.KilogramPerCubicMeter);
+            return new Density<T>( specific.NewtonsPerCubicMeter / acceleration.MetersPerSecondSquared, UnitsNet.Units.DensityUnit.KilogramPerCubicMeter);
         }
     }
 }

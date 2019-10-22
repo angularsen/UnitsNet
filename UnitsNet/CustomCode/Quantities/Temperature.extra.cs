@@ -5,46 +5,46 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct Temperature
+    public partial struct Temperature<T>
     {
         /// <summary>
-        ///     Add a <see cref="Temperature" /> and a <see cref="TemperatureDelta" />.
+        ///     Add a <see cref="Temperature{T}" /> and a <see cref="TemperatureDelta{T}" />.
         /// </summary>
         /// <remarks>Due to temperature units having different scales, the arithmetic must be performed on the same scale.</remarks>
         /// <returns>The new temperature.</returns>
-        public static Temperature operator +(Temperature left, TemperatureDelta right)
+        public static Temperature<T> operator +(Temperature<T> left, TemperatureDelta<T> right )
         {
-            return new Temperature(left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
+            return new Temperature<T>( left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
-        ///     Add a <see cref="TemperatureDelta" /> and a <see cref="Temperature" />.
+        ///     Add a <see cref="TemperatureDelta{T}" /> and a <see cref="Temperature{T}" />.
         /// </summary>
         /// <remarks>Due to temperature units having different scales, the arithmetic must be performed on the same scale.</remarks>
         /// <returns>The new temperature.</returns>
-        public static Temperature operator +(TemperatureDelta left, Temperature right)
+        public static Temperature<T> operator +(TemperatureDelta<T> left, Temperature<T> right )
         {
-            return new Temperature(left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
+            return new Temperature<T>( left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
-        ///     Subtract a <see cref="Temperature" /> by a <see cref="TemperatureDelta" />.
+        ///     Subtract a <see cref="Temperature{T}" /> by a <see cref="TemperatureDelta{T}" />.
         /// </summary>
         /// <remarks>Due to temperature units having different scales, the arithmetic must be performed on the same scale.</remarks>
         /// <returns>The new temperature.</returns>
-        public static Temperature operator -(Temperature left, TemperatureDelta right)
+        public static Temperature<T> operator -(Temperature<T> left, TemperatureDelta<T> right )
         {
-            return new Temperature(left.Kelvins - right.Kelvins, TemperatureUnit.Kelvin);
+            return new Temperature<T>( left.Kelvins - right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
-        ///     Subtract a <see cref="Temperature" /> by a <see cref="TemperatureDelta" />.
+        ///     Subtract a <see cref="Temperature{T}" /> by a <see cref="TemperatureDelta{T}" />.
         /// </summary>
         /// <remarks>Due to temperature units having different scales, the arithmetic must be performed on the same scale.</remarks>
         /// <returns>The delta temperature (difference).</returns>
-        public static TemperatureDelta operator -(Temperature left, Temperature right)
+        public static TemperatureDelta<T> operator -(Temperature<T> left, Temperature<T> right )
         {
-            return new TemperatureDelta(left.Kelvins - right.Kelvins, TemperatureDeltaUnit.Kelvin);
+            return new TemperatureDelta<T>( left.Kelvins - right.Kelvins, TemperatureDeltaUnit.Kelvin);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace UnitsNet
         /// </remarks>
         /// <param name="factor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
-        /// <returns>The resulting <see cref="Temperature" />.</returns>
-        public Temperature Multiply(double factor, TemperatureUnit unit)
+        /// <returns>The resulting <see cref="Temperature{T}" />.</returns>
+        public Temperature<T> Multiply(double factor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) * factor;
             return From(resultInUnit, unit);
@@ -75,8 +75,8 @@ namespace UnitsNet
         /// </remarks>
         /// <param name="divisor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
-        /// <returns>The resulting <see cref="Temperature" />.</returns>
-        public Temperature Divide(double divisor, TemperatureUnit unit)
+        /// <returns>The resulting <see cref="Temperature{T}" />.</returns>
+        public Temperature<T> Divide(double divisor, TemperatureUnit unit)
         {
             double resultInUnit = As(unit) / divisor;
             return From(resultInUnit, unit);

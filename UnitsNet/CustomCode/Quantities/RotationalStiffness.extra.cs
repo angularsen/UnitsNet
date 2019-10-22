@@ -3,24 +3,24 @@
 
 namespace UnitsNet
 {
-    public partial struct RotationalStiffness
+    public partial struct RotationalStiffness<T>
     {
-        /// <summary>Get <see cref="Torque"/> from <see cref="RotationalStiffness"/> times <see cref="Angle"/>.</summary>
-        public static Torque operator *(RotationalStiffness rotationalStiffness, Angle angle)
+        /// <summary>Get <see cref="Torque{T}"/> from <see cref="RotationalStiffness{T}"/> times <see cref="Angle{T}"/>.</summary>
+        public static Torque<T> operator *(RotationalStiffness<T> rotationalStiffness, Angle<T> angle )
         {
-            return Torque.FromNewtonMeters(rotationalStiffness.NewtonMetersPerRadian * angle.Radians);
+            return Torque<T>.FromNewtonMeters(rotationalStiffness.NewtonMetersPerRadian * angle.Radians);
         }
 
-        /// <summary>Get <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffness"/> divided by <see cref="Length"/>.</summary>
-        public static RotationalStiffnessPerLength operator /(RotationalStiffness rotationalStiffness, Length length)
+        /// <summary>Get <see cref="RotationalStiffnessPerLength{T}"/> from <see cref="RotationalStiffness{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static RotationalStiffnessPerLength<T> operator /(RotationalStiffness<T> rotationalStiffness, Length<T> length )
         {
-            return RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(rotationalStiffness.NewtonMetersPerRadian / length.Meters);
+            return RotationalStiffnessPerLength<T>.FromNewtonMetersPerRadianPerMeter(rotationalStiffness.NewtonMetersPerRadian / length.Meters);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="RotationalStiffness"/> divided by <see cref="RotationalStiffnessPerLength"/>.</summary>
-        public static Length operator /(RotationalStiffness rotationalStiffness, RotationalStiffnessPerLength rotationalStiffnessPerLength)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="RotationalStiffness{T}"/> divided by <see cref="RotationalStiffnessPerLength{T}"/>.</summary>
+        public static Length<T> operator /(RotationalStiffness<T> rotationalStiffness, RotationalStiffnessPerLength<T> rotationalStiffnessPerLength )
         {
-            return Length.FromMeters(rotationalStiffness.NewtonMetersPerRadian / rotationalStiffnessPerLength.NewtonMetersPerRadianPerMeter);
+            return Length<T>.FromMeters(rotationalStiffness.NewtonMetersPerRadian / rotationalStiffnessPerLength.NewtonMetersPerRadianPerMeter);
         }
     }
 }

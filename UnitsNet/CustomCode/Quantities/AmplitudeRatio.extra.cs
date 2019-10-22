@@ -6,16 +6,16 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct AmplitudeRatio
+    public partial struct AmplitudeRatio<T>
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="AmplitudeRatio" /> struct from the specified electric potential
+        ///     Initializes a new instance of the <see cref="AmplitudeRatio{T}" /> struct from the specified electric potential
         ///     referenced to one volt RMS. This assumes both the specified electric potential and the one volt reference have the
         ///     same
         ///     resistance.
         /// </summary>
         /// <param name="voltage">The electric potential referenced to one volt.</param>
-        public AmplitudeRatio(ElectricPotential voltage)
+        public AmplitudeRatio(ElectricPotential<T> voltage )
             : this()
         {
             if (voltage.Volts <= 0)
@@ -29,7 +29,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets an <see cref="ElectricPotential" /> from this <see cref="AmplitudeRatio" />.
+        ///     Gets an <see cref="ElectricPotential{T}" /> from this <see cref="AmplitudeRatio{T}" />.
         /// </summary>
         /// <remarks>
         ///     Provides a nicer syntax for converting an amplitude ratio back to a voltage.
@@ -37,33 +37,33 @@ namespace UnitsNet
         ///         <c>var voltage = voltageRatio.ToElectricPotential();</c>
         ///     </example>
         /// </remarks>
-        public ElectricPotential ToElectricPotential()
+        public ElectricPotential<T> ToElectricPotential()
         {
             // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts( Math.Pow( 10, DecibelVolts / 20 ) );
+            return ElectricPotential<T>.FromVolts( Math.Pow( 10, DecibelVolts / 20 ) );
         }
 
         /// <summary>
-        ///     Converts this <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.
+        ///     Converts this <see cref="AmplitudeRatio{T}" /> to a <see cref="PowerRatio{T}" />.
         /// </summary>
         /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
         /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
-        public PowerRatio ToPowerRatio( ElectricResistance impedance )
+        public PowerRatio<T> ToPowerRatio( ElectricResistance<T> impedance )
         {
             // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
-            return PowerRatio.FromDecibelWatts( DecibelVolts - 10 * Math.Log10( impedance.Ohms / 1 ) );
+            return PowerRatio<T>.FromDecibelWatts( DecibelVolts - 10 * Math.Log10( impedance.Ohms / 1 ) );
         }
 
         #region Static Methods
 
         /// <summary>
-        ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from an
-        ///     <see cref="ElectricPotential" />.
+        ///     Gets an <see cref="AmplitudeRatio{T}" /> in decibels (dB) relative to 1 volt RMS from an
+        ///     <see cref="ElectricPotential{T}" />.
         /// </summary>
         /// <param name="voltage">The voltage (electric potential) relative to one volt RMS.</param>
-        public static AmplitudeRatio FromElectricPotential(ElectricPotential voltage)
+        public static AmplitudeRatio<T> FromElectricPotential(ElectricPotential<T> voltage )
         {
-            return new AmplitudeRatio(voltage);
+            return new AmplitudeRatio<T>( voltage);
         }
 
         #endregion

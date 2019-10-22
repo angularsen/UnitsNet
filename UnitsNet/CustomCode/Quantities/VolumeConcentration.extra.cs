@@ -2,25 +2,25 @@
 
 namespace UnitsNet
 {
-    public partial struct VolumeConcentration
+    public partial struct VolumeConcentration<T>
     {
         /// <summary>
-        /// Get <see cref="MassConcentration" /> from this <see cref="VolumeConcentration" /> and component <see cref="Density" /> .
+        /// Get <see cref="MassConcentration{T}" /> from this <see cref="VolumeConcentration{T}" /> and component <see cref="Density{T}" /> .
         /// </summary>
         /// <param name="componentDensity"></param>
         /// <returns></returns>
-        public MassConcentration ToMassConcentration(Density componentDensity)
+        public MassConcentration<T> ToMassConcentration(Density<T> componentDensity )
         {
             return this * componentDensity;
         }
 
         /// <summary>
-        /// Get <see cref="Molarity" /> from this <see cref="VolumeConcentration" /> and component <see cref="Density"/> and <see cref="MolarMass"/> .
+        /// Get <see cref="Molarity{T}" /> from this <see cref="VolumeConcentration{T}" /> and component <see cref="Density{T}"/> and <see cref="MolarMass{T}"/> .
         /// </summary>
         /// <param name="componentDensity"></param>
         /// <param name="compontMolarMass"></param>
         /// <returns></returns>
-        public Molarity ToMolarity(Density componentDensity, MolarMass compontMolarMass)
+        public Molarity<T> ToMolarity(Density<T> componentDensity, MolarMass<T> compontMolarMass )
         {
             return this * componentDensity / compontMolarMass;
         }
@@ -28,20 +28,20 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
-        ///     Get <see cref="VolumeConcentration" /> from a component <see cref="Volume" /> and total mixture <see cref="Volume" /> .
+        ///     Get <see cref="VolumeConcentration{T}" /> from a component <see cref="Volume{T}" /> and total mixture <see cref="Volume{T}" /> .
         /// </summary>
-        public static VolumeConcentration FromVolumes(Volume componentVolume, Volume mixtureMass)
+        public static VolumeConcentration<T> FromVolumes(Volume<T> componentVolume, Volume<T> mixtureMass )
         {
-            return new VolumeConcentration(componentVolume / mixtureMass, VolumeConcentrationUnit.DecimalFraction);
+            return new VolumeConcentration<T>( componentVolume / mixtureMass, VolumeConcentrationUnit.DecimalFraction);
         }
 
         /// <summary>
-        ///     Get a <see cref="VolumeConcentration"/> from <see cref="Molarity" /> and a component <see cref="Density" /> and <see cref="MolarMass" />.
+        ///     Get a <see cref="VolumeConcentration{T}"/> from <see cref="Molarity{T}" /> and a component <see cref="Density{T}" /> and <see cref="MolarMass{T}" />.
         /// </summary>
         /// <param name="molarity"></param>
         /// <param name="componentDensity"></param>
         /// <param name="componentMolarMass"></param>
-        public static VolumeConcentration FromMolarity(Molarity molarity, Density componentDensity, MolarMass componentMolarMass)
+        public static VolumeConcentration<T> FromMolarity(Molarity<T> molarity, Density<T> componentDensity, MolarMass<T> componentMolarMass )
         {
             return molarity * componentMolarMass / componentDensity;
         }
@@ -51,16 +51,16 @@ namespace UnitsNet
 
         #region Operators
 
-        /// <summary>Get <see cref="MassConcentration" /> from <see cref="VolumeConcentration" /> times the component <see cref="Density" />.</summary>
-        public static MassConcentration operator *(VolumeConcentration volumeConcentration, Density componentDensity)
+        /// <summary>Get <see cref="MassConcentration{T}" /> from <see cref="VolumeConcentration{T}" /> times the component <see cref="Density{T}" />.</summary>
+        public static MassConcentration<T> operator *(VolumeConcentration<T> volumeConcentration, Density<T> componentDensity )
         {
-            return MassConcentration.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
+            return MassConcentration<T>.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
         }
         
-        /// <summary>Get <see cref="MassConcentration" /> from <see cref="VolumeConcentration" /> times the component <see cref="Density" />.</summary>
-        public static MassConcentration operator *(Density componentDensity, VolumeConcentration volumeConcentration)
+        /// <summary>Get <see cref="MassConcentration{T}" /> from <see cref="VolumeConcentration{T}" /> times the component <see cref="Density{T}" />.</summary>
+        public static MassConcentration<T> operator *(Density<T> componentDensity, VolumeConcentration<T> volumeConcentration )
         {
-            return MassConcentration.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
+            return MassConcentration<T>.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
         }
         
         #endregion

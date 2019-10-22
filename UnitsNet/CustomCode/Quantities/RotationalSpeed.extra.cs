@@ -5,30 +5,30 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct RotationalSpeed
+    public partial struct RotationalSpeed<T>
     {
-        /// <summary>Get <see cref="Angle"/> from <see cref="RotationalSpeed"/> times <see cref="TimeSpan"/>.</summary>
-        public static Angle operator *(RotationalSpeed rotationalSpeed, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Angle{T}"/> from <see cref="RotationalSpeed{T}"/> times <see cref="TimeSpan"/>.</summary>
+        public static Angle<T> operator *(RotationalSpeed<T> rotationalSpeed, TimeSpan timeSpan )
         {
-            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
+            return Angle<T>.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Angle"/> from <see cref="TimeSpan"/> times <see cref="RotationalSpeed"/>.</summary>
-        public static Angle operator *(TimeSpan timeSpan, RotationalSpeed rotationalSpeed)
+        /// <summary>Get <see cref="Angle{T}"/> from <see cref="TimeSpan"/> times <see cref="RotationalSpeed{T}"/>.</summary>
+        public static Angle<T> operator *(TimeSpan timeSpan, RotationalSpeed<T> rotationalSpeed )
         {
-            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
+            return Angle<T>.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Angle"/> from <see cref="RotationalSpeed"/> times <see cref="Duration"/>.</summary>
-        public static Angle operator *(RotationalSpeed rotationalSpeed, Duration duration)
+        /// <summary>Get <see cref="Angle{T}"/> from <see cref="RotationalSpeed{T}"/> times <see cref="Duration{T}"/>.</summary>
+        public static Angle<T> operator *(RotationalSpeed<T> rotationalSpeed, Duration<T> duration )
         {
-            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+            return Angle<T>.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Angle"/> from <see cref="Duration"/> times <see cref="RotationalSpeed"/>.</summary>
-        public static Angle operator *(Duration duration, RotationalSpeed rotationalSpeed)
+        /// <summary>Get <see cref="Angle{T}"/> from <see cref="Duration{T}"/> times <see cref="RotationalSpeed{T}"/>.</summary>
+        public static Angle<T> operator *(Duration<T> duration, RotationalSpeed<T> rotationalSpeed )
         {
-            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+            return Angle<T>.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
         }
     }
 }

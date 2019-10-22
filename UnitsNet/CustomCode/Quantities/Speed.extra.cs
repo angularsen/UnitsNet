@@ -5,66 +5,66 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct Speed
+    public partial struct Speed<T>
     {
-        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Acceleration{T}"/> from <see cref="Speed{T}"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static Acceleration<T> operator /(Speed<T> speed, TimeSpan timeSpan )
         {
-            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
+            return Acceleration<T>.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> times <see cref="TimeSpan"/>.</summary>
-        public static Length operator *(Speed speed, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Speed{T}"/> times <see cref="TimeSpan"/>.</summary>
+        public static Length<T> operator *(Speed<T> speed, TimeSpan timeSpan)
         {
-            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+            return Length<T>.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="TimeSpan"/> times <see cref="Speed"/>.</summary>
-        public static Length operator *(TimeSpan timeSpan, Speed speed)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="TimeSpan"/> times <see cref="Speed{T}"/>.</summary>
+        public static Length<T> operator *(TimeSpan timeSpan, Speed<T> speed )
         {
-            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+            return Length<T>.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> divided by <see cref="Duration"/>.</summary>
-        public static Acceleration operator /(Speed speed, Duration duration)
+        /// <summary>Get <see cref="Acceleration{T}"/> from <see cref="Speed{T}"/> divided by <see cref="Duration{T}"/>.</summary>
+        public static Acceleration<T> operator /(Speed<T> speed, Duration<T> duration )
         {
-            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+            return Acceleration<T>.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> times <see cref="Duration"/>.</summary>
-        public static Length operator *(Speed speed, Duration duration)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Speed{T}"/> times <see cref="Duration{T}"/>.</summary>
+        public static Length<T> operator *(Speed<T> speed, Duration<T> duration )
         {
-            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+            return Length<T>.FromMeters(speed.MetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Duration"/> times <see cref="Speed"/>.</summary>
-        public static Length operator *(Duration duration, Speed speed)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Duration{T}"/> times <see cref="Speed{T}"/>.</summary>
+        public static Length<T> operator *(Duration<T> duration, Speed<T> speed )
         {
-            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+            return Length<T>.FromMeters(speed.MetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Speed"/> times <see cref="Length"/>.</summary>
-        public static KinematicViscosity operator *(Speed speed, Length length)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from <see cref="Speed{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static KinematicViscosity<T> operator *(Speed<T> speed, Length<T> length )
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+            return KinematicViscosity<T>.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Speed"/> times <see cref="Speed"/>.</summary>
-        public static SpecificEnergy operator *(Speed left, Speed right)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from <see cref="Speed{T}"/> times <see cref="Speed{T}"/>.</summary>
+        public static SpecificEnergy<T> operator *(Speed<T> left, Speed<T> right )
         {
-            return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
+            return SpecificEnergy<T>.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from <see cref="Speed"/> times <see cref="Density"/>.</summary>
-        public static MassFlux operator *(Speed speed, Density density)
+        /// <summary>Get <see cref="MassFlux{T}"/> from <see cref="Speed{T}"/> times <see cref="Density{T}"/>.</summary>
+        public static MassFlux<T> operator *(Speed<T> speed, Density<T> density )
         {
-            return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
+            return MassFlux<T>.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
         }
 
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Speed"/> times <see cref="Area"/>.</summary>
-        public static VolumeFlow operator *(Speed speed, Area area)
+        /// <summary>Get <see cref="VolumeFlow{T}"/> from <see cref="Speed{T}"/> times <see cref="Area{T}"/>.</summary>
+        public static VolumeFlow<T> operator *(Speed<T> speed, Area<T> area )
         {
-            return VolumeFlow.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
+            return VolumeFlow<T>.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
         }
     }
 }

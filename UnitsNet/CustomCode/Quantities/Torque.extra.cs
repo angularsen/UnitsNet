@@ -3,30 +3,30 @@
 
 namespace UnitsNet
 {
-    public partial struct Torque
+    public partial struct Torque<T>
     {
-        /// <summary>Get <see cref="Force"/> from <see cref="Torque"/> times <see cref="Length"/>.</summary>
-        public static Force operator /(Torque torque, Length length)
+        /// <summary>Get <see cref="Force{T}"/> from <see cref="Torque{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static Force<T> operator /(Torque<T> torque, Length<T> length )
         {
-            return Force.FromNewtons(torque.NewtonMeters / length.Meters);
+            return Force<T>.FromNewtons(torque.NewtonMeters / length.Meters);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Torque"/> times <see cref="Force"/>.</summary>
-        public static Length operator /(Torque torque, Force force)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Torque{T}"/> times <see cref="Force{T}"/>.</summary>
+        public static Length<T> operator /(Torque<T> torque, Force<T> force )
         {
-            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
+            return Length<T>.FromMeters(torque.NewtonMeters / force.Newtons);
         }
 
-        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Torque"/> times <see cref="Angle"/>.</summary>
-        public static RotationalStiffness operator /(Torque torque, Angle angle)
+        /// <summary>Get <see cref="RotationalStiffness{T}"/> from <see cref="Torque{T}"/> times <see cref="Angle{T}"/>.</summary>
+        public static RotationalStiffness<T> operator /(Torque<T> torque, Angle<T> angle )
         {
-            return RotationalStiffness.FromNewtonMetersPerRadian(torque.NewtonMeters / angle.Radians);
+            return RotationalStiffness<T>.FromNewtonMetersPerRadian(torque.NewtonMeters / angle.Radians);
         }
 
-        /// <summary>Get <see cref="Angle"/> from <see cref="Torque"/> times <see cref="RotationalStiffness"/>.</summary>
-        public static Angle operator /(Torque torque, RotationalStiffness rotationalStiffness)
+        /// <summary>Get <see cref="Angle{T}"/> from <see cref="Torque{T}"/> times <see cref="RotationalStiffness{T}"/>.</summary>
+        public static Angle<T> operator /(Torque<T> torque, RotationalStiffness<T> rotationalStiffness )
         {
-            return Angle.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
+            return Angle<T>.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
         }
     }
 }

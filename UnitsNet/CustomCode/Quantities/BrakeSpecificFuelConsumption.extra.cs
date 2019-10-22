@@ -3,22 +3,22 @@
 
 namespace UnitsNet
 {
-    public partial struct BrakeSpecificFuelConsumption
+    public partial struct BrakeSpecificFuelConsumption<T>
     {
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="BrakeSpecificFuelConsumption"/> times <see cref="Power"/>.</summary>
-        public static MassFlow operator *(BrakeSpecificFuelConsumption bsfc, Power power)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="BrakeSpecificFuelConsumption{T}"/> times <see cref="Power{T}"/>.</summary>
+        public static MassFlow<T> operator *(BrakeSpecificFuelConsumption<T> bsfc, Power<T> power )
         {
-            return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule*power.Watts);
+            return MassFlow<T>.FromKilogramsPerSecond(bsfc.KilogramsPerJoule*power.Watts);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <paramref name="value"/> divided by <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption bsfc)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from <paramref name="value"/> divided by <see cref="BrakeSpecificFuelConsumption{T}"/>.</summary>
+        public static SpecificEnergy<T> operator /(double value, BrakeSpecificFuelConsumption<T> bsfc )
         {
-            return SpecificEnergy.FromJoulesPerKilogram(value/bsfc.KilogramsPerJoule);
+            return SpecificEnergy<T>.FromJoulesPerKilogram(value/bsfc.KilogramsPerJoule);
         }
 
-        /// <summary>Get constant from <see cref="BrakeSpecificFuelConsumption"/> times <see cref="SpecificEnergy"/>.</summary>
-        public static double operator *(BrakeSpecificFuelConsumption bsfc, SpecificEnergy specificEnergy)
+        /// <summary>Get constant from <see cref="BrakeSpecificFuelConsumption{T}"/> times <see cref="SpecificEnergy{T}"/>.</summary>
+        public static double operator *(BrakeSpecificFuelConsumption<T> bsfc, SpecificEnergy<T> specificEnergy )
         {
             return specificEnergy.JoulesPerKilogram*bsfc.KilogramsPerJoule;
         }

@@ -3,10 +3,10 @@
 
 namespace UnitsNet
 {
-    public partial struct ElectricPotential
+    public partial struct ElectricPotential<T>
     {
         /// <summary>
-        ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from this <see cref="ElectricPotential" />.
+        ///     Gets an <see cref="AmplitudeRatio{T}" /> in decibels (dB) relative to 1 volt RMS from this <see cref="ElectricPotential{T}" />.
         /// </summary>
         /// <remarks>
         ///     Provides a nicer syntax for converting a voltage to an amplitude ratio (relative to 1 volt RMS).
@@ -14,9 +14,9 @@ namespace UnitsNet
         ///         <c>var voltageRatio = voltage.ToAmplitudeRatio();</c>
         ///     </example>
         /// </remarks>
-        public AmplitudeRatio ToAmplitudeRatio()
+        public AmplitudeRatio<T> ToAmplitudeRatio()
         {
-            return AmplitudeRatio.FromElectricPotential(this);
+            return AmplitudeRatio<T>.FromElectricPotential(this);
         }
     }
 }

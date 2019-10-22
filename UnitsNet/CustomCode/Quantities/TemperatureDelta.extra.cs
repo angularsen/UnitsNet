@@ -3,22 +3,22 @@
 
 namespace UnitsNet
 {
-    public partial struct TemperatureDelta
+    public partial struct TemperatureDelta<T>
     {
-        /// <summary>Get <see cref="LapseRate"/> from <see cref="TemperatureDelta"/> divided by <see cref="Length"/>.</summary>
-        public static LapseRate operator /(TemperatureDelta left, Length right)
+        /// <summary>Get <see cref="LapseRate{T}"/> from <see cref="TemperatureDelta{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static LapseRate<T> operator /(TemperatureDelta<T> left, Length<T> right )
         {
-            return LapseRate.FromDegreesCelciusPerKilometer(left.DegreesCelsius / right.Kilometers);
+            return LapseRate<T>.FromDegreesCelciusPerKilometer(left.DegreesCelsius / right.Kilometers);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="SpecificEntropy"/> times <see cref="TemperatureDelta"/>.</summary>
-        public static SpecificEnergy operator *(SpecificEntropy specificEntropy, TemperatureDelta temperatureDelta)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from <see cref="SpecificEntropy{T}"/> times <see cref="TemperatureDelta{T}"/>.</summary>
+        public static SpecificEnergy<T> operator *(SpecificEntropy<T> specificEntropy, TemperatureDelta<T> temperatureDelta )
         {
-            return SpecificEnergy.FromJoulesPerKilogram(specificEntropy.JoulesPerKilogramKelvin * temperatureDelta.Kelvins);
+            return SpecificEnergy<T>.FromJoulesPerKilogram(specificEntropy.JoulesPerKilogramKelvin * temperatureDelta.Kelvins);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="TemperatureDelta"/> times <see cref="SpecificEntropy"/>.</summary>
-        public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
+        /// <summary>Get <see cref="SpecificEnergy{T}"/> from <see cref="TemperatureDelta{T}"/> times <see cref="SpecificEntropy{T}"/>.</summary>
+        public static SpecificEnergy<T> operator *(TemperatureDelta<T> temperatureDelta, SpecificEntropy<T> specificEntropy )
         {
             return specificEntropy * temperatureDelta;
         }

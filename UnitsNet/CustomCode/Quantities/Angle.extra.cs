@@ -5,18 +5,18 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct Angle
+    public partial struct Angle<T>
     {
-        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Angle"/> delta over time delta.</summary>
-        public static RotationalSpeed operator /(Angle angle, TimeSpan timeSpan)
+        /// <summary>Get <see cref="RotationalSpeed{T}"/> from <see cref="Angle{T}"/> delta over time delta.</summary>
+        public static RotationalSpeed<T> operator /(Angle<T> angle, TimeSpan timeSpan )
         {
-            return RotationalSpeed.FromRadiansPerSecond(angle.Radians / timeSpan.TotalSeconds);
+            return RotationalSpeed<T>.FromRadiansPerSecond(angle.Radians / timeSpan.TotalSeconds);
         }
 
-        /// <inheritdoc cref="op_Division(UnitsNet.Angle,System.TimeSpan)" />
-        public static RotationalSpeed operator /(Angle angle, Duration duration)
+        /// <inheritdoc cref="op_Division(UnitsNet.Angle{T}, System.TimeSpan)" />
+        public static RotationalSpeed<T> operator /(Angle<T> angle, Duration<T> duration )
         {
-            return RotationalSpeed.FromRadiansPerSecond(angle.Radians / duration.Seconds);
+            return RotationalSpeed<T>.FromRadiansPerSecond(angle.Radians / duration.Seconds);
         }
     }
 }

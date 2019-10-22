@@ -7,7 +7,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct AmountOfSubstance
+    public partial struct AmountOfSubstance<T>
     {
         /// <summary>
         ///     The Avogadro constant is the number of constituent particles, usually molecules, 
@@ -35,34 +35,34 @@ namespace UnitsNet
         }
 
 
-        /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="Mass" /> and a given <see cref="MolarMass" />.</summary>
-        public static AmountOfSubstance FromMass(Mass mass, MolarMass molarMass)
+        /// <summary>Get <see cref="AmountOfSubstance{T}" /> from <see cref="Mass{T}" /> and a given <see cref="MolarMass{T}" />.</summary>
+        public static AmountOfSubstance<T> FromMass(Mass<T> mass, MolarMass<T> molarMass )
         {
             return mass / molarMass;
         }
-        
-        /// <summary>Get <see cref="Mass" /> from <see cref="AmountOfSubstance" /> for a given <see cref="MolarMass" />.</summary>
-        public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
+
+        /// <summary>Get <see cref="Mass{T}" /> from <see cref="AmountOfSubstance{T}" /> for a given <see cref="MolarMass{T}" />.</summary>
+        public static Mass<T> operator *(AmountOfSubstance<T> amountOfSubstance, MolarMass<T> molarMass )
         {
-            return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+            return Mass<T>.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
         }
 
-        /// <summary>Get <see cref="Mass" /> from <see cref="AmountOfSubstance" /> for a given <see cref="MolarMass" />.</summary>
-        public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
+        /// <summary>Get <see cref="Mass{T}" /> from <see cref="AmountOfSubstance{T}" /> for a given <see cref="MolarMass{T}" />.</summary>
+        public static Mass<T> operator *(MolarMass<T> molarMass, AmountOfSubstance<T> amountOfSubstance )
         {
-            return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+            return Mass<T>.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
         }
 
-        /// <summary>Get <see cref="Molarity" /> from <see cref="AmountOfSubstance" /> divided by <see cref="Volume" />.</summary>
-        public static Molarity operator /(AmountOfSubstance amountOfComponent, Volume mixtureVolume)
+        /// <summary>Get <see cref="Molarity{T}" /> from <see cref="AmountOfSubstance{T}" /> divided by <see cref="Volume{T}" />.</summary>
+        public static Molarity<T> operator /(AmountOfSubstance<T> amountOfComponent, Volume<T> mixtureVolume )
         {
-            return Molarity.FromMolesPerCubicMeter(amountOfComponent.Moles / mixtureVolume.CubicMeters);
+            return Molarity<T>.FromMolesPerCubicMeter(amountOfComponent.Moles / mixtureVolume.CubicMeters);
         }
 
-        /// <summary>Get <see cref="Volume" /> from <see cref="AmountOfSubstance" /> divided by <see cref="Molarity" />.</summary>
-        public static Volume operator /(AmountOfSubstance amountOfSubstance, Molarity molarity)
+        /// <summary>Get <see cref="Volume{T}" /> from <see cref="AmountOfSubstance{T}" /> divided by <see cref="Molarity{T}" />.</summary>
+        public static Volume<T> operator /(AmountOfSubstance<T> amountOfSubstance, Molarity<T> molarity )
         {
-            return Volume.FromCubicMeters(amountOfSubstance.Moles / molarity.MolesPerCubicMeter);
+            return Volume<T>.FromCubicMeters(amountOfSubstance.Moles / molarity.MolesPerCubicMeter);
         }
 
     }

@@ -3,12 +3,12 @@
 
 namespace UnitsNet
 {
-    public partial struct DynamicViscosity
+    public partial struct DynamicViscosity<T>
     {
-        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="DynamicViscosity"/> divided by <see cref="Density"/>.</summary>
-        public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from <see cref="DynamicViscosity{T}"/> divided by <see cref="Density{T}"/>.</summary>
+        public static KinematicViscosity<T> operator /(DynamicViscosity<T> dynamicViscosity, Density<T> density )
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);
+            return KinematicViscosity<T>.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);
         }
     }
 }
