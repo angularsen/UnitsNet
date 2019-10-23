@@ -35,13 +35,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity
     /// </remarks>
-    public partial struct DynamicViscosity<T> : IQuantity<DynamicViscosityUnit>, IEquatable<DynamicViscosity<T>>, IComparable, IComparable<DynamicViscosity<T>>, IConvertible, IFormattable
+    public partial struct DynamicViscosity<T> : IQuantityT<DynamicViscosityUnit, T>, IEquatable<DynamicViscosity<T>>, IComparable, IComparable<DynamicViscosity<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -72,12 +67,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public DynamicViscosity(double value, DynamicViscosityUnit unit)
+        public DynamicViscosity(T value, DynamicViscosityUnit unit)
         {
             if(unit == DynamicViscosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -89,14 +84,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public DynamicViscosity(double value, UnitSystem unitSystem)
+        public DynamicViscosity(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -138,7 +133,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonSecondPerMeterSquared.
         /// </summary>
-        public static DynamicViscosity<T> Zero { get; } = new DynamicViscosity<T>(0, BaseUnit);
+        public static DynamicViscosity<T> Zero { get; } = new DynamicViscosity<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -147,7 +142,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,47 +174,47 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in Centipoise.
         /// </summary>
-        public double Centipoise => As(DynamicViscosityUnit.Centipoise);
+        public T Centipoise => As(DynamicViscosityUnit.Centipoise);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in MicropascalSeconds.
         /// </summary>
-        public double MicropascalSeconds => As(DynamicViscosityUnit.MicropascalSecond);
+        public T MicropascalSeconds => As(DynamicViscosityUnit.MicropascalSecond);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in MillipascalSeconds.
         /// </summary>
-        public double MillipascalSeconds => As(DynamicViscosityUnit.MillipascalSecond);
+        public T MillipascalSeconds => As(DynamicViscosityUnit.MillipascalSecond);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in NewtonSecondsPerMeterSquared.
         /// </summary>
-        public double NewtonSecondsPerMeterSquared => As(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+        public T NewtonSecondsPerMeterSquared => As(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in PascalSeconds.
         /// </summary>
-        public double PascalSeconds => As(DynamicViscosityUnit.PascalSecond);
+        public T PascalSeconds => As(DynamicViscosityUnit.PascalSecond);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in Poise.
         /// </summary>
-        public double Poise => As(DynamicViscosityUnit.Poise);
+        public T Poise => As(DynamicViscosityUnit.Poise);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in PoundsForceSecondPerSquareFoot.
         /// </summary>
-        public double PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+        public T PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in PoundsForceSecondPerSquareInch.
         /// </summary>
-        public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+        public T PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
 
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> in Reyns.
         /// </summary>
-        public double Reyns => As(DynamicViscosityUnit.Reyn);
+        public T Reyns => As(DynamicViscosityUnit.Reyn);
 
         #endregion
 
@@ -252,82 +249,73 @@ namespace UnitsNet
         ///     Get <see cref="DynamicViscosity{T}" /> from Centipoise.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromCentipoise(QuantityValue centipoise)
+        public static DynamicViscosity<T> FromCentipoise(T centipoise)
         {
-            double value = (double) centipoise;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.Centipoise);
+            return new DynamicViscosity<T>(centipoise, DynamicViscosityUnit.Centipoise);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from MicropascalSeconds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromMicropascalSeconds(QuantityValue micropascalseconds)
+        public static DynamicViscosity<T> FromMicropascalSeconds(T micropascalseconds)
         {
-            double value = (double) micropascalseconds;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.MicropascalSecond);
+            return new DynamicViscosity<T>(micropascalseconds, DynamicViscosityUnit.MicropascalSecond);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from MillipascalSeconds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromMillipascalSeconds(QuantityValue millipascalseconds)
+        public static DynamicViscosity<T> FromMillipascalSeconds(T millipascalseconds)
         {
-            double value = (double) millipascalseconds;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.MillipascalSecond);
+            return new DynamicViscosity<T>(millipascalseconds, DynamicViscosityUnit.MillipascalSecond);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from NewtonSecondsPerMeterSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromNewtonSecondsPerMeterSquared(QuantityValue newtonsecondspermetersquared)
+        public static DynamicViscosity<T> FromNewtonSecondsPerMeterSquared(T newtonsecondspermetersquared)
         {
-            double value = (double) newtonsecondspermetersquared;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+            return new DynamicViscosity<T>(newtonsecondspermetersquared, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from PascalSeconds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromPascalSeconds(QuantityValue pascalseconds)
+        public static DynamicViscosity<T> FromPascalSeconds(T pascalseconds)
         {
-            double value = (double) pascalseconds;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.PascalSecond);
+            return new DynamicViscosity<T>(pascalseconds, DynamicViscosityUnit.PascalSecond);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from Poise.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromPoise(QuantityValue poise)
+        public static DynamicViscosity<T> FromPoise(T poise)
         {
-            double value = (double) poise;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.Poise);
+            return new DynamicViscosity<T>(poise, DynamicViscosityUnit.Poise);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from PoundsForceSecondPerSquareFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromPoundsForceSecondPerSquareFoot(QuantityValue poundsforcesecondpersquarefoot)
+        public static DynamicViscosity<T> FromPoundsForceSecondPerSquareFoot(T poundsforcesecondpersquarefoot)
         {
-            double value = (double) poundsforcesecondpersquarefoot;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+            return new DynamicViscosity<T>(poundsforcesecondpersquarefoot, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from PoundsForceSecondPerSquareInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromPoundsForceSecondPerSquareInch(QuantityValue poundsforcesecondpersquareinch)
+        public static DynamicViscosity<T> FromPoundsForceSecondPerSquareInch(T poundsforcesecondpersquareinch)
         {
-            double value = (double) poundsforcesecondpersquareinch;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+            return new DynamicViscosity<T>(poundsforcesecondpersquareinch, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
         }
         /// <summary>
         ///     Get <see cref="DynamicViscosity{T}" /> from Reyns.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity<T> FromReyns(QuantityValue reyns)
+        public static DynamicViscosity<T> FromReyns(T reyns)
         {
-            double value = (double) reyns;
-            return new DynamicViscosity<T>(value, DynamicViscosityUnit.Reyn);
+            return new DynamicViscosity<T>(reyns, DynamicViscosityUnit.Reyn);
         }
 
         /// <summary>
@@ -336,9 +324,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="DynamicViscosity{T}" /> unit value.</returns>
-        public static DynamicViscosity<T> From(QuantityValue value, DynamicViscosityUnit fromUnit)
+        public static DynamicViscosity<T> From(T value, DynamicViscosityUnit fromUnit)
         {
-            return new DynamicViscosity<T>((double)value, fromUnit);
+            return new DynamicViscosity<T>(value, fromUnit);
         }
 
         #endregion
@@ -492,43 +480,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static DynamicViscosity<T> operator -(DynamicViscosity<T> right)
         {
-            return new DynamicViscosity<T>(-right.Value, right.Unit);
+            return new DynamicViscosity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity{T}"/> from adding two <see cref="DynamicViscosity{T}"/>.</summary>
         public static DynamicViscosity<T> operator +(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return new DynamicViscosity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new DynamicViscosity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity{T}"/> from subtracting two <see cref="DynamicViscosity{T}"/>.</summary>
         public static DynamicViscosity<T> operator -(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return new DynamicViscosity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new DynamicViscosity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity{T}"/> from multiplying value and <see cref="DynamicViscosity{T}"/>.</summary>
-        public static DynamicViscosity<T> operator *(double left, DynamicViscosity<T> right)
+        public static DynamicViscosity<T> operator *(T left, DynamicViscosity<T> right)
         {
-            return new DynamicViscosity<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new DynamicViscosity<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity{T}"/> from multiplying value and <see cref="DynamicViscosity{T}"/>.</summary>
-        public static DynamicViscosity<T> operator *(DynamicViscosity<T> left, double right)
+        public static DynamicViscosity<T> operator *(DynamicViscosity<T> left, T right)
         {
-            return new DynamicViscosity<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new DynamicViscosity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity{T}"/> from dividing <see cref="DynamicViscosity{T}"/> by value.</summary>
-        public static DynamicViscosity<T> operator /(DynamicViscosity<T> left, double right)
+        public static DynamicViscosity<T> operator /(DynamicViscosity<T> left, T right)
         {
-            return new DynamicViscosity<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new DynamicViscosity<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="DynamicViscosity{T}"/> by <see cref="DynamicViscosity{T}"/>.</summary>
-        public static double operator /(DynamicViscosity<T> left, DynamicViscosity<T> right)
+        public static T operator /(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return left.NewtonSecondsPerMeterSquared / right.NewtonSecondsPerMeterSquared;
+            return CompiledLambdas.Divide(left.NewtonSecondsPerMeterSquared, right.NewtonSecondsPerMeterSquared);
         }
 
         #endregion
@@ -538,25 +531,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(DynamicViscosity<T> left, DynamicViscosity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -585,7 +578,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(DynamicViscosity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -602,7 +595,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(DynamicViscosity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(DynamicViscosity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -650,10 +643,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -673,17 +664,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DynamicViscosityUnit unit)
+        public T As(DynamicViscosityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -703,8 +694,13 @@ namespace UnitsNet
             if(!(unit is DynamicViscosityUnit unitAsDynamicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsDynamicViscosityUnit);
+            var asValue = As(unitAsDynamicViscosityUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<DynamicViscosityUnit>.As(DynamicViscosityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="DynamicViscosity{T}" /> to another <see cref="DynamicViscosity{T}" /> with the unit representation <paramref name="unit" />.
@@ -747,26 +743,32 @@ namespace UnitsNet
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<DynamicViscosityUnit, T> IQuantityT<DynamicViscosityUnit, T>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<DynamicViscosityUnit, T> IQuantityT<DynamicViscosityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
-                case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
-                case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
-                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
-                case DynamicViscosityUnit.PascalSecond: return _value;
-                case DynamicViscosityUnit.Poise: return _value/10;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return _value * 4.7880258980335843e1;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return _value * 6.8947572931683613e3;
-                case DynamicViscosityUnit.Reyn: return _value * 6.8947572931683613e3;
+                case DynamicViscosityUnit.Centipoise: return (Value/10) * 1e-2d;
+                case DynamicViscosityUnit.MicropascalSecond: return (Value) * 1e-6d;
+                case DynamicViscosityUnit.MillipascalSecond: return (Value) * 1e-3d;
+                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return Value;
+                case DynamicViscosityUnit.PascalSecond: return Value;
+                case DynamicViscosityUnit.Poise: return Value/10;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return Value * 4.7880258980335843e1;
+                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return Value * 6.8947572931683613e3;
+                case DynamicViscosityUnit.Reyn: return Value * 6.8947572931683613e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -783,10 +785,10 @@ namespace UnitsNet
             return new DynamicViscosity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(DynamicViscosityUnit unit)
+        private T GetValueAs(DynamicViscosityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -902,7 +904,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -917,37 +919,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -971,17 +973,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

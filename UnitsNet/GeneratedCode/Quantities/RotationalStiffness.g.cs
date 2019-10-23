@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
-    public partial struct RotationalStiffness<T> : IQuantity<RotationalStiffnessUnit>, IEquatable<RotationalStiffness<T>>, IComparable, IComparable<RotationalStiffness<T>>, IConvertible, IFormattable
+    public partial struct RotationalStiffness<T> : IQuantityT<RotationalStiffnessUnit, T>, IEquatable<RotationalStiffness<T>>, IComparable, IComparable<RotationalStiffness<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -63,12 +58,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RotationalStiffness(double value, RotationalStiffnessUnit unit)
+        public RotationalStiffness(T value, RotationalStiffnessUnit unit)
         {
             if(unit == RotationalStiffnessUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -80,14 +75,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RotationalStiffness(double value, UnitSystem unitSystem)
+        public RotationalStiffness(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -129,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadian.
         /// </summary>
-        public static RotationalStiffness<T> Zero { get; } = new RotationalStiffness<T>(0, BaseUnit);
+        public static RotationalStiffness<T> Zero { get; } = new RotationalStiffness<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -138,7 +133,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -168,17 +165,17 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="RotationalStiffness{T}" /> in KilonewtonMetersPerRadian.
         /// </summary>
-        public double KilonewtonMetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
+        public T KilonewtonMetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
 
         /// <summary>
         ///     Get <see cref="RotationalStiffness{T}" /> in MeganewtonMetersPerRadian.
         /// </summary>
-        public double MeganewtonMetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
+        public T MeganewtonMetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
 
         /// <summary>
         ///     Get <see cref="RotationalStiffness{T}" /> in NewtonMetersPerRadian.
         /// </summary>
-        public double NewtonMetersPerRadian => As(RotationalStiffnessUnit.NewtonMeterPerRadian);
+        public T NewtonMetersPerRadian => As(RotationalStiffnessUnit.NewtonMeterPerRadian);
 
         #endregion
 
@@ -213,28 +210,25 @@ namespace UnitsNet
         ///     Get <see cref="RotationalStiffness{T}" /> from KilonewtonMetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness<T> FromKilonewtonMetersPerRadian(QuantityValue kilonewtonmetersperradian)
+        public static RotationalStiffness<T> FromKilonewtonMetersPerRadian(T kilonewtonmetersperradian)
         {
-            double value = (double) kilonewtonmetersperradian;
-            return new RotationalStiffness<T>(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
+            return new RotationalStiffness<T>(kilonewtonmetersperradian, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         }
         /// <summary>
         ///     Get <see cref="RotationalStiffness{T}" /> from MeganewtonMetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness<T> FromMeganewtonMetersPerRadian(QuantityValue meganewtonmetersperradian)
+        public static RotationalStiffness<T> FromMeganewtonMetersPerRadian(T meganewtonmetersperradian)
         {
-            double value = (double) meganewtonmetersperradian;
-            return new RotationalStiffness<T>(value, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
+            return new RotationalStiffness<T>(meganewtonmetersperradian, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
         }
         /// <summary>
         ///     Get <see cref="RotationalStiffness{T}" /> from NewtonMetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness<T> FromNewtonMetersPerRadian(QuantityValue newtonmetersperradian)
+        public static RotationalStiffness<T> FromNewtonMetersPerRadian(T newtonmetersperradian)
         {
-            double value = (double) newtonmetersperradian;
-            return new RotationalStiffness<T>(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
+            return new RotationalStiffness<T>(newtonmetersperradian, RotationalStiffnessUnit.NewtonMeterPerRadian);
         }
 
         /// <summary>
@@ -243,9 +237,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="RotationalStiffness{T}" /> unit value.</returns>
-        public static RotationalStiffness<T> From(QuantityValue value, RotationalStiffnessUnit fromUnit)
+        public static RotationalStiffness<T> From(T value, RotationalStiffnessUnit fromUnit)
         {
-            return new RotationalStiffness<T>((double)value, fromUnit);
+            return new RotationalStiffness<T>(value, fromUnit);
         }
 
         #endregion
@@ -399,43 +393,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static RotationalStiffness<T> operator -(RotationalStiffness<T> right)
         {
-            return new RotationalStiffness<T>(-right.Value, right.Unit);
+            return new RotationalStiffness<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="RotationalStiffness{T}"/> from adding two <see cref="RotationalStiffness{T}"/>.</summary>
         public static RotationalStiffness<T> operator +(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return new RotationalStiffness<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new RotationalStiffness<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalStiffness{T}"/> from subtracting two <see cref="RotationalStiffness{T}"/>.</summary>
         public static RotationalStiffness<T> operator -(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return new RotationalStiffness<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new RotationalStiffness<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalStiffness{T}"/> from multiplying value and <see cref="RotationalStiffness{T}"/>.</summary>
-        public static RotationalStiffness<T> operator *(double left, RotationalStiffness<T> right)
+        public static RotationalStiffness<T> operator *(T left, RotationalStiffness<T> right)
         {
-            return new RotationalStiffness<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new RotationalStiffness<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="RotationalStiffness{T}"/> from multiplying value and <see cref="RotationalStiffness{T}"/>.</summary>
-        public static RotationalStiffness<T> operator *(RotationalStiffness<T> left, double right)
+        public static RotationalStiffness<T> operator *(RotationalStiffness<T> left, T right)
         {
-            return new RotationalStiffness<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new RotationalStiffness<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalStiffness{T}"/> from dividing <see cref="RotationalStiffness{T}"/> by value.</summary>
-        public static RotationalStiffness<T> operator /(RotationalStiffness<T> left, double right)
+        public static RotationalStiffness<T> operator /(RotationalStiffness<T> left, T right)
         {
-            return new RotationalStiffness<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new RotationalStiffness<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RotationalStiffness{T}"/> by <see cref="RotationalStiffness{T}"/>.</summary>
-        public static double operator /(RotationalStiffness<T> left, RotationalStiffness<T> right)
+        public static T operator /(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return left.NewtonMetersPerRadian / right.NewtonMetersPerRadian;
+            return CompiledLambdas.Divide(left.NewtonMetersPerRadian, right.NewtonMetersPerRadian);
         }
 
         #endregion
@@ -445,25 +444,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(RotationalStiffness<T> left, RotationalStiffness<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -492,7 +491,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(RotationalStiffness<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -509,7 +508,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(RotationalStiffness{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(RotationalStiffness<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -557,10 +556,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -580,17 +577,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RotationalStiffnessUnit unit)
+        public T As(RotationalStiffnessUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -610,8 +607,13 @@ namespace UnitsNet
             if(!(unit is RotationalStiffnessUnit unitAsRotationalStiffnessUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
 
-            return As(unitAsRotationalStiffnessUnit);
+            var asValue = As(unitAsRotationalStiffnessUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<RotationalStiffnessUnit>.As(RotationalStiffnessUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="RotationalStiffness{T}" /> to another <see cref="RotationalStiffness{T}" /> with the unit representation <paramref name="unit" />.
@@ -654,20 +656,26 @@ namespace UnitsNet
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<RotationalStiffnessUnit, T> IQuantityT<RotationalStiffnessUnit, T>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<RotationalStiffnessUnit, T> IQuantityT<RotationalStiffnessUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
-                case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
+                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (Value) * 1e3d;
+                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (Value) * 1e6d;
+                case RotationalStiffnessUnit.NewtonMeterPerRadian: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -684,10 +692,10 @@ namespace UnitsNet
             return new RotationalStiffness<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(RotationalStiffnessUnit unit)
+        private T GetValueAs(RotationalStiffnessUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -797,7 +805,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -812,37 +820,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -866,17 +874,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

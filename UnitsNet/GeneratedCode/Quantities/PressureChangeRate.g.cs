@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
-    public partial struct PressureChangeRate<T> : IQuantity<PressureChangeRateUnit>, IEquatable<PressureChangeRate<T>>, IComparable, IComparable<PressureChangeRate<T>>, IConvertible, IFormattable
+    public partial struct PressureChangeRate<T> : IQuantityT<PressureChangeRateUnit, T>, IEquatable<PressureChangeRate<T>>, IComparable, IComparable<PressureChangeRate<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -67,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public PressureChangeRate(double value, PressureChangeRateUnit unit)
+        public PressureChangeRate(T value, PressureChangeRateUnit unit)
         {
             if(unit == PressureChangeRateUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -84,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public PressureChangeRate(double value, UnitSystem unitSystem)
+        public PressureChangeRate(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -133,7 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit PascalPerSecond.
         /// </summary>
-        public static PressureChangeRate<T> Zero { get; } = new PressureChangeRate<T>(0, BaseUnit);
+        public static PressureChangeRate<T> Zero { get; } = new PressureChangeRate<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -142,7 +137,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -172,37 +169,37 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in AtmospheresPerSecond.
         /// </summary>
-        public double AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
+        public T AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in KilopascalsPerMinute.
         /// </summary>
-        public double KilopascalsPerMinute => As(PressureChangeRateUnit.KilopascalPerMinute);
+        public T KilopascalsPerMinute => As(PressureChangeRateUnit.KilopascalPerMinute);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in KilopascalsPerSecond.
         /// </summary>
-        public double KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
+        public T KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in MegapascalsPerMinute.
         /// </summary>
-        public double MegapascalsPerMinute => As(PressureChangeRateUnit.MegapascalPerMinute);
+        public T MegapascalsPerMinute => As(PressureChangeRateUnit.MegapascalPerMinute);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in MegapascalsPerSecond.
         /// </summary>
-        public double MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
+        public T MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in PascalsPerMinute.
         /// </summary>
-        public double PascalsPerMinute => As(PressureChangeRateUnit.PascalPerMinute);
+        public T PascalsPerMinute => As(PressureChangeRateUnit.PascalPerMinute);
 
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> in PascalsPerSecond.
         /// </summary>
-        public double PascalsPerSecond => As(PressureChangeRateUnit.PascalPerSecond);
+        public T PascalsPerSecond => As(PressureChangeRateUnit.PascalPerSecond);
 
         #endregion
 
@@ -237,64 +234,57 @@ namespace UnitsNet
         ///     Get <see cref="PressureChangeRate{T}" /> from AtmospheresPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromAtmospheresPerSecond(QuantityValue atmospherespersecond)
+        public static PressureChangeRate<T> FromAtmospheresPerSecond(T atmospherespersecond)
         {
-            double value = (double) atmospherespersecond;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.AtmospherePerSecond);
+            return new PressureChangeRate<T>(atmospherespersecond, PressureChangeRateUnit.AtmospherePerSecond);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from KilopascalsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromKilopascalsPerMinute(QuantityValue kilopascalsperminute)
+        public static PressureChangeRate<T> FromKilopascalsPerMinute(T kilopascalsperminute)
         {
-            double value = (double) kilopascalsperminute;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.KilopascalPerMinute);
+            return new PressureChangeRate<T>(kilopascalsperminute, PressureChangeRateUnit.KilopascalPerMinute);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from KilopascalsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromKilopascalsPerSecond(QuantityValue kilopascalspersecond)
+        public static PressureChangeRate<T> FromKilopascalsPerSecond(T kilopascalspersecond)
         {
-            double value = (double) kilopascalspersecond;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.KilopascalPerSecond);
+            return new PressureChangeRate<T>(kilopascalspersecond, PressureChangeRateUnit.KilopascalPerSecond);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from MegapascalsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromMegapascalsPerMinute(QuantityValue megapascalsperminute)
+        public static PressureChangeRate<T> FromMegapascalsPerMinute(T megapascalsperminute)
         {
-            double value = (double) megapascalsperminute;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.MegapascalPerMinute);
+            return new PressureChangeRate<T>(megapascalsperminute, PressureChangeRateUnit.MegapascalPerMinute);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from MegapascalsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromMegapascalsPerSecond(QuantityValue megapascalspersecond)
+        public static PressureChangeRate<T> FromMegapascalsPerSecond(T megapascalspersecond)
         {
-            double value = (double) megapascalspersecond;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.MegapascalPerSecond);
+            return new PressureChangeRate<T>(megapascalspersecond, PressureChangeRateUnit.MegapascalPerSecond);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from PascalsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromPascalsPerMinute(QuantityValue pascalsperminute)
+        public static PressureChangeRate<T> FromPascalsPerMinute(T pascalsperminute)
         {
-            double value = (double) pascalsperminute;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.PascalPerMinute);
+            return new PressureChangeRate<T>(pascalsperminute, PressureChangeRateUnit.PascalPerMinute);
         }
         /// <summary>
         ///     Get <see cref="PressureChangeRate{T}" /> from PascalsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate<T> FromPascalsPerSecond(QuantityValue pascalspersecond)
+        public static PressureChangeRate<T> FromPascalsPerSecond(T pascalspersecond)
         {
-            double value = (double) pascalspersecond;
-            return new PressureChangeRate<T>(value, PressureChangeRateUnit.PascalPerSecond);
+            return new PressureChangeRate<T>(pascalspersecond, PressureChangeRateUnit.PascalPerSecond);
         }
 
         /// <summary>
@@ -303,9 +293,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="PressureChangeRate{T}" /> unit value.</returns>
-        public static PressureChangeRate<T> From(QuantityValue value, PressureChangeRateUnit fromUnit)
+        public static PressureChangeRate<T> From(T value, PressureChangeRateUnit fromUnit)
         {
-            return new PressureChangeRate<T>((double)value, fromUnit);
+            return new PressureChangeRate<T>(value, fromUnit);
         }
 
         #endregion
@@ -459,43 +449,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static PressureChangeRate<T> operator -(PressureChangeRate<T> right)
         {
-            return new PressureChangeRate<T>(-right.Value, right.Unit);
+            return new PressureChangeRate<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="PressureChangeRate{T}"/> from adding two <see cref="PressureChangeRate{T}"/>.</summary>
         public static PressureChangeRate<T> operator +(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return new PressureChangeRate<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new PressureChangeRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="PressureChangeRate{T}"/> from subtracting two <see cref="PressureChangeRate{T}"/>.</summary>
         public static PressureChangeRate<T> operator -(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return new PressureChangeRate<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new PressureChangeRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="PressureChangeRate{T}"/> from multiplying value and <see cref="PressureChangeRate{T}"/>.</summary>
-        public static PressureChangeRate<T> operator *(double left, PressureChangeRate<T> right)
+        public static PressureChangeRate<T> operator *(T left, PressureChangeRate<T> right)
         {
-            return new PressureChangeRate<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new PressureChangeRate<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="PressureChangeRate{T}"/> from multiplying value and <see cref="PressureChangeRate{T}"/>.</summary>
-        public static PressureChangeRate<T> operator *(PressureChangeRate<T> left, double right)
+        public static PressureChangeRate<T> operator *(PressureChangeRate<T> left, T right)
         {
-            return new PressureChangeRate<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new PressureChangeRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="PressureChangeRate{T}"/> from dividing <see cref="PressureChangeRate{T}"/> by value.</summary>
-        public static PressureChangeRate<T> operator /(PressureChangeRate<T> left, double right)
+        public static PressureChangeRate<T> operator /(PressureChangeRate<T> left, T right)
         {
-            return new PressureChangeRate<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new PressureChangeRate<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="PressureChangeRate{T}"/> by <see cref="PressureChangeRate{T}"/>.</summary>
-        public static double operator /(PressureChangeRate<T> left, PressureChangeRate<T> right)
+        public static T operator /(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return left.PascalsPerSecond / right.PascalsPerSecond;
+            return CompiledLambdas.Divide(left.PascalsPerSecond, right.PascalsPerSecond);
         }
 
         #endregion
@@ -505,25 +500,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PressureChangeRate<T> left, PressureChangeRate<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -552,7 +547,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(PressureChangeRate<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -569,7 +564,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(PressureChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(PressureChangeRate<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -617,10 +612,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -640,17 +633,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(PressureChangeRateUnit unit)
+        public T As(PressureChangeRateUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -670,8 +663,13 @@ namespace UnitsNet
             if(!(unit is PressureChangeRateUnit unitAsPressureChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
 
-            return As(unitAsPressureChangeRateUnit);
+            var asValue = As(unitAsPressureChangeRateUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<PressureChangeRateUnit>.As(PressureChangeRateUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="PressureChangeRate{T}" /> to another <see cref="PressureChangeRate{T}" /> with the unit representation <paramref name="unit" />.
@@ -714,24 +712,30 @@ namespace UnitsNet
         IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<PressureChangeRateUnit, T> IQuantityT<PressureChangeRateUnit, T>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<PressureChangeRateUnit, T> IQuantityT<PressureChangeRateUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
-                case PressureChangeRateUnit.KilopascalPerMinute: return (_value/60) * 1e3d;
-                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
-                case PressureChangeRateUnit.MegapascalPerMinute: return (_value/60) * 1e6d;
-                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
-                case PressureChangeRateUnit.PascalPerMinute: return _value/60;
-                case PressureChangeRateUnit.PascalPerSecond: return _value;
+                case PressureChangeRateUnit.AtmospherePerSecond: return Value * 1.01325*1e5;
+                case PressureChangeRateUnit.KilopascalPerMinute: return (Value/60) * 1e3d;
+                case PressureChangeRateUnit.KilopascalPerSecond: return (Value) * 1e3d;
+                case PressureChangeRateUnit.MegapascalPerMinute: return (Value/60) * 1e6d;
+                case PressureChangeRateUnit.MegapascalPerSecond: return (Value) * 1e6d;
+                case PressureChangeRateUnit.PascalPerMinute: return Value/60;
+                case PressureChangeRateUnit.PascalPerSecond: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -748,10 +752,10 @@ namespace UnitsNet
             return new PressureChangeRate<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(PressureChangeRateUnit unit)
+        private T GetValueAs(PressureChangeRateUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -865,7 +869,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -880,37 +884,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -934,17 +938,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

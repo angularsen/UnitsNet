@@ -27,7 +27,7 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
             // ReSharper restore CompareOfFloatsByEqualityOperator
 
-            _value = 10*Math.Log10(quantity/reference);
+            Value = 10*Math.Log10(quantity/reference);
             _unit = LevelUnit.Decibel;
         }
     }

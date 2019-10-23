@@ -35,13 +35,8 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
-    public partial struct Density<T> : IQuantity<DensityUnit>, IEquatable<Density<T>>, IComparable, IComparable<Density<T>>, IConvertible, IFormattable
+    public partial struct Density<T> : IQuantityT<DensityUnit, T>, IEquatable<Density<T>>, IComparable, IComparable<Density<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -103,12 +98,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Density(double value, DensityUnit unit)
+        public Density(T value, DensityUnit unit)
         {
             if(unit == DensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -120,14 +115,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Density(double value, UnitSystem unitSystem)
+        public Density(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -169,7 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static Density<T> Zero { get; } = new Density<T>(0, BaseUnit);
+        public static Density<T> Zero { get; } = new Density<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -178,7 +173,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -208,202 +205,202 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="Density{T}" /> in CentigramsPerDeciLiter.
         /// </summary>
-        public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
+        public T CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in CentigramsPerLiter.
         /// </summary>
-        public double CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
+        public T CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in CentigramsPerMilliliter.
         /// </summary>
-        public double CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
+        public T CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in DecigramsPerDeciLiter.
         /// </summary>
-        public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
+        public T DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in DecigramsPerLiter.
         /// </summary>
-        public double DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
+        public T DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in DecigramsPerMilliliter.
         /// </summary>
-        public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
+        public T DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerCubicCentimeter.
         /// </summary>
-        public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
+        public T GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerCubicMeter.
         /// </summary>
-        public double GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
+        public T GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerCubicMillimeter.
         /// </summary>
-        public double GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
+        public T GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerDeciLiter.
         /// </summary>
-        public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
+        public T GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerLiter.
         /// </summary>
-        public double GramsPerLiter => As(DensityUnit.GramPerLiter);
+        public T GramsPerLiter => As(DensityUnit.GramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in GramsPerMilliliter.
         /// </summary>
-        public double GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
+        public T GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilogramsPerCubicCentimeter.
         /// </summary>
-        public double KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
+        public T KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilogramsPerCubicMeter.
         /// </summary>
-        public double KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
+        public T KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilogramsPerCubicMillimeter.
         /// </summary>
-        public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
+        public T KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilogramsPerLiter.
         /// </summary>
-        public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
+        public T KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilopoundsPerCubicFoot.
         /// </summary>
-        public double KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
+        public T KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in KilopoundsPerCubicInch.
         /// </summary>
-        public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
+        public T KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MicrogramsPerCubicMeter.
         /// </summary>
-        public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
+        public T MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MicrogramsPerDeciLiter.
         /// </summary>
-        public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
+        public T MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MicrogramsPerLiter.
         /// </summary>
-        public double MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
+        public T MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MicrogramsPerMilliliter.
         /// </summary>
-        public double MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
+        public T MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MilligramsPerCubicMeter.
         /// </summary>
-        public double MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
+        public T MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MilligramsPerDeciLiter.
         /// </summary>
-        public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
+        public T MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MilligramsPerLiter.
         /// </summary>
-        public double MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
+        public T MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in MilligramsPerMilliliter.
         /// </summary>
-        public double MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
+        public T MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in NanogramsPerDeciLiter.
         /// </summary>
-        public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
+        public T NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in NanogramsPerLiter.
         /// </summary>
-        public double NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
+        public T NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in NanogramsPerMilliliter.
         /// </summary>
-        public double NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
+        public T NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PicogramsPerDeciLiter.
         /// </summary>
-        public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
+        public T PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PicogramsPerLiter.
         /// </summary>
-        public double PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
+        public T PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PicogramsPerMilliliter.
         /// </summary>
-        public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
+        public T PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PoundsPerCubicFoot.
         /// </summary>
-        public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
+        public T PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PoundsPerCubicInch.
         /// </summary>
-        public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
+        public T PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PoundsPerImperialGallon.
         /// </summary>
-        public double PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
+        public T PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in PoundsPerUSGallon.
         /// </summary>
-        public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
+        public T PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in SlugsPerCubicFoot.
         /// </summary>
-        public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
+        public T SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in TonnesPerCubicCentimeter.
         /// </summary>
-        public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
+        public T TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in TonnesPerCubicMeter.
         /// </summary>
-        public double TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
+        public T TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
 
         /// <summary>
         ///     Get <see cref="Density{T}" /> in TonnesPerCubicMillimeter.
         /// </summary>
-        public double TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
+        public T TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
 
         #endregion
 
@@ -438,361 +435,321 @@ namespace UnitsNet
         ///     Get <see cref="Density{T}" /> from CentigramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromCentigramsPerDeciLiter(QuantityValue centigramsperdeciliter)
+        public static Density<T> FromCentigramsPerDeciLiter(T centigramsperdeciliter)
         {
-            double value = (double) centigramsperdeciliter;
-            return new Density<T>(value, DensityUnit.CentigramPerDeciliter);
+            return new Density<T>(centigramsperdeciliter, DensityUnit.CentigramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from CentigramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromCentigramsPerLiter(QuantityValue centigramsperliter)
+        public static Density<T> FromCentigramsPerLiter(T centigramsperliter)
         {
-            double value = (double) centigramsperliter;
-            return new Density<T>(value, DensityUnit.CentigramPerLiter);
+            return new Density<T>(centigramsperliter, DensityUnit.CentigramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from CentigramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
+        public static Density<T> FromCentigramsPerMilliliter(T centigramspermilliliter)
         {
-            double value = (double) centigramspermilliliter;
-            return new Density<T>(value, DensityUnit.CentigramPerMilliliter);
+            return new Density<T>(centigramspermilliliter, DensityUnit.CentigramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from DecigramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromDecigramsPerDeciLiter(QuantityValue decigramsperdeciliter)
+        public static Density<T> FromDecigramsPerDeciLiter(T decigramsperdeciliter)
         {
-            double value = (double) decigramsperdeciliter;
-            return new Density<T>(value, DensityUnit.DecigramPerDeciliter);
+            return new Density<T>(decigramsperdeciliter, DensityUnit.DecigramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from DecigramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromDecigramsPerLiter(QuantityValue decigramsperliter)
+        public static Density<T> FromDecigramsPerLiter(T decigramsperliter)
         {
-            double value = (double) decigramsperliter;
-            return new Density<T>(value, DensityUnit.DecigramPerLiter);
+            return new Density<T>(decigramsperliter, DensityUnit.DecigramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from DecigramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
+        public static Density<T> FromDecigramsPerMilliliter(T decigramspermilliliter)
         {
-            double value = (double) decigramspermilliliter;
-            return new Density<T>(value, DensityUnit.DecigramPerMilliliter);
+            return new Density<T>(decigramspermilliliter, DensityUnit.DecigramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
+        public static Density<T> FromGramsPerCubicCentimeter(T gramspercubiccentimeter)
         {
-            double value = (double) gramspercubiccentimeter;
-            return new Density<T>(value, DensityUnit.GramPerCubicCentimeter);
+            return new Density<T>(gramspercubiccentimeter, DensityUnit.GramPerCubicCentimeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
+        public static Density<T> FromGramsPerCubicMeter(T gramspercubicmeter)
         {
-            double value = (double) gramspercubicmeter;
-            return new Density<T>(value, DensityUnit.GramPerCubicMeter);
+            return new Density<T>(gramspercubicmeter, DensityUnit.GramPerCubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
+        public static Density<T> FromGramsPerCubicMillimeter(T gramspercubicmillimeter)
         {
-            double value = (double) gramspercubicmillimeter;
-            return new Density<T>(value, DensityUnit.GramPerCubicMillimeter);
+            return new Density<T>(gramspercubicmillimeter, DensityUnit.GramPerCubicMillimeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerDeciLiter(QuantityValue gramsperdeciliter)
+        public static Density<T> FromGramsPerDeciLiter(T gramsperdeciliter)
         {
-            double value = (double) gramsperdeciliter;
-            return new Density<T>(value, DensityUnit.GramPerDeciliter);
+            return new Density<T>(gramsperdeciliter, DensityUnit.GramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerLiter(QuantityValue gramsperliter)
+        public static Density<T> FromGramsPerLiter(T gramsperliter)
         {
-            double value = (double) gramsperliter;
-            return new Density<T>(value, DensityUnit.GramPerLiter);
+            return new Density<T>(gramsperliter, DensityUnit.GramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from GramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromGramsPerMilliliter(QuantityValue gramspermilliliter)
+        public static Density<T> FromGramsPerMilliliter(T gramspermilliliter)
         {
-            double value = (double) gramspermilliliter;
-            return new Density<T>(value, DensityUnit.GramPerMilliliter);
+            return new Density<T>(gramspermilliliter, DensityUnit.GramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilogramsPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
+        public static Density<T> FromKilogramsPerCubicCentimeter(T kilogramspercubiccentimeter)
         {
-            double value = (double) kilogramspercubiccentimeter;
-            return new Density<T>(value, DensityUnit.KilogramPerCubicCentimeter);
+            return new Density<T>(kilogramspercubiccentimeter, DensityUnit.KilogramPerCubicCentimeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilogramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
+        public static Density<T> FromKilogramsPerCubicMeter(T kilogramspercubicmeter)
         {
-            double value = (double) kilogramspercubicmeter;
-            return new Density<T>(value, DensityUnit.KilogramPerCubicMeter);
+            return new Density<T>(kilogramspercubicmeter, DensityUnit.KilogramPerCubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilogramsPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
+        public static Density<T> FromKilogramsPerCubicMillimeter(T kilogramspercubicmillimeter)
         {
-            double value = (double) kilogramspercubicmillimeter;
-            return new Density<T>(value, DensityUnit.KilogramPerCubicMillimeter);
+            return new Density<T>(kilogramspercubicmillimeter, DensityUnit.KilogramPerCubicMillimeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilogramsPerLiter(QuantityValue kilogramsperliter)
+        public static Density<T> FromKilogramsPerLiter(T kilogramsperliter)
         {
-            double value = (double) kilogramsperliter;
-            return new Density<T>(value, DensityUnit.KilogramPerLiter);
+            return new Density<T>(kilogramsperliter, DensityUnit.KilogramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilopoundsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
+        public static Density<T> FromKilopoundsPerCubicFoot(T kilopoundspercubicfoot)
         {
-            double value = (double) kilopoundspercubicfoot;
-            return new Density<T>(value, DensityUnit.KilopoundPerCubicFoot);
+            return new Density<T>(kilopoundspercubicfoot, DensityUnit.KilopoundPerCubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from KilopoundsPerCubicInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
+        public static Density<T> FromKilopoundsPerCubicInch(T kilopoundspercubicinch)
         {
-            double value = (double) kilopoundspercubicinch;
-            return new Density<T>(value, DensityUnit.KilopoundPerCubicInch);
+            return new Density<T>(kilopoundspercubicinch, DensityUnit.KilopoundPerCubicInch);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MicrogramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
+        public static Density<T> FromMicrogramsPerCubicMeter(T microgramspercubicmeter)
         {
-            double value = (double) microgramspercubicmeter;
-            return new Density<T>(value, DensityUnit.MicrogramPerCubicMeter);
+            return new Density<T>(microgramspercubicmeter, DensityUnit.MicrogramPerCubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MicrogramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMicrogramsPerDeciLiter(QuantityValue microgramsperdeciliter)
+        public static Density<T> FromMicrogramsPerDeciLiter(T microgramsperdeciliter)
         {
-            double value = (double) microgramsperdeciliter;
-            return new Density<T>(value, DensityUnit.MicrogramPerDeciliter);
+            return new Density<T>(microgramsperdeciliter, DensityUnit.MicrogramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MicrogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMicrogramsPerLiter(QuantityValue microgramsperliter)
+        public static Density<T> FromMicrogramsPerLiter(T microgramsperliter)
         {
-            double value = (double) microgramsperliter;
-            return new Density<T>(value, DensityUnit.MicrogramPerLiter);
+            return new Density<T>(microgramsperliter, DensityUnit.MicrogramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MicrogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
+        public static Density<T> FromMicrogramsPerMilliliter(T microgramspermilliliter)
         {
-            double value = (double) microgramspermilliliter;
-            return new Density<T>(value, DensityUnit.MicrogramPerMilliliter);
+            return new Density<T>(microgramspermilliliter, DensityUnit.MicrogramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MilligramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
+        public static Density<T> FromMilligramsPerCubicMeter(T milligramspercubicmeter)
         {
-            double value = (double) milligramspercubicmeter;
-            return new Density<T>(value, DensityUnit.MilligramPerCubicMeter);
+            return new Density<T>(milligramspercubicmeter, DensityUnit.MilligramPerCubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MilligramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMilligramsPerDeciLiter(QuantityValue milligramsperdeciliter)
+        public static Density<T> FromMilligramsPerDeciLiter(T milligramsperdeciliter)
         {
-            double value = (double) milligramsperdeciliter;
-            return new Density<T>(value, DensityUnit.MilligramPerDeciliter);
+            return new Density<T>(milligramsperdeciliter, DensityUnit.MilligramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MilligramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMilligramsPerLiter(QuantityValue milligramsperliter)
+        public static Density<T> FromMilligramsPerLiter(T milligramsperliter)
         {
-            double value = (double) milligramsperliter;
-            return new Density<T>(value, DensityUnit.MilligramPerLiter);
+            return new Density<T>(milligramsperliter, DensityUnit.MilligramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from MilligramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
+        public static Density<T> FromMilligramsPerMilliliter(T milligramspermilliliter)
         {
-            double value = (double) milligramspermilliliter;
-            return new Density<T>(value, DensityUnit.MilligramPerMilliliter);
+            return new Density<T>(milligramspermilliliter, DensityUnit.MilligramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from NanogramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromNanogramsPerDeciLiter(QuantityValue nanogramsperdeciliter)
+        public static Density<T> FromNanogramsPerDeciLiter(T nanogramsperdeciliter)
         {
-            double value = (double) nanogramsperdeciliter;
-            return new Density<T>(value, DensityUnit.NanogramPerDeciliter);
+            return new Density<T>(nanogramsperdeciliter, DensityUnit.NanogramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from NanogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromNanogramsPerLiter(QuantityValue nanogramsperliter)
+        public static Density<T> FromNanogramsPerLiter(T nanogramsperliter)
         {
-            double value = (double) nanogramsperliter;
-            return new Density<T>(value, DensityUnit.NanogramPerLiter);
+            return new Density<T>(nanogramsperliter, DensityUnit.NanogramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from NanogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
+        public static Density<T> FromNanogramsPerMilliliter(T nanogramspermilliliter)
         {
-            double value = (double) nanogramspermilliliter;
-            return new Density<T>(value, DensityUnit.NanogramPerMilliliter);
+            return new Density<T>(nanogramspermilliliter, DensityUnit.NanogramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PicogramsPerDeciLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPicogramsPerDeciLiter(QuantityValue picogramsperdeciliter)
+        public static Density<T> FromPicogramsPerDeciLiter(T picogramsperdeciliter)
         {
-            double value = (double) picogramsperdeciliter;
-            return new Density<T>(value, DensityUnit.PicogramPerDeciliter);
+            return new Density<T>(picogramsperdeciliter, DensityUnit.PicogramPerDeciliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PicogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPicogramsPerLiter(QuantityValue picogramsperliter)
+        public static Density<T> FromPicogramsPerLiter(T picogramsperliter)
         {
-            double value = (double) picogramsperliter;
-            return new Density<T>(value, DensityUnit.PicogramPerLiter);
+            return new Density<T>(picogramsperliter, DensityUnit.PicogramPerLiter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PicogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
+        public static Density<T> FromPicogramsPerMilliliter(T picogramspermilliliter)
         {
-            double value = (double) picogramspermilliliter;
-            return new Density<T>(value, DensityUnit.PicogramPerMilliliter);
+            return new Density<T>(picogramspermilliliter, DensityUnit.PicogramPerMilliliter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PoundsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
+        public static Density<T> FromPoundsPerCubicFoot(T poundspercubicfoot)
         {
-            double value = (double) poundspercubicfoot;
-            return new Density<T>(value, DensityUnit.PoundPerCubicFoot);
+            return new Density<T>(poundspercubicfoot, DensityUnit.PoundPerCubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PoundsPerCubicInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
+        public static Density<T> FromPoundsPerCubicInch(T poundspercubicinch)
         {
-            double value = (double) poundspercubicinch;
-            return new Density<T>(value, DensityUnit.PoundPerCubicInch);
+            return new Density<T>(poundspercubicinch, DensityUnit.PoundPerCubicInch);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PoundsPerImperialGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
+        public static Density<T> FromPoundsPerImperialGallon(T poundsperimperialgallon)
         {
-            double value = (double) poundsperimperialgallon;
-            return new Density<T>(value, DensityUnit.PoundPerImperialGallon);
+            return new Density<T>(poundsperimperialgallon, DensityUnit.PoundPerImperialGallon);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from PoundsPerUSGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
+        public static Density<T> FromPoundsPerUSGallon(T poundsperusgallon)
         {
-            double value = (double) poundsperusgallon;
-            return new Density<T>(value, DensityUnit.PoundPerUSGallon);
+            return new Density<T>(poundsperusgallon, DensityUnit.PoundPerUSGallon);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from SlugsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
+        public static Density<T> FromSlugsPerCubicFoot(T slugspercubicfoot)
         {
-            double value = (double) slugspercubicfoot;
-            return new Density<T>(value, DensityUnit.SlugPerCubicFoot);
+            return new Density<T>(slugspercubicfoot, DensityUnit.SlugPerCubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from TonnesPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
+        public static Density<T> FromTonnesPerCubicCentimeter(T tonnespercubiccentimeter)
         {
-            double value = (double) tonnespercubiccentimeter;
-            return new Density<T>(value, DensityUnit.TonnePerCubicCentimeter);
+            return new Density<T>(tonnespercubiccentimeter, DensityUnit.TonnePerCubicCentimeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from TonnesPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
+        public static Density<T> FromTonnesPerCubicMeter(T tonnespercubicmeter)
         {
-            double value = (double) tonnespercubicmeter;
-            return new Density<T>(value, DensityUnit.TonnePerCubicMeter);
+            return new Density<T>(tonnespercubicmeter, DensityUnit.TonnePerCubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Density{T}" /> from TonnesPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Density<T> FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)
+        public static Density<T> FromTonnesPerCubicMillimeter(T tonnespercubicmillimeter)
         {
-            double value = (double) tonnespercubicmillimeter;
-            return new Density<T>(value, DensityUnit.TonnePerCubicMillimeter);
+            return new Density<T>(tonnespercubicmillimeter, DensityUnit.TonnePerCubicMillimeter);
         }
 
         /// <summary>
@@ -801,9 +758,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="Density{T}" /> unit value.</returns>
-        public static Density<T> From(QuantityValue value, DensityUnit fromUnit)
+        public static Density<T> From(T value, DensityUnit fromUnit)
         {
-            return new Density<T>((double)value, fromUnit);
+            return new Density<T>(value, fromUnit);
         }
 
         #endregion
@@ -957,43 +914,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Density<T> operator -(Density<T> right)
         {
-            return new Density<T>(-right.Value, right.Unit);
+            return new Density<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="Density{T}"/> from adding two <see cref="Density{T}"/>.</summary>
         public static Density<T> operator +(Density<T> left, Density<T> right)
         {
-            return new Density<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Density<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Density{T}"/> from subtracting two <see cref="Density{T}"/>.</summary>
         public static Density<T> operator -(Density<T> left, Density<T> right)
         {
-            return new Density<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Density<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Density{T}"/> from multiplying value and <see cref="Density{T}"/>.</summary>
-        public static Density<T> operator *(double left, Density<T> right)
+        public static Density<T> operator *(T left, Density<T> right)
         {
-            return new Density<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Density<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="Density{T}"/> from multiplying value and <see cref="Density{T}"/>.</summary>
-        public static Density<T> operator *(Density<T> left, double right)
+        public static Density<T> operator *(Density<T> left, T right)
         {
-            return new Density<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Density<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Density{T}"/> from dividing <see cref="Density{T}"/> by value.</summary>
-        public static Density<T> operator /(Density<T> left, double right)
+        public static Density<T> operator /(Density<T> left, T right)
         {
-            return new Density<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Density<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Density{T}"/> by <see cref="Density{T}"/>.</summary>
-        public static double operator /(Density<T> left, Density<T> right)
+        public static T operator /(Density<T> left, Density<T> right)
         {
-            return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
+            return CompiledLambdas.Divide(left.KilogramsPerCubicMeter, right.KilogramsPerCubicMeter);
         }
 
         #endregion
@@ -1003,25 +965,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Density<T> left, Density<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Density<T> left, Density<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Density<T> left, Density<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Density<T> left, Density<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1050,7 +1012,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Density<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -1067,7 +1029,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Density{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Density<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1115,10 +1077,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -1138,17 +1098,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DensityUnit unit)
+        public T As(DensityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1168,8 +1128,13 @@ namespace UnitsNet
             if(!(unit is DensityUnit unitAsDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsDensityUnit);
+            var asValue = As(unitAsDensityUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<DensityUnit>.As(DensityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="Density{T}" /> to another <see cref="Density{T}" /> with the unit representation <paramref name="unit" />.
@@ -1212,57 +1177,63 @@ namespace UnitsNet
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<DensityUnit, T> IQuantityT<DensityUnit, T>.ToUnit(DensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<DensityUnit, T> IQuantityT<DensityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case DensityUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
-                case DensityUnit.CentigramPerLiter: return (_value/1) * 1e-2d;
-                case DensityUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
-                case DensityUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
-                case DensityUnit.DecigramPerLiter: return (_value/1) * 1e-1d;
-                case DensityUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
-                case DensityUnit.GramPerCubicCentimeter: return _value/1e-3;
-                case DensityUnit.GramPerCubicMeter: return _value/1e3;
-                case DensityUnit.GramPerCubicMillimeter: return _value/1e-6;
-                case DensityUnit.GramPerDeciliter: return _value/1e-1;
-                case DensityUnit.GramPerLiter: return _value/1;
-                case DensityUnit.GramPerMilliliter: return _value/1e-3;
-                case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case DensityUnit.KilogramPerLiter: return _value*1e3;
-                case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
-                case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
-                case DensityUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
-                case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
-                case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
-                case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
-                case DensityUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
-                case DensityUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
-                case DensityUnit.MilligramPerLiter: return (_value/1) * 1e-3d;
-                case DensityUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
-                case DensityUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
-                case DensityUnit.NanogramPerLiter: return (_value/1) * 1e-9d;
-                case DensityUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
-                case DensityUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
-                case DensityUnit.PicogramPerLiter: return (_value/1) * 1e-12d;
-                case DensityUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
-                case DensityUnit.PoundPerCubicFoot: return _value/0.062427961;
-                case DensityUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
-                case DensityUnit.PoundPerImperialGallon: return _value*9.9776398e1;
-                case DensityUnit.PoundPerUSGallon: return _value*1.19826427e2;
-                case DensityUnit.SlugPerCubicFoot: return _value*515.378818;
-                case DensityUnit.TonnePerCubicCentimeter: return _value/1e-9;
-                case DensityUnit.TonnePerCubicMeter: return _value/0.001;
-                case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
+                case DensityUnit.CentigramPerDeciliter: return (Value/1e-1) * 1e-2d;
+                case DensityUnit.CentigramPerLiter: return (Value/1) * 1e-2d;
+                case DensityUnit.CentigramPerMilliliter: return (Value/1e-3) * 1e-2d;
+                case DensityUnit.DecigramPerDeciliter: return (Value/1e-1) * 1e-1d;
+                case DensityUnit.DecigramPerLiter: return (Value/1) * 1e-1d;
+                case DensityUnit.DecigramPerMilliliter: return (Value/1e-3) * 1e-1d;
+                case DensityUnit.GramPerCubicCentimeter: return Value/1e-3;
+                case DensityUnit.GramPerCubicMeter: return Value/1e3;
+                case DensityUnit.GramPerCubicMillimeter: return Value/1e-6;
+                case DensityUnit.GramPerDeciliter: return Value/1e-1;
+                case DensityUnit.GramPerLiter: return Value/1;
+                case DensityUnit.GramPerMilliliter: return Value/1e-3;
+                case DensityUnit.KilogramPerCubicCentimeter: return (Value/1e-3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMeter: return (Value/1e3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMillimeter: return (Value/1e-6) * 1e3d;
+                case DensityUnit.KilogramPerLiter: return Value*1e3;
+                case DensityUnit.KilopoundPerCubicFoot: return (Value/0.062427961) * 1e3d;
+                case DensityUnit.KilopoundPerCubicInch: return (Value/3.6127298147753e-5) * 1e3d;
+                case DensityUnit.MicrogramPerCubicMeter: return (Value/1e3) * 1e-6d;
+                case DensityUnit.MicrogramPerDeciliter: return (Value/1e-1) * 1e-6d;
+                case DensityUnit.MicrogramPerLiter: return (Value/1) * 1e-6d;
+                case DensityUnit.MicrogramPerMilliliter: return (Value/1e-3) * 1e-6d;
+                case DensityUnit.MilligramPerCubicMeter: return (Value/1e3) * 1e-3d;
+                case DensityUnit.MilligramPerDeciliter: return (Value/1e-1) * 1e-3d;
+                case DensityUnit.MilligramPerLiter: return (Value/1) * 1e-3d;
+                case DensityUnit.MilligramPerMilliliter: return (Value/1e-3) * 1e-3d;
+                case DensityUnit.NanogramPerDeciliter: return (Value/1e-1) * 1e-9d;
+                case DensityUnit.NanogramPerLiter: return (Value/1) * 1e-9d;
+                case DensityUnit.NanogramPerMilliliter: return (Value/1e-3) * 1e-9d;
+                case DensityUnit.PicogramPerDeciliter: return (Value/1e-1) * 1e-12d;
+                case DensityUnit.PicogramPerLiter: return (Value/1) * 1e-12d;
+                case DensityUnit.PicogramPerMilliliter: return (Value/1e-3) * 1e-12d;
+                case DensityUnit.PoundPerCubicFoot: return Value/0.062427961;
+                case DensityUnit.PoundPerCubicInch: return Value/3.6127298147753e-5;
+                case DensityUnit.PoundPerImperialGallon: return Value*9.9776398e1;
+                case DensityUnit.PoundPerUSGallon: return Value*1.19826427e2;
+                case DensityUnit.SlugPerCubicFoot: return Value*515.378818;
+                case DensityUnit.TonnePerCubicCentimeter: return Value/1e-9;
+                case DensityUnit.TonnePerCubicMeter: return Value/0.001;
+                case DensityUnit.TonnePerCubicMillimeter: return Value/1e-12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1279,10 +1250,10 @@ namespace UnitsNet
             return new Density<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(DensityUnit unit)
+        private T GetValueAs(DensityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1429,7 +1400,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -1444,37 +1415,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1498,17 +1469,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

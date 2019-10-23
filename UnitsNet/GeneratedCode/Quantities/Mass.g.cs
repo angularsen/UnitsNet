@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
-    public partial struct Mass<T> : IQuantity<MassUnit>, IEquatable<Mass<T>>, IComparable, IComparable<Mass<T>>, IConvertible, IFormattable
+    public partial struct Mass<T> : IQuantityT<MassUnit, T>, IEquatable<Mass<T>>, IComparable, IComparable<Mass<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -85,12 +80,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Mass(double value, MassUnit unit)
+        public Mass(T value, MassUnit unit)
         {
             if(unit == MassUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -102,14 +97,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Mass(double value, UnitSystem unitSystem)
+        public Mass(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -151,7 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass<T> Zero { get; } = new Mass<T>(0, BaseUnit);
+        public static Mass<T> Zero { get; } = new Mass<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -160,7 +155,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -190,127 +187,127 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Centigrams.
         /// </summary>
-        public double Centigrams => As(MassUnit.Centigram);
+        public T Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Decagrams.
         /// </summary>
-        public double Decagrams => As(MassUnit.Decagram);
+        public T Decagrams => As(MassUnit.Decagram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Decigrams.
         /// </summary>
-        public double Decigrams => As(MassUnit.Decigram);
+        public T Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in EarthMasses.
         /// </summary>
-        public double EarthMasses => As(MassUnit.EarthMass);
+        public T EarthMasses => As(MassUnit.EarthMass);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Grains.
         /// </summary>
-        public double Grains => As(MassUnit.Grain);
+        public T Grains => As(MassUnit.Grain);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Grams.
         /// </summary>
-        public double Grams => As(MassUnit.Gram);
+        public T Grams => As(MassUnit.Gram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Hectograms.
         /// </summary>
-        public double Hectograms => As(MassUnit.Hectogram);
+        public T Hectograms => As(MassUnit.Hectogram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Kilograms.
         /// </summary>
-        public double Kilograms => As(MassUnit.Kilogram);
+        public T Kilograms => As(MassUnit.Kilogram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Kilopounds.
         /// </summary>
-        public double Kilopounds => As(MassUnit.Kilopound);
+        public T Kilopounds => As(MassUnit.Kilopound);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Kilotonnes.
         /// </summary>
-        public double Kilotonnes => As(MassUnit.Kilotonne);
+        public T Kilotonnes => As(MassUnit.Kilotonne);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in LongHundredweight.
         /// </summary>
-        public double LongHundredweight => As(MassUnit.LongHundredweight);
+        public T LongHundredweight => As(MassUnit.LongHundredweight);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in LongTons.
         /// </summary>
-        public double LongTons => As(MassUnit.LongTon);
+        public T LongTons => As(MassUnit.LongTon);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Megapounds.
         /// </summary>
-        public double Megapounds => As(MassUnit.Megapound);
+        public T Megapounds => As(MassUnit.Megapound);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Megatonnes.
         /// </summary>
-        public double Megatonnes => As(MassUnit.Megatonne);
+        public T Megatonnes => As(MassUnit.Megatonne);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Micrograms.
         /// </summary>
-        public double Micrograms => As(MassUnit.Microgram);
+        public T Micrograms => As(MassUnit.Microgram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Milligrams.
         /// </summary>
-        public double Milligrams => As(MassUnit.Milligram);
+        public T Milligrams => As(MassUnit.Milligram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Nanograms.
         /// </summary>
-        public double Nanograms => As(MassUnit.Nanogram);
+        public T Nanograms => As(MassUnit.Nanogram);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Ounces.
         /// </summary>
-        public double Ounces => As(MassUnit.Ounce);
+        public T Ounces => As(MassUnit.Ounce);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Pounds.
         /// </summary>
-        public double Pounds => As(MassUnit.Pound);
+        public T Pounds => As(MassUnit.Pound);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in ShortHundredweight.
         /// </summary>
-        public double ShortHundredweight => As(MassUnit.ShortHundredweight);
+        public T ShortHundredweight => As(MassUnit.ShortHundredweight);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in ShortTons.
         /// </summary>
-        public double ShortTons => As(MassUnit.ShortTon);
+        public T ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Slugs.
         /// </summary>
-        public double Slugs => As(MassUnit.Slug);
+        public T Slugs => As(MassUnit.Slug);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in SolarMasses.
         /// </summary>
-        public double SolarMasses => As(MassUnit.SolarMass);
+        public T SolarMasses => As(MassUnit.SolarMass);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Stone.
         /// </summary>
-        public double Stone => As(MassUnit.Stone);
+        public T Stone => As(MassUnit.Stone);
 
         /// <summary>
         ///     Get <see cref="Mass{T}" /> in Tonnes.
         /// </summary>
-        public double Tonnes => As(MassUnit.Tonne);
+        public T Tonnes => As(MassUnit.Tonne);
 
         #endregion
 
@@ -345,226 +342,201 @@ namespace UnitsNet
         ///     Get <see cref="Mass{T}" /> from Centigrams.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromCentigrams(QuantityValue centigrams)
+        public static Mass<T> FromCentigrams(T centigrams)
         {
-            double value = (double) centigrams;
-            return new Mass<T>(value, MassUnit.Centigram);
+            return new Mass<T>(centigrams, MassUnit.Centigram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Decagrams.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromDecagrams(QuantityValue decagrams)
+        public static Mass<T> FromDecagrams(T decagrams)
         {
-            double value = (double) decagrams;
-            return new Mass<T>(value, MassUnit.Decagram);
+            return new Mass<T>(decagrams, MassUnit.Decagram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Decigrams.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromDecigrams(QuantityValue decigrams)
+        public static Mass<T> FromDecigrams(T decigrams)
         {
-            double value = (double) decigrams;
-            return new Mass<T>(value, MassUnit.Decigram);
+            return new Mass<T>(decigrams, MassUnit.Decigram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from EarthMasses.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromEarthMasses(QuantityValue earthmasses)
+        public static Mass<T> FromEarthMasses(T earthmasses)
         {
-            double value = (double) earthmasses;
-            return new Mass<T>(value, MassUnit.EarthMass);
+            return new Mass<T>(earthmasses, MassUnit.EarthMass);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Grains.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromGrains(QuantityValue grains)
+        public static Mass<T> FromGrains(T grains)
         {
-            double value = (double) grains;
-            return new Mass<T>(value, MassUnit.Grain);
+            return new Mass<T>(grains, MassUnit.Grain);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Grams.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromGrams(QuantityValue grams)
+        public static Mass<T> FromGrams(T grams)
         {
-            double value = (double) grams;
-            return new Mass<T>(value, MassUnit.Gram);
+            return new Mass<T>(grams, MassUnit.Gram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Hectograms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromHectograms(QuantityValue hectograms)
+        public static Mass<T> FromHectograms(T hectograms)
         {
-            double value = (double) hectograms;
-            return new Mass<T>(value, MassUnit.Hectogram);
+            return new Mass<T>(hectograms, MassUnit.Hectogram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Kilograms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromKilograms(QuantityValue kilograms)
+        public static Mass<T> FromKilograms(T kilograms)
         {
-            double value = (double) kilograms;
-            return new Mass<T>(value, MassUnit.Kilogram);
+            return new Mass<T>(kilograms, MassUnit.Kilogram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Kilopounds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromKilopounds(QuantityValue kilopounds)
+        public static Mass<T> FromKilopounds(T kilopounds)
         {
-            double value = (double) kilopounds;
-            return new Mass<T>(value, MassUnit.Kilopound);
+            return new Mass<T>(kilopounds, MassUnit.Kilopound);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Kilotonnes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromKilotonnes(QuantityValue kilotonnes)
+        public static Mass<T> FromKilotonnes(T kilotonnes)
         {
-            double value = (double) kilotonnes;
-            return new Mass<T>(value, MassUnit.Kilotonne);
+            return new Mass<T>(kilotonnes, MassUnit.Kilotonne);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from LongHundredweight.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromLongHundredweight(QuantityValue longhundredweight)
+        public static Mass<T> FromLongHundredweight(T longhundredweight)
         {
-            double value = (double) longhundredweight;
-            return new Mass<T>(value, MassUnit.LongHundredweight);
+            return new Mass<T>(longhundredweight, MassUnit.LongHundredweight);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from LongTons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromLongTons(QuantityValue longtons)
+        public static Mass<T> FromLongTons(T longtons)
         {
-            double value = (double) longtons;
-            return new Mass<T>(value, MassUnit.LongTon);
+            return new Mass<T>(longtons, MassUnit.LongTon);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Megapounds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromMegapounds(QuantityValue megapounds)
+        public static Mass<T> FromMegapounds(T megapounds)
         {
-            double value = (double) megapounds;
-            return new Mass<T>(value, MassUnit.Megapound);
+            return new Mass<T>(megapounds, MassUnit.Megapound);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Megatonnes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromMegatonnes(QuantityValue megatonnes)
+        public static Mass<T> FromMegatonnes(T megatonnes)
         {
-            double value = (double) megatonnes;
-            return new Mass<T>(value, MassUnit.Megatonne);
+            return new Mass<T>(megatonnes, MassUnit.Megatonne);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Micrograms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromMicrograms(QuantityValue micrograms)
+        public static Mass<T> FromMicrograms(T micrograms)
         {
-            double value = (double) micrograms;
-            return new Mass<T>(value, MassUnit.Microgram);
+            return new Mass<T>(micrograms, MassUnit.Microgram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Milligrams.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromMilligrams(QuantityValue milligrams)
+        public static Mass<T> FromMilligrams(T milligrams)
         {
-            double value = (double) milligrams;
-            return new Mass<T>(value, MassUnit.Milligram);
+            return new Mass<T>(milligrams, MassUnit.Milligram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Nanograms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromNanograms(QuantityValue nanograms)
+        public static Mass<T> FromNanograms(T nanograms)
         {
-            double value = (double) nanograms;
-            return new Mass<T>(value, MassUnit.Nanogram);
+            return new Mass<T>(nanograms, MassUnit.Nanogram);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Ounces.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromOunces(QuantityValue ounces)
+        public static Mass<T> FromOunces(T ounces)
         {
-            double value = (double) ounces;
-            return new Mass<T>(value, MassUnit.Ounce);
+            return new Mass<T>(ounces, MassUnit.Ounce);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Pounds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromPounds(QuantityValue pounds)
+        public static Mass<T> FromPounds(T pounds)
         {
-            double value = (double) pounds;
-            return new Mass<T>(value, MassUnit.Pound);
+            return new Mass<T>(pounds, MassUnit.Pound);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from ShortHundredweight.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromShortHundredweight(QuantityValue shorthundredweight)
+        public static Mass<T> FromShortHundredweight(T shorthundredweight)
         {
-            double value = (double) shorthundredweight;
-            return new Mass<T>(value, MassUnit.ShortHundredweight);
+            return new Mass<T>(shorthundredweight, MassUnit.ShortHundredweight);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from ShortTons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromShortTons(QuantityValue shorttons)
+        public static Mass<T> FromShortTons(T shorttons)
         {
-            double value = (double) shorttons;
-            return new Mass<T>(value, MassUnit.ShortTon);
+            return new Mass<T>(shorttons, MassUnit.ShortTon);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Slugs.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromSlugs(QuantityValue slugs)
+        public static Mass<T> FromSlugs(T slugs)
         {
-            double value = (double) slugs;
-            return new Mass<T>(value, MassUnit.Slug);
+            return new Mass<T>(slugs, MassUnit.Slug);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from SolarMasses.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromSolarMasses(QuantityValue solarmasses)
+        public static Mass<T> FromSolarMasses(T solarmasses)
         {
-            double value = (double) solarmasses;
-            return new Mass<T>(value, MassUnit.SolarMass);
+            return new Mass<T>(solarmasses, MassUnit.SolarMass);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Stone.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromStone(QuantityValue stone)
+        public static Mass<T> FromStone(T stone)
         {
-            double value = (double) stone;
-            return new Mass<T>(value, MassUnit.Stone);
+            return new Mass<T>(stone, MassUnit.Stone);
         }
         /// <summary>
         ///     Get <see cref="Mass{T}" /> from Tonnes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass<T> FromTonnes(QuantityValue tonnes)
+        public static Mass<T> FromTonnes(T tonnes)
         {
-            double value = (double) tonnes;
-            return new Mass<T>(value, MassUnit.Tonne);
+            return new Mass<T>(tonnes, MassUnit.Tonne);
         }
 
         /// <summary>
@@ -573,9 +545,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="Mass{T}" /> unit value.</returns>
-        public static Mass<T> From(QuantityValue value, MassUnit fromUnit)
+        public static Mass<T> From(T value, MassUnit fromUnit)
         {
-            return new Mass<T>((double)value, fromUnit);
+            return new Mass<T>(value, fromUnit);
         }
 
         #endregion
@@ -729,43 +701,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Mass<T> operator -(Mass<T> right)
         {
-            return new Mass<T>(-right.Value, right.Unit);
+            return new Mass<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="Mass{T}"/> from adding two <see cref="Mass{T}"/>.</summary>
         public static Mass<T> operator +(Mass<T> left, Mass<T> right)
         {
-            return new Mass<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Mass<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Mass{T}"/> from subtracting two <see cref="Mass{T}"/>.</summary>
         public static Mass<T> operator -(Mass<T> left, Mass<T> right)
         {
-            return new Mass<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Mass<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Mass{T}"/> from multiplying value and <see cref="Mass{T}"/>.</summary>
-        public static Mass<T> operator *(double left, Mass<T> right)
+        public static Mass<T> operator *(T left, Mass<T> right)
         {
-            return new Mass<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Mass<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="Mass{T}"/> from multiplying value and <see cref="Mass{T}"/>.</summary>
-        public static Mass<T> operator *(Mass<T> left, double right)
+        public static Mass<T> operator *(Mass<T> left, T right)
         {
-            return new Mass<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Mass<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Mass{T}"/> from dividing <see cref="Mass{T}"/> by value.</summary>
-        public static Mass<T> operator /(Mass<T> left, double right)
+        public static Mass<T> operator /(Mass<T> left, T right)
         {
-            return new Mass<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Mass<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Mass{T}"/> by <see cref="Mass{T}"/>.</summary>
-        public static double operator /(Mass<T> left, Mass<T> right)
+        public static T operator /(Mass<T> left, Mass<T> right)
         {
-            return left.Kilograms / right.Kilograms;
+            return CompiledLambdas.Divide(left.Kilograms, right.Kilograms);
         }
 
         #endregion
@@ -775,25 +752,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Mass<T> left, Mass<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Mass<T> left, Mass<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Mass<T> left, Mass<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Mass<T> left, Mass<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -822,7 +799,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Mass<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -839,7 +816,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Mass{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Mass<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -887,10 +864,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -910,17 +885,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassUnit unit)
+        public T As(MassUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -940,8 +915,13 @@ namespace UnitsNet
             if(!(unit is MassUnit unitAsMassUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMassUnit);
+            var asValue = As(unitAsMassUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<MassUnit>.As(MassUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="Mass{T}" /> to another <see cref="Mass{T}" /> with the unit representation <paramref name="unit" />.
@@ -984,42 +964,48 @@ namespace UnitsNet
         IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<MassUnit, T> IQuantityT<MassUnit, T>.ToUnit(MassUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<MassUnit, T> IQuantityT<MassUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
-                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
-                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
-                case MassUnit.EarthMass: return _value * 5.9722E+24;
-                case MassUnit.Grain: return _value/15432.358352941431;
-                case MassUnit.Gram: return _value/1e3;
-                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
-                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
-                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
-                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
-                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1.0160469088e3;
-                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
-                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
-                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
-                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
-                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
-                case MassUnit.Ounce: return _value/35.2739619;
-                case MassUnit.Pound: return _value*0.45359237;
-                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*9.0718474e2;
-                case MassUnit.Slug: return _value/6.852176556196105e-2;
-                case MassUnit.SolarMass: return _value * 1.98947e30;
-                case MassUnit.Stone: return _value/0.1574731728702698;
-                case MassUnit.Tonne: return _value*1e3;
+                case MassUnit.Centigram: return (Value/1e3) * 1e-2d;
+                case MassUnit.Decagram: return (Value/1e3) * 1e1d;
+                case MassUnit.Decigram: return (Value/1e3) * 1e-1d;
+                case MassUnit.EarthMass: return Value * 5.9722E+24;
+                case MassUnit.Grain: return Value/15432.358352941431;
+                case MassUnit.Gram: return Value/1e3;
+                case MassUnit.Hectogram: return (Value/1e3) * 1e2d;
+                case MassUnit.Kilogram: return (Value/1e3) * 1e3d;
+                case MassUnit.Kilopound: return (Value*0.45359237) * 1e3d;
+                case MassUnit.Kilotonne: return (Value*1e3) * 1e3d;
+                case MassUnit.LongHundredweight: return Value/0.01968413055222121;
+                case MassUnit.LongTon: return Value*1.0160469088e3;
+                case MassUnit.Megapound: return (Value*0.45359237) * 1e6d;
+                case MassUnit.Megatonne: return (Value*1e3) * 1e6d;
+                case MassUnit.Microgram: return (Value/1e3) * 1e-6d;
+                case MassUnit.Milligram: return (Value/1e3) * 1e-3d;
+                case MassUnit.Nanogram: return (Value/1e3) * 1e-9d;
+                case MassUnit.Ounce: return Value/35.2739619;
+                case MassUnit.Pound: return Value*0.45359237;
+                case MassUnit.ShortHundredweight: return Value/0.022046226218487758;
+                case MassUnit.ShortTon: return Value*9.0718474e2;
+                case MassUnit.Slug: return Value/6.852176556196105e-2;
+                case MassUnit.SolarMass: return Value * 1.98947e30;
+                case MassUnit.Stone: return Value/0.1574731728702698;
+                case MassUnit.Tonne: return Value*1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1036,10 +1022,10 @@ namespace UnitsNet
             return new Mass<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(MassUnit unit)
+        private T GetValueAs(MassUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1171,7 +1157,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -1186,37 +1172,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1240,17 +1226,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

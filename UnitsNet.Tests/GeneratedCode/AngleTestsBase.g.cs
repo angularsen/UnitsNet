@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of Angle<double>.
+    /// Test of Angle.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AngleTestsBase

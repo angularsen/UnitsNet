@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of AreaDensity<double>.
+    /// Test of AreaDensity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AreaDensityTestsBase

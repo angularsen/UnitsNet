@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
-    public partial struct Angle<T> : IQuantity<AngleUnit>, IEquatable<Angle<T>>, IComparable, IComparable<Angle<T>>, IConvertible, IFormattable
+    public partial struct Angle<T> : IQuantityT<AngleUnit, T>, IEquatable<Angle<T>>, IComparable, IComparable<Angle<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -74,12 +69,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Angle(double value, AngleUnit unit)
+        public Angle(T value, AngleUnit unit)
         {
             if(unit == AngleUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -91,14 +86,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Angle(double value, UnitSystem unitSystem)
+        public Angle(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -140,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle<T> Zero { get; } = new Angle<T>(0, BaseUnit);
+        public static Angle<T> Zero { get; } = new Angle<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -149,7 +144,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,72 +176,72 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Arcminutes.
         /// </summary>
-        public double Arcminutes => As(AngleUnit.Arcminute);
+        public T Arcminutes => As(AngleUnit.Arcminute);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Arcseconds.
         /// </summary>
-        public double Arcseconds => As(AngleUnit.Arcsecond);
+        public T Arcseconds => As(AngleUnit.Arcsecond);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Centiradians.
         /// </summary>
-        public double Centiradians => As(AngleUnit.Centiradian);
+        public T Centiradians => As(AngleUnit.Centiradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Deciradians.
         /// </summary>
-        public double Deciradians => As(AngleUnit.Deciradian);
+        public T Deciradians => As(AngleUnit.Deciradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Degrees.
         /// </summary>
-        public double Degrees => As(AngleUnit.Degree);
+        public T Degrees => As(AngleUnit.Degree);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Gradians.
         /// </summary>
-        public double Gradians => As(AngleUnit.Gradian);
+        public T Gradians => As(AngleUnit.Gradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Microdegrees.
         /// </summary>
-        public double Microdegrees => As(AngleUnit.Microdegree);
+        public T Microdegrees => As(AngleUnit.Microdegree);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Microradians.
         /// </summary>
-        public double Microradians => As(AngleUnit.Microradian);
+        public T Microradians => As(AngleUnit.Microradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Millidegrees.
         /// </summary>
-        public double Millidegrees => As(AngleUnit.Millidegree);
+        public T Millidegrees => As(AngleUnit.Millidegree);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Milliradians.
         /// </summary>
-        public double Milliradians => As(AngleUnit.Milliradian);
+        public T Milliradians => As(AngleUnit.Milliradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Nanodegrees.
         /// </summary>
-        public double Nanodegrees => As(AngleUnit.Nanodegree);
+        public T Nanodegrees => As(AngleUnit.Nanodegree);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Nanoradians.
         /// </summary>
-        public double Nanoradians => As(AngleUnit.Nanoradian);
+        public T Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Radians.
         /// </summary>
-        public double Radians => As(AngleUnit.Radian);
+        public T Radians => As(AngleUnit.Radian);
 
         /// <summary>
         ///     Get <see cref="Angle{T}" /> in Revolutions.
         /// </summary>
-        public double Revolutions => As(AngleUnit.Revolution);
+        public T Revolutions => As(AngleUnit.Revolution);
 
         #endregion
 
@@ -279,127 +276,113 @@ namespace UnitsNet
         ///     Get <see cref="Angle{T}" /> from Arcminutes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromArcminutes(QuantityValue arcminutes)
+        public static Angle<T> FromArcminutes(T arcminutes)
         {
-            double value = (double) arcminutes;
-            return new Angle<T>(value, AngleUnit.Arcminute);
+            return new Angle<T>(arcminutes, AngleUnit.Arcminute);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Arcseconds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromArcseconds(QuantityValue arcseconds)
+        public static Angle<T> FromArcseconds(T arcseconds)
         {
-            double value = (double) arcseconds;
-            return new Angle<T>(value, AngleUnit.Arcsecond);
+            return new Angle<T>(arcseconds, AngleUnit.Arcsecond);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Centiradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromCentiradians(QuantityValue centiradians)
+        public static Angle<T> FromCentiradians(T centiradians)
         {
-            double value = (double) centiradians;
-            return new Angle<T>(value, AngleUnit.Centiradian);
+            return new Angle<T>(centiradians, AngleUnit.Centiradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Deciradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromDeciradians(QuantityValue deciradians)
+        public static Angle<T> FromDeciradians(T deciradians)
         {
-            double value = (double) deciradians;
-            return new Angle<T>(value, AngleUnit.Deciradian);
+            return new Angle<T>(deciradians, AngleUnit.Deciradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Degrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromDegrees(QuantityValue degrees)
+        public static Angle<T> FromDegrees(T degrees)
         {
-            double value = (double) degrees;
-            return new Angle<T>(value, AngleUnit.Degree);
+            return new Angle<T>(degrees, AngleUnit.Degree);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Gradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromGradians(QuantityValue gradians)
+        public static Angle<T> FromGradians(T gradians)
         {
-            double value = (double) gradians;
-            return new Angle<T>(value, AngleUnit.Gradian);
+            return new Angle<T>(gradians, AngleUnit.Gradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Microdegrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromMicrodegrees(QuantityValue microdegrees)
+        public static Angle<T> FromMicrodegrees(T microdegrees)
         {
-            double value = (double) microdegrees;
-            return new Angle<T>(value, AngleUnit.Microdegree);
+            return new Angle<T>(microdegrees, AngleUnit.Microdegree);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Microradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromMicroradians(QuantityValue microradians)
+        public static Angle<T> FromMicroradians(T microradians)
         {
-            double value = (double) microradians;
-            return new Angle<T>(value, AngleUnit.Microradian);
+            return new Angle<T>(microradians, AngleUnit.Microradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Millidegrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromMillidegrees(QuantityValue millidegrees)
+        public static Angle<T> FromMillidegrees(T millidegrees)
         {
-            double value = (double) millidegrees;
-            return new Angle<T>(value, AngleUnit.Millidegree);
+            return new Angle<T>(millidegrees, AngleUnit.Millidegree);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Milliradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromMilliradians(QuantityValue milliradians)
+        public static Angle<T> FromMilliradians(T milliradians)
         {
-            double value = (double) milliradians;
-            return new Angle<T>(value, AngleUnit.Milliradian);
+            return new Angle<T>(milliradians, AngleUnit.Milliradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Nanodegrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromNanodegrees(QuantityValue nanodegrees)
+        public static Angle<T> FromNanodegrees(T nanodegrees)
         {
-            double value = (double) nanodegrees;
-            return new Angle<T>(value, AngleUnit.Nanodegree);
+            return new Angle<T>(nanodegrees, AngleUnit.Nanodegree);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Nanoradians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromNanoradians(QuantityValue nanoradians)
+        public static Angle<T> FromNanoradians(T nanoradians)
         {
-            double value = (double) nanoradians;
-            return new Angle<T>(value, AngleUnit.Nanoradian);
+            return new Angle<T>(nanoradians, AngleUnit.Nanoradian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Radians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromRadians(QuantityValue radians)
+        public static Angle<T> FromRadians(T radians)
         {
-            double value = (double) radians;
-            return new Angle<T>(value, AngleUnit.Radian);
+            return new Angle<T>(radians, AngleUnit.Radian);
         }
         /// <summary>
         ///     Get <see cref="Angle{T}" /> from Revolutions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle<T> FromRevolutions(QuantityValue revolutions)
+        public static Angle<T> FromRevolutions(T revolutions)
         {
-            double value = (double) revolutions;
-            return new Angle<T>(value, AngleUnit.Revolution);
+            return new Angle<T>(revolutions, AngleUnit.Revolution);
         }
 
         /// <summary>
@@ -408,9 +391,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="Angle{T}" /> unit value.</returns>
-        public static Angle<T> From(QuantityValue value, AngleUnit fromUnit)
+        public static Angle<T> From(T value, AngleUnit fromUnit)
         {
-            return new Angle<T>((double)value, fromUnit);
+            return new Angle<T>(value, fromUnit);
         }
 
         #endregion
@@ -564,43 +547,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Angle<T> operator -(Angle<T> right)
         {
-            return new Angle<T>(-right.Value, right.Unit);
+            return new Angle<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="Angle{T}"/> from adding two <see cref="Angle{T}"/>.</summary>
         public static Angle<T> operator +(Angle<T> left, Angle<T> right)
         {
-            return new Angle<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Angle<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle{T}"/> from subtracting two <see cref="Angle{T}"/>.</summary>
         public static Angle<T> operator -(Angle<T> left, Angle<T> right)
         {
-            return new Angle<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Angle<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle{T}"/> from multiplying value and <see cref="Angle{T}"/>.</summary>
-        public static Angle<T> operator *(double left, Angle<T> right)
+        public static Angle<T> operator *(T left, Angle<T> right)
         {
-            return new Angle<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Angle<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="Angle{T}"/> from multiplying value and <see cref="Angle{T}"/>.</summary>
-        public static Angle<T> operator *(Angle<T> left, double right)
+        public static Angle<T> operator *(Angle<T> left, T right)
         {
-            return new Angle<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Angle<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle{T}"/> from dividing <see cref="Angle{T}"/> by value.</summary>
-        public static Angle<T> operator /(Angle<T> left, double right)
+        public static Angle<T> operator /(Angle<T> left, T right)
         {
-            return new Angle<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Angle<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Angle{T}"/> by <see cref="Angle{T}"/>.</summary>
-        public static double operator /(Angle<T> left, Angle<T> right)
+        public static T operator /(Angle<T> left, Angle<T> right)
         {
-            return left.Degrees / right.Degrees;
+            return CompiledLambdas.Divide(left.Degrees, right.Degrees);
         }
 
         #endregion
@@ -610,25 +598,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Angle<T> left, Angle<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Angle<T> left, Angle<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Angle<T> left, Angle<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Angle<T> left, Angle<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -657,7 +645,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Angle<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -674,7 +662,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Angle{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Angle<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -722,10 +710,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -745,17 +731,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(AngleUnit unit)
+        public T As(AngleUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -775,8 +761,13 @@ namespace UnitsNet
             if(!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
-            return As(unitAsAngleUnit);
+            var asValue = As(unitAsAngleUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<AngleUnit>.As(AngleUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="Angle{T}" /> to another <see cref="Angle{T}" /> with the unit representation <paramref name="unit" />.
@@ -819,31 +810,37 @@ namespace UnitsNet
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<AngleUnit, T> IQuantityT<AngleUnit, T>.ToUnit(AngleUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<AngleUnit, T> IQuantityT<AngleUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AngleUnit.Arcminute: return _value/60;
-                case AngleUnit.Arcsecond: return _value/3600;
-                case AngleUnit.Centiradian: return (_value*180/Math.PI) * 1e-2d;
-                case AngleUnit.Deciradian: return (_value*180/Math.PI) * 1e-1d;
-                case AngleUnit.Degree: return _value;
-                case AngleUnit.Gradian: return _value*0.9;
-                case AngleUnit.Microdegree: return (_value) * 1e-6d;
-                case AngleUnit.Microradian: return (_value*180/Math.PI) * 1e-6d;
-                case AngleUnit.Millidegree: return (_value) * 1e-3d;
-                case AngleUnit.Milliradian: return (_value*180/Math.PI) * 1e-3d;
-                case AngleUnit.Nanodegree: return (_value) * 1e-9d;
-                case AngleUnit.Nanoradian: return (_value*180/Math.PI) * 1e-9d;
-                case AngleUnit.Radian: return _value*180/Math.PI;
-                case AngleUnit.Revolution: return _value*360;
+                case AngleUnit.Arcminute: return Value/60;
+                case AngleUnit.Arcsecond: return Value/3600;
+                case AngleUnit.Centiradian: return (Value*180/Math.PI) * 1e-2d;
+                case AngleUnit.Deciradian: return (Value*180/Math.PI) * 1e-1d;
+                case AngleUnit.Degree: return Value;
+                case AngleUnit.Gradian: return Value*0.9;
+                case AngleUnit.Microdegree: return (Value) * 1e-6d;
+                case AngleUnit.Microradian: return (Value*180/Math.PI) * 1e-6d;
+                case AngleUnit.Millidegree: return (Value) * 1e-3d;
+                case AngleUnit.Milliradian: return (Value*180/Math.PI) * 1e-3d;
+                case AngleUnit.Nanodegree: return (Value) * 1e-9d;
+                case AngleUnit.Nanoradian: return (Value*180/Math.PI) * 1e-9d;
+                case AngleUnit.Radian: return Value*180/Math.PI;
+                case AngleUnit.Revolution: return Value*360;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -860,10 +857,10 @@ namespace UnitsNet
             return new Angle<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(AngleUnit unit)
+        private T GetValueAs(AngleUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -984,7 +981,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -999,37 +996,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1053,17 +1050,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

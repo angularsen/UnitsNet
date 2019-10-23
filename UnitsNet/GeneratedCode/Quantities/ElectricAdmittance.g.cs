@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
-    public partial struct ElectricAdmittance<T> : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance<T>>, IComparable, IComparable<ElectricAdmittance<T>>, IConvertible, IFormattable
+    public partial struct ElectricAdmittance<T> : IQuantityT<ElectricAdmittanceUnit, T>, IEquatable<ElectricAdmittance<T>>, IComparable, IComparable<ElectricAdmittance<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -64,12 +59,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricAdmittance(double value, ElectricAdmittanceUnit unit)
+        public ElectricAdmittance(T value, ElectricAdmittanceUnit unit)
         {
             if(unit == ElectricAdmittanceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -81,14 +76,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricAdmittance(double value, UnitSystem unitSystem)
+        public ElectricAdmittance(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -130,7 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance<T> Zero { get; } = new ElectricAdmittance<T>(0, BaseUnit);
+        public static ElectricAdmittance<T> Zero { get; } = new ElectricAdmittance<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -139,7 +134,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -169,22 +166,22 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> in Microsiemens.
         /// </summary>
-        public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
+        public T Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> in Millisiemens.
         /// </summary>
-        public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
+        public T Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> in Nanosiemens.
         /// </summary>
-        public double Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
+        public T Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> in Siemens.
         /// </summary>
-        public double Siemens => As(ElectricAdmittanceUnit.Siemens);
+        public T Siemens => As(ElectricAdmittanceUnit.Siemens);
 
         #endregion
 
@@ -219,37 +216,33 @@ namespace UnitsNet
         ///     Get <see cref="ElectricAdmittance{T}" /> from Microsiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance<T> FromMicrosiemens(QuantityValue microsiemens)
+        public static ElectricAdmittance<T> FromMicrosiemens(T microsiemens)
         {
-            double value = (double) microsiemens;
-            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Microsiemens);
+            return new ElectricAdmittance<T>(microsiemens, ElectricAdmittanceUnit.Microsiemens);
         }
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> from Millisiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance<T> FromMillisiemens(QuantityValue millisiemens)
+        public static ElectricAdmittance<T> FromMillisiemens(T millisiemens)
         {
-            double value = (double) millisiemens;
-            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Millisiemens);
+            return new ElectricAdmittance<T>(millisiemens, ElectricAdmittanceUnit.Millisiemens);
         }
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> from Nanosiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance<T> FromNanosiemens(QuantityValue nanosiemens)
+        public static ElectricAdmittance<T> FromNanosiemens(T nanosiemens)
         {
-            double value = (double) nanosiemens;
-            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Nanosiemens);
+            return new ElectricAdmittance<T>(nanosiemens, ElectricAdmittanceUnit.Nanosiemens);
         }
         /// <summary>
         ///     Get <see cref="ElectricAdmittance{T}" /> from Siemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricAdmittance<T> FromSiemens(QuantityValue siemens)
+        public static ElectricAdmittance<T> FromSiemens(T siemens)
         {
-            double value = (double) siemens;
-            return new ElectricAdmittance<T>(value, ElectricAdmittanceUnit.Siemens);
+            return new ElectricAdmittance<T>(siemens, ElectricAdmittanceUnit.Siemens);
         }
 
         /// <summary>
@@ -258,9 +251,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="ElectricAdmittance{T}" /> unit value.</returns>
-        public static ElectricAdmittance<T> From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
+        public static ElectricAdmittance<T> From(T value, ElectricAdmittanceUnit fromUnit)
         {
-            return new ElectricAdmittance<T>((double)value, fromUnit);
+            return new ElectricAdmittance<T>(value, fromUnit);
         }
 
         #endregion
@@ -414,43 +407,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricAdmittance<T> operator -(ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance<T>(-right.Value, right.Unit);
+            return new ElectricAdmittance<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance{T}"/> from adding two <see cref="ElectricAdmittance{T}"/>.</summary>
         public static ElectricAdmittance<T> operator +(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricAdmittance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance{T}"/> from subtracting two <see cref="ElectricAdmittance{T}"/>.</summary>
         public static ElectricAdmittance<T> operator -(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricAdmittance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance{T}"/> from multiplying value and <see cref="ElectricAdmittance{T}"/>.</summary>
-        public static ElectricAdmittance<T> operator *(double left, ElectricAdmittance<T> right)
+        public static ElectricAdmittance<T> operator *(T left, ElectricAdmittance<T> right)
         {
-            return new ElectricAdmittance<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ElectricAdmittance<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance{T}"/> from multiplying value and <see cref="ElectricAdmittance{T}"/>.</summary>
-        public static ElectricAdmittance<T> operator *(ElectricAdmittance<T> left, double right)
+        public static ElectricAdmittance<T> operator *(ElectricAdmittance<T> left, T right)
         {
-            return new ElectricAdmittance<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ElectricAdmittance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance{T}"/> from dividing <see cref="ElectricAdmittance{T}"/> by value.</summary>
-        public static ElectricAdmittance<T> operator /(ElectricAdmittance<T> left, double right)
+        public static ElectricAdmittance<T> operator /(ElectricAdmittance<T> left, T right)
         {
-            return new ElectricAdmittance<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ElectricAdmittance<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricAdmittance{T}"/> by <see cref="ElectricAdmittance{T}"/>.</summary>
-        public static double operator /(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
+        public static T operator /(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return left.Siemens / right.Siemens;
+            return CompiledLambdas.Divide(left.Siemens, right.Siemens);
         }
 
         #endregion
@@ -460,25 +458,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricAdmittance<T> left, ElectricAdmittance<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -507,7 +505,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricAdmittance<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -524,7 +522,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricAdmittance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricAdmittance<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -572,10 +570,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -595,17 +591,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricAdmittanceUnit unit)
+        public T As(ElectricAdmittanceUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -625,8 +621,13 @@ namespace UnitsNet
             if(!(unit is ElectricAdmittanceUnit unitAsElectricAdmittanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricAdmittanceUnit);
+            var asValue = As(unitAsElectricAdmittanceUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ElectricAdmittanceUnit>.As(ElectricAdmittanceUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="ElectricAdmittance{T}" /> to another <see cref="ElectricAdmittance{T}" /> with the unit representation <paramref name="unit" />.
@@ -669,21 +670,27 @@ namespace UnitsNet
         IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ElectricAdmittanceUnit, T> IQuantityT<ElectricAdmittanceUnit, T>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ElectricAdmittanceUnit, T> IQuantityT<ElectricAdmittanceUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
+                case ElectricAdmittanceUnit.Microsiemens: return (Value) * 1e-6d;
+                case ElectricAdmittanceUnit.Millisiemens: return (Value) * 1e-3d;
+                case ElectricAdmittanceUnit.Nanosiemens: return (Value) * 1e-9d;
+                case ElectricAdmittanceUnit.Siemens: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -700,10 +707,10 @@ namespace UnitsNet
             return new ElectricAdmittance<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ElectricAdmittanceUnit unit)
+        private T GetValueAs(ElectricAdmittanceUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -814,7 +821,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -829,37 +836,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -883,17 +890,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

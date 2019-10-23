@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of MassFlux<double>.
+    /// Test of MassFlux.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassFluxTestsBase

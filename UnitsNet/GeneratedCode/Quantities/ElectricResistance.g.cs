@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
-    public partial struct ElectricResistance<T> : IQuantity<ElectricResistanceUnit>, IEquatable<ElectricResistance<T>>, IComparable, IComparable<ElectricResistance<T>>, IConvertible, IFormattable
+    public partial struct ElectricResistance<T> : IQuantityT<ElectricResistanceUnit, T>, IEquatable<ElectricResistance<T>>, IComparable, IComparable<ElectricResistance<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -65,12 +60,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricResistance(double value, ElectricResistanceUnit unit)
+        public ElectricResistance(T value, ElectricResistanceUnit unit)
         {
             if(unit == ElectricResistanceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -82,14 +77,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricResistance(double value, UnitSystem unitSystem)
+        public ElectricResistance(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -131,7 +126,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance<T> Zero { get; } = new ElectricResistance<T>(0, BaseUnit);
+        public static ElectricResistance<T> Zero { get; } = new ElectricResistance<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -140,7 +135,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -170,27 +167,27 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> in Gigaohms.
         /// </summary>
-        public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
+        public T Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> in Kiloohms.
         /// </summary>
-        public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
+        public T Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> in Megaohms.
         /// </summary>
-        public double Megaohms => As(ElectricResistanceUnit.Megaohm);
+        public T Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> in Milliohms.
         /// </summary>
-        public double Milliohms => As(ElectricResistanceUnit.Milliohm);
+        public T Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> in Ohms.
         /// </summary>
-        public double Ohms => As(ElectricResistanceUnit.Ohm);
+        public T Ohms => As(ElectricResistanceUnit.Ohm);
 
         #endregion
 
@@ -225,46 +222,41 @@ namespace UnitsNet
         ///     Get <see cref="ElectricResistance{T}" /> from Gigaohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance<T> FromGigaohms(QuantityValue gigaohms)
+        public static ElectricResistance<T> FromGigaohms(T gigaohms)
         {
-            double value = (double) gigaohms;
-            return new ElectricResistance<T>(value, ElectricResistanceUnit.Gigaohm);
+            return new ElectricResistance<T>(gigaohms, ElectricResistanceUnit.Gigaohm);
         }
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> from Kiloohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance<T> FromKiloohms(QuantityValue kiloohms)
+        public static ElectricResistance<T> FromKiloohms(T kiloohms)
         {
-            double value = (double) kiloohms;
-            return new ElectricResistance<T>(value, ElectricResistanceUnit.Kiloohm);
+            return new ElectricResistance<T>(kiloohms, ElectricResistanceUnit.Kiloohm);
         }
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> from Megaohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance<T> FromMegaohms(QuantityValue megaohms)
+        public static ElectricResistance<T> FromMegaohms(T megaohms)
         {
-            double value = (double) megaohms;
-            return new ElectricResistance<T>(value, ElectricResistanceUnit.Megaohm);
+            return new ElectricResistance<T>(megaohms, ElectricResistanceUnit.Megaohm);
         }
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> from Milliohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance<T> FromMilliohms(QuantityValue milliohms)
+        public static ElectricResistance<T> FromMilliohms(T milliohms)
         {
-            double value = (double) milliohms;
-            return new ElectricResistance<T>(value, ElectricResistanceUnit.Milliohm);
+            return new ElectricResistance<T>(milliohms, ElectricResistanceUnit.Milliohm);
         }
         /// <summary>
         ///     Get <see cref="ElectricResistance{T}" /> from Ohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance<T> FromOhms(QuantityValue ohms)
+        public static ElectricResistance<T> FromOhms(T ohms)
         {
-            double value = (double) ohms;
-            return new ElectricResistance<T>(value, ElectricResistanceUnit.Ohm);
+            return new ElectricResistance<T>(ohms, ElectricResistanceUnit.Ohm);
         }
 
         /// <summary>
@@ -273,9 +265,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="ElectricResistance{T}" /> unit value.</returns>
-        public static ElectricResistance<T> From(QuantityValue value, ElectricResistanceUnit fromUnit)
+        public static ElectricResistance<T> From(T value, ElectricResistanceUnit fromUnit)
         {
-            return new ElectricResistance<T>((double)value, fromUnit);
+            return new ElectricResistance<T>(value, fromUnit);
         }
 
         #endregion
@@ -429,43 +421,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricResistance<T> operator -(ElectricResistance<T> right)
         {
-            return new ElectricResistance<T>(-right.Value, right.Unit);
+            return new ElectricResistance<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance{T}"/> from adding two <see cref="ElectricResistance{T}"/>.</summary>
         public static ElectricResistance<T> operator +(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return new ElectricResistance<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricResistance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance{T}"/> from subtracting two <see cref="ElectricResistance{T}"/>.</summary>
         public static ElectricResistance<T> operator -(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return new ElectricResistance<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricResistance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance{T}"/> from multiplying value and <see cref="ElectricResistance{T}"/>.</summary>
-        public static ElectricResistance<T> operator *(double left, ElectricResistance<T> right)
+        public static ElectricResistance<T> operator *(T left, ElectricResistance<T> right)
         {
-            return new ElectricResistance<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ElectricResistance<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance{T}"/> from multiplying value and <see cref="ElectricResistance{T}"/>.</summary>
-        public static ElectricResistance<T> operator *(ElectricResistance<T> left, double right)
+        public static ElectricResistance<T> operator *(ElectricResistance<T> left, T right)
         {
-            return new ElectricResistance<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ElectricResistance<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance{T}"/> from dividing <see cref="ElectricResistance{T}"/> by value.</summary>
-        public static ElectricResistance<T> operator /(ElectricResistance<T> left, double right)
+        public static ElectricResistance<T> operator /(ElectricResistance<T> left, T right)
         {
-            return new ElectricResistance<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ElectricResistance<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricResistance{T}"/> by <see cref="ElectricResistance{T}"/>.</summary>
-        public static double operator /(ElectricResistance<T> left, ElectricResistance<T> right)
+        public static T operator /(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return left.Ohms / right.Ohms;
+            return CompiledLambdas.Divide(left.Ohms, right.Ohms);
         }
 
         #endregion
@@ -475,25 +472,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricResistance<T> left, ElectricResistance<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -522,7 +519,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricResistance<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -539,7 +536,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricResistance{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricResistance<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -587,10 +584,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -610,17 +605,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricResistanceUnit unit)
+        public T As(ElectricResistanceUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -640,8 +635,13 @@ namespace UnitsNet
             if(!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricResistanceUnit);
+            var asValue = As(unitAsElectricResistanceUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ElectricResistanceUnit>.As(ElectricResistanceUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="ElectricResistance{T}" /> to another <see cref="ElectricResistance{T}" /> with the unit representation <paramref name="unit" />.
@@ -684,22 +684,28 @@ namespace UnitsNet
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(ElectricResistanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ElectricResistanceUnit, T> IQuantityT<ElectricResistanceUnit, T>.ToUnit(ElectricResistanceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ElectricResistanceUnit, T> IQuantityT<ElectricResistanceUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
-                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
-                case ElectricResistanceUnit.Ohm: return _value;
+                case ElectricResistanceUnit.Gigaohm: return (Value) * 1e9d;
+                case ElectricResistanceUnit.Kiloohm: return (Value) * 1e3d;
+                case ElectricResistanceUnit.Megaohm: return (Value) * 1e6d;
+                case ElectricResistanceUnit.Milliohm: return (Value) * 1e-3d;
+                case ElectricResistanceUnit.Ohm: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -716,10 +722,10 @@ namespace UnitsNet
             return new ElectricResistance<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ElectricResistanceUnit unit)
+        private T GetValueAs(ElectricResistanceUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -831,7 +837,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -846,37 +852,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -900,17 +906,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

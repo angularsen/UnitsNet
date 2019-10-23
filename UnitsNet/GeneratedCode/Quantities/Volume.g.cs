@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
-    public partial struct Volume<T> : IQuantity<VolumeUnit>, IEquatable<Volume<T>>, IComparable, IComparable<Volume<T>>, IConvertible, IFormattable
+    public partial struct Volume<T> : IQuantityT<VolumeUnit, T>, IEquatable<Volume<T>>, IComparable, IComparable<Volume<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -107,12 +102,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Volume(double value, VolumeUnit unit)
+        public Volume(T value, VolumeUnit unit)
         {
             if(unit == VolumeUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -124,14 +119,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Volume(double value, UnitSystem unitSystem)
+        public Volume(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -173,7 +168,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume<T> Zero { get; } = new Volume<T>(0, BaseUnit);
+        public static Volume<T> Zero { get; } = new Volume<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -182,7 +177,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -212,237 +209,237 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in AcreFeet.
         /// </summary>
-        public double AcreFeet => As(VolumeUnit.AcreFoot);
+        public T AcreFeet => As(VolumeUnit.AcreFoot);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in AuTablespoons.
         /// </summary>
-        public double AuTablespoons => As(VolumeUnit.AuTablespoon);
+        public T AuTablespoons => As(VolumeUnit.AuTablespoon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Centiliters.
         /// </summary>
-        public double Centiliters => As(VolumeUnit.Centiliter);
+        public T Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicCentimeters.
         /// </summary>
-        public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
+        public T CubicCentimeters => As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicDecimeters.
         /// </summary>
-        public double CubicDecimeters => As(VolumeUnit.CubicDecimeter);
+        public T CubicDecimeters => As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicFeet.
         /// </summary>
-        public double CubicFeet => As(VolumeUnit.CubicFoot);
+        public T CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicHectometers.
         /// </summary>
-        public double CubicHectometers => As(VolumeUnit.CubicHectometer);
+        public T CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicInches.
         /// </summary>
-        public double CubicInches => As(VolumeUnit.CubicInch);
+        public T CubicInches => As(VolumeUnit.CubicInch);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicKilometers.
         /// </summary>
-        public double CubicKilometers => As(VolumeUnit.CubicKilometer);
+        public T CubicKilometers => As(VolumeUnit.CubicKilometer);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicMeters.
         /// </summary>
-        public double CubicMeters => As(VolumeUnit.CubicMeter);
+        public T CubicMeters => As(VolumeUnit.CubicMeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicMicrometers.
         /// </summary>
-        public double CubicMicrometers => As(VolumeUnit.CubicMicrometer);
+        public T CubicMicrometers => As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicMiles.
         /// </summary>
-        public double CubicMiles => As(VolumeUnit.CubicMile);
+        public T CubicMiles => As(VolumeUnit.CubicMile);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicMillimeters.
         /// </summary>
-        public double CubicMillimeters => As(VolumeUnit.CubicMillimeter);
+        public T CubicMillimeters => As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in CubicYards.
         /// </summary>
-        public double CubicYards => As(VolumeUnit.CubicYard);
+        public T CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Deciliters.
         /// </summary>
-        public double Deciliters => As(VolumeUnit.Deciliter);
+        public T Deciliters => As(VolumeUnit.Deciliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in HectocubicFeet.
         /// </summary>
-        public double HectocubicFeet => As(VolumeUnit.HectocubicFoot);
+        public T HectocubicFeet => As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in HectocubicMeters.
         /// </summary>
-        public double HectocubicMeters => As(VolumeUnit.HectocubicMeter);
+        public T HectocubicMeters => As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Hectoliters.
         /// </summary>
-        public double Hectoliters => As(VolumeUnit.Hectoliter);
+        public T Hectoliters => As(VolumeUnit.Hectoliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in ImperialBeerBarrels.
         /// </summary>
-        public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
+        public T ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in ImperialGallons.
         /// </summary>
-        public double ImperialGallons => As(VolumeUnit.ImperialGallon);
+        public T ImperialGallons => As(VolumeUnit.ImperialGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in ImperialOunces.
         /// </summary>
-        public double ImperialOunces => As(VolumeUnit.ImperialOunce);
+        public T ImperialOunces => As(VolumeUnit.ImperialOunce);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in ImperialPints.
         /// </summary>
-        public double ImperialPints => As(VolumeUnit.ImperialPint);
+        public T ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in KilocubicFeet.
         /// </summary>
-        public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
+        public T KilocubicFeet => As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in KilocubicMeters.
         /// </summary>
-        public double KilocubicMeters => As(VolumeUnit.KilocubicMeter);
+        public T KilocubicMeters => As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in KiloimperialGallons.
         /// </summary>
-        public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
+        public T KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Kiloliters.
         /// </summary>
-        public double Kiloliters => As(VolumeUnit.Kiloliter);
+        public T Kiloliters => As(VolumeUnit.Kiloliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in KilousGallons.
         /// </summary>
-        public double KilousGallons => As(VolumeUnit.KilousGallon);
+        public T KilousGallons => As(VolumeUnit.KilousGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Liters.
         /// </summary>
-        public double Liters => As(VolumeUnit.Liter);
+        public T Liters => As(VolumeUnit.Liter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in MegacubicFeet.
         /// </summary>
-        public double MegacubicFeet => As(VolumeUnit.MegacubicFoot);
+        public T MegacubicFeet => As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in MegaimperialGallons.
         /// </summary>
-        public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
+        public T MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Megaliters.
         /// </summary>
-        public double Megaliters => As(VolumeUnit.Megaliter);
+        public T Megaliters => As(VolumeUnit.Megaliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in MegausGallons.
         /// </summary>
-        public double MegausGallons => As(VolumeUnit.MegausGallon);
+        public T MegausGallons => As(VolumeUnit.MegausGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in MetricCups.
         /// </summary>
-        public double MetricCups => As(VolumeUnit.MetricCup);
+        public T MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in MetricTeaspoons.
         /// </summary>
-        public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
+        public T MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Microliters.
         /// </summary>
-        public double Microliters => As(VolumeUnit.Microliter);
+        public T Microliters => As(VolumeUnit.Microliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in Milliliters.
         /// </summary>
-        public double Milliliters => As(VolumeUnit.Milliliter);
+        public T Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in OilBarrels.
         /// </summary>
-        public double OilBarrels => As(VolumeUnit.OilBarrel);
+        public T OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UkTablespoons.
         /// </summary>
-        public double UkTablespoons => As(VolumeUnit.UkTablespoon);
+        public T UkTablespoons => As(VolumeUnit.UkTablespoon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsBeerBarrels.
         /// </summary>
-        public double UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
+        public T UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsCustomaryCups.
         /// </summary>
-        public double UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
+        public T UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsGallons.
         /// </summary>
-        public double UsGallons => As(VolumeUnit.UsGallon);
+        public T UsGallons => As(VolumeUnit.UsGallon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsLegalCups.
         /// </summary>
-        public double UsLegalCups => As(VolumeUnit.UsLegalCup);
+        public T UsLegalCups => As(VolumeUnit.UsLegalCup);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsOunces.
         /// </summary>
-        public double UsOunces => As(VolumeUnit.UsOunce);
+        public T UsOunces => As(VolumeUnit.UsOunce);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsPints.
         /// </summary>
-        public double UsPints => As(VolumeUnit.UsPint);
+        public T UsPints => As(VolumeUnit.UsPint);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsQuarts.
         /// </summary>
-        public double UsQuarts => As(VolumeUnit.UsQuart);
+        public T UsQuarts => As(VolumeUnit.UsQuart);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsTablespoons.
         /// </summary>
-        public double UsTablespoons => As(VolumeUnit.UsTablespoon);
+        public T UsTablespoons => As(VolumeUnit.UsTablespoon);
 
         /// <summary>
         ///     Get <see cref="Volume{T}" /> in UsTeaspoons.
         /// </summary>
-        public double UsTeaspoons => As(VolumeUnit.UsTeaspoon);
+        public T UsTeaspoons => As(VolumeUnit.UsTeaspoon);
 
         #endregion
 
@@ -477,424 +474,377 @@ namespace UnitsNet
         ///     Get <see cref="Volume{T}" /> from AcreFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromAcreFeet(QuantityValue acrefeet)
+        public static Volume<T> FromAcreFeet(T acrefeet)
         {
-            double value = (double) acrefeet;
-            return new Volume<T>(value, VolumeUnit.AcreFoot);
+            return new Volume<T>(acrefeet, VolumeUnit.AcreFoot);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from AuTablespoons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromAuTablespoons(QuantityValue autablespoons)
+        public static Volume<T> FromAuTablespoons(T autablespoons)
         {
-            double value = (double) autablespoons;
-            return new Volume<T>(value, VolumeUnit.AuTablespoon);
+            return new Volume<T>(autablespoons, VolumeUnit.AuTablespoon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Centiliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCentiliters(QuantityValue centiliters)
+        public static Volume<T> FromCentiliters(T centiliters)
         {
-            double value = (double) centiliters;
-            return new Volume<T>(value, VolumeUnit.Centiliter);
+            return new Volume<T>(centiliters, VolumeUnit.Centiliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicCentimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicCentimeters(QuantityValue cubiccentimeters)
+        public static Volume<T> FromCubicCentimeters(T cubiccentimeters)
         {
-            double value = (double) cubiccentimeters;
-            return new Volume<T>(value, VolumeUnit.CubicCentimeter);
+            return new Volume<T>(cubiccentimeters, VolumeUnit.CubicCentimeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicDecimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicDecimeters(QuantityValue cubicdecimeters)
+        public static Volume<T> FromCubicDecimeters(T cubicdecimeters)
         {
-            double value = (double) cubicdecimeters;
-            return new Volume<T>(value, VolumeUnit.CubicDecimeter);
+            return new Volume<T>(cubicdecimeters, VolumeUnit.CubicDecimeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicFeet(QuantityValue cubicfeet)
+        public static Volume<T> FromCubicFeet(T cubicfeet)
         {
-            double value = (double) cubicfeet;
-            return new Volume<T>(value, VolumeUnit.CubicFoot);
+            return new Volume<T>(cubicfeet, VolumeUnit.CubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicHectometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicHectometers(QuantityValue cubichectometers)
+        public static Volume<T> FromCubicHectometers(T cubichectometers)
         {
-            double value = (double) cubichectometers;
-            return new Volume<T>(value, VolumeUnit.CubicHectometer);
+            return new Volume<T>(cubichectometers, VolumeUnit.CubicHectometer);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicInches.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicInches(QuantityValue cubicinches)
+        public static Volume<T> FromCubicInches(T cubicinches)
         {
-            double value = (double) cubicinches;
-            return new Volume<T>(value, VolumeUnit.CubicInch);
+            return new Volume<T>(cubicinches, VolumeUnit.CubicInch);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicKilometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicKilometers(QuantityValue cubickilometers)
+        public static Volume<T> FromCubicKilometers(T cubickilometers)
         {
-            double value = (double) cubickilometers;
-            return new Volume<T>(value, VolumeUnit.CubicKilometer);
+            return new Volume<T>(cubickilometers, VolumeUnit.CubicKilometer);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicMeters(QuantityValue cubicmeters)
+        public static Volume<T> FromCubicMeters(T cubicmeters)
         {
-            double value = (double) cubicmeters;
-            return new Volume<T>(value, VolumeUnit.CubicMeter);
+            return new Volume<T>(cubicmeters, VolumeUnit.CubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicMicrometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicMicrometers(QuantityValue cubicmicrometers)
+        public static Volume<T> FromCubicMicrometers(T cubicmicrometers)
         {
-            double value = (double) cubicmicrometers;
-            return new Volume<T>(value, VolumeUnit.CubicMicrometer);
+            return new Volume<T>(cubicmicrometers, VolumeUnit.CubicMicrometer);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicMiles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicMiles(QuantityValue cubicmiles)
+        public static Volume<T> FromCubicMiles(T cubicmiles)
         {
-            double value = (double) cubicmiles;
-            return new Volume<T>(value, VolumeUnit.CubicMile);
+            return new Volume<T>(cubicmiles, VolumeUnit.CubicMile);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicMillimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicMillimeters(QuantityValue cubicmillimeters)
+        public static Volume<T> FromCubicMillimeters(T cubicmillimeters)
         {
-            double value = (double) cubicmillimeters;
-            return new Volume<T>(value, VolumeUnit.CubicMillimeter);
+            return new Volume<T>(cubicmillimeters, VolumeUnit.CubicMillimeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from CubicYards.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromCubicYards(QuantityValue cubicyards)
+        public static Volume<T> FromCubicYards(T cubicyards)
         {
-            double value = (double) cubicyards;
-            return new Volume<T>(value, VolumeUnit.CubicYard);
+            return new Volume<T>(cubicyards, VolumeUnit.CubicYard);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Deciliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromDeciliters(QuantityValue deciliters)
+        public static Volume<T> FromDeciliters(T deciliters)
         {
-            double value = (double) deciliters;
-            return new Volume<T>(value, VolumeUnit.Deciliter);
+            return new Volume<T>(deciliters, VolumeUnit.Deciliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from HectocubicFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromHectocubicFeet(QuantityValue hectocubicfeet)
+        public static Volume<T> FromHectocubicFeet(T hectocubicfeet)
         {
-            double value = (double) hectocubicfeet;
-            return new Volume<T>(value, VolumeUnit.HectocubicFoot);
+            return new Volume<T>(hectocubicfeet, VolumeUnit.HectocubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from HectocubicMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromHectocubicMeters(QuantityValue hectocubicmeters)
+        public static Volume<T> FromHectocubicMeters(T hectocubicmeters)
         {
-            double value = (double) hectocubicmeters;
-            return new Volume<T>(value, VolumeUnit.HectocubicMeter);
+            return new Volume<T>(hectocubicmeters, VolumeUnit.HectocubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Hectoliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromHectoliters(QuantityValue hectoliters)
+        public static Volume<T> FromHectoliters(T hectoliters)
         {
-            double value = (double) hectoliters;
-            return new Volume<T>(value, VolumeUnit.Hectoliter);
+            return new Volume<T>(hectoliters, VolumeUnit.Hectoliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from ImperialBeerBarrels.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromImperialBeerBarrels(QuantityValue imperialbeerbarrels)
+        public static Volume<T> FromImperialBeerBarrels(T imperialbeerbarrels)
         {
-            double value = (double) imperialbeerbarrels;
-            return new Volume<T>(value, VolumeUnit.ImperialBeerBarrel);
+            return new Volume<T>(imperialbeerbarrels, VolumeUnit.ImperialBeerBarrel);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from ImperialGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromImperialGallons(QuantityValue imperialgallons)
+        public static Volume<T> FromImperialGallons(T imperialgallons)
         {
-            double value = (double) imperialgallons;
-            return new Volume<T>(value, VolumeUnit.ImperialGallon);
+            return new Volume<T>(imperialgallons, VolumeUnit.ImperialGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from ImperialOunces.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromImperialOunces(QuantityValue imperialounces)
+        public static Volume<T> FromImperialOunces(T imperialounces)
         {
-            double value = (double) imperialounces;
-            return new Volume<T>(value, VolumeUnit.ImperialOunce);
+            return new Volume<T>(imperialounces, VolumeUnit.ImperialOunce);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from ImperialPints.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromImperialPints(QuantityValue imperialpints)
+        public static Volume<T> FromImperialPints(T imperialpints)
         {
-            double value = (double) imperialpints;
-            return new Volume<T>(value, VolumeUnit.ImperialPint);
+            return new Volume<T>(imperialpints, VolumeUnit.ImperialPint);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from KilocubicFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromKilocubicFeet(QuantityValue kilocubicfeet)
+        public static Volume<T> FromKilocubicFeet(T kilocubicfeet)
         {
-            double value = (double) kilocubicfeet;
-            return new Volume<T>(value, VolumeUnit.KilocubicFoot);
+            return new Volume<T>(kilocubicfeet, VolumeUnit.KilocubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from KilocubicMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromKilocubicMeters(QuantityValue kilocubicmeters)
+        public static Volume<T> FromKilocubicMeters(T kilocubicmeters)
         {
-            double value = (double) kilocubicmeters;
-            return new Volume<T>(value, VolumeUnit.KilocubicMeter);
+            return new Volume<T>(kilocubicmeters, VolumeUnit.KilocubicMeter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from KiloimperialGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromKiloimperialGallons(QuantityValue kiloimperialgallons)
+        public static Volume<T> FromKiloimperialGallons(T kiloimperialgallons)
         {
-            double value = (double) kiloimperialgallons;
-            return new Volume<T>(value, VolumeUnit.KiloimperialGallon);
+            return new Volume<T>(kiloimperialgallons, VolumeUnit.KiloimperialGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Kiloliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromKiloliters(QuantityValue kiloliters)
+        public static Volume<T> FromKiloliters(T kiloliters)
         {
-            double value = (double) kiloliters;
-            return new Volume<T>(value, VolumeUnit.Kiloliter);
+            return new Volume<T>(kiloliters, VolumeUnit.Kiloliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from KilousGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromKilousGallons(QuantityValue kilousgallons)
+        public static Volume<T> FromKilousGallons(T kilousgallons)
         {
-            double value = (double) kilousgallons;
-            return new Volume<T>(value, VolumeUnit.KilousGallon);
+            return new Volume<T>(kilousgallons, VolumeUnit.KilousGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Liters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromLiters(QuantityValue liters)
+        public static Volume<T> FromLiters(T liters)
         {
-            double value = (double) liters;
-            return new Volume<T>(value, VolumeUnit.Liter);
+            return new Volume<T>(liters, VolumeUnit.Liter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from MegacubicFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMegacubicFeet(QuantityValue megacubicfeet)
+        public static Volume<T> FromMegacubicFeet(T megacubicfeet)
         {
-            double value = (double) megacubicfeet;
-            return new Volume<T>(value, VolumeUnit.MegacubicFoot);
+            return new Volume<T>(megacubicfeet, VolumeUnit.MegacubicFoot);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from MegaimperialGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMegaimperialGallons(QuantityValue megaimperialgallons)
+        public static Volume<T> FromMegaimperialGallons(T megaimperialgallons)
         {
-            double value = (double) megaimperialgallons;
-            return new Volume<T>(value, VolumeUnit.MegaimperialGallon);
+            return new Volume<T>(megaimperialgallons, VolumeUnit.MegaimperialGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Megaliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMegaliters(QuantityValue megaliters)
+        public static Volume<T> FromMegaliters(T megaliters)
         {
-            double value = (double) megaliters;
-            return new Volume<T>(value, VolumeUnit.Megaliter);
+            return new Volume<T>(megaliters, VolumeUnit.Megaliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from MegausGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMegausGallons(QuantityValue megausgallons)
+        public static Volume<T> FromMegausGallons(T megausgallons)
         {
-            double value = (double) megausgallons;
-            return new Volume<T>(value, VolumeUnit.MegausGallon);
+            return new Volume<T>(megausgallons, VolumeUnit.MegausGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from MetricCups.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMetricCups(QuantityValue metriccups)
+        public static Volume<T> FromMetricCups(T metriccups)
         {
-            double value = (double) metriccups;
-            return new Volume<T>(value, VolumeUnit.MetricCup);
+            return new Volume<T>(metriccups, VolumeUnit.MetricCup);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from MetricTeaspoons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMetricTeaspoons(QuantityValue metricteaspoons)
+        public static Volume<T> FromMetricTeaspoons(T metricteaspoons)
         {
-            double value = (double) metricteaspoons;
-            return new Volume<T>(value, VolumeUnit.MetricTeaspoon);
+            return new Volume<T>(metricteaspoons, VolumeUnit.MetricTeaspoon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Microliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMicroliters(QuantityValue microliters)
+        public static Volume<T> FromMicroliters(T microliters)
         {
-            double value = (double) microliters;
-            return new Volume<T>(value, VolumeUnit.Microliter);
+            return new Volume<T>(microliters, VolumeUnit.Microliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from Milliliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromMilliliters(QuantityValue milliliters)
+        public static Volume<T> FromMilliliters(T milliliters)
         {
-            double value = (double) milliliters;
-            return new Volume<T>(value, VolumeUnit.Milliliter);
+            return new Volume<T>(milliliters, VolumeUnit.Milliliter);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from OilBarrels.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromOilBarrels(QuantityValue oilbarrels)
+        public static Volume<T> FromOilBarrels(T oilbarrels)
         {
-            double value = (double) oilbarrels;
-            return new Volume<T>(value, VolumeUnit.OilBarrel);
+            return new Volume<T>(oilbarrels, VolumeUnit.OilBarrel);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UkTablespoons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUkTablespoons(QuantityValue uktablespoons)
+        public static Volume<T> FromUkTablespoons(T uktablespoons)
         {
-            double value = (double) uktablespoons;
-            return new Volume<T>(value, VolumeUnit.UkTablespoon);
+            return new Volume<T>(uktablespoons, VolumeUnit.UkTablespoon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsBeerBarrels.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsBeerBarrels(QuantityValue usbeerbarrels)
+        public static Volume<T> FromUsBeerBarrels(T usbeerbarrels)
         {
-            double value = (double) usbeerbarrels;
-            return new Volume<T>(value, VolumeUnit.UsBeerBarrel);
+            return new Volume<T>(usbeerbarrels, VolumeUnit.UsBeerBarrel);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsCustomaryCups.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsCustomaryCups(QuantityValue uscustomarycups)
+        public static Volume<T> FromUsCustomaryCups(T uscustomarycups)
         {
-            double value = (double) uscustomarycups;
-            return new Volume<T>(value, VolumeUnit.UsCustomaryCup);
+            return new Volume<T>(uscustomarycups, VolumeUnit.UsCustomaryCup);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsGallons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsGallons(QuantityValue usgallons)
+        public static Volume<T> FromUsGallons(T usgallons)
         {
-            double value = (double) usgallons;
-            return new Volume<T>(value, VolumeUnit.UsGallon);
+            return new Volume<T>(usgallons, VolumeUnit.UsGallon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsLegalCups.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsLegalCups(QuantityValue uslegalcups)
+        public static Volume<T> FromUsLegalCups(T uslegalcups)
         {
-            double value = (double) uslegalcups;
-            return new Volume<T>(value, VolumeUnit.UsLegalCup);
+            return new Volume<T>(uslegalcups, VolumeUnit.UsLegalCup);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsOunces.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsOunces(QuantityValue usounces)
+        public static Volume<T> FromUsOunces(T usounces)
         {
-            double value = (double) usounces;
-            return new Volume<T>(value, VolumeUnit.UsOunce);
+            return new Volume<T>(usounces, VolumeUnit.UsOunce);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsPints.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsPints(QuantityValue uspints)
+        public static Volume<T> FromUsPints(T uspints)
         {
-            double value = (double) uspints;
-            return new Volume<T>(value, VolumeUnit.UsPint);
+            return new Volume<T>(uspints, VolumeUnit.UsPint);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsQuarts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsQuarts(QuantityValue usquarts)
+        public static Volume<T> FromUsQuarts(T usquarts)
         {
-            double value = (double) usquarts;
-            return new Volume<T>(value, VolumeUnit.UsQuart);
+            return new Volume<T>(usquarts, VolumeUnit.UsQuart);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsTablespoons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsTablespoons(QuantityValue ustablespoons)
+        public static Volume<T> FromUsTablespoons(T ustablespoons)
         {
-            double value = (double) ustablespoons;
-            return new Volume<T>(value, VolumeUnit.UsTablespoon);
+            return new Volume<T>(ustablespoons, VolumeUnit.UsTablespoon);
         }
         /// <summary>
         ///     Get <see cref="Volume{T}" /> from UsTeaspoons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume<T> FromUsTeaspoons(QuantityValue usteaspoons)
+        public static Volume<T> FromUsTeaspoons(T usteaspoons)
         {
-            double value = (double) usteaspoons;
-            return new Volume<T>(value, VolumeUnit.UsTeaspoon);
+            return new Volume<T>(usteaspoons, VolumeUnit.UsTeaspoon);
         }
 
         /// <summary>
@@ -903,9 +853,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="Volume{T}" /> unit value.</returns>
-        public static Volume<T> From(QuantityValue value, VolumeUnit fromUnit)
+        public static Volume<T> From(T value, VolumeUnit fromUnit)
         {
-            return new Volume<T>((double)value, fromUnit);
+            return new Volume<T>(value, fromUnit);
         }
 
         #endregion
@@ -1059,43 +1009,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Volume<T> operator -(Volume<T> right)
         {
-            return new Volume<T>(-right.Value, right.Unit);
+            return new Volume<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="Volume{T}"/> from adding two <see cref="Volume{T}"/>.</summary>
         public static Volume<T> operator +(Volume<T> left, Volume<T> right)
         {
-            return new Volume<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Volume<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Volume{T}"/> from subtracting two <see cref="Volume{T}"/>.</summary>
         public static Volume<T> operator -(Volume<T> left, Volume<T> right)
         {
-            return new Volume<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Volume<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Volume{T}"/> from multiplying value and <see cref="Volume{T}"/>.</summary>
-        public static Volume<T> operator *(double left, Volume<T> right)
+        public static Volume<T> operator *(T left, Volume<T> right)
         {
-            return new Volume<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Volume<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="Volume{T}"/> from multiplying value and <see cref="Volume{T}"/>.</summary>
-        public static Volume<T> operator *(Volume<T> left, double right)
+        public static Volume<T> operator *(Volume<T> left, T right)
         {
-            return new Volume<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Volume<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="Volume{T}"/> from dividing <see cref="Volume{T}"/> by value.</summary>
-        public static Volume<T> operator /(Volume<T> left, double right)
+        public static Volume<T> operator /(Volume<T> left, T right)
         {
-            return new Volume<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Volume<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Volume{T}"/> by <see cref="Volume{T}"/>.</summary>
-        public static double operator /(Volume<T> left, Volume<T> right)
+        public static T operator /(Volume<T> left, Volume<T> right)
         {
-            return left.CubicMeters / right.CubicMeters;
+            return CompiledLambdas.Divide(left.CubicMeters, right.CubicMeters);
         }
 
         #endregion
@@ -1105,25 +1060,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Volume<T> left, Volume<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Volume<T> left, Volume<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Volume<T> left, Volume<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Volume<T> left, Volume<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1152,7 +1107,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Volume<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -1169,7 +1124,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Volume{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Volume<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1217,10 +1172,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -1240,17 +1193,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumeUnit unit)
+        public T As(VolumeUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1270,8 +1223,13 @@ namespace UnitsNet
             if(!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return As(unitAsVolumeUnit);
+            var asValue = As(unitAsVolumeUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<VolumeUnit>.As(VolumeUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="Volume{T}" /> to another <see cref="Volume{T}" /> with the unit representation <paramref name="unit" />.
@@ -1314,64 +1272,70 @@ namespace UnitsNet
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<VolumeUnit, T> IQuantityT<VolumeUnit, T>.ToUnit(VolumeUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<VolumeUnit, T> IQuantityT<VolumeUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case VolumeUnit.AcreFoot: return _value/0.000810714;
-                case VolumeUnit.AuTablespoon: return _value*2e-5;
-                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
-                case VolumeUnit.CubicCentimeter: return _value/1e6;
-                case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value*0.0283168;
-                case VolumeUnit.CubicHectometer: return _value*1e6;
-                case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
-                case VolumeUnit.CubicKilometer: return _value*1e9;
-                case VolumeUnit.CubicMeter: return _value;
-                case VolumeUnit.CubicMicrometer: return _value/1e18;
-                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return _value/1e9;
-                case VolumeUnit.CubicYard: return _value*0.764554858;
-                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
-                case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
-                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
-                case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
-                case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
-                case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
-                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
-                case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
-                case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
-                case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
-                case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
-                case VolumeUnit.MetricCup: return _value*0.00025;
-                case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
-                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
-                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
-                case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.UkTablespoon: return _value*1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
-                case VolumeUnit.UsGallon: return _value*0.00378541;
-                case VolumeUnit.UsLegalCup: return _value*0.00024;
-                case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return _value*4.73176473e-4;
-                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
+                case VolumeUnit.AcreFoot: return Value/0.000810714;
+                case VolumeUnit.AuTablespoon: return Value*2e-5;
+                case VolumeUnit.Centiliter: return (Value/1e3) * 1e-2d;
+                case VolumeUnit.CubicCentimeter: return Value/1e6;
+                case VolumeUnit.CubicDecimeter: return Value/1e3;
+                case VolumeUnit.CubicFoot: return Value*0.0283168;
+                case VolumeUnit.CubicHectometer: return Value*1e6;
+                case VolumeUnit.CubicInch: return Value*1.6387*1e-5;
+                case VolumeUnit.CubicKilometer: return Value*1e9;
+                case VolumeUnit.CubicMeter: return Value;
+                case VolumeUnit.CubicMicrometer: return Value/1e18;
+                case VolumeUnit.CubicMile: return Value*4.16818182544058e9;
+                case VolumeUnit.CubicMillimeter: return Value/1e9;
+                case VolumeUnit.CubicYard: return Value*0.764554858;
+                case VolumeUnit.Deciliter: return (Value/1e3) * 1e-1d;
+                case VolumeUnit.HectocubicFoot: return (Value*0.0283168) * 1e2d;
+                case VolumeUnit.HectocubicMeter: return (Value) * 1e2d;
+                case VolumeUnit.Hectoliter: return (Value/1e3) * 1e2d;
+                case VolumeUnit.ImperialBeerBarrel: return Value*0.16365924;
+                case VolumeUnit.ImperialGallon: return Value*0.00454609000000181429905810072407;
+                case VolumeUnit.ImperialOunce: return Value*2.8413062499962901241875439064617e-5;
+                case VolumeUnit.ImperialPint: return Value * 5.6826125e-4;
+                case VolumeUnit.KilocubicFoot: return (Value*0.0283168) * 1e3d;
+                case VolumeUnit.KilocubicMeter: return (Value) * 1e3d;
+                case VolumeUnit.KiloimperialGallon: return (Value*0.00454609000000181429905810072407) * 1e3d;
+                case VolumeUnit.Kiloliter: return (Value/1e3) * 1e3d;
+                case VolumeUnit.KilousGallon: return (Value*0.00378541) * 1e3d;
+                case VolumeUnit.Liter: return Value/1e3;
+                case VolumeUnit.MegacubicFoot: return (Value*0.0283168) * 1e6d;
+                case VolumeUnit.MegaimperialGallon: return (Value*0.00454609000000181429905810072407) * 1e6d;
+                case VolumeUnit.Megaliter: return (Value/1e3) * 1e6d;
+                case VolumeUnit.MegausGallon: return (Value*0.00378541) * 1e6d;
+                case VolumeUnit.MetricCup: return Value*0.00025;
+                case VolumeUnit.MetricTeaspoon: return Value*0.5e-5;
+                case VolumeUnit.Microliter: return (Value/1e3) * 1e-6d;
+                case VolumeUnit.Milliliter: return (Value/1e3) * 1e-3d;
+                case VolumeUnit.OilBarrel: return Value*0.158987294928;
+                case VolumeUnit.UkTablespoon: return Value*1.5e-5;
+                case VolumeUnit.UsBeerBarrel: return Value*0.1173477658;
+                case VolumeUnit.UsCustomaryCup: return Value*0.0002365882365;
+                case VolumeUnit.UsGallon: return Value*0.00378541;
+                case VolumeUnit.UsLegalCup: return Value*0.00024;
+                case VolumeUnit.UsOunce: return Value*2.957352956253760505068307980135e-5;
+                case VolumeUnit.UsPint: return Value*4.73176473e-4;
+                case VolumeUnit.UsQuart: return Value*9.46352946e-4;
+                case VolumeUnit.UsTablespoon: return Value*1.478676478125e-5;
+                case VolumeUnit.UsTeaspoon: return Value*4.92892159375e-6;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1388,10 +1352,10 @@ namespace UnitsNet
             return new Volume<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(VolumeUnit unit)
+        private T GetValueAs(VolumeUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1545,7 +1509,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -1560,37 +1524,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1614,17 +1578,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

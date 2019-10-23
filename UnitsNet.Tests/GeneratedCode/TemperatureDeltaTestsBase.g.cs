@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of TemperatureDelta<double>.
+    /// Test of TemperatureDelta.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureDeltaTestsBase

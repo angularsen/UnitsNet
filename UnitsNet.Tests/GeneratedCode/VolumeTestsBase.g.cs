@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of Volume<double>.
+    /// Test of Volume.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VolumeTestsBase

@@ -68,13 +68,8 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WL($@"
-    public partial struct {_quantity.Name}<T> : IQuantity<{_unitEnumName}>, IEquatable<{_quantity.Name}<T>>, IComparable, IComparable<{_quantity.Name}<T>>, IConvertible, IFormattable
+    public partial struct {_quantity.Name}<T> : IQuantityT<{_unitEnumName}, T>, IEquatable<{_quantity.Name}<T>>, IComparable, IComparable<{_quantity.Name}<T>>, IConvertible, IFormattable
     {{
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly {_quantity.BaseType} _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -161,18 +156,12 @@ namespace UnitsNet
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
+        public {_quantity.Name}(T value, {_unitEnumName} unit)
         {{
             if(unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
-");
 
-            Writer.WL(_quantity.BaseType == "double"
-                ? @"
-            _value = Guard.EnsureValidNumber(value, nameof(value));"
-                : @"
-            _value = value;");
-            Writer.WL($@"
+            Value = value;
             _unit = unit;
         }}
 
@@ -184,22 +173,16 @@ namespace UnitsNet
         /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
         /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
-        public {_quantity.Name}({_valueType} value, UnitSystem unitSystem)
+        public {_quantity.Name}(T value, UnitSystem unitSystem)
         {{
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
-");
 
-            Writer.WL(_quantity.BaseType == "double"
-                ? @"
-            _value = Guard.EnsureValidNumber(value, nameof(value));"
-                : @"
-            _value = value;");
-            Writer.WL(@"
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-        }
+        }}
 ");
         }
 
@@ -244,7 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
-        public static {_quantity.Name}<T> Zero {{ get; }} = new {_quantity.Name}<T>(0, BaseUnit);
+        public static {_quantity.Name}<T> Zero {{ get; }} = new {_quantity.Name}<T>((T)0, BaseUnit);
 
         #endregion
 ");
@@ -258,16 +241,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public {_valueType} Value => _value;
-");
+        public T Value{{ get; }}
 
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.BaseType != "double")
-                Writer.WL(@"
-        double IQuantity.Value => (double) _value;
-");
+        double IQuantity.Value => Convert.ToDouble(Value);
 
-            Writer.WL($@"
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -306,7 +283,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public double {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public T {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -362,10 +339,9 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name}<T> From{unit.PluralName}(QuantityValue {valueParamName})
+        public static {_quantity.Name}<T> From{unit.PluralName}(T {valueParamName})
         {{
-            {_valueType} value = ({_valueType}) {valueParamName};
-            return new {_quantity.Name}<T>(value, {_unitEnumName}.{unit.SingularName});
+            return new {_quantity.Name}<T>({valueParamName}, {_unitEnumName}.{unit.SingularName});
         }}");
             }
 
@@ -377,13 +353,13 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns><see cref=""{_quantity.Name}{{T}}"" /> unit value.</returns>
-        public static {_quantity.Name}<T> From(QuantityValue value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name}<T> From(T value, {_unitEnumName} fromUnit)
         {{
-            return new {_quantity.Name}<T>(({_valueType})value, fromUnit);
+            return new {_quantity.Name}<T>(value, fromUnit);
         }}
 
         #endregion
-");
+" );
         }
 
         private void GenerateStaticParseMethods()
@@ -553,43 +529,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static {_quantity.Name}<T> operator -({_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}<T>(-right.Value, right.Unit);
+            return new {_quantity.Name}<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from adding two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
         public static {_quantity.Name}<T> operator +({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new {_quantity.Name}<T>(value, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from subtracting two <see cref=""{_quantity.Name}{{T}}""/>.</summary>
         public static {_quantity.Name}<T> operator -({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new {_quantity.Name}<T>(value, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from multiplying value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
-        public static {_quantity.Name}<T> operator *({_valueType} left, {_quantity.Name}<T> right)
+        public static {_quantity.Name}<T> operator *(T left, {_quantity.Name}<T> right)
         {{
-            return new {_quantity.Name}<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new {_quantity.Name}<T>(value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from multiplying value and <see cref=""{_quantity.Name}{{T}}""/>.</summary>
-        public static {_quantity.Name}<T> operator *({_quantity.Name}<T> left, {_valueType} right)
+        public static {_quantity.Name}<T> operator *({_quantity.Name}<T> left, T right)
         {{
-            return new {_quantity.Name}<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new {_quantity.Name}<T>(value, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}{{T}}""/> from dividing <see cref=""{_quantity.Name}{{T}}""/> by value.</summary>
-        public static {_quantity.Name}<T> operator /({_quantity.Name}<T> left, {_valueType} right)
+        public static {_quantity.Name}<T> operator /({_quantity.Name}<T> left, T right)
         {{
-            return new {_quantity.Name}<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new {_quantity.Name}<T>(value, left.Unit);
         }}
 
         /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}{{T}}""/> by <see cref=""{_quantity.Name}{{T}}""/>.</summary>
-        public static double operator /({_quantity.Name}<T> left, {_quantity.Name}<T> right)
+        public static T operator /({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
+            return CompiledLambdas.Divide(left.{_baseUnit.PluralName}, right.{_baseUnit.PluralName});
         }}
 
         #endregion
@@ -666,25 +647,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }}
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }}
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }}
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >({_quantity.Name}<T> left, {_quantity.Name}<T> right)
         {{
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }}
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -713,7 +694,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo({_quantity.Name}<T> other)
         {{
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }}
 
         /// <inheritdoc />
@@ -730,7 +711,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}{{T}}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
         public bool Equals({_quantity.Name}<T> other)
         {{
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }}
 
         /// <summary>
@@ -778,10 +759,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }}
 
         /// <summary>
@@ -806,17 +785,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As({_unitEnumName} unit)
+        public T As({_unitEnumName} unit)
         {{
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }}
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {{
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -836,8 +815,13 @@ namespace UnitsNet
             if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
-            return As(unitAs{_unitEnumName});
+            var asValue = As(unitAs{_unitEnumName});
+            return Convert.ToDouble(asValue);
         }}
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<{_unitEnumName}>.As({_unitEnumName} unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref=""{_quantity.Name}{{T}}"" /> to another <see cref=""{_quantity.Name}{{T}}"" /> with the unit representation <paramref name=""unit"" />.
@@ -880,20 +864,26 @@ namespace UnitsNet
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<{_unitEnumName}, T> IQuantityT<{_unitEnumName}, T>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<{_unitEnumName}, T> IQuantityT<{_unitEnumName}, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private {_valueType} GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {{
             switch(Unit)
-            {{");
+            {{" );
             foreach (var unit in _quantity.Units)
             {
-                var func = unit.FromUnitToBaseFunc.Replace("x", "_value");
+                var func = unit.FromUnitToBaseFunc.Replace("x", "Value");
                 Writer.WL($@"
                 case {_unitEnumName}.{unit.SingularName}: return {func};");
             }
@@ -915,10 +905,10 @@ namespace UnitsNet
             return new {_quantity.Name}<T>(baseUnitValue, BaseUnit);
         }}
 
-        private {_valueType} GetValueAs({_unitEnumName} unit)
+        private T GetValueAs({_unitEnumName} unit)
         {{
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1043,7 +1033,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {{
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }}
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -1058,37 +1048,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {{
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }}
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {{
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }}
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {{
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }}
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {{
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }}
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {{
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }}
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {{
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }}
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {{
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }}
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1112,17 +1102,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {{
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }}
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {{
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }}
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {{
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }}
 
         #endregion" );

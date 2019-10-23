@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of Torque<double>.
+    /// Test of Torque.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TorqueTestsBase

@@ -35,13 +35,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
-    public partial struct SpecificEnergy<T> : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy<T>>, IComparable, IComparable<SpecificEnergy<T>>, IConvertible, IFormattable
+    public partial struct SpecificEnergy<T> : IQuantityT<SpecificEnergyUnit, T>, IEquatable<SpecificEnergy<T>>, IComparable, IComparable<SpecificEnergy<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -72,12 +67,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public SpecificEnergy(double value, SpecificEnergyUnit unit)
+        public SpecificEnergy(T value, SpecificEnergyUnit unit)
         {
             if(unit == SpecificEnergyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -89,14 +84,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificEnergy(double value, UnitSystem unitSystem)
+        public SpecificEnergy(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -138,7 +133,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy<T> Zero { get; } = new SpecificEnergy<T>(0, BaseUnit);
+        public static SpecificEnergy<T> Zero { get; } = new SpecificEnergy<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -147,7 +142,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,47 +174,47 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in BtuPerPound.
         /// </summary>
-        public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
+        public T BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in CaloriesPerGram.
         /// </summary>
-        public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
+        public T CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in JoulesPerKilogram.
         /// </summary>
-        public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
+        public T JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in KilocaloriesPerGram.
         /// </summary>
-        public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
+        public T KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in KilojoulesPerKilogram.
         /// </summary>
-        public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
+        public T KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in KilowattHoursPerKilogram.
         /// </summary>
-        public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
+        public T KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in MegajoulesPerKilogram.
         /// </summary>
-        public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
+        public T MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in MegawattHoursPerKilogram.
         /// </summary>
-        public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
+        public T MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> in WattHoursPerKilogram.
         /// </summary>
-        public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
+        public T WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
         #endregion
 
@@ -252,82 +249,73 @@ namespace UnitsNet
         ///     Get <see cref="SpecificEnergy{T}" /> from BtuPerPound.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromBtuPerPound(QuantityValue btuperpound)
+        public static SpecificEnergy<T> FromBtuPerPound(T btuperpound)
         {
-            double value = (double) btuperpound;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.BtuPerPound);
+            return new SpecificEnergy<T>(btuperpound, SpecificEnergyUnit.BtuPerPound);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from CaloriesPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromCaloriesPerGram(QuantityValue caloriespergram)
+        public static SpecificEnergy<T> FromCaloriesPerGram(T caloriespergram)
         {
-            double value = (double) caloriespergram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.CaloriePerGram);
+            return new SpecificEnergy<T>(caloriespergram, SpecificEnergyUnit.CaloriePerGram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from JoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromJoulesPerKilogram(QuantityValue joulesperkilogram)
+        public static SpecificEnergy<T> FromJoulesPerKilogram(T joulesperkilogram)
         {
-            double value = (double) joulesperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.JoulePerKilogram);
+            return new SpecificEnergy<T>(joulesperkilogram, SpecificEnergyUnit.JoulePerKilogram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from KilocaloriesPerGram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromKilocaloriesPerGram(QuantityValue kilocaloriespergram)
+        public static SpecificEnergy<T> FromKilocaloriesPerGram(T kilocaloriespergram)
         {
-            double value = (double) kilocaloriespergram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilocaloriePerGram);
+            return new SpecificEnergy<T>(kilocaloriespergram, SpecificEnergyUnit.KilocaloriePerGram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from KilojoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromKilojoulesPerKilogram(QuantityValue kilojoulesperkilogram)
+        public static SpecificEnergy<T> FromKilojoulesPerKilogram(T kilojoulesperkilogram)
         {
-            double value = (double) kilojoulesperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilojoulePerKilogram);
+            return new SpecificEnergy<T>(kilojoulesperkilogram, SpecificEnergyUnit.KilojoulePerKilogram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from KilowattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromKilowattHoursPerKilogram(QuantityValue kilowatthoursperkilogram)
+        public static SpecificEnergy<T> FromKilowattHoursPerKilogram(T kilowatthoursperkilogram)
         {
-            double value = (double) kilowatthoursperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.KilowattHourPerKilogram);
+            return new SpecificEnergy<T>(kilowatthoursperkilogram, SpecificEnergyUnit.KilowattHourPerKilogram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from MegajoulesPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromMegajoulesPerKilogram(QuantityValue megajoulesperkilogram)
+        public static SpecificEnergy<T> FromMegajoulesPerKilogram(T megajoulesperkilogram)
         {
-            double value = (double) megajoulesperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.MegajoulePerKilogram);
+            return new SpecificEnergy<T>(megajoulesperkilogram, SpecificEnergyUnit.MegajoulePerKilogram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from MegawattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromMegawattHoursPerKilogram(QuantityValue megawatthoursperkilogram)
+        public static SpecificEnergy<T> FromMegawattHoursPerKilogram(T megawatthoursperkilogram)
         {
-            double value = (double) megawatthoursperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.MegawattHourPerKilogram);
+            return new SpecificEnergy<T>(megawatthoursperkilogram, SpecificEnergyUnit.MegawattHourPerKilogram);
         }
         /// <summary>
         ///     Get <see cref="SpecificEnergy{T}" /> from WattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificEnergy<T> FromWattHoursPerKilogram(QuantityValue watthoursperkilogram)
+        public static SpecificEnergy<T> FromWattHoursPerKilogram(T watthoursperkilogram)
         {
-            double value = (double) watthoursperkilogram;
-            return new SpecificEnergy<T>(value, SpecificEnergyUnit.WattHourPerKilogram);
+            return new SpecificEnergy<T>(watthoursperkilogram, SpecificEnergyUnit.WattHourPerKilogram);
         }
 
         /// <summary>
@@ -336,9 +324,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="SpecificEnergy{T}" /> unit value.</returns>
-        public static SpecificEnergy<T> From(QuantityValue value, SpecificEnergyUnit fromUnit)
+        public static SpecificEnergy<T> From(T value, SpecificEnergyUnit fromUnit)
         {
-            return new SpecificEnergy<T>((double)value, fromUnit);
+            return new SpecificEnergy<T>(value, fromUnit);
         }
 
         #endregion
@@ -492,43 +480,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static SpecificEnergy<T> operator -(SpecificEnergy<T> right)
         {
-            return new SpecificEnergy<T>(-right.Value, right.Unit);
+            return new SpecificEnergy<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy{T}"/> from adding two <see cref="SpecificEnergy{T}"/>.</summary>
         public static SpecificEnergy<T> operator +(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new SpecificEnergy<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy{T}"/> from subtracting two <see cref="SpecificEnergy{T}"/>.</summary>
         public static SpecificEnergy<T> operator -(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new SpecificEnergy<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy{T}"/> from multiplying value and <see cref="SpecificEnergy{T}"/>.</summary>
-        public static SpecificEnergy<T> operator *(double left, SpecificEnergy<T> right)
+        public static SpecificEnergy<T> operator *(T left, SpecificEnergy<T> right)
         {
-            return new SpecificEnergy<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new SpecificEnergy<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy{T}"/> from multiplying value and <see cref="SpecificEnergy{T}"/>.</summary>
-        public static SpecificEnergy<T> operator *(SpecificEnergy<T> left, double right)
+        public static SpecificEnergy<T> operator *(SpecificEnergy<T> left, T right)
         {
-            return new SpecificEnergy<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new SpecificEnergy<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy{T}"/> from dividing <see cref="SpecificEnergy{T}"/> by value.</summary>
-        public static SpecificEnergy<T> operator /(SpecificEnergy<T> left, double right)
+        public static SpecificEnergy<T> operator /(SpecificEnergy<T> left, T right)
         {
-            return new SpecificEnergy<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new SpecificEnergy<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificEnergy{T}"/> by <see cref="SpecificEnergy{T}"/>.</summary>
-        public static double operator /(SpecificEnergy<T> left, SpecificEnergy<T> right)
+        public static T operator /(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return left.JoulesPerKilogram / right.JoulesPerKilogram;
+            return CompiledLambdas.Divide(left.JoulesPerKilogram, right.JoulesPerKilogram);
         }
 
         #endregion
@@ -538,25 +531,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificEnergy<T> left, SpecificEnergy<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -585,7 +578,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(SpecificEnergy<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -602,7 +595,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(SpecificEnergy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificEnergy<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -650,10 +643,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -673,17 +664,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpecificEnergyUnit unit)
+        public T As(SpecificEnergyUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -703,8 +694,13 @@ namespace UnitsNet
             if(!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEnergyUnit)} is supported.", nameof(unit));
 
-            return As(unitAsSpecificEnergyUnit);
+            var asValue = As(unitAsSpecificEnergyUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<SpecificEnergyUnit>.As(SpecificEnergyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="SpecificEnergy{T}" /> to another <see cref="SpecificEnergy{T}" /> with the unit representation <paramref name="unit" />.
@@ -747,26 +743,32 @@ namespace UnitsNet
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<SpecificEnergyUnit, T> IQuantityT<SpecificEnergyUnit, T>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<SpecificEnergyUnit, T> IQuantityT<SpecificEnergyUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificEnergyUnit.BtuPerPound: return _value*2326.000075362;
-                case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
-                case SpecificEnergyUnit.JoulePerKilogram: return _value;
-                case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
-                case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
-                case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value*3.6e3) * 1e3d;
-                case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
-                case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value*3.6e3) * 1e6d;
-                case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
+                case SpecificEnergyUnit.BtuPerPound: return Value*2326.000075362;
+                case SpecificEnergyUnit.CaloriePerGram: return Value*4.184e3;
+                case SpecificEnergyUnit.JoulePerKilogram: return Value;
+                case SpecificEnergyUnit.KilocaloriePerGram: return (Value*4.184e3) * 1e3d;
+                case SpecificEnergyUnit.KilojoulePerKilogram: return (Value) * 1e3d;
+                case SpecificEnergyUnit.KilowattHourPerKilogram: return (Value*3.6e3) * 1e3d;
+                case SpecificEnergyUnit.MegajoulePerKilogram: return (Value) * 1e6d;
+                case SpecificEnergyUnit.MegawattHourPerKilogram: return (Value*3.6e3) * 1e6d;
+                case SpecificEnergyUnit.WattHourPerKilogram: return Value*3.6e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -783,10 +785,10 @@ namespace UnitsNet
             return new SpecificEnergy<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(SpecificEnergyUnit unit)
+        private T GetValueAs(SpecificEnergyUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -902,7 +904,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -917,37 +919,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -971,17 +973,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

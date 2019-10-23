@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
-    public partial struct AreaDensity<T> : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity<T>>, IComparable, IComparable<AreaDensity<T>>, IConvertible, IFormattable
+    public partial struct AreaDensity<T> : IQuantityT<AreaDensityUnit, T>, IEquatable<AreaDensity<T>>, IComparable, IComparable<AreaDensity<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -61,12 +56,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public AreaDensity(double value, AreaDensityUnit unit)
+        public AreaDensity(T value, AreaDensityUnit unit)
         {
             if(unit == AreaDensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -78,14 +73,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AreaDensity(double value, UnitSystem unitSystem)
+        public AreaDensity(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -127,7 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
-        public static AreaDensity<T> Zero { get; } = new AreaDensity<T>(0, BaseUnit);
+        public static AreaDensity<T> Zero { get; } = new AreaDensity<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -136,7 +131,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -166,7 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="AreaDensity{T}" /> in KilogramsPerSquareMeter.
         /// </summary>
-        public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+        public T KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
 
         #endregion
 
@@ -201,10 +198,9 @@ namespace UnitsNet
         ///     Get <see cref="AreaDensity{T}" /> from KilogramsPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaDensity<T> FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
+        public static AreaDensity<T> FromKilogramsPerSquareMeter(T kilogramspersquaremeter)
         {
-            double value = (double) kilogramspersquaremeter;
-            return new AreaDensity<T>(value, AreaDensityUnit.KilogramPerSquareMeter);
+            return new AreaDensity<T>(kilogramspersquaremeter, AreaDensityUnit.KilogramPerSquareMeter);
         }
 
         /// <summary>
@@ -213,9 +209,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="AreaDensity{T}" /> unit value.</returns>
-        public static AreaDensity<T> From(QuantityValue value, AreaDensityUnit fromUnit)
+        public static AreaDensity<T> From(T value, AreaDensityUnit fromUnit)
         {
-            return new AreaDensity<T>((double)value, fromUnit);
+            return new AreaDensity<T>(value, fromUnit);
         }
 
         #endregion
@@ -369,43 +365,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static AreaDensity<T> operator -(AreaDensity<T> right)
         {
-            return new AreaDensity<T>(-right.Value, right.Unit);
+            return new AreaDensity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity{T}"/> from adding two <see cref="AreaDensity{T}"/>.</summary>
         public static AreaDensity<T> operator +(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return new AreaDensity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new AreaDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity{T}"/> from subtracting two <see cref="AreaDensity{T}"/>.</summary>
         public static AreaDensity<T> operator -(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return new AreaDensity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new AreaDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity{T}"/> from multiplying value and <see cref="AreaDensity{T}"/>.</summary>
-        public static AreaDensity<T> operator *(double left, AreaDensity<T> right)
+        public static AreaDensity<T> operator *(T left, AreaDensity<T> right)
         {
-            return new AreaDensity<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new AreaDensity<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity{T}"/> from multiplying value and <see cref="AreaDensity{T}"/>.</summary>
-        public static AreaDensity<T> operator *(AreaDensity<T> left, double right)
+        public static AreaDensity<T> operator *(AreaDensity<T> left, T right)
         {
-            return new AreaDensity<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new AreaDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity{T}"/> from dividing <see cref="AreaDensity{T}"/> by value.</summary>
-        public static AreaDensity<T> operator /(AreaDensity<T> left, double right)
+        public static AreaDensity<T> operator /(AreaDensity<T> left, T right)
         {
-            return new AreaDensity<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new AreaDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AreaDensity{T}"/> by <see cref="AreaDensity{T}"/>.</summary>
-        public static double operator /(AreaDensity<T> left, AreaDensity<T> right)
+        public static T operator /(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
+            return CompiledLambdas.Divide(left.KilogramsPerSquareMeter, right.KilogramsPerSquareMeter);
         }
 
         #endregion
@@ -415,25 +416,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AreaDensity<T> left, AreaDensity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -462,7 +463,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(AreaDensity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -479,7 +480,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(AreaDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(AreaDensity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -527,10 +528,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -550,17 +549,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(AreaDensityUnit unit)
+        public T As(AreaDensityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -580,8 +579,13 @@ namespace UnitsNet
             if(!(unit is AreaDensityUnit unitAsAreaDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsAreaDensityUnit);
+            var asValue = As(unitAsAreaDensityUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<AreaDensityUnit>.As(AreaDensityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="AreaDensity{T}" /> to another <see cref="AreaDensity{T}" /> with the unit representation <paramref name="unit" />.
@@ -624,18 +628,24 @@ namespace UnitsNet
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<AreaDensityUnit, T> IQuantityT<AreaDensityUnit, T>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<AreaDensityUnit, T> IQuantityT<AreaDensityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AreaDensityUnit.KilogramPerSquareMeter: return _value;
+                case AreaDensityUnit.KilogramPerSquareMeter: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -652,10 +662,10 @@ namespace UnitsNet
             return new AreaDensity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(AreaDensityUnit unit)
+        private T GetValueAs(AreaDensityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -763,7 +773,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -778,37 +788,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -832,17 +842,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

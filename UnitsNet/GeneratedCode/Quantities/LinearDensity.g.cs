@@ -35,13 +35,8 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
-    public partial struct LinearDensity<T> : IQuantity<LinearDensityUnit>, IEquatable<LinearDensity<T>>, IComparable, IComparable<LinearDensity<T>>, IConvertible, IFormattable
+    public partial struct LinearDensity<T> : IQuantityT<LinearDensityUnit, T>, IEquatable<LinearDensity<T>>, IComparable, IComparable<LinearDensity<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +61,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public LinearDensity(double value, LinearDensityUnit unit)
+        public LinearDensity(T value, LinearDensityUnit unit)
         {
             if(unit == LinearDensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +78,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LinearDensity(double value, UnitSystem unitSystem)
+        public LinearDensity(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -132,7 +127,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
         /// </summary>
-        public static LinearDensity<T> Zero { get; } = new LinearDensity<T>(0, BaseUnit);
+        public static LinearDensity<T> Zero { get; } = new LinearDensity<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -141,7 +136,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -171,17 +168,17 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in GramsPerMeter.
         /// </summary>
-        public double GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
+        public T GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
 
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in KilogramsPerMeter.
         /// </summary>
-        public double KilogramsPerMeter => As(LinearDensityUnit.KilogramPerMeter);
+        public T KilogramsPerMeter => As(LinearDensityUnit.KilogramPerMeter);
 
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in PoundsPerFoot.
         /// </summary>
-        public double PoundsPerFoot => As(LinearDensityUnit.PoundPerFoot);
+        public T PoundsPerFoot => As(LinearDensityUnit.PoundPerFoot);
 
         #endregion
 
@@ -216,28 +213,25 @@ namespace UnitsNet
         ///     Get <see cref="LinearDensity{T}" /> from GramsPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearDensity<T> FromGramsPerMeter(QuantityValue gramspermeter)
+        public static LinearDensity<T> FromGramsPerMeter(T gramspermeter)
         {
-            double value = (double) gramspermeter;
-            return new LinearDensity<T>(value, LinearDensityUnit.GramPerMeter);
+            return new LinearDensity<T>(gramspermeter, LinearDensityUnit.GramPerMeter);
         }
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> from KilogramsPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearDensity<T> FromKilogramsPerMeter(QuantityValue kilogramspermeter)
+        public static LinearDensity<T> FromKilogramsPerMeter(T kilogramspermeter)
         {
-            double value = (double) kilogramspermeter;
-            return new LinearDensity<T>(value, LinearDensityUnit.KilogramPerMeter);
+            return new LinearDensity<T>(kilogramspermeter, LinearDensityUnit.KilogramPerMeter);
         }
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> from PoundsPerFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearDensity<T> FromPoundsPerFoot(QuantityValue poundsperfoot)
+        public static LinearDensity<T> FromPoundsPerFoot(T poundsperfoot)
         {
-            double value = (double) poundsperfoot;
-            return new LinearDensity<T>(value, LinearDensityUnit.PoundPerFoot);
+            return new LinearDensity<T>(poundsperfoot, LinearDensityUnit.PoundPerFoot);
         }
 
         /// <summary>
@@ -246,9 +240,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="LinearDensity{T}" /> unit value.</returns>
-        public static LinearDensity<T> From(QuantityValue value, LinearDensityUnit fromUnit)
+        public static LinearDensity<T> From(T value, LinearDensityUnit fromUnit)
         {
-            return new LinearDensity<T>((double)value, fromUnit);
+            return new LinearDensity<T>(value, fromUnit);
         }
 
         #endregion
@@ -402,43 +396,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static LinearDensity<T> operator -(LinearDensity<T> right)
         {
-            return new LinearDensity<T>(-right.Value, right.Unit);
+            return new LinearDensity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="LinearDensity{T}"/> from adding two <see cref="LinearDensity{T}"/>.</summary>
         public static LinearDensity<T> operator +(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return new LinearDensity<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new LinearDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LinearDensity{T}"/> from subtracting two <see cref="LinearDensity{T}"/>.</summary>
         public static LinearDensity<T> operator -(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return new LinearDensity<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new LinearDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LinearDensity{T}"/> from multiplying value and <see cref="LinearDensity{T}"/>.</summary>
-        public static LinearDensity<T> operator *(double left, LinearDensity<T> right)
+        public static LinearDensity<T> operator *(T left, LinearDensity<T> right)
         {
-            return new LinearDensity<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new LinearDensity<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="LinearDensity{T}"/> from multiplying value and <see cref="LinearDensity{T}"/>.</summary>
-        public static LinearDensity<T> operator *(LinearDensity<T> left, double right)
+        public static LinearDensity<T> operator *(LinearDensity<T> left, T right)
         {
-            return new LinearDensity<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new LinearDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LinearDensity{T}"/> from dividing <see cref="LinearDensity{T}"/> by value.</summary>
-        public static LinearDensity<T> operator /(LinearDensity<T> left, double right)
+        public static LinearDensity<T> operator /(LinearDensity<T> left, T right)
         {
-            return new LinearDensity<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new LinearDensity<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LinearDensity{T}"/> by <see cref="LinearDensity{T}"/>.</summary>
-        public static double operator /(LinearDensity<T> left, LinearDensity<T> right)
+        public static T operator /(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return left.KilogramsPerMeter / right.KilogramsPerMeter;
+            return CompiledLambdas.Divide(left.KilogramsPerMeter, right.KilogramsPerMeter);
         }
 
         #endregion
@@ -448,25 +447,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LinearDensity<T> left, LinearDensity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -495,7 +494,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(LinearDensity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -512,7 +511,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(LinearDensity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(LinearDensity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -560,10 +559,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -583,17 +580,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LinearDensityUnit unit)
+        public T As(LinearDensityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -613,8 +610,13 @@ namespace UnitsNet
             if(!(unit is LinearDensityUnit unitAsLinearDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLinearDensityUnit);
+            var asValue = As(unitAsLinearDensityUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<LinearDensityUnit>.As(LinearDensityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="LinearDensity{T}" /> to another <see cref="LinearDensity{T}" /> with the unit representation <paramref name="unit" />.
@@ -657,20 +659,26 @@ namespace UnitsNet
         IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<LinearDensityUnit, T> IQuantityT<LinearDensityUnit, T>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<LinearDensityUnit, T> IQuantityT<LinearDensityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case LinearDensityUnit.GramPerMeter: return _value*1e-3;
-                case LinearDensityUnit.KilogramPerMeter: return (_value*1e-3) * 1e3d;
-                case LinearDensityUnit.PoundPerFoot: return _value*1.48816394;
+                case LinearDensityUnit.GramPerMeter: return Value*1e-3;
+                case LinearDensityUnit.KilogramPerMeter: return (Value*1e-3) * 1e3d;
+                case LinearDensityUnit.PoundPerFoot: return Value*1.48816394;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -687,10 +695,10 @@ namespace UnitsNet
             return new LinearDensity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(LinearDensityUnit unit)
+        private T GetValueAs(LinearDensityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -800,7 +808,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -815,37 +823,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -869,17 +877,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of MolarEnergy<double>.
+    /// Test of MolarEnergy.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MolarEnergyTestsBase

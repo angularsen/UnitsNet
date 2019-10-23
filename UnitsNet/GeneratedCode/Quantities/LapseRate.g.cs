@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
-    public partial struct LapseRate<T> : IQuantity<LapseRateUnit>, IEquatable<LapseRate<T>>, IComparable, IComparable<LapseRate<T>>, IConvertible, IFormattable
+    public partial struct LapseRate<T> : IQuantityT<LapseRateUnit, T>, IEquatable<LapseRate<T>>, IComparable, IComparable<LapseRate<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -61,12 +56,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public LapseRate(double value, LapseRateUnit unit)
+        public LapseRate(T value, LapseRateUnit unit)
         {
             if(unit == LapseRateUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -78,14 +73,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LapseRate(double value, UnitSystem unitSystem)
+        public LapseRate(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -127,7 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
         /// </summary>
-        public static LapseRate<T> Zero { get; } = new LapseRate<T>(0, BaseUnit);
+        public static LapseRate<T> Zero { get; } = new LapseRate<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -136,7 +131,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -166,7 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="LapseRate{T}" /> in DegreesCelciusPerKilometer.
         /// </summary>
-        public double DegreesCelciusPerKilometer => As(LapseRateUnit.DegreeCelsiusPerKilometer);
+        public T DegreesCelciusPerKilometer => As(LapseRateUnit.DegreeCelsiusPerKilometer);
 
         #endregion
 
@@ -201,10 +198,9 @@ namespace UnitsNet
         ///     Get <see cref="LapseRate{T}" /> from DegreesCelciusPerKilometer.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LapseRate<T> FromDegreesCelciusPerKilometer(QuantityValue degreescelciusperkilometer)
+        public static LapseRate<T> FromDegreesCelciusPerKilometer(T degreescelciusperkilometer)
         {
-            double value = (double) degreescelciusperkilometer;
-            return new LapseRate<T>(value, LapseRateUnit.DegreeCelsiusPerKilometer);
+            return new LapseRate<T>(degreescelciusperkilometer, LapseRateUnit.DegreeCelsiusPerKilometer);
         }
 
         /// <summary>
@@ -213,9 +209,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="LapseRate{T}" /> unit value.</returns>
-        public static LapseRate<T> From(QuantityValue value, LapseRateUnit fromUnit)
+        public static LapseRate<T> From(T value, LapseRateUnit fromUnit)
         {
-            return new LapseRate<T>((double)value, fromUnit);
+            return new LapseRate<T>(value, fromUnit);
         }
 
         #endregion
@@ -369,43 +365,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static LapseRate<T> operator -(LapseRate<T> right)
         {
-            return new LapseRate<T>(-right.Value, right.Unit);
+            return new LapseRate<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate{T}"/> from adding two <see cref="LapseRate{T}"/>.</summary>
         public static LapseRate<T> operator +(LapseRate<T> left, LapseRate<T> right)
         {
-            return new LapseRate<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new LapseRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate{T}"/> from subtracting two <see cref="LapseRate{T}"/>.</summary>
         public static LapseRate<T> operator -(LapseRate<T> left, LapseRate<T> right)
         {
-            return new LapseRate<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new LapseRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate{T}"/> from multiplying value and <see cref="LapseRate{T}"/>.</summary>
-        public static LapseRate<T> operator *(double left, LapseRate<T> right)
+        public static LapseRate<T> operator *(T left, LapseRate<T> right)
         {
-            return new LapseRate<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new LapseRate<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate{T}"/> from multiplying value and <see cref="LapseRate{T}"/>.</summary>
-        public static LapseRate<T> operator *(LapseRate<T> left, double right)
+        public static LapseRate<T> operator *(LapseRate<T> left, T right)
         {
-            return new LapseRate<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new LapseRate<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate{T}"/> from dividing <see cref="LapseRate{T}"/> by value.</summary>
-        public static LapseRate<T> operator /(LapseRate<T> left, double right)
+        public static LapseRate<T> operator /(LapseRate<T> left, T right)
         {
-            return new LapseRate<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new LapseRate<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LapseRate{T}"/> by <see cref="LapseRate{T}"/>.</summary>
-        public static double operator /(LapseRate<T> left, LapseRate<T> right)
+        public static T operator /(LapseRate<T> left, LapseRate<T> right)
         {
-            return left.DegreesCelciusPerKilometer / right.DegreesCelciusPerKilometer;
+            return CompiledLambdas.Divide(left.DegreesCelciusPerKilometer, right.DegreesCelciusPerKilometer);
         }
 
         #endregion
@@ -415,25 +416,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LapseRate<T> left, LapseRate<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LapseRate<T> left, LapseRate<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LapseRate<T> left, LapseRate<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LapseRate<T> left, LapseRate<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -462,7 +463,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(LapseRate<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -479,7 +480,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(LapseRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(LapseRate<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -527,10 +528,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -550,17 +549,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LapseRateUnit unit)
+        public T As(LapseRateUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -580,8 +579,13 @@ namespace UnitsNet
             if(!(unit is LapseRateUnit unitAsLapseRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLapseRateUnit);
+            var asValue = As(unitAsLapseRateUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<LapseRateUnit>.As(LapseRateUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="LapseRate{T}" /> to another <see cref="LapseRate{T}" /> with the unit representation <paramref name="unit" />.
@@ -624,18 +628,24 @@ namespace UnitsNet
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<LapseRateUnit, T> IQuantityT<LapseRateUnit, T>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<LapseRateUnit, T> IQuantityT<LapseRateUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
+                case LapseRateUnit.DegreeCelsiusPerKilometer: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -652,10 +662,10 @@ namespace UnitsNet
             return new LapseRate<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(LapseRateUnit unit)
+        private T GetValueAs(LapseRateUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -763,7 +773,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -778,37 +788,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -832,17 +842,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

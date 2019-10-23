@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of Level<double>.
+    /// Test of Level.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LevelTestsBase

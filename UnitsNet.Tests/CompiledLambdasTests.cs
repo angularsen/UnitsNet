@@ -91,5 +91,14 @@ namespace UnitsNet.Tests
         {
             Assert.Equal(expected, CompiledLambdas.GreaterThanOrEqual(left, right));
         }
+
+        [Theory]
+        [InlineData(3.0, -3.0)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(-3.0, 3.0)]
+        public void NegateReturnsExpectedValues<T>(T value, T expected)
+        {
+            Assert.Equal(expected, CompiledLambdas.Negate(value));
+        }
     }
 }

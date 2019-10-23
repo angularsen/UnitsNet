@@ -35,13 +35,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electric_charge
     /// </remarks>
-    public partial struct ElectricCharge<T> : IQuantity<ElectricChargeUnit>, IEquatable<ElectricCharge<T>>, IComparable, IComparable<ElectricCharge<T>>, IConvertible, IFormattable
+    public partial struct ElectricCharge<T> : IQuantityT<ElectricChargeUnit, T>, IEquatable<ElectricCharge<T>>, IComparable, IComparable<ElectricCharge<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -68,12 +63,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricCharge(double value, ElectricChargeUnit unit)
+        public ElectricCharge(T value, ElectricChargeUnit unit)
         {
             if(unit == ElectricChargeUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -85,14 +80,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCharge(double value, UnitSystem unitSystem)
+        public ElectricCharge(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -134,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Coulomb.
         /// </summary>
-        public static ElectricCharge<T> Zero { get; } = new ElectricCharge<T>(0, BaseUnit);
+        public static ElectricCharge<T> Zero { get; } = new ElectricCharge<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -143,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -173,27 +170,27 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> in AmpereHours.
         /// </summary>
-        public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
+        public T AmpereHours => As(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> in Coulombs.
         /// </summary>
-        public double Coulombs => As(ElectricChargeUnit.Coulomb);
+        public T Coulombs => As(ElectricChargeUnit.Coulomb);
 
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> in KiloampereHours.
         /// </summary>
-        public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
+        public T KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> in MegaampereHours.
         /// </summary>
-        public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
+        public T MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> in MilliampereHours.
         /// </summary>
-        public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
+        public T MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
 
         #endregion
 
@@ -228,46 +225,41 @@ namespace UnitsNet
         ///     Get <see cref="ElectricCharge{T}" /> from AmpereHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge<T> FromAmpereHours(QuantityValue amperehours)
+        public static ElectricCharge<T> FromAmpereHours(T amperehours)
         {
-            double value = (double) amperehours;
-            return new ElectricCharge<T>(value, ElectricChargeUnit.AmpereHour);
+            return new ElectricCharge<T>(amperehours, ElectricChargeUnit.AmpereHour);
         }
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> from Coulombs.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge<T> FromCoulombs(QuantityValue coulombs)
+        public static ElectricCharge<T> FromCoulombs(T coulombs)
         {
-            double value = (double) coulombs;
-            return new ElectricCharge<T>(value, ElectricChargeUnit.Coulomb);
+            return new ElectricCharge<T>(coulombs, ElectricChargeUnit.Coulomb);
         }
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> from KiloampereHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge<T> FromKiloampereHours(QuantityValue kiloamperehours)
+        public static ElectricCharge<T> FromKiloampereHours(T kiloamperehours)
         {
-            double value = (double) kiloamperehours;
-            return new ElectricCharge<T>(value, ElectricChargeUnit.KiloampereHour);
+            return new ElectricCharge<T>(kiloamperehours, ElectricChargeUnit.KiloampereHour);
         }
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> from MegaampereHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge<T> FromMegaampereHours(QuantityValue megaamperehours)
+        public static ElectricCharge<T> FromMegaampereHours(T megaamperehours)
         {
-            double value = (double) megaamperehours;
-            return new ElectricCharge<T>(value, ElectricChargeUnit.MegaampereHour);
+            return new ElectricCharge<T>(megaamperehours, ElectricChargeUnit.MegaampereHour);
         }
         /// <summary>
         ///     Get <see cref="ElectricCharge{T}" /> from MilliampereHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge<T> FromMilliampereHours(QuantityValue milliamperehours)
+        public static ElectricCharge<T> FromMilliampereHours(T milliamperehours)
         {
-            double value = (double) milliamperehours;
-            return new ElectricCharge<T>(value, ElectricChargeUnit.MilliampereHour);
+            return new ElectricCharge<T>(milliamperehours, ElectricChargeUnit.MilliampereHour);
         }
 
         /// <summary>
@@ -276,9 +268,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="ElectricCharge{T}" /> unit value.</returns>
-        public static ElectricCharge<T> From(QuantityValue value, ElectricChargeUnit fromUnit)
+        public static ElectricCharge<T> From(T value, ElectricChargeUnit fromUnit)
         {
-            return new ElectricCharge<T>((double)value, fromUnit);
+            return new ElectricCharge<T>(value, fromUnit);
         }
 
         #endregion
@@ -432,43 +424,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricCharge<T> operator -(ElectricCharge<T> right)
         {
-            return new ElectricCharge<T>(-right.Value, right.Unit);
+            return new ElectricCharge<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge{T}"/> from adding two <see cref="ElectricCharge{T}"/>.</summary>
         public static ElectricCharge<T> operator +(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return new ElectricCharge<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricCharge<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge{T}"/> from subtracting two <see cref="ElectricCharge{T}"/>.</summary>
         public static ElectricCharge<T> operator -(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return new ElectricCharge<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricCharge<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge{T}"/> from multiplying value and <see cref="ElectricCharge{T}"/>.</summary>
-        public static ElectricCharge<T> operator *(double left, ElectricCharge<T> right)
+        public static ElectricCharge<T> operator *(T left, ElectricCharge<T> right)
         {
-            return new ElectricCharge<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ElectricCharge<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge{T}"/> from multiplying value and <see cref="ElectricCharge{T}"/>.</summary>
-        public static ElectricCharge<T> operator *(ElectricCharge<T> left, double right)
+        public static ElectricCharge<T> operator *(ElectricCharge<T> left, T right)
         {
-            return new ElectricCharge<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ElectricCharge<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge{T}"/> from dividing <see cref="ElectricCharge{T}"/> by value.</summary>
-        public static ElectricCharge<T> operator /(ElectricCharge<T> left, double right)
+        public static ElectricCharge<T> operator /(ElectricCharge<T> left, T right)
         {
-            return new ElectricCharge<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ElectricCharge<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCharge{T}"/> by <see cref="ElectricCharge{T}"/>.</summary>
-        public static double operator /(ElectricCharge<T> left, ElectricCharge<T> right)
+        public static T operator /(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return left.Coulombs / right.Coulombs;
+            return CompiledLambdas.Divide(left.Coulombs, right.Coulombs);
         }
 
         #endregion
@@ -478,25 +475,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCharge<T> left, ElectricCharge<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -525,7 +522,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCharge<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -542,7 +539,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricCharge{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricCharge<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -590,10 +587,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -613,17 +608,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricChargeUnit unit)
+        public T As(ElectricChargeUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -643,8 +638,13 @@ namespace UnitsNet
             if(!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricChargeUnit);
+            var asValue = As(unitAsElectricChargeUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ElectricChargeUnit>.As(ElectricChargeUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="ElectricCharge{T}" /> to another <see cref="ElectricCharge{T}" /> with the unit representation <paramref name="unit" />.
@@ -687,22 +687,28 @@ namespace UnitsNet
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ElectricChargeUnit, T> IQuantityT<ElectricChargeUnit, T>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ElectricChargeUnit, T> IQuantityT<ElectricChargeUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricChargeUnit.AmpereHour: return _value/2.77777777777e-4;
-                case ElectricChargeUnit.Coulomb: return _value;
-                case ElectricChargeUnit.KiloampereHour: return (_value/2.77777777777e-4) * 1e3d;
-                case ElectricChargeUnit.MegaampereHour: return (_value/2.77777777777e-4) * 1e6d;
-                case ElectricChargeUnit.MilliampereHour: return (_value/2.77777777777e-4) * 1e-3d;
+                case ElectricChargeUnit.AmpereHour: return Value/2.77777777777e-4;
+                case ElectricChargeUnit.Coulomb: return Value;
+                case ElectricChargeUnit.KiloampereHour: return (Value/2.77777777777e-4) * 1e3d;
+                case ElectricChargeUnit.MegaampereHour: return (Value/2.77777777777e-4) * 1e6d;
+                case ElectricChargeUnit.MilliampereHour: return (Value/2.77777777777e-4) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -719,10 +725,10 @@ namespace UnitsNet
             return new ElectricCharge<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ElectricChargeUnit unit)
+        private T GetValueAs(ElectricChargeUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -834,7 +840,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -849,37 +855,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -903,17 +909,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

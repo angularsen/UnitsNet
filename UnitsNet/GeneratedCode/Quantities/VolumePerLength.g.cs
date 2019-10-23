@@ -32,13 +32,8 @@ namespace UnitsNet
     /// <summary>
     ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
-    public partial struct VolumePerLength<T> : IQuantity<VolumePerLengthUnit>, IEquatable<VolumePerLength<T>>, IComparable, IComparable<VolumePerLength<T>>, IConvertible, IFormattable
+    public partial struct VolumePerLength<T> : IQuantityT<VolumePerLengthUnit, T>, IEquatable<VolumePerLength<T>>, IComparable, IComparable<VolumePerLength<T>>, IConvertible, IFormattable
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -63,12 +58,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public VolumePerLength(double value, VolumePerLengthUnit unit)
+        public VolumePerLength(T value, VolumePerLengthUnit unit)
         {
             if(unit == VolumePerLengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -80,14 +75,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VolumePerLength(double value, UnitSystem unitSystem)
+        public VolumePerLength(T value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -129,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static VolumePerLength<T> Zero { get; } = new VolumePerLength<T>(0, BaseUnit);
+        public static VolumePerLength<T> Zero { get; } = new VolumePerLength<T>((T)0, BaseUnit);
 
         #endregion
 
@@ -138,7 +133,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -168,17 +165,17 @@ namespace UnitsNet
         /// <summary>
         ///     Get <see cref="VolumePerLength{T}" /> in CubicMetersPerMeter.
         /// </summary>
-        public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
+        public T CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
         ///     Get <see cref="VolumePerLength{T}" /> in LitersPerMeter.
         /// </summary>
-        public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
+        public T LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
         ///     Get <see cref="VolumePerLength{T}" /> in OilBarrelsPerFoot.
         /// </summary>
-        public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
+        public T OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         #endregion
 
@@ -213,28 +210,25 @@ namespace UnitsNet
         ///     Get <see cref="VolumePerLength{T}" /> from CubicMetersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength<T> FromCubicMetersPerMeter(QuantityValue cubicmeterspermeter)
+        public static VolumePerLength<T> FromCubicMetersPerMeter(T cubicmeterspermeter)
         {
-            double value = (double) cubicmeterspermeter;
-            return new VolumePerLength<T>(value, VolumePerLengthUnit.CubicMeterPerMeter);
+            return new VolumePerLength<T>(cubicmeterspermeter, VolumePerLengthUnit.CubicMeterPerMeter);
         }
         /// <summary>
         ///     Get <see cref="VolumePerLength{T}" /> from LitersPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength<T> FromLitersPerMeter(QuantityValue literspermeter)
+        public static VolumePerLength<T> FromLitersPerMeter(T literspermeter)
         {
-            double value = (double) literspermeter;
-            return new VolumePerLength<T>(value, VolumePerLengthUnit.LiterPerMeter);
+            return new VolumePerLength<T>(literspermeter, VolumePerLengthUnit.LiterPerMeter);
         }
         /// <summary>
         ///     Get <see cref="VolumePerLength{T}" /> from OilBarrelsPerFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength<T> FromOilBarrelsPerFoot(QuantityValue oilbarrelsperfoot)
+        public static VolumePerLength<T> FromOilBarrelsPerFoot(T oilbarrelsperfoot)
         {
-            double value = (double) oilbarrelsperfoot;
-            return new VolumePerLength<T>(value, VolumePerLengthUnit.OilBarrelPerFoot);
+            return new VolumePerLength<T>(oilbarrelsperfoot, VolumePerLengthUnit.OilBarrelPerFoot);
         }
 
         /// <summary>
@@ -243,9 +237,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><see cref="VolumePerLength{T}" /> unit value.</returns>
-        public static VolumePerLength<T> From(QuantityValue value, VolumePerLengthUnit fromUnit)
+        public static VolumePerLength<T> From(T value, VolumePerLengthUnit fromUnit)
         {
-            return new VolumePerLength<T>((double)value, fromUnit);
+            return new VolumePerLength<T>(value, fromUnit);
         }
 
         #endregion
@@ -399,43 +393,48 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static VolumePerLength<T> operator -(VolumePerLength<T> right)
         {
-            return new VolumePerLength<T>(-right.Value, right.Unit);
+            return new VolumePerLength<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength{T}"/> from adding two <see cref="VolumePerLength{T}"/>.</summary>
         public static VolumePerLength<T> operator +(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return new VolumePerLength<T>(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new VolumePerLength<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength{T}"/> from subtracting two <see cref="VolumePerLength{T}"/>.</summary>
         public static VolumePerLength<T> operator -(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return new VolumePerLength<T>(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new VolumePerLength<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength{T}"/> from multiplying value and <see cref="VolumePerLength{T}"/>.</summary>
-        public static VolumePerLength<T> operator *(double left, VolumePerLength<T> right)
+        public static VolumePerLength<T> operator *(T left, VolumePerLength<T> right)
         {
-            return new VolumePerLength<T>(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new VolumePerLength<T>(value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength{T}"/> from multiplying value and <see cref="VolumePerLength{T}"/>.</summary>
-        public static VolumePerLength<T> operator *(VolumePerLength<T> left, double right)
+        public static VolumePerLength<T> operator *(VolumePerLength<T> left, T right)
         {
-            return new VolumePerLength<T>(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new VolumePerLength<T>(value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength{T}"/> from dividing <see cref="VolumePerLength{T}"/> by value.</summary>
-        public static VolumePerLength<T> operator /(VolumePerLength<T> left, double right)
+        public static VolumePerLength<T> operator /(VolumePerLength<T> left, T right)
         {
-            return new VolumePerLength<T>(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new VolumePerLength<T>(value, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumePerLength{T}"/> by <see cref="VolumePerLength{T}"/>.</summary>
-        public static double operator /(VolumePerLength<T> left, VolumePerLength<T> right)
+        public static T operator /(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return left.CubicMetersPerMeter / right.CubicMetersPerMeter;
+            return CompiledLambdas.Divide(left.CubicMetersPerMeter, right.CubicMetersPerMeter);
         }
 
         #endregion
@@ -445,25 +444,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumePerLength<T> left, VolumePerLength<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -492,7 +491,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VolumePerLength<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
@@ -509,7 +508,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumePerLength{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumePerLength<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -557,10 +556,8 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -580,17 +577,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumePerLengthUnit unit)
+        public T As(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem == null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -610,8 +607,13 @@ namespace UnitsNet
             if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-            return As(unitAsVolumePerLengthUnit);
+            var asValue = As(unitAsVolumePerLengthUnit);
+            return Convert.ToDouble(asValue);
         }
+
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<VolumePerLengthUnit>.As(VolumePerLengthUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     Converts this <see cref="VolumePerLength{T}" /> to another <see cref="VolumePerLength{T}" /> with the unit representation <paramref name="unit" />.
@@ -654,20 +656,26 @@ namespace UnitsNet
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<VolumePerLengthUnit, T> IQuantityT<VolumePerLengthUnit, T>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<VolumePerLengthUnit, T> IQuantityT<VolumePerLengthUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case VolumePerLengthUnit.CubicMeterPerMeter: return _value;
-                case VolumePerLengthUnit.LiterPerMeter: return _value/1000;
-                case VolumePerLengthUnit.OilBarrelPerFoot: return _value/1.91713408;
+                case VolumePerLengthUnit.CubicMeterPerMeter: return Value;
+                case VolumePerLengthUnit.LiterPerMeter: return Value/1000;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return Value/1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -684,10 +692,10 @@ namespace UnitsNet
             return new VolumePerLength<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(VolumePerLengthUnit unit)
+        private T GetValueAs(VolumePerLengthUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -797,7 +805,7 @@ namespace UnitsNet
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
@@ -812,37 +820,37 @@ namespace UnitsNet
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -866,17 +874,17 @@ namespace UnitsNet
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

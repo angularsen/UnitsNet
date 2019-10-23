@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of PowerRatio<double>.
+    /// Test of PowerRatio.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerRatioTestsBase

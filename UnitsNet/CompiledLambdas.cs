@@ -197,6 +197,14 @@ namespace UnitsNet
         internal static bool GreaterThanOrEqual<TLeft, TRight>(TLeft left, TRight right) =>
             GreaterThanOrEqualImplementation<TLeft, TRight>.Invoke(left, right);
 
+        /// <summary>
+        /// Negates the value.
+        /// </summary>
+        /// <typeparam name="T">The type of the value to negate.</typeparam>
+        /// <param name="value">The value to negate.</param>
+        /// <returns>The negated value.</returns>
+        internal static T Negate<T>(T value) => NegateImplementation<T, T>.Invoke(value);
+
         #region Implementation Classes
 
         private static class MultiplyImplementation<TLeft, TRight, TResult>
@@ -287,7 +295,30 @@ namespace UnitsNet
             internal static bool Invoke(TLeft left, TRight right) => Function(left, right);
         }
 
+        private static class NegateImplementation<T, TResult>
+        {
+            private readonly static Func<T, TResult> Function =
+                CreateUnaryFunction<T, TResult>(Expression.Negate);
+
+            internal static TResult Invoke(T value) => Function(value);
+        }
+
         #endregion
+
+        /// <summary>
+        /// Creates a compiled lambda for the given <see cref="Func{Expression, UnaryExpression}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the value to be passed to the <see cref="UnaryExpression"/>.</typeparam>
+        /// <typeparam name="TResult">The return type of the <see cref="UnaryExpression"/>.</typeparam>
+        /// <param name="expressionCreationFunction">The function that creates a unary expression to compile.</param>
+        /// <returns>The compiled unary expression.</returns>
+        private static Func<T, TResult> CreateUnaryFunction<T, TResult>(Func<Expression, UnaryExpression> expressionCreationFunction)
+        {
+            var valueParameter = Expression.Parameter(typeof(T), "value");
+            var negationExpression = expressionCreationFunction(valueParameter);
+            var lambda = Expression.Lambda<Func<T, TResult>>(negationExpression, valueParameter);
+            return lambda.Compile();
+        }
 
         /// <summary>
         /// Creates a compiled lambda for the given <see cref="Func{Expression, Expression, BinaryExpression}"/>.

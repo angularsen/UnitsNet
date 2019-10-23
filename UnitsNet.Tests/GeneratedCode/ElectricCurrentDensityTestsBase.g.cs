@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of ElectricCurrentDensity<double>.
+    /// Test of ElectricCurrentDensity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricCurrentDensityTestsBase

@@ -29,7 +29,7 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of BrakeSpecificFuelConsumption<double>.
+    /// Test of BrakeSpecificFuelConsumption.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class BrakeSpecificFuelConsumptionTestsBase

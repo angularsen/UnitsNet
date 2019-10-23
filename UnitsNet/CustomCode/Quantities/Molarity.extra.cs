@@ -13,7 +13,7 @@ namespace UnitsNet
         public Molarity(Density<T> density, Mass<T> molecularWeight )
             : this()
         {
-            _value = density.KilogramsPerCubicMeter / molecularWeight.Kilograms;
+            Value = density.KilogramsPerCubicMeter / molecularWeight.Kilograms;
             _unit = MolarityUnit.MolesPerCubicMeter;
         }
 
