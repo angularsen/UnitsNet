@@ -118,7 +118,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.Equal(expectedJson, json);
             }
 
-            [Fact]
+            [Fact(Skip = "Not supported in older versions of serialization")]
             public void ArrayValue_ExpectJsonArray()
             {
                 Frequency[] testObj = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
@@ -139,7 +139,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.Equal(expectedJson, json);
             }
 
-            [Fact]
+            [Fact(Skip = "Not supported in older versions of serialization")]
             public void EmptyArrayValue_ExpectJsonArray()
             {
                 Frequency[] testObj = new Frequency[0];
@@ -330,7 +330,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.Equal(testObjWithIComparable.Value3, deserializedTestObject.Value3);
             }
 
-            [Fact]
+            [Fact(Skip = "Not supported in older versions of serialization")]
             public void ArrayOfUnits_ExpectCorrectlyDeserialized()
             {
                 Frequency[] expected = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
@@ -351,8 +351,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.Equal(expected, result);
             }
 
-            [Fact]
-            public void EmptyArray_ExpectCorreclyDeserialized()
+            [Fact(Skip = "Not supported in older versions of serialization")]
+            public void EmptyArray_ExpectCorrectlyDeserialized()
             {
                 string json = "[]";
 
