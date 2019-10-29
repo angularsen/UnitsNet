@@ -2,7 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -41,36 +41,32 @@ namespace UnitsNet.Serialization.JsonNet
                 return reader.Value;
 
             object obj = TryDeserializeIComparable(reader, serializer);
-            // A null System.Nullable value or a comparable type was deserialized so return this
-            if (!(obj is ValueUnit) && !(obj is Array))
-                return obj;
-
-            if (obj is Array)
+            if (obj is Array values)
             {
-                object[] values = (object[]) obj;
+                // Create array with the requested type, such as `Length[]` or `Frequency[]`
+                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), values.Length);
 
-                List<object> results = new List<object>();
-                
-                foreach (var value in values)
+                // Fill array with parsed quantities
+                var i = 0;
+                foreach (ValueUnit valueUnit in values)
                 {
-                    object result = ParseValueUnit(value as ValueUnit);
-                    results.Add(result);
+                    IQuantity quantity = ParseValueUnit(valueUnit);
+                    arrayOfQuantities.SetValue(quantity, i++);
                 }
-                
-                Type unitType = objectType.GetElementType();
-                Array typedArray = Array.CreateInstance(unitType, results.Count);
 
-                Array.Copy(results.ToArray(), typedArray, results.Count);
-
-                return typedArray;
+                return arrayOfQuantities;
+            }
+            else if (obj is ValueUnit valueUnit)
+            {
+                return ParseValueUnit(valueUnit);
             }
             else
             {
-                return ParseValueUnit(obj as ValueUnit);
+                return obj;
             }
         }
 
-        private object ParseValueUnit(ValueUnit vu)
+        private static IQuantity ParseValueUnit(ValueUnit vu)
         {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
@@ -100,27 +96,20 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (token is JArray)
             {
-                List<object> results = new List<object>();
-
-                foreach (var item in token.Children())
-                {
-                    results.Add(TryDeserializeIComparable(item, serializer));
-                }
-
-                return results.ToArray();
+                object[] results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
+                return results;
             }
             else
             {
                 return TryDeserializeIComparable(token, serializer);
             }
-            
         }
 
         private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
         {
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
@@ -128,7 +117,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else
             {
-                return new ValueUnit()
+                return new ValueUnit
                 {
                     Unit = token[nameof(ValueUnit.Unit)].ToString(),
                     Value = token[nameof(ValueUnit.Value)].ToObject<double>()
@@ -145,52 +134,40 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
         {
-            Type quantityType = obj.GetType();
-
             // ValueUnit should be written as usual (but read in a custom way)
-            if(quantityType == typeof(ValueUnit))
+            if (obj is ValueUnit valueUnit)
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
-                JToken t = JToken.FromObject(obj, localSerializer);
 
+                var t = JToken.FromObject(valueUnit, localSerializer);
                 t.WriteTo(writer);
-                return;
             }
-
-            if (quantityType.IsArray)
+            else if (obj is Array values)
             {
-                Type elementType = quantityType.GetElementType();
-                Array values = (Array) obj;
-
-                List<ValueUnit> results = new List<ValueUnit>();
-
-                foreach (IQuantity value in values)
-                {
-                    results.Add(new ValueUnit()
-                    {
-                        // See ValueUnit about precision loss for quantities using decimal type.
-                        Value = value.Value,
-                        Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
-                    });
-                }
-
+                var results = values.Cast<IQuantity>().Select(ToValueUnit);
                 serializer.Serialize(writer, results);
+            }
+            else if (obj is IQuantity quantity)
+            {
+                serializer.Serialize(writer, ToValueUnit(quantity));
             }
             else
             {
-                IQuantity quantity = obj as IQuantity;
-                serializer.Serialize(writer, new ValueUnit
-                {
-                    // See ValueUnit about precision loss for quantities using decimal type.
-                    Value = quantity.Value,
-                    Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}" // Example: "MassUnit.Kilogram"
-                } );
+                throw new NotSupportedException($"Unsupported type: {obj.GetType()}");
             }
+        }
 
-            
+        private static ValueUnit ToValueUnit(IQuantity value)
+        {
+            return new ValueUnit
+            {
+                // See ValueUnit about precision loss for quantities using decimal type.
+                Value = value.Value,
+                Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
+            };
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
 {
     public class UnitsNetJsonConverterTests
     {

@@ -121,7 +121,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void ArrayValue_ExpectJsonArray()
             {
-                Frequency[] testObj = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+                Frequency[] testObj = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
 
                 string expectedJson = "[\n" +
                                       "  {\n" +
@@ -333,7 +333,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void ArrayOfUnits_ExpectCorrectlyDeserialized()
             {
-                Frequency[] expected = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+                Frequency[] expected = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
 
                 string json = "[\n" +
                                       "  {\n" +
