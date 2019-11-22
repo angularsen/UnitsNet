@@ -34,6 +34,5 @@ namespace UnitsNet.Tests.CustomCode
             ElectricPotential potential = ElectricCurrent.FromAmperes(current) * ElectricResistance.FromOhms(resistance);
             Assert.Equal(expected, potential.Volts);
         }
-
     }
 }

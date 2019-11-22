@@ -3,11 +3,11 @@
 
 namespace UnitsNet
 {
-    public partial struct ElectricCurrent
+    public partial struct ElectricResistance
     {
         /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricResistance"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
         /// <remarks>Ohm's law implementation</remarks>
-        public static ElectricPotential operator *(ElectricCurrent current, ElectricResistance resistance)
+        public static ElectricPotential operator *(ElectricResistance resistance, ElectricCurrent current)
         {
             return ElectricPotential.FromVolts(resistance.Ohms * current.Amperes);
         }
