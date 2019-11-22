@@ -18,5 +18,19 @@ namespace UnitsNet
         {
             return AmplitudeRatio.FromElectricPotential(this);
         }
+
+        /// <summary>Get <see cref="ElectricResistance"/> from <see cref="ElectricPotential"/> divided by <see cref="ElectricCurrent"/>.</summary>
+        /// <remarks>Ohm's law implementation</remarks>
+        public static ElectricResistance operator /(ElectricPotential potential, ElectricCurrent current)
+        {
+            return ElectricResistance.FromOhms(potential.Volts / current.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> divided by <see cref="ElectricResistance"/>.</summary>
+        /// <remarks>Ohm's law implementation</remarks>
+        public static ElectricCurrent operator /(ElectricPotential potential, ElectricResistance resistance)
+        {
+            return ElectricCurrent.FromAmperes(potential.Volts / resistance.Ohms);
+        }
     }
 }
