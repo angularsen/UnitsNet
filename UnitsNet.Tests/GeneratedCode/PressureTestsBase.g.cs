@@ -652,53 +652,66 @@ namespace UnitsNet.Tests
         }
 
         // Pressure Measurement References
-
         [Fact]
-        public void ReferenceConversion_WithDefaultReferencedPressure()
+        public void ReferenceConversion_WithDefaultPressureReference_PressureReferenceIsAbsolute()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
-
+            AssertEx.Equals(PressureReference.Absolute, refPressure.Reference);
+        }
+        [Fact]
+        public void ReferenceConversion_WithDefaultPressureReference_GaugeIsOneLess()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.EqualTolerance(2, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(2, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithDefaultPressureReference_VacuumIsNegativeGaugeAsOneLess()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
+            AssertEx.EqualTolerance(-2, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithDefaultPressureReference_AbsoluteIsEqual()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.EqualTolerance(3, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
-
-            refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
-
+        }
+        [Fact]
+        public void ReferenceConversion_WithGaugePressureReference_AbsoluteIsOneMore()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
             AssertEx.EqualTolerance(4, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
-
-            refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
-
-            AssertEx.EqualTolerance(3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(2, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
         }
-
         [Fact]
-        public void ReferenceConversion_WithSetReferencedPressure()
+        public void ReferenceConversion_WithGaugePressureReference_VacuumIsNegativeGauge()
         {
-            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
-
-            AssertEx.EqualTolerance(2, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
-
-            ReferencePressure.ReferencedPressure = new Pressure(2, PressureUnit.Atmosphere);
-            AssertEx.EqualTolerance(1, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
-
-            ReferencePressure.ReferencedPressure = new Pressure(1.5, PressureUnit.Atmosphere);
-            AssertEx.EqualTolerance(1.5, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
+            AssertEx.EqualTolerance(-3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
-
         [Fact]
-        public void ReferencePressure_isChanged()
+        public void ReferenceConversion_WithGaugePressureReference_GaugeIsEqual()
         {
-            var referencePressure = ReferencePressure.ReferencedPressure;
-            ReferencePressure.ReferencedPressure = new Pressure(2, PressureUnit.Atmosphere);
-
-            Assert.False(referencePressure.Atmospheres.Equals(ReferencePressure.ReferencedPressure.Atmospheres));
-            Assert.True(ReferencePressure.ReferencedPressure.Atmospheres.Equals(2));
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
+            AssertEx.EqualTolerance(3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
         }
-
+        [Fact]
+        public void ReferenceConversion_WithVacuumPressureReference_VacuumIsEqual()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithVacuumPressureReference_GaugeIsNegativeVacuum()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(-3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithVacuumPressureReference_AbsoluteIsOneLessNegative()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(-2, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
+        }
         [Fact]
         public void ReferencesDoesNotContainUndefined()
         {
