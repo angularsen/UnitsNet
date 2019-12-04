@@ -84,7 +84,6 @@ namespace UnitsNet.CustomCode.Wrappers
 
             var converted = AsBaseNumericType(reference);
 
-            if (converted < 0) converted *= -1;
             return new Pressure(converted, Pressure.Unit);
         }
 
