@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -90,6 +91,14 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillipascalsInOnePascal => 1e3;
 
+        [Fact]
+        public void ReferencePressure()
+        {
+            var referencePressure = Pressure.Reference;
+            Pressure.Reference = new Pressure(2, PressureUnit.Atmosphere);
+            Assert.False(referencePressure.Atmospheres.Equals(Pressure.Reference.Atmospheres));
+            Assert.True(Pressure.Reference.Atmospheres.Equals(2));
+        }
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {
