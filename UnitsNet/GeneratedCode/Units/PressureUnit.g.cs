@@ -69,6 +69,12 @@ namespace UnitsNet.Units
         TonneForcePerSquareMillimeter,
         Torr,
     }
-
-    #pragma warning restore 1591
+    enum PressureReference
+    {
+        Undefined = 0,
+        Absolute,
+        Gauge,
+        Vacuum,
+    }
+#pragma warning restore 1591
 }
