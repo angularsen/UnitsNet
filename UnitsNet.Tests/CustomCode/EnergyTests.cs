@@ -18,6 +18,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegabritishThermalUnitsInOneJoule => 9.4781712e-10;
 
+        protected override double MegacaloriesInOneJoule => 0.239005736e-6;
+
         protected override double MegajoulesInOneJoule => 1E-6;
 
         protected override double BritishThermalUnitsInOneJoule => 0.00094781712;
@@ -43,6 +45,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double FootPoundsInOneJoule => 0.737562149;
 
         protected override double GigabritishThermalUnitsInOneJoule => 9.4781712e-13;
+
+        protected override double GigajoulesInOneJoule => 1e-9;
 
         protected override double GigawattHoursInOneJoule => 2.77777778e-13;
 

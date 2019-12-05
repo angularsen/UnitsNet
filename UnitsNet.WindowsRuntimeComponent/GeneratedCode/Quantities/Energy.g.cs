@@ -201,6 +201,11 @@ namespace UnitsNet
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in Gigajoules.
+        /// </summary>
+        public double Gigajoules => As(EnergyUnit.Gigajoule);
+
+        /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
@@ -234,6 +239,11 @@ namespace UnitsNet
         ///     Get Energy in MegabritishThermalUnits.
         /// </summary>
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
+
+        /// <summary>
+        ///     Get Energy in Megacalories.
+        /// </summary>
+        public double Megacalories => As(EnergyUnit.Megacalorie);
 
         /// <summary>
         ///     Get Energy in Megajoules.
@@ -396,6 +406,16 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from Gigajoules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromGigajoules(double gigajoules)
+        {
+            double value = (double) gigajoules;
+            return new Energy(value, EnergyUnit.Gigajoule);
+        }
+        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -464,6 +484,16 @@ namespace UnitsNet
         {
             double value = (double) megabritishthermalunits;
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
+        }
+        /// <summary>
+        ///     Get Energy from Megacalories.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMegacalories(double megacalories)
+        {
+            double value = (double) megacalories;
+            return new Energy(value, EnergyUnit.Megacalorie);
         }
         /// <summary>
         ///     Get Energy from Megajoules.
@@ -845,6 +875,7 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return _value*1e-7;
                 case EnergyUnit.FootPound: return _value*1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.Gigajoule: return (_value) * 1e9d;
                 case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
@@ -852,6 +883,7 @@ namespace UnitsNet
                 case EnergyUnit.Kilojoule: return (_value) * 1e3d;
                 case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megacalorie: return (_value*4.184) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
                 case EnergyUnit.Millijoule: return (_value) * 1e-3d;
@@ -883,6 +915,7 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return baseUnitValue/1e-7;
                 case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
+                case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
                 case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
@@ -890,6 +923,7 @@ namespace UnitsNet
                 case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
                 case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
+                case EnergyUnit.Megacalorie: return (baseUnitValue/4.184) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
                 case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;

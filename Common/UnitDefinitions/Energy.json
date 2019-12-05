@@ -18,7 +18,7 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli", "Kilo", "Mega" ],
+      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -31,7 +31,7 @@
       "PluralName": "Calories",
       "FromUnitToBaseFunc": "x*4.184",
       "FromBaseToUnitFunc": "x/4.184",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
