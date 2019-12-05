@@ -109,9 +109,15 @@ namespace UnitsNet.CustomCode.Wrappers
         {
             switch (Reference)
             {
-                case PressureReference.Absolute: return Pressure.Value;
-                case PressureReference.Gauge: return ReferencedPressure.ToUnit(Pressure.Unit).Value + Pressure.Value;
-                case PressureReference.Vacuum: return ReferencedPressure.ToUnit(Pressure.Unit).Value - Pressure.Value;
+                case PressureReference.Absolute:
+                    if (Pressure.Value < 0) throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                    else return Pressure.Value;
+                case PressureReference.Gauge:
+                    if (Pressure.Value * -1 > ReferencedPressure.ToUnit(Pressure.Unit).Value) throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                    else return ReferencedPressure.ToUnit(Pressure.Unit).Value + Pressure.Value;
+                case PressureReference.Vacuum:
+                    if (Pressure.Value > ReferencedPressure.ToUnit(Pressure.Unit).Value) throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                    else return ReferencedPressure.ToUnit(Pressure.Unit).Value - Pressure.Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Reference} to base reference.");
             }

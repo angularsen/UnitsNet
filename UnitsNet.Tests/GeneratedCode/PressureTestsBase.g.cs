@@ -703,14 +703,26 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferenceConversion_WithVacuumPressureReference_GaugeIsNegativeVacuum()
         {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(-1, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithVacuumPressureReferenceToGauge_AbsoluteCannotBeLessThanZero()
+        {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
-            AssertEx.EqualTolerance(-3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
+            Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Gauge.Atmospheres);
         }
         [Fact]
         public void ReferenceConversion_WithVacuumPressureReference_AbsoluteIsOneLessNegative()
         {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(0, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithVacuumPressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
-            AssertEx.EqualTolerance(-2, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
+            Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres );
         }
         [Fact]
         public void ReferencesDoesNotContainUndefined()
