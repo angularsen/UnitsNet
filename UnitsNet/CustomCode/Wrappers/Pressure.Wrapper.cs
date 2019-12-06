@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.Units;
+using UnitsNet.CustomCode.Units;
 
 namespace UnitsNet.CustomCode.Wrappers
 {
