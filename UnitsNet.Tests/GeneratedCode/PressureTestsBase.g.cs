@@ -697,8 +697,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReferenceConversion_WithVacuumPressureReference_VacuumIsEqual()
         {
-            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
-            AssertEx.EqualTolerance(3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
+            AssertEx.EqualTolerance(1, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
         public void ReferenceConversion_WithVacuumPressureReference_GaugeIsNegativeVacuum()
@@ -723,6 +723,24 @@ namespace UnitsNet.Tests
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres );
+        }
+        [Fact]
+        public void ReferenceConversion_WithAbsolutePressureReferenceToAbsolute_AbsoluteIsEqual()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Absolute);
+            AssertEx.EqualTolerance(3, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
+        }
+        [Fact]
+        public void ReferenceConversion_WithNegativeAbsolutePressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(-3), PressureReference.Absolute);
+            Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
+        }
+        [Fact]
+        public void ReferenceConversion_WithNegativeGaugePressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        {
+            ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(-3), PressureReference.Gauge);
+            Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
         }
         [Fact]
         public void ReferencesDoesNotContainUndefined()

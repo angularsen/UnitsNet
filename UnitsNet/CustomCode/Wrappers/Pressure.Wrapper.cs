@@ -79,9 +79,6 @@ namespace UnitsNet.CustomCode.Wrappers
 
         private Pressure As(PressureReference reference)
         {
-            if (Reference == reference)
-                return new Pressure(Pressure.Value, Pressure.Unit);
-
             var converted = AsBaseNumericType(reference);
 
             return new Pressure(converted, Pressure.Unit);
@@ -89,10 +86,11 @@ namespace UnitsNet.CustomCode.Wrappers
 
         private double AsBaseNumericType(PressureReference reference)
         {
+            var baseReferenceValue = AsBaseReference();
+
             if (Reference == reference)
                 return Pressure.Value;
 
-            var baseReferenceValue = AsBaseReference();
             var negatingValue = Reference == PressureReference.Vacuum ? -1 : 1;
 
             switch (reference)
@@ -125,6 +123,6 @@ namespace UnitsNet.CustomCode.Wrappers
         /// <summary>
         /// Represents the pressure at which Pressure is referenced (1 atm default)
         /// </summary>
-        public static Pressure ReferencedPressure { get; set; } = new Pressure(1, PressureUnit.Atmosphere);
+        public static Pressure ReferencedPressure { get; } = new Pressure(1, PressureUnit.Atmosphere);
     }
 }
