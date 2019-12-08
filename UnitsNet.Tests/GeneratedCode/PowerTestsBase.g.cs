@@ -40,14 +40,19 @@ namespace UnitsNet.Tests
         protected abstract double DeciwattsInOneWatt { get; }
         protected abstract double ElectricalHorsepowerInOneWatt { get; }
         protected abstract double FemtowattsInOneWatt { get; }
+        protected abstract double GigajoulesPerHourInOneWatt { get; }
         protected abstract double GigawattsInOneWatt { get; }
         protected abstract double HydraulicHorsepowerInOneWatt { get; }
+        protected abstract double JoulesPerHourInOneWatt { get; }
         protected abstract double KilobritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double KilojoulesPerHourInOneWatt { get; }
         protected abstract double KilowattsInOneWatt { get; }
         protected abstract double MechanicalHorsepowerInOneWatt { get; }
+        protected abstract double MegajoulesPerHourInOneWatt { get; }
         protected abstract double MegawattsInOneWatt { get; }
         protected abstract double MetricHorsepowerInOneWatt { get; }
         protected abstract double MicrowattsInOneWatt { get; }
+        protected abstract double MillijoulesPerHourInOneWatt { get; }
         protected abstract double MilliwattsInOneWatt { get; }
         protected abstract double NanowattsInOneWatt { get; }
         protected abstract double PetawattsInOneWatt { get; }
@@ -62,14 +67,19 @@ namespace UnitsNet.Tests
         protected virtual double DeciwattsTolerance { get { return 1e-5; } }
         protected virtual double ElectricalHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double FemtowattsTolerance { get { return 1e-5; } }
+        protected virtual double GigajoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double GigawattsTolerance { get { return 1e-5; } }
         protected virtual double HydraulicHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilobritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilowattsTolerance { get { return 1e-5; } }
         protected virtual double MechanicalHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double MegawattsTolerance { get { return 1e-5; } }
         protected virtual double MetricHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double MicrowattsTolerance { get { return 1e-5; } }
+        protected virtual double MillijoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double MilliwattsTolerance { get { return 1e-5; } }
         protected virtual double NanowattsTolerance { get { return 1e-5; } }
         protected virtual double PetawattsTolerance { get { return 1e-5; } }
@@ -94,14 +104,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.GigajoulesPerHour, GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.HydraulicHorsepower, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.JoulesPerHour, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.KilojoulesPerHour, KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.Kilowatts, KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.MechanicalHorsepower, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.MegajoulesPerHour, MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.Megawatts, MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.MetricHorsepower, MetricHorsepowerTolerance);
             AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.Microwatts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(MillijoulesPerHourInOneWatt, watt.MillijoulesPerHour, MillijoulesPerHourTolerance);
             AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.Milliwatts, MilliwattsTolerance);
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.Nanowatts, NanowattsTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
@@ -119,14 +134,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Deciwatt).Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.ElectricalHorsepower).ElectricalHorsepower, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Femtowatt).Femtowatts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.GigajoulePerHour).GigajoulesPerHour, GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Gigawatt).Gigawatts, GigawattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.HydraulicHorsepower).HydraulicHorsepower, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.JoulePerHour).JoulesPerHour, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.KilobritishThermalUnitPerHour).KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.KilojoulePerHour).KilojoulesPerHour, KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Kilowatt).Kilowatts, KilowattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MechanicalHorsepower).MechanicalHorsepower, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MegajoulePerHour).MegajoulesPerHour, MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Megawatt).Megawatts, MegawattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MetricHorsepower).MetricHorsepower, MetricHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Microwatt).Microwatts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MillijoulePerHour).MillijoulesPerHour, MillijoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Milliwatt).Milliwatts, MilliwattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Nanowatt).Nanowatts, NanowattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Petawatt).Petawatts, PetawattsTolerance);
@@ -145,14 +165,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.As(PowerUnit.Deciwatt), DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.As(PowerUnit.GigajoulePerHour), GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.As(PowerUnit.HydraulicHorsepower), HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.As(PowerUnit.JoulePerHour), JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.KilobritishThermalUnitPerHour), KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.As(PowerUnit.KilojoulePerHour), KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.As(PowerUnit.Kilowatt), KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.As(PowerUnit.MechanicalHorsepower), MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.As(PowerUnit.MegajoulePerHour), MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.As(PowerUnit.Megawatt), MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.As(PowerUnit.MetricHorsepower), MetricHorsepowerTolerance);
             AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.As(PowerUnit.Microwatt), MicrowattsTolerance);
+            AssertEx.EqualTolerance(MillijoulesPerHourInOneWatt, watt.As(PowerUnit.MillijoulePerHour), MillijoulesPerHourTolerance);
             AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.As(PowerUnit.Milliwatt), MilliwattsTolerance);
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.As(PowerUnit.Nanowatt), NanowattsTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
@@ -190,6 +215,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FemtowattsInOneWatt, (double)femtowattQuantity.Value, FemtowattsTolerance);
             Assert.Equal(PowerUnit.Femtowatt, femtowattQuantity.Unit);
 
+            var gigajouleperhourQuantity = watt.ToUnit(PowerUnit.GigajoulePerHour);
+            AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, (double)gigajouleperhourQuantity.Value, GigajoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.GigajoulePerHour, gigajouleperhourQuantity.Unit);
+
             var gigawattQuantity = watt.ToUnit(PowerUnit.Gigawatt);
             AssertEx.EqualTolerance(GigawattsInOneWatt, (double)gigawattQuantity.Value, GigawattsTolerance);
             Assert.Equal(PowerUnit.Gigawatt, gigawattQuantity.Unit);
@@ -198,9 +227,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, (double)hydraulichorsepowerQuantity.Value, HydraulicHorsepowerTolerance);
             Assert.Equal(PowerUnit.HydraulicHorsepower, hydraulichorsepowerQuantity.Unit);
 
+            var jouleperhourQuantity = watt.ToUnit(PowerUnit.JoulePerHour);
+            AssertEx.EqualTolerance(JoulesPerHourInOneWatt, (double)jouleperhourQuantity.Value, JoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.JoulePerHour, jouleperhourQuantity.Unit);
+
             var kilobritishthermalunitperhourQuantity = watt.ToUnit(PowerUnit.KilobritishThermalUnitPerHour);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, (double)kilobritishthermalunitperhourQuantity.Value, KilobritishThermalUnitsPerHourTolerance);
             Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, kilobritishthermalunitperhourQuantity.Unit);
+
+            var kilojouleperhourQuantity = watt.ToUnit(PowerUnit.KilojoulePerHour);
+            AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, (double)kilojouleperhourQuantity.Value, KilojoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.KilojoulePerHour, kilojouleperhourQuantity.Unit);
 
             var kilowattQuantity = watt.ToUnit(PowerUnit.Kilowatt);
             AssertEx.EqualTolerance(KilowattsInOneWatt, (double)kilowattQuantity.Value, KilowattsTolerance);
@@ -209,6 +246,10 @@ namespace UnitsNet.Tests
             var mechanicalhorsepowerQuantity = watt.ToUnit(PowerUnit.MechanicalHorsepower);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, (double)mechanicalhorsepowerQuantity.Value, MechanicalHorsepowerTolerance);
             Assert.Equal(PowerUnit.MechanicalHorsepower, mechanicalhorsepowerQuantity.Unit);
+
+            var megajouleperhourQuantity = watt.ToUnit(PowerUnit.MegajoulePerHour);
+            AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, (double)megajouleperhourQuantity.Value, MegajoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.MegajoulePerHour, megajouleperhourQuantity.Unit);
 
             var megawattQuantity = watt.ToUnit(PowerUnit.Megawatt);
             AssertEx.EqualTolerance(MegawattsInOneWatt, (double)megawattQuantity.Value, MegawattsTolerance);
@@ -221,6 +262,10 @@ namespace UnitsNet.Tests
             var microwattQuantity = watt.ToUnit(PowerUnit.Microwatt);
             AssertEx.EqualTolerance(MicrowattsInOneWatt, (double)microwattQuantity.Value, MicrowattsTolerance);
             Assert.Equal(PowerUnit.Microwatt, microwattQuantity.Unit);
+
+            var millijouleperhourQuantity = watt.ToUnit(PowerUnit.MillijoulePerHour);
+            AssertEx.EqualTolerance(MillijoulesPerHourInOneWatt, (double)millijouleperhourQuantity.Value, MillijoulesPerHourTolerance);
+            Assert.Equal(PowerUnit.MillijoulePerHour, millijouleperhourQuantity.Unit);
 
             var milliwattQuantity = watt.ToUnit(PowerUnit.Milliwatt);
             AssertEx.EqualTolerance(MilliwattsInOneWatt, (double)milliwattQuantity.Value, MilliwattsTolerance);
@@ -257,14 +302,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.FromDeciwatts(watt.Deciwatts).Watts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromGigajoulesPerHour(watt.GigajoulesPerHour).Watts, GigajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromJoulesPerHour(watt.JoulesPerHour).Watts, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilobritishThermalUnitsPerHour(watt.KilobritishThermalUnitsPerHour).Watts, KilobritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromKilojoulesPerHour(watt.KilojoulesPerHour).Watts, KilojoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMegajoulesPerHour(watt.MegajoulesPerHour).Watts, MegajoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromMicrowatts(watt.Microwatts).Watts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMillijoulesPerHour(watt.MillijoulesPerHour).Watts, MillijoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromMilliwatts(watt.Milliwatts).Watts, MilliwattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
