@@ -122,91 +122,91 @@ namespace UnitsNet.Tests.CustomCode
         }
         // Pressure Measurement References
         [Fact]
-        public void ReferenceConversion_WithDefaultPressureReference_PressureReferenceIsAbsolute()
+        public void Reference_WithDefaultPressureReference_IsAbsolute()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.Equals(PressureReference.Absolute, refPressure.Reference);
         }
         [Fact]
-        public void ReferenceConversion_WithDefaultPressureReference_GaugeIsOneLess()
+        public void Gauge_WithDefaultPressureReference_IsOneLessAtmosphere()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.EqualTolerance(2, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithDefaultPressureReference_VacuumIsNegativeGaugeAsOneLess()
+        public void Vacuum_WithDefaultPressureReference_IsOneLessAtmosphereNegative()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.EqualTolerance(-2, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithDefaultPressureReference_AbsoluteIsEqual()
+        public void Absolute_WithDefaultPressureReference_IsEqual()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             AssertEx.EqualTolerance(3, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithGaugePressureReference_AbsoluteIsOneMore()
+        public void Absolute_WithGaugePressureReference_IsOneMore()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
             AssertEx.EqualTolerance(4, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithGaugePressureReference_VacuumIsNegativeGauge()
+        public void Vacuum_WithGaugePressureReference_IsNegative()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
             AssertEx.EqualTolerance(-3, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithGaugePressureReference_GaugeIsEqual()
+        public void Gauge_WithGaugePressureReference_IsEqual()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Gauge);
             AssertEx.EqualTolerance(3, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithVacuumPressureReference_VacuumIsEqual()
+        public void Vacuum_WithVacuumPressureReference_IsEqual()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
             AssertEx.EqualTolerance(1, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithVacuumPressureReference_GaugeIsNegativeVacuum()
+        public void Gauge_WithVacuumPressureReference_IsNegative()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
             AssertEx.EqualTolerance(-1, refPressure.Gauge.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithVacuumPressureReferenceToGauge_AbsoluteCannotBeLessThanZero()
+        public void Gauge_WithVacuumPressureReference_ThrowsArgumentOutOfRangeException()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Gauge.Atmospheres);
         }
         [Fact]
-        public void ReferenceConversion_WithVacuumPressureReference_AbsoluteIsOneLessNegative()
+        public void Absolute_WithVacuumPressureReference_IsOneLessAtmosphereNegative()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
             AssertEx.EqualTolerance(0, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithVacuumPressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        public void Absolute_WithVacuumPressureReference_ThrowsArgumentOutOfRangeException()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
         }
         [Fact]
-        public void ReferenceConversion_WithAbsolutePressureReferenceToAbsolute_AbsoluteIsEqual()
+        public void Absolute_WithAbsolutePressureReference_IsEqual()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Absolute);
             AssertEx.EqualTolerance(3, refPressure.Absolute.Atmospheres, AtmospheresTolerance);
         }
         [Fact]
-        public void ReferenceConversion_WithNegativeAbsolutePressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        public void Absolute_WithNegativeAbsolutePressureReference_ThrowsArgumentOutOfRangeException()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(-3), PressureReference.Absolute);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
         }
         [Fact]
-        public void ReferenceConversion_WithNegativeGaugePressureReferenceToAbsolute_AbsoluteCannotBeLessThanZero()
+        public void Absolute_WithNegativeGaugePressureReference_ThrowsArgumentOutOfRangeException()
         {
             ReferencePressure refPressure = new ReferencePressure(Pressure.FromAtmospheres(-3), PressureReference.Gauge);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Absolute.Atmospheres);
