@@ -26,26 +26,44 @@ namespace UnitsNet.CustomCode.Wrappers
     public struct ReferencePressure
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring
-        ///     <see cref="PressureReference" /> and <see cref="Pressure" /> parameters
+        ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured
+        ///     <see cref="Pressure" />
+        ///     parameter. Assumes the <see cref="PressureReference" /> to <see cref="PressureReference.Absolute" />, with 1 atm as
+        ///     the atmospheric <see cref="Pressure" />.
         /// </summary>
-        /// <param name="pressure"></param>
-        /// <param name="reference"></param>
-        public ReferencePressure(Pressure pressure, PressureReference reference)
+        /// <param name="pressure">The measured absolute <see cref="Pressure" /></param>
+        public ReferencePressure(Pressure pressure) : this(pressure, BaseReference)
         {
-            Reference = reference;
-            _pressure = pressure;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring <see cref="Pressure" />
-        ///     parameter and defines the Reference to be Absolute.
+        ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring
+        ///     measured <see cref="Pressure" /> and <see cref="PressureReference" /> parameters. Assumes 1 atm as the atmospheric
+        ///     <see cref="Pressure" />.
         /// </summary>
-        /// <param name="pressure"></param>
-        public ReferencePressure(Pressure pressure)
+        /// <param name="pressure">The measured <see cref="Pressure" /></param>
+        /// <param name="reference">
+        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="Pressure" />
+        /// </param>
+        public ReferencePressure(Pressure pressure, PressureReference reference) : this(pressure, reference, _defaultAtmosphericPressure)
         {
-            Reference = BaseReference;
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring
+        ///     measured <see cref="Pressure" />, <see cref="PressureReference" />, and atmospheric <see cref="Pressure" />
+        ///     parameters
+        /// </summary>
+        /// <param name="pressure">The measured <see cref="Pressure" /></param>
+        /// <param name="reference">
+        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="Pressure" />
+        /// </param>
+        /// <param name="atmosphericPressure">The atmospheric <see cref="Pressure" /> where the measurement was taken.</param>
+        public ReferencePressure(Pressure pressure, PressureReference reference, Pressure atmosphericPressure)
+        {
+            Reference = reference;
             _pressure = pressure;
+            AtmosphericPressure = atmosphericPressure;
         }
 
         /// <summary>
@@ -118,8 +136,8 @@ namespace UnitsNet.CustomCode.Wrappers
             switch (reference)
             {
                 case PressureReference.Absolute: return baseReferenceValue;
-                case PressureReference.Gauge: return baseReferenceValue - ReferencedPressure.ToUnit(_pressure.Unit).Value;
-                case PressureReference.Vacuum: return ReferencedPressure.ToUnit(_pressure.Unit).Value - negatingValue * baseReferenceValue;
+                case PressureReference.Gauge: return baseReferenceValue - AtmosphericPressure.ToUnit(_pressure.Unit).Value;
+                case PressureReference.Vacuum: return AtmosphericPressure.ToUnit(_pressure.Unit).Value - negatingValue * baseReferenceValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Reference} to {reference}.");
             }
@@ -145,21 +163,21 @@ namespace UnitsNet.CustomCode.Wrappers
                 }
                 case PressureReference.Gauge:
                 {
-                    if (_pressure.Value * -1 > ReferencedPressure.ToUnit(_pressure.Unit).Value)
+                    if (_pressure.Value * -1 > AtmosphericPressure.ToUnit(_pressure.Unit).Value)
                     {
                         throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
                     }
 
-                    return ReferencedPressure.ToUnit(_pressure.Unit).Value + _pressure.Value;
+                    return AtmosphericPressure.ToUnit(_pressure.Unit).Value + _pressure.Value;
                 }
                 case PressureReference.Vacuum:
                 {
-                    if (_pressure.Value > ReferencedPressure.ToUnit(_pressure.Unit).Value)
+                    if (_pressure.Value > AtmosphericPressure.ToUnit(_pressure.Unit).Value)
                     {
                         throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
                     }
 
-                    return ReferencedPressure.ToUnit(_pressure.Unit).Value - _pressure.Value;
+                    return AtmosphericPressure.ToUnit(_pressure.Unit).Value - _pressure.Value;
                 }
                 default:
                     throw new NotImplementedException($"Can not convert {Reference} to base reference.");
@@ -169,6 +187,8 @@ namespace UnitsNet.CustomCode.Wrappers
         /// <summary>
         ///     Represents the pressure at which _pressure is referenced (1 atm default)
         /// </summary>
-        public static Pressure ReferencedPressure { get; } = new Pressure(1, PressureUnit.Atmosphere);
+        public static Pressure AtmosphericPressure { get; set; }
+
+        private static readonly Pressure _defaultAtmosphericPressure = new Pressure(1, PressureUnit.Atmosphere);
     }
 }
