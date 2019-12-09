@@ -156,11 +156,6 @@ namespace UnitsNet
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
         /// <summary>
-        /// Represents the pressure at which Pressure is referenced (1 atm default)
-        /// </summary>
-        public static Pressure Reference { get; set; } = new Pressure(1, PressureUnit.Atmosphere);
-
-        /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         public static QuantityType QuantityType { get; } = QuantityType.Pressure;
