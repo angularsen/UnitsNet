@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <LangVersion>7.3</LangVersion>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
@@ -14,6 +14,7 @@
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <AssemblyName>UnitsNet.Tests</AssemblyName>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
