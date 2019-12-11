@@ -94,6 +94,19 @@
           "Abbreviations": [ "Btu/h", "Btu/hr" ]
         }
       ]
-    }
+    },
+    {
+      "SingularName": "JoulePerHour",
+      "PluralName": "JoulesPerHour",
+      "FromUnitToBaseFunc": "x/3600m",
+      "FromBaseToUnitFunc": "x*3600m",
+      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/h" ]
+        }
+      ]
+    },
   ]
 }

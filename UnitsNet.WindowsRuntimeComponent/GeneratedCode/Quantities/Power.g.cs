@@ -186,6 +186,11 @@ namespace UnitsNet
         public double Femtowatts => As(PowerUnit.Femtowatt);
 
         /// <summary>
+        ///     Get Power in GigajoulesPerHour.
+        /// </summary>
+        public double GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
+
+        /// <summary>
         ///     Get Power in Gigawatts.
         /// </summary>
         public double Gigawatts => As(PowerUnit.Gigawatt);
@@ -196,9 +201,19 @@ namespace UnitsNet
         public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
 
         /// <summary>
+        ///     Get Power in JoulesPerHour.
+        /// </summary>
+        public double JoulesPerHour => As(PowerUnit.JoulePerHour);
+
+        /// <summary>
         ///     Get Power in KilobritishThermalUnitsPerHour.
         /// </summary>
         public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
+
+        /// <summary>
+        ///     Get Power in KilojoulesPerHour.
+        /// </summary>
+        public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
 
         /// <summary>
         ///     Get Power in Kilowatts.
@@ -209,6 +224,11 @@ namespace UnitsNet
         ///     Get Power in MechanicalHorsepower.
         /// </summary>
         public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
+
+        /// <summary>
+        ///     Get Power in MegajoulesPerHour.
+        /// </summary>
+        public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
 
         /// <summary>
         ///     Get Power in Megawatts.
@@ -224,6 +244,11 @@ namespace UnitsNet
         ///     Get Power in Microwatts.
         /// </summary>
         public double Microwatts => As(PowerUnit.Microwatt);
+
+        /// <summary>
+        ///     Get Power in MillijoulesPerHour.
+        /// </summary>
+        public double MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
 
         /// <summary>
         ///     Get Power in Milliwatts.
@@ -346,6 +371,16 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Femtowatt);
         }
         /// <summary>
+        ///     Get Power from GigajoulesPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromGigajoulesPerHour(double gigajoulesperhour)
+        {
+            decimal value = (decimal) gigajoulesperhour;
+            return new Power(value, PowerUnit.GigajoulePerHour);
+        }
+        /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -366,6 +401,16 @@ namespace UnitsNet
             return new Power(value, PowerUnit.HydraulicHorsepower);
         }
         /// <summary>
+        ///     Get Power from JoulesPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromJoulesPerHour(double joulesperhour)
+        {
+            decimal value = (decimal) joulesperhour;
+            return new Power(value, PowerUnit.JoulePerHour);
+        }
+        /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -374,6 +419,16 @@ namespace UnitsNet
         {
             decimal value = (decimal) kilobritishthermalunitsperhour;
             return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
+        }
+        /// <summary>
+        ///     Get Power from KilojoulesPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromKilojoulesPerHour(double kilojoulesperhour)
+        {
+            decimal value = (decimal) kilojoulesperhour;
+            return new Power(value, PowerUnit.KilojoulePerHour);
         }
         /// <summary>
         ///     Get Power from Kilowatts.
@@ -394,6 +449,16 @@ namespace UnitsNet
         {
             decimal value = (decimal) mechanicalhorsepower;
             return new Power(value, PowerUnit.MechanicalHorsepower);
+        }
+        /// <summary>
+        ///     Get Power from MegajoulesPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromMegajoulesPerHour(double megajoulesperhour)
+        {
+            decimal value = (decimal) megajoulesperhour;
+            return new Power(value, PowerUnit.MegajoulePerHour);
         }
         /// <summary>
         ///     Get Power from Megawatts.
@@ -424,6 +489,16 @@ namespace UnitsNet
         {
             decimal value = (decimal) microwatts;
             return new Power(value, PowerUnit.Microwatt);
+        }
+        /// <summary>
+        ///     Get Power from MillijoulesPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromMillijoulesPerHour(double millijoulesperhour)
+        {
+            decimal value = (decimal) millijoulesperhour;
+            return new Power(value, PowerUnit.MillijoulePerHour);
         }
         /// <summary>
         ///     Get Power from Milliwatts.
@@ -782,14 +857,19 @@ namespace UnitsNet
                 case PowerUnit.Deciwatt: return (_value) * 1e-1m;
                 case PowerUnit.ElectricalHorsepower: return _value*746m;
                 case PowerUnit.Femtowatt: return (_value) * 1e-15m;
+                case PowerUnit.GigajoulePerHour: return (_value/3600m) * 1e9m;
                 case PowerUnit.Gigawatt: return (_value) * 1e9m;
                 case PowerUnit.HydraulicHorsepower: return _value*745.69988145m;
+                case PowerUnit.JoulePerHour: return _value/3600m;
                 case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071m) * 1e3m;
+                case PowerUnit.KilojoulePerHour: return (_value/3600m) * 1e3m;
                 case PowerUnit.Kilowatt: return (_value) * 1e3m;
                 case PowerUnit.MechanicalHorsepower: return _value*745.69m;
+                case PowerUnit.MegajoulePerHour: return (_value/3600m) * 1e6m;
                 case PowerUnit.Megawatt: return (_value) * 1e6m;
                 case PowerUnit.MetricHorsepower: return _value*735.49875m;
                 case PowerUnit.Microwatt: return (_value) * 1e-6m;
+                case PowerUnit.MillijoulePerHour: return (_value/3600m) * 1e-3m;
                 case PowerUnit.Milliwatt: return (_value) * 1e-3m;
                 case PowerUnit.Nanowatt: return (_value) * 1e-9m;
                 case PowerUnit.Petawatt: return (_value) * 1e15m;
@@ -816,14 +896,19 @@ namespace UnitsNet
                 case PowerUnit.Deciwatt: return (baseUnitValue) / 1e-1m;
                 case PowerUnit.ElectricalHorsepower: return baseUnitValue/746m;
                 case PowerUnit.Femtowatt: return (baseUnitValue) / 1e-15m;
+                case PowerUnit.GigajoulePerHour: return (baseUnitValue*3600m) / 1e9m;
                 case PowerUnit.Gigawatt: return (baseUnitValue) / 1e9m;
                 case PowerUnit.HydraulicHorsepower: return baseUnitValue/745.69988145m;
+                case PowerUnit.JoulePerHour: return baseUnitValue*3600m;
                 case PowerUnit.KilobritishThermalUnitPerHour: return (baseUnitValue/0.293071m) / 1e3m;
+                case PowerUnit.KilojoulePerHour: return (baseUnitValue*3600m) / 1e3m;
                 case PowerUnit.Kilowatt: return (baseUnitValue) / 1e3m;
                 case PowerUnit.MechanicalHorsepower: return baseUnitValue/745.69m;
+                case PowerUnit.MegajoulePerHour: return (baseUnitValue*3600m) / 1e6m;
                 case PowerUnit.Megawatt: return (baseUnitValue) / 1e6m;
                 case PowerUnit.MetricHorsepower: return baseUnitValue/735.49875m;
                 case PowerUnit.Microwatt: return (baseUnitValue) / 1e-6m;
+                case PowerUnit.MillijoulePerHour: return (baseUnitValue*3600m) / 1e-3m;
                 case PowerUnit.Milliwatt: return (baseUnitValue) / 1e-3m;
                 case PowerUnit.Nanowatt: return (baseUnitValue) / 1e-9m;
                 case PowerUnit.Petawatt: return (baseUnitValue) / 1e15m;
