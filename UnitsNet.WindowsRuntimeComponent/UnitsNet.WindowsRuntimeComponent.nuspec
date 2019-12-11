@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet.WindowsRuntimeComponent</id>
-    <version>4.41.0</version>
+    <version>4.42.0</version>
     <title>Units.NET - Windows Runtime Component</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
