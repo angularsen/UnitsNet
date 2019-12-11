@@ -649,5 +649,6 @@ namespace UnitsNet.Tests
         {
             Assert.False(Pressure.BaseDimensions is null);
         }
+
     }
 }

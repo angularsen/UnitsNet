@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
@@ -19,7 +19,7 @@
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
     <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
@@ -39,7 +39,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyName>UnitsNet</AssemblyName>
   </PropertyGroup>
-
+  
   <!-- NuGet references that work for both signed and unsigned -->
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
