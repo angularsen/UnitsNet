@@ -36,7 +36,7 @@ namespace UnitsNet.CustomCode.Wrappers
         ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
         ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
         /// </summary>
-        public static IReadOnlyList<PressureReference> References { get; } =
+        public static List<PressureReference> References { get; } =
             Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().Except(new[] {PressureReference.Undefined}).ToList();
 
         /// <summary>
