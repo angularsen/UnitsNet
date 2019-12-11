@@ -13,11 +13,11 @@
       "PluralName": "NewtonMillimetersPerMeter",
       "FromUnitToBaseFunc": "x*0.001",
       "FromBaseToUnitFunc": "x*1000",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·mm/m" ]
+          "Abbreviations": ["N·mm/m"]
         }
       ]
     },
@@ -26,11 +26,11 @@
       "PluralName": "NewtonCentimetersPerMeter",
       "FromUnitToBaseFunc": "x*0.01",
       "FromBaseToUnitFunc": "x*100",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·cm/m" ]
+          "Abbreviations": ["N·cm/m"]
         }
       ]
     },
@@ -39,15 +39,15 @@
       "PluralName": "NewtonMetersPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·m/m" ]
+          "Abbreviations": ["N·m/m"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н·м/м" ]
+          "Abbreviations": ["Н·м/м"]
         }
       ]
     },
@@ -56,11 +56,11 @@
       "PluralName": "PoundForceInchesPerFoot",
       "FromUnitToBaseFunc": "x*0.370685147638",
       "FromBaseToUnitFunc": "x/0.370685147638",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·in/ft" ],
+          "Abbreviations": ["lbf·in/ft"],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·in/ft" }
         }
       ]
@@ -70,11 +70,11 @@
       "PluralName": "PoundForceFeetPerFoot",
       "FromUnitToBaseFunc": "x*4.44822161526",
       "FromBaseToUnitFunc": "x/4.44822161526",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·ft/ft" ],
+          "Abbreviations": ["lbf·ft/ft"],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·ft/ft" }
         }
       ]
@@ -87,7 +87,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·mm/m" ]
+          "Abbreviations": ["kgf·mm/m"]
         }
       ]
     },
@@ -99,7 +99,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·cm/m" ]
+          "Abbreviations": ["kgf·cm/m"]
         }
       ]
     },
@@ -111,7 +111,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·m/m" ]
+          "Abbreviations": ["kgf·m/m"]
         }
       ]
     },
@@ -123,7 +123,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·mm/m" ]
+          "Abbreviations": ["tf·mm/m"]
         }
       ]
     },
@@ -135,7 +135,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·cm/m" ]
+          "Abbreviations": ["tf·cm/m"]
         }
       ]
     },
@@ -147,7 +147,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·m/m" ]
+          "Abbreviations": ["tf·m/m"]
         }
       ]
     }

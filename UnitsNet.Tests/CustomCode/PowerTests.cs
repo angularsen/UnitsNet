@@ -61,71 +61,71 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationTimesPowerEqualsEnergy()
         {
-            Energy energy = Duration.FromSeconds(8.0) * Power.FromWatts(5.0);
+            var energy = Duration.FromSeconds(8.0) * Power.FromWatts(5.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
+        }
+
+        [Fact]
+        public void PowerDividedByMassFlowEqualsSpecificEnergy()
+        {
+            var specificEnergy = Power.FromWatts(15.0) / MassFlow.FromKilogramsPerSecond(3);
+            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(5));
         }
 
         [Fact]
         public void PowerDividedByRotationalSpeedEqualsForce()
         {
-            Torque torque = Power.FromWatts(15.0) / RotationalSpeed.FromRadiansPerSecond(3);
+            var torque = Power.FromWatts(15.0) / RotationalSpeed.FromRadiansPerSecond(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(5));
+        }
+
+        [Fact]
+        public void PowerDividedBySpecificEnergyEqualsMassFlow()
+        {
+            var massFlow = Power.FromWatts(15.0) / SpecificEnergy.FromJoulesPerKilogram(3);
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(5));
         }
 
         [Fact]
         public void PowerDividedBySpeedEqualsForce()
         {
-            Force force = Power.FromWatts(15.0) / Speed.FromMetersPerSecond(3);
+            var force = Power.FromWatts(15.0) / Speed.FromMetersPerSecond(3);
             Assert.Equal(force, Force.FromNewtons(5));
         }
 
         [Fact]
         public void PowerDividedByTorqueEqualsRotationalSpeed()
         {
-            RotationalSpeed rotationalSpeed = Power.FromWatts(15.0) / Torque.FromNewtonMeters(3);
+            var rotationalSpeed = Power.FromWatts(15.0) / Torque.FromNewtonMeters(3);
             Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
+        }
+
+        [Fact]
+        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
+        {
+            var massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
+            AssertEx.EqualTolerance(massFlow.TonnesPerDay, 20.0, 1e-11);
         }
 
         [Fact]
         public void PowerTimesDurationEqualsEnergy()
         {
-            Energy energy = Power.FromWatts(5.0) * Duration.FromSeconds(8.0);
+            var energy = Power.FromWatts(5.0) * Duration.FromSeconds(8.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
         [Fact]
         public void PowerTimesTimeSpanEqualsEnergy()
         {
-            Energy energy = Power.FromWatts(5.0) * TimeSpan.FromSeconds(8.0);
+            var energy = Power.FromWatts(5.0) * TimeSpan.FromSeconds(8.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
         [Fact]
         public void TimeSpanTimesPowerEqualsEnergy()
         {
-            Energy energy = TimeSpan.FromSeconds(8.0) * Power.FromWatts(5.0);
+            var energy = TimeSpan.FromSeconds(8.0) * Power.FromWatts(5.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
-        }
-
-        [Fact]
-        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
-        {
-            MassFlow massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            AssertEx.EqualTolerance(massFlow.TonnesPerDay, 20.0, 1e-11);
-        }
-
-        [Fact]
-        public void PowerDividedByMassFlowEqualsSpecificEnergy()
-        {
-            SpecificEnergy specificEnergy = Power.FromWatts(15.0) / MassFlow.FromKilogramsPerSecond(3);
-            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(5));
-        }
-
-        [Fact]
-        public void PowerDividedBySpecificEnergyEqualsMassFlow()
-        {
-            MassFlow massFlow = Power.FromWatts(15.0) / SpecificEnergy.FromJoulesPerKilogram(3);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(5));
         }
     }
 }

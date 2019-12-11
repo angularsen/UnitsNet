@@ -10,12 +10,12 @@ namespace CodeGen.Generators.UnitsNetWrcGen
 {
     internal class QuantityGenerator : GeneratorBase
     {
-        private readonly Quantity _quantity;
+        private readonly Unit _baseUnit;
 
         private readonly bool _isDimensionless;
+        private readonly Quantity _quantity;
         private readonly string _unitEnumName;
         private readonly string _valueType;
-        private readonly Unit _baseUnit;
 
         public QuantityGenerator(Quantity quantity)
         {
@@ -28,16 +28,15 @@ namespace CodeGen.Generators.UnitsNetWrcGen
             _valueType = quantity.BaseType;
             _unitEnumName = $"{quantity.Name}Unit";
 
-            BaseDimensions baseDimensions = quantity.BaseDimensions;
+            var baseDimensions = quantity.BaseDimensions;
             _isDimensionless = baseDimensions == null ||
-                              baseDimensions.L == 0 &&
-                              baseDimensions.M == 0 &&
-                              baseDimensions.T == 0 &&
-                              baseDimensions.I == 0 &&
-                              baseDimensions.Θ == 0 &&
-                              baseDimensions.N == 0 &&
-                              baseDimensions.J == 0;
-
+                               baseDimensions.L == 0 &&
+                               baseDimensions.M == 0 &&
+                               baseDimensions.T == 0 &&
+                               baseDimensions.I == 0 &&
+                               baseDimensions.Θ == 0 &&
+                               baseDimensions.N == 0 &&
+                               baseDimensions.J == 0;
         }
 
         public override string Generate()
@@ -94,13 +93,13 @@ namespace UnitsNet
             GenerateConversionMethods();
             GenerateToString();
 
-            Writer.WL($@"
+            Writer.WL(@"
         private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
-        {{
+        {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
-        }}
-    }}
-}}");
+        }
+    }
+}");
             return Writer.ToString();
         }
 
@@ -155,9 +154,9 @@ namespace UnitsNet
             _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
             _value = value;");
-            Writer.WL($@"
+            Writer.WL(@"
             _unit = unit;
-        }}
+        }
 ");
         }
 
@@ -212,7 +211,7 @@ namespace UnitsNet
 
         private void GenerateProperties()
         {
-            Writer.WL($@"
+            Writer.WL(@"
         #region Properties
 
         /// <summary>
@@ -672,7 +671,7 @@ namespace UnitsNet
 
         private void GenerateToString()
         {
-            Writer.WL($@"
+            Writer.WL(@"
         #region ToString Methods
 
         /// <summary>
@@ -680,9 +679,9 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
-        {{
+        {
             return ToString(null);
-        }}
+        }
 
         /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
@@ -690,10 +689,10 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
         public string ToString([CanBeNull] string cultureName)
-        {{
+        {
             var provider = cultureName;
             return ToString(provider, 2);
-        }}
+        }
 
         /// <summary>
         ///     Get string representation of value and unit.
@@ -702,22 +701,22 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
         public string ToString(string cultureName, int significantDigitsAfterRadix)
-        {{
+        {
             var provider = cultureName;
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
             return ToString(provider, format);
-        }}
+        }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
+        /// <param name=""format"">String format to use. Default:  ""{0:0.##} {1} for value and unit abbreviation respectively.""</param>
         /// <param name=""args"">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use for localization and number formatting. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
-        {{
+        {
             var provider = GetFormatProviderFromCultureName(cultureName);
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -727,21 +726,21 @@ namespace UnitsNet
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
-        }}
+        }
 
         #endregion
 ");
         }
 
-        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)" />
         internal static string GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
-        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)" />
         internal static string GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
 
         /// <summary>
-        /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
-        /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
+        ///     Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
+        ///     It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
         /// </summary>
         private static string GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null

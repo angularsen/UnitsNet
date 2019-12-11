@@ -24,19 +24,19 @@ namespace UnitsNet
 
         #endregion
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Area"/> divided by <see cref="Length"/>.</summary>
+        /// <summary>Get <see cref="Length" /> from <see cref="Area" /> divided by <see cref="Length" />.</summary>
         public static Length operator /(Area area, Length length)
         {
             return Length.FromMeters(area.SquareMeters / length.Meters);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> times <see cref="MassFlux"/>.</summary>
+        /// <summary>Get <see cref="MassFlow" /> from <see cref="Area" /> times <see cref="MassFlux" />.</summary>
         public static MassFlow operator *(Area area, MassFlux massFlux)
         {
             return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
         }
 
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Area"/> times <see cref="Speed"/>.</summary>
+        /// <summary>Get <see cref="VolumeFlow" /> from <see cref="Area" /> times <see cref="Speed" />.</summary>
         public static VolumeFlow operator *(Area area, Speed speed)
         {
             return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);

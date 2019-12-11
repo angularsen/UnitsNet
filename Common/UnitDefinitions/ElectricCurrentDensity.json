@@ -20,7 +20,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "A/m²" ]
+          "Abbreviations": ["A/m²"]
         }
       ]
     },
@@ -36,7 +36,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "A/in²" ]
+          "Abbreviations": ["A/in²"]
         }
       ]
     },
@@ -52,7 +52,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "A/ft²" ]
+          "Abbreviations": ["A/ft²"]
         }
       ]
     }

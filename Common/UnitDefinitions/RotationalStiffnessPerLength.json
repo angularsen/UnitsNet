@@ -13,11 +13,11 @@
       "PluralName": "NewtonMetersPerRadianPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·m/rad/m", "Nm/rad/m" ]
+          "Abbreviations": ["N·m/rad/m", "Nm/rad/m"]
         }
       ]
     }

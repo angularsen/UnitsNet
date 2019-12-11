@@ -1,7 +1,8 @@
 ﻿{
   "Name": "Length",
   "BaseUnit": "Meter",
-  "XmlDoc": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
+  "XmlDoc":
+    "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
   "BaseDimensions": {
     "L": 1
   },
@@ -14,15 +15,15 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m" ]
+          "Abbreviations": ["m"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м" ]
+          "Abbreviations": ["м"]
         }
       ]
     },
@@ -37,11 +38,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mi" ]
+          "Abbreviations": ["mi"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "миля" ]
+          "Abbreviations": ["миля"]
         }
       ]
     },
@@ -56,11 +57,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd" ]
+          "Abbreviations": ["yd"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ярд" ]
+          "Abbreviations": ["ярд"]
         }
       ]
     },
@@ -75,11 +76,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft", "'", "′" ]
+          "Abbreviations": ["ft", "'", "′"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут" ]
+          "Abbreviations": ["фут"]
         }
       ]
     },
@@ -94,7 +95,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ftUS" ]
+          "Abbreviations": ["ftUS"]
         }
       ]
     },
@@ -109,11 +110,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in", "\\\"", "″" ]
+          "Abbreviations": ["in", "\\\"", "″"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дюйм" ]
+          "Abbreviations": ["дюйм"]
         }
       ]
     },
@@ -128,11 +129,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mil" ]
+          "Abbreviations": ["mil"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мил" ]
+          "Abbreviations": ["мил"]
         }
       ]
     },
@@ -147,11 +148,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "NM" ]
+          "Abbreviations": ["NM"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мил" ]
+          "Abbreviations": ["мил"]
         }
       ]
     },
@@ -166,7 +167,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "fathom" ]
+          "Abbreviations": ["fathom"]
         }
       ]
     },
@@ -181,7 +182,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "shackle" ]
+          "Abbreviations": ["shackle"]
         }
       ]
     },
@@ -196,11 +197,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "µin" ]
+          "Abbreviations": ["µin"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "микродюйм" ]
+          "Abbreviations": ["микродюйм"]
         }
       ]
     },
@@ -215,7 +216,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt" ]
+          "Abbreviations": ["pt"]
         }
       ]
     },
@@ -230,7 +231,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt" ]
+          "Abbreviations": ["pt"]
         }
       ]
     },
@@ -245,7 +246,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pica" ]
+          "Abbreviations": ["pica"]
         }
       ]
     },
@@ -260,7 +261,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pica" ]
+          "Abbreviations": ["pica"]
         }
       ]
     },
@@ -275,7 +276,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "twip" ]
+          "Abbreviations": ["twip"]
         }
       ]
     },
@@ -290,7 +291,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "h", "hh" ]
+          "Abbreviations": ["h", "hh"]
         }
       ]
     },
@@ -304,7 +305,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "au", "ua" ]
+          "Abbreviations": ["au", "ua"]
         }
       ]
     },
@@ -313,13 +314,14 @@
       "PluralName": "Parsecs",
       "FromUnitToBaseFunc": "x * 3.08567758128e16",
       "FromBaseToUnitFunc": "x / 3.08567758128e16",
-      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
+      "XmlDocSummary":
+        "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pc" ]
+          "Abbreviations": ["pc"]
         }
       ]
     },
@@ -330,11 +332,11 @@
       "FromBaseToUnitFunc": "x / 9.46073047258e15",
       "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ly" ]
+          "Abbreviations": ["ly"]
         }
       ]
     },
@@ -348,7 +350,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "R⊙" ]
+          "Abbreviations": ["R⊙"]
         }
       ]
     }

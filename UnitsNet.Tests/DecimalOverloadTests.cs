@@ -8,17 +8,17 @@ namespace UnitsNet.Tests
     public class DecimalOverloadTests
     {
         [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromDecimalReturnsCorrectValue()
+        public static void CreatingQuantityWithDecimalBackingFieldFromDecimalReturnsCorrectValue()
         {
-            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(1m);
-            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
+            var power = Power.FromWatts(1m);
+            Assert.Equal(1.0, power.Watts);
         }
 
         [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromDecimalReturnsCorrectValue()
+        public static void CreatingQuantityWithDoubleBackingFieldFromDecimalReturnsCorrectValue()
         {
-            Power power = Power.FromWatts(1m);
-            Assert.Equal(1.0, power.Watts);
+            var acceleration = Acceleration.FromMetersPerSecondSquared(1m);
+            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
     }
 }

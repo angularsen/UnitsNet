@@ -36,7 +36,8 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        ///     Write line with current indent. Trims preceding newline if any, to simplify code formatting when calling this method.
+        ///     Write line with current indent. Trims preceding newline if any, to simplify code formatting when calling this
+        ///     method.
         /// </summary>
         /// <param name="indentLevel">The indent level to prepend the text with.</param>
         /// <param name="text">The text to write</param>
@@ -47,7 +48,8 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        ///     Write line with current indent. Trims preceding newline if any, to simplify code formatting when calling this method.
+        ///     Write line with current indent. Trims preceding newline if any, to simplify code formatting when calling this
+        ///     method.
         /// </summary>
         /// <param name="text">The text to write</param>
         public void WL(string text = "")
@@ -57,7 +59,8 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        ///     Write with current indent, but no newline. Trims preceding newline if any, to simplify code formatting when calling this method.
+        ///     Write with current indent, but no newline. Trims preceding newline if any, to simplify code formatting when calling
+        ///     this method.
         /// </summary>
         /// <param name="text">The text to write</param>
         public void W(string text = "")
@@ -85,7 +88,7 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        /// Write line with current ident only if <paramref name="text"/> actually contains text and not just whitespace.
+        ///     Write line with current ident only if <paramref name="text" /> actually contains text and not just whitespace.
         /// </summary>
         /// <param name="indentLevel">The level of indentation to prepend to the text.</param>
         /// <param name="text">The text to write.</param>
@@ -96,14 +99,16 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        /// Write line with current ident only if <paramref name="condition"/> is <c>true</c>.
+        ///     Write line with current ident only if <paramref name="condition" /> is <c>true</c>.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="text">The text to write.</param>
         public void WLCondition(bool condition, string text)
         {
             if (condition)
+            {
                 WL(text);
+            }
         }
     }
 }

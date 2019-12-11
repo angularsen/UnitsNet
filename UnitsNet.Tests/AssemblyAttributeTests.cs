@@ -11,15 +11,6 @@ namespace UnitsNet.Tests
     public class AssemblyAttributeTests
     {
         [Fact]
-        public static void AssemblyShouldBeClsCompliant()
-        {
-            var assembly = typeof(Length).GetTypeInfo().Assembly;
-
-            var attributes = assembly.CustomAttributes.Select(x => x.AttributeType);
-            Assert.Contains(typeof(CLSCompliantAttribute), attributes);
-        }
-
-        [Fact]
         public static void AssemblyCopyrightShouldContain2013()
         {
             var assembly = typeof(Length).GetTypeInfo().Assembly;
@@ -27,9 +18,18 @@ namespace UnitsNet.Tests
             var copyrightAttribute = assembly
                 .CustomAttributes
                 .Single(x => x.AttributeType == typeof(AssemblyCopyrightAttribute));
-            string copyrightString = copyrightAttribute.ConstructorArguments.Single().Value.ToString();
-            string expectedYear = "2013";
+            var copyrightString = copyrightAttribute.ConstructorArguments.Single().Value.ToString();
+            var expectedYear = "2013";
             Assert.Contains(expectedYear, copyrightString);
+        }
+
+        [Fact]
+        public static void AssemblyShouldBeClsCompliant()
+        {
+            var assembly = typeof(Length).GetTypeInfo().Assembly;
+
+            var attributes = assembly.CustomAttributes.Select(x => x.AttributeType);
+            Assert.Contains(typeof(CLSCompliantAttribute), attributes);
         }
     }
 }

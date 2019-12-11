@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
+using System;
 using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
@@ -8,7 +11,7 @@ namespace UnitsNet.Tests
     public class QuantityIConvertibleTests
     {
         private static Length length = Length.FromMeters(3.0);
-        private static IConvertible lengthAsIConvertible = Length.FromMeters(3.0);
+        private static readonly IConvertible lengthAsIConvertible = Length.FromMeters(3.0);
 
         [Fact]
         public void GetTypeCodeTest()
@@ -62,7 +65,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToDoubleTest()
         {
-            double expected = 3.0;
+            var expected = 3.0;
             Assert.Equal(expected, lengthAsIConvertible.ToDouble(null));
             Assert.Equal(expected, Convert.ToDouble(length));
             Assert.Equal(expected, Convert.ChangeType(length, typeof(double)));
@@ -80,7 +83,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToInt32Test()
         {
-            int expected = 3;
+            var expected = 3;
             Assert.Equal(expected, lengthAsIConvertible.ToInt32(null));
             Assert.Equal(expected, Convert.ToInt32(length));
             Assert.Equal(expected, Convert.ChangeType(length, typeof(int)));
@@ -116,7 +119,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToStringTest()
         {
-            string expected = length.ToString(CultureInfo.CurrentUICulture);
+            var expected = length.ToString(CultureInfo.CurrentUICulture);
             Assert.Equal(expected, lengthAsIConvertible.ToString(CultureInfo.CurrentUICulture));
             Assert.Equal(expected, Convert.ToString(length, CultureInfo.CurrentUICulture));
             Assert.Equal(expected, Convert.ChangeType(length, typeof(string), CultureInfo.CurrentUICulture));

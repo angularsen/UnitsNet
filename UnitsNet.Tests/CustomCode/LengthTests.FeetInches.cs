@@ -12,23 +12,6 @@ namespace UnitsNet.Tests.CustomCode
         private const double FeetTolerance = 1e-5;
         private const double InchesTolerance = 1e-5;
 
-        [Fact]
-        public void FeetInchesFrom()
-        {
-            Length meter = Length.FromFeetInches(2, 3);
-            double expectedMeters = 2/FeetInOneMeter + 3/InchesInOneMeter;
-            AssertEx.EqualTolerance(expectedMeters, meter.Meters, FeetTolerance);
-        }
-
-        [Fact]
-        public void FeetInchesRoundTrip()
-        {
-            Length meter = Length.FromFeetInches(2, 3);
-            FeetInches feetInches = meter.FeetInches;
-            AssertEx.EqualTolerance(2, feetInches.Feet, FeetTolerance);
-            AssertEx.EqualTolerance(3, feetInches.Inches, InchesTolerance);
-        }
-
         [Theory]
         [InlineData("1'", 1)] // Feet only
         [InlineData("1′", 1)] // Feet only
@@ -62,7 +45,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("-1ft 1in", -1.08333333)]
         public void TryParseFeetInches(string str, double expectedFeet)
         {
-            Assert.True(Length.TryParseFeetInches(str, out Length result));
+            Assert.True(Length.TryParseFeetInches(str, out var result));
             AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
         }
 
@@ -85,8 +68,25 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1'1`")]
         public void TryParseFeetInches_GivenInvalidString_ReturnsFalseAndZeroOut(string str)
         {
-            Assert.False(Length.TryParseFeetInches(str, out Length result));
+            Assert.False(Length.TryParseFeetInches(str, out var result));
             Assert.Equal(Length.Zero, result);
+        }
+
+        [Fact]
+        public void FeetInchesFrom()
+        {
+            var meter = Length.FromFeetInches(2, 3);
+            var expectedMeters = 2 / FeetInOneMeter + 3 / InchesInOneMeter;
+            AssertEx.EqualTolerance(expectedMeters, meter.Meters, FeetTolerance);
+        }
+
+        [Fact]
+        public void FeetInchesRoundTrip()
+        {
+            var meter = Length.FromFeetInches(2, 3);
+            var feetInches = meter.FeetInches;
+            AssertEx.EqualTolerance(2, feetInches.Feet, FeetTolerance);
+            AssertEx.EqualTolerance(3, feetInches.Inches, InchesTolerance);
         }
     }
 }

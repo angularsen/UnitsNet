@@ -19,10 +19,10 @@ namespace UnitsNet
     public class UnitInfo
     {
         /// <summary>
-        /// Creates an instance of the UnitInfo class.
+        ///     Creates an instance of the UnitInfo class.
         /// </summary>
-        /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
-        /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
+        /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter" />.</param>
+        /// <param name="baseUnits">The <see cref="BaseUnits" /> for this unit.</param>
         public UnitInfo([NotNull] Enum value, [NotNull] BaseUnits baseUnits)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
@@ -31,18 +31,18 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
-        /// <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
+        ///     The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
+        ///     <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
         public Enum Value { get; }
 
         /// <summary>
-        /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
+        ///     The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Gets the <see cref="BaseUnits"/> for this unit.
+        ///     Gets the <see cref="BaseUnits" /> for this unit.
         /// </summary>
         public BaseUnits BaseUnits { get; }
     }
@@ -63,7 +63,7 @@ namespace UnitsNet
             Value = value;
         }
 
-        /// <inheritdoc cref="UnitInfo.Value"/>
+        /// <inheritdoc cref="UnitInfo.Value" />
         public new TUnit Value { get; }
     }
 }

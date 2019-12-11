@@ -26,6 +26,20 @@ namespace UnitsNet.CustomCode.Wrappers
     public struct ReferencePressure
     {
         /// <summary>
+        ///     Represents the pressure at which _pressure is referenced (1 atm default)
+        /// </summary>
+        public static Pressure AtmosphericPressure { get; set; }
+
+        private static readonly Pressure DefaultAtmosphericPressure = new Pressure(1, PressureUnit.Atmosphere);
+
+        /// <summary>
+        ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
+        ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
+        /// </summary>
+        public static List<PressureReference> References { get; } =
+            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().Except(new[] {PressureReference.Undefined}).ToList();
+
+        /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured
         ///     <see cref="Pressure" />
         ///     parameter. Assumes the <see cref="PressureReference" /> to <see cref="PressureReference.Absolute" />, with 1 atm as
@@ -45,7 +59,7 @@ namespace UnitsNet.CustomCode.Wrappers
         /// <param name="reference">
         ///     The referenced <see cref="PressureReference" /> for the measured <see cref="Pressure" />
         /// </param>
-        public ReferencePressure(Pressure pressure, PressureReference reference) : this(pressure, reference, _defaultAtmosphericPressure)
+        public ReferencePressure(Pressure pressure, PressureReference reference) : this(pressure, reference, DefaultAtmosphericPressure)
         {
         }
 
@@ -70,13 +84,6 @@ namespace UnitsNet.CustomCode.Wrappers
         ///     Gets the <see cref="PressureReference" /> of the <see cref="ReferencePressure" />
         /// </summary>
         public PressureReference Reference { get; }
-
-        /// <summary>
-        ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
-        ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
-        /// </summary>
-        public static List<PressureReference> References { get; } =
-            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().Except(new[] {PressureReference.Undefined}).ToList();
 
         /// <summary>
         ///     The base reference representation of <see cref="ReferencePressure" /> for the numeric value stored internally. All
@@ -183,12 +190,5 @@ namespace UnitsNet.CustomCode.Wrappers
                     throw new NotImplementedException($"Can not convert {Reference} to base reference.");
             }
         }
-
-        /// <summary>
-        ///     Represents the pressure at which _pressure is referenced (1 atm default)
-        /// </summary>
-        public static Pressure AtmosphericPressure { get; set; }
-
-        private static readonly Pressure _defaultAtmosphericPressure = new Pressure(1, PressureUnit.Atmosphere);
     }
 }

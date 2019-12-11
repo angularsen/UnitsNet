@@ -40,10 +40,11 @@ namespace UnitsNet
         /// <param name="baseDimensions">The base dimensions of the quantity.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero,
+            [NotNull] BaseDimensions baseDimensions)
         {
-            if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
-            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
+            if (quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
+            if (baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
@@ -60,8 +61,8 @@ namespace UnitsNet
 
             // Obsolete members
 #pragma warning disable 618
-            UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
-            Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
+            UnitNames = UnitInfos.Select(unitInfo => unitInfo.Name).ToArray();
+            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
             BaseUnit = BaseUnitInfo.Value;
 #pragma warning restore 618
         }
@@ -111,12 +112,12 @@ namespace UnitsNet
         public IQuantity Zero { get; }
 
         /// <summary>
-        ///     Unit enum type, such as <see cref="LengthUnit"/> or <see cref="MassUnit"/>.
+        ///     Unit enum type, such as <see cref="LengthUnit" /> or <see cref="MassUnit" />.
         /// </summary>
         public Type UnitType { get; }
 
         /// <summary>
-        ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
+        ///     Quantity value type, such as <see cref="Length" /> or <see cref="Mass" />.
         /// </summary>
         public Type ValueType { get; }
 
@@ -126,18 +127,29 @@ namespace UnitsNet
         public BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        /// Gets the <see cref="UnitInfo"/> whose <see cref="BaseUnits"/> is a subset of <paramref name="baseUnits"/>.
+        ///     Gets the <see cref="UnitInfo" /> whose <see cref="BaseUnits" /> is a subset of <paramref name="baseUnits" />.
         /// </summary>
-        /// <example>Length.Info.GetUnitInfoFor(unitSystemWithFootAsLengthUnit) returns <see cref="UnitInfo" /> for <see cref="LengthUnit.Foot" />.</example>
-        /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
-        /// <returns>The <see cref="UnitInfo"/> that has <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">No unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
-        /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
+        /// <example>
+        ///     Length.Info.GetUnitInfoFor(unitSystemWithFootAsLengthUnit) returns <see cref="UnitInfo" /> for
+        ///     <see cref="LengthUnit.Foot" />.
+        /// </example>
+        /// <param name="baseUnits">The <see cref="BaseUnits" /> to check against.</param>
+        /// <returns>
+        ///     The <see cref="UnitInfo" /> that has <see cref="BaseUnits" /> that is a subset of
+        ///     <paramref name="baseUnits" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="baseUnits" /> is null.</exception>
+        /// <exception cref="InvalidOperationException">No unit was found that is a subset of <paramref name="baseUnits" />.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     More than one unit was found that is a subset of
+        ///     <paramref name="baseUnits" />.
+        /// </exception>
         public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
-            if(baseUnits == null)
+            if (baseUnits == null)
+            {
                 throw new ArgumentNullException(nameof(baseUnits));
+            }
 
             var matchingUnitInfos = GetUnitInfosFor(baseUnits)
                 .Take(2)
@@ -145,26 +157,36 @@ namespace UnitsNet
 
             var firstUnitInfo = matchingUnitInfos.FirstOrDefault();
             if (firstUnitInfo == null)
+            {
                 throw new InvalidOperationException($"No unit was found that is a subset of {nameof(baseUnits)}");
+            }
 
             if (matchingUnitInfos.Length > 1)
+            {
                 throw new InvalidOperationException($"More than one unit was found that is a subset of {nameof(baseUnits)}");
+            }
 
             return firstUnitInfo;
         }
 
         /// <summary>
-        /// Gets an <see cref="IEnumerable{T}"/> of <see cref="UnitInfo"/> that have <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.
+        ///     Gets an <see cref="IEnumerable{T}" /> of <see cref="UnitInfo" /> that have <see cref="BaseUnits" /> that is a
+        ///     subset of <paramref name="baseUnits" />.
         /// </summary>
-        /// <param name="baseUnits">The <see cref="BaseUnits"/> to check against.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitInfo"/> that have <see cref="BaseUnits"/> that is a subset of <paramref name="baseUnits"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
+        /// <param name="baseUnits">The <see cref="BaseUnits" /> to check against.</param>
+        /// <returns>
+        ///     An <see cref="IEnumerable{T}" /> of <see cref="UnitInfo" /> that have <see cref="BaseUnits" /> that is a
+        ///     subset of <paramref name="baseUnits" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="baseUnits" /> is null.</exception>
         public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
         {
-            if(baseUnits == null)
+            if (baseUnits == null)
+            {
                 throw new ArgumentNullException(nameof(baseUnits));
+            }
 
-            return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
+            return UnitInfos.Where(unitInfo => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
         }
     }
 
@@ -188,7 +210,7 @@ namespace UnitsNet
 
             // Obsolete members
 #pragma warning disable 618
-            Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
+            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
             BaseUnit = BaseUnitInfo.Value;
 #pragma warning restore 618
         }
@@ -216,7 +238,7 @@ namespace UnitsNet
         /// <inheritdoc cref="QuantityInfo.GetUnitInfoFor" />
         public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)
         {
-            return (UnitInfo<TUnit>)base.GetUnitInfoFor(baseUnits);
+            return (UnitInfo<TUnit>) base.GetUnitInfoFor(baseUnits);
         }
 
         /// <inheritdoc cref="QuantityInfo.GetUnitInfosFor" />

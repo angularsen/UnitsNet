@@ -1,10 +1,11 @@
 {
   "Name": "VolumeConcentration",
   "BaseUnit": "DecimalFraction",
-  "XmlDoc": "The volume concentration (not to be confused with volume fraction) is defined as the volume of a constituent divided by the total volume of the mixture.",
+  "XmlDoc":
+    "The volume concentration (not to be confused with volume fraction) is defined as the volume of a constituent divided by the total volume of the mixture.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Concentration#Volume_concentration",
   "Units": [
-      {
+    {
       "SingularName": "DecimalFraction",
       "PluralName": "DecimalFractions",
       "FromUnitToBaseFunc": "x",
@@ -12,33 +13,33 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "" ]
+          "Abbreviations": [""]
         }
       ]
     },
-	{
+    {
       "SingularName": "LitersPerLiter",
       "PluralName": "LitersPerLiter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Centi", "Deci"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/L" ]
+          "Abbreviations": ["L/L"]
         }
       ]
     },
-	{
+    {
       "SingularName": "LitersPerMililiter",
       "PluralName": "LitersPerMililiter",
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Centi", "Deci"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/mL" ]
+          "Abbreviations": ["L/mL"]
         }
       ]
     },
@@ -50,7 +51,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "%", "% (v/v)" ]
+          "Abbreviations": ["%", "% (v/v)"]
         }
       ]
     },
@@ -62,7 +63,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "‰" ]
+          "Abbreviations": ["‰"]
         }
       ]
     },
@@ -74,7 +75,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppm" ]
+          "Abbreviations": ["ppm"]
         }
       ]
     },
@@ -86,7 +87,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppb" ]
+          "Abbreviations": ["ppb"]
         }
       ]
     },
@@ -98,7 +99,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppt" ]
+          "Abbreviations": ["ppt"]
         }
       ]
     }

@@ -12,11 +12,11 @@
       "PluralName": "GramSquareMeters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Milli", "Kilo" ],
+      "Prefixes": ["Milli", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g·m²" ]
+          "Abbreviations": ["g·m²"]
         }
       ]
     },
@@ -25,11 +25,11 @@
       "PluralName": "GramSquareDecimeters",
       "FromUnitToBaseFunc": "x/1e5",
       "FromBaseToUnitFunc": "x*1e5",
-      "Prefixes": [ "Milli", "Kilo" ],
+      "Prefixes": ["Milli", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g·dm²" ]
+          "Abbreviations": ["g·dm²"]
         }
       ]
     },
@@ -38,11 +38,11 @@
       "PluralName": "GramSquareCentimeters",
       "FromUnitToBaseFunc": "x/1e7",
       "FromBaseToUnitFunc": "x*1e7",
-      "Prefixes": [ "Milli", "Kilo" ],
+      "Prefixes": ["Milli", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g·cm²" ]
+          "Abbreviations": ["g·cm²"]
         }
       ]
     },
@@ -51,11 +51,11 @@
       "PluralName": "GramSquareMillimeters",
       "FromUnitToBaseFunc": "x/1e9",
       "FromBaseToUnitFunc": "x*1e9",
-      "Prefixes": [ "Milli", "Kilo" ],
+      "Prefixes": ["Milli", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g·mm²" ]
+          "Abbreviations": ["g·mm²"]
         }
       ]
     },
@@ -64,11 +64,11 @@
       "PluralName": "TonneSquareMeters",
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t·m²" ]
+          "Abbreviations": ["t·m²"]
         }
       ]
     },
@@ -77,11 +77,11 @@
       "PluralName": "TonneSquareDecimeters",
       "FromUnitToBaseFunc": "x/1e-1",
       "FromBaseToUnitFunc": "x*1e-1",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t·dm²" ]
+          "Abbreviations": ["t·dm²"]
         }
       ]
     },
@@ -90,11 +90,11 @@
       "PluralName": "TonneSquareCentimeters",
       "FromUnitToBaseFunc": "x/1e1",
       "FromBaseToUnitFunc": "x*1e1",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t·cm²" ]
+          "Abbreviations": ["t·cm²"]
         }
       ]
     },
@@ -103,11 +103,11 @@
       "PluralName": "TonneSquareMilimeters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t·mm²" ]
+          "Abbreviations": ["t·mm²"]
         }
       ]
     },
@@ -119,7 +119,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb·ft²" ]
+          "Abbreviations": ["lb·ft²"]
         }
       ]
     },
@@ -131,7 +131,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb·in²" ]
+          "Abbreviations": ["lb·in²"]
         }
       ]
     },
@@ -143,7 +143,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "slug·ft²" ]
+          "Abbreviations": ["slug·ft²"]
         }
       ]
     },
@@ -155,7 +155,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "slug·in²" ]
+          "Abbreviations": ["slug·in²"]
         }
       ]
     }

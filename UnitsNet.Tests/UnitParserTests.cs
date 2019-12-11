@@ -26,43 +26,6 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void Parse_AbbreviationCaseInsensitive_Lowercase_years()
-        {
-            var abbreviation = "years";
-            var expected = DurationUnit.Year365;
-            var parser = UnitParser.Default;
-
-            var actual = parser.Parse<DurationUnit>(abbreviation);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Parse_AbbreviationCaseInsensitive_Uppercase_Years()
-        {
-            var abbreviation = "Years";
-            var expected = DurationUnit.Year365;
-            var parser = UnitParser.Default;
-
-            var actual = parser.Parse<DurationUnit>(abbreviation);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Parse_GivenAbbreviationsThatAreAmbiguousWhenLowerCase_ReturnsCorrectUnit()
-        {
-            Assert.Equal(PressureUnit.Megabar, Pressure.ParseUnit("Mbar"));
-            Assert.Equal(PressureUnit.Millibar, Pressure.ParseUnit("mbar"));
-        }
-
-        [Fact]
-        public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
-        {
-            Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
-        }
-
         [Theory]
         [InlineData("m", typeof(LengthUnit), LengthUnit.Meter)]
         [InlineData("m^1", typeof(LengthUnit), LengthUnit.Meter)]
@@ -100,6 +63,42 @@ namespace UnitsNet.Tests
             Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
         }
 
+        [Theory]
+        [InlineData("ng", "en-US", MassUnit.Nanogram)]
+        [InlineData("нг", "ru-RU", MassUnit.Nanogram)]
+        [InlineData("g", "en-US", MassUnit.Gram)]
+        [InlineData("г", "ru-RU", MassUnit.Gram)]
+        [InlineData("kg", "en-US", MassUnit.Kilogram)]
+        [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
+        public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
+        {
+            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, new CultureInfo(cultureName)));
+        }
+
+        [Fact]
+        public void Parse_AbbreviationCaseInsensitive_Lowercase_years()
+        {
+            var abbreviation = "years";
+            var expected = DurationUnit.Year365;
+            var parser = UnitParser.Default;
+
+            var actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Parse_AbbreviationCaseInsensitive_Uppercase_Years()
+        {
+            var abbreviation = "Years";
+            var expected = DurationUnit.Year365;
+            var parser = UnitParser.Default;
+
+            var actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void Parse_AmbiguousUnitsThrowsException()
         {
@@ -114,16 +113,11 @@ namespace UnitsNet.Tests
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
         }
 
-        [Theory]
-        [InlineData("ng", "en-US", MassUnit.Nanogram)]
-        [InlineData("нг", "ru-RU", MassUnit.Nanogram)]
-        [InlineData("g", "en-US", MassUnit.Gram)]
-        [InlineData("г", "ru-RU", MassUnit.Gram)]
-        [InlineData("kg", "en-US", MassUnit.Kilogram)]
-        [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
-        public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
+        [Fact]
+        public void Parse_GivenAbbreviationsThatAreAmbiguousWhenLowerCase_ReturnsCorrectUnit()
         {
-            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, new CultureInfo(cultureName)));
+            Assert.Equal(PressureUnit.Megabar, Pressure.ParseUnit("Mbar"));
+            Assert.Equal(PressureUnit.Millibar, Pressure.ParseUnit("mbar"));
         }
 
         [Fact]
@@ -136,6 +130,12 @@ namespace UnitsNet.Tests
             var parsedUnit = unitParser.Parse<HowMuchUnit>("fooh");
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
+        }
+
+        [Fact]
+        public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
         }
     }
 }

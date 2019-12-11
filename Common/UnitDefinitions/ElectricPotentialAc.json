@@ -8,11 +8,11 @@
       "PluralName": "VoltsAc",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Prefixes": ["Micro", "Milli", "Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Vac" ]
+          "Abbreviations": ["Vac"]
         }
       ]
     }

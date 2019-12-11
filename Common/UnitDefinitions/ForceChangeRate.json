@@ -1,7 +1,8 @@
 ﻿{
   "Name": "ForceChangeRate",
   "BaseUnit": "NewtonPerSecond",
-  "XmlDoc": "Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).",
+  "XmlDoc":
+    "Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).",
   "BaseDimensions": {
     "L": 1,
     "M": 1,
@@ -13,11 +14,11 @@
       "PluralName": "NewtonsPerMinute",
       "FromUnitToBaseFunc": "x/60",
       "FromBaseToUnitFunc": "x*60",
-      "Prefixes": [ "Deca", "Kilo" ],
+      "Prefixes": ["Deca", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/min" ]
+          "Abbreviations": ["N/min"]
         }
       ]
     },
@@ -26,11 +27,11 @@
       "PluralName": "NewtonsPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/s" ]
+          "Abbreviations": ["N/s"]
         }
       ]
     }

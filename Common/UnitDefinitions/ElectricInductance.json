@@ -15,11 +15,11 @@
       "PluralName": "Henries",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-	  "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": ["Nano", "Micro", "Milli"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "H" ]
+          "Abbreviations": ["H"]
         }
       ]
     }

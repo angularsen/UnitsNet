@@ -27,43 +27,43 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void DurationTimesKinematicViscosityEqualsArea()
         {
-            Area area = Duration.FromSeconds(2)*KinematicViscosity.FromSquareMetersPerSecond(4);
+            var area = Duration.FromSeconds(2) * KinematicViscosity.FromSquareMetersPerSecond(4);
             Assert.Equal(area, Area.FromSquareMeters(8));
         }
 
         [Fact]
         public static void KinematicViscosityDividedByLengthEqualsSpeed()
         {
-            Speed speed = KinematicViscosity.FromSquareMetersPerSecond(4)/Length.FromMeters(2);
+            var speed = KinematicViscosity.FromSquareMetersPerSecond(4) / Length.FromMeters(2);
             Assert.Equal(speed, Speed.FromMetersPerSecond(2));
+        }
+
+        [Fact]
+        public static void KinematicViscosityTimesDensityEqualsDynamicViscosity()
+        {
+            var dynamicViscosity = KinematicViscosity.FromSquareMetersPerSecond(10) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
 
         [Fact]
         public static void KinematicViscosityTimesDurationEqualsArea()
         {
-            Area area = KinematicViscosity.FromSquareMetersPerSecond(4)*Duration.FromSeconds(2);
+            var area = KinematicViscosity.FromSquareMetersPerSecond(4) * Duration.FromSeconds(2);
             Assert.Equal(area, Area.FromSquareMeters(8));
         }
 
         [Fact]
         public static void KinematicViscosityTimesTimeSpanEqualsArea()
         {
-            Area area = KinematicViscosity.FromSquareMetersPerSecond(4)*TimeSpan.FromSeconds(2);
+            var area = KinematicViscosity.FromSquareMetersPerSecond(4) * TimeSpan.FromSeconds(2);
             Assert.Equal(area, Area.FromSquareMeters(8));
         }
 
         [Fact]
         public static void TimeSpanTimesKinematicViscosityEqualsArea()
         {
-            Area area = TimeSpan.FromSeconds(2)*KinematicViscosity.FromSquareMetersPerSecond(4);
+            var area = TimeSpan.FromSeconds(2) * KinematicViscosity.FromSquareMetersPerSecond(4);
             Assert.Equal(area, Area.FromSquareMeters(8));
-        }
-
-        [Fact]
-        public static void KinematicViscosityTimesDensityEqualsDynamicViscosity()
-        {
-            DynamicViscosity dynamicViscosity = KinematicViscosity.FromSquareMetersPerSecond(10) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
     }
 }

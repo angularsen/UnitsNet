@@ -1,7 +1,8 @@
 ﻿{
   "Name": "Acceleration",
   "BaseUnit": "MeterPerSecondSquared",
-  "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
+  "XmlDoc":
+    "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
   "BaseDimensions": {
     "L": 1,
     "T": -2
@@ -16,11 +17,11 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m/s²" ]
+          "Abbreviations": ["m/s²"]
         }
       ]
     },
@@ -36,7 +37,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in/s²" ]
+          "Abbreviations": ["in/s²"]
         }
       ]
     },
@@ -52,7 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft/s²" ]
+          "Abbreviations": ["ft/s²"]
         }
       ]
     },
@@ -68,7 +69,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/s" ]
+          "Abbreviations": ["kn/s"]
         }
       ]
     },
@@ -84,7 +85,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/min" ]
+          "Abbreviations": ["kn/min"]
         }
       ]
     },
@@ -100,7 +101,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/h" ]
+          "Abbreviations": ["kn/h"]
         }
       ]
     },
@@ -116,7 +117,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g" ]
+          "Abbreviations": ["g"]
         }
       ]
     }

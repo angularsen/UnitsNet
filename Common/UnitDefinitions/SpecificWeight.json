@@ -1,7 +1,8 @@
 {
   "Name": "SpecificWeight",
   "BaseUnit": "NewtonPerCubicMeter",
-  "XmlDoc": "The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.",
+  "XmlDoc":
+    "The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.",
   "XmlDocRemarks": "http://en.wikipedia.org/wiki/Specificweight",
   "BaseDimensions": {
     "L": -2,
@@ -14,11 +15,11 @@
       "PluralName": "NewtonsPerCubicMillimeter",
       "FromUnitToBaseFunc": "x*1000000000",
       "FromBaseToUnitFunc": "x*0.000000001",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/mm³" ]
+          "Abbreviations": ["N/mm³"]
         }
       ]
     },
@@ -27,11 +28,11 @@
       "PluralName": "NewtonsPerCubicCentimeter",
       "FromUnitToBaseFunc": "x*1000000",
       "FromBaseToUnitFunc": "x*0.000001",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/cm³" ]
+          "Abbreviations": ["N/cm³"]
         }
       ]
     },
@@ -40,11 +41,11 @@
       "PluralName": "NewtonsPerCubicMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/m³" ]
+          "Abbreviations": ["N/m³"]
         }
       ]
     },
@@ -56,7 +57,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/mm³" ]
+          "Abbreviations": ["kgf/mm³"]
         }
       ]
     },
@@ -68,7 +69,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/cm³" ]
+          "Abbreviations": ["kgf/cm³"]
         }
       ]
     },
@@ -80,7 +81,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/m³" ]
+          "Abbreviations": ["kgf/m³"]
         }
       ]
     },
@@ -89,11 +90,11 @@
       "PluralName": "PoundsForcePerCubicInch",
       "FromUnitToBaseFunc": "x*2.714471375263134e5",
       "FromBaseToUnitFunc": "x/2.714471375263134e5",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf/in³" ],
+          "Abbreviations": ["lbf/in³"],
           "AbbreviationsForPrefixes": { "Kilo": "kipf/in³" }
         }
       ]
@@ -103,11 +104,11 @@
       "PluralName": "PoundsForcePerCubicFoot",
       "FromUnitToBaseFunc": "x*1.570874638462462e2",
       "FromBaseToUnitFunc": "x/1.570874638462462e2",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf/ft³" ],
+          "Abbreviations": ["lbf/ft³"],
           "AbbreviationsForPrefixes": { "Kilo": "kipf/ft³" }
         }
       ]
@@ -120,7 +121,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/mm³" ]
+          "Abbreviations": ["tf/mm³"]
         }
       ]
     },
@@ -132,7 +133,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/cm³" ]
+          "Abbreviations": ["tf/cm³"]
         }
       ]
     },
@@ -144,7 +145,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/m³" ]
+          "Abbreviations": ["tf/m³"]
         }
       ]
     }

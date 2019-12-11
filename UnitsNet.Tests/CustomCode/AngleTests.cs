@@ -39,14 +39,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()
         {
-            RotationalSpeed rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
+            var rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
             Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 
         [Fact]
         public void AngleDividedByTimeSpanEqualsRotationalSpeed()
         {
-            RotationalSpeed rotationalSpeed = Angle.FromRadians(10) / TimeSpan.FromSeconds(5);
+            var rotationalSpeed = Angle.FromRadians(10) / TimeSpan.FromSeconds(5);
             Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
     }

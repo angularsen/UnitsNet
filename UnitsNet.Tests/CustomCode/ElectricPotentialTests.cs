@@ -25,7 +25,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10, -2, 5)]
         public void ElectricPotentialDividedByElectricCurrentEqualsElectricResistance(float potential, float current, float expected)
         {
-            ElectricResistance resistance = ElectricPotential.FromVolts(potential) / ElectricCurrent.FromAmperes(current);
+            var resistance = ElectricPotential.FromVolts(potential) / ElectricCurrent.FromAmperes(current);
             Assert.Equal(expected, resistance.Ohms);
         }
 
@@ -37,7 +37,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10, -2, 5)]
         public void ElectricPotentialDividedByElectricResistanceEqualsElectricCurrent(float potential, float resistance, float expected)
         {
-            ElectricCurrent current = ElectricPotential.FromVolts(potential) / ElectricResistance.FromOhms(resistance);
+            var current = ElectricPotential.FromVolts(potential) / ElectricResistance.FromOhms(resistance);
             Assert.Equal(expected, current.Amperes);
         }
     }

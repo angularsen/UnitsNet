@@ -1,7 +1,8 @@
 ﻿{
   "Name": "ElectricSurfaceChargeDensity",
   "BaseUnit": "CoulombPerSquareMeter",
-  "XmlDoc": "In electromagnetism, surface charge density is a measure of the amount of electric charge per surface area.",
+  "XmlDoc":
+    "In electromagnetism, surface charge density is a measure of the amount of electric charge per surface area.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Charge_density",
   "BaseDimensions": {
     "L": -2,
@@ -22,7 +23,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "C/m²" ]
+          "Abbreviations": ["C/m²"]
         }
       ]
     },
@@ -39,7 +40,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "C/cm²" ]
+          "Abbreviations": ["C/cm²"]
         }
       ]
     },
@@ -56,7 +57,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "C/in²" ]
+          "Abbreviations": ["C/in²"]
         }
       ]
     }

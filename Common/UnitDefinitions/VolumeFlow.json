@@ -1,7 +1,8 @@
 {
   "Name": "VolumeFlow",
   "BaseUnit": "CubicMeterPerSecond",
-  "XmlDoc": "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.",
+  "XmlDoc":
+    "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.",
   "BaseDimensions": {
     "L": 3,
     "T": -1
@@ -15,11 +16,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/s" ]
+          "Abbreviations": ["m³/s"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м³/с" ]
+          "Abbreviations": ["м³/с"]
         }
       ]
     },
@@ -31,7 +32,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/min" ]
+          "Abbreviations": ["m³/min"]
         }
       ]
     },
@@ -43,11 +44,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/h" ]
+          "Abbreviations": ["m³/h"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м³/ч" ]
+          "Abbreviations": ["м³/ч"]
         }
       ]
     },
@@ -59,7 +60,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/d" ]
+          "Abbreviations": ["m³/d"]
         }
       ]
     },
@@ -71,7 +72,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft³/s" ]
+          "Abbreviations": ["ft³/s"]
         }
       ]
     },
@@ -83,7 +84,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft³/min" ]
+          "Abbreviations": ["ft³/min"]
         }
       ]
     },
@@ -95,7 +96,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft³/h", "cf/hr" ]
+          "Abbreviations": ["ft³/h", "cf/hr"]
         }
       ]
     },
@@ -107,7 +108,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd³/s" ]
+          "Abbreviations": ["yd³/s"]
         }
       ]
     },
@@ -119,7 +120,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd³/min" ]
+          "Abbreviations": ["yd³/min"]
         }
       ]
     },
@@ -131,7 +132,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd³/h" ]
+          "Abbreviations": ["yd³/h"]
         }
       ]
     },
@@ -143,7 +144,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cy/day" ]
+          "Abbreviations": ["cy/day"]
         }
       ]
     },
@@ -155,7 +156,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "MGD" ]
+          "Abbreviations": ["MGD"]
         }
       ]
     },
@@ -167,7 +168,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gpd", "gal/d" ]
+          "Abbreviations": ["gpd", "gal/d"]
         }
       ]
     },
@@ -179,7 +180,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/s", "LPS" ]
+          "Abbreviations": ["L/s", "LPS"]
         }
       ]
     },
@@ -188,11 +189,11 @@
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "x/60000.00000",
       "FromBaseToUnitFunc": "x*60000.00000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/min", "LPM" ]
+          "Abbreviations": ["L/min", "LPM"]
         }
       ]
     },
@@ -204,11 +205,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L/h", "LPH" ]
+          "Abbreviations": ["L/h", "LPH"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "л/ч" ]
+          "Abbreviations": ["л/ч"]
         }
       ]
     },
@@ -217,11 +218,11 @@
       "PluralName": "LitersPerDay",
       "FromUnitToBaseFunc": "x/86400000",
       "FromBaseToUnitFunc": "x*86400000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "l/day", "L/d", "LPD" ]
+          "Abbreviations": ["l/day", "L/d", "LPD"]
         }
       ]
     },
@@ -233,7 +234,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U.S.)/s" ]
+          "Abbreviations": ["gal (U.S.)/s"]
         }
       ]
     },
@@ -245,7 +246,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U.S.)/min", "GPM" ]
+          "Abbreviations": ["gal (U.S.)/min", "GPM"]
         }
       ]
     },
@@ -257,7 +258,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U. K.)/d" ]
+          "Abbreviations": ["gal (U. K.)/d"]
         }
       ]
     },
@@ -269,7 +270,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (imp.)/h" ]
+          "Abbreviations": ["gal (imp.)/h"]
         }
       ]
     },
@@ -281,7 +282,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (imp.)/min" ]
+          "Abbreviations": ["gal (imp.)/min"]
         }
       ]
     },
@@ -290,11 +291,11 @@
       "PluralName": "UkGallonsPerSecond",
       "FromUnitToBaseFunc": "x/219.969",
       "FromBaseToUnitFunc": "x*219.969",
-      "Prefixes": [ "Mega" ],
+      "Prefixes": ["Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (imp.)/s" ]
+          "Abbreviations": ["gal (imp.)/s"]
         }
       ]
     },
@@ -306,7 +307,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgal (U.S.)/min", "KGPM" ]
+          "Abbreviations": ["kgal (U.S.)/min", "KGPM"]
         }
       ]
     },
@@ -318,7 +319,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U.S.)/h" ]
+          "Abbreviations": ["gal (U.S.)/h"]
         }
       ]
     },
@@ -330,11 +331,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dm³/min" ]
+          "Abbreviations": ["dm³/min"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дм³/мин" ]
+          "Abbreviations": ["дм³/мин"]
         }
       ]
     },
@@ -346,7 +347,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bbl/d", "BOPD" ]
+          "Abbreviations": ["bbl/d", "BOPD"]
         }
       ]
     },
@@ -358,7 +359,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bbl/min", "bpm" ]
+          "Abbreviations": ["bbl/min", "bpm"]
         }
       ]
     },
@@ -370,7 +371,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bbl/hr", "bph" ]
+          "Abbreviations": ["bbl/hr", "bph"]
         }
       ]
     },
@@ -382,7 +383,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bbl/s" ]
+          "Abbreviations": ["bbl/s"]
         }
       ]
     },
@@ -394,11 +395,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mm³/s" ]
+          "Abbreviations": ["mm³/s"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мм³/с" ]
+          "Abbreviations": ["мм³/с"]
         }
       ]
     },
@@ -410,7 +411,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "af/s" ]
+          "Abbreviations": ["af/s"]
         }
       ]
     },
@@ -422,7 +423,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "af/m" ]
+          "Abbreviations": ["af/m"]
         }
       ]
     },
@@ -434,7 +435,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "af/h" ]
+          "Abbreviations": ["af/h"]
         }
       ]
     },
@@ -446,7 +447,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "af/d" ]
+          "Abbreviations": ["af/d"]
         }
       ]
     }

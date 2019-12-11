@@ -14,11 +14,11 @@
       "PluralName": "JoulesPerMole",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": ["Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/mol" ]
+          "Abbreviations": ["J/mol"]
         }
       ]
     }

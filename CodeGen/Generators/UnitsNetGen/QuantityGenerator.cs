@@ -10,12 +10,12 @@ namespace CodeGen.Generators.UnitsNetGen
 {
     internal class QuantityGenerator : GeneratorBase
     {
-        private readonly Quantity _quantity;
+        private readonly Unit _baseUnit;
 
         private readonly bool _isDimensionless;
+        private readonly Quantity _quantity;
         private readonly string _unitEnumName;
         private readonly string _valueType;
-        private readonly Unit _baseUnit;
 
         public QuantityGenerator(Quantity quantity)
         {
@@ -28,16 +28,15 @@ namespace CodeGen.Generators.UnitsNetGen
             _valueType = quantity.BaseType;
             _unitEnumName = $"{quantity.Name}Unit";
 
-            BaseDimensions baseDimensions = quantity.BaseDimensions;
+            var baseDimensions = quantity.BaseDimensions;
             _isDimensionless = baseDimensions == null ||
-                              baseDimensions.L == 0 &&
-                              baseDimensions.M == 0 &&
-                              baseDimensions.T == 0 &&
-                              baseDimensions.I == 0 &&
-                              baseDimensions.Θ == 0 &&
-                              baseDimensions.N == 0 &&
-                              baseDimensions.J == 0;
-
+                               baseDimensions.L == 0 &&
+                               baseDimensions.M == 0 &&
+                               baseDimensions.T == 0 &&
+                               baseDimensions.I == 0 &&
+                               baseDimensions.Θ == 0 &&
+                               baseDimensions.N == 0 &&
+                               baseDimensions.J == 0;
         }
 
         public override string Generate()
@@ -94,9 +93,9 @@ namespace UnitsNet
             GenerateToString();
             GenerateIConvertibleMethods();
 
-            Writer.WL($@"
-    }}
-}}");
+            Writer.WL(@"
+    }
+}");
             return Writer.ToString();
         }
 
@@ -131,8 +130,7 @@ namespace UnitsNet
                     var baseUnitsCtorArgs = string.Join(", ",
                         new[]
                         {
-                            baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
-                            baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
+                            baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null, baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
                             baseUnits.T != null ? $"time: DurationUnit.{baseUnits.T}" : null,
                             baseUnits.I != null ? $"current: ElectricCurrentUnit.{baseUnits.I}" : null,
                             baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
@@ -263,9 +261,11 @@ namespace UnitsNet
 
             // Need to provide explicit interface implementation for decimal quantities like Information
             if (_quantity.BaseType != "double")
+            {
                 Writer.WL(@"
         double IQuantity.Value => (double) _value;
 ");
+            }
 
             Writer.WL($@"
         Enum IQuantity.Unit => Unit;
@@ -538,7 +538,9 @@ namespace UnitsNet
         private void GenerateArithmeticOperators()
         {
             if (!_quantity.GenerateArithmetic)
+            {
                 return;
+            }
 
             // Logarithmic units required different arithmetic
             if (_quantity.Logarithmic)
@@ -1028,7 +1030,7 @@ namespace UnitsNet
 
         private void GenerateIConvertibleMethods()
         {
-           Writer.WL($@"
+            Writer.WL($@"
         #region IConvertible Methods
 
         TypeCode IConvertible.GetTypeCode()
@@ -1128,15 +1130,15 @@ namespace UnitsNet
         #endregion");
         }
 
-        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)" />
         internal static string GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
-        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)" />
         internal static string GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
 
         /// <summary>
-        /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
-        /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
+        ///     Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
+        ///     It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
         /// </summary>
         private static string GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null

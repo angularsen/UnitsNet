@@ -1,7 +1,8 @@
 ﻿{
   "Name": "RotationalSpeed",
   "BaseUnit": "RadianPerSecond",
-  "XmlDoc": "Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter \"omega\").",
+  "XmlDoc":
+    "Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter \"omega\").",
   "BaseDimensions": {
     "T": -1
   },
@@ -11,15 +12,15 @@
       "PluralName": "RadiansPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rad/s" ]
+          "Abbreviations": ["rad/s"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "рад/с" ]
+          "Abbreviations": ["рад/с"]
         }
       ]
     },
@@ -28,15 +29,15 @@
       "PluralName": "DegreesPerSecond",
       "FromUnitToBaseFunc": "(Math.PI/180)*x",
       "FromBaseToUnitFunc": "(180/Math.PI)*x",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": ["Nano", "Micro", "Milli"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°/s", "deg/s" ]
+          "Abbreviations": ["°/s", "deg/s"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "°/с" ]
+          "Abbreviations": ["°/с"]
         }
       ]
     },
@@ -48,7 +49,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°/min", "deg/min" ]
+          "Abbreviations": ["°/min", "deg/min"]
         }
       ]
     },
@@ -60,11 +61,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "r/s" ]
+          "Abbreviations": ["r/s"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "об/с" ]
+          "Abbreviations": ["об/с"]
         }
       ]
     },
@@ -76,11 +77,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rpm", "r/min" ]
+          "Abbreviations": ["rpm", "r/min"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "об/мин" ]
+          "Abbreviations": ["об/мин"]
         }
       ]
     }

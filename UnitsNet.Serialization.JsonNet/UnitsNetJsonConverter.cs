@@ -38,9 +38,11 @@ namespace UnitsNet.Serialization.JsonNet
             JsonSerializer serializer)
         {
             if (reader.ValueType != null)
+            {
                 return reader.Value;
+            }
 
-            object obj = TryDeserializeIComparable(reader, serializer);
+            var obj = TryDeserializeIComparable(reader, serializer);
             if (obj is Array values)
             {
                 // Create array with the requested type, such as `Length[]` or `Frequency[]`
@@ -50,33 +52,32 @@ namespace UnitsNet.Serialization.JsonNet
                 var i = 0;
                 foreach (ValueUnit valueUnit in values)
                 {
-                    IQuantity quantity = ParseValueUnit(valueUnit);
+                    var quantity = ParseValueUnit(valueUnit);
                     arrayOfQuantities.SetValue(quantity, i++);
                 }
 
                 return arrayOfQuantities;
             }
+
             else if (obj is ValueUnit valueUnit)
             {
                 return ParseValueUnit(valueUnit);
             }
-            else
-            {
-                return obj;
-            }
+
+            return obj;
         }
 
         private static IQuantity ParseValueUnit(ValueUnit vu)
         {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            string unitEnumTypeName = vu.Unit.Split('.')[0];
-            string unitEnumValue = vu.Unit.Split('.')[1];
+            var unitEnumTypeName = vu.Unit.Split('.')[0];
+            var unitEnumValue = vu.Unit.Split('.')[1];
 
             // "UnitsNet.Units.MassUnit,UnitsNet"
-            string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+            var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
 
             // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+            var unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
             if (unitEnumType == null)
             {
                 var ex = new UnitsNetException("Unable to find enum type.");
@@ -84,45 +85,34 @@ namespace UnitsNet.Serialization.JsonNet
                 throw ex;
             }
 
-            double value = vu.Value;
-            Enum unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
+            var value = vu.Value;
+            var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
 
             return Quantity.From(value, unitValue);
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
-            JToken token = JToken.Load(reader);
+            var token = JToken.Load(reader);
 
             if (token is JArray)
             {
-                object[] results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
+                var results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
                 return results;
             }
-            else
-            {
-                return TryDeserializeIComparable(token, serializer);
-            }
+
+            return TryDeserializeIComparable(token, serializer);
         }
 
         private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
         {
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
-                var localSerializer = new JsonSerializer
-                {
-                    TypeNameHandling = serializer.TypeNameHandling,
-                };
+                var localSerializer = new JsonSerializer {TypeNameHandling = serializer.TypeNameHandling};
                 return token.ToObject<IComparable>(localSerializer);
             }
-            else
-            {
-                return new ValueUnit
-                {
-                    Unit = token[nameof(ValueUnit.Unit)].ToString(),
-                    Value = token[nameof(ValueUnit.Value)].ToObject<double>()
-                };
-            }
+
+            return new ValueUnit {Unit = token[nameof(ValueUnit.Unit)].ToString(), Value = token[nameof(ValueUnit.Value)].ToObject<double>()};
         }
 
         /// <summary>
@@ -137,10 +127,7 @@ namespace UnitsNet.Serialization.JsonNet
             // ValueUnit should be written as usual (but read in a custom way)
             if (obj is ValueUnit valueUnit)
             {
-                var localSerializer = new JsonSerializer
-                {
-                    TypeNameHandling = serializer.TypeNameHandling,
-                };
+                var localSerializer = new JsonSerializer {TypeNameHandling = serializer.TypeNameHandling};
 
                 var t = JToken.FromObject(valueUnit, localSerializer);
                 t.WriteTo(writer);
@@ -165,8 +152,7 @@ namespace UnitsNet.Serialization.JsonNet
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
-                Value = value.Value,
-                Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
+                Value = value.Value, Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
             };
         }
 
@@ -178,7 +164,6 @@ namespace UnitsNet.Serialization.JsonNet
         ///     in a loss of precision when serializing/deserializing to decimal.
         ///     Decimal is the highest precision type available in .NET, but has a smaller
         ///     range than double.
-        ///
         ///     Json: Support decimal precision #503
         ///     https://github.com/angularsen/UnitsNet/issues/503
         /// </remarks>
@@ -198,13 +183,15 @@ namespace UnitsNet.Serialization.JsonNet
         public override bool CanConvert(Type objectType)
         {
             if (IsNullable(objectType))
+            {
                 return CanConvertNullable(objectType);
+            }
 
             return objectType.Namespace != null &&
-                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
-                objectType == typeof(ValueUnit) ||
-                // All unit types implement IComparable
-                objectType == typeof(IComparable));
+                   (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                    objectType == typeof(ValueUnit) ||
+                    // All unit types implement IComparable
+                    objectType == typeof(IComparable));
         }
 
         /// <summary>

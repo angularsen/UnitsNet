@@ -1,7 +1,8 @@
 ﻿{
   "Name": "MassConcentration",
   "BaseUnit": "KilogramPerCubicMeter",
-  "XmlDoc": "In chemistry, the mass concentration ρi (or γi) is defined as the mass of a constituent mi divided by the volume of the mixture V",
+  "XmlDoc":
+    "In chemistry, the mass concentration ρi (or γi) is defined as the mass of a constituent mi divided by the volume of the mixture V",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mass_concentration_(chemistry)",
   "BaseDimensions": {
     "M": 1,
@@ -17,11 +18,11 @@
       },
       "FromUnitToBaseFunc": "x/1e-6",
       "FromBaseToUnitFunc": "x*1e-6",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/mm³" ]
+          "Abbreviations": ["g/mm³"]
         }
       ]
     },
@@ -34,11 +35,11 @@
       },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/cm³" ]
+          "Abbreviations": ["g/cm³"]
         }
       ]
     },
@@ -51,15 +52,15 @@
       },
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Kilo", "Milli", "Micro" ],
+      "Prefixes": ["Kilo", "Milli", "Micro"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/m³" ]
+          "Abbreviations": ["g/m³"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г/м³" ]
+          "Abbreviations": ["г/м³"]
         }
       ]
     },
@@ -72,11 +73,11 @@
       },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Centi", "Deci"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/mL" ]
+          "Abbreviations": ["g/mL"]
         }
       ]
     },
@@ -85,11 +86,11 @@
       "PluralName": "GramsPerDeciliter",
       "FromUnitToBaseFunc": "x/1e-1",
       "FromBaseToUnitFunc": "x*1e-1",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Centi", "Deci"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/dL" ]
+          "Abbreviations": ["g/dL"]
         }
       ]
     },
@@ -102,11 +103,11 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/L"]
+          "Abbreviations": ["g/L"]
         }
       ]
     },
@@ -122,7 +123,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/mm³" ]
+          "Abbreviations": ["t/mm³"]
         }
       ]
     },
@@ -138,7 +139,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/cm³" ]
+          "Abbreviations": ["t/cm³"]
         }
       ]
     },
@@ -154,7 +155,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/m³" ]
+          "Abbreviations": ["t/m³"]
         }
       ]
     },
@@ -167,11 +168,11 @@
       },
       "FromUnitToBaseFunc": "x/3.6127298147753e-5",
       "FromBaseToUnitFunc": "x*3.6127298147753e-5",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/in³" ],
+          "Abbreviations": ["lb/in³"],
           "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
         }
       ]
@@ -185,11 +186,11 @@
       },
       "FromUnitToBaseFunc": "x/0.062427961",
       "FromBaseToUnitFunc": "x*0.062427961",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/ft³" ],
+          "Abbreviations": ["lb/ft³"],
           "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
         }
       ]
@@ -206,7 +207,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "slug/ft³" ]
+          "Abbreviations": ["slug/ft³"]
         }
       ]
     },
@@ -218,7 +219,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg (U.S.)" ]
+          "Abbreviations": ["ppg (U.S.)"]
         }
       ]
     },
@@ -230,7 +231,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg (imp.)" ]
+          "Abbreviations": ["ppg (imp.)"]
         }
       ]
     }

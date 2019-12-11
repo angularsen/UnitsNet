@@ -1,3 +1,6 @@
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
 using System;
 using System.Linq;
 using CodeGen.JsonTypes;
@@ -6,8 +9,8 @@ namespace CodeGen.Generators.UnitsNetGen
 {
     internal class UnitTestBaseClassGenerator : GeneratorBase
     {
-        private readonly Quantity _quantity;
         private readonly Unit _baseUnit;
+        private readonly Quantity _quantity;
         private readonly string _unitEnumName;
 
         public UnitTestBaseClassGenerator(Quantity quantity)
@@ -42,14 +45,22 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class {_quantity.Name}TestsBase
     {{");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
         protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+            }
 
-            Writer.WL("");
-            Writer.WL($@"
+            Writer.WL();
+            Writer.WL(@"
 // ReSharper disable VirtualMemberNeverOverriden.Global");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}"); Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
+        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}");
+            }
+
+            Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -58,7 +69,9 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.BaseType})0.0, {_unitEnumName}.Undefined));
         }}
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.BaseType == "double")
+            {
+                Writer.WL($@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -71,27 +84,40 @@ namespace UnitsNet.Tests
         {{
             Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_unitEnumName}.{_baseUnit.SingularName}));
         }}
-"); Writer.WL($@"
+");
+            }
+
+            Writer.WL($@"
 
         [Fact]
         public void {_baseUnit.SingularName}To{_quantity.Name}Units()
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
 
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);");
-            Writer.WL($@"
-        }}
+            }
+
+            Writer.WL(@"
+        }
 
         [Fact]
         public void FromValueAndUnit()
-        {{");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+        {");
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
             AssertEx.EqualTolerance(1, {_quantity.Name}.From(1, {_unitEnumName}.{unit.SingularName}).{unit.PluralName}, {unit.PluralName}Tolerance);");
-            Writer.WL($@"
-        }}
+            }
+
+            Writer.WL(@"
+        }
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.BaseType == "double")
+            {
+                Writer.WL($@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -104,14 +130,21 @@ namespace UnitsNet.Tests
         {{
             Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
         }}
-"); Writer.WL($@"
+");
+            }
+
+            Writer.WL($@"
 
         [Fact]
         public void As()
         {{
             var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({_unitEnumName}.{unit.SingularName}), {unit.PluralName}Tolerance);");
+            }
+
             Writer.WL($@"
         }}
 
@@ -123,12 +156,13 @@ namespace UnitsNet.Tests
             {
                 var asQuantityVariableName = $"{unit.SingularName.ToLowerInvariant()}Quantity";
 
-                Writer.WL("");
+                Writer.WL();
                 Writer.WL($@"
             var {asQuantityVariableName} = {baseUnitVariableName}.ToUnit({_unitEnumName}.{unit.SingularName});
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.PluralName}Tolerance);
             Assert.Equal({_unitEnumName}.{unit.SingularName}, {asQuantityVariableName}.Unit);");
             }
+
             Writer.WL($@"
         }}
 
@@ -136,10 +170,14 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
             AssertEx.EqualTolerance(1, {_quantity.Name}.From{unit.PluralName}({baseUnitVariableName}.{unit.PluralName}).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);");
-            Writer.WL($@"
-        }}
+            }
+
+            Writer.WL(@"
+        }
 ");
             if (_quantity.Logarithmic)
             {
@@ -182,7 +220,7 @@ namespace UnitsNet.Tests
             }
             else
             {
-                Writer.WL("");
+                Writer.WL();
             }
 
             Writer.WL($@"

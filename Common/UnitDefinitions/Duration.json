@@ -1,7 +1,8 @@
 ﻿{
   "Name": "Duration",
   "BaseUnit": "Second",
-  "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
+  "XmlDoc":
+    "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
   "BaseDimensions": {
     "T": 1
   },
@@ -17,11 +18,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yr", "year", "years" ]
+          "Abbreviations": ["yr", "year", "years"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "год" ]
+          "Abbreviations": ["год"]
         }
       ]
     },
@@ -36,11 +37,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mo", "month", "months" ]
+          "Abbreviations": ["mo", "month", "months"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "месяц" ]
+          "Abbreviations": ["месяц"]
         }
       ]
     },
@@ -55,11 +56,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "wk", "week", "weeks" ]
+          "Abbreviations": ["wk", "week", "weeks"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мин" ]
+          "Abbreviations": ["мин"]
         }
       ]
     },
@@ -74,11 +75,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "d", "day", "days" ]
+          "Abbreviations": ["d", "day", "days"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "д" ]
+          "Abbreviations": ["д"]
         }
       ]
     },
@@ -93,11 +94,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "h", "hr", "hrs", "hour", "hours" ]
+          "Abbreviations": ["h", "hr", "hrs", "hour", "hours"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ч" ]
+          "Abbreviations": ["ч"]
         }
       ]
     },
@@ -112,11 +113,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m", "min", "minute", "minutes" ]
+          "Abbreviations": ["m", "min", "minute", "minutes"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мин" ]
+          "Abbreviations": ["мин"]
         }
       ]
     },
@@ -128,15 +129,15 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": ["Nano", "Micro", "Milli"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "s", "sec", "secs", "second", "seconds" ]
+          "Abbreviations": ["s", "sec", "secs", "second", "seconds"]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с", "сек" ]
+          "Abbreviations": ["с", "сек"]
         }
       ]
     }

@@ -60,7 +60,7 @@ namespace UnitsNet
         /// <returns>The resulting <see cref="Temperature" />.</returns>
         public Temperature Multiply(double factor, TemperatureUnit unit)
         {
-            double resultInUnit = As(unit) * factor;
+            var resultInUnit = As(unit) * factor;
             return From(resultInUnit, unit);
         }
 
@@ -78,7 +78,7 @@ namespace UnitsNet
         /// <returns>The resulting <see cref="Temperature" />.</returns>
         public Temperature Divide(double divisor, TemperatureUnit unit)
         {
-            double resultInUnit = As(unit) / divisor;
+            var resultInUnit = As(unit) / divisor;
             return From(resultInUnit, unit);
         }
     }

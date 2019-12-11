@@ -42,24 +42,24 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1e-6;
 
         [Fact]
-        public void SpecificWeightTimesLengthEqualsPressure()
+        public void SpecificWeightDividedByAccelerationEqualsDensity()
         {
-            Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
-            Assert.Equal(Pressure.FromPascals(20), pressure);
+            var density = SpecificWeight.FromNewtonsPerCubicMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
         }
 
         [Fact]
         public void SpecificWeightDividedByDensityEqualsAcceleration()
         {
-            Acceleration acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
+            var acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
             Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
         }
 
         [Fact]
-        public void SpecificWeightDividedByAccelerationEqualsDensity()
+        public void SpecificWeightTimesLengthEqualsPressure()
         {
-            Density density = SpecificWeight.FromNewtonsPerCubicMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
-            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
+            var pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
         }
     }
 }

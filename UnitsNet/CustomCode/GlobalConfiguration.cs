@@ -16,7 +16,7 @@ namespace UnitsNet
     public static class GlobalConfiguration
     {
         /// <summary>
-        ///     Wrapper for <see cref="Thread.CurrentUICulture"/>.
+        ///     Wrapper for <see cref="Thread.CurrentUICulture" />.
         /// </summary>
         [Obsolete("Manipulate Thread.CurrentThread.CurrentUICulture instead, this property will be removed.")]
         public static IFormatProvider DefaultCulture

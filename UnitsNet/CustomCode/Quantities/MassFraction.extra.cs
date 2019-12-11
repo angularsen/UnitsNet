@@ -1,11 +1,15 @@
-﻿using UnitsNet.Units;
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct MassFraction
     {
         /// <summary>
-        /// Get the <see cref="Mass"/> of the component by multiplying the <see cref="Mass"/> of the mixture and this <see cref="MassFraction"/>.
+        ///     Get the <see cref="Mass" /> of the component by multiplying the <see cref="Mass" /> of the mixture and this
+        ///     <see cref="MassFraction" />.
         /// </summary>
         /// <param name="totalMass">The total mass of the mixture</param>
         /// <returns>The actual mass of the component involved in this mixture</returns>
@@ -15,7 +19,8 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Get the total <see cref="Mass"/> of the mixture by dividing the <see cref="Mass"/> of the component by this <see cref="MassFraction"/>
+        ///     Get the total <see cref="Mass" /> of the mixture by dividing the <see cref="Mass" /> of the component by this
+        ///     <see cref="MassFraction" />
         /// </summary>
         /// <param name="componentMass">The actual mass of the component involved in this mixture</param>
         /// <returns>The total mass of the mixture</returns>
@@ -36,22 +41,25 @@ namespace UnitsNet
 
         #endregion
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> multiplied by a <see cref="MassFraction"/>.</summary>
+        /// <summary>Get <see cref="Mass" /> from <see cref="Mass" /> multiplied by a <see cref="MassFraction" />.</summary>
         public static Mass operator *(MassFraction massFraction, Mass mass)
         {
             return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
         }
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> multiplied by a <see cref="MassFraction"/>.</summary>
+        /// <summary>Get <see cref="Mass" /> from <see cref="Mass" /> multiplied by a <see cref="MassFraction" />.</summary>
         public static Mass operator *(Mass mass, MassFraction massFraction)
         {
             return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
         }
-        /// <summary>Get the total <see cref="Mass"/> by dividing the component  <see cref="Mass"/> by a <see cref="MassFraction"/>.</summary>
+
+        /// <summary>
+        ///     Get the total <see cref="Mass" /> by dividing the component  <see cref="Mass" /> by a
+        ///     <see cref="MassFraction" />.
+        /// </summary>
         public static Mass operator /(Mass mass, MassFraction massFraction)
         {
             return Mass.FromKilograms(mass.Kilograms / massFraction.DecimalFractions);
         }
-
     }
 }

@@ -2,7 +2,8 @@
   "Name": "BitRate",
   "BaseUnit": "BitPerSecond",
   "BaseType": "decimal",
-  "XmlDoc": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
+  "XmlDoc":
+    "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Bit_rate",
   "Units": [
     {
@@ -10,11 +11,11 @@
       "PluralName": "BitsPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
+      "Prefixes": ["Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bit/s", "bps" ]
+          "Abbreviations": ["bit/s", "bps"]
         }
       ]
     },
@@ -23,11 +24,11 @@
       "PluralName": "BytesPerSecond",
       "FromUnitToBaseFunc": "x*8m",
       "FromBaseToUnitFunc": "x/8m",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
+      "Prefixes": ["Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "B/s" ]
+          "Abbreviations": ["B/s"]
         }
       ]
     }

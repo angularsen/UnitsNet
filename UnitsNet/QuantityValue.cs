@@ -8,11 +8,16 @@ namespace UnitsNet
     /// <summary>
     ///     A type that supports implicit cast from all .NET numeric types, in order to avoid a large number of overloads
     ///     and binary size for all From(value, unit) factory methods, for each of the 700+ units in the library.
-    ///     <see cref="QuantityValue"/> stores the value internally with the proper type to preserve the range or precision of the original value:
-    /// <list type="bullet">
-    /// <item><description><see cref="double"/> for [byte, short, int, long, float, double]</description></item>
-    /// <item><description><see cref="decimal"/> for [decimal] to preserve the 128-bit precision</description></item>
-    /// </list>
+    ///     <see cref="QuantityValue" /> stores the value internally with the proper type to preserve the range or precision of
+    ///     the original value:
+    ///     <list type="bullet">
+    ///         <item>
+    ///             <description><see cref="double" /> for [byte, short, int, long, float, double]</description>
+    ///         </item>
+    ///         <item>
+    ///             <description><see cref="decimal" /> for [decimal] to preserve the 128-bit precision</description>
+    ///         </item>
+    ///     </list>
     /// </summary>
     /// <remarks>
     ///     At the time of this writing, this reduces the number of From(value, unit) overloads to 1/4th:
@@ -23,13 +28,13 @@ namespace UnitsNet
     {
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
-        ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal"/>.
+        ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal" />.
         /// </summary>
         private readonly double? _value;
 
         /// <summary>
         ///     Value assigned when implicitly casting from <see cref="decimal" /> type, since it has a greater precision than
-        ///     <see cref="double"/> and we want to preserve that when constructing quantities that use <see cref="decimal"/>
+        ///     <see cref="double" /> and we want to preserve that when constructing quantities that use <see cref="decimal" />
         ///     as their value type.
         /// </summary>
         private readonly decimal? _valueDecimal;
@@ -52,19 +57,25 @@ namespace UnitsNet
         // Prefer double for integer types, since most quantities use that type as of now and
         // that avoids unnecessary casts back and forth.
         // If we later change to use decimal more, we should revisit this.
-        /// <summary>Implicit cast from <see cref="byte"/> to <see cref="QuantityValue"/>.</summary>
+        /// <summary>Implicit cast from <see cref="byte" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(byte val) => new QuantityValue((double) val);
-        /// <summary>Implicit cast from <see cref="short"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="short" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(short val) => new QuantityValue((double) val);
-        /// <summary>Implicit cast from <see cref="int"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="int" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(int val) => new QuantityValue((double) val);
-        /// <summary>Implicit cast from <see cref="long"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="long" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(long val) => new QuantityValue((double) val);
-        /// <summary>Implicit cast from <see cref="float"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="float" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(float val) => new QuantityValue(val); // double
-        /// <summary>Implicit cast from <see cref="double"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="double" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(double val) => new QuantityValue(val); // double
-        /// <summary>Implicit cast from <see cref="decimal"/> to <see cref="QuantityValue"/>.</summary>
+
+        /// <summary>Implicit cast from <see cref="decimal" /> to <see cref="QuantityValue" />.</summary>
         public static implicit operator QuantityValue(decimal val) => new QuantityValue(val); // decimal
 #pragma warning restore 618
 
@@ -72,7 +83,7 @@ namespace UnitsNet
 
         #region To double
 
-        /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
+        /// <summary>Explicit cast from <see cref="QuantityValue" /> to <see cref="double" />.</summary>
         public static explicit operator double(QuantityValue number)
         {
             // double -> decimal -> zero (since we can't implement the default struct ctor)
@@ -83,7 +94,7 @@ namespace UnitsNet
 
         #region To decimal
 
-        /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
+        /// <summary>Explicit cast from <see cref="QuantityValue" /> to <see cref="decimal" />.</summary>
         public static explicit operator decimal(QuantityValue number)
         {
             // decimal -> double -> zero (since we can't implement the default struct ctor)

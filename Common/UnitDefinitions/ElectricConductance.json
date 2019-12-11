@@ -1,7 +1,8 @@
 ﻿{
   "Name": "ElectricConductance",
   "BaseUnit": "Siemens",
-  "XmlDoc": "The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.",
+  "XmlDoc":
+    "The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
   "BaseDimensions": {
     "L": -2,
@@ -15,11 +16,11 @@
       "PluralName": "Siemens",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli", "Micro" ],
+      "Prefixes": ["Milli", "Micro"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "S" ]
+          "Abbreviations": ["S"]
         }
       ]
     }

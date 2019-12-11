@@ -14,7 +14,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rad/s²" ]
+          "Abbreviations": ["rad/s²"]
         }
       ]
     },
@@ -26,7 +26,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°/s²", "deg/s²" ]
+          "Abbreviations": ["°/s²", "deg/s²"]
         }
       ]
     },
@@ -38,7 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rpm/s" ]
+          "Abbreviations": ["rpm/s"]
         }
       ]
     },
@@ -50,7 +50,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "r/s²" ]
+          "Abbreviations": ["r/s²"]
         }
       ]
     }
