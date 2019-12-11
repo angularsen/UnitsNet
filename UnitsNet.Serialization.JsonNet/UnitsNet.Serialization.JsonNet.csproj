@@ -19,7 +19,7 @@
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
     <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
