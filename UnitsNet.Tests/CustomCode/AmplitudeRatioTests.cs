@@ -18,13 +18,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override void AssertLogarithmicAddition()
         {
-            var v = AmplitudeRatio.FromDecibelVolts(40);
+            AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
             AssertEx.EqualTolerance(46.0205999133, (v + v).DecibelVolts, DecibelVoltsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
-            var v = AmplitudeRatio.FromDecibelVolts(40);
+            AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
             AssertEx.EqualTolerance(46.6982292275, (AmplitudeRatio.FromDecibelVolts(50) - v).DecibelVolts, DecibelVoltsTolerance);
         }
 
@@ -34,7 +34,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10)]
         public void InvalidVoltage_ExpectArgumentOutOfRangeException(double voltage)
         {
-            var invalidVoltage = ElectricPotential.FromVolts(voltage);
+            ElectricPotential invalidVoltage = ElectricPotential.FromVolts(voltage);
 
             // ReSharper disable once ObjectCreationAsStatement
             Assert.Throws<ArgumentOutOfRangeException>(() => new AmplitudeRatio(invalidVoltage));
@@ -48,9 +48,9 @@ namespace UnitsNet.Tests.CustomCode
         public void ExpectVoltageConvertedToAmplitudeRatioCorrectly(double voltage, double expected)
         {
             // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
-            var v = ElectricPotential.FromVolts(voltage);
+            ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
-            var actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
+            double actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
             Assert.Equal(expected, actual);
         }
 
@@ -63,9 +63,9 @@ namespace UnitsNet.Tests.CustomCode
         public void ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio, double expected)
         {
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
-            var ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
+            AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
-            var actual = ar.ToElectricPotential().Volts;
+            double actual = ar.ToElectricPotential().Volts;
             Assert.Equal(expected, actual);
         }
 
@@ -78,9 +78,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(60, 13.01)]
         public void AmplitudeRatioToPowerRatio_50OhmImpedance(double dBmV, double expected)
         {
-            var ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
+            AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            var actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
+            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
             Assert.Equal(expected, actual);
         }
 
@@ -91,9 +91,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(60, 11.25)]
         public void AmplitudeRatioToPowerRatio_75OhmImpedance(double dBmV, double expected)
         {
-            var ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
+            AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            var actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
+            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
             Assert.Equal(expected, actual);
         }
     }

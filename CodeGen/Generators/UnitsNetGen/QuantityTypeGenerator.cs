@@ -1,6 +1,3 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
-
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
@@ -33,11 +30,8 @@ namespace UnitsNet
 #pragma warning disable CS1591
         Undefined = 0,");
             foreach (var quantity in _quantities)
-            {
                 Writer.WL($@"
         {quantity.Name},");
-            }
-
             Writer.WL(@"
 // Missing XML comment for public type or member
 #pragma warning restore CS1591

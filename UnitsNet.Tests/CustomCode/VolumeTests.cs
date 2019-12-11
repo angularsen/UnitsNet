@@ -94,48 +94,48 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ImperialPintsInOneCubicMeter => 1.7597539863927023e3;
 
-        [Theory]
-        [InlineData(20, 2, 10)]
-        [InlineData(20, 80, 0.25)]
-        public void VolumeDividedByTimeSpanEqualsVolumeFlow(double cubicMeters, double seconds, double expectedCubicMetersPerSecond)
-        {
-            var volumeFlow = Volume.FromCubicMeters(cubicMeters) / TimeSpan.FromSeconds(seconds);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(expectedCubicMetersPerSecond), volumeFlow);
-        }
-
-        [Fact]
+        [ Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
-            var length = Volume.FromCubicMeters(15) / Area.FromSquareMeters(5);
+            Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);
             Assert.Equal(length, Length.FromMeters(3));
-        }
-
-        [Fact]
-        public void VolumeDividedByDurationEqualsVolumeFlow()
-        {
-            var volumeFlow = Volume.FromCubicMeters(20) / Duration.FromSeconds(2);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
         }
 
         [Fact]
         public void VolumeDividedByLengthEqualsArea()
         {
-            var area = Volume.FromCubicMeters(15) / Length.FromMeters(5);
+            Area area = Volume.FromCubicMeters(15)/Length.FromMeters(5);
             Assert.Equal(area, Area.FromSquareMeters(3));
-        }
-
-        [Fact]
-        public void VolumeDividedByVolumeFlowEqualsTimeSpan()
-        {
-            var timeSpan = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
-            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
         }
 
         [Fact]
         public void VolumeTimesDensityEqualsMass()
         {
-            var mass = Volume.FromCubicMeters(2) * Density.FromKilogramsPerCubicMeter(3);
+            Mass mass = Volume.FromCubicMeters(2)*Density.FromKilogramsPerCubicMeter(3);
             Assert.Equal(mass, Mass.FromKilograms(6));
+        }
+
+        [Theory]
+        [InlineData(20, 2, 10)]
+        [InlineData(20, 80, 0.25)]
+        public void VolumeDividedByTimeSpanEqualsVolumeFlow(double cubicMeters, double seconds, double expectedCubicMetersPerSecond)
+        {
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(cubicMeters) / TimeSpan.FromSeconds(seconds);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(expectedCubicMetersPerSecond), volumeFlow);
+        }
+
+        [Fact]
+        public void VolumeDividedByDurationEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(20) / Duration.FromSeconds(2);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
+        }
+
+        [Fact]
+        public void VolumeDividedByVolumeFlowEqualsTimeSpan()
+        {
+            TimeSpan timeSpan = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
+            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
-
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using UnitsNet.Units;
 
@@ -11,7 +8,7 @@ namespace UnitsNet.Benchmark
     public class UnitsNetBenchmarks
     {
         private Length length = Length.FromMeters(3.0);
-        private readonly IQuantity lengthIQuantity = Length.FromMeters(3.0);
+        private IQuantity lengthIQuantity = Length.FromMeters(3.0);
 
         [Benchmark]
         public Length Constructor() => new Length(3.0, LengthUnit.Meter);
@@ -65,9 +62,9 @@ namespace UnitsNet.Benchmark
         public string IQuantity_ToStringTest() => lengthIQuantity.ToString();
     }
 
-    internal class Program
+    class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             var summary = BenchmarkRunner.Run<UnitsNetBenchmarks>();
         }

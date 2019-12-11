@@ -1,40 +1,39 @@
 ﻿{
   "Name": "Angle",
   "BaseUnit": "Degree",
-  "XmlDoc":
-    "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
+  "XmlDoc": "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
   "Units": [
     {
       "SingularName": "Radian",
       "PluralName": "Radians",
       "FromUnitToBaseFunc": "x*180/Math.PI",
       "FromBaseToUnitFunc": "x/180*Math.PI",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["rad"]
+          "Abbreviations": [ "rad" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["рад"]
+          "Abbreviations": [ "рад" ]
         }
       ]
     },
     {
       "SingularName": "Degree",
       "PluralName": "Degrees",
-      "Prefixes": ["Nano", "Micro", "Milli"],
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["°", "deg"]
+          "Abbreviations": [ "°", "deg" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["°"]
+          "Abbreviations": [ "°" ]
         }
       ]
     },
@@ -46,7 +45,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["'", "arcmin", "amin", "min"]
+          "Abbreviations": [ "'", "arcmin", "amin", "min" ]
         }
       ]
     },
@@ -58,7 +57,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["″", "arcsec", "asec", "sec"]
+          "Abbreviations": [ "″", "arcsec", "asec", "sec" ]
         }
       ]
     },
@@ -70,11 +69,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["g"]
+          "Abbreviations": [ "g" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["g"]
+          "Abbreviations": [ "g" ]
         }
       ]
     },
@@ -86,11 +85,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["r"]
+          "Abbreviations": [ "r" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["r"]
+          "Abbreviations": [ "r" ]
         }
       ]
     }

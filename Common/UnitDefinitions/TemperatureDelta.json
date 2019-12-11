@@ -11,7 +11,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆K"]
+          "Abbreviations": [ "∆K" ]
         }
       ]
     },
@@ -23,7 +23,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°C"]
+          "Abbreviations": [ "∆°C" ]
         }
       ]
     },
@@ -35,7 +35,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°De"]
+          "Abbreviations": [ "∆°De" ]
         }
       ]
     },
@@ -47,7 +47,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°F"]
+          "Abbreviations": [ "∆°F" ]
         }
       ]
     },
@@ -59,7 +59,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°N"]
+          "Abbreviations": [ "∆°N" ]
         }
       ]
     },
@@ -71,7 +71,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°R"]
+          "Abbreviations": [ "∆°R" ]
         }
       ]
     },
@@ -83,7 +83,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°Ré"]
+          "Abbreviations": [ "∆°Ré" ]
         }
       ]
     },
@@ -95,7 +95,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["∆°Rø"]
+          "Abbreviations": [ "∆°Rø" ]
         }
       ]
     }

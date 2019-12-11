@@ -13,32 +13,19 @@ namespace UnitsNet.Tests.CustomCode
         private const double StoneTolerance = 1e-4;
         private const double PoundsTolerance = 1e-4;
 
-        // These cultures use a thin space in digit grouping
-        [Theory]
-        [InlineData("nn-NO")]
-        [InlineData("fr-FR")]
-        public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
-        {
-            var formatProvider = new CultureInfo(cultureName);
-            var m = Mass.FromStonePounds(3500, 1);
-            var stonePounds = m.StonePounds;
-
-            Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));
-        }
-
         [Fact]
         public void StonePoundsFrom()
         {
-            var m = Mass.FromStonePounds(2, 3);
-            var expectedKg = 2 / StoneInOneKilogram + 3 / PoundsInOneKilogram;
+            Mass m = Mass.FromStonePounds(2, 3);
+            double expectedKg = 2/StoneInOneKilogram + 3/PoundsInOneKilogram;
             AssertEx.EqualTolerance(expectedKg, m.Kilograms, StoneTolerance);
         }
 
         [Fact]
         public void StonePoundsRoundTrip()
         {
-            var m = Mass.FromStonePounds(2, 3);
-            var stonePounds = m.StonePounds;
+            Mass m = Mass.FromStonePounds(2, 3);
+            StonePounds stonePounds = m.StonePounds;
             AssertEx.EqualTolerance(2, stonePounds.Stone, StoneTolerance);
             AssertEx.EqualTolerance(3, stonePounds.Pounds, PoundsTolerance);
         }
@@ -46,11 +33,24 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void StonePoundsToString_FormatsNumberInDefaultCulture()
         {
-            var m = Mass.FromStonePounds(3500, 1);
-            var stonePounds = m.StonePounds;
-            var numberInCurrentCulture = 3500.ToString("n0", CultureInfo.CurrentUICulture); // Varies between machines, can't hard code it
+            Mass m = Mass.FromStonePounds(3500, 1);
+            StonePounds stonePounds = m.StonePounds;
+            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentUICulture); // Varies between machines, can't hard code it
 
             Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
+        }
+
+        // These cultures use a thin space in digit grouping
+        [Theory]
+        [InlineData("nn-NO")]
+        [InlineData("fr-FR")]
+        public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
+        {
+            var formatProvider = new CultureInfo(cultureName);
+            Mass m = Mass.FromStonePounds(3500, 1);
+            StonePounds stonePounds = m.StonePounds;
+
+            Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));
         }
     }
 }

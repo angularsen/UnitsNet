@@ -88,38 +88,38 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilogramsPerLiterInOneKilogramPerCubicMeter => 1e-3;
 
         [Fact]
-        public void DensityTimesAccelerationEqualsSpecificWeight()
-        {
-            var specificWeight = Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
-        }
-
-        [Fact]
-        public static void DensityTimesKinematicViscosityEqualsDynamicViscosity()
-        {
-            var dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
-            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
-        }
-
-        [Fact]
-        public void DensityTimesSpeedEqualsMassFlux()
-        {
-            var massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
-            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
-        }
-
-        [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
-            var mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
+            Mass mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
             Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
         [Fact]
         public static void VolumeTimesDensityEqualsMass()
         {
-            var mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
+            Mass mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
             Assert.Equal(mass, Mass.FromKilograms(6));
+        }
+
+        [Fact]
+        public static void DensityTimesKinematicViscosityEqualsDynamicViscosity()
+        {
+            DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
+            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+        }
+        
+        [Fact]
+        public void DensityTimesSpeedEqualsMassFlux()
+        {
+            MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
+            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
+        }
+
+        [Fact]
+        public void DensityTimesAccelerationEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
         }
     }
 }

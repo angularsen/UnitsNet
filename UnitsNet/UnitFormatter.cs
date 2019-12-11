@@ -24,7 +24,7 @@ namespace UnitsNet
         /// <returns>A ToString format for the specified value.</returns>
         public static string GetFormat(double value, int significantDigitsAfterRadix)
         {
-            var v = Math.Abs(value);
+            double v = Math.Abs(value);
             var sigDigitsAfterRadixStr = new string('#', significantDigitsAfterRadix);
             string format;
 
@@ -38,12 +38,12 @@ namespace UnitsNet
                 format = "{0:0." + sigDigitsAfterRadixStr + "e-00} {1}";
             }
             // Values from 1e-3 to 1 use fixed point notation.
-            else if (v > 1e-4 && v < 1)
+            else if ((v > 1e-4) && (v < 1))
             {
                 format = "{0:g" + significantDigitsAfterRadix + "} {1}";
             }
             // Values between 1 and 1e5 use fixed point notation with digit grouping.
-            else if (v >= 1 && v < 1e6)
+            else if ((v >= 1) && (v < 1e6))
             {
                 // The comma will be automatically replaced with the correct digit separator if a different culture is used.
                 format = "{0:#,0." + sigDigitsAfterRadixStr + "} {1}";
@@ -74,7 +74,7 @@ namespace UnitsNet
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
             where TUnitType : Enum
         {
-            var abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

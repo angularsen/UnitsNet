@@ -110,9 +110,13 @@ namespace CodeGen.Generators
         {
             return localizations.Select(loc =>
             {
-                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out var unitAbbreviationsForPrefix))
+                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
                 {
-                    return new Localization {Culture = loc.Culture, Abbreviations = unitAbbreviationsForPrefix};
+                    return new Localization
+                    {
+                        Culture = loc.Culture,
+                        Abbreviations = unitAbbreviationsForPrefix
+                    };
                 }
 
                 // No prefix unit abbreviations are specified, so fall back to prepending the default SI prefix to each unit abbreviation:
@@ -120,7 +124,11 @@ namespace CodeGen.Generators
                 var prefix = prefixInfo.GetPrefixForCultureOrSiPrefix(loc.Culture);
                 unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
 
-                return new Localization {Culture = loc.Culture, Abbreviations = unitAbbreviationsForPrefix};
+                return new Localization
+                {
+                    Culture = loc.Culture,
+                    Abbreviations = unitAbbreviationsForPrefix
+                };
             }).ToArray();
         }
     }

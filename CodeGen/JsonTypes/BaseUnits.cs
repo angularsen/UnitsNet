@@ -10,22 +10,16 @@ namespace CodeGen.JsonTypes
 
         /// <summary>AmountOfSubstance.</summary>
         public string N;
-
         /// <summary>ElectricCurrent.</summary>
         public string I;
-
         /// <summary>Length.</summary>
         public string L;
-
         /// <summary>LuminousIntensity.</summary>
         public string J;
-
         /// <summary>Mass.</summary>
         public string M;
-
         /// <summary>Temperature.</summary>
         public string Θ;
-
         /// <summary>Time.</summary>
         public string T;
 

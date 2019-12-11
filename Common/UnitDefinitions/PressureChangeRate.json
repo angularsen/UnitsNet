@@ -1,8 +1,7 @@
 ﻿{
   "Name": "PressureChangeRate",
   "BaseUnit": "PascalPerSecond",
-  "XmlDoc":
-    "Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).",
+  "XmlDoc": "Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).",
   "BaseDimensions": {
     "L": -1,
     "M": 1,
@@ -14,15 +13,15 @@
       "PluralName": "PascalsPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Pa/s"]
+          "Abbreviations": [ "Pa/s" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Па/с"]
+          "Abbreviations": [ "Па/с" ]
         }
       ]
     },
@@ -31,15 +30,15 @@
       "PluralName": "PascalsPerMinute",
       "FromUnitToBaseFunc": "x/60",
       "FromBaseToUnitFunc": "x*60",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Pa/min"]
+          "Abbreviations": [ "Pa/min" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Па/с"]
+          "Abbreviations": [ "Па/с" ]
         }
       ]
     },
@@ -51,11 +50,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["atm/s"]
+          "Abbreviations": [ "atm/s" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["атм/с"]
+          "Abbreviations": [ "атм/с" ]
         }
       ]
     }

@@ -10,7 +10,7 @@ namespace UnitsNet.Tests
     {
         public static T[] GetEnumValues<T>()
         {
-            return Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+            return Enum.GetValues(typeof (T)).Cast<T>().ToArray();
         }
     }
 }

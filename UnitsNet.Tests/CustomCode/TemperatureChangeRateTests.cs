@@ -23,6 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond => 1E9;
 
-        protected override double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond => 60;
+		protected override double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond => 60;
     }
 }

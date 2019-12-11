@@ -10,14 +10,14 @@ namespace UnitsNet.Tests
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromLongReturnsCorrectValue()
         {
-            var acceleration = Acceleration.FromMetersPerSecondSquared(1L);
+            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(1L);
             Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithLongBackingFieldFromLongReturnsCorrectValue()
         {
-            var power = Power.FromWatts(1L);
+            Power power = Power.FromWatts(1L);
             Assert.Equal(1.0, power.Watts);
         }
     }

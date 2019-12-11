@@ -15,11 +15,11 @@
       "PluralName": "JoulesPerMoleKelvin",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/(mol*K)"]
+          "Abbreviations": [ "J/(mol*K)" ]
         }
       ]
     }

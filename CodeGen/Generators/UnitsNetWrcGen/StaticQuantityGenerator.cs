@@ -1,6 +1,3 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
-
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
@@ -54,14 +51,14 @@ namespace UnitsNet
                     return true;");
             }
 
-            Writer.WL(@"
+            Writer.WL($@"
                 default:
-                {
+                {{
                     quantity = default(IQuantity);
                     return false;
-                }
-            }
-        }
+                }}
+            }}
+        }}
 
         /// <inheritdoc cref=""Parse(IFormatProvider, System.Type,string)""/>
         internal static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
@@ -75,14 +72,14 @@ namespace UnitsNet
         /// <returns>The parsed quantity.</returns>
         /// <exception cref=""ArgumentException"">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         internal static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
-        {
+        {{
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($""Type {quantityType} must be of type UnitsNet.IQuantity."");
+                throw new ArgumentException($""Type {{quantityType}} must be of type UnitsNet.IQuantity."");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
 
-            throw new ArgumentException($""Quantity string could not be parsed to quantity {quantityType}."");
-        }
+            throw new ArgumentException($""Quantity string could not be parsed to quantity {{quantityType}}."");
+        }}
 
         /// <inheritdoc cref=""TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)""/>
         internal static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
@@ -97,7 +94,7 @@ namespace UnitsNet
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
         internal static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
-        {
+        {{
             quantity = default(IQuantity);
 
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
@@ -113,12 +110,12 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL(@"
+            Writer.WL($@"
             throw new ArgumentException(
-                $""Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?"");
-        }
-    }
-}");
+                $""Type {{quantityType}} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?"");
+        }}
+    }}
+}}");
             return Writer.ToString();
         }
     }

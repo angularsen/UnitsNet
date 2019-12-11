@@ -18,7 +18,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m³/m"]
+          "Abbreviations": [ "m³/m" ]
         }
       ]
     },
@@ -34,7 +34,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["l/m"]
+          "Abbreviations": [ "l/m" ]
         }
       ]
     },
@@ -47,7 +47,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["bbl/ft"]
+          "Abbreviations": [ "bbl/ft" ]
         }
       ]
     }

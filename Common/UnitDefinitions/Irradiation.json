@@ -1,8 +1,7 @@
 ﻿{
   "Name": "Irradiation",
   "BaseUnit": "JoulePerSquareMeter",
-  "XmlDoc":
-    "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
+  "XmlDoc": "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Irradiation",
   "BaseDimensions": {
     "M": 1,
@@ -14,11 +13,11 @@
       "PluralName": "JoulesPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/m²"]
+          "Abbreviations": [ "J/m²" ]
         }
       ]
     },
@@ -27,11 +26,11 @@
       "PluralName": "JoulesPerSquareCentimeter",
       "FromUnitToBaseFunc": "x*1e4",
       "FromBaseToUnitFunc": "x/1e4",
-      "Prefixes": ["Milli"],
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/cm²"]
+          "Abbreviations": [ "J/cm²" ]
         }
       ]
     },
@@ -43,7 +42,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/mm²"]
+          "Abbreviations": [ "J/mm²" ]
         }
       ]
     },
@@ -52,11 +51,11 @@
       "PluralName": "WattHoursPerSquareMeter",
       "FromUnitToBaseFunc": "x*3600d",
       "FromBaseToUnitFunc": "x/3600d",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Wh/m²"]
+          "Abbreviations": [ "Wh/m²" ]
         }
       ]
     }

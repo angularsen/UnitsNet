@@ -31,7 +31,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10, -2, 20)]
         public void ElectricCurrentTimesElectricResistanceEqualsElectricPotential(float current, float resistance, float expected)
         {
-            var potential = ElectricCurrent.FromAmperes(current) * ElectricResistance.FromOhms(resistance);
+            ElectricPotential potential = ElectricCurrent.FromAmperes(current) * ElectricResistance.FromOhms(resistance);
             Assert.Equal(expected, potential.Volts);
         }
     }

@@ -1,9 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using UnitsNet.Units;
 using Xunit;
+using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -53,7 +53,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShacklesInOneMeter => 0.0364538;
 
-        protected override double NauticalMilesInOneMeter => 1.0 / 1852.0;
+        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
@@ -73,87 +73,76 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
 
-        [Fact]
+        [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
-            var volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
+            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
             Assert.Equal(volume, Volume.FromCubicMeters(30));
-        }
-
-        [Fact]
-        public void As_GivenSIUnitSystem_ReturnsSIValue()
-        {
-            var inches = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
-        }
-
-        [Fact]
-        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, null));
-        }
-
-        [Fact]
-        public void Constructor_UnitSystemSI_AssignsSIUnit()
-        {
-            var length = new Length(1.0, UnitSystem.SI);
-            Assert.Equal(LengthUnit.Meter, length.Unit);
-        }
-
-        [Fact]
-        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
-        {
-            // AmplitudeRatio is unitless. Can't have any matches :)
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
         }
 
         [Fact]
         public void ForceTimesLengthEqualsTorque()
         {
-            var torque = Force.FromNewtons(1) * Length.FromMeters(3);
+            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
-        }
-
-        [Fact]
-        public void LengthDividedBySpeedEqualsDuration()
-        {
-            var duration = Length.FromMeters(20) / Speed.FromMetersPerSecond(2);
-            Assert.Equal(Duration.FromSeconds(10), duration);
         }
 
         [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
-            var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
+            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
         }
 
         [Fact]
         public void LengthTimesForceEqualsTorque()
         {
-            var torque = Length.FromMeters(3) * Force.FromNewtons(1);
+            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesLengthEqualsArea()
         {
-            var area = Length.FromMeters(10) * Length.FromMeters(2);
+            Area area = Length.FromMeters(10)*Length.FromMeters(2);
             Assert.Equal(area, Area.FromSquareMeters(20));
         }
 
         [Fact]
-        public void LengthTimesSpecificWeightEqualsPressure()
+        public void LengthDividedBySpeedEqualsDuration()
         {
-            var pressure = Length.FromMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(10);
-            Assert.Equal(Pressure.FromPascals(20), pressure);
+            Duration duration = Length.FromMeters(20) / Speed.FromMetersPerSecond(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
         }
 
         [Fact]
         public void LengthTimesSpeedEqualsKinematicViscosity()
         {
-            var kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
+            KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+        }
+
+        [Fact]
+        public void LengthTimesSpecificWeightEqualsPressure()
+        {
+            Pressure pressure = Length.FromMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(10);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
+        {
+            var meter = Length.FromMeters(5);
+            string meterString = meter.ToString();
+            Assert.Equal("5 m", meterString);
+        }
+
+        [Fact]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
+        {
+            var value = Length.From(2, LengthUnit.Centimeter);
+            string valueString = value.ToString();
+            Assert.Equal("2 cm", valueString);
         }
 
         [Fact]
@@ -185,19 +174,30 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
-            var value = Length.From(2, LengthUnit.Centimeter);
-            var valueString = value.ToString();
-            Assert.Equal("2 cm", valueString);
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
         }
 
         [Fact]
-        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
-            var meter = Length.FromMeters(5);
-            var meterString = meter.ToString();
-            Assert.Equal("5 m", meterString);
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
+        {
+            // AmplitudeRatio is unitless. Can't have any matches :)
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
         }
 
         [Fact]

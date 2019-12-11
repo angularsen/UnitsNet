@@ -16,7 +16,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m²K/kW"]
+          "Abbreviations": [ "m²K/kW" ]
         }
       ]
     },
@@ -28,7 +28,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m²°C/W"]
+          "Abbreviations": [ "m²°C/W" ]
         }
       ]
     },
@@ -40,7 +40,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cm²K/W"]
+          "Abbreviations": [ "cm²K/W" ]
         }
       ]
     },
@@ -52,7 +52,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cm²Hr°C/kcal"]
+          "Abbreviations": [ "cm²Hr°C/kcal" ]
         }
       ]
     },
@@ -64,9 +64,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Hrft²°F/Btu"]
+          "Abbreviations": [ "Hrft²°F/Btu" ]
         }
       ]
     }
+
   ]
 }

@@ -10,27 +10,22 @@ namespace UnitsNet
     public partial struct AmountOfSubstance
     {
         /// <summary>
-        ///     The Avogadro constant is the number of constituent particles, usually molecules,
-        ///     atoms or ions that are contained in the amount of substance given by one mole. It is the proportionality factor
-        ///     that relates
-        ///     the molar mass of a substance to the mass of a sample, is designated with the symbol NA or L[1], and has the value
+        ///     The Avogadro constant is the number of constituent particles, usually molecules, 
+        ///     atoms or ions that are contained in the amount of substance given by one mole. It is the proportionality factor that relates 
+        ///     the molar mass of a substance to the mass of a sample, is designated with the symbol NA or L[1], and has the value 
         ///     6.02214076e23 mol−1 in the International System of Units (SI).
         /// </summary>
         /// <remarks>
-        ///     Pending revisions in the base set of SI units necessitated redefinitions of the concepts of chemical quantity. The
-        ///     Avogadro number,
-        ///     and its definition, was deprecated in favor of the Avogadro constant and its definition. Based on measurements made
-        ///     through the
-        ///     middle of 2017 which calculated a value for the Avogadro constant of NA = 6.022140758(62)×1023 mol−1, the
-        ///     redefinition of SI units
+        ///     Pending revisions in the base set of SI units necessitated redefinitions of the concepts of chemical quantity. The Avogadro number,
+        ///     and its definition, was deprecated in favor of the Avogadro constant and its definition. Based on measurements made through the
+        ///     middle of 2017 which calculated a value for the Avogadro constant of NA = 6.022140758(62)×1023 mol−1, the redefinition of SI units
         ///     is planned to take effect on 20 May 2019. The value of the constant will be fixed to exactly 6.02214076×1023 mol−1.
         ///     See here: https://www.bipm.org/utils/common/pdf/CGPM-2018/26th-CGPM-Resolutions.pdf
         /// </remarks>
         public static double AvogadroConstant { get; } = 6.02214076e23;
 
         /// <summary>
-        ///     Calculates the number of particles (atoms or molecules) in this amount of substance using the
-        ///     <see cref="AvogadroConstant" />.
+        /// Calculates the number of particles (atoms or molecules) in this amount of substance using the <see cref="AvogadroConstant"/>.
         /// </summary>
         /// <returns>The number of particles (atoms or molecules) in this amount of substance.</returns>
         public double NumberOfParticles()
@@ -45,7 +40,7 @@ namespace UnitsNet
         {
             return mass / molarMass;
         }
-
+        
         /// <summary>Get <see cref="Mass" /> from <see cref="AmountOfSubstance" /> for a given <see cref="MolarMass" />.</summary>
         public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
         {
@@ -69,5 +64,6 @@ namespace UnitsNet
         {
             return Volume.FromCubicMeters(amountOfSubstance.Moles / molarity.MolesPerCubicMeter);
         }
+
     }
 }

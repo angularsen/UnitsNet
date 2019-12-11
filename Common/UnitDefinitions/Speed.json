@@ -1,8 +1,7 @@
 ﻿{
   "Name": "Speed",
   "BaseUnit": "MeterPerSecond",
-  "XmlDoc":
-    "In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.",
+  "XmlDoc": "In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.",
   "BaseDimensions": {
     "L": 1,
     "T": -1
@@ -17,11 +16,11 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m/s"]
+          "Abbreviations": [ "m/s" ]
         }
       ]
     },
@@ -34,11 +33,11 @@
       },
       "FromUnitToBaseFunc": "x/60",
       "FromBaseToUnitFunc": "x*60",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m/min"]
+          "Abbreviations": [ "m/min" ]
         }
       ]
     },
@@ -51,11 +50,11 @@
       },
       "FromUnitToBaseFunc": "x/3600",
       "FromBaseToUnitFunc": "x*3600",
-      "Prefixes": ["Milli", "Centi", "Kilo"],
+      "Prefixes": [ "Milli", "Centi", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m/h"]
+          "Abbreviations": [ "m/h" ]
         }
       ]
     },
@@ -71,7 +70,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft/s"]
+          "Abbreviations": [ "ft/s" ]
         }
       ]
     },
@@ -87,7 +86,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft/min"]
+          "Abbreviations": [ "ft/min" ]
         }
       ]
     },
@@ -103,7 +102,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft/h"]
+          "Abbreviations": [ "ft/h" ]
         }
       ]
     },
@@ -119,7 +118,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ftUS/s"]
+          "Abbreviations": [ "ftUS/s" ]
         }
       ]
     },
@@ -135,7 +134,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ftUS/min"]
+          "Abbreviations": [ "ftUS/min" ]
         }
       ]
     },
@@ -151,7 +150,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ftUS/h"]
+          "Abbreviations": [ "ftUS/h" ]
         }
       ]
     },
@@ -167,7 +166,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["in/s"]
+          "Abbreviations": [ "in/s" ]
         }
       ]
     },
@@ -183,7 +182,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["in/min"]
+          "Abbreviations": [ "in/min" ]
         }
       ]
     },
@@ -199,7 +198,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["in/h"]
+          "Abbreviations": [ "in/h" ]
         }
       ]
     },
@@ -215,7 +214,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["yd/s"]
+          "Abbreviations": [ "yd/s" ]
         }
       ]
     },
@@ -231,7 +230,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["yd/min"]
+          "Abbreviations": [ "yd/min" ]
         }
       ]
     },
@@ -247,7 +246,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["yd/h"]
+          "Abbreviations": [ "yd/h" ]
         }
       ]
     },
@@ -263,7 +262,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kn", "kt", "knot", "knots"]
+          "Abbreviations": [ "kn", "kt", "knot", "knots" ]
         }
       ]
     },
@@ -279,7 +278,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mph"]
+          "Abbreviations": [ "mph" ]
         }
       ]
     }

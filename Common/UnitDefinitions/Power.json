@@ -2,8 +2,7 @@
   "Name": "Power",
   "BaseUnit": "Watt",
   "BaseType": "decimal",
-  "XmlDoc":
-    "In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.",
+  "XmlDoc": "In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,
@@ -15,11 +14,11 @@
       "PluralName": "Watts",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta"],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W"]
+          "Abbreviations": [ "W" ]
         }
       ]
     },
@@ -31,7 +30,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hp(I)"]
+          "Abbreviations": [ "hp(I)" ]
         }
       ]
     },
@@ -43,7 +42,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hp(M)"]
+          "Abbreviations": [ "hp(M)" ]
         }
       ]
     },
@@ -55,7 +54,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hp(E)"]
+          "Abbreviations": [ "hp(E)" ]
         }
       ]
     },
@@ -67,7 +66,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hp(S)"]
+          "Abbreviations": [ "hp(S)" ]
         }
       ]
     },
@@ -79,7 +78,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hp(H)"]
+          "Abbreviations": [ "hp(H)" ]
         }
       ]
     },
@@ -88,11 +87,11 @@
       "PluralName": "BritishThermalUnitsPerHour",
       "FromUnitToBaseFunc": "x*0.293071m",
       "FromBaseToUnitFunc": "x/0.293071m",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Btu/h", "Btu/hr"]
+          "Abbreviations": [ "Btu/h", "Btu/hr" ]
         }
       ]
     },
@@ -101,11 +100,11 @@
       "PluralName": "JoulesPerHour",
       "FromUnitToBaseFunc": "x/3600m",
       "FromBaseToUnitFunc": "x*3600m",
-      "Prefixes": ["Milli", "Kilo", "Mega", "Giga"],
+      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/h"]
+          "Abbreviations": [ "J/h" ]
         }
       ]
     },

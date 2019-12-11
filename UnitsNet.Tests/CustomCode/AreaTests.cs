@@ -8,11 +8,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
+
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 
         protected override double SquareMetersInOneSquareMeter => 1;
 
-        protected override double AcresInOneSquareMeter => 2.471053816137 * 1E-4;
+        protected override double AcresInOneSquareMeter => 2.471053816137*1E-4;
 
         protected override double HectaresInOneSquareMeter => 1E-4;
 
@@ -28,13 +29,27 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareInchesInOneSquareMeter => 1550.003100;
 
-        protected override double SquareMilesInOneSquareMeter => 3.86102 * 1E-7;
+        protected override double SquareMilesInOneSquareMeter => 3.86102*1E-7;
 
         protected override double SquareYardsInOneSquareMeter => 1.19599;
 
         protected override double UsSurveySquareFeetInOneSquareMeter => 10.76386736111121;
 
         protected override double SquareNauticalMilesInOneSquareMeter => 0.00000029155335;
+
+        [Fact]
+        public void AreaDividedByLengthEqualsLength()
+        {
+            Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
+            Assert.Equal(length, Length.FromMeters(10));
+        }
+
+        [Fact]
+        public void AreaTimesMassFluxEqualsMassFlow()
+        {
+            MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+        }
 
         [Theory]
         [InlineData(0, 0)]
@@ -43,9 +58,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2, 3.141592653589793)]
         public void AreaFromCicleDiameterCalculatedCorrectly(double diameterMeters, double expected)
         {
-            var diameter = Length.FromMeters(diameterMeters);
+            Length diameter = Length.FromMeters(diameterMeters);
 
-            var actual = Area.FromCircleDiameter(diameter).SquareMeters;
+            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
 
             Assert.Equal(expected, actual);
         }
@@ -57,39 +72,18 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2, 12.566370614359173)]
         public void AreaFromCicleRadiusCalculatedCorrectly(double radiusMeters, double expected)
         {
-            var radius = Length.FromMeters(radiusMeters);
+            Length radius = Length.FromMeters(radiusMeters);
 
-            var actual = Area.FromCircleRadius(radius).SquareMeters;
+            double actual = Area.FromCircleRadius(radius).SquareMeters;
 
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void AreaDividedByLengthEqualsLength()
-        {
-            var length = Area.FromSquareMeters(50) / Length.FromMeters(5);
-            Assert.Equal(length, Length.FromMeters(10));
-        }
-
-        [Fact]
-        public void AreaTimesMassFluxEqualsMassFlow()
-        {
-            var massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
-        }
-
-        [Fact]
         public void AreaTimesSpeedEqualsVolumeFlow()
         {
-            var volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
+            VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
-        }
-
-        [Fact]
-        public void As_GivenSIUnitSystem_ReturnsSIValue()
-        {
-            var squareInches = new Area(2.0, AreaUnit.SquareInch);
-            Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -97,6 +91,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             var area = new Area(1.0, UnitSystem.SI);
             Assert.Equal(AreaUnit.SquareMeter, area.Unit);
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var squareInches = new Area(2.0, AreaUnit.SquareInch);
+            Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
         }
 
         [Fact]

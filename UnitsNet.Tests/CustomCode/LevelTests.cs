@@ -14,13 +14,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override void AssertLogarithmicAddition()
         {
-            var v = Level.FromDecibels(40);
+            Level v = Level.FromDecibels(40);
             AssertEx.EqualTolerance(43.0102999566, (v + v).Decibels, DecibelsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
-            var v = Level.FromDecibels(40);
+            Level v = Level.FromDecibels(40);
             AssertEx.EqualTolerance(49.5424250944, (Level.FromDecibels(50) - v).Decibels, DecibelsTolerance);
         }
 

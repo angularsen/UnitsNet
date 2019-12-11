@@ -13,7 +13,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["dBW"]
+          "Abbreviations": [ "dBW" ]
         }
       ]
     },
@@ -25,7 +25,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["dBmW", "dBm"]
+          "Abbreviations": [ "dBmW", "dBm" ]
         }
       ]
     }

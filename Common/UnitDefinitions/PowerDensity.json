@@ -18,11 +18,11 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/m³"]
+          "Abbreviations": [ "W/m³" ]
         }
       ]
     },
@@ -31,11 +31,11 @@
       "PluralName": "WattsPerCubicInch",
       "FromUnitToBaseFunc": "x*6.102374409473228e4",
       "FromBaseToUnitFunc": "x/6.102374409473228e4",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/in³"]
+          "Abbreviations": [ "W/in³" ]
         }
       ]
     },
@@ -44,11 +44,11 @@
       "PluralName": "WattsPerCubicFoot",
       "FromUnitToBaseFunc": "x*3.531466672148859e1",
       "FromBaseToUnitFunc": "x/3.531466672148859e1",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/ft³"]
+          "Abbreviations": [ "W/ft³" ]
         }
       ]
     },
@@ -57,11 +57,11 @@
       "PluralName": "WattsPerLiter",
       "FromUnitToBaseFunc": "x*1.0e3",
       "FromBaseToUnitFunc": "x/1.0e3",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/l"]
+          "Abbreviations": [ "W/l" ]
         }
       ]
     }

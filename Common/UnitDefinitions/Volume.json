@@ -1,8 +1,7 @@
 {
   "Name": "Volume",
   "BaseUnit": "CubicMeter",
-  "XmlDoc":
-    "Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.",
+  "XmlDoc": "Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.",
   "BaseDimensions": {
     "L": 3
   },
@@ -12,15 +11,15 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": ["Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega"],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["l"]
+          "Abbreviations": [ "l" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["л"]
+          "Abbreviations": [ "л" ]
         }
       ]
     },
@@ -29,15 +28,15 @@
       "PluralName": "CubicMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Hecto", "Kilo"],
+      "Prefixes": [ "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m³"]
+          "Abbreviations": [ "m³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["м³"]
+          "Abbreviations": [ "м³" ]
         }
       ]
     },
@@ -49,11 +48,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["km³"]
+          "Abbreviations": [ "km³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["км³"]
+          "Abbreviations": [ "км³" ]
         }
       ]
     },
@@ -68,15 +67,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["hm³"]
+          "Abbreviations": [ "hm³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["гм³"]
+          "Abbreviations": [ "гм³" ]
         }
       ]
     },
-    {
+	  {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
       "FromUnitToBaseFunc": "x/1e3",
@@ -84,11 +83,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["dm³"]
+          "Abbreviations": [ "dm³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["дм³"]
+          "Abbreviations": [ "дм³" ]
         }
       ]
     },
@@ -100,11 +99,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cm³"]
+          "Abbreviations": [ "cm³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["см³"]
+          "Abbreviations": [ "см³" ]
         }
       ]
     },
@@ -116,11 +115,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mm³"]
+          "Abbreviations": [ "mm³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["мм³"]
+          "Abbreviations": [ "мм³" ]
         }
       ]
     },
@@ -132,11 +131,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["µm³"]
+          "Abbreviations": [ "µm³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["мкм³"]
+          "Abbreviations": [ "мкм³" ]
         }
       ]
     },
@@ -148,11 +147,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mi³"]
+          "Abbreviations": [ "mi³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["миля³"]
+          "Abbreviations": [ "миля³" ]
         }
       ]
     },
@@ -164,11 +163,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["yd³"]
+          "Abbreviations": [ "yd³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["ярд³"]
+          "Abbreviations": [ "ярд³" ]
         }
       ]
     },
@@ -177,15 +176,15 @@
       "PluralName": "CubicFeet",
       "FromUnitToBaseFunc": "x*0.0283168",
       "FromBaseToUnitFunc": "x/0.0283168",
-      "Prefixes": ["Hecto", "Kilo", "Mega"],
+      "Prefixes": [ "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft³"]
+          "Abbreviations": [ "ft³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["фут³"]
+          "Abbreviations": [ "фут³" ]
         }
       ]
     },
@@ -197,11 +196,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["in³"]
+          "Abbreviations": [ "in³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["дюйм³"]
+          "Abbreviations": [ "дюйм³" ]
         }
       ]
     },
@@ -210,15 +209,15 @@
       "PluralName": "ImperialGallons",
       "FromUnitToBaseFunc": "x*0.00454609000000181429905810072407",
       "FromBaseToUnitFunc": "x/0.00454609000000181429905810072407",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["gal (imp.)"]
+          "Abbreviations": [ "gal (imp.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Английский галлон"]
+          "Abbreviations": [ "Английский галлон" ]
         }
       ]
     },
@@ -230,11 +229,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["oz (imp.)"]
+          "Abbreviations": [ "oz (imp.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Английская унция"]
+          "Abbreviations": [ "Английская унция" ]
         }
       ]
     },
@@ -243,15 +242,15 @@
       "PluralName": "UsGallons",
       "FromUnitToBaseFunc": "x*0.00378541",
       "FromBaseToUnitFunc": "x/0.00378541",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["gal (U.S.)"]
+          "Abbreviations": [ "gal (U.S.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Американский галлон"]
+          "Abbreviations": [ "Американский галлон" ]
         }
       ]
     },
@@ -263,11 +262,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["oz (U.S.)"]
+          "Abbreviations": [ "oz (U.S.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Американская унция"]
+          "Abbreviations": [ "Американская унция" ]
         }
       ]
     },
@@ -339,7 +338,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"]
+          "Abbreviations": [ "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon" ]
         },
         {
           "Culture": "ru-RU",
@@ -415,7 +414,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["bbl"]
+          "Abbreviations": [ "bbl" ]
         }
       ]
     },
@@ -427,7 +426,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["bl (U.S.)"]
+          "Abbreviations": [ "bl (U.S.)" ]
         }
       ]
     },
@@ -439,7 +438,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["bl (imp.)"]
+          "Abbreviations": [ "bl (imp.)" ]
         }
       ]
     },
@@ -451,7 +450,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["qt (U.S.)"]
+          "Abbreviations": [ "qt (U.S.)" ]
         }
       ]
     },
@@ -463,7 +462,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["pt (U.S.)"]
+          "Abbreviations": [ "pt (U.S.)" ]
         }
       ]
     },
@@ -475,7 +474,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ac-ft", "acre-foot", "acre-feet"]
+          "Abbreviations": [ "ac-ft", "acre-foot", "acre-feet" ]
         }
       ]
     },
@@ -490,7 +489,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["pt (imp.)", "UK pt", "pt", "p"]
+          "Abbreviations": [ "pt (imp.)", "UK pt", "pt", "p" ]
         }
       ]
     }

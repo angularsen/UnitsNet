@@ -12,14 +12,13 @@ namespace UnitsNet
         ///     Initializes a new instance of the <see cref="PowerRatio" /> struct from the specified power referenced to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
+
         public PowerRatio(Power power)
             : this()
         {
             if (power.Watts <= 0)
-            {
                 throw new ArgumentOutOfRangeException(
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
-            }
 
             // P(dBW) = 10*log10(value(W)/reference(W))
             _value = 10 * Math.Log10(power.Watts / 1);

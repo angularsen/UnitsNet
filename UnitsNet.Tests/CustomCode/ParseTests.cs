@@ -27,8 +27,8 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("500,005 m", 500005)]
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
-            var usEnglish = new CultureInfo("en-US");
-            var actual = Length.Parse(s, usEnglish).Meters;
+            CultureInfo usEnglish = new CultureInfo("en-US");
+            double actual = Length.Parse(s, usEnglish).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -58,7 +58,7 @@ namespace UnitsNet.Tests.CustomCode
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.CurrencyDecimalSeparator = ".";
 
-            var actual = Length.Parse(s, numberFormat).Meters;
+            double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -89,8 +89,15 @@ namespace UnitsNet.Tests.CustomCode
             numberFormat.NumberDecimalSeparator = ",";
             numberFormat.CurrencyDecimalSeparator = ",";
 
-            var actual = Length.Parse(s, numberFormat).Meters;
+            double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ParseMultiWordAbbreviations()
+        {
+            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn"));
+            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn"));
         }
 
         [Theory]
@@ -110,8 +117,8 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("m", LengthUnit.Meter)]
         public void ParseLengthUnitUsEnglish(string s, LengthUnit expected)
         {
-            var usEnglish = new CultureInfo("en-US");
-            var actual = Length.ParseUnit(s, usEnglish);
+            CultureInfo usEnglish = new CultureInfo("en-US");
+            LengthUnit actual = Length.ParseUnit(s, usEnglish);
             Assert.Equal(expected, actual);
         }
 
@@ -132,8 +139,8 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("foo", false)]
         public void TryParseLengthUnitUsEnglish(string s, bool expected)
         {
-            var usEnglish = new CultureInfo("en-US");
-            var actual = Length.TryParse(s, usEnglish, out _);
+            CultureInfo usEnglish = new CultureInfo("en-US");
+            bool actual = Length.TryParse(s, usEnglish, out Length _);
             Assert.Equal(expected, actual);
         }
 
@@ -144,8 +151,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 г", "ru-RU", 1, MassUnit.Gram)]
         [InlineData("1 kg", "en-US", 1, MassUnit.Kilogram)]
         [InlineData("1 кг", "ru-RU", 1, MassUnit.Kilogram)]
-        public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue,
-            Enum expectedUnit)
+        public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
             var actual = Mass.Parse(str, new CultureInfo(cultureName));
 
@@ -160,8 +166,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 м", "ru-RU", 1, LengthUnit.Meter)]
         [InlineData("1 km", "en-US", 1, LengthUnit.Kilometer)]
         [InlineData("1 км", "ru-RU", 1, LengthUnit.Kilometer)]
-        public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue,
-            Enum expectedUnit)
+        public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
             var actual = Length.Parse(str, new CultureInfo(cultureName));
 
@@ -176,8 +181,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 Н", "ru-RU", 1, ForceUnit.Newton)]
         [InlineData("1 kN", "en-US", 1, ForceUnit.Kilonewton)]
         [InlineData("1 кН", "ru-RU", 1, ForceUnit.Kilonewton)]
-        public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue,
-            Enum expectedUnit)
+        public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
             var actual = Force.Parse(str, new CultureInfo(cultureName));
 
@@ -198,20 +202,12 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 MB", "ru-RU", 1, InformationUnit.Megabyte)]
         [InlineData("1 MiB", "en-US", 1, InformationUnit.Mebibyte)]
         [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
-        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue,
-            Enum expectedUnit)
+        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue, Enum expectedUnit)
         {
             var actual = Information.Parse(str, new CultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
             Assert.Equal(expectedValue, actual.Value);
-        }
-
-        [Fact]
-        public void ParseMultiWordAbbreviations()
-        {
-            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn"));
-            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn"));
         }
     }
 }

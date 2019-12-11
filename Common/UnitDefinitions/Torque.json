@@ -1,8 +1,7 @@
 ﻿{
   "Name": "Torque",
   "BaseUnit": "NewtonMeter",
-  "XmlDoc":
-    "Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.",
+  "XmlDoc": "Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,
@@ -14,11 +13,11 @@
       "PluralName": "NewtonMillimeters",
       "FromUnitToBaseFunc": "x*0.001",
       "FromBaseToUnitFunc": "x*1000",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N·mm"]
+          "Abbreviations": [ "N·mm" ]
         }
       ]
     },
@@ -27,11 +26,11 @@
       "PluralName": "NewtonCentimeters",
       "FromUnitToBaseFunc": "x*0.01",
       "FromBaseToUnitFunc": "x*100",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N·cm"]
+          "Abbreviations": [ "N·cm" ]
         }
       ]
     },
@@ -40,15 +39,15 @@
       "PluralName": "NewtonMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N·m"]
+          "Abbreviations": [ "N·m" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Н·м"]
+          "Abbreviations": [ "Н·м" ]
         }
       ]
     },
@@ -57,11 +56,11 @@
       "PluralName": "PoundForceInches",
       "FromUnitToBaseFunc": "x*1.129848290276167e-1",
       "FromBaseToUnitFunc": "x/1.129848290276167e-1",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf·in"],
+          "Abbreviations": [ "lbf·in" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
         }
       ]
@@ -71,11 +70,11 @@
       "PluralName": "PoundForceFeet",
       "FromUnitToBaseFunc": "x*1.3558179483314",
       "FromBaseToUnitFunc": "x/1.3558179483314",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf·ft"],
+          "Abbreviations": [ "lbf·ft" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
         }
       ]
@@ -88,7 +87,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf·mm"]
+          "Abbreviations": [ "kgf·mm" ]
         }
       ]
     },
@@ -100,7 +99,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf·cm"]
+          "Abbreviations": [ "kgf·cm" ]
         }
       ]
     },
@@ -112,7 +111,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf·m"]
+          "Abbreviations": [ "kgf·m" ]
         }
       ]
     },
@@ -124,7 +123,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf·mm"]
+          "Abbreviations": [ "tf·mm" ]
         }
       ]
     },
@@ -136,7 +135,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf·cm"]
+          "Abbreviations": [ "tf·cm" ]
         }
       ]
     },
@@ -148,7 +147,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf·m"]
+          "Abbreviations": [ "tf·m" ]
         }
       ]
     }

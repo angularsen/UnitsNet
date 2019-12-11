@@ -9,28 +9,6 @@ namespace UnitsNet.Tests
 {
     public class UnitSystemTests
     {
-        [Theory]
-        [InlineData(LengthUnit.Undefined, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin,
-            AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
-            LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Undefined, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
-            LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
-            LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole,
-            LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin,
-            AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela)]
-        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
-            LuminousIntensityUnit.Undefined)]
-        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
-            TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
-        {
-            var baseUnits = new BaseUnits(length, mass, time, current, temperature, amount, luminousIntensity);
-            Assert.Throws<ArgumentException>(() => new UnitSystem(baseUnits));
-        }
-
         [Fact]
         public void ConstructorImplementedProperly()
         {
@@ -46,6 +24,61 @@ namespace UnitsNet.Tests
         public void ConstructorThrowsArgumentNullExceptionForNullBaseUnits()
         {
             Assert.Throws<ArgumentNullException>(() => new UnitSystem(null));
+        }
+
+        [Theory]
+        [InlineData(LengthUnit.Undefined, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Undefined, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)]
+        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
+            TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
+        {
+            var baseUnits = new BaseUnits(length, mass, time, current, temperature, amount, luminousIntensity);
+            Assert.Throws<ArgumentException>(() => new UnitSystem(baseUnits));
+        }
+
+        [Fact]
+        public void EqualsObjectIsImplementedCorrectly()
+        {
+            var unitSystem1 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            var unitSystem2 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            var unitSystem3 = new UnitSystem(new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            Assert.True(unitSystem1.Equals((object)unitSystem2));
+            Assert.False(unitSystem1.Equals((object)unitSystem3));
+
+            Assert.False(unitSystem1.Equals("Some object."));
+            Assert.False(unitSystem1.Equals((IFormatProvider)null));
+        }
+
+        [Fact]
+        public void EqualsUnitSystemIsImplementedCorrectly()
+        {
+            var unitSystem1 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            var unitSystem2 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            var unitSystem3 = new UnitSystem(new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+
+            Assert.True(unitSystem1.Equals(unitSystem2));
+            Assert.True(unitSystem2.Equals(unitSystem1));
+
+            Assert.False(unitSystem1.Equals(unitSystem3));
+            Assert.False(unitSystem3.Equals(unitSystem1));
+
+            Assert.False(unitSystem1.Equals(null));
         }
 
         [Fact]
@@ -73,46 +106,6 @@ namespace UnitsNet.Tests
             UnitSystem nullUnitSystem2 = null;
 
             Assert.True(nullUnitSystem1 == nullUnitSystem2);
-        }
-
-        [Fact]
-        public void EqualsObjectIsImplementedCorrectly()
-        {
-            var unitSystem1 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            var unitSystem2 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            var unitSystem3 = new UnitSystem(new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            Assert.True(unitSystem1.Equals((object) unitSystem2));
-            Assert.False(unitSystem1.Equals((object) unitSystem3));
-
-            Assert.False(unitSystem1.Equals("Some object."));
-            Assert.False(unitSystem1.Equals((IFormatProvider) null));
-        }
-
-        [Fact]
-        public void EqualsUnitSystemIsImplementedCorrectly()
-        {
-            var unitSystem1 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            var unitSystem2 = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            var unitSystem3 = new UnitSystem(new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
-
-            Assert.True(unitSystem1.Equals(unitSystem2));
-            Assert.True(unitSystem2.Equals(unitSystem1));
-
-            Assert.False(unitSystem1.Equals(unitSystem3));
-            Assert.False(unitSystem3.Equals(unitSystem1));
-
-            Assert.False(unitSystem1.Equals(null));
         }
 
         [Fact]

@@ -13,11 +13,11 @@
       "PluralName": "GramsPerSecondPerSquareMeter",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["g·s⁻¹·m⁻²"]
+          "Abbreviations": [ "g·s⁻¹·m⁻²" ]
         }
       ]
     }

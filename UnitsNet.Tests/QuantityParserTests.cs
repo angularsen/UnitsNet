@@ -15,7 +15,7 @@ namespace UnitsNet.Tests
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
-            var q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 fooh",
+            HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
                 (value, unit) => new HowMuch((double) value, unit));
 
@@ -30,7 +30,7 @@ namespace UnitsNet.Tests
             unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "fooh");
             var quantityParser = new QuantityParser(unitAbbreviationsCache);
 
-            var success = quantityParser.TryParse<HowMuch, HowMuchUnit>("1 fooh",
+            bool success = quantityParser.TryParse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
                 (value, unit) => new HowMuch((double) value, unit),
                 out HowMuch q);
@@ -39,5 +39,6 @@ namespace UnitsNet.Tests
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
         }
+
     }
 }

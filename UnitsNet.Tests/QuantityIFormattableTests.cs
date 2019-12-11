@@ -11,17 +11,17 @@ namespace UnitsNet.Tests
     {
         private static Length length = Length.FromFeet(1.2345678);
 
-        [Theory]
-        [InlineData("s", "1 ft")]
-        [InlineData("s1", "1.2 ft")]
-        [InlineData("s2", "1.23 ft")]
-        [InlineData("s3", "1.235 ft")]
-        [InlineData("s4", "1.2346 ft")]
-        [InlineData("s5", "1.23457 ft")]
-        [InlineData("s6", "1.234568 ft")]
-        public void SFormatEqualsSignificantDigits(string sFormatString, string expected)
+        [Fact]
+        public void GFormatStringEqualsToString()
         {
-            Assert.Equal(expected, length.ToString(sFormatString, NumberFormatInfo.InvariantInfo));
+            Assert.Equal(length.ToString("g"), length.ToString());
+        }
+
+        [Fact]
+        public void EmptyOrNullFormatStringEqualsGFormat()
+        {
+            Assert.Equal(length.ToString("g"), length.ToString(string.Empty));
+            Assert.Equal(length.ToString("g"), length.ToString((string)null));
         }
 
         [Fact]
@@ -41,22 +41,28 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EmptyOrNullFormatStringEqualsGFormat()
+        public void VFormatEqualsValueToString()
         {
-            Assert.Equal(length.ToString("g"), length.ToString(string.Empty));
-            Assert.Equal(length.ToString("g"), length.ToString((string) null));
-        }
-
-        [Fact]
-        public void GFormatStringEqualsToString()
-        {
-            Assert.Equal(length.ToString("g"), length.ToString());
+            Assert.Equal(length.Value.ToString(CultureInfo.CurrentUICulture), length.ToString("v"));
         }
 
         [Fact]
         public void QFormatEqualsQuantityName()
         {
             Assert.Equal(Length.Info.Name, length.ToString("q"));
+        }
+
+        [Theory]
+        [InlineData("s", "1 ft")]
+        [InlineData("s1", "1.2 ft")]
+        [InlineData("s2", "1.23 ft")]
+        [InlineData("s3", "1.235 ft")]
+        [InlineData("s4", "1.2346 ft")]
+        [InlineData("s5", "1.23457 ft")]
+        [InlineData("s6", "1.234568 ft")]
+        public void SFormatEqualsSignificantDigits(string sFormatString, string expected)
+        {
+            Assert.Equal(expected, length.ToString(sFormatString, NumberFormatInfo.InvariantInfo));
         }
 
         [Fact]
@@ -69,12 +75,6 @@ namespace UnitsNet.Tests
         public void UnsupportedFormatStringThrowsException()
         {
             Assert.Throws<FormatException>(() => length.ToString("z"));
-        }
-
-        [Fact]
-        public void VFormatEqualsValueToString()
-        {
-            Assert.Equal(length.Value.ToString(CultureInfo.CurrentUICulture), length.ToString("v"));
         }
     }
 }

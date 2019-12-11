@@ -16,11 +16,11 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/m²"]
+          "Abbreviations": [ "W/m²" ]
         }
       ]
     },
@@ -32,7 +32,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/in²"]
+          "Abbreviations": [ "W/in²" ]
         }
       ]
     },
@@ -44,7 +44,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/ft²"]
+          "Abbreviations": [ "W/ft²" ]
         }
       ]
     },
@@ -56,7 +56,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["BTU/s·in²"]
+          "Abbreviations": [ "BTU/s·in²" ]
         }
       ]
     },
@@ -68,7 +68,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["BTU/s·ft²"]
+          "Abbreviations": [ "BTU/s·ft²" ]
         }
       ]
     },
@@ -80,7 +80,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["BTU/min·ft²"]
+          "Abbreviations": [ "BTU/min·ft²" ]
         }
       ]
     },
@@ -92,7 +92,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["BTU/h·ft²"]
+          "Abbreviations": [ "BTU/h·ft²" ]
         }
       ]
     },
@@ -101,11 +101,11 @@
       "PluralName": "CaloriesPerSecondSquareCentimeter",
       "FromUnitToBaseFunc": "x*4.1868e4",
       "FromBaseToUnitFunc": "x/4.1868e4",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cal/s·cm²"]
+          "Abbreviations": [ "cal/s·cm²" ]
         }
       ]
     },
@@ -117,7 +117,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kcal/h·m²"]
+          "Abbreviations": [ "kcal/h·m²" ]
         }
       ]
     },
@@ -129,7 +129,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf/(ft·s)"]
+          "Abbreviations": [ "lbf/(ft·s)" ]
         }
       ]
     },
@@ -141,7 +141,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lb/s³", "lbm/s³"]
+          "Abbreviations": [ "lb/s³", "lbm/s³" ]
         }
       ]
     }

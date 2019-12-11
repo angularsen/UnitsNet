@@ -1,8 +1,7 @@
 ﻿{
   "Name": "Area",
   "BaseUnit": "SquareMeter",
-  "XmlDoc":
-    "Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).",
+  "XmlDoc": "Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).",
   "BaseDimensions": {
     "L": 2
   },
@@ -18,11 +17,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["km²"]
+          "Abbreviations": [ "km²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["км²"]
+          "Abbreviations": [ "км²" ]
         }
       ]
     },
@@ -37,11 +36,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m²"]
+          "Abbreviations": [ "m²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["м²"]
+          "Abbreviations": [ "м²" ]
         }
       ]
     },
@@ -56,11 +55,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["dm²"]
+          "Abbreviations": [ "dm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["дм²"]
+          "Abbreviations": [ "дм²" ]
         }
       ]
     },
@@ -75,11 +74,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cm²"]
+          "Abbreviations": [ "cm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["см²"]
+          "Abbreviations": [ "см²" ]
         }
       ]
     },
@@ -94,11 +93,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mm²"]
+          "Abbreviations": [ "mm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["мм²"]
+          "Abbreviations": [ "мм²" ]
         }
       ]
     },
@@ -113,11 +112,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["µm²"]
+          "Abbreviations": [ "µm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["мкм²"]
+          "Abbreviations": [ "мкм²" ]
         }
       ]
     },
@@ -132,11 +131,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mi²"]
+          "Abbreviations": [ "mi²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["миля²"]
+          "Abbreviations": [ "миля²" ]
         }
       ]
     },
@@ -151,11 +150,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["yd²"]
+          "Abbreviations": [ "yd²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["ярд²"]
+          "Abbreviations": [ "ярд²" ]
         }
       ]
     },
@@ -170,11 +169,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft²"]
+          "Abbreviations": [ "ft²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["фут²"]
+          "Abbreviations": [ "фут²" ]
         }
       ]
     },
@@ -189,7 +188,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft² (US)"]
+          "Abbreviations": [ "ft² (US)" ]
         }
       ]
     },
@@ -204,11 +203,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["in²"]
+          "Abbreviations": [ "in²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["дюйм²"]
+          "Abbreviations": [ "дюйм²" ]
         }
       ]
     },
@@ -220,7 +219,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ac"]
+          "Abbreviations": [ "ac" ]
         }
       ]
     },
@@ -232,7 +231,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ha"]
+          "Abbreviations": [ "ha" ]
         }
       ]
     },

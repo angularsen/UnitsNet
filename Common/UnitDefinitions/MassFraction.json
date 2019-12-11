@@ -4,7 +4,7 @@
   "XmlDoc": "The mass fraction is defined as the mass of a constituent divided by the total mass of the mixture.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)",
   "Units": [
-    {
+     {
       "SingularName": "DecimalFraction",
       "PluralName": "DecimalFractions",
       "FromUnitToBaseFunc": "x",
@@ -12,7 +12,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [""]
+          "Abbreviations": [ "" ]
         }
       ]
     },
@@ -21,11 +21,11 @@
       "PluralName": "GramsPerGram",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["g/g"]
+          "Abbreviations": [ "g/g" ]
         }
       ]
     },
@@ -34,11 +34,11 @@
       "PluralName": "GramsPerKilogram",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["g/kg"]
+          "Abbreviations": [ "g/kg" ]
         }
       ]
     },
@@ -50,7 +50,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["%", "% (w/w)"]
+          "Abbreviations": [ "%", "% (w/w)" ]
         }
       ]
     },
@@ -62,7 +62,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["‰"]
+          "Abbreviations": [ "‰" ]
         }
       ]
     },
@@ -74,7 +74,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ppm"]
+          "Abbreviations": [ "ppm" ]
         }
       ]
     },
@@ -86,7 +86,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ppb"]
+          "Abbreviations": [ "ppb" ]
         }
       ]
     },
@@ -98,7 +98,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ppt"]
+          "Abbreviations": [ "ppt" ]
         }
       ]
     }

@@ -12,11 +12,11 @@
       "PluralName": "WattsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Kilo", "Mega"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/m²"]
+          "Abbreviations": [ "W/m²" ]
         }
       ]
     },
@@ -25,11 +25,11 @@
       "PluralName": "WattsPerSquareCentimeter",
       "FromUnitToBaseFunc": "x*10000",
       "FromBaseToUnitFunc": "x*0.0001",
-      "Prefixes": ["Pico", "Nano", "Micro", "Milli", "Kilo", "Mega"],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["W/cm²"]
+          "Abbreviations": [ "W/cm²" ]
         }
       ]
     }

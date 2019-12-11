@@ -12,6 +12,7 @@ using JetBrains.Annotations;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
+
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
@@ -19,17 +20,14 @@ namespace UnitsNet
     internal class QuantityParser
     {
         /// <summary>
-        ///     Allow integer, floating point or exponential number formats.
+        /// Allow integer, floating point or exponential number formats.
         /// </summary>
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
         private readonly UnitParser _unitParser;
 
-        static QuantityParser()
-        {
-            Default = new QuantityParser(UnitAbbreviationsCache.Default);
-        }
+        public static QuantityParser Default { get; }
 
         public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
@@ -37,7 +35,10 @@ namespace UnitsNet
             _unitParser = new UnitParser(_unitAbbreviationsCache);
         }
 
-        public static QuantityParser Default { get; }
+        static QuantityParser()
+        {
+            Default = new QuantityParser(UnitAbbreviationsCache.Default);
+        }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
@@ -54,16 +55,13 @@ namespace UnitsNet
                 : NumberFormatInfo.CurrentInfo;
 
             if (numFormat == null)
-            {
                 throw new InvalidOperationException($"No number format was found for the given format provider: {formatProvider}");
-            }
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
             if (!ExtractValueAndUnit(regex, str, out var valueString, out var unitString))
             {
-                var ex = new FormatException(
-                    "Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.");
+                var ex = new FormatException("Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.");
                 ex.Data["input"] = str;
                 throw ex;
             }
@@ -81,31 +79,26 @@ namespace UnitsNet
         {
             result = default;
 
-            if (string.IsNullOrWhiteSpace(str)) return false;
+            if(string.IsNullOrWhiteSpace(str)) return false;
             str = str.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
                 : NumberFormatInfo.CurrentInfo;
 
-            if (numFormat == null)
-            {
+            if(numFormat == null)
                 return false;
-            }
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
             if (!ExtractValueAndUnit(regex, str, out var valueString, out var unitString))
-            {
                 return false;
-            }
 
             return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
         }
 
         /// <summary>
-        ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are
-        ///     compatible.
+        ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
         /// </summary>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
@@ -178,14 +171,10 @@ namespace UnitsNet
             result = default;
 
             if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
-            {
-                return false;
-            }
+                    return false;
 
             if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
-            {
-                return false;
-            }
+                    return false;
 
             result = fromDelegate(value, parsedUnit);
             return true;

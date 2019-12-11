@@ -1,8 +1,7 @@
 ﻿{
   "Name": "DynamicViscosity",
   "BaseUnit": "NewtonSecondPerMeterSquared",
-  "XmlDoc":
-    "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
+  "XmlDoc": "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity",
   "BaseDimensions": {
     "L": -1,
@@ -18,7 +17,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Ns/m²"]
+          "Abbreviations": [ "Ns/m²" ]
         }
       ]
     },
@@ -27,11 +26,11 @@
       "PluralName": "PascalSeconds",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Milli", "Micro"],
+      "Prefixes": [ "Milli", "Micro" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Pa·s", "PaS"]
+          "Abbreviations": [ "Pa·s", "PaS" ]
         }
       ]
     },
@@ -40,11 +39,11 @@
       "PluralName": "Poise",
       "FromUnitToBaseFunc": "x/10",
       "FromBaseToUnitFunc": "x*10",
-      "Prefixes": ["Centi"],
+      "Prefixes": [ "Centi" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["P"]
+          "Abbreviations": [ "P" ]
         }
       ]
     },
@@ -56,7 +55,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["reyn"]
+          "Abbreviations": [ "reyn" ]
         }
       ]
     },
@@ -68,7 +67,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf·s/in²"]
+          "Abbreviations": [ "lbf·s/in²" ]
         }
       ]
     },
@@ -80,7 +79,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf·s/ft²"]
+          "Abbreviations": [ "lbf·s/ft²" ]
         }
       ]
     }

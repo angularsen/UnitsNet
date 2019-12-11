@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -14,24 +15,24 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule => 5918352.5016;
 
         [Fact]
-        public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
+        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
-            var value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.Equal(200.0, value);
+            MassFlow massFlow = BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0) * Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
+            AssertEx.EqualTolerance(20.0, massFlow.TonnesPerDay, 1e-11);
         }
 
         [Fact]
         public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
-            var massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
+            SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
             Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
 
         [Fact]
-        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
+        public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
         {
-            var massFlow = BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0) * Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
-            AssertEx.EqualTolerance(20.0, massFlow.TonnesPerDay, 1e-11);
+            double value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
+            Assert.Equal(200.0, value);
         }
     }
 }

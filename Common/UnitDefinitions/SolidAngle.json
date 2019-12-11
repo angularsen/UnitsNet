@@ -1,8 +1,7 @@
 ﻿{
   "Name": "SolidAngle",
   "BaseUnit": "Steradian",
-  "XmlDoc":
-    "In geometry, a solid angle is the two-dimensional angle in three-dimensional space that an object subtends at a point.",
+  "XmlDoc": "In geometry, a solid angle is the two-dimensional angle in three-dimensional space that an object subtends at a point.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Solid_angle",
   "Units": [
     {
@@ -13,7 +12,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["sr"]
+          "Abbreviations": [ "sr" ]
         }
       ]
     }

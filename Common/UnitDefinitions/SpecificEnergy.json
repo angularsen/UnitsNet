@@ -13,11 +13,11 @@
       "PluralName": "JoulesPerKilogram",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["J/kg"]
+          "Abbreviations": [ "J/kg" ]
         }
       ]
     },
@@ -26,11 +26,11 @@
       "PluralName": "CaloriesPerGram",
       "FromUnitToBaseFunc": "x*4.184e3",
       "FromBaseToUnitFunc": "x/4.184e3",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["cal/g"]
+          "Abbreviations": [ "cal/g" ]
         }
       ]
     },
@@ -39,11 +39,11 @@
       "PluralName": "WattHoursPerKilogram",
       "FromUnitToBaseFunc": "x*3.6e3",
       "FromBaseToUnitFunc": "x/3.6e3",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Wh/kg"]
+          "Abbreviations": [ "Wh/kg" ]
         }
       ]
     },
@@ -55,9 +55,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["btu/lb"]
+          "Abbreviations": [ "btu/lb" ]
         }
       ]
     }
+
   ]
 }

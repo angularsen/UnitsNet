@@ -37,28 +37,28 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationTimesRotationalSpeedEqualsAngle()
         {
-            var angle = Duration.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0);
+            Angle angle = Duration.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
             Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
         [Fact]
         public void RotationalSpeedTimesDurationEqualsAngle()
         {
-            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * Duration.FromSeconds(9.0);
+            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*Duration.FromSeconds(9.0);
             Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
         [Fact]
         public void RotationalSpeedTimesTimeSpanEqualsAngle()
         {
-            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * TimeSpan.FromSeconds(9.0);
+            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
             Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
         [Fact]
         public void TimeSpanTimesRotationalSpeedEqualsAngle()
         {
-            var angle = TimeSpan.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0);
+            Angle angle = TimeSpan.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
             Assert.Equal(angle, Angle.FromRadians(90.0));
         }
     }

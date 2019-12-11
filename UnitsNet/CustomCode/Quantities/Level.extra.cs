@@ -17,22 +17,17 @@ namespace UnitsNet
         public Level(double quantity, double reference)
             : this()
         {
-            var errorMessage =
+            string errorMessage =
                 $"The base-10 logarithm of a number ≤ 0 is undefined ({quantity}/{reference}).";
 
             // ReSharper disable CompareOfFloatsByEqualityOperator
             if (quantity == 0 || quantity < 0 && reference > 0)
-            {
                 throw new ArgumentOutOfRangeException(nameof(quantity), errorMessage);
-            }
-
             if (reference == 0 || quantity > 0 && reference < 0)
-            {
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
-            }
             // ReSharper restore CompareOfFloatsByEqualityOperator
 
-            _value = 10 * Math.Log10(quantity / reference);
+            _value = 10*Math.Log10(quantity/reference);
             _unit = LevelUnit.Decibel;
         }
     }

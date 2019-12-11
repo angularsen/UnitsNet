@@ -61,57 +61,40 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
 
-        [Theory]
-        [InlineData(10, MassUnit.Gram,
-            KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
-            0.625023438378939, AmountOfSubstanceUnit.Mole)] // 10 grams Of Oxygen contain 0.625023438378939 Moles
-        public void AmountOfSubstanceFromMassAndMolarMass(
-            double massValue, MassUnit massUnit,
-            double molarMassValue, MolarMassUnit molarMassUnit,
-            double expectedAmountOfSubstanceValue, AmountOfSubstanceUnit expectedAmountOfSubstanceUnit, double tolerence = 1e-5)
-        {
-            var mass = new Mass(massValue, massUnit);
-            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
-
-            var amountOfSubstance = mass / molarMass;
-
-            AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
-        }
-
         //protected override double SolarMassesTolerance => 0.1;
 
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
-            var force = Acceleration.FromMetersPerSecondSquared(3) * Mass.FromKilograms(18);
+            Force force = Acceleration.FromMetersPerSecondSquared(3)*Mass.FromKilograms(18);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 
         [Fact]
         public void MassDividedByDurationEqualsMassFlow()
         {
-            var massFlow = Mass.FromKilograms(18.0) / Duration.FromSeconds(6);
+            MassFlow massFlow = Mass.FromKilograms(18.0)/Duration.FromSeconds(6);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByTimeSpanEqualsMassFlow()
         {
-            var massFlow = Mass.FromKilograms(18.0) / TimeSpan.FromSeconds(6);
+            MassFlow massFlow = Mass.FromKilograms(18.0)/TimeSpan.FromSeconds(6);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByVolumeEqualsDensity()
         {
-            var density = Mass.FromKilograms(18) / Volume.FromCubicMeters(3);
+            Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);
             Assert.Equal(density, Density.FromKilogramsPerCubicMeter(6));
         }
 
         [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
-            var force = Mass.FromKilograms(18) * Acceleration.FromMetersPerSecondSquared(3);
+            Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 
@@ -129,6 +112,23 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(-1.0, stonePounds.Stone);
             Assert.Equal(-11.0, stonePounds.Pounds);
+        }
+
+        [Theory]
+        [InlineData(10, MassUnit.Gram,
+                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+                    0.625023438378939, AmountOfSubstanceUnit.Mole)]     // 10 grams Of Oxygen contain 0.625023438378939 Moles
+        public void AmountOfSubstanceFromMassAndMolarMass(
+            double massValue, MassUnit massUnit,
+            double molarMassValue, MolarMassUnit molarMassUnit,
+            double expectedAmountOfSubstanceValue, AmountOfSubstanceUnit expectedAmountOfSubstanceUnit, double tolerence = 1e-5)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
+
+            AmountOfSubstance amountOfSubstance = mass / molarMass;
+
+            AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }
     }
 }

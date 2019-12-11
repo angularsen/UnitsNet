@@ -12,11 +12,11 @@
       "PluralName": "NewtonsPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N/m"]
+          "Abbreviations": [ "N/m" ]
         }
       ]
     },
@@ -28,11 +28,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf/m"]
+          "Abbreviations": [ "kgf/m" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["кгс/м"]
+          "Abbreviations": [ "кгс/м" ]
         }
       ]
     },
@@ -44,7 +44,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf/ft"]
+          "Abbreviations": [ "lbf/ft" ]
         }
       ]
     },
@@ -56,7 +56,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf/in"]
+          "Abbreviations": [ "lbf/in" ]
         }
       ]
     },
@@ -68,7 +68,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbf/yd"]
+          "Abbreviations": [ "lbf/yd" ]
         }
       ]
     }

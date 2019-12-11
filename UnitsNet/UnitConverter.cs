@@ -13,12 +13,14 @@ namespace UnitsNet
     using ConversionFunctionLookupKey = ValueTuple<Type, Enum, Type, Enum>;
 
     /// <summary>
+    ///
     /// </summary>
     /// <param name="inputValue"></param>
     /// <returns></returns>
     public delegate IQuantity ConversionFunction(IQuantity inputValue);
 
     /// <summary>
+    ///
     /// </summary>
     /// <typeparam name="TQuantity"></typeparam>
     /// <param name="inputValue"></param>
@@ -32,8 +34,13 @@ namespace UnitsNet
     [PublicAPI]
     public sealed partial class UnitConverter
     {
-        private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions =
-            new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
+        /// <summary>
+        /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
+        /// as adding your own third-party units and quantities to convert between.
+        /// </summary>
+        public static UnitConverter Default { get; }
+
+        private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
 
         static UnitConverter()
         {
@@ -42,18 +49,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at
-        ///     runtime, such
-        ///     as adding your own third-party units and quantities to convert between.
+        /// Sets the conversion function from two units of the same quantity type.
         /// </summary>
-        public static UnitConverter Default { get; }
-
-        /// <summary>
-        ///     Sets the conversion function from two units of the same quantity type.
-        /// </summary>
-        /// <typeparam name="TQuantity">The type of quantity, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantity">The type of quantity, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction<TQuantity> conversionFunction)
             where TQuantity : IQuantity
@@ -64,12 +64,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Sets the conversion function from two units of different quantity types.
+        /// Sets the conversion function from two units of different quantity types.
         /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity" />.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
+        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         public void SetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, ConversionFunction conversionFunction)
             where TQuantityFrom : IQuantity
@@ -79,12 +79,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Sets the conversion function from two units of different quantity types.
+        /// Sets the conversion function from two units of different quantity types.
         /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity" />.</param>
+        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
         {
@@ -93,7 +93,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Sets the conversion function for a particular conversion function lookup.
+        /// Sets the conversion function for a particular conversion function lookup.
         /// </summary>
         /// <param name="lookupKey">The lookup key.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
@@ -103,28 +103,25 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Sets the conversion function for a particular conversion function lookup.
+        /// Sets the conversion function for a particular conversion function lookup.
         /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="conversionLookup">The quantity conversion function lookup key.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         internal void SetConversionFunction<TQuantity>(ConversionFunctionLookupKey conversionLookup, ConversionFunction<TQuantity> conversionFunction)
             where TQuantity : IQuantity
         {
-            IQuantity TypelessConversionFunction(IQuantity quantity)
-            {
-                return conversionFunction((TQuantity) quantity);
-            }
+            IQuantity TypelessConversionFunction(IQuantity quantity) => conversionFunction((TQuantity) quantity);
 
             _conversionFunctions[conversionLookup] = TypelessConversionFunction;
         }
 
         /// <summary>
-        ///     Gets the conversion function from two units of the same quantity type.
+        /// Gets the conversion function from two units of the same quantity type.
         /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <returns></returns>
         public ConversionFunction GetConversionFunction<TQuantity>(Enum from, Enum to) where TQuantity : IQuantity
         {
@@ -132,12 +129,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets the conversion function from two units of different quantity types.
+        /// Gets the conversion function from two units of different quantity types.
         /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity" />.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
+        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <returns></returns>
         public ConversionFunction GetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to)
             where TQuantityFrom : IQuantity
@@ -147,12 +144,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets the conversion function from two units of different quantity types.
+        /// Gets the conversion function from two units of different quantity types.
         /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity" />.</param>
+        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
         {
             var conversionLookup = new ConversionFunctionLookupKey(fromType, from, toType, to);
@@ -160,32 +157,27 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets the conversion function by its lookup key.
+        /// Gets the conversion function by its lookup key.
         /// </summary>
         /// <param name="lookupKey"></param>
         internal ConversionFunction GetConversionFunction(ConversionFunctionLookupKey lookupKey)
         {
-            IQuantity EchoFunction(IQuantity fromQuantity)
-            {
-                return fromQuantity;
-            }
+            IQuantity EchoFunction(IQuantity fromQuantity) => fromQuantity;
 
             // If from/to units and to quantity types are equal, then return a function that echoes the input quantity
             // in order to not have to map conversion functions to "self".
             if (lookupKey.Item1 == lookupKey.Item3 && Equals(lookupKey.Item2, lookupKey.Item4))
-            {
                 return EchoFunction;
-            }
 
             return _conversionFunctions[lookupKey];
         }
 
         /// <summary>
-        ///     Gets the conversion function for two units of the same quantity type.
+        /// Gets the conversion function for two units of the same quantity type.
         /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
         public bool TryGetConversionFunction<TQuantity>(Enum from, Enum to, out ConversionFunction conversionFunction) where TQuantity : IQuantity
@@ -194,12 +186,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets the conversion function for two units of different quantity types.
+        /// Gets the conversion function for two units of different quantity types.
         /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity" />.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity" />.</typeparam>
+        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
+        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
         public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, out ConversionFunction conversionFunction)
@@ -210,12 +202,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Try to get the conversion function for two units of the same quantity type.
+        /// Try to get the conversion function for two units of the same quantity type.
         /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity" />.</param>
+        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
         /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter" />.</param>
+        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
+        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
         public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
@@ -225,6 +217,7 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///
         /// </summary>
         /// <param name="lookupKey"></param>
         /// <param name="conversionFunction"></param>
@@ -259,7 +252,7 @@ namespace UnitsNet
         public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out var fromQuantity)) return false;
+            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity fromQuantity)) return false;
 
             try
             {
@@ -303,19 +296,17 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
-            if (!TryGetUnitType(quantityName, out var unitType))
-            {
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
-            }
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
             {
                 var e = new UnitNotFoundException($"Unit not found [{fromUnit}].");
                 e.Data["unitName"] = fromUnit;
                 throw e;
             }
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
             {
                 var e = new UnitNotFoundException($"Unit not found [{toUnit}].");
                 e.Data["unitName"] = toUnit;
@@ -356,20 +347,14 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
-            {
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
-            }
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
-            {
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
                 return false;
-            }
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
-            {
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
                 return false;
-            }
 
             result = Convert(inputValue, fromUnitValue, toUnitValue);
             return true;
@@ -440,10 +425,8 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
-            if (!TryGetUnitType(quantityName, out var unitType))
-            {
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
-            }
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
@@ -519,22 +502,16 @@ namespace UnitsNet
         {
             result = 0d;
 
-            if (!TryGetUnitType(quantityName, out var unitType))
-            {
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 return false;
-            }
 
             var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
 
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
-            {
+            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
-            }
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
-            {
+            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
-            }
 
             var fromQuantity = Quantity.From(fromValue, fromUnit);
             result = fromQuantity.As(toUnit);
@@ -556,9 +533,7 @@ namespace UnitsNet
             var eNames = Enum.GetNames(unitType);
             unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
             if (unitName == null)
-            {
                 return false;
-            }
 
             unitValue = (Enum) Enum.Parse(unitType, unitName);
             return true;
@@ -566,10 +541,11 @@ namespace UnitsNet
 
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            var quantityInfo = Quantity.Infos.FirstOrDefault(info => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
+            var quantityInfo = Quantity.Infos.FirstOrDefault((info) => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
             unitType = quantityInfo?.UnitType;
             return quantityInfo != null;
         }
     }
 }
+

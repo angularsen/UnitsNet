@@ -10,10 +10,17 @@ namespace UnitsNet.Tests
     public partial class IQuantityTests
     {
         [Fact]
+        public void As_GivenWrongUnitType_ThrowsArgumentException()
+        {
+            IQuantity length = Length.FromMeters(1.2345);
+            Assert.Throws<ArgumentException>(() => length.As(MassUnit.Kilogram));
+        }
+
+        [Fact]
         public void As_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem) null));
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem)null));
         }
 
         [Fact]
@@ -24,17 +31,17 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_GivenWrongUnitType_ThrowsArgumentException()
+        public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
         {
             IQuantity length = Length.FromMeters(1.2345);
-            Assert.Throws<ArgumentException>(() => length.As(MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => length.ToUnit(MassUnit.Kilogram));
         }
 
         [Fact]
         public void ToUnit_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem) null));
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem)null));
         }
 
         [Fact]
@@ -42,17 +49,10 @@ namespace UnitsNet.Tests
         {
             IQuantity inches = new Length(2.0, LengthUnit.Inch);
 
-            var inSI = inches.ToUnit(UnitSystem.SI);
+            IQuantity inSI = inches.ToUnit(UnitSystem.SI);
 
             Assert.Equal(0.0508, inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
-        {
-            IQuantity length = Length.FromMeters(1.2345);
-            Assert.Throws<ArgumentException>(() => length.ToUnit(MassUnit.Kilogram));
         }
     }
 }

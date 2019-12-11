@@ -1,8 +1,7 @@
 ﻿{
   "Name": "Pressure",
   "BaseUnit": "Pascal",
-  "XmlDoc":
-    "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
+  "XmlDoc": "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
   "BaseDimensions": {
     "L": -1,
     "M": 1,
@@ -19,15 +18,15 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga"],
+      "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["Pa"]
+          "Abbreviations": [ "Pa" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Па"]
+          "Abbreviations": [ "Па" ]
         }
       ]
     },
@@ -39,11 +38,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["atm"]
+          "Abbreviations": [ "atm" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["атм"]
+          "Abbreviations": [ "атм" ]
         }
       ]
     },
@@ -52,15 +51,15 @@
       "PluralName": "Bars",
       "FromUnitToBaseFunc": "x*1e5",
       "FromBaseToUnitFunc": "x/1e5",
-      "Prefixes": ["Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["bar"]
+          "Abbreviations": [ "bar" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["бар"]
+          "Abbreviations": [ "бар" ]
         }
       ]
     },
@@ -72,11 +71,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf/m²"]
+          "Abbreviations": [ "kgf/m²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["кгс/м²"]
+          "Abbreviations": [ "кгс/м²" ]
         }
       ]
     },
@@ -88,11 +87,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf/cm²"]
+          "Abbreviations": [ "kgf/cm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["кгс/см²"]
+          "Abbreviations": [ "кгс/см²" ]
         }
       ]
     },
@@ -104,11 +103,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["kgf/mm²"]
+          "Abbreviations": [ "kgf/mm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["кгс/мм²"]
+          "Abbreviations": [ "кгс/мм²" ]
         }
       ]
     },
@@ -117,15 +116,15 @@
       "PluralName": "NewtonsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": ["Kilo", "Mega"],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N/m²"]
+          "Abbreviations": [ "N/m²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Н/м²"]
+          "Abbreviations": [ "Н/м²" ]
         }
       ]
     },
@@ -134,15 +133,15 @@
       "PluralName": "NewtonsPerSquareCentimeter",
       "FromUnitToBaseFunc": "x*1e4",
       "FromBaseToUnitFunc": "x/1e4",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N/cm²"]
+          "Abbreviations": [ "N/cm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Н/см²"]
+          "Abbreviations": [ "Н/см²" ]
         }
       ]
     },
@@ -151,15 +150,15 @@
       "PluralName": "NewtonsPerSquareMillimeter",
       "FromUnitToBaseFunc": "x*1e6",
       "FromBaseToUnitFunc": "x/1e6",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["N/mm²"]
+          "Abbreviations": [ "N/mm²" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["Н/мм²"]
+          "Abbreviations": [ "Н/мм²" ]
         }
       ]
     },
@@ -171,11 +170,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["at"]
+          "Abbreviations": [ "at" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["ат"]
+          "Abbreviations": [ "ат" ]
         }
       ]
     },
@@ -187,11 +186,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["torr"]
+          "Abbreviations": [ "torr" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": ["торр"]
+          "Abbreviations": [ "торр" ]
         }
       ]
     },
@@ -200,11 +199,11 @@
       "PluralName": "PoundsForcePerSquareInch",
       "FromUnitToBaseFunc": "x*6.894757293168361e3",
       "FromBaseToUnitFunc": "x/6.894757293168361e3",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["psi", "lb/in²"],
+          "Abbreviations": [ "psi", "lb/in²" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
         }
       ]
@@ -214,11 +213,11 @@
       "PluralName": "PoundsForcePerSquareFoot",
       "FromUnitToBaseFunc": "x*4.788025898033584e1",
       "FromBaseToUnitFunc": "x/4.788025898033584e1",
-      "Prefixes": ["Kilo"],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lb/ft²"],
+          "Abbreviations": [ "lb/ft²" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf/ft²" }
         }
       ]
@@ -231,7 +230,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf/mm²"]
+          "Abbreviations": [ "tf/mm²" ]
         }
       ]
     },
@@ -243,7 +242,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf/m²"]
+          "Abbreviations": [ "tf/m²" ]
         }
       ]
     },
@@ -255,7 +254,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["m of head"]
+          "Abbreviations": [ "m of head" ]
         }
       ]
     },
@@ -267,7 +266,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["tf/cm²"]
+          "Abbreviations": [ "tf/cm²" ]
         }
       ]
     },
@@ -279,7 +278,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["ft of head"]
+          "Abbreviations": [ "ft of head" ]
         }
       ]
     },
@@ -291,7 +290,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["mmHg"]
+          "Abbreviations": [ "mmHg" ]
         }
       ]
     },
@@ -303,7 +302,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["inHg"]
+          "Abbreviations": [ "inHg" ]
         }
       ]
     },
@@ -315,7 +314,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["dyn/cm²"]
+          "Abbreviations": [ "dyn/cm²" ]
         }
       ]
     },
@@ -327,7 +326,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["lbm/(in·s²)", "lb/(in·s²)"]
+          "Abbreviations": [ "lbm/(in·s²)", "lb/(in·s²)" ]
         }
       ]
     },
@@ -339,7 +338,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["wc"]
+          "Abbreviations": [ "wc" ]
         }
       ]
     }

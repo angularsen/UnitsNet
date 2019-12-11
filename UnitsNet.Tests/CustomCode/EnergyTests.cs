@@ -61,17 +61,17 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WattHoursInOneJoule => 0.000277777778;
 
         [Fact]
-        public void As_GivenSIUnitSystem_ReturnsSIValue()
-        {
-            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
-            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
-        }
-
-        [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
         {
             var energy = new Energy(1.0, UnitSystem.SI);
             Assert.Equal(EnergyUnit.Joule, energy.Unit);
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
+            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
         }
 
         [Fact]

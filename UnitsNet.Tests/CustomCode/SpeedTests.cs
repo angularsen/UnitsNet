@@ -75,63 +75,63 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationSpeedTimesEqualsLength()
         {
-            var length = Duration.FromSeconds(2) * Speed.FromMetersPerSecond(20);
+            Length length = Duration.FromSeconds(2)*Speed.FromMetersPerSecond(20);
             Assert.Equal(length, Length.FromMeters(40));
         }
 
         [Fact]
         public void LengthDividedByDurationEqualsSpeed()
         {
-            var speed = Length.FromMeters(20) / Duration.FromSeconds(2);
+            Speed speed = Length.FromMeters(20)/Duration.FromSeconds(2);
             Assert.Equal(speed, Speed.FromMetersPerSecond(10));
         }
 
         [Fact]
         public void LengthDividedByTimeSpanEqualsSpeed()
         {
-            var speed = Length.FromMeters(20) / TimeSpan.FromSeconds(2);
+            Speed speed = Length.FromMeters(20)/TimeSpan.FromSeconds(2);
             Assert.Equal(speed, Speed.FromMetersPerSecond(10));
         }
 
         [Fact]
         public void SpeedDividedByDurationEqualsAcceleration()
         {
-            var acceleration = Speed.FromMetersPerSecond(20) / Duration.FromSeconds(2);
+            Acceleration acceleration = Speed.FromMetersPerSecond(20)/Duration.FromSeconds(2);
             Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(10));
         }
 
         [Fact]
         public void SpeedDividedByTimeSpanEqualsAcceleration()
         {
-            var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
+            Acceleration acceleration = Speed.FromMetersPerSecond(20)/TimeSpan.FromSeconds(2);
             Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(10));
-        }
-
-        [Fact]
-        public void SpeedTimesAreaEqualsVolumeFlow()
-        {
-            var volumeFlow = Speed.FromMetersPerSecond(2) * Area.FromSquareMeters(20);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
-        }
-
-        [Fact]
-        public void SpeedTimesDensityEqualsMassFlux()
-        {
-            var massFlux = Speed.FromMetersPerSecond(20) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
         }
 
         [Fact]
         public void SpeedTimesDurationEqualsLength()
         {
-            var length = Speed.FromMetersPerSecond(20) * Duration.FromSeconds(2);
+            Length length = Speed.FromMetersPerSecond(20)*Duration.FromSeconds(2);
+            Assert.Equal(length, Length.FromMeters(40));
+        }
+
+        [Fact]
+        public void SpeedTimesTimeSpanEqualsLength()
+        {
+            Length length = Speed.FromMetersPerSecond(20)*TimeSpan.FromSeconds(2);
+            Assert.Equal(length, Length.FromMeters(40));
+        }
+
+        [Fact]
+        public void TimeSpanTimesSpeedEqualsLength()
+        {
+            Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
             Assert.Equal(length, Length.FromMeters(40));
         }
 
         [Fact]
         public void SpeedTimesLengthEqualsKinematicViscosity()
         {
-            var kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
+            KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
         }
 
@@ -139,22 +139,22 @@ namespace UnitsNet.Tests.CustomCode
         public void SpeedTimesSpeedEqualsSpecificEnergy()
         {
             //m^2/s^2 = kg*m*m/(s^2*kg) = J/kg
-            var length = Speed.FromMetersPerSecond(2) * Speed.FromMetersPerSecond(20);
+            SpecificEnergy length = Speed.FromMetersPerSecond(2) * Speed.FromMetersPerSecond(20);
             Assert.Equal(length, SpecificEnergy.FromJoulesPerKilogram(40));
         }
 
         [Fact]
-        public void SpeedTimesTimeSpanEqualsLength()
+        public void SpeedTimesDensityEqualsMassFlux()
         {
-            var length = Speed.FromMetersPerSecond(20) * TimeSpan.FromSeconds(2);
-            Assert.Equal(length, Length.FromMeters(40));
+            MassFlux massFlux = Speed.FromMetersPerSecond(20) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
         }
 
         [Fact]
-        public void TimeSpanTimesSpeedEqualsLength()
+        public void SpeedTimesAreaEqualsVolumeFlow()
         {
-            var length = TimeSpan.FromSeconds(2) * Speed.FromMetersPerSecond(20);
-            Assert.Equal(length, Length.FromMeters(40));
+            VolumeFlow volumeFlow = Speed.FromMetersPerSecond(2) * Area.FromSquareMeters(20);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
         }
     }
 }

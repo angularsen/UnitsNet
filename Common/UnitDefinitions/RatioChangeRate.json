@@ -11,7 +11,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["%/s"]
+          "Abbreviations": [ "%/s" ]
         }
       ]
     },
@@ -23,9 +23,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["/s"]
+          "Abbreviations": [ "/s" ]
         }
       ]
     }
+
   ]
 }
