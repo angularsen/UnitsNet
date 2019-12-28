@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Density",
   "BaseUnit": "KilogramPerCubicMeter",
   "XmlDoc": "The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.",
