@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "RotationalStiffnessPerLength",
   "BaseUnit": "NewtonMeterPerRadianPerMeter",
   "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
