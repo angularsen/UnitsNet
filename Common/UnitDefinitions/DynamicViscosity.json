@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "DynamicViscosity",
   "BaseUnit": "NewtonSecondPerMeterSquared",
   "XmlDoc": "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
