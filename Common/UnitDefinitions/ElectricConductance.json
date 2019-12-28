@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "ElectricConductance",
   "BaseUnit": "Siemens",
   "XmlDoc": "The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.",
