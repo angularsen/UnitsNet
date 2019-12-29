@@ -64,11 +64,7 @@ build_script:
 after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-    [Net.ServicePointManager]::SecurityProtocol = `
-        [Net.SecurityProtocolType]::Tls12,
-        [Net.SecurityProtocolType]::Tls11 ;
-    Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-    bash codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
+    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
