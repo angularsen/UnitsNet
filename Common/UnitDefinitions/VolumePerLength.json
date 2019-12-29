@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "VolumePerLength",
   "BaseUnit": "CubicMeterPerMeter",
   "XmlDoc": "Volume, typically of fluid, that a container can hold within a unit of length.",

@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Power",
   "BaseUnit": "Watt",
   "BaseType": "decimal",
@@ -107,6 +107,6 @@
           "Abbreviations": [ "J/h" ]
         }
       ]
-    },
+    }
   ]
 }

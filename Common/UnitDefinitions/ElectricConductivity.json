@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "ElectricConductivity",
   "BaseUnit": "SiemensPerMeter",
   "XmlDoc": "Electrical conductivity or specific conductance is the reciprocal of electrical resistivity, and measures a material's ability to conduct an electric current.",
