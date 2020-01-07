@@ -61,6 +61,7 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, new BaseUnits(length: LengthUnit.Micrometer)),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareMile, new BaseUnits(length: LengthUnit.Mile)),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, new BaseUnits(length: LengthUnit.Millimeter)),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareYard, new BaseUnits(length: LengthUnit.Yard)),
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
@@ -70,15 +71,15 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Area(double numericValue, AreaUnit unit)
+        public Area(double value, AreaUnit unit)
         {
             if(unit == AreaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -86,18 +87,18 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Area(double numericValue, UnitSystem unitSystem)
+        public Area(double value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -229,6 +230,11 @@ namespace UnitsNet
         ///     Get Area in SquareMillimeters.
         /// </summary>
         public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
+
+        /// <summary>
+        ///     Get Area in SquareNauticalMiles.
+        /// </summary>
+        public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
         ///     Get Area in SquareYards.
@@ -367,6 +373,15 @@ namespace UnitsNet
         {
             double value = (double) squaremillimeters;
             return new Area(value, AreaUnit.SquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Area from SquareNauticalMiles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Area FromSquareNauticalMiles(QuantityValue squarenauticalmiles)
+        {
+            double value = (double) squarenauticalmiles;
+            return new Area(value, AreaUnit.SquareNauticalMile);
         }
         /// <summary>
         ///     Get Area from SquareYards.
@@ -510,13 +525,13 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static AreaUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static AreaUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
         {
             return UnitParser.Default.Parse<AreaUnit>(str, provider);
         }
@@ -826,11 +841,23 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return _value*1e-12;
                 case AreaUnit.SquareMile: return _value*2.59e6;
                 case AreaUnit.SquareMillimeter: return _value*1e-6;
+                case AreaUnit.SquareNauticalMile: return _value*3429904;
                 case AreaUnit.SquareYard: return _value*0.836127;
                 case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Area ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Area(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(AreaUnit unit)
@@ -853,6 +880,7 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return baseUnitValue/1e-12;
                 case AreaUnit.SquareMile: return baseUnitValue/2.59e6;
                 case AreaUnit.SquareMillimeter: return baseUnitValue/1e-6;
+                case AreaUnit.SquareNauticalMile: return baseUnitValue/3429904;
                 case AreaUnit.SquareYard: return baseUnitValue/0.836127;
                 case AreaUnit.UsSurveySquareFoot: return baseUnitValue/0.09290341161;
                 default:
@@ -901,7 +929,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]

@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private ForcePerLength(double numericValue, ForcePerLengthUnit unit)
+        private ForcePerLength(double value, ForcePerLengthUnit unit)
         {
             if(unit == ForcePerLengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -200,6 +200,21 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
 
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerFoot.
+        /// </summary>
+        public double PoundsForcePerFoot => As(ForcePerLengthUnit.PoundForcePerFoot);
+
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerInch.
+        /// </summary>
+        public double PoundsForcePerInch => As(ForcePerLengthUnit.PoundForcePerInch);
+
+        /// <summary>
+        ///     Get ForcePerLength in PoundsForcePerYard.
+        /// </summary>
+        public double PoundsForcePerYard => As(ForcePerLengthUnit.PoundForcePerYard);
+
         #endregion
 
         #region Static Methods
@@ -319,6 +334,36 @@ namespace UnitsNet
         {
             double value = (double) newtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromPoundsForcePerFoot(double poundsforceperfoot)
+        {
+            double value = (double) poundsforceperfoot;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerFoot);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromPoundsForcePerInch(double poundsforceperinch)
+        {
+            double value = (double) poundsforceperinch;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerInch);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from PoundsForcePerYard.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromPoundsForcePerYard(double poundsforceperyard)
+        {
+            double value = (double) poundsforceperyard;
+            return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerYard);
         }
 
         /// <summary>
@@ -620,6 +665,9 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                case ForcePerLengthUnit.PoundForcePerFoot: return _value*14.59390292;
+                case ForcePerLengthUnit.PoundForcePerInch: return _value*1.75126835e2;
+                case ForcePerLengthUnit.PoundForcePerYard: return _value*4.864634307;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -643,6 +691,9 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
+                case ForcePerLengthUnit.PoundForcePerFoot: return baseUnitValue/14.59390292;
+                case ForcePerLengthUnit.PoundForcePerInch: return baseUnitValue/1.75126835e2;
+                case ForcePerLengthUnit.PoundForcePerYard: return baseUnitValue/4.864634307;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -690,7 +741,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

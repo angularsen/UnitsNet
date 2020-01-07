@@ -54,10 +54,13 @@ namespace CodeGen.Generators
                 Log.Information(sb.ToString());
             }
 
+            GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
+
             Log.Information("");
             GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
+            GenerateUnitConverter(quantities, $"{outputDir}/UnitConverter.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
@@ -99,6 +102,13 @@ namespace CodeGen.Generators
             sb.Append("test base(OK) ");
         }
 
+        private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
+        {
+            var content = new IQuantityTestClassGenerator(quantities).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            Log.Information("IQuantityTests.g.cs: ".PadRight(AlignPad) + "(OK)");
+        }
+
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
             var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
@@ -118,6 +128,13 @@ namespace CodeGen.Generators
             var content = new StaticQuantityGenerator(quantities).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             Log.Information("Quantity.g.cs: ".PadRight(AlignPad) + "(OK)");
+        }
+
+        private static void GenerateUnitConverter(Quantity[] quantities, string filePath)
+        {
+            var content = new UnitConverterGenerator(quantities).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            Log.Information("UnitConverter.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
     }
 }

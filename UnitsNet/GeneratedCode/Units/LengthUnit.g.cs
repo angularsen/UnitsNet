@@ -26,6 +26,12 @@ namespace UnitsNet.Units
     public enum LengthUnit
     {
         Undefined = 0,
+
+        /// <summary>
+        ///     One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
+        AstronomicalUnit,
         Centimeter,
         Decimeter,
         DtpPica,
@@ -35,7 +41,17 @@ namespace UnitsNet.Units
         Hand,
         Hectometer,
         Inch,
+        KilolightYear,
         Kilometer,
+        Kiloparsec,
+
+        /// <summary>
+        ///     A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
+        LightYear,
+        MegalightYear,
+        Megaparsec,
         Meter,
         Microinch,
         Micrometer,
@@ -44,9 +60,21 @@ namespace UnitsNet.Units
         Millimeter,
         Nanometer,
         NauticalMile,
+
+        /// <summary>
+        ///     A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
+        Parsec,
         PrinterPica,
         PrinterPoint,
         Shackle,
+
+        /// <summary>
+        ///     Solar radius is a ratio unit to the radius of the solar system star, the sun.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
+        SolarRadius,
         Twip,
         UsSurveyFoot,
         Yard,

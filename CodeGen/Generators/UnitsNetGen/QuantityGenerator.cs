@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -158,10 +158,10 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
-        /// <param name=""unit"">The unit representation to contruct this quantity with.</param>
+        /// <param name=""value"">The numeric value to construct this quantity with.</param>
+        /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} numericValue, {_unitEnumName} unit)
+        public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
         {{
             if(unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
@@ -169,9 +169,9 @@ namespace UnitsNet
 
             Writer.WL(_quantity.BaseType == "double"
                 ? @"
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));"
+            _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
-            _value = numericValue;");
+            _value = value;");
             Writer.WL($@"
             _unit = unit;
         }}
@@ -180,11 +180,11 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref=""UnitSystem""/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name=""numericValue"">The numeric value  to contruct this quantity with.</param>
+        /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
         /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
-        public {_quantity.Name}({_valueType} numericValue, UnitSystem unitSystem)
+        public {_quantity.Name}({_valueType} value, UnitSystem unitSystem)
         {{
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -194,9 +194,9 @@ namespace UnitsNet
 
             Writer.WL(_quantity.BaseType == "double"
                 ? @"
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));"
+            _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
-            _value = numericValue;");
+            _value = value;");
             Writer.WL(@"
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
         }
@@ -499,13 +499,13 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
+        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
-        /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static {_unitEnumName} ParseUnit(string str, IFormatProvider provider = null)
+        public static {_unitEnumName} ParseUnit(string str, [CanBeNull] IFormatProvider provider)
         {{
             return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
         }}
@@ -904,6 +904,17 @@ namespace UnitsNet
             }}
         }}
 
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal {_quantity.Name} ToBaseUnit()
+        {{
+            var baseUnitValue = GetValueInBaseUnit();
+            return new {_quantity.Name}(baseUnitValue, BaseUnit);
+        }}
+
         private {_valueType} GetValueAs({_unitEnumName} unit)
         {{
             if(Unit == unit)
@@ -972,7 +983,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
-        /// <param name=""args"">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name=""args"">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]

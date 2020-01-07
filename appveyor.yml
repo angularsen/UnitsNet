@@ -1,12 +1,20 @@
 version: '{build}'
 image: Visual Studio 2017
+
+# Don't build PR commits twice
+skip_branch_with_pr: true
+
+# Don't build tags, avoid duplicate builds on master when bumping version
+skip_tags: true
+
+# Don't build changes to docs
 skip_commits:
  files:
    - docs/*
    - '**/*.md'
 
 # Only fetch the latest commits to reduce time to download on agent, but support pushes containing multiple commits
-clone_depth: 50
+clone_depth: 20
 
 # build cache to preserve files/folders between builds
 cache:
@@ -14,19 +22,30 @@ cache:
   - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
 
+# Set environment variables here
+# environment:
+
+# Uncomment me to enable Remote Desktop for the duration of the build (when debugging hanging builds).
+# Password is configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI.
+# Scripts that run before cloning repository.
+# init:
+  # - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+# Uncomment me to enable Remote Desktop AFTER build. Build is blocked until a special "lock" file on VM desktop is deleted (max 60 mins).
+# Password is configured as envvar APPVEYOR_RDP_PASSWORD in AppVeyor UI.
+# on_finish:
+  # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+# Scripts that run after cloning repository.
+# install:
+
 build_script:
 - ps: |
-    #####################################
     # Build, test, pack and push nugets
-    #####################################
-
     .\\build-with-wrc.bat
     $BuildExitCode = $LASTEXITCODE
 
-    #####################################
     # Upload test results to AppVeyor
-    #####################################
-
     $wc = New-Object 'System.Net.WebClient'
 
     if (Test-Path .\\Artifacts\\Logs\\) {
@@ -40,23 +59,27 @@ build_script:
         exit $BuildExitCode
     }
 
-# Do not build feature branch with open Pull Requests
-skip_branch_with_pr: true
-test: off
+# Upload code coverage reports to codecov.io.
+# PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
+after_test:
+- ps: |
+    $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
+- path: Artifacts\Coverage
 
 deploy:
 - provider: NuGet
   api_key:
-    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
+    secure: PH4mk0gsORIQZnPsmQo+tvzvOIeuVwTVN2lkF7NS+E9Ez/Z8LikN0ae+wwKcRJMd
   on:
     branch: master
 
 - provider: NuGet
   api_key:
-    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
+    secure: PH4mk0gsORIQZnPsmQo+tvzvOIeuVwTVN2lkF7NS+E9Ez/Z8LikN0ae+wwKcRJMd
   on:
     branch: release/*

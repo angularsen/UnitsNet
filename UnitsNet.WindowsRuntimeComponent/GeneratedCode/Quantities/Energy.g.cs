@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Energy(double numericValue, EnergyUnit unit)
+        private Energy(double value, EnergyUnit unit)
         {
             if(unit == EnergyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -201,6 +201,11 @@ namespace UnitsNet
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in Gigajoules.
+        /// </summary>
+        public double Gigajoules => As(EnergyUnit.Gigajoule);
+
+        /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
@@ -236,6 +241,11 @@ namespace UnitsNet
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in Megacalories.
+        /// </summary>
+        public double Megacalories => As(EnergyUnit.Megacalorie);
+
+        /// <summary>
         ///     Get Energy in Megajoules.
         /// </summary>
         public double Megajoules => As(EnergyUnit.Megajoule);
@@ -244,6 +254,11 @@ namespace UnitsNet
         ///     Get Energy in MegawattHours.
         /// </summary>
         public double MegawattHours => As(EnergyUnit.MegawattHour);
+
+        /// <summary>
+        ///     Get Energy in Millijoules.
+        /// </summary>
+        public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
         ///     Get Energy in TerawattHours.
@@ -391,6 +406,16 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from Gigajoules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromGigajoules(double gigajoules)
+        {
+            double value = (double) gigajoules;
+            return new Energy(value, EnergyUnit.Gigajoule);
+        }
+        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -461,6 +486,16 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from Megacalories.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMegacalories(double megacalories)
+        {
+            double value = (double) megacalories;
+            return new Energy(value, EnergyUnit.Megacalorie);
+        }
+        /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -479,6 +514,16 @@ namespace UnitsNet
         {
             double value = (double) megawatthours;
             return new Energy(value, EnergyUnit.MegawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from Millijoules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMillijoules(double millijoules)
+        {
+            double value = (double) millijoules;
+            return new Energy(value, EnergyUnit.Millijoule);
         }
         /// <summary>
         ///     Get Energy from TerawattHours.
@@ -830,6 +875,7 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return _value*1e-7;
                 case EnergyUnit.FootPound: return _value*1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.Gigajoule: return (_value) * 1e9d;
                 case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
@@ -837,8 +883,10 @@ namespace UnitsNet
                 case EnergyUnit.Kilojoule: return (_value) * 1e3d;
                 case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megacalorie: return (_value*4.184) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.Millijoule: return (_value) * 1e-3d;
                 case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
@@ -867,6 +915,7 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return baseUnitValue/1e-7;
                 case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
+                case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
                 case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
@@ -874,8 +923,10 @@ namespace UnitsNet
                 case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
                 case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
+                case EnergyUnit.Megacalorie: return (baseUnitValue/4.184) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
                 case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
@@ -928,7 +979,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

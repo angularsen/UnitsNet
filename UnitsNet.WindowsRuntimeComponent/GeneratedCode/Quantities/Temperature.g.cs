@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Temperature(double numericValue, TemperatureUnit unit)
+        private Temperature(double value, TemperatureUnit unit)
         {
             if(unit == TemperatureUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -195,6 +195,11 @@ namespace UnitsNet
         /// </summary>
         public double Kelvins => As(TemperatureUnit.Kelvin);
 
+        /// <summary>
+        ///     Get Temperature in SolarTemperatures.
+        /// </summary>
+        public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
+
         #endregion
 
         #region Static Methods
@@ -304,6 +309,16 @@ namespace UnitsNet
         {
             double value = (double) kelvins;
             return new Temperature(value, TemperatureUnit.Kelvin);
+        }
+        /// <summary>
+        ///     Get Temperature from SolarTemperatures.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Temperature FromSolarTemperatures(double solartemperatures)
+        {
+            double value = (double) solartemperatures;
+            return new Temperature(value, TemperatureUnit.SolarTemperature);
         }
 
         /// <summary>
@@ -604,6 +619,7 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
                 case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
                 case TemperatureUnit.Kelvin: return _value;
+                case TemperatureUnit.SolarTemperature: return _value * 5778;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -626,6 +642,7 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
                 case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
                 case TemperatureUnit.Kelvin: return baseUnitValue;
+                case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -673,7 +690,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "ReactiveEnergy",
   "BaseUnit": "VoltampereReactiveHour",
   "XmlDoc": "The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.",

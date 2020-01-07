@@ -68,6 +68,7 @@ namespace UnitsNet.Units
         OilBarrelPerMinute,
         OilBarrelPerSecond,
         UkGallonPerDay,
+        UkGallonPerHour,
         UkGallonPerMinute,
         UkGallonPerSecond,
         UsGallonPerDay,

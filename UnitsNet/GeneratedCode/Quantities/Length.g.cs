@@ -50,6 +50,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
                 new UnitInfo<LengthUnit>[] {
+                    new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
@@ -59,7 +60,12 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.Hand, new BaseUnits(length: LengthUnit.Hand)),
                     new UnitInfo<LengthUnit>(LengthUnit.Hectometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
+                    new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.LightYear, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<LengthUnit>(LengthUnit.Microinch, new BaseUnits(length: LengthUnit.Microinch)),
                     new UnitInfo<LengthUnit>(LengthUnit.Micrometer, BaseUnits.Undefined),
@@ -68,9 +74,11 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(length: LengthUnit.NauticalMile)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Parsec, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, new BaseUnits(length: LengthUnit.PrinterPica)),
                     new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(length: LengthUnit.PrinterPoint)),
                     new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(length: LengthUnit.Shackle)),
+                    new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(length: LengthUnit.Twip)),
                     new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(length: LengthUnit.Yard)),
@@ -81,15 +89,15 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Length(double numericValue, LengthUnit unit)
+        public Length(double value, LengthUnit unit)
         {
             if(unit == LengthUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -97,18 +105,18 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(double numericValue, UnitSystem unitSystem)
+        public Length(double value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -187,6 +195,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Length in AstronomicalUnits.
+        /// </summary>
+        public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
+
+        /// <summary>
         ///     Get Length in Centimeters.
         /// </summary>
         public double Centimeters => As(LengthUnit.Centimeter);
@@ -232,9 +245,34 @@ namespace UnitsNet
         public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
+        ///     Get Length in KilolightYears.
+        /// </summary>
+        public double KilolightYears => As(LengthUnit.KilolightYear);
+
+        /// <summary>
         ///     Get Length in Kilometers.
         /// </summary>
         public double Kilometers => As(LengthUnit.Kilometer);
+
+        /// <summary>
+        ///     Get Length in Kiloparsecs.
+        /// </summary>
+        public double Kiloparsecs => As(LengthUnit.Kiloparsec);
+
+        /// <summary>
+        ///     Get Length in LightYears.
+        /// </summary>
+        public double LightYears => As(LengthUnit.LightYear);
+
+        /// <summary>
+        ///     Get Length in MegalightYears.
+        /// </summary>
+        public double MegalightYears => As(LengthUnit.MegalightYear);
+
+        /// <summary>
+        ///     Get Length in Megaparsecs.
+        /// </summary>
+        public double Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
         ///     Get Length in Meters.
@@ -277,6 +315,11 @@ namespace UnitsNet
         public double NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
+        ///     Get Length in Parsecs.
+        /// </summary>
+        public double Parsecs => As(LengthUnit.Parsec);
+
+        /// <summary>
         ///     Get Length in PrinterPicas.
         /// </summary>
         public double PrinterPicas => As(LengthUnit.PrinterPica);
@@ -290,6 +333,11 @@ namespace UnitsNet
         ///     Get Length in Shackles.
         /// </summary>
         public double Shackles => As(LengthUnit.Shackle);
+
+        /// <summary>
+        ///     Get Length in SolarRadiuses.
+        /// </summary>
+        public double SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
         ///     Get Length in Twips.
@@ -335,6 +383,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Length from AstronomicalUnits.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromAstronomicalUnits(QuantityValue astronomicalunits)
+        {
+            double value = (double) astronomicalunits;
+            return new Length(value, LengthUnit.AstronomicalUnit);
+        }
         /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>
@@ -417,6 +474,15 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Inch);
         }
         /// <summary>
+        ///     Get Length from KilolightYears.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromKilolightYears(QuantityValue kilolightyears)
+        {
+            double value = (double) kilolightyears;
+            return new Length(value, LengthUnit.KilolightYear);
+        }
+        /// <summary>
         ///     Get Length from Kilometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -424,6 +490,42 @@ namespace UnitsNet
         {
             double value = (double) kilometers;
             return new Length(value, LengthUnit.Kilometer);
+        }
+        /// <summary>
+        ///     Get Length from Kiloparsecs.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromKiloparsecs(QuantityValue kiloparsecs)
+        {
+            double value = (double) kiloparsecs;
+            return new Length(value, LengthUnit.Kiloparsec);
+        }
+        /// <summary>
+        ///     Get Length from LightYears.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromLightYears(QuantityValue lightyears)
+        {
+            double value = (double) lightyears;
+            return new Length(value, LengthUnit.LightYear);
+        }
+        /// <summary>
+        ///     Get Length from MegalightYears.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMegalightYears(QuantityValue megalightyears)
+        {
+            double value = (double) megalightyears;
+            return new Length(value, LengthUnit.MegalightYear);
+        }
+        /// <summary>
+        ///     Get Length from Megaparsecs.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMegaparsecs(QuantityValue megaparsecs)
+        {
+            double value = (double) megaparsecs;
+            return new Length(value, LengthUnit.Megaparsec);
         }
         /// <summary>
         ///     Get Length from Meters.
@@ -498,6 +600,15 @@ namespace UnitsNet
             return new Length(value, LengthUnit.NauticalMile);
         }
         /// <summary>
+        ///     Get Length from Parsecs.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromParsecs(QuantityValue parsecs)
+        {
+            double value = (double) parsecs;
+            return new Length(value, LengthUnit.Parsec);
+        }
+        /// <summary>
         ///     Get Length from PrinterPicas.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -523,6 +634,15 @@ namespace UnitsNet
         {
             double value = (double) shackles;
             return new Length(value, LengthUnit.Shackle);
+        }
+        /// <summary>
+        ///     Get Length from SolarRadiuses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromSolarRadiuses(QuantityValue solarradiuses)
+        {
+            double value = (double) solarradiuses;
+            return new Length(value, LengthUnit.SolarRadius);
         }
         /// <summary>
         ///     Get Length from Twips.
@@ -675,13 +795,13 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static LengthUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static LengthUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
         {
             return UnitParser.Default.Parse<LengthUnit>(str, provider);
         }
@@ -980,6 +1100,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value/236.220472441;
@@ -989,7 +1110,12 @@ namespace UnitsNet
                 case LengthUnit.Hand: return _value * 1.016e-1;
                 case LengthUnit.Hectometer: return (_value) * 1e2d;
                 case LengthUnit.Inch: return _value*2.54e-2;
+                case LengthUnit.KilolightYear: return (_value * 9.46073047258e15) * 1e3d;
                 case LengthUnit.Kilometer: return (_value) * 1e3d;
+                case LengthUnit.Kiloparsec: return (_value * 3.08567758128e16) * 1e3d;
+                case LengthUnit.LightYear: return _value * 9.46073047258e15;
+                case LengthUnit.MegalightYear: return (_value * 9.46073047258e15) * 1e6d;
+                case LengthUnit.Megaparsec: return (_value * 3.08567758128e16) * 1e6d;
                 case LengthUnit.Meter: return _value;
                 case LengthUnit.Microinch: return _value*2.54e-8;
                 case LengthUnit.Micrometer: return (_value) * 1e-6d;
@@ -998,15 +1124,28 @@ namespace UnitsNet
                 case LengthUnit.Millimeter: return (_value) * 1e-3d;
                 case LengthUnit.Nanometer: return (_value) * 1e-9d;
                 case LengthUnit.NauticalMile: return _value*1852;
+                case LengthUnit.Parsec: return _value * 3.08567758128e16;
                 case LengthUnit.PrinterPica: return _value/237.106301584;
                 case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
                 case LengthUnit.Shackle: return _value*27.432;
+                case LengthUnit.SolarRadius: return _value * 6.95510000E+08;
                 case LengthUnit.Twip: return _value/56692.913385826;
                 case LengthUnit.UsSurveyFoot: return _value*1200/3937;
                 case LengthUnit.Yard: return _value*0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Length ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Length(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(LengthUnit unit)
@@ -1018,6 +1157,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
@@ -1027,7 +1167,12 @@ namespace UnitsNet
                 case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
                 case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
                 case LengthUnit.Inch: return baseUnitValue/2.54e-2;
+                case LengthUnit.KilolightYear: return (baseUnitValue / 9.46073047258e15) / 1e3d;
                 case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
+                case LengthUnit.Kiloparsec: return (baseUnitValue / 3.08567758128e16) / 1e3d;
+                case LengthUnit.LightYear: return baseUnitValue / 9.46073047258e15;
+                case LengthUnit.MegalightYear: return (baseUnitValue / 9.46073047258e15) / 1e6d;
+                case LengthUnit.Megaparsec: return (baseUnitValue / 3.08567758128e16) / 1e6d;
                 case LengthUnit.Meter: return baseUnitValue;
                 case LengthUnit.Microinch: return baseUnitValue/2.54e-8;
                 case LengthUnit.Micrometer: return (baseUnitValue) / 1e-6d;
@@ -1036,9 +1181,11 @@ namespace UnitsNet
                 case LengthUnit.Millimeter: return (baseUnitValue) / 1e-3d;
                 case LengthUnit.Nanometer: return (baseUnitValue) / 1e-9d;
                 case LengthUnit.NauticalMile: return baseUnitValue/1852;
+                case LengthUnit.Parsec: return baseUnitValue / 3.08567758128e16;
                 case LengthUnit.PrinterPica: return baseUnitValue*237.106301584;
                 case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
                 case LengthUnit.Shackle: return baseUnitValue/27.432;
+                case LengthUnit.SolarRadius: return baseUnitValue / 6.95510000E+08;
                 case LengthUnit.Twip: return baseUnitValue*56692.913385826;
                 case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
                 case LengthUnit.Yard: return baseUnitValue/0.9144;
@@ -1088,7 +1235,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]

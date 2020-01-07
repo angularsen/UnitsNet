@@ -116,6 +116,8 @@ namespace UnitsNet
                     return ForcePerLength.From(value, ForcePerLength.BaseUnit);
                 case QuantityType.Frequency:
                     return Frequency.From(value, Frequency.BaseUnit);
+                case QuantityType.FuelEfficiency:
+                    return FuelEfficiency.From(value, FuelEfficiency.BaseUnit);
                 case QuantityType.HeatFlux:
                     return HeatFlux.From(value, HeatFlux.BaseUnit);
                 case QuantityType.HeatTransferCoefficient:
@@ -138,6 +140,8 @@ namespace UnitsNet
                     return Level.From(value, Level.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case QuantityType.Luminosity:
+                    return Luminosity.From(value, Luminosity.BaseUnit);
                 case QuantityType.LuminousFlux:
                     return LuminousFlux.From(value, LuminousFlux.BaseUnit);
                 case QuantityType.LuminousIntensity:
@@ -184,6 +188,8 @@ namespace UnitsNet
                     return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
                 case QuantityType.Ratio:
                     return Ratio.From(value, Ratio.BaseUnit);
+                case QuantityType.RatioChangeRate:
+                    return RatioChangeRate.From(value, RatioChangeRate.BaseUnit);
                 case QuantityType.ReactiveEnergy:
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case QuantityType.ReactivePower:
@@ -220,6 +226,8 @@ namespace UnitsNet
                     return ThermalResistance.From(value, ThermalResistance.BaseUnit);
                 case QuantityType.Torque:
                     return Torque.From(value, Torque.BaseUnit);
+                case QuantityType.TorquePerLength:
+                    return TorquePerLength.From(value, TorquePerLength.BaseUnit);
                 case QuantityType.VitaminA:
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
@@ -360,6 +368,9 @@ namespace UnitsNet
                 case FrequencyUnit frequencyUnit:
                     quantity = Frequency.From(value, frequencyUnit);
                     return true;
+                case FuelEfficiencyUnit fuelEfficiencyUnit:
+                    quantity = FuelEfficiency.From(value, fuelEfficiencyUnit);
+                    return true;
                 case HeatFluxUnit heatFluxUnit:
                     quantity = HeatFlux.From(value, heatFluxUnit);
                     return true;
@@ -392,6 +403,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
                     return true;
                 case LuminousFluxUnit luminousFluxUnit:
                     quantity = LuminousFlux.From(value, luminousFluxUnit);
@@ -462,6 +476,9 @@ namespace UnitsNet
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
                     return true;
+                case RatioChangeRateUnit ratioChangeRateUnit:
+                    quantity = RatioChangeRate.From(value, ratioChangeRateUnit);
+                    return true;
                 case ReactiveEnergyUnit reactiveEnergyUnit:
                     quantity = ReactiveEnergy.From(value, reactiveEnergyUnit);
                     return true;
@@ -515,6 +532,9 @@ namespace UnitsNet
                     return true;
                 case TorqueUnit torqueUnit:
                     quantity = Torque.From(value, torqueUnit);
+                    return true;
+                case TorquePerLengthUnit torquePerLengthUnit:
+                    quantity = TorquePerLength.From(value, torquePerLengthUnit);
                     return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
@@ -634,6 +654,8 @@ namespace UnitsNet
                     return parser.TryParse<ForcePerLength, ForcePerLengthUnit>(quantityString, formatProvider, ForcePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(Frequency):
                     return parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity);
+                case Type _ when quantityType == typeof(FuelEfficiency):
+                    return parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity);
                 case Type _ when quantityType == typeof(HeatFlux):
                     return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
                 case Type _ when quantityType == typeof(HeatTransferCoefficient):
@@ -656,6 +678,8 @@ namespace UnitsNet
                     return parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity):
                     return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+                case Type _ when quantityType == typeof(Luminosity):
+                    return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousFlux):
                     return parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousIntensity):
@@ -702,6 +726,8 @@ namespace UnitsNet
                     return parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(Ratio):
                     return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
+                case Type _ when quantityType == typeof(RatioChangeRate):
+                    return parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(ReactiveEnergy):
                     return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower):
@@ -738,6 +764,8 @@ namespace UnitsNet
                     return parser.TryParse<ThermalResistance, ThermalResistanceUnit>(quantityString, formatProvider, ThermalResistance.From, out quantity);
                 case Type _ when quantityType == typeof(Torque):
                     return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
+                case Type _ when quantityType == typeof(TorquePerLength):
+                    return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(VitaminA):
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):

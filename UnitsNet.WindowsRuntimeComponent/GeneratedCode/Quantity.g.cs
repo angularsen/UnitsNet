@@ -155,6 +155,9 @@ namespace UnitsNet
                 case FrequencyUnit frequencyUnit:
                     quantity = Frequency.From(value, frequencyUnit);
                     return true;
+                case FuelEfficiencyUnit fuelEfficiencyUnit:
+                    quantity = FuelEfficiency.From(value, fuelEfficiencyUnit);
+                    return true;
                 case HeatFluxUnit heatFluxUnit:
                     quantity = HeatFlux.From(value, heatFluxUnit);
                     return true;
@@ -187,6 +190,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LuminosityUnit luminosityUnit:
+                    quantity = Luminosity.From(value, luminosityUnit);
                     return true;
                 case LuminousFluxUnit luminousFluxUnit:
                     quantity = LuminousFlux.From(value, luminousFluxUnit);
@@ -257,6 +263,9 @@ namespace UnitsNet
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
                     return true;
+                case RatioChangeRateUnit ratioChangeRateUnit:
+                    quantity = RatioChangeRate.From(value, ratioChangeRateUnit);
+                    return true;
                 case ReactiveEnergyUnit reactiveEnergyUnit:
                     quantity = ReactiveEnergy.From(value, reactiveEnergyUnit);
                     return true;
@@ -310,6 +319,9 @@ namespace UnitsNet
                     return true;
                 case TorqueUnit torqueUnit:
                     quantity = Torque.From(value, torqueUnit);
+                    return true;
+                case TorquePerLengthUnit torquePerLengthUnit:
+                    quantity = TorquePerLength.From(value, torquePerLengthUnit);
                     return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
@@ -490,6 +502,9 @@ namespace UnitsNet
             if (quantityType == typeof(Frequency))
                 return parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity);
 
+            if (quantityType == typeof(FuelEfficiency))
+                return parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity);
+
             if (quantityType == typeof(HeatFlux))
                 return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
 
@@ -522,6 +537,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(LinearDensity))
                 return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+
+            if (quantityType == typeof(Luminosity))
+                return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
 
             if (quantityType == typeof(LuminousFlux))
                 return parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity);
@@ -592,6 +610,9 @@ namespace UnitsNet
             if (quantityType == typeof(Ratio))
                 return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
 
+            if (quantityType == typeof(RatioChangeRate))
+                return parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity);
+
             if (quantityType == typeof(ReactiveEnergy))
                 return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
 
@@ -645,6 +666,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Torque))
                 return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
+
+            if (quantityType == typeof(TorquePerLength))
+                return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
 
             if (quantityType == typeof(VitaminA))
                 return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);

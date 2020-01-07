@@ -179,7 +179,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPS" ]
+          "Abbreviations": [ "L/s", "LPS" ]
         }
       ]
     },
@@ -192,7 +192,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ]
+          "Abbreviations": [ "L/min", "LPM" ]
         }
       ]
     },
@@ -204,7 +204,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPH" ]
+          "Abbreviations": [ "L/h", "LPH" ]
         },
         {
           "Culture": "ru-RU",
@@ -258,6 +258,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "gal (U. K.)/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallonPerHour",
+      "PluralName": "UkGallonsPerHour",
+      "FromUnitToBaseFunc": "x/791887.667",
+      "FromBaseToUnitFunc": "x*791887.667",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/h" ]
         }
       ]
     },

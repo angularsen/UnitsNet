@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Area(double numericValue, AreaUnit unit)
+        private Area(double value, AreaUnit unit)
         {
             if(unit == AreaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -209,6 +209,11 @@ namespace UnitsNet
         ///     Get Area in SquareMillimeters.
         /// </summary>
         public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
+
+        /// <summary>
+        ///     Get Area in SquareNauticalMiles.
+        /// </summary>
+        public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
         ///     Get Area in SquareYards.
@@ -359,6 +364,16 @@ namespace UnitsNet
         {
             double value = (double) squaremillimeters;
             return new Area(value, AreaUnit.SquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Area from SquareNauticalMiles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromSquareNauticalMiles(double squarenauticalmiles)
+        {
+            double value = (double) squarenauticalmiles;
+            return new Area(value, AreaUnit.SquareNauticalMile);
         }
         /// <summary>
         ///     Get Area from SquareYards.
@@ -682,6 +697,7 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return _value*1e-12;
                 case AreaUnit.SquareMile: return _value*2.59e6;
                 case AreaUnit.SquareMillimeter: return _value*1e-6;
+                case AreaUnit.SquareNauticalMile: return _value*3429904;
                 case AreaUnit.SquareYard: return _value*0.836127;
                 case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
                 default:
@@ -709,6 +725,7 @@ namespace UnitsNet
                 case AreaUnit.SquareMicrometer: return baseUnitValue/1e-12;
                 case AreaUnit.SquareMile: return baseUnitValue/2.59e6;
                 case AreaUnit.SquareMillimeter: return baseUnitValue/1e-6;
+                case AreaUnit.SquareNauticalMile: return baseUnitValue/3429904;
                 case AreaUnit.SquareYard: return baseUnitValue/0.836127;
                 case AreaUnit.UsSurveySquareFoot: return baseUnitValue/0.09290341161;
                 default:
@@ -758,7 +775,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

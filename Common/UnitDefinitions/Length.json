@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Length",
   "BaseUnit": "Meter",
   "XmlDoc": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
@@ -291,6 +291,64 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "h", "hh" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AstronomicalUnit",
+      "PluralName": "AstronomicalUnits",
+      "FromUnitToBaseFunc": "x * 1.4959787070e11",
+      "FromBaseToUnitFunc": "x / 1.4959787070e11",
+      "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "au", "ua" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Parsec",
+      "PluralName": "Parsecs",
+      "FromUnitToBaseFunc": "x * 3.08567758128e16",
+      "FromBaseToUnitFunc": "x / 3.08567758128e16",
+      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pc" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LightYear",
+      "PluralName": "LightYears",
+      "FromUnitToBaseFunc": "x * 9.46073047258e15",
+      "FromBaseToUnitFunc": "x / 9.46073047258e15",
+      "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ly" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SolarRadius",
+      "PluralName": "SolarRadiuses",
+      "FromUnitToBaseFunc": "x * 6.95510000E+08",
+      "FromBaseToUnitFunc": "x / 6.95510000E+08",
+      "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "R⊙" ]
         }
       ]
     }

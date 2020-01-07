@@ -69,6 +69,7 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, BaseUnits.Undefined),
@@ -78,6 +79,7 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, BaseUnits.Undefined),
@@ -88,15 +90,15 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public MassFlow(double numericValue, MassFlowUnit unit)
+        public MassFlow(double value, MassFlowUnit unit)
         {
             if(unit == MassFlowUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -104,18 +106,18 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassFlow(double numericValue, UnitSystem unitSystem)
+        public MassFlow(double value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -289,6 +291,11 @@ namespace UnitsNet
         public double MegapoundsPerMinute => As(MassFlowUnit.MegapoundPerMinute);
 
         /// <summary>
+        ///     Get MassFlow in MegapoundsPerSecond.
+        /// </summary>
+        public double MegapoundsPerSecond => As(MassFlowUnit.MegapoundPerSecond);
+
+        /// <summary>
         ///     Get MassFlow in MicrogramsPerDay.
         /// </summary>
         public double MicrogramsPerDay => As(MassFlowUnit.MicrogramPerDay);
@@ -332,6 +339,11 @@ namespace UnitsNet
         ///     Get MassFlow in PoundsPerMinute.
         /// </summary>
         public double PoundsPerMinute => As(MassFlowUnit.PoundPerMinute);
+
+        /// <summary>
+        ///     Get MassFlow in PoundsPerSecond.
+        /// </summary>
+        public double PoundsPerSecond => As(MassFlowUnit.PoundPerSecond);
 
         /// <summary>
         ///     Get MassFlow in ShortTonsPerHour.
@@ -549,6 +561,15 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.MegapoundPerMinute);
         }
         /// <summary>
+        ///     Get MassFlow from MegapoundsPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlow FromMegapoundsPerSecond(QuantityValue megapoundspersecond)
+        {
+            double value = (double) megapoundspersecond;
+            return new MassFlow(value, MassFlowUnit.MegapoundPerSecond);
+        }
+        /// <summary>
         ///     Get MassFlow from MicrogramsPerDay.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -628,6 +649,15 @@ namespace UnitsNet
         {
             double value = (double) poundsperminute;
             return new MassFlow(value, MassFlowUnit.PoundPerMinute);
+        }
+        /// <summary>
+        ///     Get MassFlow from PoundsPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlow FromPoundsPerSecond(QuantityValue poundspersecond)
+        {
+            double value = (double) poundspersecond;
+            return new MassFlow(value, MassFlowUnit.PoundPerSecond);
         }
         /// <summary>
         ///     Get MassFlow from ShortTonsPerHour.
@@ -780,13 +810,13 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MassFlowUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static MassFlowUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
         {
             return UnitParser.Default.Parse<MassFlowUnit>(str, provider);
         }
@@ -1104,6 +1134,7 @@ namespace UnitsNet
                 case MassFlowUnit.MegapoundPerDay: return (_value/190.47936) * 1e6d;
                 case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
+                case MassFlowUnit.MegapoundPerSecond: return (_value * 453.59237) * 1e6d;
                 case MassFlowUnit.MicrogramPerDay: return (_value/86400) * 1e-6d;
                 case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
                 case MassFlowUnit.MilligramPerDay: return (_value/86400) * 1e-3d;
@@ -1113,12 +1144,24 @@ namespace UnitsNet
                 case MassFlowUnit.PoundPerDay: return _value/190.47936;
                 case MassFlowUnit.PoundPerHour: return _value/7.93664;
                 case MassFlowUnit.PoundPerMinute: return _value/0.132277;
+                case MassFlowUnit.PoundPerSecond: return _value * 453.59237;
                 case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
                 case MassFlowUnit.TonnePerDay: return _value/0.0864000;
                 case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MassFlow ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MassFlow(baseUnitValue, BaseUnit);
         }
 
         private double GetValueAs(MassFlowUnit unit)
@@ -1149,6 +1192,7 @@ namespace UnitsNet
                 case MassFlowUnit.MegapoundPerDay: return (baseUnitValue*190.47936) / 1e6d;
                 case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;
+                case MassFlowUnit.MegapoundPerSecond: return (baseUnitValue / 453.59237) / 1e6d;
                 case MassFlowUnit.MicrogramPerDay: return (baseUnitValue*86400) / 1e-6d;
                 case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
                 case MassFlowUnit.MilligramPerDay: return (baseUnitValue*86400) / 1e-3d;
@@ -1158,6 +1202,7 @@ namespace UnitsNet
                 case MassFlowUnit.PoundPerDay: return baseUnitValue*190.47936;
                 case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
                 case MassFlowUnit.PoundPerMinute: return baseUnitValue*0.132277;
+                case MassFlowUnit.PoundPerSecond: return baseUnitValue / 453.59237;
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
                 case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
@@ -1207,7 +1252,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
