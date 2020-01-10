@@ -35,6 +35,8 @@ namespace UnitsNet.Tests
     public abstract partial class AreaTestsBase
     {
         protected abstract double AcresInOneSquareMeter { get; }
+        protected abstract double CubicYardsPerFootInOneSquareMeter { get; }
+        protected abstract double CubicYardsPerUsSurveyFootInOneSquareMeter { get; }
         protected abstract double HectaresInOneSquareMeter { get; }
         protected abstract double SquareCentimetersInOneSquareMeter { get; }
         protected abstract double SquareDecimetersInOneSquareMeter { get; }
@@ -51,6 +53,8 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AcresTolerance { get { return 1e-5; } }
+        protected virtual double CubicYardsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double CubicYardsPerUsSurveyFootTolerance { get { return 1e-5; } }
         protected virtual double HectaresTolerance { get { return 1e-5; } }
         protected virtual double SquareCentimetersTolerance { get { return 1e-5; } }
         protected virtual double SquareDecimetersTolerance { get { return 1e-5; } }
@@ -90,6 +94,8 @@ namespace UnitsNet.Tests
         {
             Area squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, squaremeter.Acres, AcresTolerance);
+            AssertEx.EqualTolerance(CubicYardsPerFootInOneSquareMeter, squaremeter.CubicYardsPerFoot, CubicYardsPerFootTolerance);
+            AssertEx.EqualTolerance(CubicYardsPerUsSurveyFootInOneSquareMeter, squaremeter.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, squaremeter.Hectares, HectaresTolerance);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, squaremeter.SquareCentimeters, SquareCentimetersTolerance);
             AssertEx.EqualTolerance(SquareDecimetersInOneSquareMeter, squaremeter.SquareDecimeters, SquareDecimetersTolerance);
@@ -109,6 +115,8 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.Acre).Acres, AcresTolerance);
+            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.CubicYardPerFoot).CubicYardsPerFoot, CubicYardsPerFootTolerance);
+            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.CubicYardPerUsSurveyFoot).CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.Hectare).Hectares, HectaresTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareCentimeter).SquareCentimeters, SquareCentimetersTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareDecimeter).SquareDecimeters, SquareDecimetersTolerance);
@@ -142,6 +150,8 @@ namespace UnitsNet.Tests
         {
             var squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, squaremeter.As(AreaUnit.Acre), AcresTolerance);
+            AssertEx.EqualTolerance(CubicYardsPerFootInOneSquareMeter, squaremeter.As(AreaUnit.CubicYardPerFoot), CubicYardsPerFootTolerance);
+            AssertEx.EqualTolerance(CubicYardsPerUsSurveyFootInOneSquareMeter, squaremeter.As(AreaUnit.CubicYardPerUsSurveyFoot), CubicYardsPerUsSurveyFootTolerance);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, squaremeter.As(AreaUnit.Hectare), HectaresTolerance);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareCentimeter), SquareCentimetersTolerance);
             AssertEx.EqualTolerance(SquareDecimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareDecimeter), SquareDecimetersTolerance);
@@ -165,6 +175,14 @@ namespace UnitsNet.Tests
             var acreQuantity = squaremeter.ToUnit(AreaUnit.Acre);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, (double)acreQuantity.Value, AcresTolerance);
             Assert.Equal(AreaUnit.Acre, acreQuantity.Unit);
+
+            var cubicyardperfootQuantity = squaremeter.ToUnit(AreaUnit.CubicYardPerFoot);
+            AssertEx.EqualTolerance(CubicYardsPerFootInOneSquareMeter, (double)cubicyardperfootQuantity.Value, CubicYardsPerFootTolerance);
+            Assert.Equal(AreaUnit.CubicYardPerFoot, cubicyardperfootQuantity.Unit);
+
+            var cubicyardperussurveyfootQuantity = squaremeter.ToUnit(AreaUnit.CubicYardPerUsSurveyFoot);
+            AssertEx.EqualTolerance(CubicYardsPerUsSurveyFootInOneSquareMeter, (double)cubicyardperussurveyfootQuantity.Value, CubicYardsPerUsSurveyFootTolerance);
+            Assert.Equal(AreaUnit.CubicYardPerUsSurveyFoot, cubicyardperussurveyfootQuantity.Unit);
 
             var hectareQuantity = squaremeter.ToUnit(AreaUnit.Hectare);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, (double)hectareQuantity.Value, HectaresTolerance);
@@ -224,6 +242,8 @@ namespace UnitsNet.Tests
         {
             Area squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(1, Area.FromAcres(squaremeter.Acres).SquareMeters, AcresTolerance);
+            AssertEx.EqualTolerance(1, Area.FromCubicYardsPerFoot(squaremeter.CubicYardsPerFoot).SquareMeters, CubicYardsPerFootTolerance);
+            AssertEx.EqualTolerance(1, Area.FromCubicYardsPerUsSurveyFoot(squaremeter.CubicYardsPerUsSurveyFoot).SquareMeters, CubicYardsPerUsSurveyFootTolerance);
             AssertEx.EqualTolerance(1, Area.FromHectares(squaremeter.Hectares).SquareMeters, HectaresTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareCentimeters(squaremeter.SquareCentimeters).SquareMeters, SquareCentimetersTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareDecimeters(squaremeter.SquareDecimeters).SquareMeters, SquareDecimetersTolerance);

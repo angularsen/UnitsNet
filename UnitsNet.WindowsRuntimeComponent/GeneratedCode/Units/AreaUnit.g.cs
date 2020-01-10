@@ -27,6 +27,8 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Acre,
+        CubicYardPerFoot,
+        CubicYardPerUsSurveyFoot,
         Hectare,
         SquareCentimeter,
         SquareDecimeter,

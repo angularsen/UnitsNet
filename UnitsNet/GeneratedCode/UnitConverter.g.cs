@@ -134,6 +134,10 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPower.BaseUnit, ApparentPower.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.Acre, q => q.ToUnit(AreaUnit.Acre));
             unitConverter.SetConversionFunction<Area>(AreaUnit.Acre, Area.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.CubicYardPerFoot, q => q.ToUnit(AreaUnit.CubicYardPerFoot));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.CubicYardPerFoot, Area.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.CubicYardPerUsSurveyFoot, q => q.ToUnit(AreaUnit.CubicYardPerUsSurveyFoot));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.CubicYardPerUsSurveyFoot, Area.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.Hectare, q => q.ToUnit(AreaUnit.Hectare));
             unitConverter.SetConversionFunction<Area>(AreaUnit.Hectare, Area.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareCentimeter, q => q.ToUnit(AreaUnit.SquareCentimeter));

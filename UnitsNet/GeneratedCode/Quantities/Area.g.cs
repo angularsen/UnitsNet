@@ -51,6 +51,8 @@ namespace UnitsNet
             Info = new QuantityInfo<AreaUnit>(QuantityType.Area,
                 new UnitInfo<AreaUnit>[] {
                     new UnitInfo<AreaUnit>(AreaUnit.Acre, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.CubicYardPerFoot, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.CubicYardPerUsSurveyFoot, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.Hectare, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, new BaseUnits(length: LengthUnit.Centimeter)),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, new BaseUnits(length: LengthUnit.Decimeter)),
@@ -182,6 +184,16 @@ namespace UnitsNet
         public double Acres => As(AreaUnit.Acre);
 
         /// <summary>
+        ///     Get Area in CubicYardsPerFoot.
+        /// </summary>
+        public double CubicYardsPerFoot => As(AreaUnit.CubicYardPerFoot);
+
+        /// <summary>
+        ///     Get Area in CubicYardsPerUsSurveyFoot.
+        /// </summary>
+        public double CubicYardsPerUsSurveyFoot => As(AreaUnit.CubicYardPerUsSurveyFoot);
+
+        /// <summary>
         ///     Get Area in Hectares.
         /// </summary>
         public double Hectares => As(AreaUnit.Hectare);
@@ -283,6 +295,24 @@ namespace UnitsNet
         {
             double value = (double) acres;
             return new Area(value, AreaUnit.Acre);
+        }
+        /// <summary>
+        ///     Get Area from CubicYardsPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Area FromCubicYardsPerFoot(QuantityValue cubicyardsperfoot)
+        {
+            double value = (double) cubicyardsperfoot;
+            return new Area(value, AreaUnit.CubicYardPerFoot);
+        }
+        /// <summary>
+        ///     Get Area from CubicYardsPerUsSurveyFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Area FromCubicYardsPerUsSurveyFoot(QuantityValue cubicyardsperussurveyfoot)
+        {
+            double value = (double) cubicyardsperussurveyfoot;
+            return new Area(value, AreaUnit.CubicYardPerUsSurveyFoot);
         }
         /// <summary>
         ///     Get Area from Hectares.
@@ -831,6 +861,8 @@ namespace UnitsNet
             switch(Unit)
             {
                 case AreaUnit.Acre: return _value*4046.85642;
+                case AreaUnit.CubicYardPerFoot: return _value*2.50838208;
+                case AreaUnit.CubicYardPerUsSurveyFoot: return _value*2.50837706323584;
                 case AreaUnit.Hectare: return _value*1e4;
                 case AreaUnit.SquareCentimeter: return _value*1e-4;
                 case AreaUnit.SquareDecimeter: return _value*1e-2;
@@ -870,6 +902,8 @@ namespace UnitsNet
             switch(unit)
             {
                 case AreaUnit.Acre: return baseUnitValue/4046.85642;
+                case AreaUnit.CubicYardPerFoot: return baseUnitValue/2.50838208;
+                case AreaUnit.CubicYardPerUsSurveyFoot: return baseUnitValue/2.50837706323584;
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
                 case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
                 case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;

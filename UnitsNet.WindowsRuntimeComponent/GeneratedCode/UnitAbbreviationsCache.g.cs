@@ -95,6 +95,8 @@ namespace UnitsNet
                 ("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Megavoltampere, new string[]{"MVA"}),
                 ("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Voltampere, new string[]{"VA"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.Acre, new string[]{"ac"}),
+                ("en-US", typeof(AreaUnit), (int)AreaUnit.CubicYardPerFoot, new string[]{"yd³/ft"}),
+                ("en-US", typeof(AreaUnit), (int)AreaUnit.CubicYardPerUsSurveyFoot, new string[]{"yd³/ftUS"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.Hectare, new string[]{"ha"}),
                 ("en-US", typeof(AreaUnit), (int)AreaUnit.SquareCentimeter, new string[]{"cm²"}),
                 ("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareCentimeter, new string[]{"см²"}),

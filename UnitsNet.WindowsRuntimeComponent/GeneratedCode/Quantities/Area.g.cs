@@ -161,6 +161,16 @@ namespace UnitsNet
         public double Acres => As(AreaUnit.Acre);
 
         /// <summary>
+        ///     Get Area in CubicYardsPerFoot.
+        /// </summary>
+        public double CubicYardsPerFoot => As(AreaUnit.CubicYardPerFoot);
+
+        /// <summary>
+        ///     Get Area in CubicYardsPerUsSurveyFoot.
+        /// </summary>
+        public double CubicYardsPerUsSurveyFoot => As(AreaUnit.CubicYardPerUsSurveyFoot);
+
+        /// <summary>
         ///     Get Area in Hectares.
         /// </summary>
         public double Hectares => As(AreaUnit.Hectare);
@@ -264,6 +274,26 @@ namespace UnitsNet
         {
             double value = (double) acres;
             return new Area(value, AreaUnit.Acre);
+        }
+        /// <summary>
+        ///     Get Area from CubicYardsPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromCubicYardsPerFoot(double cubicyardsperfoot)
+        {
+            double value = (double) cubicyardsperfoot;
+            return new Area(value, AreaUnit.CubicYardPerFoot);
+        }
+        /// <summary>
+        ///     Get Area from CubicYardsPerUsSurveyFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromCubicYardsPerUsSurveyFoot(double cubicyardsperussurveyfoot)
+        {
+            double value = (double) cubicyardsperussurveyfoot;
+            return new Area(value, AreaUnit.CubicYardPerUsSurveyFoot);
         }
         /// <summary>
         ///     Get Area from Hectares.
@@ -687,6 +717,8 @@ namespace UnitsNet
             switch(Unit)
             {
                 case AreaUnit.Acre: return _value*4046.85642;
+                case AreaUnit.CubicYardPerFoot: return _value*2.50838208;
+                case AreaUnit.CubicYardPerUsSurveyFoot: return _value*2.50837706323584;
                 case AreaUnit.Hectare: return _value*1e4;
                 case AreaUnit.SquareCentimeter: return _value*1e-4;
                 case AreaUnit.SquareDecimeter: return _value*1e-2;
@@ -715,6 +747,8 @@ namespace UnitsNet
             switch(unit)
             {
                 case AreaUnit.Acre: return baseUnitValue/4046.85642;
+                case AreaUnit.CubicYardPerFoot: return baseUnitValue/2.50838208;
+                case AreaUnit.CubicYardPerUsSurveyFoot: return baseUnitValue/2.50837706323584;
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
                 case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
                 case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;
