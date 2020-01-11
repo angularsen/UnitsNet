@@ -50,6 +50,30 @@
           "Abbreviations": [ "bbl/ft" ]
         }
       ]
+    },
+    {
+      "SingularName": "CubicYardPerFoot",
+      "PluralName": "CubicYardsPerFoot",
+      "FromUnitToBaseFunc": "x*2.50838208",
+      "FromBaseToUnitFunc": "x/2.50838208",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerUsSurveyFoot",
+      "PluralName": "CubicYardsPerUsSurveyFoot",
+      "FromUnitToBaseFunc": "x*2.50837706323584",
+      "FromBaseToUnitFunc": "x/2.50837706323584",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/ftUS" ]
+        }
+      ]
     }
   ]
 }
