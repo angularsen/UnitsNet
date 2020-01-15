@@ -37,12 +37,13 @@ namespace CodeGen.Generators
         public static void Generate(string rootDir, Quantity[] quantities)
         {
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
+            var extensionsOutputDir = $"{rootDir}/UnitsNet.Extensions/GeneratedCode";
             var testProjectDir = $"{rootDir}/UnitsNet.Tests";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");
             Directory.CreateDirectory($"{outputDir}/Units");
-            Directory.CreateDirectory($"{outputDir}/Extensions");
+            Directory.CreateDirectory($"{extensionsOutputDir}/NumberToExtensions");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/QuantityTests");
@@ -98,7 +99,7 @@ namespace CodeGen.Generators
             sb.Append("quantity(OK) ");
         }
 
-        private static void GenerateNumberExtensions(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateNumberToExtensions(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
