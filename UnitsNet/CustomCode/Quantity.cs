@@ -44,7 +44,6 @@ namespace UnitsNet
                 throw ex;
             }
             KnownQuantities.Add(quantityType.Name, new KnownQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType});
-            Names = Names.Append(quantityType.Name).ToArray();
         }
 
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
@@ -54,9 +53,7 @@ namespace UnitsNet
 
         static Quantity()
         {
-            var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] {QuantityType.Undefined}).ToArray();
-            Types = quantityTypes;
-            Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
+            _quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] {QuantityType.Undefined}).ToList();
 
             InfosLazy = new Lazy<QuantityInfo[]>(() => Types
                 .Select(quantityType => FromQuantityType(quantityType, 0.0).QuantityInfo)
@@ -64,15 +61,17 @@ namespace UnitsNet
                 .ToArray());
         }
 
+        private static readonly List<QuantityType> _quantityTypes;
+
         /// <summary>
         /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
         /// </summary>
-        public static QuantityType[] Types { get; }
+        public static QuantityType[] Types => _quantityTypes.ToArray();
 
         /// <summary>
         /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
         /// </summary>
-        public static string[] Names { get; private set; }
+        public static string[] Names => _quantityTypes.Select(qt => qt.ToString()).Concat(KnownQuantities.Keys).ToArray();
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
