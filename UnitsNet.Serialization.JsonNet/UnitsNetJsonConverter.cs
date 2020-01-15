@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -67,21 +68,30 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         private static IQuantity ParseValueUnit(ValueUnit vu)
-        {
+        { 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
             string unitEnumValue = vu.Unit.Split('.')[1];
 
-            // "UnitsNet.Units.MassUnit,UnitsNet"
-            string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
-
-            // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
-            if (unitEnumType == null)
+            Type unitEnumType;
+            if (Quantity.KnownQuantities.ContainsKey(unitEnumTypeName))
             {
-                var ex = new UnitsNetException("Unable to find enum type.");
-                ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
-                throw ex;
+                unitEnumType = Quantity.KnownQuantities[unitEnumTypeName].UnitEnumType;
+            }
+            else
+            {
+
+                // "UnitsNet.Units.MassUnit,UnitsNet"
+                string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+
+                // -- see http://stackoverflow.com/a/6465096/1256096 for details
+                unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+                if (unitEnumType == null)
+                {
+                    var ex = new UnitsNetException("Unable to find enum type.");
+                    ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
+                    throw ex;
+                }
             }
 
             double value = vu.Value;

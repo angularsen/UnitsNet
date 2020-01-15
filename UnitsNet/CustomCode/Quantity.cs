@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 
@@ -9,7 +10,47 @@ namespace UnitsNet
 {
     public partial class Quantity
     {
+        /// <summary>
+        /// A dictionary of info structs for each known type.
+        /// </summary>
+        public static Dictionary<string, KnownQuantityInfo> KnownQuantities => new Dictionary<string, KnownQuantityInfo>();
+
+        /// <summary>
+        /// A class capturing the details of a known type.
+        /// </summary>
+        public class KnownQuantityInfo
+        {
+            /// <summary>
+            /// The quantity type of the known type.
+            /// </summary>
+            public Type QuantityType { get; set; }
+            /// <summary>
+            /// The type for the enumeration of valid units.
+            /// </summary>
+            public Type UnitEnumType { get; set; }
+        }
+
+        /// <summary>
+        ///     Adds a type defined in an external assembly for serialisation
+        /// </summary>
+        /// <param name="quantityType">The quantity type.</param>
+        /// <param name="unitEnumType">The unit enum matching the quantity type.</param>
+        public static void AddUnit(Type quantityType, Type unitEnumType)
+        {
+            if ($"{quantityType.Name}Unit" != unitEnumType.Name)
+            {
+                var ex = new UnitsNetException("Quantity type and unit enum type names don't match.");
+                ex.Data["type"] = quantityType.Name;
+                throw ex;
+            }
+            KnownQuantities.Add(quantityType.Name, new KnownQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType});
+            Names = Names.Append(quantityType.Name).ToArray();
+        }
+
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
+
+        private static readonly MethodInfo GenericTryParse = typeof(QuantityParser)
+            .GetMethods().First((method)=>(method.Name=="TryParse") && method.GetParameters()[3].ParameterType == typeof(IQuantity));
 
         static Quantity()
         {
@@ -31,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
         /// </summary>
-        public static string[] Names { get; }
+        public static string[] Names { get; private set; }
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
@@ -65,6 +106,12 @@ namespace UnitsNet
                 return false;
             }
 
+            if (KnownQuantities.ContainsKey(unit.GetType().Name))
+            {
+                quantity = (IQuantity)Activator.CreateInstance(KnownQuantities[unit.GetType().Name].QuantityType, BindingFlags.CreateInstance, null, value, unit);
+                return quantity != null;
+            }
+
             return TryFrom((QuantityValue)value, unit, out quantity);
         }
 
@@ -82,16 +129,45 @@ namespace UnitsNet
         public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            {
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
+            }
 
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
+            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity))
+                return quantity;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
+        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity)
+        {
+            if (KnownQuantities.ContainsKey(quantityType.Name))
+            {
+                var typeDetails = KnownQuantities[quantityType.Name];
+                quantity = default(IQuantity);
+
+                if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+                    return false;
+
+                var parser = QuantityParser.Default;
+
+                var fromMethod = quantityType.GetMethod("From");
+                var unitEnumType = typeDetails.UnitEnumType;
+                var tryParseMethod = GenericTryParse.MakeGenericMethod(quantityType, unitEnumType);
+                var parameters = new object[] {quantityString, null, fromMethod, null};
+                var success = (bool)tryParseMethod.Invoke(parser,parameters);
+                if (success)
+                {
+                    quantity = (IQuantity) parameters[3];
+                }
+
+                return success;
+            }
+            else
+                return TryParse(null, quantityType, quantityString, out quantity);
+        }
+
 
         /// <summary>
         ///     Get information about the given quantity type.
