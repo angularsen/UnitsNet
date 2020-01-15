@@ -74,9 +74,9 @@ namespace UnitsNet.Serialization.JsonNet
             string unitEnumValue = vu.Unit.Split('.')[1];
 
             Type unitEnumType;
-            if (Quantity.KnownQuantities.ContainsKey(unitEnumTypeName))
+            if (Quantity.ExternalQuantities.ContainsKey(unitEnumTypeName))
             {
-                unitEnumType = Quantity.KnownQuantities[unitEnumTypeName].UnitEnumType;
+                unitEnumType = Quantity.ExternalQuantities[unitEnumTypeName].UnitEnumType;
             }
             else
             {

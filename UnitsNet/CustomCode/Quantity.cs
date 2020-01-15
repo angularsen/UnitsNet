@@ -13,12 +13,12 @@ namespace UnitsNet
         /// <summary>
         /// A dictionary of info structs for each known type.
         /// </summary>
-        public static Dictionary<string, KnownQuantityInfo> KnownQuantities => new Dictionary<string, KnownQuantityInfo>();
+        public static Dictionary<string, ExternalQuantityInfo> ExternalQuantities = new Dictionary<string, ExternalQuantityInfo>();
 
         /// <summary>
         /// A class capturing the details of a known type.
         /// </summary>
-        public class KnownQuantityInfo
+        public class ExternalQuantityInfo
         {
             /// <summary>
             /// The quantity type of the known type.
@@ -43,13 +43,26 @@ namespace UnitsNet
                 ex.Data["type"] = quantityType.Name;
                 throw ex;
             }
-            KnownQuantities.Add(quantityType.Name, new KnownQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType});
+            ExternalQuantities.Add(quantityType.Name, new ExternalQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType});
         }
 
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
 
-        private static readonly MethodInfo GenericTryParse = typeof(QuantityParser)
-            .GetMethods().First((method)=>(method.Name=="TryParse") && method.GetParameters()[3].ParameterType == typeof(IQuantity));
+        private static MethodInfo _genericTryParse;
+
+        internal static MethodInfo GenericTryParse
+        {
+            get
+            {
+                if (_genericTryParse == null)
+                {
+                    _genericTryParse = typeof(QuantityParser).GetMethods()
+                        .First((method) => (method.Name == "TryParse") && method.GetParameters()[3].ParameterType == typeof(IQuantity));
+                }
+
+                return _genericTryParse;
+            }
+        }
 
         static Quantity()
         {
@@ -71,7 +84,7 @@ namespace UnitsNet
         /// <summary>
         /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
         /// </summary>
-        public static string[] Names => _quantityTypes.Select(qt => qt.ToString()).Concat(KnownQuantities.Keys).ToArray();
+        public static string[] Names => _quantityTypes.Select(qt => qt.ToString()).Concat(ExternalQuantities.Keys).ToArray();
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
@@ -105,9 +118,9 @@ namespace UnitsNet
                 return false;
             }
 
-            if (KnownQuantities.ContainsKey(unit.GetType().Name))
+            if (ExternalQuantities.ContainsKey(unit.GetType().Name))
             {
-                quantity = (IQuantity)Activator.CreateInstance(KnownQuantities[unit.GetType().Name].QuantityType, BindingFlags.CreateInstance, null, value, unit);
+                quantity = (IQuantity)Activator.CreateInstance(ExternalQuantities[unit.GetType().Name].QuantityType, BindingFlags.CreateInstance, null, value, unit);
                 return quantity != null;
             }
 
@@ -141,9 +154,9 @@ namespace UnitsNet
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity)
         {
-            if (KnownQuantities.ContainsKey(quantityType.Name))
+            if (ExternalQuantities.ContainsKey(quantityType.Name))
             {
-                var typeDetails = KnownQuantities[quantityType.Name];
+                var typeDetails = ExternalQuantities[quantityType.Name];
                 quantity = default(IQuantity);
 
                 if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
