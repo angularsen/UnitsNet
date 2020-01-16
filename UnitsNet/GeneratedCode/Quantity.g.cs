@@ -172,6 +172,8 @@ namespace UnitsNet
                     return Molarity.From(value, Molarity.BaseUnit);
                 case QuantityType.MolarMass:
                     return MolarMass.From(value, MolarMass.BaseUnit);
+                case QuantityType.NominalPower:
+                    return NominalPower.From(value, NominalPower.BaseUnit);
                 case QuantityType.Permeability:
                     return Permeability.From(value, Permeability.BaseUnit);
                 case QuantityType.Permittivity:
@@ -452,6 +454,9 @@ namespace UnitsNet
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
                     return true;
+                case NominalPowerUnit nominalPowerUnit:
+                    quantity = NominalPower.From(value, nominalPowerUnit);
+                    return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
                     return true;
@@ -710,6 +715,8 @@ namespace UnitsNet
                     return parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity);
                 case Type _ when quantityType == typeof(MolarMass):
                     return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
+                case Type _ when quantityType == typeof(NominalPower):
+                    return parser.TryParse<NominalPower, NominalPowerUnit>(quantityString, formatProvider, NominalPower.From, out quantity);
                 case Type _ when quantityType == typeof(Permeability):
                     return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);
                 case Type _ when quantityType == typeof(Permittivity):

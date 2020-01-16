@@ -1,0 +1,30 @@
+{
+  "Name": "NominalPower",
+  "BaseUnit": "WattPeak",
+  "BaseType": "decimal",
+  "XmlDoc": "The nominal power is the nameplate capacity of photovoltaic (PV) devices, such as solar cells, panels and systems, and is determined by measuring the electric current and voltage in a circuit, while varying the resistance under precisely defined conditions.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "WattPeak",
+      "PluralName": "WattsPeak",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wp" ]
+        },
+        {
+          "Culture": "fr-FR",
+          "Abbreviations": [ "Wc" ]
+        }
+      ]
+    }
+  ]
+}

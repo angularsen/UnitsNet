@@ -95,6 +95,7 @@ namespace UnitsNet
         MolarEntropy,
         Molarity,
         MolarMass,
+        NominalPower,
         Permeability,
         Permittivity,
         Power,
