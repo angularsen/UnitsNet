@@ -69,5 +69,6 @@ namespace UnitsNet.Units
         TonneForcePerSquareMillimeter,
         Torr,
     }
-#pragma warning restore 1591
+
+    #pragma warning restore 1591
 }

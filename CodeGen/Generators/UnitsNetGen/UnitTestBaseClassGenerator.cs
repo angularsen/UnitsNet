@@ -4,6 +4,15 @@ using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
 {
+    /// <summary>
+    /// Generates base class for each quantity test class, with stubs for testing conversion functions and error tolerances that the developer must complete to fix compile errors.
+    /// </summary>
+    /// <example>
+    /// <list type="bullet">
+    /// <item><description>UnitsNet.Tests\GeneratedCode\AccelerationTestsBase.g.cs</description></item>
+    /// <item><description>UnitsNet.Tests\GeneratedCode\LengthTestsBase.g.cs</description></item>
+    /// </list>
+    /// </example>
     internal class UnitTestBaseClassGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;

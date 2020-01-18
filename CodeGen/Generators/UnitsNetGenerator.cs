@@ -43,13 +43,14 @@ namespace CodeGen.Generators
             Directory.CreateDirectory($"{outputDir}/Quantities");
             Directory.CreateDirectory($"{outputDir}/Units");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
+            Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
 
             foreach (var quantity in quantities)
             {
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
-                GenerateUnitTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/{quantity.Name}TestsBase.g.cs");
+                GenerateUnitTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/TestsBase/{quantity.Name}TestsBase.g.cs");
                 GenerateUnitTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
                 Log.Information(sb.ToString());
             }
