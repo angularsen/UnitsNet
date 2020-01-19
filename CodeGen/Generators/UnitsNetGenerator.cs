@@ -52,16 +52,12 @@ namespace CodeGen.Generators
                 GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
 
-                // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/Quantities/TestsBase/LengthTestsBase
+                // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
                 // This way when new units are added to the quantity JSON definition, we auto-generate the new
                 // conversion function tests that needs to be manually implemented by the developer to fix the compile error
                 // so it cannot be forgotten.
                 GenerateQuantityTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/TestsBase/{quantity.Name}TestsBase.g.cs");
-                GenerateCustomCodeQuantityTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
-
-                // Example: GeneratedCode/Quantities/LengthTests
-                // Auto-generated tests for quantities and their units.
-
+                GenerateQuantityTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
 
                 Log.Information(sb.ToString());
             }
@@ -80,7 +76,7 @@ namespace CodeGen.Generators
             Log.Information("");
         }
 
-        private static void GenerateCustomCodeQuantityTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantityTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -108,13 +104,6 @@ namespace CodeGen.Generators
         }
 
         private static void GenerateQuantityTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
-        {
-            var content = new UnitTestBaseClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
-            sb.Append("test base(OK) ");
-        }
-
-        private static void GenerateQuantityTestsClass(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTestBaseClassGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
