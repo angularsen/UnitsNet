@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -53,6 +55,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new ReactivePower();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(ReactivePowerUnit.VoltampereReactive, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ReactivePower(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
@@ -66,6 +77,33 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ReactivePower(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void ReactivePower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new ReactivePower(1, ReactivePowerUnit.VoltampereReactive);
+
+            QuantityInfo<ReactivePowerUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(ReactivePower.Zero, quantityInfo.Zero);
+            Assert.Equal("ReactivePower", quantityInfo.Name);
+            Assert.Equal(QuantityType.ReactivePower, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().Except(new[] {ReactivePowerUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
+        }
+
+        [Fact]
         public void VoltampereReactiveToReactivePowerUnits()
         {
             ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
@@ -76,12 +114,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.GigavoltampereReactive).GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.KilovoltampereReactive).KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.MegavoltampereReactive).MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.VoltampereReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
+            var quantity00 = ReactivePower.From(1, ReactivePowerUnit.GigavoltampereReactive);
+            AssertEx.EqualTolerance(1, quantity00.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
+            Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, quantity00.Unit);
+
+            var quantity01 = ReactivePower.From(1, ReactivePowerUnit.KilovoltampereReactive);
+            AssertEx.EqualTolerance(1, quantity01.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+            Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, quantity01.Unit);
+
+            var quantity02 = ReactivePower.From(1, ReactivePowerUnit.MegavoltampereReactive);
+            AssertEx.EqualTolerance(1, quantity02.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+            Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, quantity02.Unit);
+
+            var quantity03 = ReactivePower.From(1, ReactivePowerUnit.VoltampereReactive);
+            AssertEx.EqualTolerance(1, quantity03.VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.Equal(ReactivePowerUnit.VoltampereReactive, quantity03.Unit);
+
         }
 
         [Fact]
@@ -268,6 +318,63 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ReactivePower.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 Gvar", new ReactivePower(1, ReactivePowerUnit.GigavoltampereReactive).ToString());
+                Assert.Equal("1 kvar", new ReactivePower(1, ReactivePowerUnit.KilovoltampereReactive).ToString());
+                Assert.Equal("1 Mvar", new ReactivePower(1, ReactivePowerUnit.MegavoltampereReactive).ToString());
+                Assert.Equal("1 var", new ReactivePower(1, ReactivePowerUnit.VoltampereReactive).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 Gvar", new ReactivePower(1, ReactivePowerUnit.GigavoltampereReactive).ToString(swedishCulture));
+            Assert.Equal("1 kvar", new ReactivePower(1, ReactivePowerUnit.KilovoltampereReactive).ToString(swedishCulture));
+            Assert.Equal("1 Mvar", new ReactivePower(1, ReactivePowerUnit.MegavoltampereReactive).ToString(swedishCulture));
+            Assert.Equal("1 var", new ReactivePower(1, ReactivePowerUnit.VoltampereReactive).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s1"));
+                Assert.Equal("0.12 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s2"));
+                Assert.Equal("0.123 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s3"));
+                Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s1", culture));
+            Assert.Equal("0.12 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s2", culture));
+            Assert.Equal("0.123 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s3", culture));
+            Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4", culture));
         }
     }
 }

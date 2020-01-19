@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -51,6 +53,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new ElectricConductance();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(ElectricConductanceUnit.Siemens, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricConductance(double.PositiveInfinity, ElectricConductanceUnit.Siemens));
@@ -64,6 +75,33 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricConductance(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void ElectricConductance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new ElectricConductance(1, ElectricConductanceUnit.Siemens);
+
+            QuantityInfo<ElectricConductanceUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(ElectricConductance.Zero, quantityInfo.Zero);
+            Assert.Equal("ElectricConductance", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricConductance, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<ElectricConductanceUnit>().Except(new[] {ElectricConductanceUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
+        }
+
+        [Fact]
         public void SiemensToElectricConductanceUnits()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
@@ -73,11 +111,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens).Microsiemens, MicrosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens).Millisiemens, MillisiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Siemens).Siemens, SiemensTolerance);
+            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
+            AssertEx.EqualTolerance(1, quantity00.Microsiemens, MicrosiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity00.Unit);
+
+            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
+            AssertEx.EqualTolerance(1, quantity01.Millisiemens, MillisiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity01.Unit);
+
+            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
+            AssertEx.EqualTolerance(1, quantity02.Siemens, SiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Siemens, quantity02.Unit);
+
         }
 
         [Fact]
@@ -258,6 +305,61 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricConductance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString());
+                Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString());
+                Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString(swedishCulture));
+            Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString(swedishCulture));
+            Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s1"));
+                Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2"));
+                Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3"));
+                Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s1", culture));
+            Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2", culture));
+            Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3", culture));
+            Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4", culture));
         }
     }
 }

@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -97,6 +99,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Energy();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(EnergyUnit.Joule, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
@@ -107,6 +118,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Energy(double.NaN, EnergyUnit.Joule));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Energy(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Energy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Energy(1, EnergyUnit.Joule);
+
+            QuantityInfo<EnergyUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Energy.Zero, quantityInfo.Zero);
+            Assert.Equal("Energy", quantityInfo.Name);
+            Assert.Equal(QuantityType.Energy, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<EnergyUnit>().Except(new[] {EnergyUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -142,34 +180,112 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.BritishThermalUnit).BritishThermalUnits, BritishThermalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Calorie).Calories, CaloriesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.DecathermEc).DecathermsEc, DecathermsEcTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.DecathermImperial).DecathermsImperial, DecathermsImperialTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.DecathermUs).DecathermsUs, DecathermsUsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ElectronVolt).ElectronVolts, ElectronVoltsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Erg).Ergs, ErgsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.FootPound).FootPounds, FootPoundsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.GigabritishThermalUnit).GigabritishThermalUnits, GigabritishThermalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Gigajoule).Gigajoules, GigajoulesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.GigawattHour).GigawattHours, GigawattHoursTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Joule).Joules, JoulesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.KilobritishThermalUnit).KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Kilocalorie).Kilocalories, KilocaloriesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Kilojoule).Kilojoules, KilojoulesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.KilowattHour).KilowattHours, KilowattHoursTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.MegabritishThermalUnit).MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Megacalorie).Megacalories, MegacaloriesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Megajoule).Megajoules, MegajoulesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.MegawattHour).MegawattHours, MegawattHoursTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Millijoule).Millijoules, MillijoulesTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.TerawattHour).TerawattHours, TerawattHoursTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ThermEc).ThermsEc, ThermsEcTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ThermImperial).ThermsImperial, ThermsImperialTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ThermUs).ThermsUs, ThermsUsTolerance);
-            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.WattHour).WattHours, WattHoursTolerance);
+            var quantity00 = Energy.From(1, EnergyUnit.BritishThermalUnit);
+            AssertEx.EqualTolerance(1, quantity00.BritishThermalUnits, BritishThermalUnitsTolerance);
+            Assert.Equal(EnergyUnit.BritishThermalUnit, quantity00.Unit);
+
+            var quantity01 = Energy.From(1, EnergyUnit.Calorie);
+            AssertEx.EqualTolerance(1, quantity01.Calories, CaloriesTolerance);
+            Assert.Equal(EnergyUnit.Calorie, quantity01.Unit);
+
+            var quantity02 = Energy.From(1, EnergyUnit.DecathermEc);
+            AssertEx.EqualTolerance(1, quantity02.DecathermsEc, DecathermsEcTolerance);
+            Assert.Equal(EnergyUnit.DecathermEc, quantity02.Unit);
+
+            var quantity03 = Energy.From(1, EnergyUnit.DecathermImperial);
+            AssertEx.EqualTolerance(1, quantity03.DecathermsImperial, DecathermsImperialTolerance);
+            Assert.Equal(EnergyUnit.DecathermImperial, quantity03.Unit);
+
+            var quantity04 = Energy.From(1, EnergyUnit.DecathermUs);
+            AssertEx.EqualTolerance(1, quantity04.DecathermsUs, DecathermsUsTolerance);
+            Assert.Equal(EnergyUnit.DecathermUs, quantity04.Unit);
+
+            var quantity05 = Energy.From(1, EnergyUnit.ElectronVolt);
+            AssertEx.EqualTolerance(1, quantity05.ElectronVolts, ElectronVoltsTolerance);
+            Assert.Equal(EnergyUnit.ElectronVolt, quantity05.Unit);
+
+            var quantity06 = Energy.From(1, EnergyUnit.Erg);
+            AssertEx.EqualTolerance(1, quantity06.Ergs, ErgsTolerance);
+            Assert.Equal(EnergyUnit.Erg, quantity06.Unit);
+
+            var quantity07 = Energy.From(1, EnergyUnit.FootPound);
+            AssertEx.EqualTolerance(1, quantity07.FootPounds, FootPoundsTolerance);
+            Assert.Equal(EnergyUnit.FootPound, quantity07.Unit);
+
+            var quantity08 = Energy.From(1, EnergyUnit.GigabritishThermalUnit);
+            AssertEx.EqualTolerance(1, quantity08.GigabritishThermalUnits, GigabritishThermalUnitsTolerance);
+            Assert.Equal(EnergyUnit.GigabritishThermalUnit, quantity08.Unit);
+
+            var quantity09 = Energy.From(1, EnergyUnit.Gigajoule);
+            AssertEx.EqualTolerance(1, quantity09.Gigajoules, GigajoulesTolerance);
+            Assert.Equal(EnergyUnit.Gigajoule, quantity09.Unit);
+
+            var quantity10 = Energy.From(1, EnergyUnit.GigawattHour);
+            AssertEx.EqualTolerance(1, quantity10.GigawattHours, GigawattHoursTolerance);
+            Assert.Equal(EnergyUnit.GigawattHour, quantity10.Unit);
+
+            var quantity11 = Energy.From(1, EnergyUnit.Joule);
+            AssertEx.EqualTolerance(1, quantity11.Joules, JoulesTolerance);
+            Assert.Equal(EnergyUnit.Joule, quantity11.Unit);
+
+            var quantity12 = Energy.From(1, EnergyUnit.KilobritishThermalUnit);
+            AssertEx.EqualTolerance(1, quantity12.KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
+            Assert.Equal(EnergyUnit.KilobritishThermalUnit, quantity12.Unit);
+
+            var quantity13 = Energy.From(1, EnergyUnit.Kilocalorie);
+            AssertEx.EqualTolerance(1, quantity13.Kilocalories, KilocaloriesTolerance);
+            Assert.Equal(EnergyUnit.Kilocalorie, quantity13.Unit);
+
+            var quantity14 = Energy.From(1, EnergyUnit.Kilojoule);
+            AssertEx.EqualTolerance(1, quantity14.Kilojoules, KilojoulesTolerance);
+            Assert.Equal(EnergyUnit.Kilojoule, quantity14.Unit);
+
+            var quantity15 = Energy.From(1, EnergyUnit.KilowattHour);
+            AssertEx.EqualTolerance(1, quantity15.KilowattHours, KilowattHoursTolerance);
+            Assert.Equal(EnergyUnit.KilowattHour, quantity15.Unit);
+
+            var quantity16 = Energy.From(1, EnergyUnit.MegabritishThermalUnit);
+            AssertEx.EqualTolerance(1, quantity16.MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
+            Assert.Equal(EnergyUnit.MegabritishThermalUnit, quantity16.Unit);
+
+            var quantity17 = Energy.From(1, EnergyUnit.Megacalorie);
+            AssertEx.EqualTolerance(1, quantity17.Megacalories, MegacaloriesTolerance);
+            Assert.Equal(EnergyUnit.Megacalorie, quantity17.Unit);
+
+            var quantity18 = Energy.From(1, EnergyUnit.Megajoule);
+            AssertEx.EqualTolerance(1, quantity18.Megajoules, MegajoulesTolerance);
+            Assert.Equal(EnergyUnit.Megajoule, quantity18.Unit);
+
+            var quantity19 = Energy.From(1, EnergyUnit.MegawattHour);
+            AssertEx.EqualTolerance(1, quantity19.MegawattHours, MegawattHoursTolerance);
+            Assert.Equal(EnergyUnit.MegawattHour, quantity19.Unit);
+
+            var quantity20 = Energy.From(1, EnergyUnit.Millijoule);
+            AssertEx.EqualTolerance(1, quantity20.Millijoules, MillijoulesTolerance);
+            Assert.Equal(EnergyUnit.Millijoule, quantity20.Unit);
+
+            var quantity21 = Energy.From(1, EnergyUnit.TerawattHour);
+            AssertEx.EqualTolerance(1, quantity21.TerawattHours, TerawattHoursTolerance);
+            Assert.Equal(EnergyUnit.TerawattHour, quantity21.Unit);
+
+            var quantity22 = Energy.From(1, EnergyUnit.ThermEc);
+            AssertEx.EqualTolerance(1, quantity22.ThermsEc, ThermsEcTolerance);
+            Assert.Equal(EnergyUnit.ThermEc, quantity22.Unit);
+
+            var quantity23 = Energy.From(1, EnergyUnit.ThermImperial);
+            AssertEx.EqualTolerance(1, quantity23.ThermsImperial, ThermsImperialTolerance);
+            Assert.Equal(EnergyUnit.ThermImperial, quantity23.Unit);
+
+            var quantity24 = Energy.From(1, EnergyUnit.ThermUs);
+            AssertEx.EqualTolerance(1, quantity24.ThermsUs, ThermsUsTolerance);
+            Assert.Equal(EnergyUnit.ThermUs, quantity24.Unit);
+
+            var quantity25 = Energy.From(1, EnergyUnit.WattHour);
+            AssertEx.EqualTolerance(1, quantity25.WattHours, WattHoursTolerance);
+            Assert.Equal(EnergyUnit.WattHour, quantity25.Unit);
+
         }
 
         [Fact]
@@ -488,6 +604,107 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Energy.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString());
+                Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString());
+                Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString());
+                Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString());
+                Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString());
+                Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString());
+                Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString());
+                Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString());
+                Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString());
+                Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString());
+                Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString());
+                Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString());
+                Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString());
+                Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString());
+                Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString());
+                Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString());
+                Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString());
+                Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString());
+                Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString());
+                Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString());
+                Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString());
+                Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString());
+                Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString());
+                Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString());
+                Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString());
+                Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 BTU", new Energy(1, EnergyUnit.BritishThermalUnit).ToString(swedishCulture));
+            Assert.Equal("1 cal", new Energy(1, EnergyUnit.Calorie).ToString(swedishCulture));
+            Assert.Equal("1 Dth (E.C.)", new Energy(1, EnergyUnit.DecathermEc).ToString(swedishCulture));
+            Assert.Equal("1 Dth (imp.)", new Energy(1, EnergyUnit.DecathermImperial).ToString(swedishCulture));
+            Assert.Equal("1 Dth (U.S.)", new Energy(1, EnergyUnit.DecathermUs).ToString(swedishCulture));
+            Assert.Equal("1 eV", new Energy(1, EnergyUnit.ElectronVolt).ToString(swedishCulture));
+            Assert.Equal("1 erg", new Energy(1, EnergyUnit.Erg).ToString(swedishCulture));
+            Assert.Equal("1 ft·lb", new Energy(1, EnergyUnit.FootPound).ToString(swedishCulture));
+            Assert.Equal("1 GBTU", new Energy(1, EnergyUnit.GigabritishThermalUnit).ToString(swedishCulture));
+            Assert.Equal("1 GJ", new Energy(1, EnergyUnit.Gigajoule).ToString(swedishCulture));
+            Assert.Equal("1 GWh", new Energy(1, EnergyUnit.GigawattHour).ToString(swedishCulture));
+            Assert.Equal("1 J", new Energy(1, EnergyUnit.Joule).ToString(swedishCulture));
+            Assert.Equal("1 kBTU", new Energy(1, EnergyUnit.KilobritishThermalUnit).ToString(swedishCulture));
+            Assert.Equal("1 kcal", new Energy(1, EnergyUnit.Kilocalorie).ToString(swedishCulture));
+            Assert.Equal("1 kJ", new Energy(1, EnergyUnit.Kilojoule).ToString(swedishCulture));
+            Assert.Equal("1 kWh", new Energy(1, EnergyUnit.KilowattHour).ToString(swedishCulture));
+            Assert.Equal("1 MBTU", new Energy(1, EnergyUnit.MegabritishThermalUnit).ToString(swedishCulture));
+            Assert.Equal("1 Mcal", new Energy(1, EnergyUnit.Megacalorie).ToString(swedishCulture));
+            Assert.Equal("1 MJ", new Energy(1, EnergyUnit.Megajoule).ToString(swedishCulture));
+            Assert.Equal("1 MWh", new Energy(1, EnergyUnit.MegawattHour).ToString(swedishCulture));
+            Assert.Equal("1 mJ", new Energy(1, EnergyUnit.Millijoule).ToString(swedishCulture));
+            Assert.Equal("1 TWh", new Energy(1, EnergyUnit.TerawattHour).ToString(swedishCulture));
+            Assert.Equal("1 th (E.C.)", new Energy(1, EnergyUnit.ThermEc).ToString(swedishCulture));
+            Assert.Equal("1 th (imp.)", new Energy(1, EnergyUnit.ThermImperial).ToString(swedishCulture));
+            Assert.Equal("1 th (U.S.)", new Energy(1, EnergyUnit.ThermUs).ToString(swedishCulture));
+            Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1"));
+                Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
+                Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
+                Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s1", culture));
+            Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2", culture));
+            Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3", culture));
+            Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4", culture));
         }
     }
 }

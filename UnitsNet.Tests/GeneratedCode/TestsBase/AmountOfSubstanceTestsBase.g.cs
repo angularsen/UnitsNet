@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -75,6 +77,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new AmountOfSubstance();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(AmountOfSubstanceUnit.Mole, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
@@ -85,6 +96,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NaN, AmountOfSubstanceUnit.Mole));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new AmountOfSubstance(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void AmountOfSubstance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new AmountOfSubstance(1, AmountOfSubstanceUnit.Mole);
+
+            QuantityInfo<AmountOfSubstanceUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
+            Assert.Equal("AmountOfSubstance", quantityInfo.Name);
+            Assert.Equal(QuantityType.AmountOfSubstance, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<AmountOfSubstanceUnit>().Except(new[] {AmountOfSubstanceUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -109,23 +147,68 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Centimole).Centimoles, CentimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.CentipoundMole).CentipoundMoles, CentipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Decimole).Decimoles, DecimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.DecipoundMole).DecipoundMoles, DecipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Kilomole).Kilomoles, KilomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.KilopoundMole).KilopoundMoles, KilopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Megamole).Megamoles, MegamolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Micromole).Micromoles, MicromolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.MicropoundMole).MicropoundMoles, MicropoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Millimole).Millimoles, MillimolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.MillipoundMole).MillipoundMoles, MillipoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Mole).Moles, MolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Nanomole).Nanomoles, NanomolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.NanopoundMole).NanopoundMoles, NanopoundMolesTolerance);
-            AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.PoundMole).PoundMoles, PoundMolesTolerance);
+            var quantity00 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Centimole);
+            AssertEx.EqualTolerance(1, quantity00.Centimoles, CentimolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Centimole, quantity00.Unit);
+
+            var quantity01 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.CentipoundMole);
+            AssertEx.EqualTolerance(1, quantity01.CentipoundMoles, CentipoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, quantity01.Unit);
+
+            var quantity02 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Decimole);
+            AssertEx.EqualTolerance(1, quantity02.Decimoles, DecimolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Decimole, quantity02.Unit);
+
+            var quantity03 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.DecipoundMole);
+            AssertEx.EqualTolerance(1, quantity03.DecipoundMoles, DecipoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, quantity03.Unit);
+
+            var quantity04 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Kilomole);
+            AssertEx.EqualTolerance(1, quantity04.Kilomoles, KilomolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Kilomole, quantity04.Unit);
+
+            var quantity05 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.KilopoundMole);
+            AssertEx.EqualTolerance(1, quantity05.KilopoundMoles, KilopoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, quantity05.Unit);
+
+            var quantity06 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Megamole);
+            AssertEx.EqualTolerance(1, quantity06.Megamoles, MegamolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Megamole, quantity06.Unit);
+
+            var quantity07 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Micromole);
+            AssertEx.EqualTolerance(1, quantity07.Micromoles, MicromolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Micromole, quantity07.Unit);
+
+            var quantity08 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.MicropoundMole);
+            AssertEx.EqualTolerance(1, quantity08.MicropoundMoles, MicropoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, quantity08.Unit);
+
+            var quantity09 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Millimole);
+            AssertEx.EqualTolerance(1, quantity09.Millimoles, MillimolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Millimole, quantity09.Unit);
+
+            var quantity10 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.MillipoundMole);
+            AssertEx.EqualTolerance(1, quantity10.MillipoundMoles, MillipoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, quantity10.Unit);
+
+            var quantity11 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Mole);
+            AssertEx.EqualTolerance(1, quantity11.Moles, MolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Mole, quantity11.Unit);
+
+            var quantity12 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.Nanomole);
+            AssertEx.EqualTolerance(1, quantity12.Nanomoles, NanomolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.Nanomole, quantity12.Unit);
+
+            var quantity13 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.NanopoundMole);
+            AssertEx.EqualTolerance(1, quantity13.NanopoundMoles, NanopoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, quantity13.Unit);
+
+            var quantity14 = AmountOfSubstance.From(1, AmountOfSubstanceUnit.PoundMole);
+            AssertEx.EqualTolerance(1, quantity14.PoundMoles, PoundMolesTolerance);
+            Assert.Equal(AmountOfSubstanceUnit.PoundMole, quantity14.Unit);
+
         }
 
         [Fact]
@@ -378,6 +461,85 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(AmountOfSubstance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 cmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Centimole).ToString());
+                Assert.Equal("1 clbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.CentipoundMole).ToString());
+                Assert.Equal("1 dmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Decimole).ToString());
+                Assert.Equal("1 dlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.DecipoundMole).ToString());
+                Assert.Equal("1 kmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Kilomole).ToString());
+                Assert.Equal("1 klbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.KilopoundMole).ToString());
+                Assert.Equal("1 Mmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Megamole).ToString());
+                Assert.Equal("1 µmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Micromole).ToString());
+                Assert.Equal("1 µlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.MicropoundMole).ToString());
+                Assert.Equal("1 mmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Millimole).ToString());
+                Assert.Equal("1 mlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.MillipoundMole).ToString());
+                Assert.Equal("1 mol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Mole).ToString());
+                Assert.Equal("1 nmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Nanomole).ToString());
+                Assert.Equal("1 nlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.NanopoundMole).ToString());
+                Assert.Equal("1 lbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.PoundMole).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 cmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Centimole).ToString(swedishCulture));
+            Assert.Equal("1 clbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.CentipoundMole).ToString(swedishCulture));
+            Assert.Equal("1 dmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Decimole).ToString(swedishCulture));
+            Assert.Equal("1 dlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.DecipoundMole).ToString(swedishCulture));
+            Assert.Equal("1 kmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Kilomole).ToString(swedishCulture));
+            Assert.Equal("1 klbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.KilopoundMole).ToString(swedishCulture));
+            Assert.Equal("1 Mmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Megamole).ToString(swedishCulture));
+            Assert.Equal("1 µmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Micromole).ToString(swedishCulture));
+            Assert.Equal("1 µlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.MicropoundMole).ToString(swedishCulture));
+            Assert.Equal("1 mmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Millimole).ToString(swedishCulture));
+            Assert.Equal("1 mlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.MillipoundMole).ToString(swedishCulture));
+            Assert.Equal("1 mol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Mole).ToString(swedishCulture));
+            Assert.Equal("1 nmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.Nanomole).ToString(swedishCulture));
+            Assert.Equal("1 nlbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.NanopoundMole).ToString(swedishCulture));
+            Assert.Equal("1 lbmol", new AmountOfSubstance(1, AmountOfSubstanceUnit.PoundMole).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s1"));
+                Assert.Equal("0.12 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s2"));
+                Assert.Equal("0.123 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s3"));
+                Assert.Equal("0.1235 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s1", culture));
+            Assert.Equal("0.12 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s2", culture));
+            Assert.Equal("0.123 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s3", culture));
+            Assert.Equal("0.1235 mol", new AmountOfSubstance(0.123456, AmountOfSubstanceUnit.Mole).ToString("s4", culture));
         }
     }
 }

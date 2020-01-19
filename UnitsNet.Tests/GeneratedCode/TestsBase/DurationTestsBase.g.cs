@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -65,6 +67,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Duration();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(DurationUnit.Second, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Duration(double.PositiveInfinity, DurationUnit.Second));
@@ -75,6 +86,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Duration(double.NaN, DurationUnit.Second));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Duration(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Duration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Duration(1, DurationUnit.Second);
+
+            QuantityInfo<DurationUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Duration.Zero, quantityInfo.Zero);
+            Assert.Equal("Duration", quantityInfo.Name);
+            Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -94,18 +132,48 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Day).Days, DaysTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Hour).Hours, HoursTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Microsecond).Microseconds, MicrosecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Millisecond).Milliseconds, MillisecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Minute).Minutes, MinutesTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Month30).Months30, Months30Tolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Nanosecond).Nanoseconds, NanosecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Second).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Week).Weeks, WeeksTolerance);
-            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Year365).Years365, Years365Tolerance);
+            var quantity00 = Duration.From(1, DurationUnit.Day);
+            AssertEx.EqualTolerance(1, quantity00.Days, DaysTolerance);
+            Assert.Equal(DurationUnit.Day, quantity00.Unit);
+
+            var quantity01 = Duration.From(1, DurationUnit.Hour);
+            AssertEx.EqualTolerance(1, quantity01.Hours, HoursTolerance);
+            Assert.Equal(DurationUnit.Hour, quantity01.Unit);
+
+            var quantity02 = Duration.From(1, DurationUnit.Microsecond);
+            AssertEx.EqualTolerance(1, quantity02.Microseconds, MicrosecondsTolerance);
+            Assert.Equal(DurationUnit.Microsecond, quantity02.Unit);
+
+            var quantity03 = Duration.From(1, DurationUnit.Millisecond);
+            AssertEx.EqualTolerance(1, quantity03.Milliseconds, MillisecondsTolerance);
+            Assert.Equal(DurationUnit.Millisecond, quantity03.Unit);
+
+            var quantity04 = Duration.From(1, DurationUnit.Minute);
+            AssertEx.EqualTolerance(1, quantity04.Minutes, MinutesTolerance);
+            Assert.Equal(DurationUnit.Minute, quantity04.Unit);
+
+            var quantity05 = Duration.From(1, DurationUnit.Month30);
+            AssertEx.EqualTolerance(1, quantity05.Months30, Months30Tolerance);
+            Assert.Equal(DurationUnit.Month30, quantity05.Unit);
+
+            var quantity06 = Duration.From(1, DurationUnit.Nanosecond);
+            AssertEx.EqualTolerance(1, quantity06.Nanoseconds, NanosecondsTolerance);
+            Assert.Equal(DurationUnit.Nanosecond, quantity06.Unit);
+
+            var quantity07 = Duration.From(1, DurationUnit.Second);
+            AssertEx.EqualTolerance(1, quantity07.Seconds, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, quantity07.Unit);
+
+            var quantity08 = Duration.From(1, DurationUnit.Week);
+            AssertEx.EqualTolerance(1, quantity08.Weeks, WeeksTolerance);
+            Assert.Equal(DurationUnit.Week, quantity08.Unit);
+
+            var quantity09 = Duration.From(1, DurationUnit.Year365);
+            AssertEx.EqualTolerance(1, quantity09.Years365, Years365Tolerance);
+            Assert.Equal(DurationUnit.Year365, quantity09.Unit);
+
         }
 
         [Fact]
@@ -328,6 +396,75 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Duration.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString());
+                Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString());
+                Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString());
+                Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString());
+                Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
+                Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
+                Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
+                Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
+                Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
+                Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString(swedishCulture));
+            Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString(swedishCulture));
+            Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString(swedishCulture));
+            Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString(swedishCulture));
+            Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(swedishCulture));
+            Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
+            Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
+            Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
+            Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));
+            Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 s", new Duration(0.123456, DurationUnit.Second).ToString("s1"));
+                Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2"));
+                Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3"));
+                Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 s", new Duration(0.123456, DurationUnit.Second).ToString("s1", culture));
+            Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2", culture));
+            Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3", culture));
+            Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4", culture));
         }
     }
 }

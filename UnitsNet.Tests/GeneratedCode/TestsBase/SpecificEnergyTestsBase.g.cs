@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -63,6 +65,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new SpecificEnergy();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new SpecificEnergy(double.PositiveInfinity, SpecificEnergyUnit.JoulePerKilogram));
@@ -73,6 +84,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new SpecificEnergy(double.NaN, SpecificEnergyUnit.JoulePerKilogram));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SpecificEnergy(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void SpecificEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram);
+
+            QuantityInfo<SpecificEnergyUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(SpecificEnergy.Zero, quantityInfo.Zero);
+            Assert.Equal("SpecificEnergy", quantityInfo.Name);
+            Assert.Equal(QuantityType.SpecificEnergy, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -91,17 +129,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.BtuPerPound).BtuPerPound, BtuPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.CaloriePerGram).CaloriesPerGram, CaloriesPerGramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.JoulePerKilogram).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.KilocaloriePerGram).KilocaloriesPerGram, KilocaloriesPerGramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.KilojoulePerKilogram).KilojoulesPerKilogram, KilojoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerKilogram).KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.MegajoulePerKilogram).MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerKilogram).MegawattHoursPerKilogram, MegawattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerKilogram).WattHoursPerKilogram, WattHoursPerKilogramTolerance);
+            var quantity00 = SpecificEnergy.From(1, SpecificEnergyUnit.BtuPerPound);
+            AssertEx.EqualTolerance(1, quantity00.BtuPerPound, BtuPerPoundTolerance);
+            Assert.Equal(SpecificEnergyUnit.BtuPerPound, quantity00.Unit);
+
+            var quantity01 = SpecificEnergy.From(1, SpecificEnergyUnit.CaloriePerGram);
+            AssertEx.EqualTolerance(1, quantity01.CaloriesPerGram, CaloriesPerGramTolerance);
+            Assert.Equal(SpecificEnergyUnit.CaloriePerGram, quantity01.Unit);
+
+            var quantity02 = SpecificEnergy.From(1, SpecificEnergyUnit.JoulePerKilogram);
+            AssertEx.EqualTolerance(1, quantity02.JoulesPerKilogram, JoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, quantity02.Unit);
+
+            var quantity03 = SpecificEnergy.From(1, SpecificEnergyUnit.KilocaloriePerGram);
+            AssertEx.EqualTolerance(1, quantity03.KilocaloriesPerGram, KilocaloriesPerGramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, quantity03.Unit);
+
+            var quantity04 = SpecificEnergy.From(1, SpecificEnergyUnit.KilojoulePerKilogram);
+            AssertEx.EqualTolerance(1, quantity04.KilojoulesPerKilogram, KilojoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, quantity04.Unit);
+
+            var quantity05 = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerKilogram);
+            AssertEx.EqualTolerance(1, quantity05.KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, quantity05.Unit);
+
+            var quantity06 = SpecificEnergy.From(1, SpecificEnergyUnit.MegajoulePerKilogram);
+            AssertEx.EqualTolerance(1, quantity06.MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, quantity06.Unit);
+
+            var quantity07 = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerKilogram);
+            AssertEx.EqualTolerance(1, quantity07.MegawattHoursPerKilogram, MegawattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, quantity07.Unit);
+
+            var quantity08 = SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerKilogram);
+            AssertEx.EqualTolerance(1, quantity08.WattHoursPerKilogram, WattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, quantity08.Unit);
+
         }
 
         [Fact]
@@ -318,6 +383,73 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(SpecificEnergy.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 btu/lb", new SpecificEnergy(1, SpecificEnergyUnit.BtuPerPound).ToString());
+                Assert.Equal("1 cal/g", new SpecificEnergy(1, SpecificEnergyUnit.CaloriePerGram).ToString());
+                Assert.Equal("1 J/kg", new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram).ToString());
+                Assert.Equal("1 kcal/g", new SpecificEnergy(1, SpecificEnergyUnit.KilocaloriePerGram).ToString());
+                Assert.Equal("1 kJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilojoulePerKilogram).ToString());
+                Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString());
+                Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString());
+                Assert.Equal("1 MWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerKilogram).ToString());
+                Assert.Equal("1 Wh/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerKilogram).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 btu/lb", new SpecificEnergy(1, SpecificEnergyUnit.BtuPerPound).ToString(swedishCulture));
+            Assert.Equal("1 cal/g", new SpecificEnergy(1, SpecificEnergyUnit.CaloriePerGram).ToString(swedishCulture));
+            Assert.Equal("1 J/kg", new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 kcal/g", new SpecificEnergy(1, SpecificEnergyUnit.KilocaloriePerGram).ToString(swedishCulture));
+            Assert.Equal("1 kJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilojoulePerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 MWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattHourPerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 Wh/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerKilogram).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s1"));
+                Assert.Equal("0.12 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s2"));
+                Assert.Equal("0.123 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s3"));
+                Assert.Equal("0.1235 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s1", culture));
+            Assert.Equal("0.12 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s2", culture));
+            Assert.Equal("0.123 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s3", culture));
+            Assert.Equal("0.1235 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s4", culture));
         }
     }
 }

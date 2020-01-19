@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -59,6 +61,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new PressureChangeRate();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(PressureChangeRateUnit.PascalPerSecond, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new PressureChangeRate(double.PositiveInfinity, PressureChangeRateUnit.PascalPerSecond));
@@ -69,6 +80,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new PressureChangeRate(double.NaN, PressureChangeRateUnit.PascalPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new PressureChangeRate(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void PressureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond);
+
+            QuantityInfo<PressureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(PressureChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal("PressureChangeRate", quantityInfo.Name);
+            Assert.Equal(QuantityType.PressureChangeRate, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -85,15 +123,36 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.AtmospherePerSecond).AtmospheresPerSecond, AtmospheresPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerMinute).KilopascalsPerMinute, KilopascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerSecond).KilopascalsPerSecond, KilopascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerMinute).MegapascalsPerMinute, MegapascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerSecond).MegapascalsPerSecond, MegapascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerMinute).PascalsPerMinute, PascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
+            var quantity00 = PressureChangeRate.From(1, PressureChangeRateUnit.AtmospherePerSecond);
+            AssertEx.EqualTolerance(1, quantity00.AtmospheresPerSecond, AtmospheresPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.AtmospherePerSecond, quantity00.Unit);
+
+            var quantity01 = PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerMinute);
+            AssertEx.EqualTolerance(1, quantity01.KilopascalsPerMinute, KilopascalsPerMinuteTolerance);
+            Assert.Equal(PressureChangeRateUnit.KilopascalPerMinute, quantity01.Unit);
+
+            var quantity02 = PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerSecond);
+            AssertEx.EqualTolerance(1, quantity02.KilopascalsPerSecond, KilopascalsPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.KilopascalPerSecond, quantity02.Unit);
+
+            var quantity03 = PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerMinute);
+            AssertEx.EqualTolerance(1, quantity03.MegapascalsPerMinute, MegapascalsPerMinuteTolerance);
+            Assert.Equal(PressureChangeRateUnit.MegapascalPerMinute, quantity03.Unit);
+
+            var quantity04 = PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerSecond);
+            AssertEx.EqualTolerance(1, quantity04.MegapascalsPerSecond, MegapascalsPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.MegapascalPerSecond, quantity04.Unit);
+
+            var quantity05 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerMinute);
+            AssertEx.EqualTolerance(1, quantity05.PascalsPerMinute, PascalsPerMinuteTolerance);
+            Assert.Equal(PressureChangeRateUnit.PascalPerMinute, quantity05.Unit);
+
+            var quantity06 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond);
+            AssertEx.EqualTolerance(1, quantity06.PascalsPerSecond, PascalsPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.PascalPerSecond, quantity06.Unit);
+
         }
 
         [Fact]
@@ -298,6 +357,69 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(PressureChangeRate.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString());
+                Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString());
+                Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString());
+                Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString());
+                Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString());
+                Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString());
+                Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString(swedishCulture));
+            Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s1"));
+                Assert.Equal("0.12 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s2"));
+                Assert.Equal("0.123 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s3"));
+                Assert.Equal("0.1235 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s1", culture));
+            Assert.Equal("0.12 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s2", culture));
+            Assert.Equal("0.123 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s3", culture));
+            Assert.Equal("0.1235 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s4", culture));
         }
     }
 }

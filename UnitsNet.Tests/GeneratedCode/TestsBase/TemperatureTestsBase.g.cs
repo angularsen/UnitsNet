@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -63,6 +65,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Temperature();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(TemperatureUnit.Kelvin, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Temperature(double.PositiveInfinity, TemperatureUnit.Kelvin));
@@ -73,6 +84,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Temperature(double.NaN, TemperatureUnit.Kelvin));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Temperature(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Temperature_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Temperature(1, TemperatureUnit.Kelvin);
+
+            QuantityInfo<TemperatureUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Temperature.Zero, quantityInfo.Zero);
+            Assert.Equal("Temperature", quantityInfo.Name);
+            Assert.Equal(QuantityType.Temperature, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<TemperatureUnit>().Except(new[] {TemperatureUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -91,17 +129,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeCelsius).DegreesCelsius, DegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeDelisle).DegreesDelisle, DegreesDelisleTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeFahrenheit).DegreesFahrenheit, DegreesFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeNewton).DegreesNewton, DegreesNewtonTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeRankine).DegreesRankine, DegreesRankineTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeReaumur).DegreesReaumur, DegreesReaumurTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeRoemer).DegreesRoemer, DegreesRoemerTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.Kelvin).Kelvins, KelvinsTolerance);
-            AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.SolarTemperature).SolarTemperatures, SolarTemperaturesTolerance);
+            var quantity00 = Temperature.From(1, TemperatureUnit.DegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity00.DegreesCelsius, DegreesCelsiusTolerance);
+            Assert.Equal(TemperatureUnit.DegreeCelsius, quantity00.Unit);
+
+            var quantity01 = Temperature.From(1, TemperatureUnit.DegreeDelisle);
+            AssertEx.EqualTolerance(1, quantity01.DegreesDelisle, DegreesDelisleTolerance);
+            Assert.Equal(TemperatureUnit.DegreeDelisle, quantity01.Unit);
+
+            var quantity02 = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
+            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheit, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, quantity02.Unit);
+
+            var quantity03 = Temperature.From(1, TemperatureUnit.DegreeNewton);
+            AssertEx.EqualTolerance(1, quantity03.DegreesNewton, DegreesNewtonTolerance);
+            Assert.Equal(TemperatureUnit.DegreeNewton, quantity03.Unit);
+
+            var quantity04 = Temperature.From(1, TemperatureUnit.DegreeRankine);
+            AssertEx.EqualTolerance(1, quantity04.DegreesRankine, DegreesRankineTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRankine, quantity04.Unit);
+
+            var quantity05 = Temperature.From(1, TemperatureUnit.DegreeReaumur);
+            AssertEx.EqualTolerance(1, quantity05.DegreesReaumur, DegreesReaumurTolerance);
+            Assert.Equal(TemperatureUnit.DegreeReaumur, quantity05.Unit);
+
+            var quantity06 = Temperature.From(1, TemperatureUnit.DegreeRoemer);
+            AssertEx.EqualTolerance(1, quantity06.DegreesRoemer, DegreesRoemerTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRoemer, quantity06.Unit);
+
+            var quantity07 = Temperature.From(1, TemperatureUnit.Kelvin);
+            AssertEx.EqualTolerance(1, quantity07.Kelvins, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, quantity07.Unit);
+
+            var quantity08 = Temperature.From(1, TemperatureUnit.SolarTemperature);
+            AssertEx.EqualTolerance(1, quantity08.SolarTemperatures, SolarTemperaturesTolerance);
+            Assert.Equal(TemperatureUnit.SolarTemperature, quantity08.Unit);
+
         }
 
         [Fact]
@@ -306,6 +371,73 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Temperature.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString());
+                Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString());
+                Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString());
+                Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString());
+                Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString());
+                Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString());
+                Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString());
+                Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString());
+                Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString(swedishCulture));
+            Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString(swedishCulture));
+            Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString(swedishCulture));
+            Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString(swedishCulture));
+            Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString(swedishCulture));
+            Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString(swedishCulture));
+            Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString(swedishCulture));
+            Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s1"));
+                Assert.Equal("0.12 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s2"));
+                Assert.Equal("0.123 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s3"));
+                Assert.Equal("0.1235 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s1", culture));
+            Assert.Equal("0.12 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s2", culture));
+            Assert.Equal("0.123 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s3", culture));
+            Assert.Equal("0.1235 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s4", culture));
         }
     }
 }

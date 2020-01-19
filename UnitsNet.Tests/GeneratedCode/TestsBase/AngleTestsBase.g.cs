@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -73,6 +75,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Angle();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(AngleUnit.Degree, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
@@ -83,6 +94,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Angle(double.NaN, AngleUnit.Degree));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Angle(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Angle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Angle(1, AngleUnit.Degree);
+
+            QuantityInfo<AngleUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Angle.Zero, quantityInfo.Zero);
+            Assert.Equal("Angle", quantityInfo.Name);
+            Assert.Equal(QuantityType.Angle, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<AngleUnit>().Except(new[] {AngleUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -106,22 +144,64 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Arcminute).Arcminutes, ArcminutesTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Arcsecond).Arcseconds, ArcsecondsTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Centiradian).Centiradians, CentiradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Deciradian).Deciradians, DeciradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Degree).Degrees, DegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Gradian).Gradians, GradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Microdegree).Microdegrees, MicrodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Microradian).Microradians, MicroradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Millidegree).Millidegrees, MillidegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Milliradian).Milliradians, MilliradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Nanodegree).Nanodegrees, NanodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Nanoradian).Nanoradians, NanoradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Radian).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Revolution).Revolutions, RevolutionsTolerance);
+            var quantity00 = Angle.From(1, AngleUnit.Arcminute);
+            AssertEx.EqualTolerance(1, quantity00.Arcminutes, ArcminutesTolerance);
+            Assert.Equal(AngleUnit.Arcminute, quantity00.Unit);
+
+            var quantity01 = Angle.From(1, AngleUnit.Arcsecond);
+            AssertEx.EqualTolerance(1, quantity01.Arcseconds, ArcsecondsTolerance);
+            Assert.Equal(AngleUnit.Arcsecond, quantity01.Unit);
+
+            var quantity02 = Angle.From(1, AngleUnit.Centiradian);
+            AssertEx.EqualTolerance(1, quantity02.Centiradians, CentiradiansTolerance);
+            Assert.Equal(AngleUnit.Centiradian, quantity02.Unit);
+
+            var quantity03 = Angle.From(1, AngleUnit.Deciradian);
+            AssertEx.EqualTolerance(1, quantity03.Deciradians, DeciradiansTolerance);
+            Assert.Equal(AngleUnit.Deciradian, quantity03.Unit);
+
+            var quantity04 = Angle.From(1, AngleUnit.Degree);
+            AssertEx.EqualTolerance(1, quantity04.Degrees, DegreesTolerance);
+            Assert.Equal(AngleUnit.Degree, quantity04.Unit);
+
+            var quantity05 = Angle.From(1, AngleUnit.Gradian);
+            AssertEx.EqualTolerance(1, quantity05.Gradians, GradiansTolerance);
+            Assert.Equal(AngleUnit.Gradian, quantity05.Unit);
+
+            var quantity06 = Angle.From(1, AngleUnit.Microdegree);
+            AssertEx.EqualTolerance(1, quantity06.Microdegrees, MicrodegreesTolerance);
+            Assert.Equal(AngleUnit.Microdegree, quantity06.Unit);
+
+            var quantity07 = Angle.From(1, AngleUnit.Microradian);
+            AssertEx.EqualTolerance(1, quantity07.Microradians, MicroradiansTolerance);
+            Assert.Equal(AngleUnit.Microradian, quantity07.Unit);
+
+            var quantity08 = Angle.From(1, AngleUnit.Millidegree);
+            AssertEx.EqualTolerance(1, quantity08.Millidegrees, MillidegreesTolerance);
+            Assert.Equal(AngleUnit.Millidegree, quantity08.Unit);
+
+            var quantity09 = Angle.From(1, AngleUnit.Milliradian);
+            AssertEx.EqualTolerance(1, quantity09.Milliradians, MilliradiansTolerance);
+            Assert.Equal(AngleUnit.Milliradian, quantity09.Unit);
+
+            var quantity10 = Angle.From(1, AngleUnit.Nanodegree);
+            AssertEx.EqualTolerance(1, quantity10.Nanodegrees, NanodegreesTolerance);
+            Assert.Equal(AngleUnit.Nanodegree, quantity10.Unit);
+
+            var quantity11 = Angle.From(1, AngleUnit.Nanoradian);
+            AssertEx.EqualTolerance(1, quantity11.Nanoradians, NanoradiansTolerance);
+            Assert.Equal(AngleUnit.Nanoradian, quantity11.Unit);
+
+            var quantity12 = Angle.From(1, AngleUnit.Radian);
+            AssertEx.EqualTolerance(1, quantity12.Radians, RadiansTolerance);
+            Assert.Equal(AngleUnit.Radian, quantity12.Unit);
+
+            var quantity13 = Angle.From(1, AngleUnit.Revolution);
+            AssertEx.EqualTolerance(1, quantity13.Revolutions, RevolutionsTolerance);
+            Assert.Equal(AngleUnit.Revolution, quantity13.Unit);
+
         }
 
         [Fact]
@@ -368,6 +448,83 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Angle.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString());
+                Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString());
+                Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString());
+                Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString());
+                Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString());
+                Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString());
+                Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString());
+                Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString());
+                Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString());
+                Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString());
+                Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString());
+                Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString());
+                Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString());
+                Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 '", new Angle(1, AngleUnit.Arcminute).ToString(swedishCulture));
+            Assert.Equal("1 ″", new Angle(1, AngleUnit.Arcsecond).ToString(swedishCulture));
+            Assert.Equal("1 crad", new Angle(1, AngleUnit.Centiradian).ToString(swedishCulture));
+            Assert.Equal("1 drad", new Angle(1, AngleUnit.Deciradian).ToString(swedishCulture));
+            Assert.Equal("1 °", new Angle(1, AngleUnit.Degree).ToString(swedishCulture));
+            Assert.Equal("1 g", new Angle(1, AngleUnit.Gradian).ToString(swedishCulture));
+            Assert.Equal("1 µ°", new Angle(1, AngleUnit.Microdegree).ToString(swedishCulture));
+            Assert.Equal("1 µrad", new Angle(1, AngleUnit.Microradian).ToString(swedishCulture));
+            Assert.Equal("1 m°", new Angle(1, AngleUnit.Millidegree).ToString(swedishCulture));
+            Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString(swedishCulture));
+            Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString(swedishCulture));
+            Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString(swedishCulture));
+            Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString(swedishCulture));
+            Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 °", new Angle(0.123456, AngleUnit.Degree).ToString("s1"));
+                Assert.Equal("0.12 °", new Angle(0.123456, AngleUnit.Degree).ToString("s2"));
+                Assert.Equal("0.123 °", new Angle(0.123456, AngleUnit.Degree).ToString("s3"));
+                Assert.Equal("0.1235 °", new Angle(0.123456, AngleUnit.Degree).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 °", new Angle(0.123456, AngleUnit.Degree).ToString("s1", culture));
+            Assert.Equal("0.12 °", new Angle(0.123456, AngleUnit.Degree).ToString("s2", culture));
+            Assert.Equal("0.123 °", new Angle(0.123456, AngleUnit.Degree).ToString("s3", culture));
+            Assert.Equal("0.1235 °", new Angle(0.123456, AngleUnit.Degree).ToString("s4", culture));
         }
     }
 }

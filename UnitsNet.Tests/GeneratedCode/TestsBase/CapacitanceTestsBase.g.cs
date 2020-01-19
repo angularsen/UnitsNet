@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -59,6 +61,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Capacitance();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(CapacitanceUnit.Farad, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Capacitance(double.PositiveInfinity, CapacitanceUnit.Farad));
@@ -69,6 +80,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Capacitance(double.NaN, CapacitanceUnit.Farad));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Capacitance(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Capacitance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Capacitance(1, CapacitanceUnit.Farad);
+
+            QuantityInfo<CapacitanceUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Capacitance.Zero, quantityInfo.Zero);
+            Assert.Equal("Capacitance", quantityInfo.Name);
+            Assert.Equal(QuantityType.Capacitance, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -85,15 +123,36 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Farad).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Kilofarad).Kilofarads, KilofaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Megafarad).Megafarads, MegafaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Microfarad).Microfarads, MicrofaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Millifarad).Millifarads, MillifaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Nanofarad).Nanofarads, NanofaradsTolerance);
-            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Picofarad).Picofarads, PicofaradsTolerance);
+            var quantity00 = Capacitance.From(1, CapacitanceUnit.Farad);
+            AssertEx.EqualTolerance(1, quantity00.Farads, FaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Farad, quantity00.Unit);
+
+            var quantity01 = Capacitance.From(1, CapacitanceUnit.Kilofarad);
+            AssertEx.EqualTolerance(1, quantity01.Kilofarads, KilofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Kilofarad, quantity01.Unit);
+
+            var quantity02 = Capacitance.From(1, CapacitanceUnit.Megafarad);
+            AssertEx.EqualTolerance(1, quantity02.Megafarads, MegafaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Megafarad, quantity02.Unit);
+
+            var quantity03 = Capacitance.From(1, CapacitanceUnit.Microfarad);
+            AssertEx.EqualTolerance(1, quantity03.Microfarads, MicrofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Microfarad, quantity03.Unit);
+
+            var quantity04 = Capacitance.From(1, CapacitanceUnit.Millifarad);
+            AssertEx.EqualTolerance(1, quantity04.Millifarads, MillifaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Millifarad, quantity04.Unit);
+
+            var quantity05 = Capacitance.From(1, CapacitanceUnit.Nanofarad);
+            AssertEx.EqualTolerance(1, quantity05.Nanofarads, NanofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Nanofarad, quantity05.Unit);
+
+            var quantity06 = Capacitance.From(1, CapacitanceUnit.Picofarad);
+            AssertEx.EqualTolerance(1, quantity06.Picofarads, PicofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Picofarad, quantity06.Unit);
+
         }
 
         [Fact]
@@ -298,6 +357,69 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Capacitance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 F", new Capacitance(1, CapacitanceUnit.Farad).ToString());
+                Assert.Equal("1 kF", new Capacitance(1, CapacitanceUnit.Kilofarad).ToString());
+                Assert.Equal("1 MF", new Capacitance(1, CapacitanceUnit.Megafarad).ToString());
+                Assert.Equal("1 µF", new Capacitance(1, CapacitanceUnit.Microfarad).ToString());
+                Assert.Equal("1 mF", new Capacitance(1, CapacitanceUnit.Millifarad).ToString());
+                Assert.Equal("1 nF", new Capacitance(1, CapacitanceUnit.Nanofarad).ToString());
+                Assert.Equal("1 pF", new Capacitance(1, CapacitanceUnit.Picofarad).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 F", new Capacitance(1, CapacitanceUnit.Farad).ToString(swedishCulture));
+            Assert.Equal("1 kF", new Capacitance(1, CapacitanceUnit.Kilofarad).ToString(swedishCulture));
+            Assert.Equal("1 MF", new Capacitance(1, CapacitanceUnit.Megafarad).ToString(swedishCulture));
+            Assert.Equal("1 µF", new Capacitance(1, CapacitanceUnit.Microfarad).ToString(swedishCulture));
+            Assert.Equal("1 mF", new Capacitance(1, CapacitanceUnit.Millifarad).ToString(swedishCulture));
+            Assert.Equal("1 nF", new Capacitance(1, CapacitanceUnit.Nanofarad).ToString(swedishCulture));
+            Assert.Equal("1 pF", new Capacitance(1, CapacitanceUnit.Picofarad).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s1"));
+                Assert.Equal("0.12 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s2"));
+                Assert.Equal("0.123 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s3"));
+                Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s1", culture));
+            Assert.Equal("0.12 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s2", culture));
+            Assert.Equal("0.123 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s3", culture));
+            Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4", culture));
         }
     }
 }

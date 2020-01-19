@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -95,6 +97,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Mass();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(MassUnit.Kilogram, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Mass(double.PositiveInfinity, MassUnit.Kilogram));
@@ -105,6 +116,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Mass(double.NaN, MassUnit.Kilogram));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Mass(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Mass(1, MassUnit.Kilogram);
+
+            QuantityInfo<MassUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal("Mass", quantityInfo.Name);
+            Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<MassUnit>().Except(new[] {MassUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -139,33 +177,108 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Centigram).Centigrams, CentigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decagram).Decagrams, DecagramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Decigram).Decigrams, DecigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.EarthMass).EarthMasses, EarthMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Grain).Grains, GrainsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Gram).Grams, GramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilogram).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilopound).Kilopounds, KilopoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, KilotonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongHundredweight).LongHundredweight, LongHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongTon).LongTons, LongTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megapound).Megapounds, MegapoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, MegatonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Nanogram).Nanograms, NanogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Ounce).Ounces, OuncesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Pound).Pounds, PoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortHundredweight).ShortHundredweight, ShortHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Slug).Slugs, SlugsTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.SolarMass).SolarMasses, SolarMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Stone).Stone, StoneTolerance);
-            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
+            var quantity00 = Mass.From(1, MassUnit.Centigram);
+            AssertEx.EqualTolerance(1, quantity00.Centigrams, CentigramsTolerance);
+            Assert.Equal(MassUnit.Centigram, quantity00.Unit);
+
+            var quantity01 = Mass.From(1, MassUnit.Decagram);
+            AssertEx.EqualTolerance(1, quantity01.Decagrams, DecagramsTolerance);
+            Assert.Equal(MassUnit.Decagram, quantity01.Unit);
+
+            var quantity02 = Mass.From(1, MassUnit.Decigram);
+            AssertEx.EqualTolerance(1, quantity02.Decigrams, DecigramsTolerance);
+            Assert.Equal(MassUnit.Decigram, quantity02.Unit);
+
+            var quantity03 = Mass.From(1, MassUnit.EarthMass);
+            AssertEx.EqualTolerance(1, quantity03.EarthMasses, EarthMassesTolerance);
+            Assert.Equal(MassUnit.EarthMass, quantity03.Unit);
+
+            var quantity04 = Mass.From(1, MassUnit.Grain);
+            AssertEx.EqualTolerance(1, quantity04.Grains, GrainsTolerance);
+            Assert.Equal(MassUnit.Grain, quantity04.Unit);
+
+            var quantity05 = Mass.From(1, MassUnit.Gram);
+            AssertEx.EqualTolerance(1, quantity05.Grams, GramsTolerance);
+            Assert.Equal(MassUnit.Gram, quantity05.Unit);
+
+            var quantity06 = Mass.From(1, MassUnit.Hectogram);
+            AssertEx.EqualTolerance(1, quantity06.Hectograms, HectogramsTolerance);
+            Assert.Equal(MassUnit.Hectogram, quantity06.Unit);
+
+            var quantity07 = Mass.From(1, MassUnit.Kilogram);
+            AssertEx.EqualTolerance(1, quantity07.Kilograms, KilogramsTolerance);
+            Assert.Equal(MassUnit.Kilogram, quantity07.Unit);
+
+            var quantity08 = Mass.From(1, MassUnit.Kilopound);
+            AssertEx.EqualTolerance(1, quantity08.Kilopounds, KilopoundsTolerance);
+            Assert.Equal(MassUnit.Kilopound, quantity08.Unit);
+
+            var quantity09 = Mass.From(1, MassUnit.Kilotonne);
+            AssertEx.EqualTolerance(1, quantity09.Kilotonnes, KilotonnesTolerance);
+            Assert.Equal(MassUnit.Kilotonne, quantity09.Unit);
+
+            var quantity10 = Mass.From(1, MassUnit.LongHundredweight);
+            AssertEx.EqualTolerance(1, quantity10.LongHundredweight, LongHundredweightTolerance);
+            Assert.Equal(MassUnit.LongHundredweight, quantity10.Unit);
+
+            var quantity11 = Mass.From(1, MassUnit.LongTon);
+            AssertEx.EqualTolerance(1, quantity11.LongTons, LongTonsTolerance);
+            Assert.Equal(MassUnit.LongTon, quantity11.Unit);
+
+            var quantity12 = Mass.From(1, MassUnit.Megapound);
+            AssertEx.EqualTolerance(1, quantity12.Megapounds, MegapoundsTolerance);
+            Assert.Equal(MassUnit.Megapound, quantity12.Unit);
+
+            var quantity13 = Mass.From(1, MassUnit.Megatonne);
+            AssertEx.EqualTolerance(1, quantity13.Megatonnes, MegatonnesTolerance);
+            Assert.Equal(MassUnit.Megatonne, quantity13.Unit);
+
+            var quantity14 = Mass.From(1, MassUnit.Microgram);
+            AssertEx.EqualTolerance(1, quantity14.Micrograms, MicrogramsTolerance);
+            Assert.Equal(MassUnit.Microgram, quantity14.Unit);
+
+            var quantity15 = Mass.From(1, MassUnit.Milligram);
+            AssertEx.EqualTolerance(1, quantity15.Milligrams, MilligramsTolerance);
+            Assert.Equal(MassUnit.Milligram, quantity15.Unit);
+
+            var quantity16 = Mass.From(1, MassUnit.Nanogram);
+            AssertEx.EqualTolerance(1, quantity16.Nanograms, NanogramsTolerance);
+            Assert.Equal(MassUnit.Nanogram, quantity16.Unit);
+
+            var quantity17 = Mass.From(1, MassUnit.Ounce);
+            AssertEx.EqualTolerance(1, quantity17.Ounces, OuncesTolerance);
+            Assert.Equal(MassUnit.Ounce, quantity17.Unit);
+
+            var quantity18 = Mass.From(1, MassUnit.Pound);
+            AssertEx.EqualTolerance(1, quantity18.Pounds, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, quantity18.Unit);
+
+            var quantity19 = Mass.From(1, MassUnit.ShortHundredweight);
+            AssertEx.EqualTolerance(1, quantity19.ShortHundredweight, ShortHundredweightTolerance);
+            Assert.Equal(MassUnit.ShortHundredweight, quantity19.Unit);
+
+            var quantity20 = Mass.From(1, MassUnit.ShortTon);
+            AssertEx.EqualTolerance(1, quantity20.ShortTons, ShortTonsTolerance);
+            Assert.Equal(MassUnit.ShortTon, quantity20.Unit);
+
+            var quantity21 = Mass.From(1, MassUnit.Slug);
+            AssertEx.EqualTolerance(1, quantity21.Slugs, SlugsTolerance);
+            Assert.Equal(MassUnit.Slug, quantity21.Unit);
+
+            var quantity22 = Mass.From(1, MassUnit.SolarMass);
+            AssertEx.EqualTolerance(1, quantity22.SolarMasses, SolarMassesTolerance);
+            Assert.Equal(MassUnit.SolarMass, quantity22.Unit);
+
+            var quantity23 = Mass.From(1, MassUnit.Stone);
+            AssertEx.EqualTolerance(1, quantity23.Stone, StoneTolerance);
+            Assert.Equal(MassUnit.Stone, quantity23.Unit);
+
+            var quantity24 = Mass.From(1, MassUnit.Tonne);
+            AssertEx.EqualTolerance(1, quantity24.Tonnes, TonnesTolerance);
+            Assert.Equal(MassUnit.Tonne, quantity24.Unit);
+
         }
 
         [Fact]
@@ -478,6 +591,105 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Mass.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString());
+                Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString());
+                Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString());
+                Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString());
+                Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString());
+                Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString());
+                Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString());
+                Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString());
+                Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString());
+                Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString());
+                Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString());
+                Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString());
+                Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString());
+                Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString());
+                Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString());
+                Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString());
+                Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString());
+                Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString());
+                Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString());
+                Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString());
+                Assert.Equal("1 short tn", new Mass(1, MassUnit.ShortTon).ToString());
+                Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString());
+                Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString());
+                Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
+                Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString(swedishCulture));
+            Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString(swedishCulture));
+            Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString(swedishCulture));
+            Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString(swedishCulture));
+            Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString(swedishCulture));
+            Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString(swedishCulture));
+            Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString(swedishCulture));
+            Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString(swedishCulture));
+            Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString(swedishCulture));
+            Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString(swedishCulture));
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString(swedishCulture));
+            Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString(swedishCulture));
+            Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString(swedishCulture));
+            Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString(swedishCulture));
+            Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString(swedishCulture));
+            Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString(swedishCulture));
+            Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString(swedishCulture));
+            Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString(swedishCulture));
+            Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString(swedishCulture));
+            Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString(swedishCulture));
+            Assert.Equal("1 short tn", new Mass(1, MassUnit.ShortTon).ToString(swedishCulture));
+            Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString(swedishCulture));
+            Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
+            Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(swedishCulture));
+            Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s1"));
+                Assert.Equal("0.12 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s2"));
+                Assert.Equal("0.123 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s3"));
+                Assert.Equal("0.1235 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s1", culture));
+            Assert.Equal("0.12 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s2", culture));
+            Assert.Equal("0.123 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s3", culture));
+            Assert.Equal("0.1235 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s4", culture));
         }
     }
 }

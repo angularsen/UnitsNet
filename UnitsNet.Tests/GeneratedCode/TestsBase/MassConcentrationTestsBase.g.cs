@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -125,6 +127,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new MassConcentration();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
@@ -135,6 +146,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MassConcentration(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void MassConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter);
+
+            QuantityInfo<MassConcentrationUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
+            Assert.Equal("MassConcentration", quantityInfo.Name);
+            Assert.Equal(QuantityType.MassConcentration, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().Except(new[] {MassConcentrationUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -184,48 +222,168 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.CentigramPerDeciliter).CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.CentigramPerLiter).CentigramsPerLiter, CentigramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.CentigramPerMilliliter).CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.DecigramPerDeciliter).DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.DecigramPerLiter).DecigramsPerLiter, DecigramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.DecigramPerMilliliter).DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerCubicCentimeter).GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerCubicMeter).GramsPerCubicMeter, GramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerCubicMillimeter).GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerDeciliter).GramsPerDeciliter, GramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerLiter).GramsPerLiter, GramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.GramPerMilliliter).GramsPerMilliliter, GramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicCentimeter).KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicMeter).KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicMillimeter).KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilogramPerLiter).KilogramsPerLiter, KilogramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilopoundPerCubicFoot).KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.KilopoundPerCubicInch).KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MicrogramPerCubicMeter).MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MicrogramPerDeciliter).MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MicrogramPerLiter).MicrogramsPerLiter, MicrogramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MicrogramPerMilliliter).MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MilligramPerCubicMeter).MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MilligramPerDeciliter).MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MilligramPerLiter).MilligramsPerLiter, MilligramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.MilligramPerMilliliter).MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.NanogramPerDeciliter).NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.NanogramPerLiter).NanogramsPerLiter, NanogramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.NanogramPerMilliliter).NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PicogramPerDeciliter).PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PicogramPerLiter).PicogramsPerLiter, PicogramsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PicogramPerMilliliter).PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PoundPerCubicFoot).PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PoundPerCubicInch).PoundsPerCubicInch, PoundsPerCubicInchTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PoundPerImperialGallon).PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.PoundPerUSGallon).PoundsPerUSGallon, PoundsPerUSGallonTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.SlugPerCubicFoot).SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicCentimeter).TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicMeter).TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicMillimeter).TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
+            var quantity00 = MassConcentration.From(1, MassConcentrationUnit.CentigramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity00.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.CentigramPerDeciliter, quantity00.Unit);
+
+            var quantity01 = MassConcentration.From(1, MassConcentrationUnit.CentigramPerLiter);
+            AssertEx.EqualTolerance(1, quantity01.CentigramsPerLiter, CentigramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.CentigramPerLiter, quantity01.Unit);
+
+            var quantity02 = MassConcentration.From(1, MassConcentrationUnit.CentigramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity02.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.CentigramPerMilliliter, quantity02.Unit);
+
+            var quantity03 = MassConcentration.From(1, MassConcentrationUnit.DecigramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity03.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.DecigramPerDeciliter, quantity03.Unit);
+
+            var quantity04 = MassConcentration.From(1, MassConcentrationUnit.DecigramPerLiter);
+            AssertEx.EqualTolerance(1, quantity04.DecigramsPerLiter, DecigramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.DecigramPerLiter, quantity04.Unit);
+
+            var quantity05 = MassConcentration.From(1, MassConcentrationUnit.DecigramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity05.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.DecigramPerMilliliter, quantity05.Unit);
+
+            var quantity06 = MassConcentration.From(1, MassConcentrationUnit.GramPerCubicCentimeter);
+            AssertEx.EqualTolerance(1, quantity06.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerCubicCentimeter, quantity06.Unit);
+
+            var quantity07 = MassConcentration.From(1, MassConcentrationUnit.GramPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity07.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerCubicMeter, quantity07.Unit);
+
+            var quantity08 = MassConcentration.From(1, MassConcentrationUnit.GramPerCubicMillimeter);
+            AssertEx.EqualTolerance(1, quantity08.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerCubicMillimeter, quantity08.Unit);
+
+            var quantity09 = MassConcentration.From(1, MassConcentrationUnit.GramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity09.GramsPerDeciliter, GramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerDeciliter, quantity09.Unit);
+
+            var quantity10 = MassConcentration.From(1, MassConcentrationUnit.GramPerLiter);
+            AssertEx.EqualTolerance(1, quantity10.GramsPerLiter, GramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerLiter, quantity10.Unit);
+
+            var quantity11 = MassConcentration.From(1, MassConcentrationUnit.GramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity11.GramsPerMilliliter, GramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.GramPerMilliliter, quantity11.Unit);
+
+            var quantity12 = MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicCentimeter);
+            AssertEx.EqualTolerance(1, quantity12.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicCentimeter, quantity12.Unit);
+
+            var quantity13 = MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity13.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, quantity13.Unit);
+
+            var quantity14 = MassConcentration.From(1, MassConcentrationUnit.KilogramPerCubicMillimeter);
+            AssertEx.EqualTolerance(1, quantity14.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.KilogramPerCubicMillimeter, quantity14.Unit);
+
+            var quantity15 = MassConcentration.From(1, MassConcentrationUnit.KilogramPerLiter);
+            AssertEx.EqualTolerance(1, quantity15.KilogramsPerLiter, KilogramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.KilogramPerLiter, quantity15.Unit);
+
+            var quantity16 = MassConcentration.From(1, MassConcentrationUnit.KilopoundPerCubicFoot);
+            AssertEx.EqualTolerance(1, quantity16.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
+            Assert.Equal(MassConcentrationUnit.KilopoundPerCubicFoot, quantity16.Unit);
+
+            var quantity17 = MassConcentration.From(1, MassConcentrationUnit.KilopoundPerCubicInch);
+            AssertEx.EqualTolerance(1, quantity17.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
+            Assert.Equal(MassConcentrationUnit.KilopoundPerCubicInch, quantity17.Unit);
+
+            var quantity18 = MassConcentration.From(1, MassConcentrationUnit.MicrogramPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity18.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
+            Assert.Equal(MassConcentrationUnit.MicrogramPerCubicMeter, quantity18.Unit);
+
+            var quantity19 = MassConcentration.From(1, MassConcentrationUnit.MicrogramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity19.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.MicrogramPerDeciliter, quantity19.Unit);
+
+            var quantity20 = MassConcentration.From(1, MassConcentrationUnit.MicrogramPerLiter);
+            AssertEx.EqualTolerance(1, quantity20.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.MicrogramPerLiter, quantity20.Unit);
+
+            var quantity21 = MassConcentration.From(1, MassConcentrationUnit.MicrogramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity21.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.MicrogramPerMilliliter, quantity21.Unit);
+
+            var quantity22 = MassConcentration.From(1, MassConcentrationUnit.MilligramPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity22.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
+            Assert.Equal(MassConcentrationUnit.MilligramPerCubicMeter, quantity22.Unit);
+
+            var quantity23 = MassConcentration.From(1, MassConcentrationUnit.MilligramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity23.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.MilligramPerDeciliter, quantity23.Unit);
+
+            var quantity24 = MassConcentration.From(1, MassConcentrationUnit.MilligramPerLiter);
+            AssertEx.EqualTolerance(1, quantity24.MilligramsPerLiter, MilligramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.MilligramPerLiter, quantity24.Unit);
+
+            var quantity25 = MassConcentration.From(1, MassConcentrationUnit.MilligramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity25.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.MilligramPerMilliliter, quantity25.Unit);
+
+            var quantity26 = MassConcentration.From(1, MassConcentrationUnit.NanogramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity26.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.NanogramPerDeciliter, quantity26.Unit);
+
+            var quantity27 = MassConcentration.From(1, MassConcentrationUnit.NanogramPerLiter);
+            AssertEx.EqualTolerance(1, quantity27.NanogramsPerLiter, NanogramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.NanogramPerLiter, quantity27.Unit);
+
+            var quantity28 = MassConcentration.From(1, MassConcentrationUnit.NanogramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity28.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.NanogramPerMilliliter, quantity28.Unit);
+
+            var quantity29 = MassConcentration.From(1, MassConcentrationUnit.PicogramPerDeciliter);
+            AssertEx.EqualTolerance(1, quantity29.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
+            Assert.Equal(MassConcentrationUnit.PicogramPerDeciliter, quantity29.Unit);
+
+            var quantity30 = MassConcentration.From(1, MassConcentrationUnit.PicogramPerLiter);
+            AssertEx.EqualTolerance(1, quantity30.PicogramsPerLiter, PicogramsPerLiterTolerance);
+            Assert.Equal(MassConcentrationUnit.PicogramPerLiter, quantity30.Unit);
+
+            var quantity31 = MassConcentration.From(1, MassConcentrationUnit.PicogramPerMilliliter);
+            AssertEx.EqualTolerance(1, quantity31.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
+            Assert.Equal(MassConcentrationUnit.PicogramPerMilliliter, quantity31.Unit);
+
+            var quantity32 = MassConcentration.From(1, MassConcentrationUnit.PoundPerCubicFoot);
+            AssertEx.EqualTolerance(1, quantity32.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+            Assert.Equal(MassConcentrationUnit.PoundPerCubicFoot, quantity32.Unit);
+
+            var quantity33 = MassConcentration.From(1, MassConcentrationUnit.PoundPerCubicInch);
+            AssertEx.EqualTolerance(1, quantity33.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+            Assert.Equal(MassConcentrationUnit.PoundPerCubicInch, quantity33.Unit);
+
+            var quantity34 = MassConcentration.From(1, MassConcentrationUnit.PoundPerImperialGallon);
+            AssertEx.EqualTolerance(1, quantity34.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
+            Assert.Equal(MassConcentrationUnit.PoundPerImperialGallon, quantity34.Unit);
+
+            var quantity35 = MassConcentration.From(1, MassConcentrationUnit.PoundPerUSGallon);
+            AssertEx.EqualTolerance(1, quantity35.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
+            Assert.Equal(MassConcentrationUnit.PoundPerUSGallon, quantity35.Unit);
+
+            var quantity36 = MassConcentration.From(1, MassConcentrationUnit.SlugPerCubicFoot);
+            AssertEx.EqualTolerance(1, quantity36.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
+            Assert.Equal(MassConcentrationUnit.SlugPerCubicFoot, quantity36.Unit);
+
+            var quantity37 = MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicCentimeter);
+            AssertEx.EqualTolerance(1, quantity37.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.TonnePerCubicCentimeter, quantity37.Unit);
+
+            var quantity38 = MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity38.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
+            Assert.Equal(MassConcentrationUnit.TonnePerCubicMeter, quantity38.Unit);
+
+            var quantity39 = MassConcentration.From(1, MassConcentrationUnit.TonnePerCubicMillimeter);
+            AssertEx.EqualTolerance(1, quantity39.TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
+            Assert.Equal(MassConcentrationUnit.TonnePerCubicMillimeter, quantity39.Unit);
+
         }
 
         [Fact]
@@ -628,6 +786,135 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(MassConcentration.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 cg/dL", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString());
+                Assert.Equal("1 cg/L", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString());
+                Assert.Equal("1 cg/mL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString());
+                Assert.Equal("1 dg/dL", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString());
+                Assert.Equal("1 dg/L", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString());
+                Assert.Equal("1 dg/mL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString());
+                Assert.Equal("1 g/cm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicCentimeter).ToString());
+                Assert.Equal("1 g/m³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMeter).ToString());
+                Assert.Equal("1 g/mm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMillimeter).ToString());
+                Assert.Equal("1 g/dL", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString());
+                Assert.Equal("1 g/L", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString());
+                Assert.Equal("1 g/mL", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString());
+                Assert.Equal("1 kg/cm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicCentimeter).ToString());
+                Assert.Equal("1 kg/m³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter).ToString());
+                Assert.Equal("1 kg/mm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMillimeter).ToString());
+                Assert.Equal("1 kg/L", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString());
+                Assert.Equal("1 kip/ft³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicFoot).ToString());
+                Assert.Equal("1 kip/in³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicInch).ToString());
+                Assert.Equal("1 µg/m³", new MassConcentration(1, MassConcentrationUnit.MicrogramPerCubicMeter).ToString());
+                Assert.Equal("1 µg/dL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString());
+                Assert.Equal("1 µg/L", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString());
+                Assert.Equal("1 µg/mL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString());
+                Assert.Equal("1 mg/m³", new MassConcentration(1, MassConcentrationUnit.MilligramPerCubicMeter).ToString());
+                Assert.Equal("1 mg/dL", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString());
+                Assert.Equal("1 mg/L", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString());
+                Assert.Equal("1 mg/mL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString());
+                Assert.Equal("1 ng/dL", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString());
+                Assert.Equal("1 ng/L", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString());
+                Assert.Equal("1 ng/mL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString());
+                Assert.Equal("1 pg/dL", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString());
+                Assert.Equal("1 pg/L", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString());
+                Assert.Equal("1 pg/mL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString());
+                Assert.Equal("1 lb/ft³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicFoot).ToString());
+                Assert.Equal("1 lb/in³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicInch).ToString());
+                Assert.Equal("1 ppg (imp.)", new MassConcentration(1, MassConcentrationUnit.PoundPerImperialGallon).ToString());
+                Assert.Equal("1 ppg (U.S.)", new MassConcentration(1, MassConcentrationUnit.PoundPerUSGallon).ToString());
+                Assert.Equal("1 slug/ft³", new MassConcentration(1, MassConcentrationUnit.SlugPerCubicFoot).ToString());
+                Assert.Equal("1 t/cm³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicCentimeter).ToString());
+                Assert.Equal("1 t/m³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMeter).ToString());
+                Assert.Equal("1 t/mm³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMillimeter).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 cg/dL", new MassConcentration(1, MassConcentrationUnit.CentigramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 cg/L", new MassConcentration(1, MassConcentrationUnit.CentigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 cg/mL", new MassConcentration(1, MassConcentrationUnit.CentigramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 dg/dL", new MassConcentration(1, MassConcentrationUnit.DecigramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 dg/L", new MassConcentration(1, MassConcentrationUnit.DecigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 dg/mL", new MassConcentration(1, MassConcentrationUnit.DecigramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 g/cm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicCentimeter).ToString(swedishCulture));
+            Assert.Equal("1 g/m³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 g/mm³", new MassConcentration(1, MassConcentrationUnit.GramPerCubicMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 g/dL", new MassConcentration(1, MassConcentrationUnit.GramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 g/L", new MassConcentration(1, MassConcentrationUnit.GramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 g/mL", new MassConcentration(1, MassConcentrationUnit.GramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 kg/cm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicCentimeter).ToString(swedishCulture));
+            Assert.Equal("1 kg/m³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 kg/mm³", new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 kg/L", new MassConcentration(1, MassConcentrationUnit.KilogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 kip/ft³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 kip/in³", new MassConcentration(1, MassConcentrationUnit.KilopoundPerCubicInch).ToString(swedishCulture));
+            Assert.Equal("1 µg/m³", new MassConcentration(1, MassConcentrationUnit.MicrogramPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 µg/dL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 µg/L", new MassConcentration(1, MassConcentrationUnit.MicrogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 µg/mL", new MassConcentration(1, MassConcentrationUnit.MicrogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 mg/m³", new MassConcentration(1, MassConcentrationUnit.MilligramPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 mg/dL", new MassConcentration(1, MassConcentrationUnit.MilligramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 mg/L", new MassConcentration(1, MassConcentrationUnit.MilligramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 mg/mL", new MassConcentration(1, MassConcentrationUnit.MilligramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 ng/dL", new MassConcentration(1, MassConcentrationUnit.NanogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 ng/L", new MassConcentration(1, MassConcentrationUnit.NanogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 ng/mL", new MassConcentration(1, MassConcentrationUnit.NanogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 pg/dL", new MassConcentration(1, MassConcentrationUnit.PicogramPerDeciliter).ToString(swedishCulture));
+            Assert.Equal("1 pg/L", new MassConcentration(1, MassConcentrationUnit.PicogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 pg/mL", new MassConcentration(1, MassConcentrationUnit.PicogramPerMilliliter).ToString(swedishCulture));
+            Assert.Equal("1 lb/ft³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 lb/in³", new MassConcentration(1, MassConcentrationUnit.PoundPerCubicInch).ToString(swedishCulture));
+            Assert.Equal("1 ppg (imp.)", new MassConcentration(1, MassConcentrationUnit.PoundPerImperialGallon).ToString(swedishCulture));
+            Assert.Equal("1 ppg (U.S.)", new MassConcentration(1, MassConcentrationUnit.PoundPerUSGallon).ToString(swedishCulture));
+            Assert.Equal("1 slug/ft³", new MassConcentration(1, MassConcentrationUnit.SlugPerCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 t/cm³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicCentimeter).ToString(swedishCulture));
+            Assert.Equal("1 t/m³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 t/mm³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMillimeter).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s1"));
+                Assert.Equal("0.12 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s2"));
+                Assert.Equal("0.123 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s3"));
+                Assert.Equal("0.1235 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s1", culture));
+            Assert.Equal("0.12 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s2", culture));
+            Assert.Equal("0.123 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s3", culture));
+            Assert.Equal("0.1235 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s4", culture));
         }
     }
 }

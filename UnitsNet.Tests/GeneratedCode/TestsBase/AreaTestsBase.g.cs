@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -73,6 +75,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Area();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(AreaUnit.SquareMeter, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Area(double.PositiveInfinity, AreaUnit.SquareMeter));
@@ -83,6 +94,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Area(double.NaN, AreaUnit.SquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Area(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Area_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Area(1, AreaUnit.SquareMeter);
+
+            QuantityInfo<AreaUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Area.Zero, quantityInfo.Zero);
+            Assert.Equal("Area", quantityInfo.Name);
+            Assert.Equal(QuantityType.Area, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -106,22 +144,64 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.Acre).Acres, AcresTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.Hectare).Hectares, HectaresTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareCentimeter).SquareCentimeters, SquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareDecimeter).SquareDecimeters, SquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareFoot).SquareFeet, SquareFeetTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareInch).SquareInches, SquareInchesTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareKilometer).SquareKilometers, SquareKilometersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMeter).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMicrometer).SquareMicrometers, SquareMicrometersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMile).SquareMiles, SquareMilesTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMillimeter).SquareMillimeters, SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareNauticalMile).SquareNauticalMiles, SquareNauticalMilesTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareYard).SquareYards, SquareYardsTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.UsSurveySquareFoot).UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+            var quantity00 = Area.From(1, AreaUnit.Acre);
+            AssertEx.EqualTolerance(1, quantity00.Acres, AcresTolerance);
+            Assert.Equal(AreaUnit.Acre, quantity00.Unit);
+
+            var quantity01 = Area.From(1, AreaUnit.Hectare);
+            AssertEx.EqualTolerance(1, quantity01.Hectares, HectaresTolerance);
+            Assert.Equal(AreaUnit.Hectare, quantity01.Unit);
+
+            var quantity02 = Area.From(1, AreaUnit.SquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity02.SquareCentimeters, SquareCentimetersTolerance);
+            Assert.Equal(AreaUnit.SquareCentimeter, quantity02.Unit);
+
+            var quantity03 = Area.From(1, AreaUnit.SquareDecimeter);
+            AssertEx.EqualTolerance(1, quantity03.SquareDecimeters, SquareDecimetersTolerance);
+            Assert.Equal(AreaUnit.SquareDecimeter, quantity03.Unit);
+
+            var quantity04 = Area.From(1, AreaUnit.SquareFoot);
+            AssertEx.EqualTolerance(1, quantity04.SquareFeet, SquareFeetTolerance);
+            Assert.Equal(AreaUnit.SquareFoot, quantity04.Unit);
+
+            var quantity05 = Area.From(1, AreaUnit.SquareInch);
+            AssertEx.EqualTolerance(1, quantity05.SquareInches, SquareInchesTolerance);
+            Assert.Equal(AreaUnit.SquareInch, quantity05.Unit);
+
+            var quantity06 = Area.From(1, AreaUnit.SquareKilometer);
+            AssertEx.EqualTolerance(1, quantity06.SquareKilometers, SquareKilometersTolerance);
+            Assert.Equal(AreaUnit.SquareKilometer, quantity06.Unit);
+
+            var quantity07 = Area.From(1, AreaUnit.SquareMeter);
+            AssertEx.EqualTolerance(1, quantity07.SquareMeters, SquareMetersTolerance);
+            Assert.Equal(AreaUnit.SquareMeter, quantity07.Unit);
+
+            var quantity08 = Area.From(1, AreaUnit.SquareMicrometer);
+            AssertEx.EqualTolerance(1, quantity08.SquareMicrometers, SquareMicrometersTolerance);
+            Assert.Equal(AreaUnit.SquareMicrometer, quantity08.Unit);
+
+            var quantity09 = Area.From(1, AreaUnit.SquareMile);
+            AssertEx.EqualTolerance(1, quantity09.SquareMiles, SquareMilesTolerance);
+            Assert.Equal(AreaUnit.SquareMile, quantity09.Unit);
+
+            var quantity10 = Area.From(1, AreaUnit.SquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity10.SquareMillimeters, SquareMillimetersTolerance);
+            Assert.Equal(AreaUnit.SquareMillimeter, quantity10.Unit);
+
+            var quantity11 = Area.From(1, AreaUnit.SquareNauticalMile);
+            AssertEx.EqualTolerance(1, quantity11.SquareNauticalMiles, SquareNauticalMilesTolerance);
+            Assert.Equal(AreaUnit.SquareNauticalMile, quantity11.Unit);
+
+            var quantity12 = Area.From(1, AreaUnit.SquareYard);
+            AssertEx.EqualTolerance(1, quantity12.SquareYards, SquareYardsTolerance);
+            Assert.Equal(AreaUnit.SquareYard, quantity12.Unit);
+
+            var quantity13 = Area.From(1, AreaUnit.UsSurveySquareFoot);
+            AssertEx.EqualTolerance(1, quantity13.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+            Assert.Equal(AreaUnit.UsSurveySquareFoot, quantity13.Unit);
+
         }
 
         [Fact]
@@ -368,6 +448,83 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Area.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
+                Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
+                Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString());
+                Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString());
+                Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString());
+                Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString());
+                Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString());
+                Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString());
+                Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString());
+                Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString());
+                Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString());
+                Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString());
+                Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString());
+                Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString(swedishCulture));
+            Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString(swedishCulture));
+            Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString(swedishCulture));
+            Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString(swedishCulture));
+            Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString(swedishCulture));
+            Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString(swedishCulture));
+            Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString(swedishCulture));
+            Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString(swedishCulture));
+            Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString(swedishCulture));
+            Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString(swedishCulture));
+            Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString(swedishCulture));
+            Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1"));
+                Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
+                Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
+                Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1", culture));
+            Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2", culture));
+            Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3", culture));
+            Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4", culture));
         }
     }
 }

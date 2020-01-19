@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -51,6 +53,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new LinearDensity();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(LinearDensityUnit.KilogramPerMeter, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new LinearDensity(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
@@ -64,6 +75,33 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LinearDensity(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void LinearDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new LinearDensity(1, LinearDensityUnit.KilogramPerMeter);
+
+            QuantityInfo<LinearDensityUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(LinearDensity.Zero, quantityInfo.Zero);
+            Assert.Equal("LinearDensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.LinearDensity, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<LinearDensityUnit>().Except(new[] {LinearDensityUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
+        }
+
+        [Fact]
         public void KilogramPerMeterToLinearDensityUnits()
         {
             LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
@@ -73,11 +111,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.GramPerMeter).GramsPerMeter, GramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.KilogramPerMeter).KilogramsPerMeter, KilogramsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearDensity.From(1, LinearDensityUnit.PoundPerFoot).PoundsPerFoot, PoundsPerFootTolerance);
+            var quantity00 = LinearDensity.From(1, LinearDensityUnit.GramPerMeter);
+            AssertEx.EqualTolerance(1, quantity00.GramsPerMeter, GramsPerMeterTolerance);
+            Assert.Equal(LinearDensityUnit.GramPerMeter, quantity00.Unit);
+
+            var quantity01 = LinearDensity.From(1, LinearDensityUnit.KilogramPerMeter);
+            AssertEx.EqualTolerance(1, quantity01.KilogramsPerMeter, KilogramsPerMeterTolerance);
+            Assert.Equal(LinearDensityUnit.KilogramPerMeter, quantity01.Unit);
+
+            var quantity02 = LinearDensity.From(1, LinearDensityUnit.PoundPerFoot);
+            AssertEx.EqualTolerance(1, quantity02.PoundsPerFoot, PoundsPerFootTolerance);
+            Assert.Equal(LinearDensityUnit.PoundPerFoot, quantity02.Unit);
+
         }
 
         [Fact]
@@ -258,6 +305,61 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(LinearDensity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 g/m", new LinearDensity(1, LinearDensityUnit.GramPerMeter).ToString());
+                Assert.Equal("1 kg/m", new LinearDensity(1, LinearDensityUnit.KilogramPerMeter).ToString());
+                Assert.Equal("1 lb/ft", new LinearDensity(1, LinearDensityUnit.PoundPerFoot).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 g/m", new LinearDensity(1, LinearDensityUnit.GramPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 kg/m", new LinearDensity(1, LinearDensityUnit.KilogramPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 lb/ft", new LinearDensity(1, LinearDensityUnit.PoundPerFoot).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s1"));
+                Assert.Equal("0.12 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s2"));
+                Assert.Equal("0.123 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s3"));
+                Assert.Equal("0.1235 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s1", culture));
+            Assert.Equal("0.12 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s2", culture));
+            Assert.Equal("0.123 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s3", culture));
+            Assert.Equal("0.1235 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s4", culture));
         }
     }
 }

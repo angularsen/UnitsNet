@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -61,6 +63,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Molarity();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(MolarityUnit.MolesPerCubicMeter, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolesPerCubicMeter));
@@ -71,6 +82,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Molarity(double.NaN, MolarityUnit.MolesPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Molarity(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Molarity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Molarity(1, MolarityUnit.MolesPerCubicMeter);
+
+            QuantityInfo<MolarityUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Molarity.Zero, quantityInfo.Zero);
+            Assert.Equal("Molarity", quantityInfo.Name);
+            Assert.Equal(QuantityType.Molarity, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<MolarityUnit>().Except(new[] {MolarityUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -88,16 +126,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.CentimolesPerLiter).CentimolesPerLiter, CentimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.DecimolesPerLiter).DecimolesPerLiter, DecimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.MicromolesPerLiter).MicromolesPerLiter, MicromolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.MillimolesPerLiter).MillimolesPerLiter, MillimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.MolesPerCubicMeter).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.MolesPerLiter).MolesPerLiter, MolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.NanomolesPerLiter).NanomolesPerLiter, NanomolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.PicomolesPerLiter).PicomolesPerLiter, PicomolesPerLiterTolerance);
+            var quantity00 = Molarity.From(1, MolarityUnit.CentimolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity00.CentimolesPerLiter, CentimolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.CentimolesPerLiter, quantity00.Unit);
+
+            var quantity01 = Molarity.From(1, MolarityUnit.DecimolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity01.DecimolesPerLiter, DecimolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.DecimolesPerLiter, quantity01.Unit);
+
+            var quantity02 = Molarity.From(1, MolarityUnit.MicromolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity02.MicromolesPerLiter, MicromolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MicromolesPerLiter, quantity02.Unit);
+
+            var quantity03 = Molarity.From(1, MolarityUnit.MillimolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity03.MillimolesPerLiter, MillimolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MillimolesPerLiter, quantity03.Unit);
+
+            var quantity04 = Molarity.From(1, MolarityUnit.MolesPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity04.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            Assert.Equal(MolarityUnit.MolesPerCubicMeter, quantity04.Unit);
+
+            var quantity05 = Molarity.From(1, MolarityUnit.MolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity05.MolesPerLiter, MolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MolesPerLiter, quantity05.Unit);
+
+            var quantity06 = Molarity.From(1, MolarityUnit.NanomolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity06.NanomolesPerLiter, NanomolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.NanomolesPerLiter, quantity06.Unit);
+
+            var quantity07 = Molarity.From(1, MolarityUnit.PicomolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity07.PicomolesPerLiter, PicomolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.PicomolesPerLiter, quantity07.Unit);
+
         }
 
         [Fact]
@@ -308,6 +370,71 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Molarity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolesPerLiter).ToString());
+                Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolesPerLiter).ToString());
+                Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolesPerLiter).ToString());
+                Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolesPerLiter).ToString());
+                Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolesPerCubicMeter).ToString());
+                Assert.Equal("1 mol/L", new Molarity(1, MolarityUnit.MolesPerLiter).ToString());
+                Assert.Equal("1 nmol/L", new Molarity(1, MolarityUnit.NanomolesPerLiter).ToString());
+                Assert.Equal("1 pmol/L", new Molarity(1, MolarityUnit.PicomolesPerLiter).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolesPerCubicMeter).ToString(swedishCulture));
+            Assert.Equal("1 mol/L", new Molarity(1, MolarityUnit.MolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 nmol/L", new Molarity(1, MolarityUnit.NanomolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 pmol/L", new Molarity(1, MolarityUnit.PicomolesPerLiter).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s1"));
+                Assert.Equal("0.12 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s2"));
+                Assert.Equal("0.123 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s3"));
+                Assert.Equal("0.1235 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s1", culture));
+            Assert.Equal("0.12 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s2", culture));
+            Assert.Equal("0.123 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s3", culture));
+            Assert.Equal("0.1235 mol/m³", new Molarity(0.123456, MolarityUnit.MolesPerCubicMeter).ToString("s4", culture));
         }
     }
 }

@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -109,6 +111,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Speed();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(SpeedUnit.MeterPerSecond, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
@@ -119,6 +130,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Speed(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
+
+            QuantityInfo<SpeedUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Speed.Zero, quantityInfo.Zero);
+            Assert.Equal("Speed", quantityInfo.Name);
+            Assert.Equal(QuantityType.Speed, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -160,40 +198,136 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerHour).CentimetersPerHour, CentimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerMinute).CentimetersPerMinutes, CentimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.CentimeterPerSecond).CentimetersPerSecond, CentimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.DecimeterPerMinute).DecimetersPerMinutes, DecimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.DecimeterPerSecond).DecimetersPerSecond, DecimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerHour).FeetPerHour, FeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerMinute).FeetPerMinute, FeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, FeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerHour).InchesPerHour, InchesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerMinute).InchesPerMinute, InchesPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.InchPerSecond).InchesPerSecond, InchesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, KilometersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerMinute).KilometersPerMinutes, KilometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.KilometerPerSecond).KilometersPerSecond, KilometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.Knot).Knots, KnotsTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerHour).MetersPerHour, MetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerMinute).MetersPerMinutes, MetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, MetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MicrometerPerMinute).MicrometersPerMinutes, MicrometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MicrometerPerSecond).MicrometersPerSecond, MicrometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, MilesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerHour).MillimetersPerHour, MillimetersPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerMinute).MillimetersPerMinutes, MillimetersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.MillimeterPerSecond).MillimetersPerSecond, MillimetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.NanometerPerMinute).NanometersPerMinutes, NanometersPerMinutesTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.NanometerPerSecond).NanometersPerSecond, NanometersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerHour).UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerMinute).UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.UsSurveyFootPerSecond).UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerHour).YardsPerHour, YardsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerMinute).YardsPerMinute, YardsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerSecond).YardsPerSecond, YardsPerSecondTolerance);
+            var quantity00 = Speed.From(1, SpeedUnit.CentimeterPerHour);
+            AssertEx.EqualTolerance(1, quantity00.CentimetersPerHour, CentimetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerHour, quantity00.Unit);
+
+            var quantity01 = Speed.From(1, SpeedUnit.CentimeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity01.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerMinute, quantity01.Unit);
+
+            var quantity02 = Speed.From(1, SpeedUnit.CentimeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity02.CentimetersPerSecond, CentimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerSecond, quantity02.Unit);
+
+            var quantity03 = Speed.From(1, SpeedUnit.DecimeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity03.DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.DecimeterPerMinute, quantity03.Unit);
+
+            var quantity04 = Speed.From(1, SpeedUnit.DecimeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity04.DecimetersPerSecond, DecimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.DecimeterPerSecond, quantity04.Unit);
+
+            var quantity05 = Speed.From(1, SpeedUnit.FootPerHour);
+            AssertEx.EqualTolerance(1, quantity05.FeetPerHour, FeetPerHourTolerance);
+            Assert.Equal(SpeedUnit.FootPerHour, quantity05.Unit);
+
+            var quantity06 = Speed.From(1, SpeedUnit.FootPerMinute);
+            AssertEx.EqualTolerance(1, quantity06.FeetPerMinute, FeetPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.FootPerMinute, quantity06.Unit);
+
+            var quantity07 = Speed.From(1, SpeedUnit.FootPerSecond);
+            AssertEx.EqualTolerance(1, quantity07.FeetPerSecond, FeetPerSecondTolerance);
+            Assert.Equal(SpeedUnit.FootPerSecond, quantity07.Unit);
+
+            var quantity08 = Speed.From(1, SpeedUnit.InchPerHour);
+            AssertEx.EqualTolerance(1, quantity08.InchesPerHour, InchesPerHourTolerance);
+            Assert.Equal(SpeedUnit.InchPerHour, quantity08.Unit);
+
+            var quantity09 = Speed.From(1, SpeedUnit.InchPerMinute);
+            AssertEx.EqualTolerance(1, quantity09.InchesPerMinute, InchesPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.InchPerMinute, quantity09.Unit);
+
+            var quantity10 = Speed.From(1, SpeedUnit.InchPerSecond);
+            AssertEx.EqualTolerance(1, quantity10.InchesPerSecond, InchesPerSecondTolerance);
+            Assert.Equal(SpeedUnit.InchPerSecond, quantity10.Unit);
+
+            var quantity11 = Speed.From(1, SpeedUnit.KilometerPerHour);
+            AssertEx.EqualTolerance(1, quantity11.KilometersPerHour, KilometersPerHourTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerHour, quantity11.Unit);
+
+            var quantity12 = Speed.From(1, SpeedUnit.KilometerPerMinute);
+            AssertEx.EqualTolerance(1, quantity12.KilometersPerMinutes, KilometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerMinute, quantity12.Unit);
+
+            var quantity13 = Speed.From(1, SpeedUnit.KilometerPerSecond);
+            AssertEx.EqualTolerance(1, quantity13.KilometersPerSecond, KilometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerSecond, quantity13.Unit);
+
+            var quantity14 = Speed.From(1, SpeedUnit.Knot);
+            AssertEx.EqualTolerance(1, quantity14.Knots, KnotsTolerance);
+            Assert.Equal(SpeedUnit.Knot, quantity14.Unit);
+
+            var quantity15 = Speed.From(1, SpeedUnit.MeterPerHour);
+            AssertEx.EqualTolerance(1, quantity15.MetersPerHour, MetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.MeterPerHour, quantity15.Unit);
+
+            var quantity16 = Speed.From(1, SpeedUnit.MeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity16.MetersPerMinutes, MetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MeterPerMinute, quantity16.Unit);
+
+            var quantity17 = Speed.From(1, SpeedUnit.MeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity17.MetersPerSecond, MetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MeterPerSecond, quantity17.Unit);
+
+            var quantity18 = Speed.From(1, SpeedUnit.MicrometerPerMinute);
+            AssertEx.EqualTolerance(1, quantity18.MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MicrometerPerMinute, quantity18.Unit);
+
+            var quantity19 = Speed.From(1, SpeedUnit.MicrometerPerSecond);
+            AssertEx.EqualTolerance(1, quantity19.MicrometersPerSecond, MicrometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MicrometerPerSecond, quantity19.Unit);
+
+            var quantity20 = Speed.From(1, SpeedUnit.MilePerHour);
+            AssertEx.EqualTolerance(1, quantity20.MilesPerHour, MilesPerHourTolerance);
+            Assert.Equal(SpeedUnit.MilePerHour, quantity20.Unit);
+
+            var quantity21 = Speed.From(1, SpeedUnit.MillimeterPerHour);
+            AssertEx.EqualTolerance(1, quantity21.MillimetersPerHour, MillimetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerHour, quantity21.Unit);
+
+            var quantity22 = Speed.From(1, SpeedUnit.MillimeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity22.MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerMinute, quantity22.Unit);
+
+            var quantity23 = Speed.From(1, SpeedUnit.MillimeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity23.MillimetersPerSecond, MillimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerSecond, quantity23.Unit);
+
+            var quantity24 = Speed.From(1, SpeedUnit.NanometerPerMinute);
+            AssertEx.EqualTolerance(1, quantity24.NanometersPerMinutes, NanometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.NanometerPerMinute, quantity24.Unit);
+
+            var quantity25 = Speed.From(1, SpeedUnit.NanometerPerSecond);
+            AssertEx.EqualTolerance(1, quantity25.NanometersPerSecond, NanometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.NanometerPerSecond, quantity25.Unit);
+
+            var quantity26 = Speed.From(1, SpeedUnit.UsSurveyFootPerHour);
+            AssertEx.EqualTolerance(1, quantity26.UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerHour, quantity26.Unit);
+
+            var quantity27 = Speed.From(1, SpeedUnit.UsSurveyFootPerMinute);
+            AssertEx.EqualTolerance(1, quantity27.UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, quantity27.Unit);
+
+            var quantity28 = Speed.From(1, SpeedUnit.UsSurveyFootPerSecond);
+            AssertEx.EqualTolerance(1, quantity28.UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, quantity28.Unit);
+
+            var quantity29 = Speed.From(1, SpeedUnit.YardPerHour);
+            AssertEx.EqualTolerance(1, quantity29.YardsPerHour, YardsPerHourTolerance);
+            Assert.Equal(SpeedUnit.YardPerHour, quantity29.Unit);
+
+            var quantity30 = Speed.From(1, SpeedUnit.YardPerMinute);
+            AssertEx.EqualTolerance(1, quantity30.YardsPerMinute, YardsPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.YardPerMinute, quantity30.Unit);
+
+            var quantity31 = Speed.From(1, SpeedUnit.YardPerSecond);
+            AssertEx.EqualTolerance(1, quantity31.YardsPerSecond, YardsPerSecondTolerance);
+            Assert.Equal(SpeedUnit.YardPerSecond, quantity31.Unit);
+
         }
 
         [Fact]
@@ -548,6 +682,119 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Speed.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 cm/h", new Speed(1, SpeedUnit.CentimeterPerHour).ToString());
+                Assert.Equal("1 cm/min", new Speed(1, SpeedUnit.CentimeterPerMinute).ToString());
+                Assert.Equal("1 cm/s", new Speed(1, SpeedUnit.CentimeterPerSecond).ToString());
+                Assert.Equal("1 dm/min", new Speed(1, SpeedUnit.DecimeterPerMinute).ToString());
+                Assert.Equal("1 dm/s", new Speed(1, SpeedUnit.DecimeterPerSecond).ToString());
+                Assert.Equal("1 ft/h", new Speed(1, SpeedUnit.FootPerHour).ToString());
+                Assert.Equal("1 ft/min", new Speed(1, SpeedUnit.FootPerMinute).ToString());
+                Assert.Equal("1 ft/s", new Speed(1, SpeedUnit.FootPerSecond).ToString());
+                Assert.Equal("1 in/h", new Speed(1, SpeedUnit.InchPerHour).ToString());
+                Assert.Equal("1 in/min", new Speed(1, SpeedUnit.InchPerMinute).ToString());
+                Assert.Equal("1 in/s", new Speed(1, SpeedUnit.InchPerSecond).ToString());
+                Assert.Equal("1 km/h", new Speed(1, SpeedUnit.KilometerPerHour).ToString());
+                Assert.Equal("1 km/min", new Speed(1, SpeedUnit.KilometerPerMinute).ToString());
+                Assert.Equal("1 km/s", new Speed(1, SpeedUnit.KilometerPerSecond).ToString());
+                Assert.Equal("1 kn", new Speed(1, SpeedUnit.Knot).ToString());
+                Assert.Equal("1 m/h", new Speed(1, SpeedUnit.MeterPerHour).ToString());
+                Assert.Equal("1 m/min", new Speed(1, SpeedUnit.MeterPerMinute).ToString());
+                Assert.Equal("1 m/s", new Speed(1, SpeedUnit.MeterPerSecond).ToString());
+                Assert.Equal("1 µm/min", new Speed(1, SpeedUnit.MicrometerPerMinute).ToString());
+                Assert.Equal("1 µm/s", new Speed(1, SpeedUnit.MicrometerPerSecond).ToString());
+                Assert.Equal("1 mph", new Speed(1, SpeedUnit.MilePerHour).ToString());
+                Assert.Equal("1 mm/h", new Speed(1, SpeedUnit.MillimeterPerHour).ToString());
+                Assert.Equal("1 mm/min", new Speed(1, SpeedUnit.MillimeterPerMinute).ToString());
+                Assert.Equal("1 mm/s", new Speed(1, SpeedUnit.MillimeterPerSecond).ToString());
+                Assert.Equal("1 nm/min", new Speed(1, SpeedUnit.NanometerPerMinute).ToString());
+                Assert.Equal("1 nm/s", new Speed(1, SpeedUnit.NanometerPerSecond).ToString());
+                Assert.Equal("1 ftUS/h", new Speed(1, SpeedUnit.UsSurveyFootPerHour).ToString());
+                Assert.Equal("1 ftUS/min", new Speed(1, SpeedUnit.UsSurveyFootPerMinute).ToString());
+                Assert.Equal("1 ftUS/s", new Speed(1, SpeedUnit.UsSurveyFootPerSecond).ToString());
+                Assert.Equal("1 yd/h", new Speed(1, SpeedUnit.YardPerHour).ToString());
+                Assert.Equal("1 yd/min", new Speed(1, SpeedUnit.YardPerMinute).ToString());
+                Assert.Equal("1 yd/s", new Speed(1, SpeedUnit.YardPerSecond).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 cm/h", new Speed(1, SpeedUnit.CentimeterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 cm/min", new Speed(1, SpeedUnit.CentimeterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 cm/s", new Speed(1, SpeedUnit.CentimeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 dm/min", new Speed(1, SpeedUnit.DecimeterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 dm/s", new Speed(1, SpeedUnit.DecimeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 ft/h", new Speed(1, SpeedUnit.FootPerHour).ToString(swedishCulture));
+            Assert.Equal("1 ft/min", new Speed(1, SpeedUnit.FootPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 ft/s", new Speed(1, SpeedUnit.FootPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 in/h", new Speed(1, SpeedUnit.InchPerHour).ToString(swedishCulture));
+            Assert.Equal("1 in/min", new Speed(1, SpeedUnit.InchPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 in/s", new Speed(1, SpeedUnit.InchPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 km/h", new Speed(1, SpeedUnit.KilometerPerHour).ToString(swedishCulture));
+            Assert.Equal("1 km/min", new Speed(1, SpeedUnit.KilometerPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 km/s", new Speed(1, SpeedUnit.KilometerPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 kn", new Speed(1, SpeedUnit.Knot).ToString(swedishCulture));
+            Assert.Equal("1 m/h", new Speed(1, SpeedUnit.MeterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 m/min", new Speed(1, SpeedUnit.MeterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 m/s", new Speed(1, SpeedUnit.MeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 µm/min", new Speed(1, SpeedUnit.MicrometerPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 µm/s", new Speed(1, SpeedUnit.MicrometerPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 mph", new Speed(1, SpeedUnit.MilePerHour).ToString(swedishCulture));
+            Assert.Equal("1 mm/h", new Speed(1, SpeedUnit.MillimeterPerHour).ToString(swedishCulture));
+            Assert.Equal("1 mm/min", new Speed(1, SpeedUnit.MillimeterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 mm/s", new Speed(1, SpeedUnit.MillimeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 nm/min", new Speed(1, SpeedUnit.NanometerPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 nm/s", new Speed(1, SpeedUnit.NanometerPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 ftUS/h", new Speed(1, SpeedUnit.UsSurveyFootPerHour).ToString(swedishCulture));
+            Assert.Equal("1 ftUS/min", new Speed(1, SpeedUnit.UsSurveyFootPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 ftUS/s", new Speed(1, SpeedUnit.UsSurveyFootPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 yd/h", new Speed(1, SpeedUnit.YardPerHour).ToString(swedishCulture));
+            Assert.Equal("1 yd/min", new Speed(1, SpeedUnit.YardPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 yd/s", new Speed(1, SpeedUnit.YardPerSecond).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s1"));
+                Assert.Equal("0.12 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s2"));
+                Assert.Equal("0.123 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s3"));
+                Assert.Equal("0.1235 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s1", culture));
+            Assert.Equal("0.12 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s2", culture));
+            Assert.Equal("0.123 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s3", culture));
+            Assert.Equal("0.1235 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s4", culture));
         }
     }
 }

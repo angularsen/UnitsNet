@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -53,6 +55,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new ApparentPower();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(ApparentPowerUnit.Voltampere, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ApparentPower(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
@@ -66,6 +77,33 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ApparentPower(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void ApparentPower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new ApparentPower(1, ApparentPowerUnit.Voltampere);
+
+            QuantityInfo<ApparentPowerUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(ApparentPower.Zero, quantityInfo.Zero);
+            Assert.Equal("ApparentPower", quantityInfo.Name);
+            Assert.Equal(QuantityType.ApparentPower, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<ApparentPowerUnit>().Except(new[] {ApparentPowerUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
+        }
+
+        [Fact]
         public void VoltampereToApparentPowerUnits()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
@@ -76,12 +114,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Gigavoltampere).Gigavoltamperes, GigavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Kilovoltampere).Kilovoltamperes, KilovoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Megavoltampere).Megavoltamperes, MegavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Voltampere).Voltamperes, VoltamperesTolerance);
+            var quantity00 = ApparentPower.From(1, ApparentPowerUnit.Gigavoltampere);
+            AssertEx.EqualTolerance(1, quantity00.Gigavoltamperes, GigavoltamperesTolerance);
+            Assert.Equal(ApparentPowerUnit.Gigavoltampere, quantity00.Unit);
+
+            var quantity01 = ApparentPower.From(1, ApparentPowerUnit.Kilovoltampere);
+            AssertEx.EqualTolerance(1, quantity01.Kilovoltamperes, KilovoltamperesTolerance);
+            Assert.Equal(ApparentPowerUnit.Kilovoltampere, quantity01.Unit);
+
+            var quantity02 = ApparentPower.From(1, ApparentPowerUnit.Megavoltampere);
+            AssertEx.EqualTolerance(1, quantity02.Megavoltamperes, MegavoltamperesTolerance);
+            Assert.Equal(ApparentPowerUnit.Megavoltampere, quantity02.Unit);
+
+            var quantity03 = ApparentPower.From(1, ApparentPowerUnit.Voltampere);
+            AssertEx.EqualTolerance(1, quantity03.Voltamperes, VoltamperesTolerance);
+            Assert.Equal(ApparentPowerUnit.Voltampere, quantity03.Unit);
+
         }
 
         [Fact]
@@ -268,6 +318,63 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ApparentPower.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 GVA", new ApparentPower(1, ApparentPowerUnit.Gigavoltampere).ToString());
+                Assert.Equal("1 kVA", new ApparentPower(1, ApparentPowerUnit.Kilovoltampere).ToString());
+                Assert.Equal("1 MVA", new ApparentPower(1, ApparentPowerUnit.Megavoltampere).ToString());
+                Assert.Equal("1 VA", new ApparentPower(1, ApparentPowerUnit.Voltampere).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 GVA", new ApparentPower(1, ApparentPowerUnit.Gigavoltampere).ToString(swedishCulture));
+            Assert.Equal("1 kVA", new ApparentPower(1, ApparentPowerUnit.Kilovoltampere).ToString(swedishCulture));
+            Assert.Equal("1 MVA", new ApparentPower(1, ApparentPowerUnit.Megavoltampere).ToString(swedishCulture));
+            Assert.Equal("1 VA", new ApparentPower(1, ApparentPowerUnit.Voltampere).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s1"));
+                Assert.Equal("0.12 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s2"));
+                Assert.Equal("0.123 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s3"));
+                Assert.Equal("0.1235 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s1", culture));
+            Assert.Equal("0.12 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s2", culture));
+            Assert.Equal("0.123 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s3", culture));
+            Assert.Equal("0.1235 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s4", culture));
         }
     }
 }

@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -53,6 +55,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new Illuminance();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(IlluminanceUnit.Lux, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
@@ -66,6 +77,33 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Illuminance(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Illuminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new Illuminance(1, IlluminanceUnit.Lux);
+
+            QuantityInfo<IlluminanceUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
+            Assert.Equal("Illuminance", quantityInfo.Name);
+            Assert.Equal(QuantityType.Illuminance, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().Except(new[] {IlluminanceUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
+        }
+
+        [Fact]
         public void LuxToIlluminanceUnits()
         {
             Illuminance lux = Illuminance.FromLux(1);
@@ -76,12 +114,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Kilolux).Kilolux, KiloluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Lux).Lux, LuxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Megalux).Megalux, MegaluxTolerance);
-            AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Millilux).Millilux, MilliluxTolerance);
+            var quantity00 = Illuminance.From(1, IlluminanceUnit.Kilolux);
+            AssertEx.EqualTolerance(1, quantity00.Kilolux, KiloluxTolerance);
+            Assert.Equal(IlluminanceUnit.Kilolux, quantity00.Unit);
+
+            var quantity01 = Illuminance.From(1, IlluminanceUnit.Lux);
+            AssertEx.EqualTolerance(1, quantity01.Lux, LuxTolerance);
+            Assert.Equal(IlluminanceUnit.Lux, quantity01.Unit);
+
+            var quantity02 = Illuminance.From(1, IlluminanceUnit.Megalux);
+            AssertEx.EqualTolerance(1, quantity02.Megalux, MegaluxTolerance);
+            Assert.Equal(IlluminanceUnit.Megalux, quantity02.Unit);
+
+            var quantity03 = Illuminance.From(1, IlluminanceUnit.Millilux);
+            AssertEx.EqualTolerance(1, quantity03.Millilux, MilliluxTolerance);
+            Assert.Equal(IlluminanceUnit.Millilux, quantity03.Unit);
+
         }
 
         [Fact]
@@ -268,6 +318,63 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Illuminance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString());
+                Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString());
+                Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString());
+                Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString(swedishCulture));
+            Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString(swedishCulture));
+            Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString(swedishCulture));
+            Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s1"));
+                Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2"));
+                Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3"));
+                Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s1", culture));
+            Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2", culture));
+            Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3", culture));
+            Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4", culture));
         }
     }
 }

@@ -18,7 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using UnitsNet.Units;
 using Xunit;
 
@@ -55,6 +57,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
+        {
+            var quantity = new ElectricPotentialAc();
+            Assert.Equal(0, quantity.Value);
+            Assert.Equal(ElectricPotentialAcUnit.VoltAc, quantity.Unit);
+        }
+
+
+        [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(double.PositiveInfinity, ElectricPotentialAcUnit.VoltAc));
@@ -65,6 +76,33 @@ namespace UnitsNet.Tests
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(double.NaN, ElectricPotentialAcUnit.VoltAc));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricPotentialAc(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void ElectricPotentialAc_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
+        {
+            var quantity = new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc);
+
+            QuantityInfo<ElectricPotentialAcUnit> quantityInfo = quantity.QuantityInfo;
+
+            Assert.Equal(ElectricPotentialAc.Zero, quantityInfo.Zero);
+            Assert.Equal("ElectricPotentialAc", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricPotentialAc, quantityInfo.QuantityType);
+
+            var units = EnumUtils.GetEnumValues<ElectricPotentialAcUnit>().Except(new[] {ElectricPotentialAcUnit.Undefined}).ToArray();
+            var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
+#pragma warning restore 618
         }
 
         [Fact]
@@ -79,13 +117,28 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromValueAndUnit()
+        public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricPotentialAc.From(1, ElectricPotentialAcUnit.KilovoltAc).KilovoltsAc, KilovoltsAcTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MegavoltAc).MegavoltsAc, MegavoltsAcTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MicrovoltAc).MicrovoltsAc, MicrovoltsAcTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MillivoltAc).MillivoltsAc, MillivoltsAcTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotentialAc.From(1, ElectricPotentialAcUnit.VoltAc).VoltsAc, VoltsAcTolerance);
+            var quantity00 = ElectricPotentialAc.From(1, ElectricPotentialAcUnit.KilovoltAc);
+            AssertEx.EqualTolerance(1, quantity00.KilovoltsAc, KilovoltsAcTolerance);
+            Assert.Equal(ElectricPotentialAcUnit.KilovoltAc, quantity00.Unit);
+
+            var quantity01 = ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MegavoltAc);
+            AssertEx.EqualTolerance(1, quantity01.MegavoltsAc, MegavoltsAcTolerance);
+            Assert.Equal(ElectricPotentialAcUnit.MegavoltAc, quantity01.Unit);
+
+            var quantity02 = ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MicrovoltAc);
+            AssertEx.EqualTolerance(1, quantity02.MicrovoltsAc, MicrovoltsAcTolerance);
+            Assert.Equal(ElectricPotentialAcUnit.MicrovoltAc, quantity02.Unit);
+
+            var quantity03 = ElectricPotentialAc.From(1, ElectricPotentialAcUnit.MillivoltAc);
+            AssertEx.EqualTolerance(1, quantity03.MillivoltsAc, MillivoltsAcTolerance);
+            Assert.Equal(ElectricPotentialAcUnit.MillivoltAc, quantity03.Unit);
+
+            var quantity04 = ElectricPotentialAc.From(1, ElectricPotentialAcUnit.VoltAc);
+            AssertEx.EqualTolerance(1, quantity04.VoltsAc, VoltsAcTolerance);
+            Assert.Equal(ElectricPotentialAcUnit.VoltAc, quantity04.Unit);
+
         }
 
         [Fact]
@@ -278,6 +331,65 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricPotentialAc.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
+        {
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            try {
+                Assert.Equal("1 kVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.KilovoltAc).ToString());
+                Assert.Equal("1 MVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MegavoltAc).ToString());
+                Assert.Equal("1 µVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MicrovoltAc).ToString());
+                Assert.Equal("1 mVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MillivoltAc).ToString());
+                Assert.Equal("1 Vac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_WithSwedishCulture_ReturnsUnitAbbreviationForEnglishCultureSinceThereAreNoMappings()
+        {
+            // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
+            var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+
+            Assert.Equal("1 kVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.KilovoltAc).ToString(swedishCulture));
+            Assert.Equal("1 MVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MegavoltAc).ToString(swedishCulture));
+            Assert.Equal("1 µVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MicrovoltAc).ToString(swedishCulture));
+            Assert.Equal("1 mVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MillivoltAc).ToString(swedishCulture));
+            Assert.Equal("1 Vac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc).ToString(swedishCulture));
+        }
+
+        [Fact]
+        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
+        {
+            var oldCulture = CultureInfo.CurrentUICulture;
+            try
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                Assert.Equal("0.1 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s1"));
+                Assert.Equal("0.12 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s2"));
+                Assert.Equal("0.123 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s3"));
+                Assert.Equal("0.1235 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s4"));
+            }
+            finally
+            {
+                CultureInfo.CurrentUICulture = oldCulture;
+            }
+        }
+
+        [Fact]
+        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
+        {
+            var culture = CultureInfo.InvariantCulture;
+            Assert.Equal("0.1 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s1", culture));
+            Assert.Equal("0.12 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s2", culture));
+            Assert.Equal("0.123 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s3", culture));
+            Assert.Equal("0.1235 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s4", culture));
         }
     }
 }
