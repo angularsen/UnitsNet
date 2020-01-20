@@ -72,11 +72,12 @@ namespace UnitsNet.Serialization.JsonNet
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
             string unitEnumValue = vu.Unit.Split('.')[1];
+            string quantityTypeName = unitEnumTypeName.Remove(unitEnumTypeName.Length - 4);
 
             Type unitEnumType;
-            if (Quantity.ExternalQuantities.ContainsKey(unitEnumTypeName))
+            if (Quantity.ExternalQuantities.ContainsKey(quantityTypeName))
             {
-                unitEnumType = Quantity.ExternalQuantities[unitEnumTypeName].UnitEnumType;
+                unitEnumType = Quantity.ExternalQuantities[quantityTypeName].UnitEnumType;
             }
             else
             {
@@ -172,11 +173,17 @@ namespace UnitsNet.Serialization.JsonNet
 
         private static ValueUnit ToValueUnit(IQuantity value)
         {
+            string unitTypeName = value.QuantityInfo.UnitType.Name;
+            if (Quantity.ExternalQuantities.ContainsKey(value.GetType().Name))
+            {
+                unitTypeName = value.Unit.GetType().Name;
+            }
+
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
                 Value = value.Value,
-                Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
+                Unit = $"{unitTypeName}.{value.Unit}"
             };
         }
 
@@ -212,6 +219,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return objectType.Namespace != null &&
                 (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                 Quantity.ExternalQuantities.ContainsKey(objectType.Name) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));

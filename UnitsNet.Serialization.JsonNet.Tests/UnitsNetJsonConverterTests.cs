@@ -3,6 +3,7 @@
 
 using System;
 using Newtonsoft.Json;
+using UnitsNet.Serialization.JsonNet.Tests.CustomQuantities;
 using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
@@ -47,6 +48,19 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var expectedJson = "{\n  \"Unit\": \"MassUnit.Pound\",\n  \"Value\": 200.0\n}";
 
                 string json = SerializeObject(mass);
+
+                Assert.Equal(expectedJson, json);
+            }
+
+            [Fact]
+            public void Custom_ExpectConstructedValueAndUnit()
+            {
+                Quantity.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
+
+                var howMuch = new HowMuch(3.1415,HowMuchUnit.ATon);
+                var expectedJson = "{\n  \"Unit\": \"HowMuchUnit.ATon\",\n  \"Value\": 3.1415\n}";
+
+                string json = SerializeObject(howMuch);
 
                 Assert.Equal(expectedJson, json);
             }
@@ -172,6 +186,18 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var deserializedMass = DeserializeObject<Mass>(json);
 
                 Assert.Equal(originalMass, deserializedMass);
+            }
+
+            [Fact]
+            public void Custom_ExpectJsonCorrectlyDeserialized()
+            {
+                Quantity.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
+                HowMuch originalHowMuch = new HowMuch(2.71,HowMuchUnit.AShitTon);
+                string json = SerializeObject(originalHowMuch);
+
+                var deserializedHowMuch = DeserializeObject<HowMuch>(json);
+
+                Assert.Equal(originalHowMuch, deserializedHowMuch);
             }
 
             [Fact]

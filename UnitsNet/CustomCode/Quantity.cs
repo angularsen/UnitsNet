@@ -100,8 +100,25 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
+            var unitTypeName = unit.GetType().Name;
+            var quantityName = unitTypeName.Substring(0,unitTypeName.Length - "Unit".Length);
+            if (ExternalQuantities.ContainsKey(quantityName))
+            {
+                object[] parameters = new object[2];
+                parameters[0] = (double) value;
+                parameters[1] = (Enum) unit;
+
+                return (IQuantity)Activator.CreateInstance
+                    (
+                    ExternalQuantities[quantityName].QuantityType,
+                    parameters
+                    );
+            }
+
             if (TryFrom(value, unit, out IQuantity quantity))
+            {
                 return quantity;
+            }
 
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
