@@ -14,7 +14,8 @@ namespace UnitsNet.Tests
     public class QuantityTest
     {
         // Exclude Undefined value
-        private static readonly int QuantityCount = Enum.GetValues(typeof(QuantityType)).Length - 1;
+        private int QuantityCount => Enum.GetValues(typeof(QuantityType)).Length - 1 + Quantity.ExternalQuantities.Count;
+        private int TypeCount => Enum.GetValues(typeof(QuantityType)).Length - 1;
 
         [Theory]
         [InlineData(double.NaN)]
@@ -185,7 +186,7 @@ namespace UnitsNet.Tests
             var types = Quantity.Types;
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
-            Assert.Equal(QuantityCount, types.Length);
+            Assert.Equal(TypeCount, types.Length);
         }
 
         [Fact]

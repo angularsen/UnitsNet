@@ -43,7 +43,8 @@ namespace UnitsNet
                 ex.Data["type"] = quantityType.Name;
                 throw ex;
             }
-            ExternalQuantities.Add(quantityType.Name, new ExternalQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType});
+
+            ExternalQuantities[quantityType.Name] = new ExternalQuantityInfo() {QuantityType = quantityType, UnitEnumType = unitEnumType};
         }
 
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
