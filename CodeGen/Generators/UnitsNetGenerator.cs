@@ -53,7 +53,7 @@ namespace CodeGen.Generators
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
-                GenerateNumberExtensions(sb, quantity, $"{outputDir}/Extensions/NumberTo{quantity.Name}Extensions.g.cs");
+                GenerateNumberToExtensions(sb, quantity, $"{outputDir}/Extensions/NumberTo{quantity.Name}Extensions.g.cs");
 
                 // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
                 // This way when new units are added to the quantity JSON definition, we auto-generate the new
