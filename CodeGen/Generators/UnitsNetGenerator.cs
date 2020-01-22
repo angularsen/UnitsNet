@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.IO;
@@ -37,11 +37,13 @@ namespace CodeGen.Generators
         public static void Generate(string rootDir, Quantity[] quantities)
         {
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
+            var extensionsOutputDir = $"{rootDir}/UnitsNet.Extensions/GeneratedCode";
             var testProjectDir = $"{rootDir}/UnitsNet.Tests";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");
             Directory.CreateDirectory($"{outputDir}/Units");
+            Directory.CreateDirectory($"{extensionsOutputDir}/NumberToExtensions");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/QuantityTests");
@@ -51,6 +53,7 @@ namespace CodeGen.Generators
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
+                GenerateNumberExtensions(sb, quantity, $"{outputDir}/Extensions/NumberTo{quantity.Name}Extensions.g.cs");
 
                 // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
                 // This way when new units are added to the quantity JSON definition, we auto-generate the new
@@ -94,6 +97,13 @@ namespace CodeGen.Generators
             var content = new QuantityGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("quantity(OK) ");
+        }
+
+        private static void GenerateNumberToExtensions(StringBuilder sb, Quantity quantity, string filePath)
+        {
+            var content = new NumberExtensionsGenerator(quantity).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            sb.Append("number extensions(OK) ");
         }
 
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
