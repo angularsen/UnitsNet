@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
-    <RootNamespace>UnitsNet.Tests</RootNamespace>
+    <RootNamespace>UnitsNet.Extensions.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
     <IsTestProject>true</IsTestProject>
@@ -13,7 +13,7 @@
     <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <AssemblyName>UnitsNet.Tests</AssemblyName>
+    <AssemblyName>UnitsNet.Extensions.Tests</AssemblyName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+    <ProjectReference Include="..\UnitsNet.Extensions\UnitsNet.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

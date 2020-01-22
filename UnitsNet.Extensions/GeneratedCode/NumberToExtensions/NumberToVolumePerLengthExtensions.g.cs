@@ -35,6 +35,22 @@ namespace UnitsNet.Extensions.NumberToVolumePerLength
 
         #endregion
 
+        #region CubicYardPerFoot
+
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(UnitsNet.QuantityValue)" />
+        public static VolumePerLength CubicYardsPerFoot<T>(this T value) =>
+             VolumePerLength.FromCubicYardsPerFoot(Convert.ToDouble(value));
+
+        #endregion
+
+        #region CubicYardPerUsSurveyFoot
+
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(UnitsNet.QuantityValue)" />
+        public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value) =>
+             VolumePerLength.FromCubicYardsPerUsSurveyFoot(Convert.ToDouble(value));
+
+        #endregion
+
         #region LiterPerMeter
 
         /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(UnitsNet.QuantityValue)" />
