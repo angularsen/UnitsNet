@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -29,6 +30,22 @@ namespace UnitsNet
             .GetExportedTypes()
             .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
+
+        private static MethodInfo _genericTryParse;
+
+        internal static MethodInfo GenericTryParse
+        {
+            get
+            {
+                if (_genericTryParse == null)
+                {
+                    _genericTryParse = typeof(QuantityParser).GetMethods()
+                        .First((method) => (method.Name == "TryParse") && method.GetParameters()[3].ParameterType == typeof(IQuantity));
+                }
+
+                return _genericTryParse;
+            }
+        }
 
         /// <summary>
         ///     Constructs an instance.
@@ -57,6 +74,30 @@ namespace UnitsNet
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             ValueType = zero.GetType();
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
+
+            var parser = QuantityParser.Default;
+
+            var fromMethod = ValueType.GetMethod("From");
+            var tryParseMethod = GenericTryParse.MakeGenericMethod(ValueType, UnitType);
+
+            Builder =
+                (formatProvider,quantityString) =>
+                {
+                    IQuantity quantity;
+                    var parameters = new object[] {quantityString, formatProvider, fromMethod, null};
+                    var success = (bool) tryParseMethod.Invoke(parser, parameters);
+
+                    if (success)
+                    {
+                        quantity = (IQuantity) parameters[3];
+                    }
+                    else
+                    {
+                        quantity = default;
+                    }
+
+                    return Tuple.Create(quantity,success);
+                };
 
             // Obsolete members
 #pragma warning disable 618
@@ -166,6 +207,11 @@ namespace UnitsNet
 
             return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<IFormatProvider,string,Tuple<IQuantity,bool>> Builder { get; } 
     }
 
     /// <inheritdoc cref="QuantityInfo" />
