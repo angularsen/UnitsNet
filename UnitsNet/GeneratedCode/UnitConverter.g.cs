@@ -611,6 +611,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.NanonewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.NanonewtonPerMeter));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLength.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.NewtonPerMillimeter, q => q.ToUnit(ForcePerLengthUnit.NewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMillimeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.PoundForcePerFoot, q => q.ToUnit(ForcePerLengthUnit.PoundForcePerFoot));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerFoot, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.PoundForcePerInch, q => q.ToUnit(ForcePerLengthUnit.PoundForcePerInch));

@@ -35,6 +35,7 @@ namespace UnitsNet.Units
         MillinewtonPerMeter,
         NanonewtonPerMeter,
         NewtonPerMeter,
+        NewtonPerMillimeter,
         PoundForcePerFoot,
         PoundForcePerInch,
         PoundForcePerYard,

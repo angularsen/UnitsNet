@@ -201,6 +201,11 @@ namespace UnitsNet
         public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
 
         /// <summary>
+        ///     Get ForcePerLength in NewtonsPerMillimeter.
+        /// </summary>
+        public double NewtonsPerMillimeter => As(ForcePerLengthUnit.NewtonPerMillimeter);
+
+        /// <summary>
         ///     Get ForcePerLength in PoundsForcePerFoot.
         /// </summary>
         public double PoundsForcePerFoot => As(ForcePerLengthUnit.PoundForcePerFoot);
@@ -334,6 +339,16 @@ namespace UnitsNet
         {
             double value = (double) newtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from NewtonsPerMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromNewtonsPerMillimeter(double newtonspermillimeter)
+        {
+            double value = (double) newtonspermillimeter;
+            return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMillimeter);
         }
         /// <summary>
         ///     Get ForcePerLength from PoundsForcePerFoot.
@@ -665,6 +680,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                case ForcePerLengthUnit.NewtonPerMillimeter: return _value*1e3;
                 case ForcePerLengthUnit.PoundForcePerFoot: return _value*14.59390292;
                 case ForcePerLengthUnit.PoundForcePerInch: return _value*1.75126835e2;
                 case ForcePerLengthUnit.PoundForcePerYard: return _value*4.864634307;
@@ -691,6 +707,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
+                case ForcePerLengthUnit.NewtonPerMillimeter: return baseUnitValue/1e3;
                 case ForcePerLengthUnit.PoundForcePerFoot: return baseUnitValue/14.59390292;
                 case ForcePerLengthUnit.PoundForcePerInch: return baseUnitValue/1.75126835e2;
                 case ForcePerLengthUnit.PoundForcePerYard: return baseUnitValue/4.864634307;
