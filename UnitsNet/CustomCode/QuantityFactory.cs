@@ -210,6 +210,12 @@ namespace UnitsNet
             
         }
 
+        /// <summary>
+        /// Produces a Quantity from a number as a QuantityValue and a unit as a string.
+        /// </summary>
+        /// <param name="value">The number of units.</param>
+        /// <param name="unit">The unit as a string - e.g "MassUnit.Kilogram"</param>
+        /// <returns>An IQuantity.</returns>
         public IQuantity FromValueAndUnit(QuantityValue value,string unit)
         {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
