@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -6,40 +7,75 @@ namespace UnitsNet.Tests.CustomQuantities
     /// <summary>
     /// Example of a custom/third-party quantity implementation, for plugging in quantities and units at runtime.
     /// </summary>
-    public struct HowMuch : IQuantity
+    public struct HowMuch : IQuantity<HowMuchUnit>
     {
+        public HowMuchUnit Unit { get; }
+        public double Value { get; }
+
         public HowMuch(double value, Enum unit) : this()
         {
-            Unit = unit;
+            Unit = (HowMuchUnit)unit;
             Value = value;
         }
 
-        public Enum Unit { get; }
-        public double Value { get; }
+        static HowMuch()
+        {
+            BaseUnit = HowMuchUnit.Some;
+            Info = new QuantityInfo<HowMuchUnit>
+            (
+                QuantityType.Ratio,
+                new UnitInfo<HowMuchUnit>[]
+                {
+                    new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
+                    new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
+                    new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, BaseUnits.Undefined),
+                },
+                BaseUnit,
+                Zero,
+                BaseDimensions
+            );
 
-        #region Crud to satisfy IQuantity, but not really used for anything
+        }
 
-        private static readonly HowMuch Zero = new HowMuch(0, HowMuchUnit.Some);
+        public double As(HowMuchUnit unit)
+        {
+            return Value;
+        }
+        
+        QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo => Info;
 
-        public QuantityType Type => QuantityType.Undefined;
-        public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
+        public static HowMuch From(QuantityValue value, HowMuchUnit fromUnit)
+        {
+            return new HowMuch((double)value,fromUnit);
+        }
 
-        public QuantityInfo QuantityInfo => new QuantityInfo(Type,
-            new UnitInfo[]
-            {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, BaseUnits.Undefined),
-            },
-            HowMuchUnit.Some,
-            Zero,
-            BaseDimensions.Dimensionless);
+        public static HowMuchUnit BaseUnit { get; } 
+        public static HowMuch Zero { get; } = new HowMuch(0, BaseUnit);
+        
+        public QuantityType Type => QuantityType.Ratio;
+        public static BaseDimensions BaseDimensions => BaseDimensions.Dimensionless;
+        public BaseDimensions Dimensions => BaseDimensions;
+        [JsonIgnore]
+        public QuantityInfo QuantityInfo => Info;
+
+        public static QuantityInfo<HowMuchUnit> Info { get; }
 
         public double As(Enum unit) => Convert.ToDouble(unit);
 
+        #region Crud to satisfy IQuantity, but not really used for anything
         public double As(UnitSystem unitSystem) => throw new NotImplementedException();
+        Enum IQuantity.Unit => Unit;
 
         public IQuantity ToUnit(Enum unit) => new HowMuch(As(unit), unit);
+        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQuantity<HowMuchUnit> ToUnit(HowMuchUnit unit)
+        {
+            throw new NotImplementedException();
+        }
 
         public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
