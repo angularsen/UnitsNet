@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
     /// <summary>
-    /// 
+    /// A class that can be used to construct standard are custom Quantity types.
     /// </summary>
     public class QuantityFactory
     {
@@ -39,23 +37,21 @@ namespace UnitsNet
         public Dictionary<string, QuantityInfo> KnownQuantities;
 
         /// <summary>
-        ///     Adds a type defined in an external assembly for serialisation
+        ///     Adds a type defined in an external assembly for serialisation.
         /// </summary>
         /// <param name="quantityType">The quantity type.</param>
         /// <param name="unitType">The unit type for the quantity.</param>
         public void AddUnit(Type quantityType,Type unitType)
         {
-            //var baseUnitProperty = quantityType.GetProperty("BaseUnit");
-
             var quantityInfoProperty = quantityType.GetProperty("QuantityInfo");
             if (quantityInfoProperty == null)
             {
-                throw new UnitsNetException($"Invalid type registration {quantityType.Name}. Type must implement IQuantity and have a static BaseUnit property.");
+                throw new UnitsNetException($"Invalid type registration {quantityType.Name}. Type must implement IQuantity.");
             }
 
             var baseUnit = Enum.ToObject(unitType, 1);
 
-            var parameters = new object[] {1.0, baseUnit};
+            var parameters = new[] {1.0, baseUnit};
             var instance = (IQuantity)Activator.CreateInstance
             (
                 quantityType,
@@ -105,7 +101,7 @@ namespace UnitsNet
         /// <returns>True is creation of the IQuantity was successful.</returns>
         public bool TryFrom(double value, Enum unit, out IQuantity quantity)
         {
-            if (double.IsNaN((double)value) || double.IsInfinity((double)value))
+            if (double.IsNaN(value) || double.IsInfinity(value))
             {
                 quantity = default;
                 return false;
@@ -129,8 +125,6 @@ namespace UnitsNet
             var result = KnownQuantities[quantityTypeName].TryFrom(value, unit);
             quantity = result.Item1;
             return result.Item2;
-
-            
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
@@ -152,7 +146,9 @@ namespace UnitsNet
             }
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity))
+            {
                 return quantity;
+            }
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
@@ -164,13 +160,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// 
+        /// Attempt to parse a Quantity from a type and a string consisting of value and unit.
         /// </summary>
-        /// <param name="formatProvider"></param>
-        /// <param name="quantityType"></param>
-        /// <param name="quantityString"></param>
-        /// <param name="quantity"></param>
-        /// <returns></returns>
+        /// <param name="formatProvider">Language format</param>
+        /// <param name="quantityType">The type of quantity to create</param>
+        /// <param name="quantityString">A string representation of the quantity.</param>
+        /// <param name="quantity">Output value</param>
+        /// <returns>True is parsing succeeded</returns>
         public bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
         {
             if (!KnownQuantities.ContainsKey(quantityType.Name))
@@ -200,13 +196,13 @@ namespace UnitsNet
         /// <returns>A unit type name (Mass, Length, etc).</returns>
         public string UnitTypeName(IQuantity value)
         {
-            var result = value.QuantityInfo.UnitType.Name;
-            if (!KnownQuantities.ContainsKey(value.GetType().Name))
+            var typeName = value.GetType().Name;
+            if (!KnownQuantities.ContainsKey(typeName))
             {
-                throw new UnitsNetException($"Unknown type {value.GetType().Name}");
+                throw new UnitsNetException($"Unknown type {typeName}");
             }
 
-            return KnownQuantities[value.GetType().Name].Name;
+            return KnownQuantities[typeName].Name;
             
         }
 
@@ -223,19 +219,23 @@ namespace UnitsNet
             string unitEnumValue = unit.Split('.')[1];
             string quantityTypeName = unitEnumTypeName.Remove(unitEnumTypeName.Length - 4);
 
-            Type unitEnumType;
             if (!KnownQuantities.ContainsKey(quantityTypeName))
             {
                 throw new UnitsNetException($"Unit type {quantityTypeName} not known.");
             }
 
-            unitEnumType = KnownQuantities[quantityTypeName].UnitType;
+            var unitEnumType = KnownQuantities[quantityTypeName].UnitType;
             
             Enum unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
 
             return From(value, unitValue);
         }
 
+        /// <summary>
+        /// A function to check if building a particular type is supported in this QuantityFactory.
+        /// </summary>
+        /// <param name="objectType">The type of object to check.</param>
+        /// <returns>True if the type is supported.</returns>
         public bool CanBuild(Type objectType)
         {
             return KnownQuantities.ContainsKey(objectType.Name);

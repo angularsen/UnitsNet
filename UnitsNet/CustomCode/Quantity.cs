@@ -49,7 +49,6 @@ namespace UnitsNet
         public static IQuantity From(QuantityValue value, Enum unit)
         {
             return QuantityFactory.Default.From(value, unit);
-
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
@@ -79,8 +78,7 @@ namespace UnitsNet
         {
             return QuantityFactory.Default.TryParse(quantityType, quantityString, out quantity);
         }
-
-
+        
         /// <summary>
         ///     Get information about the given quantity type.
         /// </summary>
