@@ -31,6 +31,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
         protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;
         protected override double NewtonsPerMeterInOneNewtonPerMeter => 1;
+        protected override double NewtonsPerMillimeterInOneNewtonPerMeter => 1E-3;
         protected override double PoundsForcePerFootInOneNewtonPerMeter => 6.8521766E-2;
         protected override double PoundsForcePerInchInOneNewtonPerMeter => 5.710147162769201E-3;
         protected override double PoundsForcePerYardInOneNewtonPerMeter => 0.205565298;

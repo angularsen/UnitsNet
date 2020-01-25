@@ -402,6 +402,7 @@ namespace UnitsNet
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MillinewtonPerMeter, new string[]{"mN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NanonewtonPerMeter, new string[]{"nN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NewtonPerMeter, new string[]{"N/m"}),
+                ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NewtonPerMillimeter, new string[]{"N/mm"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.PoundForcePerFoot, new string[]{"lbf/ft"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.PoundForcePerInch, new string[]{"lbf/in"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.PoundForcePerYard, new string[]{"lbf/yd"}),
