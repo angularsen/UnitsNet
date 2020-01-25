@@ -24,6 +24,25 @@ namespace UnitsNet.Serialization.JsonNet
     /// </remarks>
     public class UnitsNetJsonConverter : JsonConverter
     {
+        private QuantityFactory _quantityFactory;
+
+        /// <summary>
+        /// Creates a JSON converter using the default Quantity Factory.
+        /// </summary>
+        public UnitsNetJsonConverter() : this(QuantityFactory.Default)
+        {
+
+        }
+
+        /// <summary>
+        /// Creates a JSON converter using a supplied quantity factory.
+        /// </summary>
+        /// <param name="quantityFactory">The quantity factory to use in generating IQuantity types.</param>
+        public UnitsNetJsonConverter(QuantityFactory quantityFactory)
+        {
+            this._quantityFactory = quantityFactory;
+        }
+
         /// <summary>
         ///     Reads the JSON representation of the object.
         /// </summary>
@@ -67,41 +86,12 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private static IQuantity ParseValueUnit(ValueUnit vu)
-        { 
-            // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            string unitEnumTypeName = vu.Unit.Split('.')[0];
-            string unitEnumValue = vu.Unit.Split('.')[1];
-            string quantityTypeName = unitEnumTypeName.Remove(unitEnumTypeName.Length - 4);
-
-            Type unitEnumType;
-            if (Quantity.ExternalQuantities.ContainsKey(quantityTypeName))
-            {
-                unitEnumType = Quantity.ExternalQuantities[quantityTypeName].UnitEnumType;
-            }
-            else
-            {
-
-                // "UnitsNet.Units.MassUnit,UnitsNet"
-                string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
-
-                // -- see http://stackoverflow.com/a/6465096/1256096 for details
-                unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
-                if (unitEnumType == null)
-                {
-                    var ex = new UnitsNetException("Unable to find enum type.");
-                    ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
-                    throw ex;
-                }
-            }
-
-            double value = vu.Value;
-            Enum unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
-
-            return Quantity.From(value, unitValue);
+        private IQuantity ParseValueUnit(ValueUnit vu)
+        {
+            return _quantityFactory.FromValueAndUnit(vu.Value,vu.Unit);
         }
 
-        private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
+        private object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
 
@@ -116,7 +106,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
+        private object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
         {
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
@@ -171,19 +161,15 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private static ValueUnit ToValueUnit(IQuantity value)
+        private ValueUnit ToValueUnit(IQuantity value)
         {
-            string unitTypeName = value.QuantityInfo.UnitType.Name;
-            if (Quantity.ExternalQuantities.ContainsKey(value.GetType().Name))
-            {
-                unitTypeName = value.Unit.GetType().Name;
-            }
+            string unitTypeName = _quantityFactory.UnitTypeName(value);
 
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
                 Value = value.Value,
-                Unit = $"{unitTypeName}.{value.Unit}"
+                Unit = $"{unitTypeName}Unit.{value.Unit}"
             };
         }
 
@@ -218,8 +204,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
 
             return objectType.Namespace != null &&
-                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
-                 Quantity.ExternalQuantities.ContainsKey(objectType.Name) ||
+                (_quantityFactory.CanBuild(objectType) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));

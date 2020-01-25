@@ -376,6 +376,7 @@ namespace UnitsNet
             decimal value = (decimal) exabits;
             return new Information(value, InformationUnit.Exabit);
         }
+
         /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
@@ -385,6 +386,7 @@ namespace UnitsNet
             decimal value = (decimal) exabytes;
             return new Information(value, InformationUnit.Exabyte);
         }
+
         /// <summary>
         ///     Get Information from Exbibits.
         /// </summary>

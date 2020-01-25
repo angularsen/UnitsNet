@@ -10,22 +10,33 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public class UnitsNetJsonConverterTests
     {
-        private readonly JsonSerializerSettings _jsonSerializerSettings;
-
         protected UnitsNetJsonConverterTests()
         {
-            _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
         }
+
 
         private string SerializeObject(object obj)
         {
-            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
+            return SerializeObject(obj, QuantityFactory.Default);
+        }
+
+        private string SerializeObject(object obj,QuantityFactory qtyFactory)
+        {
+            var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
+            jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter(qtyFactory));
+            return JsonConvert.SerializeObject(obj, jsonSerializerSettings).Replace("\r\n", "\n");
         }
 
         private T DeserializeObject<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
+            return DeserializeObject<T>(json, QuantityFactory.Default);
+        }
+
+        private T DeserializeObject<T>(string json, QuantityFactory qtyFactory)
+        {
+            var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
+            jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter(qtyFactory));
+            return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
         }
 
         public class Serialize : UnitsNetJsonConverterTests
@@ -55,12 +66,13 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Custom_ExpectConstructedValueAndUnit()
             {
-                Quantity.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
+                var quantityFactory = new QuantityFactory();
+                quantityFactory.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
 
                 var howMuch = new HowMuch(3.1415,HowMuchUnit.ATon);
                 var expectedJson = "{\n  \"Unit\": \"HowMuchUnit.ATon\",\n  \"Value\": 3.1415\n}";
 
-                string json = SerializeObject(howMuch);
+                string json = SerializeObject(howMuch,quantityFactory);
 
                 Assert.Equal(expectedJson, json);
             }
@@ -191,11 +203,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void Custom_ExpectJsonCorrectlyDeserialized()
             {
-                Quantity.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
+                var qtyFactory = new QuantityFactory();
+                qtyFactory.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
                 HowMuch originalHowMuch = new HowMuch(2.71,HowMuchUnit.AShitTon);
-                string json = SerializeObject(originalHowMuch);
+                string json = SerializeObject(originalHowMuch,qtyFactory);
 
-                var deserializedHowMuch = DeserializeObject<HowMuch>(json);
+                var deserializedHowMuch = DeserializeObject<HowMuch>(json,qtyFactory);
 
                 Assert.Equal(originalHowMuch, deserializedHowMuch);
             }

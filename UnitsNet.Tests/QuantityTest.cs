@@ -14,7 +14,7 @@ namespace UnitsNet.Tests
     public class QuantityTest
     {
         // Exclude Undefined value
-        private int QuantityCount => Enum.GetValues(typeof(QuantityType)).Length - 1 + Quantity.ExternalQuantities.Count;
+        private int QuantityCount => Enum.GetValues(typeof(QuantityType)).Length - 1;
         private int TypeCount => Enum.GetValues(typeof(QuantityType)).Length - 1;
 
         [Theory]
@@ -42,13 +42,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromCentimeters(3), Quantity.From(3, LengthUnit.Centimeter));
             Assert.Equal(Mass.FromTonnes(3), Quantity.From(3, MassUnit.Tonne));
             Assert.Equal(Pressure.FromMegabars(3), Quantity.From(3, PressureUnit.Megabar));
-        }
-
-        [Fact]
-        public void From_GivenValueAndUnit_ReturnsCustomQuantity()
-        {
-            Quantity.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
-            Assert.Equal(new HowMuch(42,HowMuchUnit.Some), Quantity.From(42, HowMuchUnit.Some));
         }
 
         [Fact]
