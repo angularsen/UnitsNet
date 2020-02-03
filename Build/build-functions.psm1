@@ -60,6 +60,7 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
 function Start-Tests {
   $projectPaths = @(
     "UnitsNet.Tests\UnitsNet.Tests.csproj",
+    "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
     "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
     "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
     )
@@ -98,7 +99,7 @@ function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.Extensions\UnitsNet.Extensions.csproj"
+    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
