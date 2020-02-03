@@ -25,34 +25,27 @@ namespace CodeGen.Generators.UnitsNetGen
 $@"
 using System;
                         
-namespace UnitsNet.Extensions.NumberTo{_quantityName}
+namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
 {{
     /// <summary>
     /// A number to {_quantityName} Extensions
     /// </summary>
     public static class NumberTo{_quantityName}Extensions
-    {{
-"
-            );
+    {{");
 
             foreach (var unit in _units)
             {
-                Writer.WL($@"
-        #region {unit.SingularName}
-
-        /// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
+                Writer.WL(2, $@"
+/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 
-                Writer.WL($@"        public static {_quantityName} {unit.PluralName}<T>(this T value) =>
-             {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
-
-        #endregion
+                Writer.WL(2, $@"public static {_quantityName} {unit.PluralName}<T>(this T value) =>
+            {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
 ");
             }
 
-            Writer.WL(@"
-    }
+            Writer.WL(1, @"}
 }");
             return Writer.ToString();
         }
