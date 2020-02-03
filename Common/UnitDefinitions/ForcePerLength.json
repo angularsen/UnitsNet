@@ -20,6 +20,18 @@
         }
       ]
     },
+	{
+      "SingularName": "NewtonPerMillimeter",
+      "PluralName": "NewtonsPerMillimeter",
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/mm" ]
+        }
+      ]
+    },
     {
       "SingularName": "KilogramForcePerMeter",
       "PluralName": "KilogramsForcePerMeter",
