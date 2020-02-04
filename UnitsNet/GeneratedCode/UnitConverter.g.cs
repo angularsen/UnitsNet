@@ -354,6 +354,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PascalSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.Poise, q => q.ToUnit(DynamicViscosityUnit.Poise));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Poise, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundFootSecond, q => q.ToUnit(DynamicViscosityUnit.PoundFootSecond));
+            unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundFootSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundForceSecondPerSquareFoot, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareFoot));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundForceSecondPerSquareInch, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));

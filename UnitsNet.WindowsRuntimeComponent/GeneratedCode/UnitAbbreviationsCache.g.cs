@@ -234,6 +234,7 @@ namespace UnitsNet
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.NewtonSecondPerMeterSquared, new string[]{"Ns/m²"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PascalSecond, new string[]{"Pa·s", "PaS"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Poise, new string[]{"P"}),
+                ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundFootSecond, new string[]{"lb/ft-s"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundForceSecondPerSquareFoot, new string[]{"lbf·s/ft²"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundForceSecondPerSquareInch, new string[]{"lbf·s/in²"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Reyn, new string[]{"reyn"}),

@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         NewtonSecondPerMeterSquared,
         PascalSecond,
         Poise,
+        PoundFootSecond,
         PoundForceSecondPerSquareFoot,
         PoundForceSecondPerSquareInch,
         Reyn,
