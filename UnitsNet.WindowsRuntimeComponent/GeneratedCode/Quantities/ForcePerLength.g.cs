@@ -176,6 +176,11 @@ namespace UnitsNet
         public double KilonewtonsPerMeter => As(ForcePerLengthUnit.KilonewtonPerMeter);
 
         /// <summary>
+        ///     Get ForcePerLength in KilopoundsForcePerFoot.
+        /// </summary>
+        public double KilopoundsForcePerFoot => As(ForcePerLengthUnit.KilopoundForcePerFoot);
+
+        /// <summary>
         ///     Get ForcePerLength in MeganewtonsPerMeter.
         /// </summary>
         public double MeganewtonsPerMeter => As(ForcePerLengthUnit.MeganewtonPerMeter);
@@ -289,6 +294,16 @@ namespace UnitsNet
         {
             double value = (double) kilonewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerMeter);
+        }
+        /// <summary>
+        ///     Get ForcePerLength from KilopoundsForcePerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromKilopoundsForcePerFoot(double kilopoundsforceperfoot)
+        {
+            double value = (double) kilopoundsforceperfoot;
+            return new ForcePerLength(value, ForcePerLengthUnit.KilopoundForcePerFoot);
         }
         /// <summary>
         ///     Get ForcePerLength from MeganewtonsPerMeter.
@@ -675,6 +690,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
                 case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
                 case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
+                case ForcePerLengthUnit.KilopoundForcePerFoot: return _value*14593.90292;
                 case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
                 case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
@@ -702,6 +718,7 @@ namespace UnitsNet
                 case ForcePerLengthUnit.DecinewtonPerMeter: return (baseUnitValue) / 1e-1d;
                 case ForcePerLengthUnit.KilogramForcePerMeter: return baseUnitValue/9.80665002864;
                 case ForcePerLengthUnit.KilonewtonPerMeter: return (baseUnitValue) / 1e3d;
+                case ForcePerLengthUnit.KilopoundForcePerFoot: return baseUnitValue/14593.90292;
                 case ForcePerLengthUnit.MeganewtonPerMeter: return (baseUnitValue) / 1e6d;
                 case ForcePerLengthUnit.MicronewtonPerMeter: return (baseUnitValue) / 1e-6d;
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;

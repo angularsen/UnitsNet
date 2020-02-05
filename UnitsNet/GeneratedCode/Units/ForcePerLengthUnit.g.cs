@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         DecinewtonPerMeter,
         KilogramForcePerMeter,
         KilonewtonPerMeter,
+        KilopoundForcePerFoot,
         MeganewtonPerMeter,
         MicronewtonPerMeter,
         MillinewtonPerMeter,
