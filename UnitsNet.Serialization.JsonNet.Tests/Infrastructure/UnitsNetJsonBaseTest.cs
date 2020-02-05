@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
 {
     public abstract class UnitsNetJsonBaseTest
     {
@@ -12,7 +12,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         protected UnitsNetJsonBaseTest()
         {
             jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            jsonSerializerSettings.Converters.Add(new UnitsNetJsonIQuantityConverter());
+            jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
             jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
         }
 

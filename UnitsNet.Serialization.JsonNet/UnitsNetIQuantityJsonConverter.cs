@@ -13,7 +13,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// JSON.net converter for IQuantity types (e.g. all units in UnitsNet)
     /// Use this converter to serialize and deserialize UnitsNet types to and from JSON
     /// </summary>
-    public sealed class UnitsNetJsonIQuantityConverter : UnitsNetJsonBaseConverter<IQuantity>
+    public sealed class UnitsNetIQuantityJsonConverter : UnitsNetBaseJsonConverter<IQuantity>
     {
         /// <summary>
         /// Writes the JSON representation of the object.
@@ -29,6 +29,7 @@ namespace UnitsNet.Serialization.JsonNet
             if (value == null)
             {
                 writer.WriteNull();
+                return;
             }
 
             var valueUnit = ConvertIQuantity(value);

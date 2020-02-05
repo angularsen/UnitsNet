@@ -12,11 +12,11 @@ namespace UnitsNet.Serialization.JsonNet
     /// <summary>
     /// JSON.Net converter for IComparable properties that are actually UnitsNet units.
     /// Use with caution, as this might interfere with any other converters for IComparable.
-    /// Must be registered in the <see cref="JsonSerializerSettings.Converters"/> collection -after- <see cref="UnitsNetJsonIQuantityConverter"/>
+    /// Must be registered in the <see cref="JsonSerializerSettings.Converters"/> collection -after- <see cref="UnitsNetIQuantityJsonConverter"/>
     /// Should only be used when UnitsNet types are assigned to properties of type IComparable.
     /// Requires TypeNameHandling on <see cref="JsonSerializerSettings"/> to be set to something other than <see cref="TypeNameHandling.None"/> so that it outputs $type when serializing.
     /// </summary>
-    public sealed class UnitsNetIComparableJsonConverter : UnitsNetJsonBaseConverter<IComparable>
+    public sealed class UnitsNetIComparableJsonConverter : UnitsNetBaseJsonConverter<IComparable>
     {
         /// <summary>
         /// Indicates if this JsonConverter is capable of writing JSON

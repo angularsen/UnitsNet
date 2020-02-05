@@ -11,10 +11,10 @@ namespace UnitsNet.Serialization.JsonNet
 {
     /// <summary>
     /// Base converter for serializing and deserializing UnitsNet types to and from JSON.
-    /// Contains shared functionality used by <see cref="UnitsNetJsonIQuantityConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
+    /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class UnitsNetJsonBaseConverter<T> : JsonConverter<T>
+    public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
          /// <summary>
         /// Reads the "Unit" and "Value" properties from a JSON string
@@ -58,9 +58,18 @@ namespace UnitsNet.Serialization.JsonNet
                 return null;
             }
 
+            var unitParts = valueUnit.Unit.Split('.');
+
+            if (unitParts.Length != 2)
+            {
+                var ex = new UnitsNetException($"\"{valueUnit.Unit}\" is not a valid unit.");
+                ex.Data["type"] = valueUnit.Unit;
+                throw ex;
+            }
+
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            var unitEnumTypeName = valueUnit.Unit.Split('.')[0];
-            var unitEnumValue = valueUnit.Unit.Split('.')[1];
+            var unitEnumTypeName = unitParts[0];
+            var unitEnumValue = unitParts[1];
 
             // "UnitsNet.Units.MassUnit,UnitsNet"
             var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
@@ -87,6 +96,8 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns></returns>
         protected ValueUnit ConvertIQuantity(IQuantity quantity)
         {
+            quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
+
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
