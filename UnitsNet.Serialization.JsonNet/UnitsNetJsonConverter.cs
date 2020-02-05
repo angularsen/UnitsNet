@@ -201,7 +201,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
 
             return objectType.Namespace != null &&
-                (_quantityFactory.IsQuantityTypeConfigured(objectType) ||
+                (_quantityFactory.CanCreate(objectType) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));

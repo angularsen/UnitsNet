@@ -207,7 +207,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="objectType">The type of object to check.</param>
         /// <returns>True if the type is supported.</returns>
-        public bool IsQuantityTypeConfigured(Type objectType)
+        public bool CanCreate(Type objectType)
         {
             return _configuredQuantities.ContainsKey(objectType.Name);
         }
