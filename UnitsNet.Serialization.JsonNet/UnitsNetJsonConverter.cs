@@ -162,14 +162,11 @@ namespace UnitsNet.Serialization.JsonNet
 
         private static ValueUnit ToValueUnit(IQuantity value)
         {
-            // Example: "Length"
-            var quantityName = value.QuantityInfo.Name;
-
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
                 Value = value.Value,
-                Unit = $"{quantityName}Unit.{value.Unit}"
+                Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
             };
         }
 
