@@ -20,7 +20,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             return SerializeObject(obj, QuantityFactory.Default);
         }
 
-        private string SerializeObject(object obj,QuantityFactory qtyFactory)
+        private string SerializeObject(object obj, QuantityFactory qtyFactory)
         {
             var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
             jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter(qtyFactory));
