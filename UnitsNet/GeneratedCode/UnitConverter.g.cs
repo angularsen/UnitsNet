@@ -1549,9 +1549,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.KilonewtonMeterPerRadian, q => q.ToUnit(RotationalStiffnessUnit.KilonewtonMeterPerRadian));
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMeterPerRadian, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.KilopoundForceFootPerDegrees, q => q.ToUnit(RotationalStiffnessUnit.KilopoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.MeganewtonMeterPerRadian, q => q.ToUnit(RotationalStiffnessUnit.MeganewtonMeterPerRadian));
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffness.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.PoundForceFootPerDegrees, q => q.ToUnit(RotationalStiffnessUnit.PoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, q => q.ToUnit(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, RotationalStiffnessPerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, q => q.ToUnit(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter));

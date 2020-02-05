@@ -20,6 +20,30 @@
           "Abbreviations": [ "N·m/rad", "Nm/rad" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundForceFootPerDegrees",
+      "PluralName": "PoundForceFeetPerDegrees",
+      "FromUnitToBaseFunc": "x*77.6826",
+      "FromBaseToUnitFunc": "x/77.6826",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·ft/deg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForceFootPerDegrees",
+      "PluralName": "KilopoundForceFeetPerDegrees",
+      "FromUnitToBaseFunc": "x*77682.6",
+      "FromBaseToUnitFunc": "x/77682.6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf·ft/deg" ]
+        }
+      ]
     }
   ]
 }
