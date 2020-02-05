@@ -39,7 +39,12 @@ namespace UnitsNet
         /// <summary>
         ///     A dictionary of info structs for each known type.
         /// </summary>
-        public IReadOnlyDictionary<string, QuantityInfo> ConfiguredQuantities => _configuredQuantities;
+#if (!NET40)
+        public IReadOnlyDictionary
+#else
+        public IDictionary
+#endif
+            <string, QuantityInfo> ConfiguredQuantities => _configuredQuantities;
 
         /// <summary>
         ///     Configures a new quantity type and its corresponding unit enum type.
