@@ -110,10 +110,7 @@ namespace UnitsNet
                 return false;
             }
 
-            var (parsedQuantity, parseSuccess) = quantityInfo.TryFrom(value, unit);
-
-            quantity = parsedQuantity;
-            return parseSuccess;
+            return quantityInfo.TryFrom(value, unit, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)" />
@@ -176,10 +173,7 @@ namespace UnitsNet
                 return false;
             }
 
-            var (parsedQuantity, parseSuccess) = quantityInfo.TryParse(formatProvider, quantityString);
-            quantity = parsedQuantity;
-
-            return parseSuccess;
+            return quantityInfo.TryParse(formatProvider, quantityString, out quantity);
         }
 
         /// <summary>

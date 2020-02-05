@@ -29,9 +29,38 @@ namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
                 },
                 BaseUnit,
                 Zero,
-                BaseDimensions
+                BaseDimensions,
+                new CustomQuantityOptions(TryParse, TryCreate)
             );
+        }
 
+        private static bool TryParse(IFormatProvider formatProvider, string str, out IQuantity quantity)
+        {
+            // Dummy implementation
+            if (str == "a ton")
+            {
+                quantity = From(1, HowMuchUnit.ATon);
+                return true;
+            }
+            else
+            {
+                quantity = default;
+                return false;
+            }
+        }
+
+        private static bool TryCreate(QuantityValue value, Enum unit, out IQuantity quantity)
+        {
+            if (Enum.IsDefined(typeof(HowMuchUnit), unit))
+            {
+                quantity = From(value, (HowMuchUnit)unit);
+                return true;
+            }
+            else
+            {
+                quantity = default;
+                return false;
+            }
         }
 
         double IQuantity<HowMuchUnit>.As(HowMuchUnit unit)

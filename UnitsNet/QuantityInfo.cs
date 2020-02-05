@@ -3,11 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -23,35 +20,7 @@ namespace UnitsNet
     /// </remarks>
     public class QuantityInfo
     {
-        private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
-
-        private static readonly Type[] UnitEnumTypes = typeof(Length)
-            .Wrap()
-            .Assembly
-            .GetExportedTypes()
-            .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
-            .ToArray();
-
-        private MethodInfo _genericTryParse;
-
-        internal MethodInfo GenericTryParse
-        {
-            get
-            {
-                if (_genericTryParse == null)
-                {
-                    IEnumerable<MethodInfo> methods;
-#if NETFX_CORE
-                    methods = typeof(QuantityParser).GetRuntimeMethods();
-#else
-                    methods = typeof(QuantityParser).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-#endif
-                    _genericTryParse = methods.First((method) => (method.Name == "TryParse") && method.GetParameters()[3].ParameterType.Name.StartsWith("IQuantity"));
-                }
-
-                return _genericTryParse;
-            }
-        }
+        [CanBeNull] private readonly CustomQuantityOptions _customQuantityOptions;
 
         /// <summary>
         ///     Constructs an instance.
@@ -61,12 +30,15 @@ namespace UnitsNet
         /// <param name="baseUnit">The base unit enum value.</param>
         /// <param name="zero">The zero quantity.</param>
         /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+        /// <param name="customQuantityOptions">Options for parsing and constructing custom quantities, used for third-party quantities not part of the generated code.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions, CustomQuantityOptions customQuantityOptions = null)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
+
+            _customQuantityOptions = customQuantityOptions;
 
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
@@ -80,61 +52,6 @@ namespace UnitsNet
             UnitType = baseUnit.GetType();
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
 
-            var constructors = ValueType.GetConstructors().Where((x) => x.GetParameters().Length == 2);
-            DecimalConstructor = constructors.All(x => x.GetParameters()[0].ParameterType == typeof(decimal));
-
-            var fromMethod = ValueType.GetMethod("From");
-            if (fromMethod == null)
-            {
-                throw new UnitsNetException($"Unable to register custom type {ValueType.Name}.  Type is lacking a From(QuantityValue value, Unit unit) method.");
-            }
-
-            var delegateType = typeof(QuantityFromDelegate<,>).MakeGenericType(ValueType, UnitType);
-            var qfDelegate = Delegate.CreateDelegate(delegateType, fromMethod,true);
-            TryParse =
-                (formatProvider,quantityString) =>
-                {
-                    IQuantity quantity;
-                    var tryParseMethod = GenericTryParse.MakeGenericMethod(ValueType, UnitType);
-                    var parameters = new object[] {quantityString, formatProvider, qfDelegate, null};
-                    var success = (bool) (tryParseMethod.Invoke(QuantityParser.Default, parameters));
-
-                    if (success)
-                    {
-                        quantity = (IQuantity) parameters[3];
-                    }
-                    else
-                    {
-                        quantity = default;
-                    }
-
-                    return Tuple.Create(quantity,success);
-                };
-
-            TryFrom =
-                (value,unit) =>
-                {
-                    IQuantity quantity;
-                    try
-                    {
-                        object[] parameters = DecimalConstructor ? new object[] { (decimal)value, unit} : new object[] { (double)value, unit };
-
-                        quantity = (IQuantity) Activator.CreateInstance
-                        (
-                            ValueType,
-                            BindingFlags.CreateInstance,
-                            null,
-                            parameters,
-                            CultureInfo.InvariantCulture
-                        );
-                        return Tuple.Create(quantity,quantity != null);
-                    }
-                    catch (Exception ex)
-                    {
-                        quantity = default;
-                        return Tuple.Create((IQuantity)null,false);
-                    }
-                };
             // Obsolete members
 #pragma warning disable 618
             UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
@@ -142,11 +59,6 @@ namespace UnitsNet
             BaseUnit = BaseUnitInfo.Value;
 #pragma warning restore 618
         }
-
-        /// <summary>
-        ///     Indicates whether the constructor requires decimal values.  If False, the constructor takes double values.
-        /// </summary>
-        public bool DecimalConstructor { get; }
 
         /// <summary>
         ///     Quantity name, such as "Length" or "Mass".
@@ -198,7 +110,7 @@ namespace UnitsNet
         public Type UnitType { get; }
 
         /// <summary>
-        ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
+        ///     Quantity type, such as <see cref="Length"/> or <see cref="Mass"/>.
         /// </summary>
         public Type ValueType { get; }
 
@@ -243,17 +155,37 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
         public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
         {
-            if(baseUnits == null)
+            if (baseUnits == null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
             return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
         }
 
         /// <summary>
-        /// 
+        ///     Try to parse a quantity of the kind that this info object represents.
         /// </summary>
-        public Func<IFormatProvider,string,Tuple<IQuantity,bool>> TryParse { get; }
-        public Func<QuantityValue, Enum, Tuple<IQuantity, bool>> TryFrom { get; }
+        public bool TryParse(IFormatProvider formatProvider, string str, out IQuantity quantity)
+        {
+            var tryParseFunc = _customQuantityOptions?.TryParse;
+
+            return tryParseFunc != null
+                ? tryParseFunc(formatProvider, str, out quantity)
+                : Quantity.TryParse(formatProvider, ValueType, str, out quantity);
+        }
+
+        /// <summary>
+        ///     Try to construct a quantity from a value and unit, if the unit is configured.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
+        /// <param name="quantity"></param>
+        public bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
+        {
+            var tryCreateFunc = _customQuantityOptions?.TryCreate;
+            return tryCreateFunc != null
+                ? tryCreateFunc(value, unit, out quantity)
+                : Quantity.TryFrom(value, unit, out quantity);
+        }
     }
 
     /// <inheritdoc cref="QuantityInfo" />
@@ -267,8 +199,8 @@ namespace UnitsNet
         where TUnit : Enum
     {
         /// <inheritdoc />
-        public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(quantityType, unitInfos, baseUnit, zero, baseDimensions)
+        public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions, CustomQuantityOptions customQuantityOptions = null)
+            : base(quantityType, unitInfos, baseUnit, zero, baseDimensions, customQuantityOptions)
         {
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
@@ -276,7 +208,7 @@ namespace UnitsNet
 
             // Obsolete members
 #pragma warning disable 618
-            Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
+            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
             BaseUnit = BaseUnitInfo.Value;
 #pragma warning restore 618
         }
