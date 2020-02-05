@@ -21,6 +21,7 @@ namespace UnitsNet.Serialization.JsonNet
     ///     * Unit enums are of type UnitsNet.Units.LengthUnit etc.
     ///     * Unit class has a BaseUnit property returning the base unit, such as LengthUnit.Meter
     /// </remarks>
+    [Obsolete("Replaced by UnitsNetIQuantityJsonConverter and UnitsNetIComparableJsonConverter (if you need support for IComparable)")]
     public class UnitsNetJsonConverter : JsonConverter
     {
         /// <summary>
