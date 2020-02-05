@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -22,7 +22,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         private string SerializeObject(object obj, QuantityFactory qtyFactory)
         {
-            var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
+            var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
             jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter(qtyFactory));
             return JsonConvert.SerializeObject(obj, jsonSerializerSettings).Replace("\r\n", "\n");
         }
@@ -34,7 +34,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         private T DeserializeObject<T>(string json, QuantityFactory qtyFactory)
         {
-            var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
+            var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
             jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter(qtyFactory));
             return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
         }
@@ -67,12 +67,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Custom_ExpectConstructedValueAndUnit()
             {
                 var quantityFactory = new QuantityFactory();
-                quantityFactory.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
+                quantityFactory.AddUnit(typeof(HowMuch), typeof(HowMuchUnit));
 
-                var howMuch = new HowMuch(3.1415,HowMuchUnit.ATon);
+                var howMuch = new HowMuch(3.1415, HowMuchUnit.ATon);
                 var expectedJson = "{\n  \"Unit\": \"HowMuchUnit.ATon\",\n  \"Value\": 3.1415\n}";
 
-                string json = SerializeObject(howMuch,quantityFactory);
+                string json = SerializeObject(howMuch, quantityFactory);
 
                 Assert.Equal(expectedJson, json);
             }
@@ -108,6 +108,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                     NullableFrequency = Frequency.FromHertz(10),
                     NonNullableFrequency = Frequency.FromHertz(10)
                 };
+
                 // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
                 //  on the build server (i.e. the build server uses '\r' instead of '\n')
                 string expectedJson = "{\n" +
@@ -147,7 +148,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void ArrayValue_ExpectJsonArray()
             {
-                Frequency[] testObj = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+                Frequency[] testObj = {Frequency.FromHertz(10), Frequency.FromHertz(10)};
 
                 string expectedJson = "[\n" +
                                       "  {\n" +
@@ -204,11 +205,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Custom_ExpectJsonCorrectlyDeserialized()
             {
                 var qtyFactory = new QuantityFactory();
-                qtyFactory.AddUnit(typeof(HowMuch),typeof(HowMuchUnit));
-                HowMuch originalHowMuch = new HowMuch(2.71,HowMuchUnit.AShitTon);
-                string json = SerializeObject(originalHowMuch,qtyFactory);
+                qtyFactory.AddUnit(typeof(HowMuch), typeof(HowMuchUnit));
+                HowMuch originalHowMuch = new HowMuch(2.71, HowMuchUnit.AShitTon);
+                string json = SerializeObject(originalHowMuch, qtyFactory);
 
-                var deserializedHowMuch = DeserializeObject<HowMuch>(json,qtyFactory);
+                var deserializedHowMuch = DeserializeObject<HowMuch>(json, qtyFactory);
 
                 Assert.Equal(originalHowMuch, deserializedHowMuch);
             }
@@ -232,6 +233,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                     NullableFrequency = Frequency.FromHertz(10),
                     NonNullableFrequency = Frequency.FromHertz(10)
                 };
+
                 string json = SerializeObject(testObj);
 
                 var deserializedTestObj = DeserializeObject<TestObj>(json);
@@ -256,6 +258,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                     NullableFrequency = null,
                     NonNullableFrequency = Frequency.FromHertz(10)
                 };
+
                 string json = SerializeObject(testObj);
 
                 var deserializedTestObj = DeserializeObject<TestObj>(json);
@@ -282,7 +285,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void UnitInIComparable_ExpectUnitCorrectlyDeserialized()
             {
-                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable
                 {
                     Value = Power.FromWatts(10)
                 };
@@ -290,16 +293,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
 
-                var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
+                var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
 
                 Assert.Equal(typeof(Power), deserializedTestObject.Value.GetType());
-                Assert.Equal(Power.FromWatts(10), (Power)deserializedTestObject.Value);
+                Assert.Equal(Power.FromWatts(10), (Power) deserializedTestObject.Value);
             }
 
             [Fact]
             public void DoubleInIComparable_ExpectUnitCorrectlyDeserialized()
             {
-                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable
                 {
                     Value = 10.0
                 };
@@ -310,15 +313,15 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
 
                 Assert.Equal(typeof(double), deserializedTestObject.Value.GetType());
-                Assert.Equal(10d, (double)deserializedTestObject.Value);
+                Assert.Equal(10d, (double) deserializedTestObject.Value);
             }
 
             [Fact]
             public void ClassInIComparable_ExpectUnitCorrectlyDeserialized()
             {
-                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable
                 {
-                    Value = new ComparableClass() { Value = 10 }
+                    Value = new ComparableClass {Value = 10}
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
 
@@ -332,10 +335,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void OtherObjectWithUnitAndValue_ExpectCorrectResturnValues()
             {
-                TestObjWithValueAndUnit testObjWithValueAndUnit = new TestObjWithValueAndUnit()
+                TestObjWithValueAndUnit testObjWithValueAndUnit = new TestObjWithValueAndUnit
                 {
-                   Value = 5,
-                   Unit = "Test",
+                    Value = 5,
+                    Unit = "Test",
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
 
@@ -350,11 +353,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void ThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized()
             {
-                TestObjWithThreeIComparable testObjWithIComparable = new TestObjWithThreeIComparable()
+                TestObjWithThreeIComparable testObjWithIComparable = new TestObjWithThreeIComparable
                 {
                     Value1 = 10.0,
                     Value2 = Power.FromWatts(19),
-                    Value3 = new ComparableClass() { Value = 10 },
+                    Value3 = new ComparableClass {Value = 10},
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
 
@@ -372,20 +375,20 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void ArrayOfUnits_ExpectCorrectlyDeserialized()
             {
-                Frequency[] expected = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+                Frequency[] expected = {Frequency.FromHertz(10), Frequency.FromHertz(10)};
 
                 string json = "[\n" +
-                                      "  {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  },\n" +
-                                      "  {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  }\n" +
-                                      "]";
+                              "  {\n" +
+                              "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "    \"Value\": 10.0\n" +
+                              "  },\n" +
+                              "  {\n" +
+                              "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "    \"Value\": 10.0\n" +
+                              "  }\n" +
+                              "]";
 
-                Frequency[] result  = DeserializeObject<Frequency[]>(json);
+                Frequency[] result = DeserializeObject<Frequency[]>(json);
 
                 Assert.Equal(expected, result);
             }
@@ -402,7 +405,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             private static JsonSerializerSettings CreateJsonSerializerSettings()
             {
-                var jsonSerializerSettings = new JsonSerializerSettings()
+                var jsonSerializerSettings = new JsonSerializerSettings
                 {
                     Formatting = Formatting.Indented,
                     TypeNameHandling = TypeNameHandling.Auto
@@ -425,16 +428,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             public int CompareTo(object obj)
             {
-                return ((IComparable)Value).CompareTo(obj);
+                return ((IComparable) Value).CompareTo(obj);
             }
         }
 
         private class ComparableClass : IComparable
         {
             public int Value { get; set; }
+
             public int CompareTo(object obj)
             {
-                return ((IComparable)Value).CompareTo(obj);
+                return ((IComparable) Value).CompareTo(obj);
             }
 
             // Needed for virfying that the deserialized object is the same, should not affect the serilization code
@@ -444,7 +448,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 {
                     return false;
                 }
-                return Value.Equals(((ComparableClass)obj).Value);
+
+                return Value.Equals(((ComparableClass) obj).Value);
             }
 
             public override int GetHashCode()
