@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -24,10 +23,10 @@ namespace UnitsNet.Serialization.JsonNet
     /// </remarks>
     public class UnitsNetJsonConverter : JsonConverter
     {
-        private QuantityFactory _quantityFactory;
+        private readonly QuantityFactory _quantityFactory;
 
         /// <summary>
-        /// Creates a JSON converter using the default Quantity Factory.
+        /// Creates a JSON converter using the default <see cref="QuantityFactory"/>.
         /// </summary>
         public UnitsNetJsonConverter() : this(QuantityFactory.Default)
         {
@@ -35,12 +34,12 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         /// <summary>
-        /// Creates a JSON converter using a supplied quantity factory.
+        /// Creates a JSON converter using the given quantity factory.
         /// </summary>
-        /// <param name="quantityFactory">The quantity factory to use in generating IQuantity types.</param>
+        /// <param name="quantityFactory">The quantity factory to use when constructing IQuantity objects.</param>
         public UnitsNetJsonConverter(QuantityFactory quantityFactory)
         {
-            this._quantityFactory = quantityFactory;
+            _quantityFactory = quantityFactory;
         }
 
         /// <summary>
@@ -88,7 +87,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         private IQuantity ParseValueUnit(ValueUnit vu)
         {
-            return _quantityFactory.FromValueAndUnit(vu.Value,vu.Unit);
+            return _quantityFactory.FromValueAndUnit(vu.Value, vu.Unit);
         }
 
         private object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
@@ -161,15 +160,16 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private ValueUnit ToValueUnit(IQuantity value)
+        private static ValueUnit ToValueUnit(IQuantity value)
         {
-            string unitTypeName = _quantityFactory.UnitTypeName(value);
+            // Example: "Length"
+            var quantityName = value.QuantityInfo.Name;
 
             return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
                 Value = value.Value,
-                Unit = $"{unitTypeName}Unit.{value.Unit}"
+                Unit = $"{quantityName}Unit.{value.Unit}"
             };
         }
 
@@ -204,7 +204,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
 
             return objectType.Namespace != null &&
-                (_quantityFactory.CanBuild(objectType) ||
+                (_quantityFactory.IsQuantityTypeConfigured(objectType) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));

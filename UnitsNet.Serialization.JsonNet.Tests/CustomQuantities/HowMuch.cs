@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 using Newtonsoft.Json;
 
 namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
@@ -22,7 +21,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
             Info = new QuantityInfo<HowMuchUnit>
             (
                 QuantityType.Ratio,
-                new UnitInfo<HowMuchUnit>[]
+                new[]
                 {
                     new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
                     new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
@@ -35,11 +34,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
 
         }
 
-        public double As(HowMuchUnit unit)
+        double IQuantity<HowMuchUnit>.As(HowMuchUnit unit)
         {
             return As(unit);
         }
-        
+
         QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo => Info;
 
         public HowMuchUnit Unit { get; }
@@ -50,9 +49,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
             return new HowMuch((double)value,fromUnit);
         }
 
-        public static HowMuchUnit BaseUnit { get; } 
+        public static HowMuchUnit BaseUnit { get; }
         public static HowMuch Zero { get; } = new HowMuch(0, BaseUnit);
-        
+
 
         public QuantityType Type => QuantityType.Ratio;
         public static BaseDimensions BaseDimensions => BaseDimensions.Dimensionless;

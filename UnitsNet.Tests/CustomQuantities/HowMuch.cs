@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomQuantities
             Info = new QuantityInfo<HowMuchUnit>
             (
                 QuantityType.Ratio,
-                new UnitInfo<HowMuchUnit>[]
+                new[]
                 {
                     new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
                     new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             return Value;
         }
-        
+
         QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo => Info;
 
         public static HowMuch From(QuantityValue value, HowMuchUnit fromUnit)
@@ -49,9 +49,9 @@ namespace UnitsNet.Tests.CustomQuantities
             return new HowMuch((double)value,fromUnit);
         }
 
-        public static HowMuchUnit BaseUnit { get; } 
+        public static HowMuchUnit BaseUnit { get; }
         public static HowMuch Zero { get; } = new HowMuch(0, BaseUnit);
-        
+
         public QuantityType Type => QuantityType.Ratio;
         public static BaseDimensions BaseDimensions => BaseDimensions.Dimensionless;
         public BaseDimensions Dimensions => BaseDimensions;
