@@ -182,6 +182,7 @@ namespace UnitsNet
         public bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
         {
             var tryCreateFunc = _customQuantityOptions?.TryCreate;
+
             return tryCreateFunc != null
                 ? tryCreateFunc(value, unit, out quantity)
                 : Quantity.TryFrom(value, unit, out quantity);
