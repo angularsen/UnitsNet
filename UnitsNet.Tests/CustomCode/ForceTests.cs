@@ -12,6 +12,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsForceInOneNewton => 0.101972;
 
+        protected override double KilopoundsForceInOneNewton => 0.22481e-3;
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
