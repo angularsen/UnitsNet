@@ -558,6 +558,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.KiloPond, q => q.ToUnit(ForceUnit.KiloPond));
             unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, Force.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.KilopoundForce, q => q.ToUnit(ForceUnit.KilopoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.Meganewton, q => q.ToUnit(ForceUnit.Meganewton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.Micronewton, q => q.ToUnit(ForceUnit.Micronewton));
