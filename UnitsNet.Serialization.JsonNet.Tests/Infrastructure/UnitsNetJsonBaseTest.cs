@@ -7,27 +7,27 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
 {
     public abstract class UnitsNetJsonBaseTest
     {
-        private readonly JsonSerializerSettings jsonSerializerSettings;
+        private readonly JsonSerializerSettings _jsonSerializerSettings;
 
         protected UnitsNetJsonBaseTest()
         {
-            jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
-            jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
+            _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
+            _jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+            _jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
         }
 
         protected string SerializeObject(object obj, TypeNameHandling typeNameHandling = TypeNameHandling.None)
         {
-            jsonSerializerSettings.TypeNameHandling = typeNameHandling;
+            _jsonSerializerSettings.TypeNameHandling = typeNameHandling;
 
-            return JsonConvert.SerializeObject(obj, jsonSerializerSettings).Replace("\r\n", "\n");
+            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
         }
 
         protected T DeserializeObject<T>(string json, TypeNameHandling typeNameHandling = TypeNameHandling.None)
         {
-            jsonSerializerSettings.TypeNameHandling = typeNameHandling;
+            _jsonSerializerSettings.TypeNameHandling = typeNameHandling;
 
-            return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
         }
     }
 }
