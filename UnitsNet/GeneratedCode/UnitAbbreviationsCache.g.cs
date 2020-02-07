@@ -1000,7 +1000,7 @@ namespace UnitsNet
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.MeganewtonMeterPerRadian, new string[]{"MN·m/rad", "MNm/rad"}),
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.NewtonMeterPerRadian, new string[]{"N·m/rad", "Nm/rad"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, new string[]{"kN·m/rad/m", "kNm/rad/m"}),
-                ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, new string[]{"kipf·ft/deg/ft"}),
+                ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, new string[]{"kipf·ft/°/ft", "kip·ft/°/ft", "k·ft/°/ft", "kipf·ft/deg/ft", "kip·ft/deg/ft", "k·ft/deg/ft"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, new string[]{"MN·m/rad/m", "MNm/rad/m"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, new string[]{"N·m/rad/m", "Nm/rad/m"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, new string[]{"lbf·ft/deg/ft"}),
