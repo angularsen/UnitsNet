@@ -92,7 +92,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kipf/ft" ]
+          "Abbreviations": [ "kipf/ft", "kip/ft", "k/ft" ]
         }
       ]
     }

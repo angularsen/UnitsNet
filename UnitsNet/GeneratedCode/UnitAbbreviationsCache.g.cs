@@ -397,7 +397,7 @@ namespace UnitsNet
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilogramForcePerMeter, new string[]{"kgf/m"}),
                 ("ru-RU", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilogramForcePerMeter, new string[]{"кгс/м"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilonewtonPerMeter, new string[]{"kN/m"}),
-                ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilopoundForcePerFoot, new string[]{"kipf/ft"}),
+                ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilopoundForcePerFoot, new string[]{"kipf/ft", "kip/ft", "k/ft"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MeganewtonPerMeter, new string[]{"MN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MicronewtonPerMeter, new string[]{"µN/m"}),
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MillinewtonPerMeter, new string[]{"mN/m"}),
