@@ -25,11 +25,15 @@ namespace UnitsNet.Serialization.JsonNet
 
         /// <summary>
         /// Serialize an IComparable to JSON.
-        /// Not used.
+        /// Not implemented. Instead <see cref="UnitsNetIQuantityJsonConverter.WriteJson(JsonWriter, IQuantity, JsonSerializer)"/> is always used to serialize an IComparable when it is a UnitsNet quantity.
         /// </summary>
         /// <param name="writer">The writer to use</param>
         /// <param name="value">The value to serialize</param>
         /// <param name="serializer">The serializer to use</param>
+        /// <remarks>
+        /// Because this converter should only be used in combination with the <see cref="UnitsNetIQuantityJsonConverter"/>, the WriteJson method of that converter will always be used
+        /// to serialize an IComparable in the context of UnitsNet.
+        /// JsonNet is capable of serializing any IComparable implementation.</remarks>
         public override void WriteJson(JsonWriter writer, IComparable value, JsonSerializer serializer)
         {
             throw new NotImplementedException("Serialization of IComparable is handled by default serialization");

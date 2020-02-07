@@ -12,29 +12,29 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetIComparableJsonConverterTest
     {
-        private UnitsNetIComparableJsonConverter sut;
+        private UnitsNetIComparableJsonConverter _sut;
 
         public UnitsNetIComparableJsonConverterTest()
         {
-            sut = new UnitsNetIComparableJsonConverter();
+            _sut = new UnitsNetIComparableJsonConverter();
         }
 
         [Fact]
         public void UnitsNetIComparableJsonConverter_CanWrite_returns_false()
         {
-            Assert.False(sut.CanWrite);
+            Assert.False(_sut.CanWrite);
         }
 
         [Fact]
         public void UnitsNetIComparableJsonConverter_WriteJson_throws_NotImplementedException()
         {
-            Assert.Throws<NotImplementedException>(() => sut.WriteJson(null, null, null));
+            Assert.Throws<NotImplementedException>(() => _sut.WriteJson(null, null, null));
         }
 
         [Fact]
         public void UnitsNetIComparableJsonConverter_CanRead_returns_true()
         {
-            Assert.True(sut.CanRead);
+            Assert.True(_sut.CanRead);
         }
 
         public static IEnumerable<object[]> ReadJson_NullArguments => new[]
@@ -47,7 +47,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [MemberData(nameof(ReadJson_NullArguments))]
         public void UnitsNetIComparableJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
+            var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
 
             Assert.Equal($"Value cannot be null.\r\nParameter name: {paramName}", exception.Message);
         }
@@ -60,7 +60,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var stringReader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(stringReader))
             {
-                var result = sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
+                var result = _sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
 
                 Assert.Null(result);
             }
@@ -76,7 +76,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using (var stringReader = new StringReader(json))
                 using(var jsonReader = new JsonTextReader(stringReader))
                 {
-                    result = sut.ReadJson(jsonReader, typeof(TestObjectWithValueAsIComparable), null, false, JsonSerializer.CreateDefault());
+                    result = _sut.ReadJson(jsonReader, typeof(TestObjectWithValueAsIComparable), null, false, JsonSerializer.CreateDefault());
                 }
 
             Assert.NotNull(result);
@@ -94,7 +94,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var jsonReader = new JsonTextReader(stringReader))
             {
                 var serializer = JsonSerializer.Create(new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.Auto});
-                result = sut.ReadJson(jsonReader, typeof(IComparable), null, false, serializer);
+                result = _sut.ReadJson(jsonReader, typeof(IComparable), null, false, serializer);
             }
 
             Assert.NotNull(result);
@@ -112,7 +112,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var jsonReader = new JsonTextReader(stringReader))
             {
                 var serializer = JsonSerializer.Create(new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.Auto});
-                result = sut.ReadJson(jsonReader, typeof(IComparable), null, false, serializer);
+                result = _sut.ReadJson(jsonReader, typeof(IComparable), null, false, serializer);
             }
 
             Assert.NotNull(result);

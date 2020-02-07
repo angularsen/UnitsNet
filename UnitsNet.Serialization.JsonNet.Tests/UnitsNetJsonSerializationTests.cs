@@ -9,125 +9,125 @@ namespace UnitsNet.Serialization.JsonNet.Tests
     public sealed class UnitsNetJsonSerializationTests : UnitsNetJsonBaseTest
     {
         [Fact]
-            public void Information_CanSerializeVeryLargeValues()
+        public void Information_CanSerializeVeryLargeValues()
+        {
+            Information i = Information.FromExabytes(1E+9);
+            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0\n}";
+
+            string json = SerializeObject(i);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
+        public void Mass_ExpectConstructedValueAndUnit()
+        {
+            Mass mass = Mass.FromPounds(200);
+            var expectedJson = "{\n  \"Unit\": \"MassUnit.Pound\",\n  \"Value\": 200.0\n}";
+
+            string json = SerializeObject(mass);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
+        public void Information_ExpectConstructedValueAndUnit()
+        {
+            Information quantity = Information.FromKilobytes(54);
+            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0\n}";
+
+            string json = SerializeObject(quantity);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
+        public void NonNullNullableValue_ExpectJsonUnaffected()
+        {
+            Mass? nullableMass = Mass.FromKilograms(10);
+            var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 10.0\n}";
+
+            string json = SerializeObject(nullableMass);
+
+            // There shouldn't be any change in the JSON for the non-null nullable value.
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
+        public void NonNullNullableValueNestedInObject_ExpectJsonUnaffected()
+        {
+            var testObj = new TestObject()
             {
-                Information i = Information.FromExabytes(1E+9);
-                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0\n}";
+                NullableFrequency = Frequency.FromHertz(10),
+                NonNullableFrequency = Frequency.FromHertz(10)
+            };
 
-                string json = SerializeObject(i);
+            // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
+            //  on the build server (i.e. the build server uses '\r' instead of '\n')
+            string expectedJson = "{\n" +
+                                  "  \"NullableFrequency\": {\n" +
+                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "    \"Value\": 10.0\n" +
+                                  "  },\n" +
+                                  "  \"NonNullableFrequency\": {\n" +
+                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "    \"Value\": 10.0\n" +
+                                  "  }\n" +
+                                  "}";
 
-                Assert.Equal(expectedJson, json);
-            }
+            string json = SerializeObject(testObj);
 
-            [Fact]
-            public void Mass_ExpectConstructedValueAndUnit()
-            {
-                Mass mass = Mass.FromPounds(200);
-                var expectedJson = "{\n  \"Unit\": \"MassUnit.Pound\",\n  \"Value\": 200.0\n}";
+            Assert.Equal(expectedJson, json);
+        }
 
-                string json = SerializeObject(mass);
+        [Fact]
+        public void NullValue_ExpectJsonContainsNullString()
+        {
+            string json = SerializeObject(null);
+            Assert.Equal("null", json);
+        }
 
-                Assert.Equal(expectedJson, json);
-            }
+        [Fact]
+        public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
+        {
+            Ratio ratio = Ratio.FromPartsPerThousand(250);
+            var expectedJson = "{\n  \"Unit\": \"RatioUnit.PartPerThousand\",\n  \"Value\": 250.0\n}";
 
-            [Fact]
-            public void Information_ExpectConstructedValueAndUnit()
-            {
-                Information quantity = Information.FromKilobytes(54);
-                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0\n}";
+            string json = SerializeObject(ratio);
 
-                string json = SerializeObject(quantity);
+            Assert.Equal(expectedJson, json);
+        }
 
-                Assert.Equal(expectedJson, json);
-            }
+        [Fact]
+        public void ArrayValue_ExpectJsonArray()
+        {
+            Frequency[] testObj = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
 
-            [Fact]
-            public void NonNullNullableValue_ExpectJsonUnaffected()
-            {
-                Mass? nullableMass = Mass.FromKilograms(10);
-                var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 10.0\n}";
+            string expectedJson = "[\n" +
+                                  "  {\n" +
+                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "    \"Value\": 10.0\n" +
+                                  "  },\n" +
+                                  "  {\n" +
+                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "    \"Value\": 10.0\n" +
+                                  "  }\n" +
+                                  "]";
 
-                string json = SerializeObject(nullableMass);
+            string json = SerializeObject(testObj);
 
-                // There shouldn't be any change in the JSON for the non-null nullable value.
-                Assert.Equal(expectedJson, json);
-            }
+            Assert.Equal(expectedJson, json);
+        }
 
-            [Fact]
-            public void NonNullNullableValueNestedInObject_ExpectJsonUnaffected()
-            {
-                var testObj = new TestObject()
-                {
-                    NullableFrequency = Frequency.FromHertz(10),
-                    NonNullableFrequency = Frequency.FromHertz(10)
-                };
+        [Fact]
+        public void EmptyArrayValue_ExpectJsonArray()
+        {
+            Frequency[] testObj = new Frequency[0];
 
-                // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
-                //  on the build server (i.e. the build server uses '\r' instead of '\n')
-                string expectedJson = "{\n" +
-                                      "  \"NullableFrequency\": {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  },\n" +
-                                      "  \"NonNullableFrequency\": {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  }\n" +
-                                      "}";
+            string expectedJson = "[]";
 
-                string json = SerializeObject(testObj);
-
-                Assert.Equal(expectedJson, json);
-            }
-
-            [Fact]
-            public void NullValue_ExpectJsonContainsNullString()
-            {
-                string json = SerializeObject(null);
-                Assert.Equal("null", json);
-            }
-
-            [Fact]
-            public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
-            {
-                Ratio ratio = Ratio.FromPartsPerThousand(250);
-                var expectedJson = "{\n  \"Unit\": \"RatioUnit.PartPerThousand\",\n  \"Value\": 250.0\n}";
-
-                string json = SerializeObject(ratio);
-
-                Assert.Equal(expectedJson, json);
-            }
-
-            [Fact]
-            public void ArrayValue_ExpectJsonArray()
-            {
-                Frequency[] testObj = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
-
-                string expectedJson = "[\n" +
-                                      "  {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  },\n" +
-                                      "  {\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                      "    \"Value\": 10.0\n" +
-                                      "  }\n" +
-                                      "]";
-
-                string json = SerializeObject(testObj);
-
-                Assert.Equal(expectedJson, json);
-            }
-
-            [Fact]
-            public void EmptyArrayValue_ExpectJsonArray()
-            {
-                Frequency[] testObj = new Frequency[0];
-
-                string expectedJson = "[]";
-
-                string json = SerializeObject(testObj);
-                Assert.Equal(expectedJson, json);
-            }
+            string json = SerializeObject(testObj);
+            Assert.Equal(expectedJson, json);
+        }
     }
 }

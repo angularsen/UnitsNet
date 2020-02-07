@@ -13,7 +13,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// Base converter for serializing and deserializing UnitsNet types to and from JSON.
     /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
          /// <summary>

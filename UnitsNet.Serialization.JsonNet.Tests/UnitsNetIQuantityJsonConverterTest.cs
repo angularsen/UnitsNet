@@ -13,17 +13,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetIQuantityJsonConverterTest
     {
-        private UnitsNetIQuantityJsonConverter sut;
+        private UnitsNetIQuantityJsonConverter _sut;
 
         public UnitsNetIQuantityJsonConverterTest()
         {
-            sut = new UnitsNetIQuantityJsonConverter();
+            _sut = new UnitsNetIQuantityJsonConverter();
         }
 
         [Fact]
         public void UnitsNetIQuantityJsonConverter_CanWrite_returns_true()
         {
-            Assert.True(sut.CanWrite);
+            Assert.True(_sut.CanWrite);
         }
 
         public static IEnumerable<object[]> WriteJson_NullArguments => new []
@@ -37,7 +37,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         public void
             UnitsNetIQuantityJsonConverter_WriteJson_throws_ArgumentNullException_when_arguments_are_null(JsonWriter writer, JsonSerializer serializer, string parameterName)
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => sut.WriteJson(writer, Power.FromWatts(10D), serializer));
+            var exception = Assert.Throws<ArgumentNullException>(() => _sut.WriteJson(writer, Power.FromWatts(10D), serializer));
 
             Assert.Equal($"Value cannot be null.\r\nParameter name: {parameterName}", exception.Message);
         }
@@ -49,7 +49,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var stringWriter = new StringWriter(result))
             using (var writer = new JsonTextWriter(stringWriter))
             {
-                sut.WriteJson(writer, null, JsonSerializer.CreateDefault());
+                _sut.WriteJson(writer, null, JsonSerializer.CreateDefault());
             }
 
             Assert.Equal("null", result.ToString());
@@ -63,7 +63,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using (var stringWriter = new StringWriter(result))
                 using(var writer = new JsonTextWriter(stringWriter))
             {
-                sut.WriteJson(writer, Power.FromWatts(10.2365D), JsonSerializer.CreateDefault());
+                _sut.WriteJson(writer, Power.FromWatts(10.2365D), JsonSerializer.CreateDefault());
             }
 
             Assert.Equal("{\"Unit\":\"PowerUnit.Watt\",\"Value\":10.2365}", result.ToString());
@@ -72,7 +72,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Fact]
         public void UnitsNetIQuantityJsonConverter_CanRead_returns_true()
         {
-            Assert.True(sut.CanRead);
+            Assert.True(_sut.CanRead);
         }
 
         public static IEnumerable<object[]> ReadJson_NullArguments => new[]
@@ -85,7 +85,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [MemberData(nameof(ReadJson_NullArguments))]
         public void UnitsNetIQuantityJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
+            var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
 
             Assert.Equal($"Value cannot be null.\r\nParameter name: {paramName}", exception.Message);
         }
@@ -98,7 +98,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var stringReader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(stringReader))
             {
-                var result = sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
+                var result = _sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
 
                 Assert.Null(result);
             }
@@ -114,7 +114,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using(var stringReader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(stringReader))
             {
-                result = sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
+                result = _sut.ReadJson(jsonReader, typeof(IQuantity), null, false, JsonSerializer.CreateDefault());
             }
 
             Assert.NotNull(result);
