@@ -997,7 +997,7 @@ namespace UnitsNet
                 ("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerSecond, new string[]{"r/s"}),
                 ("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerSecond, new string[]{"об/с"}),
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.KilonewtonMeterPerRadian, new string[]{"kN·m/rad", "kNm/rad"}),
-                ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.KilopoundForceFootPerDegrees, new string[]{"kipf·ft/deg"}),
+                ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.KilopoundForceFootPerDegrees, new string[]{"kipf·ft/°", "kip·ft/°g", "k·ft/°", "kipf·ft/deg", "kip·ft/deg", "k·ft/deg"}),
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.MeganewtonMeterPerRadian, new string[]{"MN·m/rad", "MNm/rad"}),
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.NewtonMeterPerRadian, new string[]{"N·m/rad", "Nm/rad"}),
                 ("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.PoundForceFootPerDegrees, new string[]{"lbf·ft/deg"}),

@@ -41,7 +41,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kipf·ft/deg" ]
+          "Abbreviations": [ "kipf·ft/°", "kip·ft/°g", "k·ft/°", "kipf·ft/deg", "kip·ft/deg", "k·ft/deg" ]
         }
       ]
     }

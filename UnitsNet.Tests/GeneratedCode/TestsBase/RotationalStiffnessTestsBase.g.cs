@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian).ToString());
-                Assert.Equal("1 kipf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString());
+                Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString());
                 Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString());
                 Assert.Equal("1 N·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString());
                 Assert.Equal("1 lbf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFootPerDegrees).ToString());
@@ -358,7 +358,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 kN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian).ToString(swedishCulture));
-            Assert.Equal("1 kipf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString(swedishCulture));
+            Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString(swedishCulture));
             Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString(swedishCulture));
             Assert.Equal("1 N·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString(swedishCulture));
             Assert.Equal("1 lbf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFootPerDegrees).ToString(swedishCulture));
