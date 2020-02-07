@@ -61,6 +61,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.FromNewtonsPerMeter(2), 2.NewtonsPerMeter());
 
         [Fact]
+        public void NumberToNewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromNewtonsPerMillimeter(2), 2.NewtonsPerMillimeter());
+
+        [Fact]
         public void NumberToPoundsForcePerFootTest() =>
             Assert.Equal(ForcePerLength.FromPoundsForcePerFoot(2), 2.PoundsForcePerFoot());
 
