@@ -29,12 +29,20 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(2), 2.KilonewtonMetersPerRadianPerMeter());
 
         [Fact]
+        public void NumberToKilopoundForceFeetPerDegreesPerFeetTest() =>
+            Assert.Equal(RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(2), 2.KilopoundForceFeetPerDegreesPerFeet());
+
+        [Fact]
         public void NumberToMeganewtonMetersPerRadianPerMeterTest() =>
             Assert.Equal(RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(2), 2.MeganewtonMetersPerRadianPerMeter());
 
         [Fact]
         public void NumberToNewtonMetersPerRadianPerMeterTest() =>
             Assert.Equal(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2), 2.NewtonMetersPerRadianPerMeter());
+
+        [Fact]
+        public void NumberToPoundForceFeetPerDegreesPerFeetTest() =>
+            Assert.Equal(RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(2), 2.PoundForceFeetPerDegreesPerFeet());
 
     }
 }

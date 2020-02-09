@@ -27,8 +27,10 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         KilonewtonMeterPerRadianPerMeter,
+        KilopoundForceFootPerDegreesPerFoot,
         MeganewtonMeterPerRadianPerMeter,
         NewtonMeterPerRadianPerMeter,
+        PoundForceFootPerDegreesPerFoot,
     }
 
     #pragma warning restore 1591

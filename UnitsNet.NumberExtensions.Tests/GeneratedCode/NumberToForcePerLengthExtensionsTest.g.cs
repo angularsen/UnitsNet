@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.FromKilonewtonsPerMeter(2), 2.KilonewtonsPerMeter());
 
         [Fact]
+        public void NumberToKilopoundsForcePerFootTest() =>
+            Assert.Equal(ForcePerLength.FromKilopoundsForcePerFoot(2), 2.KilopoundsForcePerFoot());
+
+        [Fact]
         public void NumberToMeganewtonsPerMeterTest() =>
             Assert.Equal(ForcePerLength.FromMeganewtonsPerMeter(2), 2.MeganewtonsPerMeter());
 
