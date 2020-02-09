@@ -42,6 +42,10 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
         public static ForcePerLength KilonewtonsPerMeter<T>(this T value) =>
             ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(UnitsNet.QuantityValue)" />
+        public static ForcePerLength KilopoundsForcePerFoot<T>(this T value) =>
+            ForcePerLength.FromKilopoundsForcePerFoot(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter<T>(this T value) =>
             ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
