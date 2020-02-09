@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecinewtonsPerMeterInOneNewtonPerMeter => 1E1;
         protected override double KilogramsForcePerMeterInOneNewtonPerMeter => 0.101972;
         protected override double KilonewtonsPerMeterInOneNewtonPerMeter => 1E-3;
+        protected override double KilopoundsForcePerFootInOneNewtonPerMeter => 6.8521766E-5;
         protected override double MicronewtonsPerMeterInOneNewtonPerMeter => 1E6;
         protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
         protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;

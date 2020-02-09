@@ -20,7 +20,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "NewtonPerMillimeter",
       "PluralName": "NewtonsPerMillimeter",
       "FromUnitToBaseFunc": "x*1e3",
@@ -81,6 +81,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf/yd" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForcePerFoot",
+      "PluralName": "KilopoundsForcePerFoot",
+      "FromUnitToBaseFunc": "x*14593.90292",
+      "FromBaseToUnitFunc": "x/14593.90292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf/ft", "kip/ft", "k/ft" ]
         }
       ]
     }

@@ -604,6 +604,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilogramForcePerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.KilonewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.KilonewtonPerMeter));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilonewtonPerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.KilopoundForcePerFoot, q => q.ToUnit(ForcePerLengthUnit.KilopoundForcePerFoot));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilopoundForcePerFoot, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.MeganewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.MeganewtonPerMeter));
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MeganewtonPerMeter, ForcePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLength.BaseUnit, ForcePerLengthUnit.MicronewtonPerMeter, q => q.ToUnit(ForcePerLengthUnit.MicronewtonPerMeter));
