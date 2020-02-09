@@ -46,6 +46,10 @@ namespace UnitsNet.NumberExtensions.NumberToForce
         public static Force KiloPonds<T>(this T value) =>
             Force.FromKiloPonds(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Force.FromKilopoundsForce(UnitsNet.QuantityValue)" />
+        public static Force KilopoundsForce<T>(this T value) =>
+            Force.FromKilopoundsForce(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Force.FromMeganewtons(UnitsNet.QuantityValue)" />
         public static Force Meganewtons<T>(this T value) =>
             Force.FromMeganewtons(Convert.ToDouble(value));

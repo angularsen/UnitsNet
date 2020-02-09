@@ -156,11 +156,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kipf" ]
+          "Abbreviations": [ "kipf", "kip", "k" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кипф" ]
+          "Abbreviations": [ "кипф", "койка", "К" ]
         }
       ]
     }
