@@ -161,6 +161,11 @@ namespace UnitsNet
         public double KilonewtonMetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
 
         /// <summary>
+        ///     Get RotationalStiffness in KilopoundForceFeetPerDegrees.
+        /// </summary>
+        public double KilopoundForceFeetPerDegrees => As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+
+        /// <summary>
         ///     Get RotationalStiffness in MeganewtonMetersPerRadian.
         /// </summary>
         public double MeganewtonMetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
@@ -169,6 +174,11 @@ namespace UnitsNet
         ///     Get RotationalStiffness in NewtonMetersPerRadian.
         /// </summary>
         public double NewtonMetersPerRadian => As(RotationalStiffnessUnit.NewtonMeterPerRadian);
+
+        /// <summary>
+        ///     Get RotationalStiffness in PoundForceFeetPerDegrees.
+        /// </summary>
+        public double PoundForceFeetPerDegrees => As(RotationalStiffnessUnit.PoundForceFootPerDegrees);
 
         #endregion
 
@@ -211,6 +221,16 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         }
         /// <summary>
+        ///     Get RotationalStiffness from KilopoundForceFeetPerDegrees.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double kilopoundforcefeetperdegrees)
+        {
+            double value = (double) kilopoundforcefeetperdegrees;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+        }
+        /// <summary>
         ///     Get RotationalStiffness from MeganewtonMetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -229,6 +249,16 @@ namespace UnitsNet
         {
             double value = (double) newtonmetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
+        }
+        /// <summary>
+        ///     Get RotationalStiffness from PoundForceFeetPerDegrees.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static RotationalStiffness FromPoundForceFeetPerDegrees(double poundforcefeetperdegrees)
+        {
+            double value = (double) poundforcefeetperdegrees;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegrees);
         }
 
         /// <summary>
@@ -522,8 +552,10 @@ namespace UnitsNet
             switch(Unit)
             {
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return _value*77682.6;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
                 case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
+                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return _value*77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -539,8 +571,10 @@ namespace UnitsNet
             switch(unit)
             {
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (baseUnitValue) / 1e3d;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return baseUnitValue/77682.6;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (baseUnitValue) / 1e6d;
                 case RotationalStiffnessUnit.NewtonMeterPerRadian: return baseUnitValue;
+                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return baseUnitValue/77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
