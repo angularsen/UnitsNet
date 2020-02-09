@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet", "UnitsNet\UnitsNet.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
@@ -13,9 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen", "CodeGen\CodeGen.csproj", "{078E3D44-4F60-46B3-9099-91A7CBF0B213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGen", "CodeGen\CodeGen.csproj", "{078E3D44-4F60-46B3-9099-91A7CBF0B213}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions", "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj", "{41763DBA-0F2D-40D2-853C-2CBF719C7208}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

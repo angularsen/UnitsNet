@@ -28,6 +28,8 @@ namespace UnitsNet.Tests.CustomCode
     public class RotationalStiffnessTests : RotationalStiffnessTestsBase
     {
         protected override double NewtonMetersPerRadianInOneNewtonMeterPerRadian => 1;
+        protected override double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian => 0.0128729;
+        protected override double KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian => 0.0128729e-3;
         protected override double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian => 1e-6;
         protected override double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian => 1e-3;
     }
