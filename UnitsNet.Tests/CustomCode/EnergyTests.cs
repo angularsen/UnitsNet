@@ -13,12 +13,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override double JoulesInOneJoule => 1;
 
         protected override double KilobritishThermalUnitsInOneJoule => 9.4781712e-7;
-
+        protected override double KiloelectronVoltsInOneJoule => 6.24150934326018E+15;
         protected override double KilojoulesInOneJoule => 1E-3;
 
         protected override double MegabritishThermalUnitsInOneJoule => 9.4781712e-10;
 
         protected override double MegacaloriesInOneJoule => 0.239005736e-6;
+        protected override double MegaelectronVoltsInOneJoule => 6241509343260.18;
 
         protected override double MegajoulesInOneJoule => 1E-6;
 
@@ -37,6 +38,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ErgsInOneJoule => 10000000;
 
         protected override double MillijoulesInOneJoule => 1000;
+        protected override double TeraelectronVoltsInOneJoule => 6241509.34326018;
 
         protected override double TerawattHoursInOneJoule => 2.77777778e-16;
 
@@ -45,6 +47,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double FootPoundsInOneJoule => 0.737562149;
 
         protected override double GigabritishThermalUnitsInOneJoule => 9.4781712e-13;
+        protected override double GigaelectronVoltsInOneJoule => 6241506479.9632;
 
         protected override double GigajoulesInOneJoule => 1e-9;
 
