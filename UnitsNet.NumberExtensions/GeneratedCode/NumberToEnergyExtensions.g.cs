@@ -62,6 +62,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy GigabritishThermalUnits<T>(this T value) =>
             Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromGigaelectronVolts(UnitsNet.QuantityValue)" />
+        public static Energy GigaelectronVolts<T>(this T value) =>
+            Energy.FromGigaelectronVolts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromGigajoules(UnitsNet.QuantityValue)" />
         public static Energy Gigajoules<T>(this T value) =>
             Energy.FromGigajoules(Convert.ToDouble(value));
@@ -82,6 +86,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Kilocalories<T>(this T value) =>
             Energy.FromKilocalories(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromKiloelectronVolts(UnitsNet.QuantityValue)" />
+        public static Energy KiloelectronVolts<T>(this T value) =>
+            Energy.FromKiloelectronVolts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
         public static Energy Kilojoules<T>(this T value) =>
             Energy.FromKilojoules(Convert.ToDouble(value));
@@ -98,6 +106,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Megacalories<T>(this T value) =>
             Energy.FromMegacalories(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromMegaelectronVolts(UnitsNet.QuantityValue)" />
+        public static Energy MegaelectronVolts<T>(this T value) =>
+            Energy.FromMegaelectronVolts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
         public static Energy Megajoules<T>(this T value) =>
             Energy.FromMegajoules(Convert.ToDouble(value));
@@ -109,6 +121,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         /// <inheritdoc cref="Energy.FromMillijoules(UnitsNet.QuantityValue)" />
         public static Energy Millijoules<T>(this T value) =>
             Energy.FromMillijoules(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromTeraelectronVolts(UnitsNet.QuantityValue)" />
+        public static Energy TeraelectronVolts<T>(this T value) =>
+            Energy.FromTeraelectronVolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromTerawattHours(UnitsNet.QuantityValue)" />
         public static Energy TerawattHours<T>(this T value) =>

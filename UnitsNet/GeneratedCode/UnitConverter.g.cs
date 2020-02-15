@@ -502,6 +502,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.FootPound, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.GigabritishThermalUnit, q => q.ToUnit(EnergyUnit.GigabritishThermalUnit));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigabritishThermalUnit, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.GigaelectronVolt, q => q.ToUnit(EnergyUnit.GigaelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigaelectronVolt, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Gigajoule, q => q.ToUnit(EnergyUnit.Gigajoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Gigajoule, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.GigawattHour, q => q.ToUnit(EnergyUnit.GigawattHour));
@@ -511,6 +513,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilobritishThermalUnit, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Kilocalorie, q => q.ToUnit(EnergyUnit.Kilocalorie));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilocalorie, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.KiloelectronVolt, q => q.ToUnit(EnergyUnit.KiloelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KiloelectronVolt, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Kilojoule, q => q.ToUnit(EnergyUnit.Kilojoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilojoule, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.KilowattHour, q => q.ToUnit(EnergyUnit.KilowattHour));
@@ -519,12 +523,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegabritishThermalUnit, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Megacalorie, q => q.ToUnit(EnergyUnit.Megacalorie));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megacalorie, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.MegaelectronVolt, q => q.ToUnit(EnergyUnit.MegaelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegaelectronVolt, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Megajoule, q => q.ToUnit(EnergyUnit.Megajoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megajoule, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.MegawattHour, q => q.ToUnit(EnergyUnit.MegawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattHour, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.Millijoule, q => q.ToUnit(EnergyUnit.Millijoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Millijoule, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.TeraelectronVolt, q => q.ToUnit(EnergyUnit.TeraelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TeraelectronVolt, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.TerawattHour, q => q.ToUnit(EnergyUnit.TerawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattHour, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.ThermEc, q => q.ToUnit(EnergyUnit.ThermEc));
