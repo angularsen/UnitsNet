@@ -57,10 +57,20 @@
       "PluralName": "ElectronVolts",
       "FromUnitToBaseFunc": "x*1.602176565e-19",
       "FromBaseToUnitFunc": "x/1.602176565e-19",
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga",
+        "Tera"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "eV" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "эВ" ]
         }
       ]
     },
