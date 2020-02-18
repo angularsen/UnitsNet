@@ -61,6 +61,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromGigabritishThermalUnits(2), 2.GigabritishThermalUnits());
 
         [Fact]
+        public void NumberToGigaelectronVoltsTest() =>
+            Assert.Equal(Energy.FromGigaelectronVolts(2), 2.GigaelectronVolts());
+
+        [Fact]
         public void NumberToGigajoulesTest() =>
             Assert.Equal(Energy.FromGigajoules(2), 2.Gigajoules());
 
@@ -81,6 +85,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromKilocalories(2), 2.Kilocalories());
 
         [Fact]
+        public void NumberToKiloelectronVoltsTest() =>
+            Assert.Equal(Energy.FromKiloelectronVolts(2), 2.KiloelectronVolts());
+
+        [Fact]
         public void NumberToKilojoulesTest() =>
             Assert.Equal(Energy.FromKilojoules(2), 2.Kilojoules());
 
@@ -97,6 +105,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromMegacalories(2), 2.Megacalories());
 
         [Fact]
+        public void NumberToMegaelectronVoltsTest() =>
+            Assert.Equal(Energy.FromMegaelectronVolts(2), 2.MegaelectronVolts());
+
+        [Fact]
         public void NumberToMegajoulesTest() =>
             Assert.Equal(Energy.FromMegajoules(2), 2.Megajoules());
 
@@ -107,6 +119,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMillijoulesTest() =>
             Assert.Equal(Energy.FromMillijoules(2), 2.Millijoules());
+
+        [Fact]
+        public void NumberToTeraelectronVoltsTest() =>
+            Assert.Equal(Energy.FromTeraelectronVolts(2), 2.TeraelectronVolts());
 
         [Fact]
         public void NumberToTerawattHoursTest() =>

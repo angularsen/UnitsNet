@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Units;
@@ -32,8 +32,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecathermsUsInOneJoule => 9.480434279733486e-10;
 
-        protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
-
         protected override double ErgsInOneJoule => 10000000;
 
         protected override double MillijoulesInOneJoule => 1000;
@@ -59,6 +57,17 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ThermsUsInOneJoule => 9.4804342797334860315281322406817e-9;
 
         protected override double WattHoursInOneJoule => 0.000277777778;
+
+        protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
+
+        protected override double KiloelectronVoltsInOneJoule => 6.2415093433e+15;
+
+        protected override double MegaelectronVoltsInOneJoule => 6.2415093433e+12;
+
+        protected override double GigaelectronVoltsInOneJoule => 6.2415093433e+9;
+
+        protected override double TeraelectronVoltsInOneJoule => 6.2415093433e+6;
+
 
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
