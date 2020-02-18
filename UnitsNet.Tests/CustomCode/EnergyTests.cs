@@ -60,13 +60,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
 
-        protected override double KiloelectronVoltsInOneJoule => ElectronVoltsInOneJoule / 1_000;
+        protected override double KiloelectronVoltsInOneJoule => 6.2415093433e+15;
 
-        protected override double MegaelectronVoltsInOneJoule => ElectronVoltsInOneJoule / 1_000_000;
+        protected override double MegaelectronVoltsInOneJoule => 6.2415093433e+12;
 
-        protected override double GigaelectronVoltsInOneJoule => ElectronVoltsInOneJoule / 1_000_000_000;
+        protected override double GigaelectronVoltsInOneJoule => 6.2415093433e+9;
 
-        protected override double TeraelectronVoltsInOneJoule => ElectronVoltsInOneJoule / 1_000_000_000_000;
+        protected override double TeraelectronVoltsInOneJoule => 6.2415093433e+6;
 
 
         [Fact]
