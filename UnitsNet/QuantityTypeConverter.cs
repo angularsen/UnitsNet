@@ -141,7 +141,7 @@ namespace UnitsNet
         private static TAttribute GetAttribute<TAttribute>(ITypeDescriptorContext context) where TAttribute : UnitAttributeBase
         {
             TAttribute attribute = null;
-            AttributeCollection ua = context?.PropertyDescriptor.Attributes;
+            AttributeCollection ua = context?.PropertyDescriptor?.Attributes;
 
             attribute = (TAttribute)ua?[typeof(TAttribute)];
 
