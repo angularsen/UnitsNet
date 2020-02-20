@@ -53,10 +53,17 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void ForcePerLenghTimesLengthEqualForce()
+        public void ForcePerLengthTimesLengthEqualForce()
         {
             Force force = ForcePerLength.FromNewtonsPerMeter(10) * Length.FromMeters(9);
             Assert.Equal(force, Force.FromNewtons(90));
+        }
+
+        [Fact]
+        public void ForcePerLengthTimesAreaEqualTorque()
+        {
+            Torque torque = ForcePerLength.FromNewtonsPerMeter(10) * Area.FromSquareMeters(9);
+            Assert.Equal(torque, Torque.FromNewtonMeters(90));
         }
     }
 }
