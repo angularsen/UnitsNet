@@ -116,6 +116,23 @@
       ]
     },
     {
+      "SingularName": "WattDay",
+      "PluralName": "WattDays",
+      "FromUnitToBaseFunc": "x*24*3600d",
+      "FromBaseToUnitFunc": "x/(24*3600d)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Вт/д" ]
+        }
+      ]
+    },
+    {
       "SingularName": "ThermEc",
       "PluralName": "ThermsEc",
       "FromUnitToBaseFunc": "x*1.05505585262e8",

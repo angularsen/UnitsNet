@@ -70,6 +70,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Gigajoules<T>(this T value) =>
             Energy.FromGigajoules(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromGigawattDays(UnitsNet.QuantityValue)" />
+        public static Energy GigawattDays<T>(this T value) =>
+            Energy.FromGigawattDays(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
         public static Energy GigawattHours<T>(this T value) =>
             Energy.FromGigawattHours(Convert.ToDouble(value));
@@ -94,6 +98,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Kilojoules<T>(this T value) =>
             Energy.FromKilojoules(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromKilowattDays(UnitsNet.QuantityValue)" />
+        public static Energy KilowattDays<T>(this T value) =>
+            Energy.FromKilowattDays(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
         public static Energy KilowattHours<T>(this T value) =>
             Energy.FromKilowattHours(Convert.ToDouble(value));
@@ -114,6 +122,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Megajoules<T>(this T value) =>
             Energy.FromMegajoules(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromMegawattDays(UnitsNet.QuantityValue)" />
+        public static Energy MegawattDays<T>(this T value) =>
+            Energy.FromMegawattDays(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
         public static Energy MegawattHours<T>(this T value) =>
             Energy.FromMegawattHours(Convert.ToDouble(value));
@@ -125,6 +137,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(UnitsNet.QuantityValue)" />
         public static Energy TeraelectronVolts<T>(this T value) =>
             Energy.FromTeraelectronVolts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromTerawattDays(UnitsNet.QuantityValue)" />
+        public static Energy TerawattDays<T>(this T value) =>
+            Energy.FromTerawattDays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromTerawattHours(UnitsNet.QuantityValue)" />
         public static Energy TerawattHours<T>(this T value) =>
@@ -141,6 +157,10 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
         public static Energy ThermsUs<T>(this T value) =>
             Energy.FromThermsUs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromWattDays(UnitsNet.QuantityValue)" />
+        public static Energy WattDays<T>(this T value) =>
+            Energy.FromWattDays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
         public static Energy WattHours<T>(this T value) =>
