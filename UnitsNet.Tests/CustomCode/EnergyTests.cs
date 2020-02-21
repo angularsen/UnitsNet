@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Units;
@@ -38,6 +38,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TerawattHoursInOneJoule => 2.77777778e-16;
 
+        protected override double TerawattDaysInOneJoule => 1.157407407407410E-17;
+
         protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
 
         protected override double FootPoundsInOneJoule => 0.737562149;
@@ -48,15 +50,23 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GigawattHoursInOneJoule => 2.77777778e-13;
 
+        protected override double GigawattDaysInOneJoule => 1.157407407407410E-14;
+
         protected override double KilocaloriesInOneJoule => 0.00023900573614;
 
         protected override double KilowattHoursInOneJoule => 2.77777778e-7;
 
+        protected override double KilowattDaysInOneJoule => 1.157407407407410E-08;
+
         protected override double MegawattHoursInOneJoule => 2.77777778e-10;
+
+        protected override double MegawattDaysInOneJoule => 1.157407407407410E-11;
 
         protected override double ThermsUsInOneJoule => 9.4804342797334860315281322406817e-9;
 
         protected override double WattHoursInOneJoule => 0.000277777778;
+
+        protected override double WattDaysInOneJoule => 1.157407407407410E-05;
 
         protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
 
