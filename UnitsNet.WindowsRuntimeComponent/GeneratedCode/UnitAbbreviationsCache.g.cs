@@ -650,7 +650,7 @@ namespace UnitsNet
                 ("en-US", typeof(MassUnit), (int)MassUnit.Pound, new string[]{"lb", "lbs", "lbm"}),
                 ("ru-RU", typeof(MassUnit), (int)MassUnit.Pound, new string[]{"фунт"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.ShortHundredweight, new string[]{"cwt"}),
-                ("en-US", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"short tn"}),
+                ("en-US", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"short tn", "ST"}),
                 ("ru-RU", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"тонна малая"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.Slug, new string[]{"slug"}),
                 ("en-US", typeof(MassUnit), (int)MassUnit.SolarMass, new string[]{"M⊙"}),
