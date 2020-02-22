@@ -83,7 +83,7 @@ namespace UnitsNet.Tests
             Assertion(3, LapseRateUnit.DegreeCelsiusPerKilometer, Quantity.From(3, LapseRateUnit.DegreeCelsiusPerKilometer));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
-            Assertion(3, LinearDensityUnit.PoundPerFoot, Quantity.From(3, LinearDensityUnit.PoundPerFoot));
+            Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
             Assertion(3, LuminosityUnit.Watt, Quantity.From(3, LuminosityUnit.Watt));
             Assertion(3, LuminousFluxUnit.Lumen, Quantity.From(3, LuminousFluxUnit.Lumen));
             Assertion(3, LuminousIntensityUnit.Candela, Quantity.From(3, LuminousIntensityUnit.Candela));
