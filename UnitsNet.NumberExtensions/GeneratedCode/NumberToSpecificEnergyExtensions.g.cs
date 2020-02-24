@@ -34,6 +34,22 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
         public static SpecificEnergy CaloriesPerGram<T>(this T value) =>
             SpecificEnergy.FromCaloriesPerGram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy GigawattDaysPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromGigawattDaysPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerShortTon(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy GigawattDaysPerShortTon<T>(this T value) =>
+            SpecificEnergy.FromGigawattDaysPerShortTon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy GigawattDaysPerTonne<T>(this T value) =>
+            SpecificEnergy.FromGigawattDaysPerTonne(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy GigawattHoursPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromGigawattHoursPerKilogram(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificEnergy.FromJoulesPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificEnergy JoulesPerKilogram<T>(this T value) =>
             SpecificEnergy.FromJoulesPerKilogram(Convert.ToDouble(value));
@@ -46,6 +62,18 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
         public static SpecificEnergy KilojoulesPerKilogram<T>(this T value) =>
             SpecificEnergy.FromKilojoulesPerKilogram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy KilowattDaysPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromKilowattDaysPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerShortTon(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy KilowattDaysPerShortTon<T>(this T value) =>
+            SpecificEnergy.FromKilowattDaysPerShortTon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy KilowattDaysPerTonne<T>(this T value) =>
+            SpecificEnergy.FromKilowattDaysPerTonne(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificEnergy KilowattHoursPerKilogram<T>(this T value) =>
             SpecificEnergy.FromKilowattHoursPerKilogram(Convert.ToDouble(value));
@@ -54,9 +82,45 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
         public static SpecificEnergy MegajoulesPerKilogram<T>(this T value) =>
             SpecificEnergy.FromMegajoulesPerKilogram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy MegawattDaysPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromMegawattDaysPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerShortTon(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy MegawattDaysPerShortTon<T>(this T value) =>
+            SpecificEnergy.FromMegawattDaysPerShortTon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy MegawattDaysPerTonne<T>(this T value) =>
+            SpecificEnergy.FromMegawattDaysPerTonne(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificEnergy MegawattHoursPerKilogram<T>(this T value) =>
             SpecificEnergy.FromMegawattHoursPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy TerawattDaysPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromTerawattDaysPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerShortTon(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy TerawattDaysPerShortTon<T>(this T value) =>
+            SpecificEnergy.FromTerawattDaysPerShortTon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy TerawattDaysPerTonne<T>(this T value) =>
+            SpecificEnergy.FromTerawattDaysPerTonne(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerKilogram(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy WattDaysPerKilogram<T>(this T value) =>
+            SpecificEnergy.FromWattDaysPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerShortTon(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy WattDaysPerShortTon<T>(this T value) =>
+            SpecificEnergy.FromWattDaysPerShortTon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificEnergy WattDaysPerTonne<T>(this T value) =>
+            SpecificEnergy.FromWattDaysPerTonne(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificEnergy WattHoursPerKilogram<T>(this T value) =>
