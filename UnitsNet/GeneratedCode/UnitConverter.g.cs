@@ -654,6 +654,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Megahertz, q => q.ToUnit(FrequencyUnit.Megahertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, Frequency.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.PerSecond, q => q.ToUnit(FrequencyUnit.PerSecond));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.RadianPerSecond, q => q.ToUnit(FrequencyUnit.RadianPerSecond));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, Frequency.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Terahertz, q => q.ToUnit(FrequencyUnit.Terahertz));

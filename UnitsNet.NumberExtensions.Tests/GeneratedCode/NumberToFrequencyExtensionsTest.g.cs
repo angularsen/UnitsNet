@@ -53,6 +53,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Frequency.FromMegahertz(2), 2.Megahertz());
 
         [Fact]
+        public void NumberToPerSecondTest() =>
+            Assert.Equal(Frequency.FromPerSecond(2), 2.PerSecond());
+
+        [Fact]
         public void NumberToRadiansPerSecondTest() =>
             Assert.Equal(Frequency.FromRadiansPerSecond(2), 2.RadiansPerSecond());
 

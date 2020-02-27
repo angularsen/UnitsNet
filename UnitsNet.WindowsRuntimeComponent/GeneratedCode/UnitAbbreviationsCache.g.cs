@@ -435,6 +435,7 @@ namespace UnitsNet
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Hertz, new string[]{"Hz"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Kilohertz, new string[]{"kHz"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Megahertz, new string[]{"MHz"}),
+                ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.PerSecond, new string[]{"s⁻¹"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.RadianPerSecond, new string[]{"rad/s"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Terahertz, new string[]{"THz"}),
                 ("en-US", typeof(FuelEfficiencyUnit), (int)FuelEfficiencyUnit.KilometerPerLiter, new string[]{"km/L"}),
