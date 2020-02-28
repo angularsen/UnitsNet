@@ -166,6 +166,11 @@ namespace UnitsNet
         public double Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
+        ///     Get Length in Chains.
+        /// </summary>
+        public double Chains => As(LengthUnit.Chain);
+
+        /// <summary>
         ///     Get Length in Decimeters.
         /// </summary>
         public double Decimeters => As(LengthUnit.Decimeter);
@@ -364,6 +369,16 @@ namespace UnitsNet
         {
             double value = (double) centimeters;
             return new Length(value, LengthUnit.Centimeter);
+        }
+        /// <summary>
+        ///     Get Length from Chains.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Length FromChains(double chains)
+        {
+            double value = (double) chains;
+            return new Length(value, LengthUnit.Chain);
         }
         /// <summary>
         ///     Get Length from Decimeters.
@@ -958,6 +973,7 @@ namespace UnitsNet
             {
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
+                case LengthUnit.Chain: return _value*20.1168;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value/236.220472441;
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
@@ -1004,6 +1020,7 @@ namespace UnitsNet
             {
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
+                case LengthUnit.Chain: return baseUnitValue/20.1168;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;

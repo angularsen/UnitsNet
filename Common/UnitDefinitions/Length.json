@@ -351,6 +351,21 @@
           "Abbreviations": [ "R⊙" ]
         }
       ]
+    },
+    {
+      "SingularName": "Chain",
+      "PluralName": "Chains",
+      "BaseUnits": {
+        "L": "Chain"
+      },
+      "FromUnitToBaseFunc": "x*20.1168",
+      "FromBaseToUnitFunc": "x/20.1168",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ch" ]
+        }
+      ]
     }
   ]
 }

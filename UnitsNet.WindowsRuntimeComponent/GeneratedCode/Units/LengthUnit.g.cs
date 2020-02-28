@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
         AstronomicalUnit,
         Centimeter,
+        Chain,
         Decimeter,
         DtpPica,
         DtpPoint,

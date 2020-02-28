@@ -73,6 +73,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
 
+        protected override double ChainsInOneMeter => 0.0497096953789867;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {

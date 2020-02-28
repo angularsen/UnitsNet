@@ -34,6 +34,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length Centimeters<T>(this T value) =>
             Length.FromCentimeters(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromChains(UnitsNet.QuantityValue)" />
+        public static Length Chains<T>(this T value) =>
+            Length.FromChains(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
         public static Length Decimeters<T>(this T value) =>
             Length.FromDecimeters(Convert.ToDouble(value));

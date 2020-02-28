@@ -823,6 +823,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Centimeter, q => q.ToUnit(LengthUnit.Centimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, Length.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Chain, q => q.ToUnit(LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.Decimeter, q => q.ToUnit(LengthUnit.Decimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, Length.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Length>(Length.BaseUnit, LengthUnit.DtpPica, q => q.ToUnit(LengthUnit.DtpPica));
