@@ -17,6 +17,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TerahertzInOneHertz => 1e-12;
 
+        protected override double PerSecondInOneHertz => 1;
+
         protected override double CyclesPerHourInOneHertz => 3600;
 
         protected override double CyclesPerMinuteInOneHertz => 60;

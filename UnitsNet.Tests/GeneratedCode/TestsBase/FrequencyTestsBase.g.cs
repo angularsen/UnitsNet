@@ -43,6 +43,7 @@ namespace UnitsNet.Tests
         protected abstract double HertzInOneHertz { get; }
         protected abstract double KilohertzInOneHertz { get; }
         protected abstract double MegahertzInOneHertz { get; }
+        protected abstract double PerSecondInOneHertz { get; }
         protected abstract double RadiansPerSecondInOneHertz { get; }
         protected abstract double TerahertzInOneHertz { get; }
 
@@ -54,6 +55,7 @@ namespace UnitsNet.Tests
         protected virtual double HertzTolerance { get { return 1e-5; } }
         protected virtual double KilohertzTolerance { get { return 1e-5; } }
         protected virtual double MegahertzTolerance { get { return 1e-5; } }
+        protected virtual double PerSecondTolerance { get { return 1e-5; } }
         protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -124,6 +126,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(HertzInOneHertz, hertz.Hertz, HertzTolerance);
             AssertEx.EqualTolerance(KilohertzInOneHertz, hertz.Kilohertz, KilohertzTolerance);
             AssertEx.EqualTolerance(MegahertzInOneHertz, hertz.Megahertz, MegahertzTolerance);
+            AssertEx.EqualTolerance(PerSecondInOneHertz, hertz.PerSecond, PerSecondTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondInOneHertz, hertz.RadiansPerSecond, RadiansPerSecondTolerance);
             AssertEx.EqualTolerance(TerahertzInOneHertz, hertz.Terahertz, TerahertzTolerance);
         }
@@ -159,13 +162,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity06.Megahertz, MegahertzTolerance);
             Assert.Equal(FrequencyUnit.Megahertz, quantity06.Unit);
 
-            var quantity07 = Frequency.From(1, FrequencyUnit.RadianPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.Equal(FrequencyUnit.RadianPerSecond, quantity07.Unit);
+            var quantity07 = Frequency.From(1, FrequencyUnit.PerSecond);
+            AssertEx.EqualTolerance(1, quantity07.PerSecond, PerSecondTolerance);
+            Assert.Equal(FrequencyUnit.PerSecond, quantity07.Unit);
 
-            var quantity08 = Frequency.From(1, FrequencyUnit.Terahertz);
-            AssertEx.EqualTolerance(1, quantity08.Terahertz, TerahertzTolerance);
-            Assert.Equal(FrequencyUnit.Terahertz, quantity08.Unit);
+            var quantity08 = Frequency.From(1, FrequencyUnit.RadianPerSecond);
+            AssertEx.EqualTolerance(1, quantity08.RadiansPerSecond, RadiansPerSecondTolerance);
+            Assert.Equal(FrequencyUnit.RadianPerSecond, quantity08.Unit);
+
+            var quantity09 = Frequency.From(1, FrequencyUnit.Terahertz);
+            AssertEx.EqualTolerance(1, quantity09.Terahertz, TerahertzTolerance);
+            Assert.Equal(FrequencyUnit.Terahertz, quantity09.Unit);
 
         }
 
@@ -193,6 +200,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(HertzInOneHertz, hertz.As(FrequencyUnit.Hertz), HertzTolerance);
             AssertEx.EqualTolerance(KilohertzInOneHertz, hertz.As(FrequencyUnit.Kilohertz), KilohertzTolerance);
             AssertEx.EqualTolerance(MegahertzInOneHertz, hertz.As(FrequencyUnit.Megahertz), MegahertzTolerance);
+            AssertEx.EqualTolerance(PerSecondInOneHertz, hertz.As(FrequencyUnit.PerSecond), PerSecondTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondInOneHertz, hertz.As(FrequencyUnit.RadianPerSecond), RadiansPerSecondTolerance);
             AssertEx.EqualTolerance(TerahertzInOneHertz, hertz.As(FrequencyUnit.Terahertz), TerahertzTolerance);
         }
@@ -230,6 +238,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegahertzInOneHertz, (double)megahertzQuantity.Value, MegahertzTolerance);
             Assert.Equal(FrequencyUnit.Megahertz, megahertzQuantity.Unit);
 
+            var persecondQuantity = hertz.ToUnit(FrequencyUnit.PerSecond);
+            AssertEx.EqualTolerance(PerSecondInOneHertz, (double)persecondQuantity.Value, PerSecondTolerance);
+            Assert.Equal(FrequencyUnit.PerSecond, persecondQuantity.Unit);
+
             var radianpersecondQuantity = hertz.ToUnit(FrequencyUnit.RadianPerSecond);
             AssertEx.EqualTolerance(RadiansPerSecondInOneHertz, (double)radianpersecondQuantity.Value, RadiansPerSecondTolerance);
             Assert.Equal(FrequencyUnit.RadianPerSecond, radianpersecondQuantity.Unit);
@@ -250,6 +262,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Frequency.FromHertz(hertz.Hertz).Hertz, HertzTolerance);
             AssertEx.EqualTolerance(1, Frequency.FromKilohertz(hertz.Kilohertz).Hertz, KilohertzTolerance);
             AssertEx.EqualTolerance(1, Frequency.FromMegahertz(hertz.Megahertz).Hertz, MegahertzTolerance);
+            AssertEx.EqualTolerance(1, Frequency.FromPerSecond(hertz.PerSecond).Hertz, PerSecondTolerance);
             AssertEx.EqualTolerance(1, Frequency.FromRadiansPerSecond(hertz.RadiansPerSecond).Hertz, RadiansPerSecondTolerance);
             AssertEx.EqualTolerance(1, Frequency.FromTerahertz(hertz.Terahertz).Hertz, TerahertzTolerance);
         }
@@ -398,6 +411,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString());
                 Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString());
                 Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString());
+                Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString());
                 Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString());
                 Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString());
             }
@@ -420,6 +434,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Hz", new Frequency(1, FrequencyUnit.Hertz).ToString(swedishCulture));
             Assert.Equal("1 kHz", new Frequency(1, FrequencyUnit.Kilohertz).ToString(swedishCulture));
             Assert.Equal("1 MHz", new Frequency(1, FrequencyUnit.Megahertz).ToString(swedishCulture));
+            Assert.Equal("1 s⁻¹", new Frequency(1, FrequencyUnit.PerSecond).ToString(swedishCulture));
             Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString(swedishCulture));
             Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString(swedishCulture));
         }

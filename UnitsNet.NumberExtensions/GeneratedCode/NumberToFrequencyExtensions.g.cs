@@ -54,6 +54,10 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
         public static Frequency Megahertz<T>(this T value) =>
             Frequency.FromMegahertz(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Frequency.FromPerSecond(UnitsNet.QuantityValue)" />
+        public static Frequency PerSecond<T>(this T value) =>
+            Frequency.FromPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Frequency.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
         public static Frequency RadiansPerSecond<T>(this T value) =>
             Frequency.FromRadiansPerSecond(Convert.ToDouble(value));

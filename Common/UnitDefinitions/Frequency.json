@@ -67,6 +67,18 @@
           "Abbreviations": [ "bpm" ]
         }
       ]
+    },
+    {
+      "SingularName": "PerSecond",
+      "PluralName": "PerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s⁻¹" ]
+        }
+      ]
     }
   ]
 }
