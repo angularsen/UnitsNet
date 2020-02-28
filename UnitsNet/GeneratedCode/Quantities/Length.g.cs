@@ -52,6 +52,7 @@ namespace UnitsNet
                 new UnitInfo<LengthUnit>[] {
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Chain, new BaseUnits(length: LengthUnit.Chain)),
                     new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
@@ -203,6 +204,11 @@ namespace UnitsNet
         ///     Get Length in Centimeters.
         /// </summary>
         public double Centimeters => As(LengthUnit.Centimeter);
+
+        /// <summary>
+        ///     Get Length in Chains.
+        /// </summary>
+        public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
         ///     Get Length in Decimeters.
@@ -400,6 +406,15 @@ namespace UnitsNet
         {
             double value = (double) centimeters;
             return new Length(value, LengthUnit.Centimeter);
+        }
+        /// <summary>
+        ///     Get Length from Chains.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromChains(QuantityValue chains)
+        {
+            double value = (double) chains;
+            return new Length(value, LengthUnit.Chain);
         }
         /// <summary>
         ///     Get Length from Decimeters.
@@ -1102,6 +1117,7 @@ namespace UnitsNet
             {
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
+                case LengthUnit.Chain: return _value*20.1168;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value/236.220472441;
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
@@ -1159,6 +1175,7 @@ namespace UnitsNet
             {
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
+                case LengthUnit.Chain: return baseUnitValue/20.1168;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;

@@ -533,6 +533,7 @@ namespace UnitsNet
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.AstronomicalUnit, new string[]{"au", "ua"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Centimeter, new string[]{"cm"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Centimeter, new string[]{"см"}),
+                ("en-US", typeof(LengthUnit), (int)LengthUnit.Chain, new string[]{"ch"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.Decimeter, new string[]{"dm"}),
                 ("ru-RU", typeof(LengthUnit), (int)LengthUnit.Decimeter, new string[]{"дм"}),
                 ("en-US", typeof(LengthUnit), (int)LengthUnit.DtpPica, new string[]{"pica"}),
