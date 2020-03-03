@@ -1,0 +1,70 @@
+{
+  "Name": "ElectricPotentialRate",
+  "BaseUnit": "VoltPerSecond",
+  "XmlDoc": "In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point. slew rate is defined as the change of voltage or current, or any other electrical quantity, per unit of time",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -4,
+    "I": -1
+  },
+  "Units": [
+    {
+      "SingularName": "VoltPerSecond",
+      "PluralName": "VoltsPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltPerMinute",
+      "PluralName": "VoltsPerMinutes",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Minute",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltPerHour",
+      "PluralName": "VoltsPerHours",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Hour",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/h" ]
+        }
+      ]
+    }
+  ]
+}

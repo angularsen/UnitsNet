@@ -58,6 +58,7 @@ namespace UnitsNet
         ElectricPotential,
         ElectricPotentialAc,
         ElectricPotentialDc,
+        ElectricPotentialRate,
         ElectricResistance,
         ElectricResistivity,
         ElectricSurfaceChargeDensity,

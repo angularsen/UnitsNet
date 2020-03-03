@@ -128,6 +128,9 @@ namespace UnitsNet
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
                     return true;
+                case ElectricPotentialRateUnit electricPotentialRateUnit:
+                    quantity = ElectricPotentialRate.From(value, electricPotentialRateUnit);
+                    return true;
                 case ElectricResistanceUnit electricResistanceUnit:
                     quantity = ElectricResistance.From(value, electricResistanceUnit);
                     return true;
@@ -474,6 +477,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ElectricPotentialDc))
                 return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
+
+            if (quantityType == typeof(ElectricPotentialRate))
+                return parser.TryParse<ElectricPotentialRate, ElectricPotentialRateUnit>(quantityString, formatProvider, ElectricPotentialRate.From, out quantity);
 
             if (quantityType == typeof(ElectricResistance))
                 return parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity);

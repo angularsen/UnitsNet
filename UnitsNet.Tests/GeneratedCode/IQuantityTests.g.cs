@@ -63,6 +63,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));
             Assertion(3, ElectricPotentialAcUnit.VoltAc, Quantity.From(3, ElectricPotentialAcUnit.VoltAc));
             Assertion(3, ElectricPotentialDcUnit.VoltDc, Quantity.From(3, ElectricPotentialDcUnit.VoltDc));
+            Assertion(3, ElectricPotentialRateUnit.VoltPerSecond, Quantity.From(3, ElectricPotentialRateUnit.VoltPerSecond));
             Assertion(3, ElectricResistanceUnit.Ohm, Quantity.From(3, ElectricResistanceUnit.Ohm));
             Assertion(3, ElectricResistivityUnit.PicoohmMeter, Quantity.From(3, ElectricResistivityUnit.PicoohmMeter));
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
@@ -169,6 +170,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricPotential.Info, ElectricPotential.Zero);
             Assertion(ElectricPotentialAc.Info, ElectricPotentialAc.Zero);
             Assertion(ElectricPotentialDc.Info, ElectricPotentialDc.Zero);
+            Assertion(ElectricPotentialRate.Info, ElectricPotentialRate.Zero);
             Assertion(ElectricResistance.Info, ElectricResistance.Zero);
             Assertion(ElectricResistivity.Info, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.Info, ElectricSurfaceChargeDensity.Zero);
@@ -275,6 +277,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricPotential.QuantityType, ElectricPotential.Zero);
             Assertion(ElectricPotentialAc.QuantityType, ElectricPotentialAc.Zero);
             Assertion(ElectricPotentialDc.QuantityType, ElectricPotentialDc.Zero);
+            Assertion(ElectricPotentialRate.QuantityType, ElectricPotentialRate.Zero);
             Assertion(ElectricResistance.QuantityType, ElectricResistance.Zero);
             Assertion(ElectricResistivity.QuantityType, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.QuantityType, ElectricSurfaceChargeDensity.Zero);
@@ -381,6 +384,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricPotential.BaseDimensions, ElectricPotential.Zero);
             Assertion(ElectricPotentialAc.BaseDimensions, ElectricPotentialAc.Zero);
             Assertion(ElectricPotentialDc.BaseDimensions, ElectricPotentialDc.Zero);
+            Assertion(ElectricPotentialRate.BaseDimensions, ElectricPotentialRate.Zero);
             Assertion(ElectricResistance.BaseDimensions, ElectricResistance.Zero);
             Assertion(ElectricResistivity.BaseDimensions, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.BaseDimensions, ElectricSurfaceChargeDensity.Zero);
