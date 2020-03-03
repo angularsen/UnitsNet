@@ -59,6 +59,7 @@ namespace UnitsNet
         ElectricInductance,
         ElectricPotential,
         ElectricPotentialAc,
+        ElectricPotentialChangeRate,
         ElectricPotentialDc,
         ElectricResistance,
         ElectricResistivity,

@@ -96,6 +96,8 @@ namespace UnitsNet
                     return ElectricPotential.From(value, ElectricPotential.BaseUnit);
                 case QuantityType.ElectricPotentialAc:
                     return ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit);
+                case QuantityType.ElectricPotentialChangeRate:
+                    return ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit);
                 case QuantityType.ElectricPotentialDc:
                     return ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit);
                 case QuantityType.ElectricResistance:
@@ -337,6 +339,9 @@ namespace UnitsNet
                     return true;
                 case ElectricPotentialAcUnit electricPotentialAcUnit:
                     quantity = ElectricPotentialAc.From(value, electricPotentialAcUnit);
+                    return true;
+                case ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit:
+                    quantity = ElectricPotentialChangeRate.From(value, electricPotentialChangeRateUnit);
                     return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
@@ -634,6 +639,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricPotential, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialAc):
                     return parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricPotentialChangeRate):
+                    return parser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialDc):
                     return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistance):
