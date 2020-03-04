@@ -225,7 +225,7 @@ namespace UnitsNet
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Second, new string[]{"s", "sec", "secs", "second", "seconds"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Second, new string[]{"с", "сек"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Week, new string[]{"wk", "week", "weeks"}),
-                ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Week, new string[]{"мин"}),
+                ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Week, new string[]{"нед"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Year365, new string[]{"yr", "year", "years"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Year365, new string[]{"год"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Centipoise, new string[]{"cP"}),
