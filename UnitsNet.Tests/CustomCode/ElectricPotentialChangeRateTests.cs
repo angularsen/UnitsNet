@@ -24,23 +24,23 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricPotentialChangeRateTests : ElectricPotentialChangeRateTestsBase
     {
         protected override double KilovoltsPerHoursInOneVoltPerSecond => 3.6;
-        protected override double KilovoltsPerMicrosecondsInOneVoltPerSecond => 1E-09;
-        protected override double KilovoltsPerMinutesInOneVoltPerSecond => 6E-2;
+        protected override double KilovoltsPerMicrosecondsInOneVoltPerSecond => 1e-09;
+        protected override double KilovoltsPerMinutesInOneVoltPerSecond => 6e-2;
         protected override double KilovoltsPerSecondsInOneVoltPerSecond => 0.001;
-        protected override double MegavoltsPerHoursInOneVoltPerSecond => 36E-4;
-        protected override double MegavoltsPerMicrosecondsInOneVoltPerSecond => 1E-12;
-        protected override double MegavoltsPerMinutesInOneVoltPerSecond => 6E-05;
-        protected override double MegavoltsPerSecondsInOneVoltPerSecond => 1E-06;
-        protected override double MicrovoltsPerHoursInOneVoltPerSecond => 36E8;
+        protected override double MegavoltsPerHoursInOneVoltPerSecond => 3.6e-3;
+        protected override double MegavoltsPerMicrosecondsInOneVoltPerSecond => 1e-12;
+        protected override double MegavoltsPerMinutesInOneVoltPerSecond => 6e-05;
+        protected override double MegavoltsPerSecondsInOneVoltPerSecond => 1e-06;
+        protected override double MicrovoltsPerHoursInOneVoltPerSecond => 3.6e9;
         protected override double MicrovoltsPerMicrosecondsInOneVoltPerSecond => 1;
-        protected override double MicrovoltsPerMinutesInOneVoltPerSecond => 6E7;
-        protected override double MicrovoltsPerSecondsInOneVoltPerSecond => 1E6;
-        protected override double MillivoltsPerHoursInOneVoltPerSecond => 36E5;
+        protected override double MicrovoltsPerMinutesInOneVoltPerSecond => 6e7;
+        protected override double MicrovoltsPerSecondsInOneVoltPerSecond => 1e6;
+        protected override double MillivoltsPerHoursInOneVoltPerSecond => 3.6e6;
         protected override double MillivoltsPerMicrosecondsInOneVoltPerSecond => 0.001;
-        protected override double MillivoltsPerMinutesInOneVoltPerSecond => 6E4;
+        protected override double MillivoltsPerMinutesInOneVoltPerSecond => 6e4;
         protected override double MillivoltsPerSecondsInOneVoltPerSecond => 1000;
         protected override double VoltsPerHoursInOneVoltPerSecond => 3600;
-        protected override double VoltsPerMicrosecondsInOneVoltPerSecond => 1E-06;
+        protected override double VoltsPerMicrosecondsInOneVoltPerSecond => 1e-06;
         protected override double VoltsPerMinutesInOneVoltPerSecond => 60;
         protected override double VoltsPerSecondsInOneVoltPerSecond => 1;
     }
