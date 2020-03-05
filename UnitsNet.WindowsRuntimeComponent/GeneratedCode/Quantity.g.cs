@@ -194,6 +194,9 @@ namespace UnitsNet
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
                     return true;
+                case LinearPowerDensityUnit linearPowerDensityUnit:
+                    quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
+                    return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
                     return true;
@@ -543,6 +546,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(LinearDensity))
                 return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+
+            if (quantityType == typeof(LinearPowerDensity))
+                return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
 
             if (quantityType == typeof(Luminosity))
                 return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);

@@ -142,6 +142,8 @@ namespace UnitsNet
                     return Level.From(value, Level.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case QuantityType.LinearPowerDensity:
+                    return LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit);
                 case QuantityType.Luminosity:
                     return Luminosity.From(value, Luminosity.BaseUnit);
                 case QuantityType.LuminousFlux:
@@ -408,6 +410,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LinearPowerDensityUnit linearPowerDensityUnit:
+                    quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
@@ -685,6 +690,8 @@ namespace UnitsNet
                     return parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity):
                     return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+                case Type _ when quantityType == typeof(LinearPowerDensity):
+                    return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Luminosity):
                     return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousFlux):
