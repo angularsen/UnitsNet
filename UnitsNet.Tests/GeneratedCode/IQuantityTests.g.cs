@@ -85,6 +85,7 @@ namespace UnitsNet.Tests
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
+            Assertion(3, LinearPowerDensityUnit.WattPerMillimeter, Quantity.From(3, LinearPowerDensityUnit.WattPerMillimeter));
             Assertion(3, LuminosityUnit.Watt, Quantity.From(3, LuminosityUnit.Watt));
             Assertion(3, LuminousFluxUnit.Lumen, Quantity.From(3, LuminousFluxUnit.Lumen));
             Assertion(3, LuminousIntensityUnit.Candela, Quantity.From(3, LuminousIntensityUnit.Candela));
@@ -192,6 +193,7 @@ namespace UnitsNet.Tests
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
+            Assertion(LinearPowerDensity.Info, LinearPowerDensity.Zero);
             Assertion(Luminosity.Info, Luminosity.Zero);
             Assertion(LuminousFlux.Info, LuminousFlux.Zero);
             Assertion(LuminousIntensity.Info, LuminousIntensity.Zero);
@@ -299,6 +301,7 @@ namespace UnitsNet.Tests
             Assertion(Length.QuantityType, Length.Zero);
             Assertion(Level.QuantityType, Level.Zero);
             Assertion(LinearDensity.QuantityType, LinearDensity.Zero);
+            Assertion(LinearPowerDensity.QuantityType, LinearPowerDensity.Zero);
             Assertion(Luminosity.QuantityType, Luminosity.Zero);
             Assertion(LuminousFlux.QuantityType, LuminousFlux.Zero);
             Assertion(LuminousIntensity.QuantityType, LuminousIntensity.Zero);
@@ -406,6 +409,7 @@ namespace UnitsNet.Tests
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);
+            Assertion(LinearPowerDensity.BaseDimensions, LinearPowerDensity.Zero);
             Assertion(Luminosity.BaseDimensions, Luminosity.Zero);
             Assertion(LuminousFlux.BaseDimensions, LuminousFlux.Zero);
             Assertion(LuminousIntensity.BaseDimensions, LuminousIntensity.Zero);
