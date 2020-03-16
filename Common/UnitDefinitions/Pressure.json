@@ -205,6 +205,11 @@
           "Culture": "en-US",
           "Abbreviations": [ "psi", "lb/in²" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "psi", "lb/in²" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
         }
       ]
     },
@@ -291,6 +296,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "mmHg" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст." ]
         }
       ]
     },
