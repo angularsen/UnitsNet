@@ -189,6 +189,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft² (US)" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут² (US)" ]
         }
       ]
     },
@@ -220,6 +224,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ac" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "акр" ]
         }
       ]
     },
@@ -232,6 +240,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ha" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "га" ]
         }
       ]
     },
@@ -244,6 +256,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": ["nmi²"]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": ["морск.миля²"]
         }
       ]
     }
