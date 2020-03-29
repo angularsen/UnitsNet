@@ -45,7 +45,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="LinearDensity"/> from <see cref="Area"/> times <see cref="Density"/>.</summary>
         public static LinearDensity operator *(Area area, Density density)
         {
-            return LinearDensity.FromGramsPerCentimeter(area.SquareCentimeters * density.GramsPerCubicCentimeter);
+            return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
         }
     }
 }

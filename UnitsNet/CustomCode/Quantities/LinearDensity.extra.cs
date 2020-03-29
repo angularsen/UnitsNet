@@ -9,13 +9,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Density"/> from <see cref="LinearDensity"/> times <see cref="Area"/>.</summary>
         public static Density operator /(LinearDensity linearDensity, Area area)
         {
-            return Density.FromGramsPerCubicCentimeter(linearDensity.GramsPerCentimeter / area.SquareCentimeters);
+            return Density.FromKilogramsPerCubicMeter(linearDensity.KilogramsPerMeter / area.SquareMeters);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="LinearDensity"/> times <see cref="Density"/>.</summary>
         public static Area operator /(LinearDensity linearDensity, Density density)
         {
-            return Area.FromSquareCentimeters(linearDensity.GramsPerCentimeter / density.GramsPerCubicCentimeter);
+            return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
         }
     }
 }
