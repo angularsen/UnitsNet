@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -47,6 +48,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerInchInOneKilogramPerMeter => 5.599741459E-02;
 
         protected override double PoundsPerFootInOneKilogramPerMeter => 6.71968975e-1;
-        
+
+        [Fact]
+        public void LinearDensityDividedByAreaEqualsDensity()
+        {
+            Density density = LinearDensity.FromGramsPerCentimeter(10) / Area.FromSquareCentimeters(2);
+            Assert.Equal(Density.FromGramsPerCubicCentimeter(5), density);
+        }
+
+        [Fact]
+        public void LinearDensityDividedByDensityEqualsArea()
+        {
+            Area area = LinearDensity.FromGramsPerCentimeter(10) / Density.FromGramsPerCubicCentimeter(2);
+            Assert.Equal(Area.FromSquareCentimeters(5), area);
+        }
     }
 }

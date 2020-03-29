@@ -70,5 +70,11 @@ namespace UnitsNet
         {
             return new Molarity(density.KilogramsPerCubicMeter / molecularWeight.Kilograms, MolarityUnit.MolesPerCubicMeter);
         }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Density"/> times <see cref="Area"/>.</summary>
+        public static LinearDensity operator *(Density density, Area area)
+        {
+            return LinearDensity.FromKilogramsPerMeter(density.KilogramsPerCubicMeter * area.SquareMeters);
+        }
     }
 }

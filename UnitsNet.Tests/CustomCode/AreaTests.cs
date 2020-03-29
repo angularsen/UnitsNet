@@ -51,6 +51,13 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
         }
 
+        [Fact]
+        public void AreaTimesDensityEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Area.FromSquareCentimeters(2) * Density.FromGramsPerCubicCentimeter(10);
+            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
+        }
+
         [Theory]
         [InlineData(0, 0)]
         [InlineData(0.5, 0.19634954084936208)]
