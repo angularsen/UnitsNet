@@ -26,8 +26,6 @@ namespace UnitsNet.Units
     public enum TemperatureUnit
     {
         Undefined = 0,
-        CentidegreeCelsius,
-        DecidegreeCelsius,
         DegreeCelsius,
         DegreeDelisle,
         DegreeFahrenheit,
@@ -35,12 +33,8 @@ namespace UnitsNet.Units
         DegreeRankine,
         DegreeReaumur,
         DegreeRoemer,
-        HectodegreeCelsius,
         Kelvin,
-        KilodegreeCelsius,
-        MicrodegreeCelsius,
         MillidegreeCelsius,
-        NanodegreeCelsius,
         SolarTemperature,
     }
 

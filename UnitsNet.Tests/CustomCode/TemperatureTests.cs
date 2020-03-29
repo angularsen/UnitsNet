@@ -25,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KelvinsInOneKelvin => 1;
 
+        protected override double MillidegreesCelsiusInOneKelvin => -272150;
+
         protected override double SolarTemperaturesInOneKelvin => 1.73070266528210E-04;
 
         public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =

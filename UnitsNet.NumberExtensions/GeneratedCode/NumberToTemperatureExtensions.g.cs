@@ -26,14 +26,6 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
     /// </summary>
     public static class NumberToTemperatureExtensions
     {
-        /// <inheritdoc cref="Temperature.FromCentidegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature CentidegreesCelsius<T>(this T value) =>
-            Temperature.FromCentidegreesCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromDecidegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature DecidegreesCelsius<T>(this T value) =>
-            Temperature.FromDecidegreesCelsius(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Temperature.FromDegreesCelsius(UnitsNet.QuantityValue)" />
         public static Temperature DegreesCelsius<T>(this T value) =>
             Temperature.FromDegreesCelsius(Convert.ToDouble(value));
@@ -62,29 +54,13 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
         public static Temperature DegreesRoemer<T>(this T value) =>
             Temperature.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromHectodegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature HectodegreesCelsius<T>(this T value) =>
-            Temperature.FromHectodegreesCelsius(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Temperature.FromKelvins(UnitsNet.QuantityValue)" />
         public static Temperature Kelvins<T>(this T value) =>
             Temperature.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromKilodegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature KilodegreesCelsius<T>(this T value) =>
-            Temperature.FromKilodegreesCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromMicrodegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature MicrodegreesCelsius<T>(this T value) =>
-            Temperature.FromMicrodegreesCelsius(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
         public static Temperature MillidegreesCelsius<T>(this T value) =>
             Temperature.FromMillidegreesCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromNanodegreesCelsius(UnitsNet.QuantityValue)" />
-        public static Temperature NanodegreesCelsius<T>(this T value) =>
-            Temperature.FromNanodegreesCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Temperature.FromSolarTemperatures(UnitsNet.QuantityValue)" />
         public static Temperature SolarTemperatures<T>(this T value) =>

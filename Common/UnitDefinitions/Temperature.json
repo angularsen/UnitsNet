@@ -30,11 +30,25 @@
       },
       "FromUnitToBaseFunc": "x + 273.15",
       "FromBaseToUnitFunc": "x - 273.15",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillidegreeCelsius",
+      "PluralName": "MillidegreesCelsius",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "x / 1000 + 273.15",
+      "FromBaseToUnitFunc": "(x - 273.15) * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m°C" ]
         }
       ]
     },

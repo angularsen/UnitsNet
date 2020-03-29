@@ -36,8 +36,6 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureTestsBase
     {
-        protected abstract double CentidegreesCelsiusInOneKelvin { get; }
-        protected abstract double DecidegreesCelsiusInOneKelvin { get; }
         protected abstract double DegreesCelsiusInOneKelvin { get; }
         protected abstract double DegreesDelisleInOneKelvin { get; }
         protected abstract double DegreesFahrenheitInOneKelvin { get; }
@@ -45,17 +43,11 @@ namespace UnitsNet.Tests
         protected abstract double DegreesRankineInOneKelvin { get; }
         protected abstract double DegreesReaumurInOneKelvin { get; }
         protected abstract double DegreesRoemerInOneKelvin { get; }
-        protected abstract double HectodegreesCelsiusInOneKelvin { get; }
         protected abstract double KelvinsInOneKelvin { get; }
-        protected abstract double KilodegreesCelsiusInOneKelvin { get; }
-        protected abstract double MicrodegreesCelsiusInOneKelvin { get; }
         protected abstract double MillidegreesCelsiusInOneKelvin { get; }
-        protected abstract double NanodegreesCelsiusInOneKelvin { get; }
         protected abstract double SolarTemperaturesInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentidegreesCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double DecidegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double DegreesDelisleTolerance { get { return 1e-5; } }
         protected virtual double DegreesFahrenheitTolerance { get { return 1e-5; } }
@@ -63,12 +55,8 @@ namespace UnitsNet.Tests
         protected virtual double DegreesRankineTolerance { get { return 1e-5; } }
         protected virtual double DegreesReaumurTolerance { get { return 1e-5; } }
         protected virtual double DegreesRoemerTolerance { get { return 1e-5; } }
-        protected virtual double HectodegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double KelvinsTolerance { get { return 1e-5; } }
-        protected virtual double KilodegreesCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double MicrodegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double MillidegreesCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double NanodegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double SolarTemperaturesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -131,8 +119,6 @@ namespace UnitsNet.Tests
         public void KelvinToTemperatureUnits()
         {
             Temperature kelvin = Temperature.FromKelvins(1);
-            AssertEx.EqualTolerance(CentidegreesCelsiusInOneKelvin, kelvin.CentidegreesCelsius, CentidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(DecidegreesCelsiusInOneKelvin, kelvin.DecidegreesCelsius, DecidegreesCelsiusTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, kelvin.DegreesCelsius, DegreesCelsiusTolerance);
             AssertEx.EqualTolerance(DegreesDelisleInOneKelvin, kelvin.DegreesDelisle, DegreesDelisleTolerance);
             AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.DegreesFahrenheit, DegreesFahrenheitTolerance);
@@ -140,81 +126,53 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesRankineInOneKelvin, kelvin.DegreesRankine, DegreesRankineTolerance);
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.DegreesRoemer, DegreesRoemerTolerance);
-            AssertEx.EqualTolerance(HectodegreesCelsiusInOneKelvin, kelvin.HectodegreesCelsius, HectodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.Kelvins, KelvinsTolerance);
-            AssertEx.EqualTolerance(KilodegreesCelsiusInOneKelvin, kelvin.KilodegreesCelsius, KilodegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(MicrodegreesCelsiusInOneKelvin, kelvin.MicrodegreesCelsius, MicrodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, kelvin.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(NanodegreesCelsiusInOneKelvin, kelvin.NanodegreesCelsius, NanodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, kelvin.SolarTemperatures, SolarTemperaturesTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Temperature.From(1, TemperatureUnit.CentidegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity00.CentidegreesCelsius, CentidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.CentidegreeCelsius, quantity00.Unit);
+            var quantity00 = Temperature.From(1, TemperatureUnit.DegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity00.DegreesCelsius, DegreesCelsiusTolerance);
+            Assert.Equal(TemperatureUnit.DegreeCelsius, quantity00.Unit);
 
-            var quantity01 = Temperature.From(1, TemperatureUnit.DecidegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity01.DecidegreesCelsius, DecidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.DecidegreeCelsius, quantity01.Unit);
+            var quantity01 = Temperature.From(1, TemperatureUnit.DegreeDelisle);
+            AssertEx.EqualTolerance(1, quantity01.DegreesDelisle, DegreesDelisleTolerance);
+            Assert.Equal(TemperatureUnit.DegreeDelisle, quantity01.Unit);
 
-            var quantity02 = Temperature.From(1, TemperatureUnit.DegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity02.DegreesCelsius, DegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.DegreeCelsius, quantity02.Unit);
+            var quantity02 = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
+            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheit, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, quantity02.Unit);
 
-            var quantity03 = Temperature.From(1, TemperatureUnit.DegreeDelisle);
-            AssertEx.EqualTolerance(1, quantity03.DegreesDelisle, DegreesDelisleTolerance);
-            Assert.Equal(TemperatureUnit.DegreeDelisle, quantity03.Unit);
+            var quantity03 = Temperature.From(1, TemperatureUnit.DegreeNewton);
+            AssertEx.EqualTolerance(1, quantity03.DegreesNewton, DegreesNewtonTolerance);
+            Assert.Equal(TemperatureUnit.DegreeNewton, quantity03.Unit);
 
-            var quantity04 = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity04.DegreesFahrenheit, DegreesFahrenheitTolerance);
-            Assert.Equal(TemperatureUnit.DegreeFahrenheit, quantity04.Unit);
+            var quantity04 = Temperature.From(1, TemperatureUnit.DegreeRankine);
+            AssertEx.EqualTolerance(1, quantity04.DegreesRankine, DegreesRankineTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRankine, quantity04.Unit);
 
-            var quantity05 = Temperature.From(1, TemperatureUnit.DegreeNewton);
-            AssertEx.EqualTolerance(1, quantity05.DegreesNewton, DegreesNewtonTolerance);
-            Assert.Equal(TemperatureUnit.DegreeNewton, quantity05.Unit);
+            var quantity05 = Temperature.From(1, TemperatureUnit.DegreeReaumur);
+            AssertEx.EqualTolerance(1, quantity05.DegreesReaumur, DegreesReaumurTolerance);
+            Assert.Equal(TemperatureUnit.DegreeReaumur, quantity05.Unit);
 
-            var quantity06 = Temperature.From(1, TemperatureUnit.DegreeRankine);
-            AssertEx.EqualTolerance(1, quantity06.DegreesRankine, DegreesRankineTolerance);
-            Assert.Equal(TemperatureUnit.DegreeRankine, quantity06.Unit);
+            var quantity06 = Temperature.From(1, TemperatureUnit.DegreeRoemer);
+            AssertEx.EqualTolerance(1, quantity06.DegreesRoemer, DegreesRoemerTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRoemer, quantity06.Unit);
 
-            var quantity07 = Temperature.From(1, TemperatureUnit.DegreeReaumur);
-            AssertEx.EqualTolerance(1, quantity07.DegreesReaumur, DegreesReaumurTolerance);
-            Assert.Equal(TemperatureUnit.DegreeReaumur, quantity07.Unit);
+            var quantity07 = Temperature.From(1, TemperatureUnit.Kelvin);
+            AssertEx.EqualTolerance(1, quantity07.Kelvins, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, quantity07.Unit);
 
-            var quantity08 = Temperature.From(1, TemperatureUnit.DegreeRoemer);
-            AssertEx.EqualTolerance(1, quantity08.DegreesRoemer, DegreesRoemerTolerance);
-            Assert.Equal(TemperatureUnit.DegreeRoemer, quantity08.Unit);
+            var quantity08 = Temperature.From(1, TemperatureUnit.MillidegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsius, MillidegreesCelsiusTolerance);
+            Assert.Equal(TemperatureUnit.MillidegreeCelsius, quantity08.Unit);
 
-            var quantity09 = Temperature.From(1, TemperatureUnit.HectodegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity09.HectodegreesCelsius, HectodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.HectodegreeCelsius, quantity09.Unit);
-
-            var quantity10 = Temperature.From(1, TemperatureUnit.Kelvin);
-            AssertEx.EqualTolerance(1, quantity10.Kelvins, KelvinsTolerance);
-            Assert.Equal(TemperatureUnit.Kelvin, quantity10.Unit);
-
-            var quantity11 = Temperature.From(1, TemperatureUnit.KilodegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity11.KilodegreesCelsius, KilodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.KilodegreeCelsius, quantity11.Unit);
-
-            var quantity12 = Temperature.From(1, TemperatureUnit.MicrodegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity12.MicrodegreesCelsius, MicrodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.MicrodegreeCelsius, quantity12.Unit);
-
-            var quantity13 = Temperature.From(1, TemperatureUnit.MillidegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity13.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.MillidegreeCelsius, quantity13.Unit);
-
-            var quantity14 = Temperature.From(1, TemperatureUnit.NanodegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity14.NanodegreesCelsius, NanodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.NanodegreeCelsius, quantity14.Unit);
-
-            var quantity15 = Temperature.From(1, TemperatureUnit.SolarTemperature);
-            AssertEx.EqualTolerance(1, quantity15.SolarTemperatures, SolarTemperaturesTolerance);
-            Assert.Equal(TemperatureUnit.SolarTemperature, quantity15.Unit);
+            var quantity09 = Temperature.From(1, TemperatureUnit.SolarTemperature);
+            AssertEx.EqualTolerance(1, quantity09.SolarTemperatures, SolarTemperaturesTolerance);
+            Assert.Equal(TemperatureUnit.SolarTemperature, quantity09.Unit);
 
         }
 
@@ -235,8 +193,6 @@ namespace UnitsNet.Tests
         public void As()
         {
             var kelvin = Temperature.FromKelvins(1);
-            AssertEx.EqualTolerance(CentidegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.CentidegreeCelsius), CentidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(DecidegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.DecidegreeCelsius), DecidegreesCelsiusTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.DegreeCelsius), DegreesCelsiusTolerance);
             AssertEx.EqualTolerance(DegreesDelisleInOneKelvin, kelvin.As(TemperatureUnit.DegreeDelisle), DegreesDelisleTolerance);
             AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(TemperatureUnit.DegreeFahrenheit), DegreesFahrenheitTolerance);
@@ -244,12 +200,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesRankineInOneKelvin, kelvin.As(TemperatureUnit.DegreeRankine), DegreesRankineTolerance);
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.As(TemperatureUnit.DegreeReaumur), DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.As(TemperatureUnit.DegreeRoemer), DegreesRoemerTolerance);
-            AssertEx.EqualTolerance(HectodegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.HectodegreeCelsius), HectodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(TemperatureUnit.Kelvin), KelvinsTolerance);
-            AssertEx.EqualTolerance(KilodegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.KilodegreeCelsius), KilodegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(MicrodegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.MicrodegreeCelsius), MicrodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.MillidegreeCelsius), MillidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(NanodegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.NanodegreeCelsius), NanodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, kelvin.As(TemperatureUnit.SolarTemperature), SolarTemperaturesTolerance);
         }
 
@@ -257,14 +209,6 @@ namespace UnitsNet.Tests
         public void ToUnit()
         {
             var kelvin = Temperature.FromKelvins(1);
-
-            var centidegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.CentidegreeCelsius);
-            AssertEx.EqualTolerance(CentidegreesCelsiusInOneKelvin, (double)centidegreecelsiusQuantity.Value, CentidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.CentidegreeCelsius, centidegreecelsiusQuantity.Unit);
-
-            var decidegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.DecidegreeCelsius);
-            AssertEx.EqualTolerance(DecidegreesCelsiusInOneKelvin, (double)decidegreecelsiusQuantity.Value, DecidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.DecidegreeCelsius, decidegreecelsiusQuantity.Unit);
 
             var degreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.DegreeCelsius);
             AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, (double)degreecelsiusQuantity.Value, DegreesCelsiusTolerance);
@@ -294,29 +238,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, (double)degreeroemerQuantity.Value, DegreesRoemerTolerance);
             Assert.Equal(TemperatureUnit.DegreeRoemer, degreeroemerQuantity.Unit);
 
-            var hectodegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.HectodegreeCelsius);
-            AssertEx.EqualTolerance(HectodegreesCelsiusInOneKelvin, (double)hectodegreecelsiusQuantity.Value, HectodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.HectodegreeCelsius, hectodegreecelsiusQuantity.Unit);
-
             var kelvinQuantity = kelvin.ToUnit(TemperatureUnit.Kelvin);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)kelvinQuantity.Value, KelvinsTolerance);
             Assert.Equal(TemperatureUnit.Kelvin, kelvinQuantity.Unit);
 
-            var kilodegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.KilodegreeCelsius);
-            AssertEx.EqualTolerance(KilodegreesCelsiusInOneKelvin, (double)kilodegreecelsiusQuantity.Value, KilodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.KilodegreeCelsius, kilodegreecelsiusQuantity.Unit);
-
-            var microdegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.MicrodegreeCelsius);
-            AssertEx.EqualTolerance(MicrodegreesCelsiusInOneKelvin, (double)microdegreecelsiusQuantity.Value, MicrodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.MicrodegreeCelsius, microdegreecelsiusQuantity.Unit);
-
             var millidegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.MillidegreeCelsius);
             AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, (double)millidegreecelsiusQuantity.Value, MillidegreesCelsiusTolerance);
             Assert.Equal(TemperatureUnit.MillidegreeCelsius, millidegreecelsiusQuantity.Unit);
-
-            var nanodegreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.NanodegreeCelsius);
-            AssertEx.EqualTolerance(NanodegreesCelsiusInOneKelvin, (double)nanodegreecelsiusQuantity.Value, NanodegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.NanodegreeCelsius, nanodegreecelsiusQuantity.Unit);
 
             var solartemperatureQuantity = kelvin.ToUnit(TemperatureUnit.SolarTemperature);
             AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, (double)solartemperatureQuantity.Value, SolarTemperaturesTolerance);
@@ -327,8 +255,6 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Temperature kelvin = Temperature.FromKelvins(1);
-            AssertEx.EqualTolerance(1, Temperature.FromCentidegreesCelsius(kelvin.CentidegreesCelsius).Kelvins, CentidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDecidegreesCelsius(kelvin.DecidegreesCelsius).Kelvins, DecidegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesCelsius(kelvin.DegreesCelsius).Kelvins, DegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesDelisle(kelvin.DegreesDelisle).Kelvins, DegreesDelisleTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesFahrenheit(kelvin.DegreesFahrenheit).Kelvins, DegreesFahrenheitTolerance);
@@ -336,12 +262,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Temperature.FromDegreesRankine(kelvin.DegreesRankine).Kelvins, DegreesRankineTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins, DegreesRoemerTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromHectodegreesCelsius(kelvin.HectodegreesCelsius).Kelvins, HectodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromKilodegreesCelsius(kelvin.KilodegreesCelsius).Kelvins, KilodegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromMicrodegreesCelsius(kelvin.MicrodegreesCelsius).Kelvins, MicrodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromMillidegreesCelsius(kelvin.MillidegreesCelsius).Kelvins, MillidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromNanodegreesCelsius(kelvin.NanodegreesCelsius).Kelvins, NanodegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, Temperature.FromSolarTemperatures(kelvin.SolarTemperatures).Kelvins, SolarTemperaturesTolerance);
         }
 
@@ -470,8 +392,6 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 c°C", new Temperature(1, TemperatureUnit.CentidegreeCelsius).ToString());
-                Assert.Equal("1 d°C", new Temperature(1, TemperatureUnit.DecidegreeCelsius).ToString());
                 Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString());
                 Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString());
                 Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString());
@@ -479,12 +399,8 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString());
                 Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString());
                 Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString());
-                Assert.Equal("1 h°C", new Temperature(1, TemperatureUnit.HectodegreeCelsius).ToString());
                 Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString());
-                Assert.Equal("1 k°C", new Temperature(1, TemperatureUnit.KilodegreeCelsius).ToString());
-                Assert.Equal("1 µ°C", new Temperature(1, TemperatureUnit.MicrodegreeCelsius).ToString());
                 Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString());
-                Assert.Equal("1 n°C", new Temperature(1, TemperatureUnit.NanodegreeCelsius).ToString());
                 Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString());
             }
             finally
@@ -499,8 +415,6 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 c°C", new Temperature(1, TemperatureUnit.CentidegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 d°C", new Temperature(1, TemperatureUnit.DecidegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString(swedishCulture));
             Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString(swedishCulture));
@@ -508,12 +422,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString(swedishCulture));
             Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString(swedishCulture));
             Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString(swedishCulture));
-            Assert.Equal("1 h°C", new Temperature(1, TemperatureUnit.HectodegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString(swedishCulture));
-            Assert.Equal("1 k°C", new Temperature(1, TemperatureUnit.KilodegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 µ°C", new Temperature(1, TemperatureUnit.MicrodegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1 n°C", new Temperature(1, TemperatureUnit.NanodegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString(swedishCulture));
         }
 
