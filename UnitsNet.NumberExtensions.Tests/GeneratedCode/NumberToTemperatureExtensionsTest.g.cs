@@ -57,6 +57,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Temperature.FromKelvins(2), 2.Kelvins());
 
         [Fact]
+        public void NumberToMillidegreesCelsiusTest() =>
+            Assert.Equal(Temperature.FromMillidegreesCelsius(2), 2.MillidegreesCelsius());
+
+        [Fact]
         public void NumberToSolarTemperaturesTest() =>
             Assert.Equal(Temperature.FromSolarTemperatures(2), 2.SolarTemperatures());
 

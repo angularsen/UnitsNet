@@ -26,6 +26,14 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
     /// </summary>
     public static class NumberToTemperatureDeltaExtensions
     {
+        /// <inheritdoc cref="TemperatureDelta.FromCentidegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta CentidegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromCentidegreesCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDecidegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta DecidegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromDecidegreesCelsius(Convert.ToDouble(value));
+
         /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(UnitsNet.QuantityValue)" />
         public static TemperatureDelta DegreesCelsius<T>(this T value) =>
             TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
@@ -54,9 +62,29 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
         public static TemperatureDelta DegreesRoemer<T>(this T value) =>
             TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="TemperatureDelta.FromHectodegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta HectodegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromHectodegreesCelsius(Convert.ToDouble(value));
+
         /// <inheritdoc cref="TemperatureDelta.FromKelvins(UnitsNet.QuantityValue)" />
         public static TemperatureDelta Kelvins<T>(this T value) =>
             TemperatureDelta.FromKelvins(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromKilodegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta KilodegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromKilodegreesCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromMicrodegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta MicrodegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromMicrodegreesCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta MillidegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromMillidegreesCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromNanodegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta NanodegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromNanodegreesCelsius(Convert.ToDouble(value));
 
     }
 }

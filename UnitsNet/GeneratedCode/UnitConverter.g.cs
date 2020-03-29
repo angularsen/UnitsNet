@@ -1884,6 +1884,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.DegreeRoemer, q => q.ToUnit(TemperatureUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.DegreeRoemer, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, Temperature.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.MillidegreeCelsius, q => q.ToUnit(TemperatureUnit.MillidegreeCelsius));
+            unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.MillidegreeCelsius, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Temperature>(Temperature.BaseUnit, TemperatureUnit.SolarTemperature, q => q.ToUnit(TemperatureUnit.SolarTemperature));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.SolarTemperature, Temperature.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond));
@@ -1905,6 +1907,10 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.CentidegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.CentidegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.CentidegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.DecidegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.DecidegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DecidegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.DegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.DegreeCelsius));
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.DegreeDelisle, q => q.ToUnit(TemperatureDeltaUnit.DegreeDelisle));
@@ -1919,7 +1925,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeReaumur, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.DegreeRoemer, q => q.ToUnit(TemperatureDeltaUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRoemer, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.HectodegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.HectodegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.HectodegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDelta.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.KilodegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.KilodegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.KilodegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.MicrodegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.MicrodegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MicrodegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.MillidegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.MillidegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.NanodegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.NanodegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.NanodegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivityUnit.BtuPerHourFootFahrenheit, q => q.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivity.BaseUnit, q => q);

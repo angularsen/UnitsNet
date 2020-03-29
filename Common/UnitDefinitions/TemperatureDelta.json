@@ -20,6 +20,7 @@
       "PluralName": "DegreesCelsius",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",

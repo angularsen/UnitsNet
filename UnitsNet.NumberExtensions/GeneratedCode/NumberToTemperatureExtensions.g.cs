@@ -58,6 +58,10 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
         public static Temperature Kelvins<T>(this T value) =>
             Temperature.FromKelvins(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        public static Temperature MillidegreesCelsius<T>(this T value) =>
+            Temperature.FromMillidegreesCelsius(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Temperature.FromSolarTemperatures(UnitsNet.QuantityValue)" />
         public static Temperature SolarTemperatures<T>(this T value) =>
             Temperature.FromSolarTemperatures(Convert.ToDouble(value));
