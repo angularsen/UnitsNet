@@ -50,6 +50,8 @@ namespace UnitsNet
 
             Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta,
                 new UnitInfo<TemperatureDeltaUnit>[] {
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.CentidegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DecidegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeFahrenheit, BaseUnits.Undefined),
@@ -57,7 +59,12 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRankine, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.HectodegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.KilodegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MicrodegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.NanodegreeCelsius, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -171,6 +178,16 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get TemperatureDelta in CentidegreesCelsius.
+        /// </summary>
+        public double CentidegreesCelsius => As(TemperatureDeltaUnit.CentidegreeCelsius);
+
+        /// <summary>
+        ///     Get TemperatureDelta in DecidegreesCelsius.
+        /// </summary>
+        public double DecidegreesCelsius => As(TemperatureDeltaUnit.DecidegreeCelsius);
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesCelsius.
         /// </summary>
         public double DegreesCelsius => As(TemperatureDeltaUnit.DegreeCelsius);
@@ -206,9 +223,34 @@ namespace UnitsNet
         public double DegreesRoemer => As(TemperatureDeltaUnit.DegreeRoemer);
 
         /// <summary>
+        ///     Get TemperatureDelta in HectodegreesCelsius.
+        /// </summary>
+        public double HectodegreesCelsius => As(TemperatureDeltaUnit.HectodegreeCelsius);
+
+        /// <summary>
         ///     Get TemperatureDelta in Kelvins.
         /// </summary>
         public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
+
+        /// <summary>
+        ///     Get TemperatureDelta in KilodegreesCelsius.
+        /// </summary>
+        public double KilodegreesCelsius => As(TemperatureDeltaUnit.KilodegreeCelsius);
+
+        /// <summary>
+        ///     Get TemperatureDelta in MicrodegreesCelsius.
+        /// </summary>
+        public double MicrodegreesCelsius => As(TemperatureDeltaUnit.MicrodegreeCelsius);
+
+        /// <summary>
+        ///     Get TemperatureDelta in MillidegreesCelsius.
+        /// </summary>
+        public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+
+        /// <summary>
+        ///     Get TemperatureDelta in NanodegreesCelsius.
+        /// </summary>
+        public double NanodegreesCelsius => As(TemperatureDeltaUnit.NanodegreeCelsius);
 
         #endregion
 
@@ -239,6 +281,24 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get TemperatureDelta from CentidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromCentidegreesCelsius(QuantityValue centidegreescelsius)
+        {
+            double value = (double) centidegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.CentidegreeCelsius);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from DecidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromDecidegreesCelsius(QuantityValue decidegreescelsius)
+        {
+            double value = (double) decidegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.DecidegreeCelsius);
+        }
         /// <summary>
         ///     Get TemperatureDelta from DegreesCelsius.
         /// </summary>
@@ -303,6 +363,15 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
         }
         /// <summary>
+        ///     Get TemperatureDelta from HectodegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromHectodegreesCelsius(QuantityValue hectodegreescelsius)
+        {
+            double value = (double) hectodegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.HectodegreeCelsius);
+        }
+        /// <summary>
         ///     Get TemperatureDelta from Kelvins.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -310,6 +379,42 @@ namespace UnitsNet
         {
             double value = (double) kelvins;
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from KilodegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromKilodegreesCelsius(QuantityValue kilodegreescelsius)
+        {
+            double value = (double) kilodegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.KilodegreeCelsius);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from MicrodegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromMicrodegreesCelsius(QuantityValue microdegreescelsius)
+        {
+            double value = (double) microdegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.MicrodegreeCelsius);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from MillidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromMillidegreesCelsius(QuantityValue millidegreescelsius)
+        {
+            double value = (double) millidegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from NanodegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromNanodegreesCelsius(QuantityValue nanodegreescelsius)
+        {
+            double value = (double) nanodegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.NanodegreeCelsius);
         }
 
         /// <summary>
@@ -740,6 +845,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TemperatureDeltaUnit.CentidegreeCelsius: return (_value) * 1e-2d;
+                case TemperatureDeltaUnit.DecidegreeCelsius: return (_value) * 1e-1d;
                 case TemperatureDeltaUnit.DegreeCelsius: return _value;
                 case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
                 case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
@@ -747,7 +854,12 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
                 case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
                 case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
+                case TemperatureDeltaUnit.HectodegreeCelsius: return (_value) * 1e2d;
                 case TemperatureDeltaUnit.Kelvin: return _value;
+                case TemperatureDeltaUnit.KilodegreeCelsius: return (_value) * 1e3d;
+                case TemperatureDeltaUnit.MicrodegreeCelsius: return (_value) * 1e-6d;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
+                case TemperatureDeltaUnit.NanodegreeCelsius: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -773,6 +885,8 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TemperatureDeltaUnit.CentidegreeCelsius: return (baseUnitValue) / 1e-2d;
+                case TemperatureDeltaUnit.DecidegreeCelsius: return (baseUnitValue) / 1e-1d;
                 case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
                 case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
                 case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
@@ -780,7 +894,12 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
                 case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
                 case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
+                case TemperatureDeltaUnit.HectodegreeCelsius: return (baseUnitValue) / 1e2d;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
+                case TemperatureDeltaUnit.KilodegreeCelsius: return (baseUnitValue) / 1e3d;
+                case TemperatureDeltaUnit.MicrodegreeCelsius: return (baseUnitValue) / 1e-6d;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
+                case TemperatureDeltaUnit.NanodegreeCelsius: return (baseUnitValue) / 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
