@@ -26,8 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
-        protected override double CentidegreesCelsiusInOneKelvin => 100;
-        protected override double DecidegreesCelsiusInOneKelvin => 10;
         protected override double DegreesCelsiusInOneKelvin => 1;
         protected override double DegreesDelisleInOneKelvin => -1.5d;
         protected override double DegreesFahrenheitInOneKelvin => 1.8;
@@ -35,12 +33,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesRankineInOneKelvin => 1.8;
         protected override double DegreesReaumurInOneKelvin => 0.8;
         protected override double DegreesRoemerInOneKelvin => 21 / 40d;
-        protected override double HectodegreesCelsiusInOneKelvin => 1E-2;
         protected override double KelvinsInOneKelvin => 1;
-        protected override double KilodegreesCelsiusInOneKelvin => 1E-3;
-        protected override double MicrodegreesCelsiusInOneKelvin => 1E6;
         protected override double MillidegreesCelsiusInOneKelvin => 1E3;
-        protected override double NanodegreesCelsiusInOneKelvin => 1E9;
 
         [Fact]
         public void TemperatureDeltaTimesSpecificEntropyEqualsSpecificEnergy()

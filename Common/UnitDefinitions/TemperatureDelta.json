@@ -20,11 +20,12 @@
       "PluralName": "DegreesCelsius",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "∆°C" ]
+          "Abbreviations": [ "∆°C" ],
+          "AbbreviationsForPrefixes": { "Milli": "∆m°C" }
         }
       ]
     },

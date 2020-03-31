@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assertion(3, SpeedUnit.YardPerSecond, Quantity.From(3, SpeedUnit.YardPerSecond));
             Assertion(3, TemperatureUnit.SolarTemperature, Quantity.From(3, TemperatureUnit.SolarTemperature));
             Assertion(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, Quantity.From(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
-            Assertion(3, TemperatureDeltaUnit.NanodegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.NanodegreeCelsius));
+            Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
             Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));

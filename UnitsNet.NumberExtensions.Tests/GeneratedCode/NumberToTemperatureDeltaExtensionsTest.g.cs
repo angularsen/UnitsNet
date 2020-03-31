@@ -25,14 +25,6 @@ namespace UnitsNet.Tests
     public class NumberToTemperatureDeltaExtensionsTests
     {
         [Fact]
-        public void NumberToCentidegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromCentidegreesCelsius(2), 2.CentidegreesCelsius());
-
-        [Fact]
-        public void NumberToDecidegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromDecidegreesCelsius(2), 2.DecidegreesCelsius());
-
-        [Fact]
         public void NumberToDegreesCelsiusTest() =>
             Assert.Equal(TemperatureDelta.FromDegreesCelsius(2), 2.DegreesCelsius());
 
@@ -61,28 +53,12 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDelta.FromDegreesRoemer(2), 2.DegreesRoemer());
 
         [Fact]
-        public void NumberToHectodegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromHectodegreesCelsius(2), 2.HectodegreesCelsius());
-
-        [Fact]
         public void NumberToKelvinsTest() =>
             Assert.Equal(TemperatureDelta.FromKelvins(2), 2.Kelvins());
 
         [Fact]
-        public void NumberToKilodegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromKilodegreesCelsius(2), 2.KilodegreesCelsius());
-
-        [Fact]
-        public void NumberToMicrodegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromMicrodegreesCelsius(2), 2.MicrodegreesCelsius());
-
-        [Fact]
         public void NumberToMillidegreesCelsiusTest() =>
             Assert.Equal(TemperatureDelta.FromMillidegreesCelsius(2), 2.MillidegreesCelsius());
-
-        [Fact]
-        public void NumberToNanodegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromNanodegreesCelsius(2), 2.NanodegreesCelsius());
 
     }
 }
