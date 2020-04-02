@@ -38,9 +38,17 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
         public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value) =>
             VolumePerLength.FromCubicYardsPerUsSurveyFoot(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(UnitsNet.QuantityValue)" />
+        public static VolumePerLength LitersPerKilometer<T>(this T value) =>
+            VolumePerLength.FromLitersPerKilometer(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(UnitsNet.QuantityValue)" />
         public static VolumePerLength LitersPerMeter<T>(this T value) =>
             VolumePerLength.FromLitersPerMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(UnitsNet.QuantityValue)" />
+        public static VolumePerLength LitersPerMillimeter<T>(this T value) =>
+            VolumePerLength.FromLitersPerMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(UnitsNet.QuantityValue)" />
         public static VolumePerLength OilBarrelsPerFoot<T>(this T value) =>

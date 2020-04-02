@@ -12,7 +12,7 @@
       "PluralName": "NewtonsPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -25,6 +25,7 @@
       "PluralName": "NewtonsPerMillimeter",
       "FromUnitToBaseFunc": "x*1e3",
       "FromBaseToUnitFunc": "x/1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

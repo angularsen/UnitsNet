@@ -29,8 +29,24 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.FromCentinewtonsPerMeter(2), 2.CentinewtonsPerMeter());
 
         [Fact]
+        public void NumberToCentinewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromCentinewtonsPerMillimeter(2), 2.CentinewtonsPerMillimeter());
+
+        [Fact]
+        public void NumberToDecanewtonsPerMeterTest() =>
+            Assert.Equal(ForcePerLength.FromDecanewtonsPerMeter(2), 2.DecanewtonsPerMeter());
+
+        [Fact]
+        public void NumberToDecanewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromDecanewtonsPerMillimeter(2), 2.DecanewtonsPerMillimeter());
+
+        [Fact]
         public void NumberToDecinewtonsPerMeterTest() =>
             Assert.Equal(ForcePerLength.FromDecinewtonsPerMeter(2), 2.DecinewtonsPerMeter());
+
+        [Fact]
+        public void NumberToDecinewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromDecinewtonsPerMillimeter(2), 2.DecinewtonsPerMillimeter());
 
         [Fact]
         public void NumberToKilogramsForcePerMeterTest() =>
@@ -41,6 +57,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.FromKilonewtonsPerMeter(2), 2.KilonewtonsPerMeter());
 
         [Fact]
+        public void NumberToKilonewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromKilonewtonsPerMillimeter(2), 2.KilonewtonsPerMillimeter());
+
+        [Fact]
         public void NumberToKilopoundsForcePerFootTest() =>
             Assert.Equal(ForcePerLength.FromKilopoundsForcePerFoot(2), 2.KilopoundsForcePerFoot());
 
@@ -49,16 +69,32 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.FromMeganewtonsPerMeter(2), 2.MeganewtonsPerMeter());
 
         [Fact]
+        public void NumberToMeganewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromMeganewtonsPerMillimeter(2), 2.MeganewtonsPerMillimeter());
+
+        [Fact]
         public void NumberToMicronewtonsPerMeterTest() =>
             Assert.Equal(ForcePerLength.FromMicronewtonsPerMeter(2), 2.MicronewtonsPerMeter());
+
+        [Fact]
+        public void NumberToMicronewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromMicronewtonsPerMillimeter(2), 2.MicronewtonsPerMillimeter());
 
         [Fact]
         public void NumberToMillinewtonsPerMeterTest() =>
             Assert.Equal(ForcePerLength.FromMillinewtonsPerMeter(2), 2.MillinewtonsPerMeter());
 
         [Fact]
+        public void NumberToMillinewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromMillinewtonsPerMillimeter(2), 2.MillinewtonsPerMillimeter());
+
+        [Fact]
         public void NumberToNanonewtonsPerMeterTest() =>
             Assert.Equal(ForcePerLength.FromNanonewtonsPerMeter(2), 2.NanonewtonsPerMeter());
+
+        [Fact]
+        public void NumberToNanonewtonsPerMillimeterTest() =>
+            Assert.Equal(ForcePerLength.FromNanonewtonsPerMillimeter(2), 2.NanonewtonsPerMillimeter());
 
         [Fact]
         public void NumberToNewtonsPerMeterTest() =>
