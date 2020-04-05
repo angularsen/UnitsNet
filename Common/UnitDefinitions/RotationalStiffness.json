@@ -22,8 +22,8 @@
       ]
     },
     {
-      "SingularName": "PoundForceFootPerDegrees",
-      "PluralName": "PoundForceFeetPerDegrees",
+      "SingularName": "PoundForceFootPerDegree",
+      "PluralName": "PoundForceFeetPerDegree",
       "FromUnitToBaseFunc": "x*77.6826",
       "FromBaseToUnitFunc": "x/77.6826",
       "Localization": [
@@ -34,8 +34,8 @@
       ]
     },
     {
-      "SingularName": "KilopoundForceFootPerDegrees",
-      "PluralName": "KilopoundForceFeetPerDegrees",
+      "SingularName": "KilopoundForceFootPerDegree",
+      "PluralName": "KilopoundForceFeetPerDegree",
       "FromUnitToBaseFunc": "x*77682.6",
       "FromBaseToUnitFunc": "x/77682.6",
       "Localization": [
@@ -46,8 +46,8 @@
       ]
     },
     {
-      "SingularName": "NewtonMillimeterPerDegrees",
-      "PluralName": "NewtonMillimeterPerDegrees",
+      "SingularName": "NewtonMillimeterPerDegree",
+      "PluralName": "NewtonMillimetersPerDegree",
       "FromUnitToBaseFunc": "x*180/Math.PI*0.001",
       "FromBaseToUnitFunc": "x/180*Math.PI*1000",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -59,8 +59,8 @@
       ]
     },
     {
-      "SingularName": "NewtonMeterPerDegrees",
-      "PluralName": "NewtonMeterPerDegrees",
+      "SingularName": "NewtonMeterPerDegree",
+      "PluralName": "NewtonMetersPerDegree",
       "FromUnitToBaseFunc": "x*(180/Math.PI)",
       "FromBaseToUnitFunc": "x/(180/Math.PI)",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -73,7 +73,7 @@
     },
     {
       "SingularName": "NewtonMillimeterPerRadian",
-      "PluralName": "NewtonMillimeterPerRadian",
+      "PluralName": "NewtonMillimetersPerRadian",
       "FromUnitToBaseFunc": "x*0.001",
       "FromBaseToUnitFunc": "x*1000",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],

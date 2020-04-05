@@ -50,39 +50,39 @@ namespace UnitsNet
 
             Info = new QuantityInfo<RotationalStiffnessUnit>(QuantityType.RotationalStiffness,
                 new UnitInfo<RotationalStiffnessUnit>[] {
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecanewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecanewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecanewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecinewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecinewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecinewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.KilopoundForceFootPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MillinewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MillinewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MillinewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMeterPerDegrees, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMeterPerDegree, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMeterPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFootPerDegrees, BaseUnits.Undefined),
+                    new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFootPerDegree, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -196,54 +196,54 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RotationalStiffness in CentinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in CentinewtonMetersPerDegree.
         /// </summary>
-        public double CentinewtonMeterPerDegrees => As(RotationalStiffnessUnit.CentinewtonMeterPerDegrees);
+        public double CentinewtonMetersPerDegree => As(RotationalStiffnessUnit.CentinewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in CentinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in CentinewtonMillimetersPerDegree.
         /// </summary>
-        public double CentinewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.CentinewtonMillimeterPerDegrees);
+        public double CentinewtonMillimetersPerDegree => As(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in CentinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in CentinewtonMillimetersPerRadian.
         /// </summary>
-        public double CentinewtonMillimeterPerRadian => As(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
+        public double CentinewtonMillimetersPerRadian => As(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecanewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in DecanewtonMetersPerDegree.
         /// </summary>
-        public double DecanewtonMeterPerDegrees => As(RotationalStiffnessUnit.DecanewtonMeterPerDegrees);
+        public double DecanewtonMetersPerDegree => As(RotationalStiffnessUnit.DecanewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecanewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in DecanewtonMillimetersPerDegree.
         /// </summary>
-        public double DecanewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.DecanewtonMillimeterPerDegrees);
+        public double DecanewtonMillimetersPerDegree => As(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecanewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in DecanewtonMillimetersPerRadian.
         /// </summary>
-        public double DecanewtonMillimeterPerRadian => As(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
+        public double DecanewtonMillimetersPerRadian => As(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in DecinewtonMetersPerDegree.
         /// </summary>
-        public double DecinewtonMeterPerDegrees => As(RotationalStiffnessUnit.DecinewtonMeterPerDegrees);
+        public double DecinewtonMetersPerDegree => As(RotationalStiffnessUnit.DecinewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in DecinewtonMillimetersPerDegree.
         /// </summary>
-        public double DecinewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.DecinewtonMillimeterPerDegrees);
+        public double DecinewtonMillimetersPerDegree => As(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in DecinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in DecinewtonMillimetersPerRadian.
         /// </summary>
-        public double DecinewtonMillimeterPerRadian => As(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
+        public double DecinewtonMillimetersPerRadian => As(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in KilonewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in KilonewtonMetersPerDegree.
         /// </summary>
-        public double KilonewtonMeterPerDegrees => As(RotationalStiffnessUnit.KilonewtonMeterPerDegrees);
+        public double KilonewtonMetersPerDegree => As(RotationalStiffnessUnit.KilonewtonMeterPerDegree);
 
         /// <summary>
         ///     Get RotationalStiffness in KilonewtonMetersPerRadian.
@@ -251,24 +251,24 @@ namespace UnitsNet
         public double KilonewtonMetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in KilonewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in KilonewtonMillimetersPerDegree.
         /// </summary>
-        public double KilonewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.KilonewtonMillimeterPerDegrees);
+        public double KilonewtonMillimetersPerDegree => As(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in KilonewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in KilonewtonMillimetersPerRadian.
         /// </summary>
-        public double KilonewtonMillimeterPerRadian => As(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
+        public double KilonewtonMillimetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in KilopoundForceFeetPerDegrees.
+        ///     Get RotationalStiffness in KilopoundForceFeetPerDegree.
         /// </summary>
-        public double KilopoundForceFeetPerDegrees => As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+        public double KilopoundForceFeetPerDegree => As(RotationalStiffnessUnit.KilopoundForceFootPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MeganewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in MeganewtonMetersPerDegree.
         /// </summary>
-        public double MeganewtonMeterPerDegrees => As(RotationalStiffnessUnit.MeganewtonMeterPerDegrees);
+        public double MeganewtonMetersPerDegree => As(RotationalStiffnessUnit.MeganewtonMeterPerDegree);
 
         /// <summary>
         ///     Get RotationalStiffness in MeganewtonMetersPerRadian.
@@ -276,64 +276,64 @@ namespace UnitsNet
         public double MeganewtonMetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in MeganewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in MeganewtonMillimetersPerDegree.
         /// </summary>
-        public double MeganewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.MeganewtonMillimeterPerDegrees);
+        public double MeganewtonMillimetersPerDegree => As(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MeganewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in MeganewtonMillimetersPerRadian.
         /// </summary>
-        public double MeganewtonMillimeterPerRadian => As(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
+        public double MeganewtonMillimetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in MicronewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in MicronewtonMetersPerDegree.
         /// </summary>
-        public double MicronewtonMeterPerDegrees => As(RotationalStiffnessUnit.MicronewtonMeterPerDegrees);
+        public double MicronewtonMetersPerDegree => As(RotationalStiffnessUnit.MicronewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MicronewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in MicronewtonMillimetersPerDegree.
         /// </summary>
-        public double MicronewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.MicronewtonMillimeterPerDegrees);
+        public double MicronewtonMillimetersPerDegree => As(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MicronewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in MicronewtonMillimetersPerRadian.
         /// </summary>
-        public double MicronewtonMillimeterPerRadian => As(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
+        public double MicronewtonMillimetersPerRadian => As(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in MillinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in MillinewtonMetersPerDegree.
         /// </summary>
-        public double MillinewtonMeterPerDegrees => As(RotationalStiffnessUnit.MillinewtonMeterPerDegrees);
+        public double MillinewtonMetersPerDegree => As(RotationalStiffnessUnit.MillinewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MillinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in MillinewtonMillimetersPerDegree.
         /// </summary>
-        public double MillinewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.MillinewtonMillimeterPerDegrees);
+        public double MillinewtonMillimetersPerDegree => As(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in MillinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in MillinewtonMillimetersPerRadian.
         /// </summary>
-        public double MillinewtonMillimeterPerRadian => As(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
+        public double MillinewtonMillimetersPerRadian => As(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in NanonewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in NanonewtonMetersPerDegree.
         /// </summary>
-        public double NanonewtonMeterPerDegrees => As(RotationalStiffnessUnit.NanonewtonMeterPerDegrees);
+        public double NanonewtonMetersPerDegree => As(RotationalStiffnessUnit.NanonewtonMeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in NanonewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in NanonewtonMillimetersPerDegree.
         /// </summary>
-        public double NanonewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.NanonewtonMillimeterPerDegrees);
+        public double NanonewtonMillimetersPerDegree => As(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in NanonewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in NanonewtonMillimetersPerRadian.
         /// </summary>
-        public double NanonewtonMillimeterPerRadian => As(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
+        public double NanonewtonMillimetersPerRadian => As(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in NewtonMeterPerDegrees.
+        ///     Get RotationalStiffness in NewtonMetersPerDegree.
         /// </summary>
-        public double NewtonMeterPerDegrees => As(RotationalStiffnessUnit.NewtonMeterPerDegrees);
+        public double NewtonMetersPerDegree => As(RotationalStiffnessUnit.NewtonMeterPerDegree);
 
         /// <summary>
         ///     Get RotationalStiffness in NewtonMetersPerRadian.
@@ -341,14 +341,14 @@ namespace UnitsNet
         public double NewtonMetersPerRadian => As(RotationalStiffnessUnit.NewtonMeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in NewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness in NewtonMillimetersPerDegree.
         /// </summary>
-        public double NewtonMillimeterPerDegrees => As(RotationalStiffnessUnit.NewtonMillimeterPerDegrees);
+        public double NewtonMillimetersPerDegree => As(RotationalStiffnessUnit.NewtonMillimeterPerDegree);
 
         /// <summary>
-        ///     Get RotationalStiffness in NewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness in NewtonMillimetersPerRadian.
         /// </summary>
-        public double NewtonMillimeterPerRadian => As(RotationalStiffnessUnit.NewtonMillimeterPerRadian);
+        public double NewtonMillimetersPerRadian => As(RotationalStiffnessUnit.NewtonMillimeterPerRadian);
 
         /// <summary>
         ///     Get RotationalStiffness in PoundForceFeetPerRadian.
@@ -356,9 +356,9 @@ namespace UnitsNet
         public double PoundForceFeetPerRadian => As(RotationalStiffnessUnit.PoundForceFeetPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in PoundForceFeetPerDegrees.
+        ///     Get RotationalStiffness in PoundForceFeetPerDegree.
         /// </summary>
-        public double PoundForceFeetPerDegrees => As(RotationalStiffnessUnit.PoundForceFootPerDegrees);
+        public double PoundForceFeetPerDegree => As(RotationalStiffnessUnit.PoundForceFootPerDegree);
 
         #endregion
 
@@ -390,94 +390,94 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RotationalStiffness from CentinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from CentinewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMeterPerDegrees(QuantityValue centinewtonmeterperdegrees)
+        public static RotationalStiffness FromCentinewtonMetersPerDegree(QuantityValue centinewtonmetersperdegree)
         {
-            double value = (double) centinewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMeterPerDegrees);
+            double value = (double) centinewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from CentinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from CentinewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMillimeterPerDegrees(QuantityValue centinewtonmillimeterperdegrees)
+        public static RotationalStiffness FromCentinewtonMillimetersPerDegree(QuantityValue centinewtonmillimetersperdegree)
         {
-            double value = (double) centinewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerDegrees);
+            double value = (double) centinewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from CentinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from CentinewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMillimeterPerRadian(QuantityValue centinewtonmillimeterperradian)
+        public static RotationalStiffness FromCentinewtonMillimetersPerRadian(QuantityValue centinewtonmillimetersperradian)
         {
-            double value = (double) centinewtonmillimeterperradian;
+            double value = (double) centinewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecanewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from DecanewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMeterPerDegrees(QuantityValue decanewtonmeterperdegrees)
+        public static RotationalStiffness FromDecanewtonMetersPerDegree(QuantityValue decanewtonmetersperdegree)
         {
-            double value = (double) decanewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMeterPerDegrees);
+            double value = (double) decanewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecanewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from DecanewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMillimeterPerDegrees(QuantityValue decanewtonmillimeterperdegrees)
+        public static RotationalStiffness FromDecanewtonMillimetersPerDegree(QuantityValue decanewtonmillimetersperdegree)
         {
-            double value = (double) decanewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerDegrees);
+            double value = (double) decanewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecanewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from DecanewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMillimeterPerRadian(QuantityValue decanewtonmillimeterperradian)
+        public static RotationalStiffness FromDecanewtonMillimetersPerRadian(QuantityValue decanewtonmillimetersperradian)
         {
-            double value = (double) decanewtonmillimeterperradian;
+            double value = (double) decanewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from DecinewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMeterPerDegrees(QuantityValue decinewtonmeterperdegrees)
+        public static RotationalStiffness FromDecinewtonMetersPerDegree(QuantityValue decinewtonmetersperdegree)
         {
-            double value = (double) decinewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMeterPerDegrees);
+            double value = (double) decinewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from DecinewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMillimeterPerDegrees(QuantityValue decinewtonmillimeterperdegrees)
+        public static RotationalStiffness FromDecinewtonMillimetersPerDegree(QuantityValue decinewtonmillimetersperdegree)
         {
-            double value = (double) decinewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerDegrees);
+            double value = (double) decinewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from DecinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from DecinewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMillimeterPerRadian(QuantityValue decinewtonmillimeterperradian)
+        public static RotationalStiffness FromDecinewtonMillimetersPerRadian(QuantityValue decinewtonmillimetersperradian)
         {
-            double value = (double) decinewtonmillimeterperradian;
+            double value = (double) decinewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from KilonewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from KilonewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMeterPerDegrees(QuantityValue kilonewtonmeterperdegrees)
+        public static RotationalStiffness FromKilonewtonMetersPerDegree(QuantityValue kilonewtonmetersperdegree)
         {
-            double value = (double) kilonewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerDegrees);
+            double value = (double) kilonewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerDegree);
         }
         /// <summary>
         ///     Get RotationalStiffness from KilonewtonMetersPerRadian.
@@ -489,40 +489,40 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from KilonewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from KilonewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMillimeterPerDegrees(QuantityValue kilonewtonmillimeterperdegrees)
+        public static RotationalStiffness FromKilonewtonMillimetersPerDegree(QuantityValue kilonewtonmillimetersperdegree)
         {
-            double value = (double) kilonewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerDegrees);
+            double value = (double) kilonewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from KilonewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from KilonewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMillimeterPerRadian(QuantityValue kilonewtonmillimeterperradian)
+        public static RotationalStiffness FromKilonewtonMillimetersPerRadian(QuantityValue kilonewtonmillimetersperradian)
         {
-            double value = (double) kilonewtonmillimeterperradian;
+            double value = (double) kilonewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from KilopoundForceFeetPerDegrees.
+        ///     Get RotationalStiffness from KilopoundForceFeetPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilopoundForceFeetPerDegrees(QuantityValue kilopoundforcefeetperdegrees)
+        public static RotationalStiffness FromKilopoundForceFeetPerDegree(QuantityValue kilopoundforcefeetperdegree)
         {
-            double value = (double) kilopoundforcefeetperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+            double value = (double) kilopoundforcefeetperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MeganewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from MeganewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMeterPerDegrees(QuantityValue meganewtonmeterperdegrees)
+        public static RotationalStiffness FromMeganewtonMetersPerDegree(QuantityValue meganewtonmetersperdegree)
         {
-            double value = (double) meganewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerDegrees);
+            double value = (double) meganewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
         }
         /// <summary>
         ///     Get RotationalStiffness from MeganewtonMetersPerRadian.
@@ -534,112 +534,112 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MeganewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from MeganewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMillimeterPerDegrees(QuantityValue meganewtonmillimeterperdegrees)
+        public static RotationalStiffness FromMeganewtonMillimetersPerDegree(QuantityValue meganewtonmillimetersperdegree)
         {
-            double value = (double) meganewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerDegrees);
+            double value = (double) meganewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MeganewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from MeganewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMillimeterPerRadian(QuantityValue meganewtonmillimeterperradian)
+        public static RotationalStiffness FromMeganewtonMillimetersPerRadian(QuantityValue meganewtonmillimetersperradian)
         {
-            double value = (double) meganewtonmillimeterperradian;
+            double value = (double) meganewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MicronewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from MicronewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMeterPerDegrees(QuantityValue micronewtonmeterperdegrees)
+        public static RotationalStiffness FromMicronewtonMetersPerDegree(QuantityValue micronewtonmetersperdegree)
         {
-            double value = (double) micronewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMeterPerDegrees);
+            double value = (double) micronewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MicronewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from MicronewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMillimeterPerDegrees(QuantityValue micronewtonmillimeterperdegrees)
+        public static RotationalStiffness FromMicronewtonMillimetersPerDegree(QuantityValue micronewtonmillimetersperdegree)
         {
-            double value = (double) micronewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerDegrees);
+            double value = (double) micronewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MicronewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from MicronewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMillimeterPerRadian(QuantityValue micronewtonmillimeterperradian)
+        public static RotationalStiffness FromMicronewtonMillimetersPerRadian(QuantityValue micronewtonmillimetersperradian)
         {
-            double value = (double) micronewtonmillimeterperradian;
+            double value = (double) micronewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MillinewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from MillinewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMeterPerDegrees(QuantityValue millinewtonmeterperdegrees)
+        public static RotationalStiffness FromMillinewtonMetersPerDegree(QuantityValue millinewtonmetersperdegree)
         {
-            double value = (double) millinewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMeterPerDegrees);
+            double value = (double) millinewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MillinewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from MillinewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMillimeterPerDegrees(QuantityValue millinewtonmillimeterperdegrees)
+        public static RotationalStiffness FromMillinewtonMillimetersPerDegree(QuantityValue millinewtonmillimetersperdegree)
         {
-            double value = (double) millinewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerDegrees);
+            double value = (double) millinewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from MillinewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from MillinewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMillimeterPerRadian(QuantityValue millinewtonmillimeterperradian)
+        public static RotationalStiffness FromMillinewtonMillimetersPerRadian(QuantityValue millinewtonmillimetersperradian)
         {
-            double value = (double) millinewtonmillimeterperradian;
+            double value = (double) millinewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NanonewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from NanonewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMeterPerDegrees(QuantityValue nanonewtonmeterperdegrees)
+        public static RotationalStiffness FromNanonewtonMetersPerDegree(QuantityValue nanonewtonmetersperdegree)
         {
-            double value = (double) nanonewtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMeterPerDegrees);
+            double value = (double) nanonewtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NanonewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from NanonewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMillimeterPerDegrees(QuantityValue nanonewtonmillimeterperdegrees)
+        public static RotationalStiffness FromNanonewtonMillimetersPerDegree(QuantityValue nanonewtonmillimetersperdegree)
         {
-            double value = (double) nanonewtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerDegrees);
+            double value = (double) nanonewtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NanonewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from NanonewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMillimeterPerRadian(QuantityValue nanonewtonmillimeterperradian)
+        public static RotationalStiffness FromNanonewtonMillimetersPerRadian(QuantityValue nanonewtonmillimetersperradian)
         {
-            double value = (double) nanonewtonmillimeterperradian;
+            double value = (double) nanonewtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NewtonMeterPerDegrees.
+        ///     Get RotationalStiffness from NewtonMetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMeterPerDegrees(QuantityValue newtonmeterperdegrees)
+        public static RotationalStiffness FromNewtonMetersPerDegree(QuantityValue newtonmetersperdegree)
         {
-            double value = (double) newtonmeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerDegrees);
+            double value = (double) newtonmetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerDegree);
         }
         /// <summary>
         ///     Get RotationalStiffness from NewtonMetersPerRadian.
@@ -651,21 +651,21 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NewtonMillimeterPerDegrees.
+        ///     Get RotationalStiffness from NewtonMillimetersPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMillimeterPerDegrees(QuantityValue newtonmillimeterperdegrees)
+        public static RotationalStiffness FromNewtonMillimetersPerDegree(QuantityValue newtonmillimetersperdegree)
         {
-            double value = (double) newtonmillimeterperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerDegrees);
+            double value = (double) newtonmillimetersperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerDegree);
         }
         /// <summary>
-        ///     Get RotationalStiffness from NewtonMillimeterPerRadian.
+        ///     Get RotationalStiffness from NewtonMillimetersPerRadian.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMillimeterPerRadian(QuantityValue newtonmillimeterperradian)
+        public static RotationalStiffness FromNewtonMillimetersPerRadian(QuantityValue newtonmillimetersperradian)
         {
-            double value = (double) newtonmillimeterperradian;
+            double value = (double) newtonmillimetersperradian;
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerRadian);
         }
         /// <summary>
@@ -678,13 +678,13 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFeetPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from PoundForceFeetPerDegrees.
+        ///     Get RotationalStiffness from PoundForceFeetPerDegree.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromPoundForceFeetPerDegrees(QuantityValue poundforcefeetperdegrees)
+        public static RotationalStiffness FromPoundForceFeetPerDegree(QuantityValue poundforcefeetperdegree)
         {
-            double value = (double) poundforcefeetperdegrees;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegrees);
+            double value = (double) poundforcefeetperdegree;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegree);
         }
 
         /// <summary>
@@ -1115,39 +1115,39 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RotationalStiffnessUnit.CentinewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e-2d;
+                case RotationalStiffnessUnit.CentinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-2d;
+                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-2d;
                 case RotationalStiffnessUnit.CentinewtonMillimeterPerRadian: return (_value*0.001) * 1e-2d;
-                case RotationalStiffnessUnit.DecanewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e1d;
+                case RotationalStiffnessUnit.DecanewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e1d;
+                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e1d;
                 case RotationalStiffnessUnit.DecanewtonMillimeterPerRadian: return (_value*0.001) * 1e1d;
-                case RotationalStiffnessUnit.DecinewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e-1d;
+                case RotationalStiffnessUnit.DecinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-1d;
+                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-1d;
                 case RotationalStiffnessUnit.DecinewtonMillimeterPerRadian: return (_value*0.001) * 1e-1d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e3d;
+                case RotationalStiffnessUnit.KilonewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e3d;
+                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (_value*0.001) * 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return _value*77682.6;
-                case RotationalStiffnessUnit.MeganewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e6d;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegree: return _value*77682.6;
+                case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e6d;
+                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMillimeterPerRadian: return (_value*0.001) * 1e6d;
-                case RotationalStiffnessUnit.MicronewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e-6d;
+                case RotationalStiffnessUnit.MicronewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-6d;
+                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-6d;
                 case RotationalStiffnessUnit.MicronewtonMillimeterPerRadian: return (_value*0.001) * 1e-6d;
-                case RotationalStiffnessUnit.MillinewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e-3d;
+                case RotationalStiffnessUnit.MillinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-3d;
+                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-3d;
                 case RotationalStiffnessUnit.MillinewtonMillimeterPerRadian: return (_value*0.001) * 1e-3d;
-                case RotationalStiffnessUnit.NanonewtonMeterPerDegrees: return (_value*(180/Math.PI)) * 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegrees: return (_value*180/Math.PI*0.001) * 1e-9d;
+                case RotationalStiffnessUnit.NanonewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-9d;
+                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-9d;
                 case RotationalStiffnessUnit.NanonewtonMillimeterPerRadian: return (_value*0.001) * 1e-9d;
-                case RotationalStiffnessUnit.NewtonMeterPerDegrees: return _value*(180/Math.PI);
+                case RotationalStiffnessUnit.NewtonMeterPerDegree: return _value*(180/Math.PI);
                 case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
-                case RotationalStiffnessUnit.NewtonMillimeterPerDegrees: return _value*180/Math.PI*0.001;
+                case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return _value*180/Math.PI*0.001;
                 case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return _value*0.001;
                 case RotationalStiffnessUnit.PoundForceFeetPerRadian: return _value*1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return _value*77.6826;
+                case RotationalStiffnessUnit.PoundForceFootPerDegree: return _value*77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1173,39 +1173,39 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RotationalStiffnessUnit.CentinewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e-2d;
+                case RotationalStiffnessUnit.CentinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-2d;
+                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-2d;
                 case RotationalStiffnessUnit.CentinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-2d;
-                case RotationalStiffnessUnit.DecanewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e1d;
+                case RotationalStiffnessUnit.DecanewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e1d;
+                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e1d;
                 case RotationalStiffnessUnit.DecanewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e1d;
-                case RotationalStiffnessUnit.DecinewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e-1d;
+                case RotationalStiffnessUnit.DecinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-1d;
+                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-1d;
                 case RotationalStiffnessUnit.DecinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-1d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e3d;
+                case RotationalStiffnessUnit.KilonewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (baseUnitValue) / 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e3d;
+                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return baseUnitValue/77682.6;
-                case RotationalStiffnessUnit.MeganewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e6d;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegree: return baseUnitValue/77682.6;
+                case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (baseUnitValue) / 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e6d;
+                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e6d;
-                case RotationalStiffnessUnit.MicronewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e-6d;
+                case RotationalStiffnessUnit.MicronewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-6d;
+                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-6d;
                 case RotationalStiffnessUnit.MicronewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-6d;
-                case RotationalStiffnessUnit.MillinewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e-3d;
+                case RotationalStiffnessUnit.MillinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-3d;
+                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-3d;
                 case RotationalStiffnessUnit.MillinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-3d;
-                case RotationalStiffnessUnit.NanonewtonMeterPerDegrees: return (baseUnitValue/(180/Math.PI)) / 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegrees: return (baseUnitValue/180*Math.PI*1000) / 1e-9d;
+                case RotationalStiffnessUnit.NanonewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-9d;
+                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-9d;
                 case RotationalStiffnessUnit.NanonewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-9d;
-                case RotationalStiffnessUnit.NewtonMeterPerDegrees: return baseUnitValue/(180/Math.PI);
+                case RotationalStiffnessUnit.NewtonMeterPerDegree: return baseUnitValue/(180/Math.PI);
                 case RotationalStiffnessUnit.NewtonMeterPerRadian: return baseUnitValue;
-                case RotationalStiffnessUnit.NewtonMillimeterPerDegrees: return baseUnitValue/180*Math.PI*1000;
+                case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return baseUnitValue/180*Math.PI*1000;
                 case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return baseUnitValue*1000;
                 case RotationalStiffnessUnit.PoundForceFeetPerRadian: return baseUnitValue/1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return baseUnitValue/77.6826;
+                case RotationalStiffnessUnit.PoundForceFootPerDegree: return baseUnitValue/77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -115,7 +115,7 @@ namespace UnitsNet.Tests
             Assertion(3, ReactivePowerUnit.VoltampereReactive, Quantity.From(3, ReactivePowerUnit.VoltampereReactive));
             Assertion(3, RotationalAccelerationUnit.RevolutionPerSecondSquared, Quantity.From(3, RotationalAccelerationUnit.RevolutionPerSecondSquared));
             Assertion(3, RotationalSpeedUnit.RevolutionPerSecond, Quantity.From(3, RotationalSpeedUnit.RevolutionPerSecond));
-            Assertion(3, RotationalStiffnessUnit.PoundForceFootPerDegrees, Quantity.From(3, RotationalStiffnessUnit.PoundForceFootPerDegrees));
+            Assertion(3, RotationalStiffnessUnit.PoundForceFootPerDegree, Quantity.From(3, RotationalStiffnessUnit.PoundForceFootPerDegree));
             Assertion(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, Quantity.From(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
             Assertion(3, SolidAngleUnit.Steradian, Quantity.From(3, SolidAngleUnit.Steradian));
             Assertion(3, SpecificEnergyUnit.WattHourPerKilogram, Quantity.From(3, SpecificEnergyUnit.WattHourPerKilogram));

@@ -46,7 +46,7 @@ namespace UnitsNet
 
         static VolumePerLength()
         {
-            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
                 new UnitInfo<VolumePerLengthUnit>[] {
@@ -54,7 +54,7 @@ namespace UnitsNet
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerKilometer, BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, new BaseUnits(length: LengthUnit.Decimeter)),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
                 },
