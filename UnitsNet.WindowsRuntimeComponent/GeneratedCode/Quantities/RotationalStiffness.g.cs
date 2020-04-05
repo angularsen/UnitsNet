@@ -221,9 +221,9 @@ namespace UnitsNet
         public double KilonewtonMillimetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in KilopoundForceFeetPerDegree.
+        ///     Get RotationalStiffness in KilopoundForceFeetPerDegrees.
         /// </summary>
-        public double KilopoundForceFeetPerDegree => As(RotationalStiffnessUnit.KilopoundForceFootPerDegree);
+        public double KilopoundForceFeetPerDegrees => As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
 
         /// <summary>
         ///     Get RotationalStiffness in MeganewtonMetersPerDegree.
@@ -316,9 +316,9 @@ namespace UnitsNet
         public double PoundForceFeetPerRadian => As(RotationalStiffnessUnit.PoundForceFeetPerRadian);
 
         /// <summary>
-        ///     Get RotationalStiffness in PoundForceFeetPerDegree.
+        ///     Get RotationalStiffness in PoundForceFeetPerDegrees.
         /// </summary>
-        public double PoundForceFeetPerDegree => As(RotationalStiffnessUnit.PoundForceFootPerDegree);
+        public double PoundForceFeetPerDegrees => As(RotationalStiffnessUnit.PoundForceFootPerDegrees);
 
         #endregion
 
@@ -481,14 +481,14 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from KilopoundForceFeetPerDegree.
+        ///     Get RotationalStiffness from KilopoundForceFeetPerDegrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RotationalStiffness FromKilopoundForceFeetPerDegree(double kilopoundforcefeetperdegree)
+        public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double kilopoundforcefeetperdegrees)
         {
-            double value = (double) kilopoundforcefeetperdegree;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegree);
+            double value = (double) kilopoundforcefeetperdegrees;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
         }
         /// <summary>
         ///     Get RotationalStiffness from MeganewtonMetersPerDegree.
@@ -671,14 +671,14 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFeetPerRadian);
         }
         /// <summary>
-        ///     Get RotationalStiffness from PoundForceFeetPerDegree.
+        ///     Get RotationalStiffness from PoundForceFeetPerDegrees.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RotationalStiffness FromPoundForceFeetPerDegree(double poundforcefeetperdegree)
+        public static RotationalStiffness FromPoundForceFeetPerDegrees(double poundforcefeetperdegrees)
         {
-            double value = (double) poundforcefeetperdegree;
-            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegree);
+            double value = (double) poundforcefeetperdegrees;
+            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegrees);
         }
 
         /// <summary>
@@ -984,7 +984,7 @@ namespace UnitsNet
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (_value*0.001) * 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegree: return _value*77682.6;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return _value*77682.6;
                 case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e6d;
@@ -1003,7 +1003,7 @@ namespace UnitsNet
                 case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return _value*180/Math.PI*0.001;
                 case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return _value*0.001;
                 case RotationalStiffnessUnit.PoundForceFeetPerRadian: return _value*1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegree: return _value*77.6826;
+                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return _value*77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1031,7 +1031,7 @@ namespace UnitsNet
                 case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (baseUnitValue) / 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e3d;
                 case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegree: return baseUnitValue/77682.6;
+                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return baseUnitValue/77682.6;
                 case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (baseUnitValue) / 1e6d;
                 case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e6d;
@@ -1050,7 +1050,7 @@ namespace UnitsNet
                 case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return baseUnitValue/180*Math.PI*1000;
                 case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return baseUnitValue*1000;
                 case RotationalStiffnessUnit.PoundForceFeetPerRadian: return baseUnitValue/1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegree: return baseUnitValue/77.6826;
+                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return baseUnitValue/77.6826;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

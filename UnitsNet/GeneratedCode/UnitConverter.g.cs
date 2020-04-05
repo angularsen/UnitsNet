@@ -1727,8 +1727,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, q => q.ToUnit(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian));
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.KilopoundForceFootPerDegree, q => q.ToUnit(RotationalStiffnessUnit.KilopoundForceFootPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilopoundForceFootPerDegree, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.KilopoundForceFootPerDegrees, q => q.ToUnit(RotationalStiffnessUnit.KilopoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.MeganewtonMeterPerDegree, q => q.ToUnit(RotationalStiffnessUnit.MeganewtonMeterPerDegree));
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerDegree, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.MeganewtonMeterPerRadian, q => q.ToUnit(RotationalStiffnessUnit.MeganewtonMeterPerRadian));
@@ -1764,8 +1764,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.PoundForceFeetPerRadian, q => q.ToUnit(RotationalStiffnessUnit.PoundForceFeetPerRadian));
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFeetPerRadian, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.PoundForceFootPerDegree, q => q.ToUnit(RotationalStiffnessUnit.PoundForceFootPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFootPerDegree, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffness.BaseUnit, RotationalStiffnessUnit.PoundForceFootPerDegrees, q => q.ToUnit(RotationalStiffnessUnit.PoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffness.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, q => q.ToUnit(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, RotationalStiffnessPerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, q => q.ToUnit(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot));

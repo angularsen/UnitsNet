@@ -39,7 +39,7 @@ namespace UnitsNet.Units
         KilonewtonMeterPerRadian,
         KilonewtonMillimeterPerDegree,
         KilonewtonMillimeterPerRadian,
-        KilopoundForceFootPerDegree,
+        KilopoundForceFootPerDegrees,
         MeganewtonMeterPerDegree,
         MeganewtonMeterPerRadian,
         MeganewtonMillimeterPerDegree,
@@ -58,7 +58,7 @@ namespace UnitsNet.Units
         NewtonMillimeterPerDegree,
         NewtonMillimeterPerRadian,
         PoundForceFeetPerRadian,
-        PoundForceFootPerDegree,
+        PoundForceFootPerDegrees,
     }
 
     #pragma warning restore 1591
