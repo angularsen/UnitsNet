@@ -29,7 +29,9 @@ namespace UnitsNet.Units
         CubicMeterPerMeter,
         CubicYardPerFoot,
         CubicYardPerUsSurveyFoot,
+        LiterPerKilometer,
         LiterPerMeter,
+        LiterPerMillimeter,
         OilBarrelPerFoot,
     }
 

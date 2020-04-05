@@ -37,6 +37,15 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsForcePerInchInOneNewtonPerMeter => 5.710147162769201E-3;
         protected override double PoundsForcePerYardInOneNewtonPerMeter => 0.205565298;
         protected override double MeganewtonsPerMeterInOneNewtonPerMeter => 1E-6;
+        protected override double CentinewtonsPerMillimeterInOneNewtonPerMeter => 0.1;
+        protected override double DecanewtonsPerMeterInOneNewtonPerMeter => 0.1;
+        protected override double DecanewtonsPerMillimeterInOneNewtonPerMeter => 1E-4;
+        protected override double DecinewtonsPerMillimeterInOneNewtonPerMeter => 1E-2;
+        protected override double KilonewtonsPerMillimeterInOneNewtonPerMeter => 1E-6;
+        protected override double MeganewtonsPerMillimeterInOneNewtonPerMeter => 1E-9;
+        protected override double MicronewtonsPerMillimeterInOneNewtonPerMeter => 1E3;
+        protected override double MillinewtonsPerMillimeterInOneNewtonPerMeter => 1;
+        protected override double NanonewtonsPerMillimeterInOneNewtonPerMeter => 1E6;
 
         [Fact]
         public void ForcePerLengthDividedByLengthEqualsPressure()
