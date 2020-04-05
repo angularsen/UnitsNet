@@ -34,6 +34,7 @@ namespace UnitsNet.Tests.CustomCode
         // Newton meters per radian
         protected override double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian        => 1e-6;
         protected override double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian        => 1e-3;
+        protected override double NewtonMetersPerRadianInOneNewtonMeterPerRadian            => 1;
 
         // Newton millimeters per radian
         protected override double MeganewtonMillimeterPerRadianInOneNewtonMeterPerRadian    => 1e-3;
