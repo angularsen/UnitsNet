@@ -1,0 +1,88 @@
+{
+  "Name": "RotationalSpeed",
+  "BaseUnit": "RadianPerSecond",
+  "XmlDoc": "Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter \"omega\").",
+  "BaseDimensions": {
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "RadianPerSecond",
+      "PluralName": "RadiansPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rad/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreePerSecond",
+      "PluralName": "DegreesPerSecond",
+      "FromUnitToBaseFunc": "(Math.PI/180)*x",
+      "FromBaseToUnitFunc": "(180/Math.PI)*x",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°/s", "deg/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "°/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreePerMinute",
+      "PluralName": "DegreesPerMinute",
+      "FromUnitToBaseFunc": "(Math.PI/(180*60))*x",
+      "FromBaseToUnitFunc": "(180*60/Math.PI)*x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°/min", "deg/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RevolutionPerSecond",
+      "PluralName": "RevolutionsPerSecond",
+      "FromUnitToBaseFunc": "x*6.2831853072",
+      "FromBaseToUnitFunc": "x/6.2831853072",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "r/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "об/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RevolutionPerMinute",
+      "PluralName": "RevolutionsPerMinute",
+      "FromUnitToBaseFunc": "(x*6.2831853072)/60",
+      "FromBaseToUnitFunc": "(x/6.2831853072)*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rpm", "r/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "об/мин" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "Name": "Force",
+  "BaseUnit": "Newton",
+  "XmlDoc": "In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Dyn",
+      "PluralName": "Dyne",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Gram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x/1e5",
+      "FromBaseToUnitFunc": "x*1e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dyn" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дин" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForce",
+      "PluralName": "KilogramsForce",
+      "FromUnitToBaseFunc": "x*9.80665002864",
+      "FromBaseToUnitFunc": "x/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneForce",
+      "PluralName": "TonnesForce",
+      "FromUnitToBaseFunc": "x*9.80665002864e3",
+      "FromBaseToUnitFunc": "x/9.80665002864e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ton" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "тс" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Newton",
+      "PluralName": "Newtons",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Н" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KiloPond",
+      "PluralName": "KiloPonds",
+      "FromUnitToBaseFunc": "x*9.80665002864",
+      "FromBaseToUnitFunc": "x/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kp" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Poundal",
+      "PluralName": "Poundals",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.13825502798973041652092282466083",
+      "FromBaseToUnitFunc": "x/0.13825502798973041652092282466083",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pdl" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "паундаль" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForce",
+      "PluralName": "PoundsForce",
+      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фунт-сила" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OunceForce",
+      "PluralName": "OunceForce",
+      "FromUnitToBaseFunc": "x*2.780138509537812e-1",
+      "FromBaseToUnitFunc": "x/2.780138509537812e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForce",
+      "PluralName": "KilopoundsForce",
+      "FromUnitToBaseFunc": "x*4448.2216152605095551842641431421",
+      "FromBaseToUnitFunc": "x/4448.2216152605095551842641431421",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf", "kip", "k" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кипф", "койка", "К" ]
+        }
+      ]
+    }
+  ]
+}

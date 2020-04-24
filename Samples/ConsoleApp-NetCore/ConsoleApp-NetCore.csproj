@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <StartupObject>ConsoleApp1.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="UnitsNet" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

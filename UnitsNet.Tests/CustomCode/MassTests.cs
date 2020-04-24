@@ -1,25 +1,8 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -32,6 +15,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecigramsInOneKilogram => 1E4;
 
+        protected override double GrainsInOneKilogram => 15432.358352941431d;
+
         protected override double GramsInOneKilogram => 1E3;
 
         protected override double HectogramsInOneKilogram => 10;
@@ -42,11 +27,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilotonnesInOneKilogram => 1E-6;
 
-        protected override double LongTonsInOneKilogram => 0.000984207;
+        protected override double LongTonsInOneKilogram => 9.842065276110606e-4;
 
         protected override double MegapoundsInOneKilogram => 2.2046226218487757e-6;
 
-        protected override double MegatonnesInOneKilogram => 1E-6;
+        protected override double MegatonnesInOneKilogram => 1E-9;
 
         protected override double MicrogramsInOneKilogram => 1E9;
 
@@ -60,20 +45,28 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsInOneKilogram => 2.2046226218487757d;
 
-        protected override double ShortTonsInOneKilogram => 0.00110231;
+        protected override double ShortTonsInOneKilogram => 1.102311310924388e-3;
+
+        protected override double SlugsInOneKilogram => 6.852176556196105e-2;
 
         protected override double StoneInOneKilogram => 0.1574731728702698;
 
         protected override double TonnesInOneKilogram => 1E-3;
-        
+
         protected override double LongHundredweightInOneKilogram => 0.01968413055222121;
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
 
+        protected override double EarthMassesInOneKilogram => 1.6744248350691500000000000E-25;
+
+        protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
+
+        //protected override double SolarMassesTolerance => 0.1;
+
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
-            Force force = Acceleration.FromMeterPerSecondSquared(3)*Mass.FromKilograms(18);
+            Force force = Acceleration.FromMetersPerSecondSquared(3)*Mass.FromKilograms(18);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 
@@ -101,8 +94,41 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
-            Force force = Mass.FromKilograms(18)*Acceleration.FromMeterPerSecondSquared(3);
+            Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void NegativeMassToStonePoundsReturnsCorrectValues()
+        {
+            var negativeMass = Mass.FromPounds(-1.0);
+            var stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(0, stonePounds.Stone);
+            Assert.Equal(-1.0, stonePounds.Pounds);
+
+            negativeMass = Mass.FromPounds(-25.0);
+            stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(-1.0, stonePounds.Stone);
+            Assert.Equal(-11.0, stonePounds.Pounds);
+        }
+
+        [Theory]
+        [InlineData(10, MassUnit.Gram,
+                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+                    0.625023438378939, AmountOfSubstanceUnit.Mole)]     // 10 grams Of Oxygen contain 0.625023438378939 Moles
+        public void AmountOfSubstanceFromMassAndMolarMass(
+            double massValue, MassUnit massUnit,
+            double molarMassValue, MolarMassUnit molarMassUnit,
+            double expectedAmountOfSubstanceValue, AmountOfSubstanceUnit expectedAmountOfSubstanceUnit, double tolerence = 1e-5)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
+
+            AmountOfSubstance amountOfSubstance = mass / molarMass;
+
+            AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }
     }
 }

@@ -1,0 +1,33 @@
+{
+  "Name": "PowerRatio",
+  "BaseUnit": "DecibelWatt",
+  "Logarithmic": "True",
+  "LogarithmicScalingFactor": "1",
+  "XmlDoc": "The strength of a signal expressed in decibels (dB) relative to one watt.",
+  "Units": [
+    {
+      "SingularName": "DecibelWatt",
+      "PluralName": "DecibelWatts",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBW" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecibelMilliwatt",
+      "PluralName": "DecibelMilliwatts",
+      "FromUnitToBaseFunc": "x - 30",
+      "FromBaseToUnitFunc": "x + 30",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBmW", "dBm" ]
+        }
+      ]
+    }
+  ]
+}

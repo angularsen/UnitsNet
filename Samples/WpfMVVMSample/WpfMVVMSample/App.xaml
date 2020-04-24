@@ -1,0 +1,8 @@
+﻿<unity:PrismApplication x:Class="WpfMVVMSample.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:unity="http://prismlibrary.com/">
+    <Application.Resources>
+
+    </Application.Resources>
+</unity:PrismApplication>

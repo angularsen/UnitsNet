@@ -1,0 +1,32 @@
+{
+  "Name": "ElectricField",
+  "BaseUnit": "VoltPerMeter",
+  "XmlDoc": "An electric field is a force field that surrounds electric charges that attracts or repels other electric charges.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electric_field",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -3,
+    "I": -1
+  },
+  "Units": [
+    {
+      "SingularName": "VoltPerMeter",
+      "PluralName": "VoltsPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/m" ]
+        }
+      ]
+    }
+  ]
+}

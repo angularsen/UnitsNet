@@ -1,0 +1,103 @@
+{
+  "Name": "SpecificEnergy",
+  "BaseUnit": "JoulePerKilogram",
+  "XmlDoc": "The SpecificEnergy",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
+  "BaseDimensions": {
+    "L": 2,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "JoulePerKilogram",
+      "PluralName": "JoulesPerKilogram",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CaloriePerGram",
+      "PluralName": "CaloriesPerGram",
+      "FromUnitToBaseFunc": "x*4.184e3",
+      "FromBaseToUnitFunc": "x/4.184e3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattHourPerKilogram",
+      "PluralName": "WattHoursPerKilogram",
+      "FromUnitToBaseFunc": "x*3.6e3",
+      "FromBaseToUnitFunc": "x/3.6e3",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattDayPerKilogram",
+      "PluralName": "WattDaysPerKilogram",
+      "FromUnitToBaseFunc": "x*(24*3.6e3)",
+      "FromBaseToUnitFunc": "x/(24*3.6e3)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattDayPerTonne",
+      "PluralName": "WattDaysPerTonne",
+      "FromUnitToBaseFunc": "x*((24*3.6e3)/1e3)",
+      "FromBaseToUnitFunc": "x/((24*3.6e3)/1e3)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd/t" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattDayPerShortTon",
+      "PluralName": "WattDaysPerShortTon",
+      "FromUnitToBaseFunc": "x*((24*3.6e3)/9.0718474e2)",
+      "FromBaseToUnitFunc": "x/((24*3.6e3)/9.0718474e2)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd/ST" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerPound",
+      "PluralName": "BtuPerPound",
+      "FromUnitToBaseFunc": "x*2326.000075362",
+      "FromBaseToUnitFunc": "x/2326.000075362",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "btu/lb" ]
+        }
+      ]
+    }
+
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "Name": "MolarMass",
+  "BaseUnit": "KilogramPerMole",
+  "XmlDoc": "In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.",
+  "BaseDimensions": {
+    "M": 1,
+    "N": -1
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerMole",
+      "PluralName": "GramsPerMole",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mol" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "г/моль" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerMole",
+      "PluralName": "PoundsPerMole",
+      "FromUnitToBaseFunc": "x*0.45359237",
+      "FromBaseToUnitFunc": "x/0.45359237",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/mol" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фунт/моль" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "Name": "Speed",
+  "BaseUnit": "MeterPerSecond",
+  "XmlDoc": "In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.",
+  "BaseDimensions": {
+    "L": 1,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "MeterPerSecond",
+      "PluralName": "MetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/s" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerMinute",
+      "PluralName": "MetersPerMinutes",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/min" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/мин" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerHour",
+      "PluralName": "MetersPerHour",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Prefixes": [ "Milli", "Centi", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/h" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecond",
+      "PluralName": "FeetPerSecond",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.3048",
+      "FromBaseToUnitFunc": "x/0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/s" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerMinute",
+      "PluralName": "FeetPerMinute",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x*0.3048/60",
+      "FromBaseToUnitFunc": "x/0.3048*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/min" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/мин" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerHour",
+      "PluralName": "FeetPerHour",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x*0.3048/3600",
+      "FromBaseToUnitFunc": "x/0.3048*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/h" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsSurveyFootPerSecond",
+      "PluralName": "UsSurveyFeetPerSecond",
+      "BaseUnits": {
+        "L": "UsSurveyFoot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*1200/3937",
+      "FromBaseToUnitFunc": "x*3937/1200",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ftUS/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsSurveyFootPerMinute",
+      "PluralName": "UsSurveyFeetPerMinute",
+      "BaseUnits": {
+        "L": "UsSurveyFoot",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "(x*1200/3937)/60",
+      "FromBaseToUnitFunc": "(x*3937/1200)*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ftUS/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsSurveyFootPerHour",
+      "PluralName": "UsSurveyFeetPerHour",
+      "BaseUnits": {
+        "L": "UsSurveyFoot",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "(x*1200/3937)/3600",
+      "FromBaseToUnitFunc": "(x*3937/1200)*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ftUS/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerSecond",
+      "PluralName": "InchesPerSecond",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*2.54e-2",
+      "FromBaseToUnitFunc": "x/2.54e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerMinute",
+      "PluralName": "InchesPerMinute",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "(x/60)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerHour",
+      "PluralName": "InchesPerHour",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "(x/3600)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "YardPerSecond",
+      "PluralName": "YardsPerSecond",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.9144",
+      "FromBaseToUnitFunc": "x/0.9144",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "YardPerMinute",
+      "PluralName": "YardsPerMinute",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x*0.9144/60",
+      "FromBaseToUnitFunc": "x/0.9144*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "YardPerHour",
+      "PluralName": "YardsPerHour",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x*0.9144/3600",
+      "FromBaseToUnitFunc": "x/0.9144*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Knot",
+      "PluralName": "Knots",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x*0.514444",
+      "FromBaseToUnitFunc": "x/0.514444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn", "kt", "knot", "knots" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "уз."]
+        }
+      ]
+    },
+    {
+      "SingularName": "MilePerHour",
+      "PluralName": "MilesPerHour",
+      "BaseUnits": {
+        "L": "Mile",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x*0.44704",
+      "FromBaseToUnitFunc": "x/0.44704",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mph" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "миль/ч" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "Name": "VolumePerLength",
+  "BaseUnit": "CubicMeterPerMeter",
+  "XmlDoc": "Volume, typically of fluid, that a container can hold within a unit of length.",
+  "BaseDimensions": {
+    "L": 2
+  },
+  "Units": [
+    {
+      "SingularName": "CubicMeterPerMeter",
+      "PluralName": "CubicMetersPerMeter",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerMeter",
+      "PluralName": "LitersPerMeter",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x/1000",
+      "FromBaseToUnitFunc": "x*1000",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerKilometer",
+      "PluralName": "LitersPerKilometer",
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/km" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerMillimeter",
+      "PluralName": "LitersPerMillimeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerFoot",
+      "PluralName": "OilBarrelsPerFoot",
+      "FromUnitToBaseFunc": "x/1.91713408",
+      "FromBaseToUnitFunc": "x*1.91713408",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerFoot",
+      "PluralName": "CubicYardsPerFoot",
+      "FromUnitToBaseFunc": "x*2.50838208",
+      "FromBaseToUnitFunc": "x/2.50838208",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerUsSurveyFoot",
+      "PluralName": "CubicYardsPerUsSurveyFoot",
+      "FromUnitToBaseFunc": "x*2.50837706323584",
+      "FromBaseToUnitFunc": "x/2.50837706323584",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/ftUS" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "Name": "PressureChangeRate",
+  "BaseUnit": "PascalPerSecond",
+  "XmlDoc": "Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).",
+  "BaseDimensions": {
+    "L": -1,
+    "M": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "PascalPerSecond",
+      "PluralName": "PascalsPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalPerMinute",
+      "PluralName": "PascalsPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AtmospherePerSecond",
+      "PluralName": "AtmospheresPerSecond",
+      "FromUnitToBaseFunc": "x * 1.01325*1e5",
+      "FromBaseToUnitFunc": "x / (1.01325*1e5)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "atm/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "атм/с" ]
+        }
+      ]
+    }
+  ]
+}

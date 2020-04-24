@@ -1,0 +1,193 @@
+{
+  "Name": "Energy",
+  "BaseUnit": "Joule",
+  "XmlDoc": "The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Joule",
+      "PluralName": "Joules",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Calorie",
+      "PluralName": "Calories",
+      "FromUnitToBaseFunc": "x*4.184",
+      "FromBaseToUnitFunc": "x/4.184",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnit",
+      "PluralName": "BritishThermalUnits",
+      "FromUnitToBaseFunc": "x*1055.05585262",
+      "FromBaseToUnitFunc": "x/1055.05585262",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ElectronVolt",
+      "PluralName": "ElectronVolts",
+      "FromUnitToBaseFunc": "x*1.602176565e-19",
+      "FromBaseToUnitFunc": "x/1.602176565e-19",
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga",
+        "Tera"
+      ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "eV" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "эВ" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPound",
+      "PluralName": "FootPounds",
+      "FromUnitToBaseFunc": "x*1.355817948",
+      "FromBaseToUnitFunc": "x/1.355817948",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft·lb" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Erg",
+      "PluralName": "Ergs",
+      "FromUnitToBaseFunc": "x*1e-7",
+      "FromBaseToUnitFunc": "x/1e-7",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "erg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattHour",
+      "PluralName": "WattHours",
+      "FromUnitToBaseFunc": "x*3600d",
+      "FromBaseToUnitFunc": "x/3600d",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Вт/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattDay",
+      "PluralName": "WattDays",
+      "FromUnitToBaseFunc": "x*24*3600d",
+      "FromBaseToUnitFunc": "x/(24*3600d)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Вт/д" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThermEc",
+      "PluralName": "ThermsEc",
+      "FromUnitToBaseFunc": "x*1.05505585262e8",
+      "FromBaseToUnitFunc": "x/1.05505585262e8",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "th (E.C.)" ],
+          "AbbreviationsForPrefixes": { "Deca": "Dth (E.C.)" }
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Европейский терм" ],
+          "AbbreviationsForPrefixes": { "Deca": "Европейский декатерм" }
+        }
+      ]
+    },
+    {
+      "SingularName": "ThermUs",
+      "PluralName": "ThermsUs",
+      "FromUnitToBaseFunc": "x*1.054804e8",
+      "FromBaseToUnitFunc": "x/1.054804e8",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "th (U.S.)" ],
+          "AbbreviationsForPrefixes": { "Deca": "Dth (U.S.)" }
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Американский терм" ],
+          "AbbreviationsForPrefixes": { "Deca": "Американский декатерм" }
+        }
+      ]
+    },
+    {
+      "SingularName": "ThermImperial",
+      "PluralName": "ThermsImperial",
+      "FromUnitToBaseFunc": "x*1.05505585257348e8",
+      "FromBaseToUnitFunc": "x/1.05505585257348e8",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "th (imp.)" ],
+          "AbbreviationsForPrefixes": { "Deca": "Dth (imp.)" }
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Английский терм" ],
+          "AbbreviationsForPrefixes": { "Deca": "Английский декатерм" }
+        }
+      ]
+    }
+  ]
+}

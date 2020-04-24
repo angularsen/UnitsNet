@@ -1,0 +1,163 @@
+{
+  "Name": "MassMomentOfInertia",
+  "BaseUnit": "KilogramSquareMeter",
+  "XmlDoc": "A property of body reflects how its mass is distributed with regard to an axis.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1
+  },
+  "Units": [
+    {
+      "SingularName": "GramSquareMeter",
+      "PluralName": "GramSquareMeters",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramSquareDecimeter",
+      "PluralName": "GramSquareDecimeters",
+      "FromUnitToBaseFunc": "x/1e5",
+      "FromBaseToUnitFunc": "x*1e5",
+      "Prefixes": [ "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·dm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramSquareCentimeter",
+      "PluralName": "GramSquareCentimeters",
+      "FromUnitToBaseFunc": "x/1e7",
+      "FromBaseToUnitFunc": "x*1e7",
+      "Prefixes": [ "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramSquareMillimeter",
+      "PluralName": "GramSquareMillimeters",
+      "FromUnitToBaseFunc": "x/1e9",
+      "FromBaseToUnitFunc": "x*1e9",
+      "Prefixes": [ "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·mm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareMeter",
+      "PluralName": "TonneSquareMeters",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareDecimeter",
+      "PluralName": "TonneSquareDecimeters",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·dm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareCentimeter",
+      "PluralName": "TonneSquareCentimeters",
+      "FromUnitToBaseFunc": "x/1e1",
+      "FromBaseToUnitFunc": "x*1e1",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareMilimeter",
+      "PluralName": "TonneSquareMilimeters",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·mm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundSquareFoot",
+      "PluralName": "PoundSquareFeet",
+      "FromUnitToBaseFunc": "x*4.21401101e-2",
+      "FromBaseToUnitFunc": "x/4.21401101e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb·ft²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundSquareInch",
+      "PluralName": "PoundSquareInches",
+      "FromUnitToBaseFunc": "x*2.9263965e-4",
+      "FromBaseToUnitFunc": "x/2.9263965e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb·in²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugSquareFoot",
+      "PluralName": "SlugSquareFeet",
+      "FromUnitToBaseFunc": "x*1.3558179619",
+      "FromBaseToUnitFunc": "x/1.3558179619",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug·ft²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugSquareInch",
+      "PluralName": "SlugSquareInches",
+      "FromUnitToBaseFunc": "x*9.41540242e-3",
+      "FromBaseToUnitFunc": "x/9.41540242e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug·in²" ]
+        }
+      ]
+    }
+  ]
+}

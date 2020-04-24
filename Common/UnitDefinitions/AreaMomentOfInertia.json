@@ -1,0 +1,100 @@
+{
+  "Name": "AreaMomentOfInertia",
+  "BaseUnit": "MeterToTheFourth",
+  "XmlDoc": "A geometric property of an area that reflects how its points are distributed with regard to an axis.",
+  "BaseDimensions": {
+    "L": 4
+  },
+  "Units": [
+    {
+      "SingularName": "MeterToTheFourth",
+      "PluralName": "MetersToTheFourth",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁴", "m^4" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecimeterToTheFourth",
+      "PluralName": "DecimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e4",
+      "FromBaseToUnitFunc": "x*1e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dm⁴", "dm^4" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CentimeterToTheFourth",
+      "PluralName": "CentimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e8",
+      "FromBaseToUnitFunc": "x*1e8",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁴", "cm^4" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterToTheFourth",
+      "PluralName": "MillimetersToTheFourth",
+      "BaseUnits": {
+        "L": "Millimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e12",
+      "FromBaseToUnitFunc": "x*1e12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁴", "mm^4" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootToTheFourth",
+      "PluralName": "FeetToTheFourth",
+      "BaseUnits": {
+        "L": "Foot"
+      },
+      "FromUnitToBaseFunc": "x*Math.Pow(0.3048, 4)",
+      "FromBaseToUnitFunc": "x/Math.Pow(0.3048, 4)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft⁴", "ft^4" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchToTheFourth",
+      "PluralName": "InchesToTheFourth",
+      "BaseUnits": {
+        "L": "Inch"
+      },
+      "FromUnitToBaseFunc": "x*Math.Pow(2.54e-2, 4)",
+      "FromBaseToUnitFunc": "x/Math.Pow(2.54e-2, 4)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in⁴", "in^4" ]
+        }
+      ]
+    }
+  ]
+}

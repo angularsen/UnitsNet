@@ -1,0 +1,36 @@
+{
+  "Name": "TemperatureChangeRate",
+  "BaseUnit": "DegreeCelsiusPerSecond",
+  "XmlDoc": "Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).",
+  "BaseDimensions": {
+    "T": -1,
+    "Θ": 1
+  },
+  "Units": [
+    {
+      "SingularName": "DegreeCelsiusPerSecond",
+      "PluralName": "DegreesCelsiusPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerMinute",
+      "PluralName": "DegreesCelsiusPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C/min" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,23 +1,7 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -32,5 +16,29 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilovoltsInOneVolt => 1e-3;
 
         protected override double MegavoltsInOneVolt => 1e-6;
+
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(0, int.MaxValue, 0)]
+        [InlineData(10, 2, 5)]
+        [InlineData(-10, 2, -5)]
+        [InlineData(-10, -2, 5)]
+        public void ElectricPotentialDividedByElectricCurrentEqualsElectricResistance(float potential, float current, float expected)
+        {
+            ElectricResistance resistance = ElectricPotential.FromVolts(potential) / ElectricCurrent.FromAmperes(current);
+            Assert.Equal(expected, resistance.Ohms);
+        }
+
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(0, int.MaxValue, 0)]
+        [InlineData(10, 2, 5)]
+        [InlineData(-10, 2, -5)]
+        [InlineData(-10, -2, 5)]
+        public void ElectricPotentialDividedByElectricResistanceEqualsElectricCurrent(float potential, float resistance, float expected)
+        {
+            ElectricCurrent current = ElectricPotential.FromVolts(potential) / ElectricResistance.FromOhms(resistance);
+            Assert.Equal(expected, current.Amperes);
+        }
     }
 }

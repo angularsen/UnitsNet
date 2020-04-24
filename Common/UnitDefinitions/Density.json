@@ -1,0 +1,246 @@
+{
+  "Name": "Density",
+  "BaseUnit": "KilogramPerCubicMeter",
+  "XmlDoc": "The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.",
+  "XmlDocRemarks": "http://en.wikipedia.org/wiki/Density",
+  "BaseDimensions": {
+    "L": -3,
+    "M": 1
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerCubicMillimeter",
+      "PluralName": "GramsPerCubicMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "x/1e-6",
+      "FromBaseToUnitFunc": "x*1e-6",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicCentimeter",
+      "PluralName": "GramsPerCubicCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicMeter",
+      "PluralName": "GramsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo", "Milli", "Micro" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "г/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicInch",
+      "PluralName": "PoundsPerCubicInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "x/3.6127298147753e-5",
+      "FromBaseToUnitFunc": "x*3.6127298147753e-5",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/in³" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicFoot",
+      "PluralName": "PoundsPerCubicFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "x/0.062427961",
+      "FromBaseToUnitFunc": "x*0.062427961",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft³" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMillimeter",
+      "PluralName": "TonnesPerCubicMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Tonne"
+      },
+      "FromUnitToBaseFunc": "x/1e-12",
+      "FromBaseToUnitFunc": "x*1e-12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicCentimeter",
+      "PluralName": "TonnesPerCubicCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Tonne"
+      },
+      "FromUnitToBaseFunc": "x/1e-9",
+      "FromBaseToUnitFunc": "x*1e-9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMeter",
+      "PluralName": "TonnesPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Tonne"
+      },
+      "FromUnitToBaseFunc": "x/0.001",
+      "FromBaseToUnitFunc": "x*0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicFoot",
+      "PluralName": "SlugsPerCubicFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Slug"
+      },
+      "FromUnitToBaseFunc": "x*515.378818",
+      "FromBaseToUnitFunc": "x*0.00194032033",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerLiter",
+      "PluralName": "GramsPerLiter",
+      "FromUnitToBaseFunc": "x/1",
+      "FromBaseToUnitFunc": "x*1",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/L" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerDeciliter",
+      "PluralName": "GramsPerDeciLiter",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/dl" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerMilliliter",
+      "PluralName": "GramsPerMilliliter",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/ml" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerUSGallon",
+      "PluralName": "PoundsPerUSGallon",
+      "FromUnitToBaseFunc": "x*1.19826427e2",
+      "FromBaseToUnitFunc": "x/1.19826427e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (U.S.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerImperialGallon",
+      "PluralName": "PoundsPerImperialGallon",
+      "FromUnitToBaseFunc": "x*9.9776398e1",
+      "FromBaseToUnitFunc": "x/9.9776398e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (imp.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerLiter",
+      "PluralName": "KilogramsPerLiter",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "M": "Kilogram"
+      },
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/l" ]
+        }
+      ]
+    }
+  ]
+}

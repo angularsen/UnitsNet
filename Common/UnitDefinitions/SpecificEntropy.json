@@ -1,0 +1,63 @@
+{
+  "Name": "SpecificEntropy",
+  "BaseUnit": "JoulePerKilogramKelvin",
+  "XmlDoc": "Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.",
+  "BaseDimensions": {
+    "L": 2,
+    "T": -2,
+    "Θ": -1
+  },
+  "Units": [
+    {
+      "SingularName": "JoulePerKilogramKelvin",
+      "PluralName": "JoulesPerKilogramKelvin",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/kg.K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "JoulePerKilogramDegreeCelsius",
+      "PluralName": "JoulesPerKilogramDegreeCelsius",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/kg.C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CaloriePerGramKelvin",
+      "PluralName": "CaloriesPerGramKelvin",
+      "FromUnitToBaseFunc": "x*4.184e3",
+      "FromBaseToUnitFunc": "x/4.184e3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/g.K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerPoundFahrenheit",
+      "PluralName": "BtusPerPoundFahrenheit",
+      "FromUnitToBaseFunc": "x * 4.1868e3",
+      "FromBaseToUnitFunc": "x / 4.1868e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/lb·°F", "BTU/lbm·°F" ]
+        }
+      ]
+    }
+  ]
+}

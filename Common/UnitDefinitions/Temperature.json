@@ -1,0 +1,158 @@
+{
+  "Name": "Temperature",
+  "BaseUnit": "Kelvin",
+  "XmlDoc": "A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.",
+  "GenerateArithmetic": false,
+  "BaseDimensions": {
+    "Θ": 1
+  },
+  "Units": [
+    {
+      "SingularName": "Kelvin",
+      "PluralName": "Kelvins",
+      "BaseUnits": {
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsius",
+      "PluralName": "DegreesCelsius",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "x + 273.15",
+      "FromBaseToUnitFunc": "x - 273.15",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillidegreeCelsius",
+      "PluralName": "MillidegreesCelsius",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "x / 1000 + 273.15",
+      "FromBaseToUnitFunc": "(x - 273.15) * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeDelisle",
+      "PluralName": "DegreesDelisle",
+      "BaseUnits": {
+        "Θ": "DegreeDelisle"
+      },
+      "FromUnitToBaseFunc": "x*-2/3 + 373.15",
+      "FromBaseToUnitFunc": "(x - 373.15)*-3/2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°De" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheit",
+      "PluralName": "DegreesFahrenheit",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit"
+      },
+      "FromUnitToBaseFunc": "x*5/9 + 459.67*5/9",
+      "FromBaseToUnitFunc": "(x - 459.67*5/9)*9/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°F" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeNewton",
+      "PluralName": "DegreesNewton",
+      "BaseUnits": {
+        "Θ": "DegreeNewton"
+      },
+      "FromUnitToBaseFunc": "x*100/33 + 273.15",
+      "FromBaseToUnitFunc": "(x - 273.15)*33/100",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°N" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeRankine",
+      "PluralName": "DegreesRankine",
+      "BaseUnits": {
+        "Θ": "DegreeRankine"
+      },
+      "FromUnitToBaseFunc": "x*5/9",
+      "FromBaseToUnitFunc": "x*9/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°R" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeReaumur",
+      "PluralName": "DegreesReaumur",
+      "BaseUnits": {
+        "Θ": "DegreeReaumur"
+      },
+      "FromUnitToBaseFunc": "x*5/4 + 273.15",
+      "FromBaseToUnitFunc": "(x - 273.15)*4/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°Ré" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeRoemer",
+      "PluralName": "DegreesRoemer",
+      "BaseUnits": {
+        "Θ": "DegreeRoemer"
+      },
+      "FromUnitToBaseFunc": "x*40/21 + 273.15 - 7.5*40d/21",
+      "FromBaseToUnitFunc": "(x - (273.15 - 7.5*40d/21))*21/40",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°Rø" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SolarTemperature",
+      "PluralName": "SolarTemperatures",
+      "FromUnitToBaseFunc": "x * 5778",
+      "FromBaseToUnitFunc": "x / 5778",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "T⊙" ]
+        }
+      ]
+    }
+  ]
+}

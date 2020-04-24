@@ -1,0 +1,454 @@
+{
+  "Name": "VolumeFlow",
+  "BaseUnit": "CubicMeterPerSecond",
+  "XmlDoc": "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.",
+  "BaseDimensions": {
+    "L": 3,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "CubicMeterPerSecond",
+      "PluralName": "CubicMetersPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м³/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMeterPerMinute",
+      "PluralName": "CubicMetersPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMeterPerHour",
+      "PluralName": "CubicMetersPerHour",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/h" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м³/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMeterPerDay",
+      "PluralName": "CubicMetersPerDay",
+      "FromUnitToBaseFunc": "x/86400",
+      "FromBaseToUnitFunc": "x*86400",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFootPerSecond",
+      "PluralName": "CubicFeetPerSecond",
+      "FromUnitToBaseFunc": "x/35.314666721",
+      "FromBaseToUnitFunc": "x*35.314666721",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft³/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFootPerMinute",
+      "PluralName": "CubicFeetPerMinute",
+      "FromUnitToBaseFunc": "x/2118.88000326",
+      "FromBaseToUnitFunc": "x*2118.88000326",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft³/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFootPerHour",
+      "PluralName": "CubicFeetPerHour",
+      "FromUnitToBaseFunc": "x*7.8657907199999087346816086183876e-6",
+      "FromBaseToUnitFunc": "x/7.8657907199999087346816086183876e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft³/h", "cf/hr" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerSecond",
+      "PluralName": "CubicYardsPerSecond",
+      "FromUnitToBaseFunc": "x*0.764554857984",
+      "FromBaseToUnitFunc": "x/0.764554857984",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerMinute",
+      "PluralName": "CubicYardsPerMinute",
+      "FromUnitToBaseFunc": "x*0.0127425809664",
+      "FromBaseToUnitFunc": "x/0.0127425809664",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerHour",
+      "PluralName": "CubicYardsPerHour",
+      "FromUnitToBaseFunc": "x*2.1237634944E-4",
+      "FromBaseToUnitFunc": "x/2.1237634944E-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd³/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicYardPerDay",
+      "PluralName": "CubicYardsPerDay",
+      "FromUnitToBaseFunc": "x/113007",
+      "FromBaseToUnitFunc": "x*113007",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cy/day" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionUsGallonsPerDay",
+      "PluralName": "MillionUsGallonsPerDay",
+      "FromUnitToBaseFunc": "x/22.824465227",
+      "FromBaseToUnitFunc": "x*22.824465227",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "MGD" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsGallonPerDay",
+      "PluralName": "UsGallonsPerDay",
+      "FromUnitToBaseFunc": "x/22824465.227",
+      "FromBaseToUnitFunc": "x*22824465.227",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gpd", "gal/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerSecond",
+      "PluralName": "LitersPerSecond",
+      "FromUnitToBaseFunc": "x/1000",
+      "FromBaseToUnitFunc": "x*1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L/s", "LPS" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerMinute",
+      "PluralName": "LitersPerMinute",
+      "FromUnitToBaseFunc": "x/60000.00000",
+      "FromBaseToUnitFunc": "x*60000.00000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L/min", "LPM" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerHour",
+      "PluralName": "LitersPerHour",
+      "FromUnitToBaseFunc": "x/3600000.000",
+      "FromBaseToUnitFunc": "x*3600000.000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L/h", "LPH" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "л/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerDay",
+      "PluralName": "LitersPerDay",
+      "FromUnitToBaseFunc": "x/86400000",
+      "FromBaseToUnitFunc": "x*86400000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/day", "L/d", "LPD" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsGallonPerSecond",
+      "PluralName": "UsGallonsPerSecond",
+      "FromUnitToBaseFunc": "x/264.1720523581484",
+      "FromBaseToUnitFunc": "x*264.1720523581484",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (U.S.)/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsGallonPerMinute",
+      "PluralName": "UsGallonsPerMinute",
+      "FromUnitToBaseFunc": "x/15850.323141489",
+      "FromBaseToUnitFunc": "x*15850.323141489",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (U.S.)/min", "GPM" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallonPerDay",
+      "PluralName": "UkGallonsPerDay",
+      "FromUnitToBaseFunc": "x/19005304",
+      "FromBaseToUnitFunc": "x*19005304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (U. K.)/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallonPerHour",
+      "PluralName": "UkGallonsPerHour",
+      "FromUnitToBaseFunc": "x/791887.667",
+      "FromBaseToUnitFunc": "x*791887.667",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallonPerMinute",
+      "PluralName": "UkGallonsPerMinute",
+      "FromUnitToBaseFunc": "x/13198.2",
+      "FromBaseToUnitFunc": "x*13198.2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallonPerSecond",
+      "PluralName": "UkGallonsPerSecond",
+      "FromUnitToBaseFunc": "x/219.969",
+      "FromBaseToUnitFunc": "x*219.969",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilousGallonPerMinute",
+      "PluralName": "KilousGallonsPerMinute",
+      "FromUnitToBaseFunc": "x/15.850323141489",
+      "FromBaseToUnitFunc": "x*15.850323141489",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgal (U.S.)/min", "KGPM" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsGallonPerHour",
+      "PluralName": "UsGallonsPerHour",
+      "FromUnitToBaseFunc": "x/951019.38848933424",
+      "FromBaseToUnitFunc": "x*951019.38848933424",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (U.S.)/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicDecimeterPerMinute",
+      "PluralName": "CubicDecimetersPerMinute",
+      "FromUnitToBaseFunc": "x/60000.00000",
+      "FromBaseToUnitFunc": "x*60000.00000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dm³/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дм³/мин" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerDay",
+      "PluralName": "OilBarrelsPerDay",
+      "FromUnitToBaseFunc": "x*1.8401307283333333333333333333333e-6",
+      "FromBaseToUnitFunc": "x/1.8401307283333333333333333333333e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/d", "BOPD" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerMinute",
+      "PluralName": "OilBarrelsPerMinute",
+      "FromUnitToBaseFunc": "x*2.64978825e-3",
+      "FromBaseToUnitFunc": "x/2.64978825e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/min", "bpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerHour",
+      "PluralName": "OilBarrelsPerHour",
+      "FromUnitToBaseFunc": "x*4.41631375e-5",
+      "FromBaseToUnitFunc": "x/4.41631375e-5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/hr", "bph" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelPerSecond",
+      "PluralName": "OilBarrelsPerSecond",
+      "FromUnitToBaseFunc": "x/6.28981",
+      "FromBaseToUnitFunc": "x*6.28981",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMillimeterPerSecond",
+      "PluralName": "CubicMillimetersPerSecond",
+      "FromUnitToBaseFunc": "x*1e-9",
+      "FromBaseToUnitFunc": "x/1e-9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm³/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм³/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AcreFootPerSecond",
+      "PluralName": "AcreFeetPerSecond",
+      "FromUnitToBaseFunc": "x/0.000810713194",
+      "FromBaseToUnitFunc": "x*0.000810713194",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "af/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AcreFootPerMinute",
+      "PluralName": "AcreFeetPerMinute",
+      "FromUnitToBaseFunc": "x/0.0486427916",
+      "FromBaseToUnitFunc": "x*0.0486427916",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "af/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AcreFootPerHour",
+      "PluralName": "AcreFeetPerHour",
+      "FromUnitToBaseFunc": "x/2.91857",
+      "FromBaseToUnitFunc": "x*2.91857",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "af/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AcreFootPerDay",
+      "PluralName": "AcreFeetPerDay",
+      "FromUnitToBaseFunc": "x/70.0457",
+      "FromBaseToUnitFunc": "x*70.0457",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "af/d" ]
+        }
+      ]
+    }
+  ]
+}

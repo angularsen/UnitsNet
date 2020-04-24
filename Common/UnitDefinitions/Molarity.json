@@ -1,0 +1,46 @@
+{
+  "Name": "Molarity",
+  "BaseUnit": "MolesPerCubicMeter",
+  "XmlDoc": "Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. ",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Molar_concentration",
+  "BaseDimensions": {
+    "L": -3,
+    "N": 1
+  },
+  "Units": [
+    {
+      "SingularName": "MolesPerCubicMeter",
+      "PluralName": "MolesPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Mole"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolesPerLiter",
+      "PluralName": "MolesPerLiter",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "N": "Mole"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/L", "M"]
+        }
+      ]
+    }
+  ]
+}

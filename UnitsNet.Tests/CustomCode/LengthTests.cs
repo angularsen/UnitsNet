@@ -1,34 +1,16 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using Xunit;
 using UnitsNet.Units;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
     // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
-    [Collection("DefaultToString")] 
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class LengthTests : LengthTestsBase
     {
         protected override double CentimetersInOneMeter => 100;
@@ -38,6 +20,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
         protected override double FeetInOneMeter => 3.28084;
+
+        protected override double HectometersInOneMeter => 1E-2;
 
         protected override double TwipsInOneMeter => 56692.913386;
         protected override double UsSurveyFeetInOneMeter => 3.280833333333333;
@@ -61,7 +45,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanometersInOneMeter => 1E9;
 
         protected override double YardsInOneMeter => 1.09361;
-      
+
         protected override double FathomsInOneMeter => 0.546806649;
 
         protected override double PrinterPicasInOneMeter => 237.10630158;
@@ -71,7 +55,27 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
-        [Fact]
+        protected override double HandsInOneMeter => 9.8425196850393701;
+
+        protected override double AstronomicalUnitsInOneMeter => 6.6845871222684500000000000E-12;
+
+        protected override double KilolightYearsInOneMeter => 1.0570008340247000000000000E-19;
+
+        protected override double KiloparsecsInOneMeter => 3.2407790389471100000000000E-20;
+
+        protected override double LightYearsInOneMeter => 1.0570008340247000000000000E-16;
+
+        protected override double MegalightYearsInOneMeter => 1.0570008340247000000000000E-22;
+
+        protected override double MegaparsecsInOneMeter => 3.2407790389471100000000000E-23;
+
+        protected override double ParsecsInOneMeter => 3.2407790389471100000000000E-17;
+
+        protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
+
+        protected override double ChainsInOneMeter => 0.0497096953789867;
+
+        [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
             Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
@@ -121,24 +125,25 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void LengthTimesSpecificWeightEqualsPressure()
+        {
+            Pressure pressure = Length.FromMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(10);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
-            LengthUnit oldUnit = Length.ToStringDefaultUnit;
-            Length.ToStringDefaultUnit = LengthUnit.Meter;
-            Length meter = Length.FromMeters(5);
+            var meter = Length.FromMeters(5);
             string meterString = meter.ToString();
-            Length.ToStringDefaultUnit = oldUnit;
             Assert.Equal("5 m", meterString);
         }
 
         [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
-            LengthUnit oldUnit = Length.ToStringDefaultUnit;
-            Length.ToStringDefaultUnit = LengthUnit.Centimeter;
-            Length value = Length.From(2, LengthUnit.Centimeter);
+            var value = Length.From(2, LengthUnit.Centimeter);
             string valueString = value.ToString();
-            Length.ToStringDefaultUnit = oldUnit;
             Assert.Equal("2 cm", valueString);
         }
 
@@ -154,6 +159,58 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(double.MinValue, Length.MinValue.Meters);
         }
 
-        
+        [Fact]
+        public void NegativeLengthToStonePoundsReturnsCorrectValues()
+        {
+            var negativeLength = Length.FromInches(-1.0);
+            var feetInches = negativeLength.FeetInches;
+
+            Assert.Equal(0, feetInches.Feet);
+            Assert.Equal(-1.0, feetInches.Inches);
+
+            negativeLength = Length.FromInches(-25.0);
+            feetInches = negativeLength.FeetInches;
+
+            Assert.Equal(-2.0, feetInches.Feet);
+            Assert.Equal(-1.0, feetInches.Inches);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemSI_AssignsSIUnit()
+        {
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
+        }
+
+        [Fact]
+        public void Constructor_UnitSystemWithNoMatchingBaseUnits_ThrowsArgumentException()
+        {
+            // AmplitudeRatio is unitless. Can't have any matches :)
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1.0, UnitSystem.SI));
+        }
+
+        [Fact]
+        public void As_GivenSIUnitSystem_ReturnsSIValue()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
+        {
+            var inches = new Length(2.0, LengthUnit.Inch);
+
+            var inSI = inches.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(LengthUnit.Meter, inSI.Unit);
+        }
     }
 }

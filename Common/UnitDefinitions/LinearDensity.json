@@ -1,0 +1,75 @@
+{
+  "Name": "LinearDensity",
+  "BaseUnit": "KilogramPerMeter",
+  "XmlDoc": "The Linear Density, or more precisely, the linear mass density, of a substance is its mass per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.",
+  "XmlDocRemarks": "http://en.wikipedia.org/wiki/Linear_density",
+  "BaseDimensions": {
+    "L": -1,
+    "M": 1
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerMillimeter",
+      "PluralName": "GramsPerMillimeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCentimeter",
+      "PluralName": "GramsPerCentimeter",
+      "FromUnitToBaseFunc": "x*1e-1",
+      "FromBaseToUnitFunc": "x/1e-1",
+      "Prefixes": [ "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerMeter",
+      "PluralName": "GramsPerMeter",
+      "FromUnitToBaseFunc": "x*1e-3",
+      "FromBaseToUnitFunc": "x/1e-3",
+      "Prefixes": [ "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerInch",
+      "PluralName": "PoundsPerInch",
+      "FromUnitToBaseFunc": "x/5.5997415e-2",
+      "FromBaseToUnitFunc": "x*5.5997415e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerFoot",
+      "PluralName": "PoundsPerFoot",
+      "FromUnitToBaseFunc": "x*1.48816394",
+      "FromBaseToUnitFunc": "x/1.48816394",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft" ]
+        }
+      ]
+    }
+  ]
+}

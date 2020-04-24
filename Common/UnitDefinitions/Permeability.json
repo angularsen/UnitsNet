@@ -1,0 +1,26 @@
+{
+  "Name": "Permeability",
+  "BaseUnit": "HenryPerMeter",
+  "XmlDoc": "In electromagnetism, permeability is the measure of the ability of a material to support the formation of a magnetic field within itself.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Permeability_(electromagnetism)",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -2,
+    "I": -2
+  },
+  "Units": [
+    {
+      "SingularName": "HenryPerMeter",
+      "PluralName": "HenriesPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "H/m" ]
+        }
+      ]
+    }
+  ]
+}

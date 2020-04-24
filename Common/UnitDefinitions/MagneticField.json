@@ -1,0 +1,26 @@
+{
+  "Name": "MagneticField",
+  "BaseUnit": "Tesla",
+  "XmlDoc": "A magnetic field is a force field that is created by moving electric charges (electric currents) and magnetic dipoles, and exerts a force on other nearby moving charges and magnetic dipoles.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Magnetic_field",
+  "BaseDimensions": {
+    "M": 1,
+    "T": -2,
+    "I": -1
+  },
+  "Units": [
+    {
+      "SingularName": "Tesla",
+      "PluralName": "Teslas",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+	  "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "T" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "Name": "ElectricChargeDensity",
+  "BaseUnit": "CoulombPerCubicMeter",
+  "XmlDoc": "In electromagnetism, charge density is a measure of the amount of electric charge per volume.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Charge_density",
+  "BaseDimensions": {
+    "L": -3,
+    "T": 1,
+    "I": 1
+  },
+  "Units": [
+    {
+      "SingularName": "CoulombPerCubicMeter",
+      "PluralName": "CoulombsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "C/m³" ]
+        }
+      ]
+    }
+  ]
+}

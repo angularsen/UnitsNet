@@ -1,0 +1,33 @@
+{
+  "Name": "Level",
+  "BaseUnit": "Decibel",
+  "Logarithmic": "True",
+  "LogarithmicScalingFactor": "1",
+  "XmlDoc": "Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.",
+  "Units": [
+    {
+      "SingularName": "Decibel",
+      "PluralName": "Decibels",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dB" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Neper",
+      "PluralName": "Nepers",
+      "FromUnitToBaseFunc": "(1/0.115129254)*x",
+      "FromBaseToUnitFunc": "0.115129254*x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Np" ]
+        }
+      ]
+    }
+  ]
+}

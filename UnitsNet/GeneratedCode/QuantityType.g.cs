@@ -8,94 +8,131 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 // ReSharper disable once CheckNamespace
-
 namespace UnitsNet
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
+    /// <summary>
+    ///     Lists all generated quantities with the same name as the quantity struct type,
+    ///     such as Length, Mass, Force etc.
+    ///     This is useful for populating options in the UI, such as creating a generic conversion
+    ///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
+    /// </summary>
     public enum QuantityType
     {
+// Missing XML comment for public type or member
+#pragma warning disable CS1591
         Undefined = 0,
         Acceleration,
+        AmountOfSubstance,
         AmplitudeRatio,
         Angle,
+        ApparentEnergy,
         ApparentPower,
         Area,
+        AreaDensity,
         AreaMomentOfInertia,
+        BitRate,
         BrakeSpecificFuelConsumption,
+        Capacitance,
+        CoefficientOfThermalExpansion,
         Density,
         Duration,
         DynamicViscosity,
         ElectricAdmittance,
+        ElectricCharge,
+        ElectricChargeDensity,
+        ElectricConductance,
+        ElectricConductivity,
         ElectricCurrent,
+        ElectricCurrentDensity,
+        ElectricCurrentGradient,
+        ElectricField,
+        ElectricInductance,
         ElectricPotential,
         ElectricPotentialAc,
+        ElectricPotentialChangeRate,
         ElectricPotentialDc,
         ElectricResistance,
+        ElectricResistivity,
+        ElectricSurfaceChargeDensity,
         Energy,
-        Flow,
+        Entropy,
         Force,
         ForceChangeRate,
         ForcePerLength,
         Frequency,
+        FuelEfficiency,
+        HeatFlux,
+        HeatTransferCoefficient,
+        Illuminance,
         Information,
+        Irradiance,
+        Irradiation,
         KinematicViscosity,
+        LapseRate,
         Length,
         Level,
+        LinearDensity,
+        LinearPowerDensity,
+        Luminosity,
+        LuminousFlux,
+        LuminousIntensity,
+        MagneticField,
+        MagneticFlux,
+        Magnetization,
         Mass,
+        MassConcentration,
         MassFlow,
+        MassFlux,
+        MassFraction,
         MassMomentOfInertia,
+        MolarEnergy,
+        MolarEntropy,
         Molarity,
+        MolarMass,
+        Permeability,
+        Permittivity,
         Power,
+        PowerDensity,
         PowerRatio,
         Pressure,
         PressureChangeRate,
         Ratio,
+        RatioChangeRate,
+        ReactiveEnergy,
         ReactivePower,
         RotationalAcceleration,
         RotationalSpeed,
+        RotationalStiffness,
+        RotationalStiffnessPerLength,
+        SolidAngle,
         SpecificEnergy,
+        SpecificEntropy,
+        SpecificVolume,
         SpecificWeight,
         Speed,
         Temperature,
         TemperatureChangeRate,
         TemperatureDelta,
+        ThermalConductivity,
         ThermalResistance,
         Torque,
+        TorquePerLength,
         VitaminA,
         Volume,
+        VolumeConcentration,
+        VolumeFlow,
+        VolumePerLength,
+// Missing XML comment for public type or member
+#pragma warning restore CS1591
     }
 }

@@ -1,261 +1,84 @@
-﻿// Copyright © 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Reflection;
+#if NET40 || NET35 || NET20 || SILVERLIGHT
+using UniformTypeInfo = System.Type;
+#else
+using UniformTypeInfo = System.Reflection.TypeInfo;
+#endif
 
 // Based on
 // https://github.com/StefH/ReflectionBridge/blob/c1e34e57fe3fc93507e83d5cebc1677396645397/ReflectionBridge/src/ReflectionBridge/Extensions/ReflectionBridgeExtensions.cs
 // MIT license
 namespace UnitsNet.InternalHelpers
 {
+    internal struct TypeWrapper
+    {
+        private readonly Type _type;
+
+        public TypeWrapper(Type type)
+        {
+            _type = type;
+        }
+
+        internal Assembly Assembly => _type.ToUniformType().Assembly;
+        internal bool IsEnum => _type.ToUniformType().IsEnum;
+        internal bool IsClass => _type.ToUniformType().IsClass;
+        internal bool IsAssignableFrom(Type other) => _type.ToUniformType().IsAssignableFrom(other.ToUniformType());
+        internal bool IsValueType => _type.ToUniformType().IsValueType;
+
+        internal PropertyInfo GetProperty(string name)
+        {
+#if NET40 || NET35 || NET20 || SILVERLIGHT
+            return _type.GetProperty(name);
+#else
+            return _type.GetTypeInfo().GetDeclaredProperty(name);
+#endif
+        }
+
+        internal IEnumerable<MethodInfo> GetDeclaredMethods()
+        {
+            var t = _type.ToUniformType();
+            while (t != null)
+            {
+#if NET40 || NET35 || NET20 || SILVERLIGHT
+                foreach (MethodInfo m in t.GetMethods())
+#else
+                foreach (MethodInfo m in t.DeclaredMethods)
+#endif
+                    yield return m;
+
+                t = t.BaseType?.ToUniformType();
+            }
+        }
+    }
+
     internal static class ReflectionBridgeExtensions
     {
-        internal static Assembly GetAssembly(this Type type)
+        /// <summary>
+        ///     Wrap the type to make it .NET agnostic using Type for old targets and the newer TypeInfo for newer targets.
+        /// </summary>
+        public static TypeWrapper Wrap(this Type type)
         {
-#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-            return type.GetTypeInfo().Assembly;
+            return new TypeWrapper(type);
+        }
+
+        /// <summary>
+        ///     Returns the type or type info object depending on compile target, such as TypeInfo for .NET 4.5+ and Type for .NET
+        ///     4.0 and older.
+        ///     The APIs of these two objects are similar, but obtaining them is slightly different.
+        ///     The idea is to get fewer #if pragma statements in the code.
+        /// </summary>
+        public static UniformTypeInfo ToUniformType(this Type type)
+        {
+#if NET40 || NET35 || NET20 || SILVERLIGHT
+            return type;
 #else
-            return type.Assembly;
+            return type.GetTypeInfo();
 #endif
         }
-
-//        internal static bool IsSealed(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsSealed;
-//#else
-//            return type.IsSealed;
-//#endif
-//        }
-//
-//        internal static bool IsAbstract(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsAbstract;
-//#else
-//            return type.IsAbstract;
-//#endif
-//        }
-
-        internal static bool IsEnum(this Type type)
-        {
-#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-            return type.GetTypeInfo().IsEnum;
-#else
-            return type.IsEnum;
-#endif
-        }
-
-//        internal static bool IsClass(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsClass;
-//#else
-//            return type.IsClass;
-//#endif
-//        }
-//
-//        internal static bool IsPrimitive(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsPrimitive;
-//#else
-//            return type.IsPrimitive;
-//#endif
-//        }
-//
-//        internal static bool IsPublic(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsPublic;
-//#else
-//            return type.IsPublic;
-//#endif
-//        }
-//
-//        internal static bool IsNestedPublic(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsNestedPublic;
-//#else
-//            return type.IsNestedPublic;
-//#endif
-//        }
-//
-//        internal static bool IsFromLocalAssembly(this Type type)
-//        {
-//#if SILVERLIGHT
-//            string assemblyName = type.GetAssembly().FullName;
-//#else
-//            string assemblyName = type.GetAssembly().GetName().Name;
-//#endif
-//
-//            try
-//            {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//                Assembly.Load(new AssemblyName {Name = assemblyName});
-//#else
-//                Assembly.Load(assemblyName);
-//#endif
-//                return true;
-//            }
-//            catch
-//            {
-//                return false;
-//            }
-//        }
-//
-//        internal static bool IsGenericType(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsGenericType;
-//#else
-//            return type.IsGenericType;
-//#endif
-//        }
-//
-//        internal static bool IsInterface(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().IsInterface;
-//#else
-//            return type.IsInterface;
-//#endif
-//        }
-//
-//        internal static Type BaseType(this Type type)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            return type.GetTypeInfo().BaseType;
-//#else
-//            return type.BaseType;
-//#endif
-//        }
-
-        internal static bool IsValueType(this Type type)
-        {
-#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-            return type.GetTypeInfo().IsValueType;
-#else
-            return type.IsValueType;
-#endif
-        }
-
-//        internal static T GetPropertyValue<T>(this Type type, string propertyName, object target)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            PropertyInfo property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
-//            return (T) property.GetValue(target);
-//#else
-//            return (T) type.InvokeMember(propertyName, BindingFlags.GetProperty, null, target, null);
-//#endif
-//        }
-//
-//        internal static void SetPropertyValue(this Type type, string propertyName, object target, object value)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            PropertyInfo property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
-//            property.SetValue(target, value);
-//#else
-//            type.InvokeMember(propertyName, BindingFlags.SetProperty, null, target, new object[] {value});
-//#endif
-//        }
-//
-//        internal static void SetFieldValue(this Type type, string fieldName, object target, object value)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            FieldInfo field = type.GetTypeInfo().GetDeclaredField(fieldName);
-//            if (field != null)
-//                field.SetValue(target, value);
-//            else
-//                type.SetPropertyValue(fieldName, target, value);
-//#else
-//            type.InvokeMember(fieldName, BindingFlags.SetField | BindingFlags.SetProperty, null, target, new object[] {value});
-//#endif
-//        }
-//
-//        internal static void InvokeMethod<T>(this Type type, string methodName, object target, T value)
-//        {
-//#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-//            MethodInfo method = type.GetTypeInfo().GetDeclaredMethod(methodName);
-//            method.Invoke(target, new object[] {value});
-//#else
-//            type.InvokeMember(methodName, BindingFlags.InvokeMethod, null, target, new object[] {value});
-//#endif
-//        }
-
-#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
-        internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
-        {
-            Type t = someType;
-            while (t != null)
-            {
-                TypeInfo ti = t.GetTypeInfo();
-                foreach (MethodInfo m in ti.DeclaredMethods)
-                    yield return m;
-                t = ti.BaseType;
-            }
-        }
-
-//        internal static Type[] GetGenericArguments(this Type type)
-//        {
-//            return type.GetTypeInfo().GenericTypeArguments;
-//        }
-//
-//        /*
-//        internal static bool IsAssignableFrom(this Type type, Type otherType)
-//        {
-//            return type.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo());
-//        }*/
-//
-//        internal static bool IsSubclassOf(this Type type, Type c)
-//        {
-//            return type.GetTypeInfo().IsSubclassOf(c);
-//        }
-//
-//        internal static Attribute[] GetCustomAttributes(this Type type)
-//        {
-//            return type.GetTypeInfo().GetCustomAttributes().ToArray();
-//        }
-//
-//        internal static Attribute[] GetCustomAttributes(this Type type, Type attributeType, bool inherit)
-//        {
-//            return type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).Cast<Attribute>().ToArray();
-//        }
-#else
-        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
-        internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
-        {
-            Type t = someType;
-            while (t != null)
-            {
-                foreach (MethodInfo m in t.GetMethods())
-                    yield return m;
-                t = t.BaseType;
-            }
-        }
-#endif
     }
 }

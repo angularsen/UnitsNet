@@ -1,0 +1,49 @@
+{
+  "Name": "RotationalStiffnessPerLength",
+  "BaseUnit": "NewtonMeterPerRadianPerMeter",
+  "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonMeterPerRadianPerMeter",
+      "PluralName": "NewtonMetersPerRadianPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m/rad/m", "Nm/rad/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceFootPerDegreesPerFoot",
+      "PluralName": "PoundForceFeetPerDegreesPerFeet",
+      "FromUnitToBaseFunc": "x*254.864324570",
+      "FromBaseToUnitFunc": "x/254.864324570",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·ft/deg/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForceFootPerDegreesPerFoot",
+      "PluralName": "KilopoundForceFeetPerDegreesPerFeet",
+      "FromUnitToBaseFunc": "x*254864.324570",
+      "FromBaseToUnitFunc": "x/254864.324570",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf·ft/°/ft", "kip·ft/°/ft", "k·ft/°/ft", "kipf·ft/deg/ft", "kip·ft/deg/ft", "k·ft/deg/ft" ]
+        }
+      ]
+    }
+  ]
+}

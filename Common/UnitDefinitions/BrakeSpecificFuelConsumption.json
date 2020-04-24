@@ -1,0 +1,48 @@
+{
+  "Name": "BrakeSpecificFuelConsumption",
+  "BaseUnit": "KilogramPerJoule",
+  "XmlDoc": "Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.",
+  "BaseDimensions": {
+    "L": -2,
+    "T": 2
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerKiloWattHour",
+      "PluralName": "GramsPerKiloWattHour",
+      "FromUnitToBaseFunc": "x/3.6e9",
+      "FromBaseToUnitFunc": "x*3.6e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/kWh" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerJoule",
+      "PluralName": "KilogramsPerJoule",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/J" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerMechanicalHorsepowerHour",
+      "PluralName": "PoundsPerMechanicalHorsepowerHour",
+      "FromUnitToBaseFunc": "x*1.689659410672e-7",
+      "FromBaseToUnitFunc": "x/1.689659410672e-7",
+      "XmlDocSummary": "The pound per horse power hour uses mechanical horse power and the imperial pound",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/hph" ]
+        }
+      ]
+    }
+  ]
+}

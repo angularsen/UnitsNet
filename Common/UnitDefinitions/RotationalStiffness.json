@@ -1,0 +1,100 @@
+{
+  "Name": "RotationalStiffness",
+  "BaseUnit": "NewtonMeterPerRadian",
+  "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonMeterPerRadian",
+      "PluralName": "NewtonMetersPerRadian",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m/rad", "Nm/rad" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceFootPerDegrees",
+      "PluralName": "PoundForceFeetPerDegrees",
+      "FromUnitToBaseFunc": "x*77.6826",
+      "FromBaseToUnitFunc": "x/77.6826",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·ft/deg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForceFootPerDegrees",
+      "PluralName": "KilopoundForceFeetPerDegrees",
+      "FromUnitToBaseFunc": "x*77682.6",
+      "FromBaseToUnitFunc": "x/77682.6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf·ft/°", "kip·ft/°g", "k·ft/°", "kipf·ft/deg", "kip·ft/deg", "k·ft/deg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonMillimeterPerDegree",
+      "PluralName": "NewtonMillimetersPerDegree",
+      "FromUnitToBaseFunc": "x*180/Math.PI*0.001",
+      "FromBaseToUnitFunc": "x/180*Math.PI*1000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·mm/deg", "Nmm/deg", "N·mm/°", "Nmm/°" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonMeterPerDegree",
+      "PluralName": "NewtonMetersPerDegree",
+      "FromUnitToBaseFunc": "x*(180/Math.PI)",
+      "FromBaseToUnitFunc": "x/(180/Math.PI)",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m/deg", "Nm/deg", "N·m/°", "Nm/°" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonMillimeterPerRadian",
+      "PluralName": "NewtonMillimetersPerRadian",
+      "FromUnitToBaseFunc": "x*0.001",
+      "FromBaseToUnitFunc": "x*1000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·mm/rad", "Nmm/rad" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceFeetPerRadian",
+      "PluralName": "PoundForceFeetPerRadian",
+      "FromUnitToBaseFunc": "x*1.3558179483314",
+      "FromBaseToUnitFunc": "x/1.3558179483314",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·ft/rad" ]
+        }
+      ]
+    }
+  ]
+}

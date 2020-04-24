@@ -1,0 +1,25 @@
+{
+  "Name": "Illuminance",
+  "BaseUnit": "Lux",
+  "XmlDoc": "In photometry, illuminance is the total luminous flux incident on a surface, per unit area.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Illuminance",
+  "BaseDimensions": {
+    "L": -2,
+    "J": 1
+  },
+  "Units": [
+    {
+      "SingularName": "Lux",
+      "PluralName": "Lux",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lx" ]
+        }
+      ]
+    }
+  ]
+}

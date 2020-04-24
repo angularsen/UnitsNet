@@ -1,23 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/angularsen/UnitsNet
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
 
@@ -25,22 +7,38 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
+        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
 
-        protected override double CaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E3;
+        protected override double BtuPerPoundInOneJoulePerKilogram => 4.299226e-4;
 
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E6;
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-4;
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-7;
 
-
-        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
-
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-4;
         protected override double KilowattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-7;
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-10;
+        protected override double GigawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-13;
 
-        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1.0E-6;
+        protected override double WattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-5;
+        protected override double KilowattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-8;
+        protected override double MegawattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-11;
+        protected override double GigawattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-14;
+        protected override double TerawattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-17;
 
-        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778E-10;
+        protected override double WattDaysPerShortTonInOneJoulePerKilogram => 1.04998234E-2;
+        protected override double KilowattDaysPerShortTonInOneJoulePerKilogram => 1.04998234E-5;
+        protected override double MegawattDaysPerShortTonInOneJoulePerKilogram => 1.04998234E-8;
+        protected override double GigawattDaysPerShortTonInOneJoulePerKilogram => 1.04998234E-11;
+        protected override double TerawattDaysPerShortTonInOneJoulePerKilogram => 1.04998234E-14;
 
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
+        protected override double WattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-2;
+        protected override double KilowattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-5;
+        protected override double MegawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-8;
+        protected override double GigawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-11;
+        protected override double TerawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-14;
+        
 
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()

@@ -1,0 +1,84 @@
+{
+  "Name": "Frequency",
+  "BaseUnit": "Hertz",
+  "XmlDoc": "The number of occurrences of a repeating event per unit time.",
+  "BaseDimensions": {
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "Hertz",
+      "PluralName": "Hertz",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Hz" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RadianPerSecond",
+      "PluralName": "RadiansPerSecond",
+      "FromUnitToBaseFunc": "x/6.2831853072",
+      "FromBaseToUnitFunc": "x*6.2831853072",
+      "OmitExtensionMethod": true,
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rad/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CyclePerMinute",
+      "PluralName": "CyclesPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CyclePerHour",
+      "PluralName": "CyclesPerHour",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cph" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BeatPerMinute",
+      "PluralName": "BeatsPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerSecond",
+      "PluralName": "PerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s⁻¹" ]
+        }
+      ]
+    }
+  ]
+}

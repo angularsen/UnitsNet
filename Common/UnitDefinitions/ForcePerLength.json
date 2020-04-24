@@ -1,0 +1,101 @@
+{
+  "Name": "ForcePerLength",
+  "BaseUnit": "NewtonPerMeter",
+  "XmlDoc": "The magnitude of force per unit length.",
+  "BaseDimensions": {
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonPerMeter",
+      "PluralName": "NewtonsPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonPerMillimeter",
+      "PluralName": "NewtonsPerMillimeter",
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForcePerMeter",
+      "PluralName": "KilogramsForcePerMeter",
+      "FromUnitToBaseFunc": "x*9.80665002864",
+      "FromBaseToUnitFunc": "x/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf/m" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс/м" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerFoot",
+      "PluralName": "PoundsForcePerFoot",
+      "FromUnitToBaseFunc": "x*14.59390292",
+      "FromBaseToUnitFunc": "x/14.59390292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerInch",
+      "PluralName": "PoundsForcePerInch",
+      "FromUnitToBaseFunc": "x*1.75126835e2",
+      "FromBaseToUnitFunc": "x/1.75126835e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerYard",
+      "PluralName": "PoundsForcePerYard",
+      "FromUnitToBaseFunc": "x*4.864634307",
+      "FromBaseToUnitFunc": "x/4.864634307",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/yd" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForcePerFoot",
+      "PluralName": "KilopoundsForcePerFoot",
+      "FromUnitToBaseFunc": "x*14593.90292",
+      "FromBaseToUnitFunc": "x/14593.90292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf/ft", "kip/ft", "k/ft" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "Name": "VitaminA",
+  "BaseUnit": "InternationalUnit",
+  "XmlDoc": "Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.",
+  "Units": [
+    {
+      "SingularName": "InternationalUnit",
+      "PluralName": "InternationalUnits",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "IU" ]
+        }
+      ]
+    }
+  ]
+}

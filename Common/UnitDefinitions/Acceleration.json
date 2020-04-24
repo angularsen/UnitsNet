@@ -1,0 +1,152 @@
+{
+  "Name": "Acceleration",
+  "BaseUnit": "MeterPerSecondSquared",
+  "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
+  "BaseDimensions": {
+    "L": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "MeterPerSecondSquared",
+      "PluralName": "MetersPerSecondSquared",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/с²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerSecondSquared",
+      "PluralName": "InchesPerSecondSquared",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.0254",
+      "FromBaseToUnitFunc": "x/0.0254",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дюйм/с²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondSquared",
+      "PluralName": "FeetPerSecondSquared",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.304800",
+      "FromBaseToUnitFunc": "x/0.304800",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/с²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KnotPerSecond",
+      "PluralName": "KnotsPerSecond",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*0.5144444444444",
+      "FromBaseToUnitFunc": "x/0.5144444444444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/s" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KnotPerMinute",
+      "PluralName": "KnotsPerMinute",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x*0.5144444444444/60",
+      "FromBaseToUnitFunc": "x/0.5144444444444*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/min" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/мин" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KnotPerHour",
+      "PluralName": "KnotsPerHour",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x*0.5144444444444/3600",
+      "FromBaseToUnitFunc": "x/0.5144444444444*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/h" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/час" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardGravity",
+      "PluralName": "StandardGravity",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*9.80665",
+      "FromBaseToUnitFunc": "x/9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "g" ]
+        }
+      ]
+    }
+  ]
+}

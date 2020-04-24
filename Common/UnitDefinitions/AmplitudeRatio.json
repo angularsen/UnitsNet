@@ -1,0 +1,57 @@
+{
+  "Name": "AmplitudeRatio",
+  "BaseUnit": "DecibelVolt",
+  "Logarithmic": "True",
+  "LogarithmicScalingFactor": "2",
+  "XmlDoc": "The strength of a signal expressed in decibels (dB) relative to one volt RMS.",
+  "Units": [
+    {
+      "SingularName": "DecibelVolt",
+      "PluralName": "DecibelVolts",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBV" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecibelMicrovolt",
+      "PluralName": "DecibelMicrovolts",
+      "FromUnitToBaseFunc": "x - 120",
+      "FromBaseToUnitFunc": "x + 120",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBµV" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecibelMillivolt",
+      "PluralName": "DecibelMillivolts",
+      "FromUnitToBaseFunc": "x - 60",
+      "FromBaseToUnitFunc": "x + 60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBmV" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecibelUnloaded",
+      "PluralName": "DecibelsUnloaded",
+      "FromUnitToBaseFunc": "x - 2.218487499",
+      "FromBaseToUnitFunc": "x + 2.218487499",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dBu" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "Name": "KinematicViscosity",
+  "BaseUnit": "SquareMeterPerSecond",
+  "XmlDoc": "The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.",
+  "XmlDocRemarks": "http://en.wikipedia.org/wiki/Viscosity",
+  "BaseDimensions": {
+    "L": 2,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "SquareMeterPerSecond",
+      "PluralName": "SquareMetersPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м²/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Stokes",
+      "PluralName": "Stokes",
+      "FromUnitToBaseFunc": "x/1e4",
+      "FromBaseToUnitFunc": "x*1e4",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "St" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Ст" ]
+        }
+      ]
+    }
+  ]
+}

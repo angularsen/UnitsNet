@@ -1,0 +1,155 @@
+{
+  "Name": "Torque",
+  "BaseUnit": "NewtonMeter",
+  "XmlDoc": "Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonMillimeter",
+      "PluralName": "NewtonMillimeters",
+      "FromUnitToBaseFunc": "x*0.001",
+      "FromBaseToUnitFunc": "x*1000",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonCentimeter",
+      "PluralName": "NewtonCentimeters",
+      "FromUnitToBaseFunc": "x*0.01",
+      "FromBaseToUnitFunc": "x*100",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonMeter",
+      "PluralName": "NewtonMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Н·м" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceInch",
+      "PluralName": "PoundForceInches",
+      "FromUnitToBaseFunc": "x*1.129848290276167e-1",
+      "FromBaseToUnitFunc": "x/1.129848290276167e-1",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·in" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceFoot",
+      "PluralName": "PoundForceFeet",
+      "FromUnitToBaseFunc": "x*1.3558179483314",
+      "FromBaseToUnitFunc": "x/1.3558179483314",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·ft" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForceMillimeter",
+      "PluralName": "KilogramForceMillimeters",
+      "FromUnitToBaseFunc": "x*0.00980665019960652",
+      "FromBaseToUnitFunc": "x*101.971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf·mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForceCentimeter",
+      "PluralName": "KilogramForceCentimeters",
+      "FromUnitToBaseFunc": "x*0.0980665019960652",
+      "FromBaseToUnitFunc": "x*10.1971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf·cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForceMeter",
+      "PluralName": "KilogramForceMeters",
+      "FromUnitToBaseFunc": "x*9.80665019960652",
+      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf·m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneForceMillimeter",
+      "PluralName": "TonneForceMillimeters",
+      "FromUnitToBaseFunc": "x*9.80665019960652",
+      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf·mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneForceCentimeter",
+      "PluralName": "TonneForceCentimeters",
+      "FromUnitToBaseFunc": "x*98.0665019960652",
+      "FromBaseToUnitFunc": "x*0.0101971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf·cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneForceMeter",
+      "PluralName": "TonneForceMeters",
+      "FromUnitToBaseFunc": "x*9806.65019960653",
+      "FromBaseToUnitFunc": "x*0.000101971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf·m" ]
+        }
+      ]
+    }
+  ]
+}
