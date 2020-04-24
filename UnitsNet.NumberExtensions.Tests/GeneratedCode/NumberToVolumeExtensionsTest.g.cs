@@ -81,8 +81,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromCubicYards(2), 2.CubicYards());
 
         [Fact]
+        public void NumberToDecausGallonsTest() =>
+            Assert.Equal(Volume.FromDecausGallons(2), 2.DecausGallons());
+
+        [Fact]
         public void NumberToDecilitersTest() =>
             Assert.Equal(Volume.FromDeciliters(2), 2.Deciliters());
+
+        [Fact]
+        public void NumberToDeciusGallonsTest() =>
+            Assert.Equal(Volume.FromDeciusGallons(2), 2.DeciusGallons());
 
         [Fact]
         public void NumberToHectocubicFeetTest() =>
@@ -95,6 +103,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToHectolitersTest() =>
             Assert.Equal(Volume.FromHectoliters(2), 2.Hectoliters());
+
+        [Fact]
+        public void NumberToHectousGallonsTest() =>
+            Assert.Equal(Volume.FromHectousGallons(2), 2.HectousGallons());
 
         [Fact]
         public void NumberToImperialBeerBarrelsTest() =>
