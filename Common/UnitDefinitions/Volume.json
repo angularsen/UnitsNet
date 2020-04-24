@@ -242,7 +242,7 @@
       "PluralName": "UsGallons",
       "FromUnitToBaseFunc": "x*0.00378541",
       "FromBaseToUnitFunc": "x/0.00378541",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [ "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
