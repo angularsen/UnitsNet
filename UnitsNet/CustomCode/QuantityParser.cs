@@ -222,7 +222,7 @@ namespace UnitsNet
         private Regex CreateRegexForQuantity<TUnitType>([CanBeNull] IFormatProvider formatProvider) where TUnitType : Enum
         {
             var pattern = CreateRegexPatternForQuantity<TUnitType>(formatProvider);
-            return new Regex(pattern, RegexOptions.Singleline);
+            return new Regex(pattern, RegexOptions.Singleline | RegexOptions.IgnoreCase);
         }
     }
 }
