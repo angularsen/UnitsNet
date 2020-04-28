@@ -82,9 +82,17 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         public static Volume CubicYards<T>(this T value) =>
             Volume.FromCubicYards(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromDecausGallons(UnitsNet.QuantityValue)" />
+        public static Volume DecausGallons<T>(this T value) =>
+            Volume.FromDecausGallons(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromDeciliters(UnitsNet.QuantityValue)" />
         public static Volume Deciliters<T>(this T value) =>
             Volume.FromDeciliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromDeciusGallons(UnitsNet.QuantityValue)" />
+        public static Volume DeciusGallons<T>(this T value) =>
+            Volume.FromDeciusGallons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Volume.FromHectocubicFeet(UnitsNet.QuantityValue)" />
         public static Volume HectocubicFeet<T>(this T value) =>
@@ -97,6 +105,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         /// <inheritdoc cref="Volume.FromHectoliters(UnitsNet.QuantityValue)" />
         public static Volume Hectoliters<T>(this T value) =>
             Volume.FromHectoliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromHectousGallons(UnitsNet.QuantityValue)" />
+        public static Volume HectousGallons<T>(this T value) =>
+            Volume.FromHectousGallons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Volume.FromImperialBeerBarrels(UnitsNet.QuantityValue)" />
         public static Volume ImperialBeerBarrels<T>(this T value) =>
