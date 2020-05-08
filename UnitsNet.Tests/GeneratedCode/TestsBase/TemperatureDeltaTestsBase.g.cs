@@ -44,6 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double DegreesReaumurInOneKelvin { get; }
         protected abstract double DegreesRoemerInOneKelvin { get; }
         protected abstract double KelvinsInOneKelvin { get; }
+        protected abstract double MillidegreesCelsiusInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }
@@ -54,6 +55,7 @@ namespace UnitsNet.Tests
         protected virtual double DegreesReaumurTolerance { get { return 1e-5; } }
         protected virtual double DegreesRoemerTolerance { get { return 1e-5; } }
         protected virtual double KelvinsTolerance { get { return 1e-5; } }
+        protected virtual double MillidegreesCelsiusTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -123,6 +125,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.DegreesRoemer, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, kelvin.MillidegreesCelsius, MillidegreesCelsiusTolerance);
         }
 
         [Fact]
@@ -160,6 +163,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity07.Kelvins, KelvinsTolerance);
             Assert.Equal(TemperatureDeltaUnit.Kelvin, quantity07.Unit);
 
+            var quantity08 = TemperatureDelta.From(1, TemperatureDeltaUnit.MillidegreeCelsius);
+            AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsius, MillidegreesCelsiusTolerance);
+            Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, quantity08.Unit);
+
         }
 
         [Fact]
@@ -187,6 +194,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeReaumur), DegreesReaumurTolerance);
             AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeRoemer), DegreesRoemerTolerance);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(TemperatureDeltaUnit.Kelvin), KelvinsTolerance);
+            AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, kelvin.As(TemperatureDeltaUnit.MillidegreeCelsius), MillidegreesCelsiusTolerance);
         }
 
         [Fact]
@@ -225,6 +233,10 @@ namespace UnitsNet.Tests
             var kelvinQuantity = kelvin.ToUnit(TemperatureDeltaUnit.Kelvin);
             AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)kelvinQuantity.Value, KelvinsTolerance);
             Assert.Equal(TemperatureDeltaUnit.Kelvin, kelvinQuantity.Unit);
+
+            var millidegreecelsiusQuantity = kelvin.ToUnit(TemperatureDeltaUnit.MillidegreeCelsius);
+            AssertEx.EqualTolerance(MillidegreesCelsiusInOneKelvin, (double)millidegreecelsiusQuantity.Value, MillidegreesCelsiusTolerance);
+            Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, millidegreecelsiusQuantity.Unit);
         }
 
         [Fact]
@@ -239,6 +251,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromMillidegreesCelsius(kelvin.MillidegreesCelsius).Kelvins, MillidegreesCelsiusTolerance);
         }
 
         [Fact]
@@ -386,6 +399,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString());
                 Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString());
                 Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString());
+                Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString());
             }
             finally
             {
@@ -407,6 +421,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ∆°Ré", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeReaumur).ToString(swedishCulture));
             Assert.Equal("1 ∆°Rø", new TemperatureDelta(1, TemperatureDeltaUnit.DegreeRoemer).ToString(swedishCulture));
             Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString(swedishCulture));
+            Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString(swedishCulture));
         }
 
         [Fact]

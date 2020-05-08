@@ -38,6 +38,21 @@
       ]
     },
     {
+      "SingularName": "MillidegreeCelsius",
+      "PluralName": "MillidegreesCelsius",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "x / 1000 + 273.15",
+      "FromBaseToUnitFunc": "(x - 273.15) * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m°C" ]
+        }
+      ]
+    },
+    {
       "SingularName": "DegreeDelisle",
       "PluralName": "DegreesDelisle",
       "BaseUnits": {

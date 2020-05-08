@@ -37,14 +37,23 @@ namespace UnitsNet.Tests
     public abstract partial class ForcePerLengthTestsBase
     {
         protected abstract double CentinewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double CentinewtonsPerMillimeterInOneNewtonPerMeter { get; }
+        protected abstract double DecanewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double DecanewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double DecinewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double DecinewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double KilogramsForcePerMeterInOneNewtonPerMeter { get; }
         protected abstract double KilonewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double KilonewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double KilopoundsForcePerFootInOneNewtonPerMeter { get; }
         protected abstract double MeganewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double MeganewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double MicronewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double MicronewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double MillinewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double MillinewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double NanonewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double NanonewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double NewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double NewtonsPerMillimeterInOneNewtonPerMeter { get; }
         protected abstract double PoundsForcePerFootInOneNewtonPerMeter { get; }
@@ -53,14 +62,23 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentinewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double CentinewtonsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double DecinewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsForcePerMeterTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsForcePerFootTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double MicronewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double MillinewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double NanonewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerFootTolerance { get { return 1e-5; } }
@@ -128,14 +146,23 @@ namespace UnitsNet.Tests
         {
             ForcePerLength newtonpermeter = ForcePerLength.FromNewtonsPerMeter(1);
             AssertEx.EqualTolerance(CentinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.CentinewtonsPerMeter, CentinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(CentinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.CentinewtonsPerMillimeter, CentinewtonsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(DecanewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.DecanewtonsPerMeter, DecanewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(DecanewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.DecanewtonsPerMillimeter, DecanewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(DecinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(DecinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.DecinewtonsPerMillimeter, DecinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerMeterInOneNewtonPerMeter, newtonpermeter.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.KilonewtonsPerMillimeter, KilonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
             AssertEx.EqualTolerance(MeganewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.MeganewtonsPerMillimeter, MeganewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MicronewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.MicronewtonsPerMillimeter, MicronewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MillinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.MillinewtonsPerMillimeter, MillinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(NanonewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.NanonewtonsPerMillimeter, NanonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.NewtonsPerMeter, NewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.NewtonsPerMillimeter, NewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(PoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.PoundsForcePerFoot, PoundsForcePerFootTolerance);
@@ -150,57 +177,93 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity00.CentinewtonsPerMeter, CentinewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, quantity00.Unit);
 
-            var quantity01 = ForcePerLength.From(1, ForcePerLengthUnit.DecinewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity01.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, quantity01.Unit);
+            var quantity01 = ForcePerLength.From(1, ForcePerLengthUnit.CentinewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity01.CentinewtonsPerMillimeter, CentinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, quantity01.Unit);
 
-            var quantity02 = ForcePerLength.From(1, ForcePerLengthUnit.KilogramForcePerMeter);
-            AssertEx.EqualTolerance(1, quantity02.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, quantity02.Unit);
+            var quantity02 = ForcePerLength.From(1, ForcePerLengthUnit.DecanewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity02.DecanewtonsPerMeter, DecanewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, quantity02.Unit);
 
-            var quantity03 = ForcePerLength.From(1, ForcePerLengthUnit.KilonewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity03.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, quantity03.Unit);
+            var quantity03 = ForcePerLength.From(1, ForcePerLengthUnit.DecanewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity03.DecanewtonsPerMillimeter, DecanewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, quantity03.Unit);
 
-            var quantity04 = ForcePerLength.From(1, ForcePerLengthUnit.KilopoundForcePerFoot);
-            AssertEx.EqualTolerance(1, quantity04.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
-            Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, quantity04.Unit);
+            var quantity04 = ForcePerLength.From(1, ForcePerLengthUnit.DecinewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity04.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, quantity04.Unit);
 
-            var quantity05 = ForcePerLength.From(1, ForcePerLengthUnit.MeganewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.MeganewtonPerMeter, quantity05.Unit);
+            var quantity05 = ForcePerLength.From(1, ForcePerLengthUnit.DecinewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity05.DecinewtonsPerMillimeter, DecinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, quantity05.Unit);
 
-            var quantity06 = ForcePerLength.From(1, ForcePerLengthUnit.MicronewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity06.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, quantity06.Unit);
+            var quantity06 = ForcePerLength.From(1, ForcePerLengthUnit.KilogramForcePerMeter);
+            AssertEx.EqualTolerance(1, quantity06.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.KilogramForcePerMeter, quantity06.Unit);
 
-            var quantity07 = ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity07.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.MillinewtonPerMeter, quantity07.Unit);
+            var quantity07 = ForcePerLength.From(1, ForcePerLengthUnit.KilonewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity07.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, quantity07.Unit);
 
-            var quantity08 = ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity08.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, quantity08.Unit);
+            var quantity08 = ForcePerLength.From(1, ForcePerLengthUnit.KilonewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity08.KilonewtonsPerMillimeter, KilonewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, quantity08.Unit);
 
-            var quantity09 = ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMeter);
-            AssertEx.EqualTolerance(1, quantity09.NewtonsPerMeter, NewtonsPerMeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, quantity09.Unit);
+            var quantity09 = ForcePerLength.From(1, ForcePerLengthUnit.KilopoundForcePerFoot);
+            AssertEx.EqualTolerance(1, quantity09.KilopoundsForcePerFoot, KilopoundsForcePerFootTolerance);
+            Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, quantity09.Unit);
 
-            var quantity10 = ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMillimeter);
-            AssertEx.EqualTolerance(1, quantity10.NewtonsPerMillimeter, NewtonsPerMillimeterTolerance);
-            Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, quantity10.Unit);
+            var quantity10 = ForcePerLength.From(1, ForcePerLengthUnit.MeganewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity10.MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MeganewtonPerMeter, quantity10.Unit);
 
-            var quantity11 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerFoot);
-            AssertEx.EqualTolerance(1, quantity11.PoundsForcePerFoot, PoundsForcePerFootTolerance);
-            Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, quantity11.Unit);
+            var quantity11 = ForcePerLength.From(1, ForcePerLengthUnit.MeganewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity11.MeganewtonsPerMillimeter, MeganewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MeganewtonPerMillimeter, quantity11.Unit);
 
-            var quantity12 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerInch);
-            AssertEx.EqualTolerance(1, quantity12.PoundsForcePerInch, PoundsForcePerInchTolerance);
-            Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, quantity12.Unit);
+            var quantity12 = ForcePerLength.From(1, ForcePerLengthUnit.MicronewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity12.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, quantity12.Unit);
 
-            var quantity13 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerYard);
-            AssertEx.EqualTolerance(1, quantity13.PoundsForcePerYard, PoundsForcePerYardTolerance);
-            Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, quantity13.Unit);
+            var quantity13 = ForcePerLength.From(1, ForcePerLengthUnit.MicronewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity13.MicronewtonsPerMillimeter, MicronewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, quantity13.Unit);
+
+            var quantity14 = ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity14.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MillinewtonPerMeter, quantity14.Unit);
+
+            var quantity15 = ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity15.MillinewtonsPerMillimeter, MillinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MillinewtonPerMillimeter, quantity15.Unit);
+
+            var quantity16 = ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity16.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, quantity16.Unit);
+
+            var quantity17 = ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity17.NanonewtonsPerMillimeter, NanonewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, quantity17.Unit);
+
+            var quantity18 = ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMeter);
+            AssertEx.EqualTolerance(1, quantity18.NewtonsPerMeter, NewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, quantity18.Unit);
+
+            var quantity19 = ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMillimeter);
+            AssertEx.EqualTolerance(1, quantity19.NewtonsPerMillimeter, NewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.NewtonPerMillimeter, quantity19.Unit);
+
+            var quantity20 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerFoot);
+            AssertEx.EqualTolerance(1, quantity20.PoundsForcePerFoot, PoundsForcePerFootTolerance);
+            Assert.Equal(ForcePerLengthUnit.PoundForcePerFoot, quantity20.Unit);
+
+            var quantity21 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerInch);
+            AssertEx.EqualTolerance(1, quantity21.PoundsForcePerInch, PoundsForcePerInchTolerance);
+            Assert.Equal(ForcePerLengthUnit.PoundForcePerInch, quantity21.Unit);
+
+            var quantity22 = ForcePerLength.From(1, ForcePerLengthUnit.PoundForcePerYard);
+            AssertEx.EqualTolerance(1, quantity22.PoundsForcePerYard, PoundsForcePerYardTolerance);
+            Assert.Equal(ForcePerLengthUnit.PoundForcePerYard, quantity22.Unit);
 
         }
 
@@ -222,14 +285,23 @@ namespace UnitsNet.Tests
         {
             var newtonpermeter = ForcePerLength.FromNewtonsPerMeter(1);
             AssertEx.EqualTolerance(CentinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.CentinewtonPerMeter), CentinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(CentinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.CentinewtonPerMillimeter), CentinewtonsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(DecanewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.DecanewtonPerMeter), DecanewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(DecanewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.DecanewtonPerMillimeter), DecanewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(DecinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.DecinewtonPerMeter), DecinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(DecinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.DecinewtonPerMillimeter), DecinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilogramForcePerMeter), KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilonewtonPerMeter), KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilonewtonPerMillimeter), KilonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilopoundForcePerFoot), KilopoundsForcePerFootTolerance);
             AssertEx.EqualTolerance(MeganewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MeganewtonPerMeter), MeganewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MeganewtonPerMillimeter), MeganewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MicronewtonPerMeter), MicronewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MicronewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MicronewtonPerMillimeter), MicronewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MillinewtonPerMeter), MillinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MillinewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MillinewtonPerMillimeter), MillinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NanonewtonPerMeter), NanonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(NanonewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NanonewtonPerMillimeter), NanonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NewtonPerMeter), NewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerMillimeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NewtonPerMillimeter), NewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(PoundsForcePerFootInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.PoundForcePerFoot), PoundsForcePerFootTolerance);
@@ -246,9 +318,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentinewtonsPerMeterInOneNewtonPerMeter, (double)centinewtonpermeterQuantity.Value, CentinewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.CentinewtonPerMeter, centinewtonpermeterQuantity.Unit);
 
+            var centinewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.CentinewtonPerMillimeter);
+            AssertEx.EqualTolerance(CentinewtonsPerMillimeterInOneNewtonPerMeter, (double)centinewtonpermillimeterQuantity.Value, CentinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.CentinewtonPerMillimeter, centinewtonpermillimeterQuantity.Unit);
+
+            var decanewtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.DecanewtonPerMeter);
+            AssertEx.EqualTolerance(DecanewtonsPerMeterInOneNewtonPerMeter, (double)decanewtonpermeterQuantity.Value, DecanewtonsPerMeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecanewtonPerMeter, decanewtonpermeterQuantity.Unit);
+
+            var decanewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.DecanewtonPerMillimeter);
+            AssertEx.EqualTolerance(DecanewtonsPerMillimeterInOneNewtonPerMeter, (double)decanewtonpermillimeterQuantity.Value, DecanewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecanewtonPerMillimeter, decanewtonpermillimeterQuantity.Unit);
+
             var decinewtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.DecinewtonPerMeter);
             AssertEx.EqualTolerance(DecinewtonsPerMeterInOneNewtonPerMeter, (double)decinewtonpermeterQuantity.Value, DecinewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.DecinewtonPerMeter, decinewtonpermeterQuantity.Unit);
+
+            var decinewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.DecinewtonPerMillimeter);
+            AssertEx.EqualTolerance(DecinewtonsPerMillimeterInOneNewtonPerMeter, (double)decinewtonpermillimeterQuantity.Value, DecinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.DecinewtonPerMillimeter, decinewtonpermillimeterQuantity.Unit);
 
             var kilogramforcepermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.KilogramForcePerMeter);
             AssertEx.EqualTolerance(KilogramsForcePerMeterInOneNewtonPerMeter, (double)kilogramforcepermeterQuantity.Value, KilogramsForcePerMeterTolerance);
@@ -258,6 +346,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilonewtonsPerMeterInOneNewtonPerMeter, (double)kilonewtonpermeterQuantity.Value, KilonewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.KilonewtonPerMeter, kilonewtonpermeterQuantity.Unit);
 
+            var kilonewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.KilonewtonPerMillimeter);
+            AssertEx.EqualTolerance(KilonewtonsPerMillimeterInOneNewtonPerMeter, (double)kilonewtonpermillimeterQuantity.Value, KilonewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.KilonewtonPerMillimeter, kilonewtonpermillimeterQuantity.Unit);
+
             var kilopoundforceperfootQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.KilopoundForcePerFoot);
             AssertEx.EqualTolerance(KilopoundsForcePerFootInOneNewtonPerMeter, (double)kilopoundforceperfootQuantity.Value, KilopoundsForcePerFootTolerance);
             Assert.Equal(ForcePerLengthUnit.KilopoundForcePerFoot, kilopoundforceperfootQuantity.Unit);
@@ -266,17 +358,33 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MeganewtonsPerMeterInOneNewtonPerMeter, (double)meganewtonpermeterQuantity.Value, MeganewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.MeganewtonPerMeter, meganewtonpermeterQuantity.Unit);
 
+            var meganewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.MeganewtonPerMillimeter);
+            AssertEx.EqualTolerance(MeganewtonsPerMillimeterInOneNewtonPerMeter, (double)meganewtonpermillimeterQuantity.Value, MeganewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MeganewtonPerMillimeter, meganewtonpermillimeterQuantity.Unit);
+
             var micronewtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.MicronewtonPerMeter);
             AssertEx.EqualTolerance(MicronewtonsPerMeterInOneNewtonPerMeter, (double)micronewtonpermeterQuantity.Value, MicronewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, micronewtonpermeterQuantity.Unit);
+
+            var micronewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.MicronewtonPerMillimeter);
+            AssertEx.EqualTolerance(MicronewtonsPerMillimeterInOneNewtonPerMeter, (double)micronewtonpermillimeterQuantity.Value, MicronewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MicronewtonPerMillimeter, micronewtonpermillimeterQuantity.Unit);
 
             var millinewtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.MillinewtonPerMeter);
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, (double)millinewtonpermeterQuantity.Value, MillinewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.MillinewtonPerMeter, millinewtonpermeterQuantity.Unit);
 
+            var millinewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.MillinewtonPerMillimeter);
+            AssertEx.EqualTolerance(MillinewtonsPerMillimeterInOneNewtonPerMeter, (double)millinewtonpermillimeterQuantity.Value, MillinewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.MillinewtonPerMillimeter, millinewtonpermillimeterQuantity.Unit);
+
             var nanonewtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.NanonewtonPerMeter);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, (double)nanonewtonpermeterQuantity.Value, NanonewtonsPerMeterTolerance);
             Assert.Equal(ForcePerLengthUnit.NanonewtonPerMeter, nanonewtonpermeterQuantity.Unit);
+
+            var nanonewtonpermillimeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.NanonewtonPerMillimeter);
+            AssertEx.EqualTolerance(NanonewtonsPerMillimeterInOneNewtonPerMeter, (double)nanonewtonpermillimeterQuantity.Value, NanonewtonsPerMillimeterTolerance);
+            Assert.Equal(ForcePerLengthUnit.NanonewtonPerMillimeter, nanonewtonpermillimeterQuantity.Unit);
 
             var newtonpermeterQuantity = newtonpermeter.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
             AssertEx.EqualTolerance(NewtonsPerMeterInOneNewtonPerMeter, (double)newtonpermeterQuantity.Value, NewtonsPerMeterTolerance);
@@ -304,14 +412,23 @@ namespace UnitsNet.Tests
         {
             ForcePerLength newtonpermeter = ForcePerLength.FromNewtonsPerMeter(1);
             AssertEx.EqualTolerance(1, ForcePerLength.FromCentinewtonsPerMeter(newtonpermeter.CentinewtonsPerMeter).NewtonsPerMeter, CentinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromCentinewtonsPerMillimeter(newtonpermeter.CentinewtonsPerMillimeter).NewtonsPerMeter, CentinewtonsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromDecanewtonsPerMeter(newtonpermeter.DecanewtonsPerMeter).NewtonsPerMeter, DecanewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromDecanewtonsPerMillimeter(newtonpermeter.DecanewtonsPerMillimeter).NewtonsPerMeter, DecanewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromDecinewtonsPerMeter(newtonpermeter.DecinewtonsPerMeter).NewtonsPerMeter, DecinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromDecinewtonsPerMillimeter(newtonpermeter.DecinewtonsPerMillimeter).NewtonsPerMeter, DecinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromKilogramsForcePerMeter(newtonpermeter.KilogramsForcePerMeter).NewtonsPerMeter, KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromKilonewtonsPerMeter(newtonpermeter.KilonewtonsPerMeter).NewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromKilonewtonsPerMillimeter(newtonpermeter.KilonewtonsPerMillimeter).NewtonsPerMeter, KilonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromKilopoundsForcePerFoot(newtonpermeter.KilopoundsForcePerFoot).NewtonsPerMeter, KilopoundsForcePerFootTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromMeganewtonsPerMeter(newtonpermeter.MeganewtonsPerMeter).NewtonsPerMeter, MeganewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromMeganewtonsPerMillimeter(newtonpermeter.MeganewtonsPerMillimeter).NewtonsPerMeter, MeganewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromMicronewtonsPerMeter(newtonpermeter.MicronewtonsPerMeter).NewtonsPerMeter, MicronewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromMicronewtonsPerMillimeter(newtonpermeter.MicronewtonsPerMillimeter).NewtonsPerMeter, MicronewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromMillinewtonsPerMeter(newtonpermeter.MillinewtonsPerMeter).NewtonsPerMeter, MillinewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromMillinewtonsPerMillimeter(newtonpermeter.MillinewtonsPerMillimeter).NewtonsPerMeter, MillinewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNanonewtonsPerMeter(newtonpermeter.NanonewtonsPerMeter).NewtonsPerMeter, NanonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromNanonewtonsPerMillimeter(newtonpermeter.NanonewtonsPerMillimeter).NewtonsPerMeter, NanonewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNewtonsPerMeter(newtonpermeter.NewtonsPerMeter).NewtonsPerMeter, NewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNewtonsPerMillimeter(newtonpermeter.NewtonsPerMillimeter).NewtonsPerMeter, NewtonsPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromPoundsForcePerFoot(newtonpermeter.PoundsForcePerFoot).NewtonsPerMeter, PoundsForcePerFootTolerance);
@@ -457,14 +574,23 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 cN/m", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMeter).ToString());
+                Assert.Equal("1 cN/mm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMillimeter).ToString());
+                Assert.Equal("1 daN/m", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMeter).ToString());
+                Assert.Equal("1 daN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMillimeter).ToString());
                 Assert.Equal("1 dN/m", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMeter).ToString());
+                Assert.Equal("1 dN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMillimeter).ToString());
                 Assert.Equal("1 kgf/m", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMeter).ToString());
                 Assert.Equal("1 kN/m", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMeter).ToString());
+                Assert.Equal("1 kN/mm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMillimeter).ToString());
                 Assert.Equal("1 kipf/ft", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerFoot).ToString());
                 Assert.Equal("1 MN/m", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMeter).ToString());
+                Assert.Equal("1 MN/mm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMillimeter).ToString());
                 Assert.Equal("1 µN/m", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMeter).ToString());
+                Assert.Equal("1 µN/mm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMillimeter).ToString());
                 Assert.Equal("1 mN/m", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMeter).ToString());
+                Assert.Equal("1 mN/mm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMillimeter).ToString());
                 Assert.Equal("1 nN/m", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMeter).ToString());
+                Assert.Equal("1 nN/mm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMillimeter).ToString());
                 Assert.Equal("1 N/m", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter).ToString());
                 Assert.Equal("1 N/mm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMillimeter).ToString());
                 Assert.Equal("1 lbf/ft", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerFoot).ToString());
@@ -484,14 +610,23 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cN/m", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 cN/mm", new ForcePerLength(1, ForcePerLengthUnit.CentinewtonPerMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 daN/m", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 daN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecanewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 dN/m", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 dN/mm", new ForcePerLength(1, ForcePerLengthUnit.DecinewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 kgf/m", new ForcePerLength(1, ForcePerLengthUnit.KilogramForcePerMeter).ToString(swedishCulture));
             Assert.Equal("1 kN/m", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 kN/mm", new ForcePerLength(1, ForcePerLengthUnit.KilonewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 kipf/ft", new ForcePerLength(1, ForcePerLengthUnit.KilopoundForcePerFoot).ToString(swedishCulture));
             Assert.Equal("1 MN/m", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 MN/mm", new ForcePerLength(1, ForcePerLengthUnit.MeganewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 µN/m", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 µN/mm", new ForcePerLength(1, ForcePerLengthUnit.MicronewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 mN/m", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 mN/mm", new ForcePerLength(1, ForcePerLengthUnit.MillinewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 nN/m", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 nN/mm", new ForcePerLength(1, ForcePerLengthUnit.NanonewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 N/m", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter).ToString(swedishCulture));
             Assert.Equal("1 N/mm", new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 lbf/ft", new ForcePerLength(1, ForcePerLengthUnit.PoundForcePerFoot).ToString(swedishCulture));

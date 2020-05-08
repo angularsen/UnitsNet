@@ -56,5 +56,9 @@ namespace UnitsNet.Tests
         public void NumberToKelvinsTest() =>
             Assert.Equal(TemperatureDelta.FromKelvins(2), 2.Kelvins());
 
+        [Fact]
+        public void NumberToMillidegreesCelsiusTest() =>
+            Assert.Equal(TemperatureDelta.FromMillidegreesCelsius(2), 2.MillidegreesCelsius());
+
     }
 }

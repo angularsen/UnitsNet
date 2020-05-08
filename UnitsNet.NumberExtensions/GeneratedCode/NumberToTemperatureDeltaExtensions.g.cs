@@ -58,5 +58,9 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
         public static TemperatureDelta Kelvins<T>(this T value) =>
             TemperatureDelta.FromKelvins(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        public static TemperatureDelta MillidegreesCelsius<T>(this T value) =>
+            TemperatureDelta.FromMillidegreesCelsius(Convert.ToDouble(value));
+
     }
 }

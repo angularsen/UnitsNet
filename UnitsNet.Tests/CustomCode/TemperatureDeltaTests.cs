@@ -34,6 +34,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesReaumurInOneKelvin => 0.8;
         protected override double DegreesRoemerInOneKelvin => 21 / 40d;
         protected override double KelvinsInOneKelvin => 1;
+        protected override double MillidegreesCelsiusInOneKelvin => 1E3;
 
         [Fact]
         public void TemperatureDeltaTimesSpecificEntropyEqualsSpecificEnergy()

@@ -58,6 +58,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
         }
@@ -210,6 +211,11 @@ namespace UnitsNet
         /// </summary>
         public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
 
+        /// <summary>
+        ///     Get TemperatureDelta in MillidegreesCelsius.
+        /// </summary>
+        public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+
         #endregion
 
         #region Static Methods
@@ -310,6 +316,15 @@ namespace UnitsNet
         {
             double value = (double) kelvins;
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from MillidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta FromMillidegreesCelsius(QuantityValue millidegreescelsius)
+        {
+            double value = (double) millidegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
         }
 
         /// <summary>
@@ -748,6 +763,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
                 case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
                 case TemperatureDeltaUnit.Kelvin: return _value;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -781,6 +797,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
                 case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
