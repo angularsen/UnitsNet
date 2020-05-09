@@ -188,17 +188,50 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Frequency[] expected = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
 
             var json = "[\n" +
-                                  "  {\n" +
-                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                  "    \"Value\": 10.0\n" +
-                                  "  },\n" +
-                                  "  {\n" +
-                                  "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                                  "    \"Value\": 10.0\n" +
-                                  "  }\n" +
-                                  "]";
+                       "  {\n" +
+                       "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "    \"Value\": 10.0\n" +
+                       "  },\n" +
+                       "  {\n" +
+                       "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "    \"Value\": 10.0\n" +
+                       "  }\n" +
+                       "]";
 
             var result = DeserializeObject<Frequency[]>(json);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void MultiDimArrayOfUnits_ExpectCorrectlyDeserialized()
+        {
+            Frequency[,] expected = { { Frequency.FromHertz(10), Frequency.FromHertz(10) }, { Frequency.FromHertz(10), Frequency.FromHertz(10) } };
+
+            var json = "[\n" +
+                       "  [\n" +
+                       "    {\n" +
+                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "      \"Value\": 10.0\n" +
+                       "    },\n" +
+                       "    {\n" +
+                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "      \"Value\": 10.0\n" +
+                       "    }\n" +
+                       "  ],\n" +
+                       "  [\n" +
+                       "    {\n" +
+                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "      \"Value\": 10.0\n" +
+                       "    },\n" +
+                       "    {\n" +
+                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                       "      \"Value\": 10.0\n" +
+                       "    }\n" +
+                       "  ]\n" +
+                       "]";
+
+            var result = DeserializeObject<Frequency[,]>(json);
 
             Assert.Equal(expected, result);
         }

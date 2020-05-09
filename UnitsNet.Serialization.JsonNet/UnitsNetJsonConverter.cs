@@ -44,15 +44,15 @@ namespace UnitsNet.Serialization.JsonNet
             object obj = TryDeserializeIComparable(reader, serializer);
             if (obj is Array values)
             {
-                // Create array with the requested type, such as `Length[]` or `Frequency[]`
-                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), values.Length);
+
+                // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]` 
+                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), LastIndex(values));
 
                 // Fill array with parsed quantities
-                var i = 0;
-                foreach (ValueUnit valueUnit in values)
+                var ind = FirstIndex(values);
+                while (ind != null)
                 {
-                    IQuantity quantity = ParseValueUnit(valueUnit);
-                    arrayOfQuantities.SetValue(quantity, i++);
+                    arrayOfQuantities.SetValue(values.GetValue(ind), ind);
                 }
 
                 return arrayOfQuantities;
@@ -148,7 +148,16 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else if (obj is Array values)
             {
-                var results = values.Cast<IQuantity>().Select(ToValueUnit);
+
+                var results = Array.CreateInstance(typeof(ValueUnit), LastIndex(values));
+                var ind = FirstIndex(values);
+
+                while (ind != null)
+                {
+                    results.SetValue((IQuantity)values.GetValue(ind), ind);
+                    ind = NextIndex(results, ind);
+                }                
+                
                 serializer.Serialize(writer, results);
             }
             else if (obj is IQuantity quantity)
@@ -231,5 +240,52 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         #endregion
+
+        #region "MultiDimensional Array Helpers"
+
+        private static Array ConvertArrayElements<TResult>(Array array)
+        {
+            var ret = Array.CreateInstance(typeof(TResult), LastIndex(array));
+            var ind = FirstIndex(array);
+
+            while (ind != null)
+            {
+                ret.SetValue((TResult)array.GetValue(ind), ind);
+                ind = NextIndex(array, ind);
+            }
+            return ret;
+        }
+
+        private static int[] FirstIndex(Array array)
+        {
+            return Enumerable.Range(0, array.Rank).Select(x => array.GetLowerBound(x)).ToArray();
+        }
+
+        private static int[] LastIndex(Array array)
+        {
+            return Enumerable.Range(0, array.Rank).Select(x => array.GetUpperBound(x) + 1).ToArray();
+        }
+
+        private static int[] NextIndex(Array array, int[] index)
+        {
+            for (var i = 0; i < index.Length; i++)
+            {
+                index[i] += 1;
+
+                if (index[i] <= array.GetUpperBound(i))
+                {
+                    return index;
+                }
+                else
+                {
+                    index[i] = array.GetLowerBound(i);
+                }
+            }
+            return null;
+        }
+
+        #endregion
+
+
     }
 }

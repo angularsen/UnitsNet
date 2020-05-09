@@ -120,6 +120,39 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        public void MultiDimArrayValue_ExpectJsonArray()
+        {
+            Frequency[,] testObj = { { Frequency.FromHertz(10), Frequency.FromHertz(10) }, { Frequency.FromHertz(10), Frequency.FromHertz(10) } };
+
+            string expectedJson = "[\n" +
+                                  "  [\n" +
+                                  "    {\n" +
+                                  "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "      \"Value\": 10.0\n" +
+                                  "    },\n" +
+                                  "    {\n" +
+                                  "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "      \"Value\": 10.0\n" +
+                                  "    }\n" +
+                                  "  ],\n" +
+                                  "  [\n" +
+                                  "    {\n" +
+                                  "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "      \"Value\": 10.0\n" +
+                                  "    },\n" +
+                                  "    {\n" +
+                                  "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                  "      \"Value\": 10.0\n" +
+                                  "    }\n" +
+                                  "  ]\n" +
+                                  "]";
+
+            string json = SerializeObject(testObj);
+            
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
         public void EmptyArrayValue_ExpectJsonArray()
         {
             Frequency[] testObj = new Frequency[0];
