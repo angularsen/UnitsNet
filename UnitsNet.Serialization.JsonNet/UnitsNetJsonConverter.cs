@@ -6,6 +6,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UnitsNet.Serialization.JsonNet.Internal;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -44,15 +45,15 @@ namespace UnitsNet.Serialization.JsonNet
             object obj = TryDeserializeIComparable(reader, serializer);
             if (obj is Array values)
             {
-                // Create array with the requested type, such as `Length[]` or `Frequency[]`
-                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), values.Length);
+
+                // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]` 
+                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), MultiDimensionalArrayHelpers.LastIndex(values));
 
                 // Fill array with parsed quantities
-                var i = 0;
-                foreach (ValueUnit valueUnit in values)
+                int[] index = MultiDimensionalArrayHelpers.FirstIndex(values);
+                while (index != null)
                 {
-                    IQuantity quantity = ParseValueUnit(valueUnit);
-                    arrayOfQuantities.SetValue(quantity, i++);
+                    arrayOfQuantities.SetValue(values.GetValue(index), index);
                 }
 
                 return arrayOfQuantities;
@@ -148,7 +149,16 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else if (obj is Array values)
             {
-                var results = values.Cast<IQuantity>().Select(ToValueUnit);
+
+                var results = Array.CreateInstance(typeof(ValueUnit), MultiDimensionalArrayHelpers.LastIndex(values));
+                var ind = MultiDimensionalArrayHelpers.FirstIndex(values);
+
+                while (ind != null)
+                {
+                    results.SetValue((IQuantity)values.GetValue(ind), ind);
+                    ind = MultiDimensionalArrayHelpers.NextIndex(results, ind);
+                }                
+                
                 serializer.Serialize(writer, results);
             }
             else if (obj is IQuantity quantity)
@@ -231,5 +241,6 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         #endregion
+
     }
 }

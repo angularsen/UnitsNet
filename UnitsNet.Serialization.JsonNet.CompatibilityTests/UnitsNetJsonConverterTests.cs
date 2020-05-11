@@ -352,6 +352,39 @@ namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
             }
 
             [Fact(Skip = "Not supported in older versions of serialization")]
+            public void MultiDimArrayOfUnits_ExpectCorrectlyDeserialized()
+            {
+                Frequency[,] expected = { { Frequency.FromHertz(10), Frequency.FromHertz(10) }, { Frequency.FromHertz(10), Frequency.FromHertz(10) } };
+
+                string json = "[\n" +
+                              "  [\n" +
+                              "    {\n" +
+                              "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "      \"Value\": 10.0\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "      \"Value\": 10.0\n" +
+                              "    }\n" +
+                              "  ],\n" +
+                              "  [\n" +
+                              "    {\n" +
+                              "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "      \"Value\": 10.0\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                              "      \"Value\": 10.0\n" +
+                              "    }\n" +
+                              "  ]\n" +
+                              "]";
+
+                Frequency[,] result = DeserializeObject<Frequency[,]>(json);
+
+                Assert.Equal(expected, result);
+            }
+
+            [Fact(Skip = "Not supported in older versions of serialization")]
             public void EmptyArray_ExpectCorrectlyDeserialized()
             {
                 string json = "[]";
