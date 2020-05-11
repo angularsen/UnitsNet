@@ -6,6 +6,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UnitsNet.Serialization.JsonNet.Internal;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -46,13 +47,13 @@ namespace UnitsNet.Serialization.JsonNet
             {
 
                 // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]` 
-                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), LastIndex(values));
+                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), MultiDimensionalArrayHelpers.LastIndex(values));
 
                 // Fill array with parsed quantities
-                var ind = FirstIndex(values);
-                while (ind != null)
+                int[] index = MultiDimensionalArrayHelpers.FirstIndex(values);
+                while (index != null)
                 {
-                    arrayOfQuantities.SetValue(values.GetValue(ind), ind);
+                    arrayOfQuantities.SetValue(values.GetValue(index), index);
                 }
 
                 return arrayOfQuantities;
@@ -149,13 +150,13 @@ namespace UnitsNet.Serialization.JsonNet
             else if (obj is Array values)
             {
 
-                var results = Array.CreateInstance(typeof(ValueUnit), LastIndex(values));
-                var ind = FirstIndex(values);
+                var results = Array.CreateInstance(typeof(ValueUnit), MultiDimensionalArrayHelpers.LastIndex(values));
+                var ind = MultiDimensionalArrayHelpers.FirstIndex(values);
 
                 while (ind != null)
                 {
                     results.SetValue((IQuantity)values.GetValue(ind), ind);
-                    ind = NextIndex(results, ind);
+                    ind = MultiDimensionalArrayHelpers.NextIndex(results, ind);
                 }                
                 
                 serializer.Serialize(writer, results);
@@ -240,52 +241,6 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         #endregion
-
-        #region "MultiDimensional Array Helpers"
-
-        private static Array ConvertArrayElements<TResult>(Array array)
-        {
-            var ret = Array.CreateInstance(typeof(TResult), LastIndex(array));
-            var ind = FirstIndex(array);
-
-            while (ind != null)
-            {
-                ret.SetValue((TResult)array.GetValue(ind), ind);
-                ind = NextIndex(array, ind);
-            }
-            return ret;
-        }
-
-        private static int[] FirstIndex(Array array)
-        {
-            return Enumerable.Range(0, array.Rank).Select(x => array.GetLowerBound(x)).ToArray();
-        }
-
-        private static int[] LastIndex(Array array)
-        {
-            return Enumerable.Range(0, array.Rank).Select(x => array.GetUpperBound(x) + 1).ToArray();
-        }
-
-        private static int[] NextIndex(Array array, int[] index)
-        {
-            for (var i = 0; i < index.Length; i++)
-            {
-                index[i] += 1;
-
-                if (index[i] <= array.GetUpperBound(i))
-                {
-                    return index;
-                }
-                else
-                {
-                    index[i] = array.GetLowerBound(i);
-                }
-            }
-            return null;
-        }
-
-        #endregion
-
 
     }
 }
