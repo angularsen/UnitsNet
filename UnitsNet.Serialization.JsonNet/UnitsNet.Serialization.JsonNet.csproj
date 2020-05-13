@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
-    <Version>4.1.1</Version>
+    <Version>4.2.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
