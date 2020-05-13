@@ -25,12 +25,52 @@ namespace UnitsNet.Tests
     public class NumberToMassFluxExtensionsTests
     {
         [Fact]
+        public void NumberToGramsPerHourPerSquareCentimeterTest() =>
+            Assert.Equal(MassFlux.FromGramsPerHourPerSquareCentimeter(2), 2.GramsPerHourPerSquareCentimeter());
+
+        [Fact]
+        public void NumberToGramsPerHourPerSquareMeterTest() =>
+            Assert.Equal(MassFlux.FromGramsPerHourPerSquareMeter(2), 2.GramsPerHourPerSquareMeter());
+
+        [Fact]
+        public void NumberToGramsPerHourPerSquareMillimeterTest() =>
+            Assert.Equal(MassFlux.FromGramsPerHourPerSquareMillimeter(2), 2.GramsPerHourPerSquareMillimeter());
+
+        [Fact]
+        public void NumberToGramsPerSecondPerSquareCentimeterTest() =>
+            Assert.Equal(MassFlux.FromGramsPerSecondPerSquareCentimeter(2), 2.GramsPerSecondPerSquareCentimeter());
+
+        [Fact]
         public void NumberToGramsPerSecondPerSquareMeterTest() =>
             Assert.Equal(MassFlux.FromGramsPerSecondPerSquareMeter(2), 2.GramsPerSecondPerSquareMeter());
 
         [Fact]
+        public void NumberToGramsPerSecondPerSquareMillimeterTest() =>
+            Assert.Equal(MassFlux.FromGramsPerSecondPerSquareMillimeter(2), 2.GramsPerSecondPerSquareMillimeter());
+
+        [Fact]
+        public void NumberToKilogramsPerHourPerSquareCentimeterTest() =>
+            Assert.Equal(MassFlux.FromKilogramsPerHourPerSquareCentimeter(2), 2.KilogramsPerHourPerSquareCentimeter());
+
+        [Fact]
+        public void NumberToKilogramsPerHourPerSquareMeterTest() =>
+            Assert.Equal(MassFlux.FromKilogramsPerHourPerSquareMeter(2), 2.KilogramsPerHourPerSquareMeter());
+
+        [Fact]
+        public void NumberToKilogramsPerHourPerSquareMillimeterTest() =>
+            Assert.Equal(MassFlux.FromKilogramsPerHourPerSquareMillimeter(2), 2.KilogramsPerHourPerSquareMillimeter());
+
+        [Fact]
+        public void NumberToKilogramsPerSecondPerSquareCentimeterTest() =>
+            Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareCentimeter(2), 2.KilogramsPerSecondPerSquareCentimeter());
+
+        [Fact]
         public void NumberToKilogramsPerSecondPerSquareMeterTest() =>
             Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(2), 2.KilogramsPerSecondPerSquareMeter());
+
+        [Fact]
+        public void NumberToKilogramsPerSecondPerSquareMillimeterTest() =>
+            Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMillimeter(2), 2.KilogramsPerSecondPerSquareMillimeter());
 
     }
 }
