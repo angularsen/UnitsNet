@@ -14,6 +14,11 @@ namespace UnitsNet
     public class QuantityFormatter
     {
         /// <summary>
+        /// The available UnitsNet custom format specifiers.
+        /// </summary>
+        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'G', 'g', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
+
+        /// <summary>
         /// Formats the given quantity using the given format string. Uses the <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <typeparam name="TUnitType">The quantity's unit type, for example <see cref="LengthUnit"/>.</typeparam>
@@ -69,63 +74,59 @@ namespace UnitsNet
             if(string.IsNullOrEmpty(format))
                 format = "g";
 
-            int precisionSpecifier = 0;
-            char formatSpecifier = format[0];
-
-            switch(formatSpecifier)
+            if(UnitsNetFormatSpecifiers.Any(c => c == format[0]))
             {
-                case 'A':
-                case 'a':
-                case 'S':
-                case 's':
-                    if(format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
+                // UnitsNet custom format string
+
+                int precisionSpecifier = 0;
+                char formatSpecifier = format[0];
+
+                switch(formatSpecifier)
+                {
+                    case 'A':
+                    case 'a':
+                    case 'S':
+                    case 's':
+                        if(format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
+                            throw new FormatException($"The {format} format string is not supported.");
+                        break;
+                }
+
+                switch(formatSpecifier)
+                {
+                    case 'G':
+                    case 'g':
+                        return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
+                    case 'A':
+                    case 'a':
+                        var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
+
+                        if(precisionSpecifier >= abbreviations.Length)
+                            throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
+
+                        return abbreviations[precisionSpecifier];
+                    case 'V':
+                    case 'v':
+                        return quantity.Value.ToString(formatProvider);
+                    case 'U':
+                    case 'u':
+                        return quantity.Unit.ToString();
+                    case 'Q':
+                    case 'q':
+                        return quantity.QuantityInfo.Name;
+                    case 'S':
+                    case 's':
+                        return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
+                    default:
                         throw new FormatException($"The {format} format string is not supported.");
-                    break;
+                }
             }
-
-            switch(formatSpecifier)
+            else
             {
-                // Standard numeric format specifiers
-                case 'C':
-                case 'c':
-                case 'E':
-                case 'e':
-                case 'F':
-                case 'f':
-                case 'N':
-                case 'n':
-                case 'P':
-                case 'p':
-                case 'R':
-                case 'r':
-                    return quantity.Value.ToString(format, formatProvider);
+                // Anything else is a standard numeric format string with default unit abbreviation postfix.
 
-                // UnitsNet custom format specifiers
-                case 'G':
-                case 'g':
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
-                case 'A':
-                case 'a':
-                    var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
-
-                    if(precisionSpecifier >= abbreviations.Length)
-                        throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
-
-                    return abbreviations[precisionSpecifier];
-                case 'V':
-                case 'v':
-                    return quantity.Value.ToString(formatProvider);
-                case 'U':
-                case 'u':
-                    return quantity.Unit.ToString();
-                case 'Q':
-                case 'q':
-                    return quantity.QuantityInfo.Name;
-                case 'S':
-                case 's':
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
-                default:
-                    throw new FormatException($"The {format} format string is not supported.");
+                var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
+                return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviations.First());
             }
         }
 

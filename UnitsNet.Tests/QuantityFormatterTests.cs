@@ -104,10 +104,36 @@ namespace UnitsNet.Tests
         [InlineData("r4")]
         [InlineData("r5")]
         [InlineData("r6")]
-        public static void StandardNumericFormatStrings_EqualsValueWithFormatString(string formatString)
+        public static void StandardNumericFormatStrings_Equals_ValueWithFormatStringAndAbbreviation(string format)
         {
-            var length = Length.FromMeters(1234.56789);
-            Assert.Equal(length.Value.ToString(formatString), QuantityFormatter.Format(length, formatString));
+            var length = Length.FromMeters(123456789.987654321);
+
+            var expected = string.Format($"{{0:{format}}} {{1:a}}", length.Value, length);
+            Assert.Equal(expected, QuantityFormatter.Format(length, format));
+        }
+
+        [Theory]
+        [InlineData("000")]
+        [InlineData("0.00")]
+        [InlineData("#####")]
+        [InlineData("#.##")]
+        [InlineData("##,#")]
+        [InlineData("#,#,,")]
+        [InlineData("%#0.00")]
+        [InlineData("##.0 %")]
+        [InlineData("#0.00‰")]
+        [InlineData("#0.0e0")]
+        [InlineData("0.0##e+00")]
+        [InlineData("0.0e+00")]
+        [InlineData(@"\###00\#")]
+        [InlineData("#0.0#;(#0.0#);-\0-")]
+        [InlineData("#0.0#;(#0.0#)")]
+        public static void CustomNumericFormatStrings_Equals_ValueWithFormatStringAndAbbreviation(string format)
+        {
+            var length = Length.FromMeters(123456789.987654321);
+
+            var expected = string.Format($"{{0:{format}}} {{1:a}}", length.Value, length);
+            Assert.Equal(expected, QuantityFormatter.Format(length, format));
         }
     }
 }
