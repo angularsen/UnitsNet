@@ -64,7 +64,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
             where TUnitType : Enum
         {
-            formatProvider ??= CultureInfo.CurrentUICulture;
+            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
 
             if(string.IsNullOrEmpty(format))
                 format = "g";
