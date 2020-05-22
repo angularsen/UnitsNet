@@ -57,6 +57,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
                 },
@@ -66,15 +67,15 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Frequency(double numericValue, FrequencyUnit unit)
+        public Frequency(double value, FrequencyUnit unit)
         {
             if(unit == FrequencyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -82,18 +83,18 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Frequency(double numericValue, UnitSystem unitSystem)
+        public Frequency(double value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -207,6 +208,11 @@ namespace UnitsNet
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Get Frequency in PerSecond.
+        /// </summary>
+        public double PerSecond => As(FrequencyUnit.PerSecond);
+
+        /// <summary>
         ///     Get Frequency in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
@@ -307,6 +313,15 @@ namespace UnitsNet
         {
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
+        }
+        /// <summary>
+        ///     Get Frequency from PerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromPerSecond(QuantityValue persecond)
+        {
+            double value = (double) persecond;
+            return new Frequency(value, FrequencyUnit.PerSecond);
         }
         /// <summary>
         ///     Get Frequency from RadiansPerSecond.
@@ -762,6 +777,7 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return _value;
                 case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
                 case FrequencyUnit.Megahertz: return (_value) * 1e6d;
+                case FrequencyUnit.PerSecond: return _value;
                 case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
                 case FrequencyUnit.Terahertz: return (_value) * 1e12d;
                 default:
@@ -796,6 +812,7 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return baseUnitValue;
                 case FrequencyUnit.Kilohertz: return (baseUnitValue) / 1e3d;
                 case FrequencyUnit.Megahertz: return (baseUnitValue) / 1e6d;
+                case FrequencyUnit.PerSecond: return baseUnitValue;
                 case FrequencyUnit.RadianPerSecond: return baseUnitValue*6.2831853072;
                 case FrequencyUnit.Terahertz: return (baseUnitValue) / 1e12d;
                 default:
@@ -844,7 +861,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]

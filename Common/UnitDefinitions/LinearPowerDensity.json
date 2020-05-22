@@ -1,0 +1,78 @@
+{
+  "Name": "LinearPowerDensity",
+  "BaseUnit": "WattPerMeter",
+  "XmlDoc": "The Linear Power Density of a substance is its power per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.",
+  "XmlDocRemarks": "http://en.wikipedia.org/wiki/Linear_density",
+  "BaseDimensions": {
+    "M": 1,
+    "L": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "WattPerMeter",
+      "PluralName": "WattsPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+	  "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerCentimeter",
+      "PluralName": "WattsPerCentimeter",
+      "FromUnitToBaseFunc": "x*1e2",
+      "FromBaseToUnitFunc": "x/1e2",
+	  "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/cm" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "WattPerMillimeter",
+      "PluralName": "WattsPerMillimeter",
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+	  "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerInch",
+      "PluralName": "WattsPerInch",
+      "FromUnitToBaseFunc": "x*39.37007874",
+      "FromBaseToUnitFunc": "x/39.37007874",
+	  "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerFoot",
+      "PluralName": "WattsPerFoot",
+      "FromUnitToBaseFunc": "x*3.280839895",
+      "FromBaseToUnitFunc": "x/3.280839895",
+	  "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/ft" ]
+        }
+      ]
+    }
+  ]
+}

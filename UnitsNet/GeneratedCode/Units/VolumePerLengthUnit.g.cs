@@ -27,7 +27,11 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CubicMeterPerMeter,
+        CubicYardPerFoot,
+        CubicYardPerUsSurveyFoot,
+        LiterPerKilometer,
         LiterPerMeter,
+        LiterPerMillimeter,
         OilBarrelPerFoot,
     }
 

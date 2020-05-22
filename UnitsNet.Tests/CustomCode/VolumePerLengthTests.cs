@@ -32,5 +32,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override double LitersPerMeterInOneCubicMeterPerMeter => 1000;
 
         protected override double OilBarrelsPerFootInOneCubicMeterPerMeter => 1.917134088;
+
+        protected override double CubicYardsPerFootInOneCubicMeterPerMeter => 0.3986633487670267521605;
+        
+        protected override double CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter => 0.3986641460953189427984;
+
+        protected override double LitersPerKilometerInOneCubicMeterPerMeter => 1E6;
+
+        protected override double LitersPerMillimeterInOneCubicMeterPerMeter => 1;
     }
 }

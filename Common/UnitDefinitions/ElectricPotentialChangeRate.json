@@ -1,0 +1,89 @@
+{
+  "Name": "ElectricPotentialChangeRate",
+  "BaseUnit": "VoltPerSecond",
+  "XmlDoc": "ElectricPotential change rate is the ratio of the electric potential change to the time during which the change occurred (value of electric potential changes per unit time).",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -4,
+    "I": -1
+  },
+  "Units": [
+    {
+      "SingularName": "VoltPerSecond",
+      "PluralName": "VoltsPerSeconds",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/s" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "VoltPerMicrosecond",
+      "PluralName": "VoltsPerMicroseconds",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Microsecond",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x*1E6",
+      "FromBaseToUnitFunc": "x/1E6",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/μs" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltPerMinute",
+      "PluralName": "VoltsPerMinutes",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Minute",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltPerHour",
+      "PluralName": "VoltsPerHours",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Hour",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "V/h" ]
+        }
+      ]
+    }
+  ]
+}

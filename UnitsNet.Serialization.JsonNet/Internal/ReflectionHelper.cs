@@ -7,8 +7,10 @@ namespace UnitsNet.Serialization.JsonNet.Internal
     /// <summary>
     ///     Helper for dealing with reflection, abstracting API differences between old and new .NET framework.
     /// </summary>
+    [Obsolete("The JsonConverter(s) for UnitsNet no longer relies on reflection")]
     internal static class ReflectionHelper
     {
+        [Obsolete("The JsonConverter(s) for UnitsNet no longer relies on reflection")]
         internal static PropertyInfo GetProperty(this Type type, string name)
         {
 #if (NET40 || NET35 || NET20 || SILVERLIGHT)
@@ -19,6 +21,7 @@ namespace UnitsNet.Serialization.JsonNet.Internal
 #endif
         }
 
+        [Obsolete("The JsonConverter(s) for UnitsNet no longer relies on reflection")]
         internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;

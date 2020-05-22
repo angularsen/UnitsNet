@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Length",
   "BaseUnit": "Meter",
   "XmlDoc": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
@@ -349,6 +349,21 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "R⊙" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Chain",
+      "PluralName": "Chains",
+      "BaseUnits": {
+        "L": "Chain"
+      },
+      "FromUnitToBaseFunc": "x*20.1168",
+      "FromBaseToUnitFunc": "x/20.1168",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ch" ]
         }
       ]
     }

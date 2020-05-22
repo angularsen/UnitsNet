@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Frequency",
   "BaseUnit": "Hertz",
   "XmlDoc": "The number of occurrences of a repeating event per unit time.",
@@ -65,6 +65,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "bpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerSecond",
+      "PluralName": "PerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s⁻¹" ]
         }
       ]
     }

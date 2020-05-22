@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Acceleration",
   "BaseUnit": "MeterPerSecondSquared",
   "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
@@ -21,6 +21,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "m/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/с²" ]
         }
       ]
     },
@@ -37,6 +41,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "in/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дюйм/с²" ]
         }
       ]
     },
@@ -53,6 +61,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/с²" ]
         }
       ]
     },
@@ -69,6 +81,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/s" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/с" ]
         }
       ]
     },
@@ -85,6 +101,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/min" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/мин" ]
         }
       ]
     },
@@ -101,6 +121,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/h" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/час" ]
         }
       ]
     },
@@ -116,6 +140,10 @@
       "Localization": [
         {
           "Culture": "en-US",
+          "Abbreviations": [ "g" ]
+        },
+		{
+          "Culture": "ru-RU",
           "Abbreviations": [ "g" ]
         }
       ]

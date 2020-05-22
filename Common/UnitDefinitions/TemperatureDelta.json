@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "TemperatureDelta",
   "BaseUnit": "Kelvin",
   "XmlDoc": "Difference between two temperatures. The conversions are different than for Temperature.",
@@ -20,10 +20,12 @@
       "PluralName": "DegreesCelsius",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "∆°C" ]
+          "Abbreviations": [ "∆°C" ],
+          "AbbreviationsForPrefixes": { "Milli": "∆m°C" }
         }
       ]
     },

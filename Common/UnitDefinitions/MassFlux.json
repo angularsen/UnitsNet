@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "MassFlux",
   "BaseUnit": "KilogramPerSecondPerSquareMeter",
   "XmlDoc": "Mass flux is the mass flow rate per unit area.",
@@ -18,6 +18,71 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "g·s⁻¹·m⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerSecondPerSquareCentimeter",
+      "PluralName": "GramsPerSecondPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·s⁻¹·cm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerSecondPerSquareMillimeter",
+      "PluralName": "GramsPerSecondPerSquareMillimeter",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·s⁻¹·mm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerHourPerSquareMeter",
+      "PluralName": "GramsPerHourPerSquareMeter",
+      "FromUnitToBaseFunc": "x/3.6e6",
+      "FromBaseToUnitFunc": "x*3.6e6",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·h⁻¹·m⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerHourPerSquareCentimeter",
+      "PluralName": "GramsPerHourPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x/3.6e2",
+      "FromBaseToUnitFunc": "x*3.6e2",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·h⁻¹·cm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerHourPerSquareMillimeter",
+      "PluralName": "GramsPerHourPerSquareMillimeter",
+      "FromUnitToBaseFunc": "x/3.6e0",
+      "FromBaseToUnitFunc": "x*3.6e0",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·h⁻¹·mm⁻²" ]
         }
       ]
     }

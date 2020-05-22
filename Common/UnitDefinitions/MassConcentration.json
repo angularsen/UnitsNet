@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "MassConcentration",
   "BaseUnit": "KilogramPerCubicMeter",
   "XmlDoc": "In chemistry, the mass concentration ρi (or γi) is defined as the mass of a constituent mi divided by the volume of the mixture V",

@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private TemperatureDelta(double numericValue, TemperatureDeltaUnit unit)
+        private TemperatureDelta(double value, TemperatureDeltaUnit unit)
         {
             if(unit == TemperatureDeltaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -195,6 +195,11 @@ namespace UnitsNet
         /// </summary>
         public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
 
+        /// <summary>
+        ///     Get TemperatureDelta in MillidegreesCelsius.
+        /// </summary>
+        public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+
         #endregion
 
         #region Static Methods
@@ -304,6 +309,16 @@ namespace UnitsNet
         {
             double value = (double) kelvins;
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
+        }
+        /// <summary>
+        ///     Get TemperatureDelta from MillidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromMillidegreesCelsius(double millidegreescelsius)
+        {
+            double value = (double) millidegreescelsius;
+            return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
         }
 
         /// <summary>
@@ -604,6 +619,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
                 case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
                 case TemperatureDeltaUnit.Kelvin: return _value;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -626,6 +642,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
                 case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -673,7 +690,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

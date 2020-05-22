@@ -26,8 +26,18 @@ namespace UnitsNet.Units
     public enum MassFluxUnit
     {
         Undefined = 0,
+        GramPerHourPerSquareCentimeter,
+        GramPerHourPerSquareMeter,
+        GramPerHourPerSquareMillimeter,
+        GramPerSecondPerSquareCentimeter,
         GramPerSecondPerSquareMeter,
+        GramPerSecondPerSquareMillimeter,
+        KilogramPerHourPerSquareCentimeter,
+        KilogramPerHourPerSquareMeter,
+        KilogramPerHourPerSquareMillimeter,
+        KilogramPerSecondPerSquareCentimeter,
         KilogramPerSecondPerSquareMeter,
+        KilogramPerSecondPerSquareMillimeter,
     }
 
     #pragma warning restore 1591

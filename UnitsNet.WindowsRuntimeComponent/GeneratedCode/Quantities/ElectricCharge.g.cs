@@ -70,16 +70,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private ElectricCharge(double numericValue, ElectricChargeUnit unit)
+        private ElectricCharge(double value, ElectricChargeUnit unit)
         {
             if(unit == ElectricChargeUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -159,9 +159,29 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricCharge in AmpereHours.
+        /// </summary>
+        public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
+
+        /// <summary>
         ///     Get ElectricCharge in Coulombs.
         /// </summary>
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
+
+        /// <summary>
+        ///     Get ElectricCharge in KiloampereHours.
+        /// </summary>
+        public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
+
+        /// <summary>
+        ///     Get ElectricCharge in MegaampereHours.
+        /// </summary>
+        public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
+
+        /// <summary>
+        ///     Get ElectricCharge in MilliampereHours.
+        /// </summary>
+        public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
 
         #endregion
 
@@ -194,6 +214,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get ElectricCharge from AmpereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCharge FromAmpereHours(double amperehours)
+        {
+            double value = (double) amperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
+        }
+        /// <summary>
         ///     Get ElectricCharge from Coulombs.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -202,6 +232,36 @@ namespace UnitsNet
         {
             double value = (double) coulombs;
             return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from KiloampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCharge FromKiloampereHours(double kiloamperehours)
+        {
+            double value = (double) kiloamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from MegaampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCharge FromMegaampereHours(double megaamperehours)
+        {
+            double value = (double) megaamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
+        }
+        /// <summary>
+        ///     Get ElectricCharge from MilliampereHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCharge FromMilliampereHours(double milliamperehours)
+        {
+            double value = (double) milliamperehours;
+            return new ElectricCharge(value, ElectricChargeUnit.MilliampereHour);
         }
 
         /// <summary>
@@ -494,7 +554,11 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricChargeUnit.AmpereHour: return _value/2.77777777777e-4;
                 case ElectricChargeUnit.Coulomb: return _value;
+                case ElectricChargeUnit.KiloampereHour: return (_value/2.77777777777e-4) * 1e3d;
+                case ElectricChargeUnit.MegaampereHour: return (_value/2.77777777777e-4) * 1e6d;
+                case ElectricChargeUnit.MilliampereHour: return (_value/2.77777777777e-4) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -509,7 +573,11 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricChargeUnit.AmpereHour: return baseUnitValue*2.77777777777e-4;
                 case ElectricChargeUnit.Coulomb: return baseUnitValue;
+                case ElectricChargeUnit.KiloampereHour: return (baseUnitValue*2.77777777777e-4) / 1e3d;
+                case ElectricChargeUnit.MegaampereHour: return (baseUnitValue*2.77777777777e-4) / 1e6d;
+                case ElectricChargeUnit.MilliampereHour: return (baseUnitValue*2.77777777777e-4) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -557,7 +625,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

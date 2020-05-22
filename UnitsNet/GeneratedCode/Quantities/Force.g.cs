@@ -55,6 +55,7 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.KiloPond, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Meganewton, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Micronewton, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Millinewton, BaseUnits.Undefined),
@@ -70,15 +71,15 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Force(double numericValue, ForceUnit unit)
+        public Force(double value, ForceUnit unit)
         {
             if(unit == ForceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -86,18 +87,18 @@ namespace UnitsNet
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref="UnitSystem"/>.
         /// If multiple compatible units were found, the first match is used.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Force(double numericValue, UnitSystem unitSystem)
+        public Force(double value, UnitSystem unitSystem)
         {
             if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -199,6 +200,11 @@ namespace UnitsNet
         ///     Get Force in KiloPonds.
         /// </summary>
         public double KiloPonds => As(ForceUnit.KiloPond);
+
+        /// <summary>
+        ///     Get Force in KilopoundsForce.
+        /// </summary>
+        public double KilopoundsForce => As(ForceUnit.KilopoundForce);
 
         /// <summary>
         ///     Get Force in Meganewtons.
@@ -313,6 +319,15 @@ namespace UnitsNet
         {
             double value = (double) kiloponds;
             return new Force(value, ForceUnit.KiloPond);
+        }
+        /// <summary>
+        ///     Get Force from KilopoundsForce.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromKilopoundsForce(QuantityValue kilopoundsforce)
+        {
+            double value = (double) kilopoundsforce;
+            return new Force(value, ForceUnit.KilopoundForce);
         }
         /// <summary>
         ///     Get Force from Meganewtons.
@@ -820,6 +835,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return _value*9.80665002864;
                 case ForceUnit.Kilonewton: return (_value) * 1e3d;
                 case ForceUnit.KiloPond: return _value*9.80665002864;
+                case ForceUnit.KilopoundForce: return _value*4448.2216152605095551842641431421;
                 case ForceUnit.Meganewton: return (_value) * 1e6d;
                 case ForceUnit.Micronewton: return (_value) * 1e-6d;
                 case ForceUnit.Millinewton: return (_value) * 1e-3d;
@@ -858,6 +874,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
                 case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
                 case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
+                case ForceUnit.KilopoundForce: return baseUnitValue/4448.2216152605095551842641431421;
                 case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
                 case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
                 case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
@@ -912,7 +929,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]

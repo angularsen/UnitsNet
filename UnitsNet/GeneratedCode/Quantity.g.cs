@@ -96,6 +96,8 @@ namespace UnitsNet
                     return ElectricPotential.From(value, ElectricPotential.BaseUnit);
                 case QuantityType.ElectricPotentialAc:
                     return ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit);
+                case QuantityType.ElectricPotentialChangeRate:
+                    return ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit);
                 case QuantityType.ElectricPotentialDc:
                     return ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit);
                 case QuantityType.ElectricResistance:
@@ -116,6 +118,8 @@ namespace UnitsNet
                     return ForcePerLength.From(value, ForcePerLength.BaseUnit);
                 case QuantityType.Frequency:
                     return Frequency.From(value, Frequency.BaseUnit);
+                case QuantityType.FuelEfficiency:
+                    return FuelEfficiency.From(value, FuelEfficiency.BaseUnit);
                 case QuantityType.HeatFlux:
                     return HeatFlux.From(value, HeatFlux.BaseUnit);
                 case QuantityType.HeatTransferCoefficient:
@@ -138,6 +142,8 @@ namespace UnitsNet
                     return Level.From(value, Level.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case QuantityType.LinearPowerDensity:
+                    return LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit);
                 case QuantityType.Luminosity:
                     return Luminosity.From(value, Luminosity.BaseUnit);
                 case QuantityType.LuminousFlux:
@@ -224,6 +230,8 @@ namespace UnitsNet
                     return ThermalResistance.From(value, ThermalResistance.BaseUnit);
                 case QuantityType.Torque:
                     return Torque.From(value, Torque.BaseUnit);
+                case QuantityType.TorquePerLength:
+                    return TorquePerLength.From(value, TorquePerLength.BaseUnit);
                 case QuantityType.VitaminA:
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
@@ -334,6 +342,9 @@ namespace UnitsNet
                 case ElectricPotentialAcUnit electricPotentialAcUnit:
                     quantity = ElectricPotentialAc.From(value, electricPotentialAcUnit);
                     return true;
+                case ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit:
+                    quantity = ElectricPotentialChangeRate.From(value, electricPotentialChangeRateUnit);
+                    return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
                     return true;
@@ -363,6 +374,9 @@ namespace UnitsNet
                     return true;
                 case FrequencyUnit frequencyUnit:
                     quantity = Frequency.From(value, frequencyUnit);
+                    return true;
+                case FuelEfficiencyUnit fuelEfficiencyUnit:
+                    quantity = FuelEfficiency.From(value, fuelEfficiencyUnit);
                     return true;
                 case HeatFluxUnit heatFluxUnit:
                     quantity = HeatFlux.From(value, heatFluxUnit);
@@ -396,6 +410,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LinearPowerDensityUnit linearPowerDensityUnit:
+                    quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
@@ -526,6 +543,9 @@ namespace UnitsNet
                 case TorqueUnit torqueUnit:
                     quantity = Torque.From(value, torqueUnit);
                     return true;
+                case TorquePerLengthUnit torquePerLengthUnit:
+                    quantity = TorquePerLength.From(value, torquePerLengthUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
                     return true;
@@ -624,6 +644,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricPotential, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialAc):
                     return parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricPotentialChangeRate):
+                    return parser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialDc):
                     return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistance):
@@ -644,6 +666,8 @@ namespace UnitsNet
                     return parser.TryParse<ForcePerLength, ForcePerLengthUnit>(quantityString, formatProvider, ForcePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(Frequency):
                     return parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity);
+                case Type _ when quantityType == typeof(FuelEfficiency):
+                    return parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity);
                 case Type _ when quantityType == typeof(HeatFlux):
                     return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
                 case Type _ when quantityType == typeof(HeatTransferCoefficient):
@@ -666,6 +690,8 @@ namespace UnitsNet
                     return parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity):
                     return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+                case Type _ when quantityType == typeof(LinearPowerDensity):
+                    return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Luminosity):
                     return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousFlux):
@@ -752,6 +778,8 @@ namespace UnitsNet
                     return parser.TryParse<ThermalResistance, ThermalResistanceUnit>(quantityString, formatProvider, ThermalResistance.From, out quantity);
                 case Type _ when quantityType == typeof(Torque):
                     return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
+                case Type _ when quantityType == typeof(TorquePerLength):
+                    return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(VitaminA):
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):

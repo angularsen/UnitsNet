@@ -1,12 +1,20 @@
 version: '{build}'
 image: Visual Studio 2017
+
+# Don't build PR commits twice
+skip_branch_with_pr: true
+
+# Don't build tags, avoid duplicate builds on master when bumping version
+skip_tags: true
+
+# Don't build changes to docs
 skip_commits:
  files:
    - docs/*
    - '**/*.md'
 
 # Only fetch the latest commits to reduce time to download on agent, but support pushes containing multiple commits
-clone_depth: 50
+clone_depth: 20
 
 # build cache to preserve files/folders between builds
 cache:
@@ -51,19 +59,12 @@ build_script:
         exit $BuildExitCode
     }
 
-# Do not build feature branch with open Pull Requests to avoid building twice
-skip_branch_with_pr: true
-
 # Upload code coverage reports to codecov.io.
 # PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
 after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-    [Net.ServicePointManager]::SecurityProtocol = `
-        [Net.SecurityProtocolType]::Tls12,
-        [Net.SecurityProtocolType]::Tls11 ;
-    Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-    bash codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
+    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
@@ -73,12 +74,12 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
+    secure: PH4mk0gsORIQZnPsmQo+tvzvOIeuVwTVN2lkF7NS+E9Ez/Z8LikN0ae+wwKcRJMd
   on:
     branch: master
 
 - provider: NuGet
   api_key:
-    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
+    secure: PH4mk0gsORIQZnPsmQo+tvzvOIeuVwTVN2lkF7NS+E9Ez/Z8LikN0ae+wwKcRJMd
   on:
     branch: release/*

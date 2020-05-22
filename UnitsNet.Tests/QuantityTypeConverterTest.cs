@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_GivenSomeQuantitysAndContextWithNoAttributes_ReturnsQuantityStringInUnitOfQuantity()
+        public void ConvertTo_GivenSomeQuantityAndContextWithNoAttributes_ReturnsQuantityStringInUnitOfQuantity()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
@@ -178,7 +178,19 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitDefaultFormating()
+        public void ConvertTo_GivenSomeQuantityAndContextWithoutProperty_ReturnsQuantityStringInUnitOfQuantity()
+        {
+            var converter = new QuantityTypeConverter<Length>();
+            ITypeDescriptorContext context = new TypeDescriptorContext();
+            Length length = Length.FromMeters(1);
+
+            string convertedQuantity = (string)converter.ConvertTo(context, culture, length, typeof(string));
+
+            Assert.Equal("1 m", convertedQuantity);
+        }
+
+        [Fact]
+        public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitDefaultFormatting()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
@@ -193,7 +205,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitFormateAsValueOnly()
+        public void ConvertTo_TestDisplayAsFormatting_ReturnsQuantityStringWithDisplayUnitFormatAsValueOnly()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
@@ -208,7 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_TestDisplayAsFormattingWithoutDefinedUnit_ReturnsQuantityStringWithQuantetiesUnitAndFormatedAsValueOnly()
+        public void ConvertTo_TestDisplayAsFormattingWithoutDefinedUnit_ReturnsQuantityStringWithQuantityUnitAndFormattedAsValueOnly()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
@@ -223,7 +235,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertTo_GivenSomeQuantitysAndContextWithDisplayAsUnitAttributes_ReturnsQuantityStringInSpecifiedDisplayUnit()
+        public void ConvertTo_GivenSomeQuantityAndContextWithDisplayAsUnitAttributes_ReturnsQuantityStringInSpecifiedDisplayUnit()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]

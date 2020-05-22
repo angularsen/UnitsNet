@@ -67,16 +67,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="value">The numeric value to construct this quantity with.</param>
+        /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private Volume(double numericValue, VolumeUnit unit)
+        private Volume(double value, VolumeUnit unit)
         {
             if(unit == VolumeUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -226,9 +226,19 @@ namespace UnitsNet
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
+        ///     Get Volume in DecausGallons.
+        /// </summary>
+        public double DecausGallons => As(VolumeUnit.DecausGallon);
+
+        /// <summary>
         ///     Get Volume in Deciliters.
         /// </summary>
         public double Deciliters => As(VolumeUnit.Deciliter);
+
+        /// <summary>
+        ///     Get Volume in DeciusGallons.
+        /// </summary>
+        public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
         ///     Get Volume in HectocubicFeet.
@@ -244,6 +254,11 @@ namespace UnitsNet
         ///     Get Volume in Hectoliters.
         /// </summary>
         public double Hectoliters => As(VolumeUnit.Hectoliter);
+
+        /// <summary>
+        ///     Get Volume in HectousGallons.
+        /// </summary>
+        public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
         ///     Get Volume in ImperialBeerBarrels.
@@ -561,6 +576,16 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicYard);
         }
         /// <summary>
+        ///     Get Volume from DecausGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromDecausGallons(double decausgallons)
+        {
+            double value = (double) decausgallons;
+            return new Volume(value, VolumeUnit.DecausGallon);
+        }
+        /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -569,6 +594,16 @@ namespace UnitsNet
         {
             double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
+        }
+        /// <summary>
+        ///     Get Volume from DeciusGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromDeciusGallons(double deciusgallons)
+        {
+            double value = (double) deciusgallons;
+            return new Volume(value, VolumeUnit.DeciusGallon);
         }
         /// <summary>
         ///     Get Volume from HectocubicFeet.
@@ -599,6 +634,16 @@ namespace UnitsNet
         {
             double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
+        }
+        /// <summary>
+        ///     Get Volume from HectousGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromHectousGallons(double hectousgallons)
+        {
+            double value = (double) hectousgallons;
+            return new Volume(value, VolumeUnit.HectousGallon);
         }
         /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
@@ -1195,10 +1240,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return _value/1e9;
                 case VolumeUnit.CubicYard: return _value*0.764554858;
+                case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
                 case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
+                case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
                 case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
                 case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
+                case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
@@ -1256,10 +1304,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
                 case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
+                case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
                 case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
+                case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (baseUnitValue/0.0283168) / 1e2d;
                 case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
                 case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
+                case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
@@ -1336,7 +1387,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)

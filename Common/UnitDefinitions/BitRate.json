@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "BitRate",
   "BaseUnit": "BitPerSecond",
   "BaseType": "decimal",

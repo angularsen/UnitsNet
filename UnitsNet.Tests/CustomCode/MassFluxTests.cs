@@ -27,8 +27,21 @@ namespace UnitsNet.Tests.CustomCode
     public class MassFluxTests : MassFluxTestsBase
     {
         protected override double GramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter => 1E3;
+        protected override double GramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 1E-1;
+        protected override double GramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 1E-3;
+
+        protected override double GramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter => 3.6E6;
+        protected override double GramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 3.6E2;
+        protected override double GramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 3.6E0;
 
         protected override double KilogramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter => 1;
+        protected override double KilogramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 1E-4;
+        protected override double KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 1E-6;
+
+        protected override double KilogramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter => 3.6E3;
+        protected override double KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-1;
+        protected override double KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-3;                
+
 
         [Fact]
         public void MassFluxDividedBySpeedEqualsDensity()

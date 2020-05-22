@@ -1,0 +1,55 @@
+{
+    "Name": "FuelEfficiency",
+    "BaseUnit": "LiterPer100Kilometers",
+    "XmlDoc": "Fuel efficiency is a form of thermal efficiency, meaning the ratio from effort to result of a process that converts chemical potential energy contained in a carrier (fuel) into kinetic energy or work. Fuel economy is stated as \"fuel consumption\" in liters per 100 kilometers (L/100 km). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).",
+    "XmlDocRemarks": "https://en.wikipedia.org/wiki/Fuel_efficiency",
+    "Units": [{
+        "SingularName": "LiterPer100Kilometers",
+        "PluralName": "LitersPer100Kilometers",
+        "FromUnitToBaseFunc": "x",
+        "FromBaseToUnitFunc": "x",
+        "Localization": [{
+          "Culture": "en-US",
+          "Abbreviations": [
+            "L/100km"
+          ]
+        }]
+      },
+      {
+        "SingularName": "MilePerUsGallon",
+        "PluralName": "MilesPerUsGallon",
+        "FromUnitToBaseFunc": "(100*3.785411784)/(1.609344*x)",
+        "FromBaseToUnitFunc": "(100*3.785411784)/(1.609344*x)",
+        "Localization": [{
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mpg (U.S.)"
+          ]
+        }]
+      },
+      {
+        "SingularName": "MilePerUkGallon",
+        "PluralName": "MilesPerUkGallon",
+        "FromUnitToBaseFunc": "(100*4.54609188)/(1.609344*x)",
+        "FromBaseToUnitFunc": "(100*4.54609188)/(1.609344*x)",
+        "Localization": [{
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mpg (imp.)"
+          ]
+        }]
+      },
+      {
+        "SingularName": "KilometerPerLiter",
+        "PluralName": "KilometersPerLiters",
+        "FromUnitToBaseFunc": "100/x",
+        "FromBaseToUnitFunc": "100/x",
+        "Localization": [{
+          "Culture": "en-US",
+          "Abbreviations": [
+            "km/L"
+          ]
+        }]
+      }
+    ]
+  }

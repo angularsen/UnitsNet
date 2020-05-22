@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "MassMomentOfInertia",
   "BaseUnit": "KilogramSquareMeter",
   "XmlDoc": "A property of body reflects how its mass is distributed with regard to an axis.",

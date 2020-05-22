@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "ForcePerLength",
   "BaseUnit": "NewtonPerMeter",
   "XmlDoc": "The magnitude of force per unit length.",
@@ -12,11 +12,24 @@
       "PluralName": "NewtonsPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "N/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonPerMillimeter",
+      "PluralName": "NewtonsPerMillimeter",
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/mm" ]
         }
       ]
     },
@@ -69,6 +82,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf/yd" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForcePerFoot",
+      "PluralName": "KilopoundsForcePerFoot",
+      "FromUnitToBaseFunc": "x*14593.90292",
+      "FromBaseToUnitFunc": "x/14593.90292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf/ft", "kip/ft", "k/ft" ]
         }
       ]
     }
