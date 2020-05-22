@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -88,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificEntropy(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -236,7 +238,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(SpecificEntropyUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(SpecificEntropyUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -392,7 +394,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static SpecificEntropy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static SpecificEntropy Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<SpecificEntropy, SpecificEntropyUnit>(
                 str,
@@ -408,7 +410,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out SpecificEntropy result)
+        public static bool TryParse(string? str, out SpecificEntropy result)
         {
             return TryParse(str, null, out result);
         }
@@ -423,7 +425,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out SpecificEntropy result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out SpecificEntropy result)
         {
             return QuantityParser.Default.TryParse<SpecificEntropy, SpecificEntropyUnit>(
                 str,
@@ -456,7 +458,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static SpecificEntropyUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static SpecificEntropyUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<SpecificEntropyUnit>(str, provider);
         }
@@ -477,7 +479,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out SpecificEntropyUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out SpecificEntropyUnit unit)
         {
             return UnitParser.Default.TryParse<SpecificEntropyUnit>(str, provider, out unit);
         }
@@ -682,7 +684,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -725,7 +727,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificEntropy ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -821,7 +823,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -833,7 +835,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -848,7 +850,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -876,11 +878,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<SpecificEntropyUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<SpecificEntropyUnit>(this, format, provider);
         }
 
         #endregion

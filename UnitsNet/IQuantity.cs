@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        string ToString([CanBeNull] IFormatProvider provider);
+        string ToString(IFormatProvider? provider);
 
         /// <summary>
         ///     Get string representation of value and unit.
@@ -83,7 +83,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix);
+        string ToString(IFormatProvider? provider, int significantDigitsAfterRadix);
 
         /// <summary>
         ///     Get string representation of value and unit.
@@ -93,7 +93,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
+        string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
     /// <summary>

@@ -41,7 +41,7 @@ namespace UnitsNet.InternalHelpers
 
         internal IEnumerable<MethodInfo> GetDeclaredMethods()
         {
-            var t = _type.ToUniformType();
+            UniformTypeInfo? t = _type.ToUniformType();
             while (t != null)
             {
 #if NET40 || NET35 || NET20 || SILVERLIGHT
