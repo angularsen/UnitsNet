@@ -60,6 +60,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="allowedNumberStyles">Allowed number styles</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        private static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, NumberStyles allowedNumberStyles, out Length result)
+        {
+            return QuantityParser.Default.TryParse<Length, LengthUnit>(
+                str,
+                provider,
+                From,
+                allowedNumberStyles,
+                out result);
+        }
+
+        /// <summary>
         /// Special parsing of feet/inches strings, commonly used.
         /// 2 feet 4 inches is sometimes denoted as 2′−4″, 2′ 4″, 2′4″, 2 ft 4 in.
         /// The apostrophe can be ′ and '.
@@ -80,7 +101,8 @@ namespace UnitsNet
             str = str.Trim();
 
             // This succeeds if only feet or inches are given, not both
-            if (TryParse(str, formatProvider, out result))
+            // Do not allow thousands separator here, since it may be equal to the unit abbreviation (').
+            if (TryParse(str, formatProvider, NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign, out result))
                 return true;
 
             var quantityParser = QuantityParser.Default;

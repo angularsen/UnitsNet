@@ -69,10 +69,21 @@ namespace UnitsNet
             return ParseWithRegex(valueString!, unitString!, fromDelegate, formatProvider);
         }
 
+        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            out TQuantity result)
+            where TQuantity : IQuantity
+            where TUnitType : Enum
+        {
+            return TryParse(str, formatProvider, fromDelegate, ParseNumberStyles, out result);
+        }
+
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            NumberStyles allowedNumberStyles,
             out TQuantity result)
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
@@ -94,7 +105,7 @@ namespace UnitsNet
             if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
                 return false;
 
-            return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
+            return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, allowedNumberStyles, out result);
         }
 
         /// <summary>
@@ -104,11 +115,12 @@ namespace UnitsNet
         internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
             IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            NumberStyles allowedNumberStyles,
             out IQuantity? result)
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
         {
-            if (TryParse(str, formatProvider, fromDelegate, out TQuantity parsedQuantity))
+            if (TryParse(str, formatProvider, fromDelegate, allowedNumberStyles, out TQuantity parsedQuantity))
             {
                 result = parsedQuantity;
                 return true;
@@ -116,6 +128,19 @@ namespace UnitsNet
 
             result = default;
             return false;
+        }
+
+        /// <summary>
+        ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
+        /// </summary>
+        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            out IQuantity result)
+            where TQuantity : IQuantity
+            where TUnitType : Enum
+        {
+            return TryParse(str, formatProvider, fromDelegate, ParseNumberStyles, out result);
         }
 
         internal string CreateRegexPatternForUnit<TUnitType>(
@@ -164,13 +189,14 @@ namespace UnitsNet
             string? unitString,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             IFormatProvider? formatProvider,
+            NumberStyles allowedNumberStyles,
             out TQuantity result)
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
         {
             result = default;
 
-            if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
+            if (!double.TryParse(valueString, allowedNumberStyles, formatProvider, out var value))
                     return false;
 
             if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
