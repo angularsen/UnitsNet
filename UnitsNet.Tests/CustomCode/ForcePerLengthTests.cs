@@ -23,6 +23,21 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForcePerLengthTests : ForcePerLengthTestsBase
     {
+        protected override double KilopoundsForcePerInchInOneNewtonPerMeter => 5.710147162769201E-6;
+        protected override double KilogramsForcePerMillimeterInOneNewtonPerMeter => 1.019716212977928e-4;
+        protected override double KilogramsForcePerCentimeterInOneNewtonPerMeter => 1.019716212977928e-3;
+        protected override double TonnesForcePerMeterInOneNewtonPerMeter => 1.019716212977928e-4;
+        protected override double TonnesForcePerMillimeterInOneNewtonPerMeter => 1.019716212977928e-7;
+        protected override double TonnesForcePerCentimeterInOneNewtonPerMeter => 1.019716212977928e-6;
+        protected override double NewtonsPerCentimeterInOneNewtonPerMeter => 1E-2;
+        protected override double MicronewtonsPerCentimeterInOneNewtonPerMeter => 1E4;
+        protected override double CentinewtonsPerCentimeterInOneNewtonPerMeter => 1;
+        protected override double DecinewtonsPerCentimeterInOneNewtonPerMeter => 1E-1;
+        protected override double NanonewtonsPerCentimeterInOneNewtonPerMeter => 1E7;
+        protected override double DecanewtonsPerCentimeterInOneNewtonPerMeter => 1E-3;
+        protected override double MeganewtonsPerCentimeterInOneNewtonPerMeter => 1E-8;
+        protected override double KilonewtonsPerCentimeterInOneNewtonPerMeter => 1E-5;
+        protected override double MillinewtonsPerCentimeterInOneNewtonPerMeter => 1E1;
         protected override double CentinewtonsPerMeterInOneNewtonPerMeter => 1E2;
         protected override double DecinewtonsPerMeterInOneNewtonPerMeter => 1E1;
         protected override double KilogramsForcePerMeterInOneNewtonPerMeter => 0.101972;
