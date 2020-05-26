@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using CodeGen.JsonTypes;
 
@@ -456,8 +456,33 @@ namespace UnitsNet.Tests
             Assert.Equal(""0.123 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3"", culture));
             Assert.Equal(""0.1235 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
         }}
+
+        #pragma warning disable 612, 618
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }}
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, ""g"", null));
+        }}
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, ""g""), quantity.ToString(null, ""g""));
+        }}
+
+        #pragma warning restore 612, 618
     }}
-}}");
+}}" );
             return Writer.ToString();
         }
     }
