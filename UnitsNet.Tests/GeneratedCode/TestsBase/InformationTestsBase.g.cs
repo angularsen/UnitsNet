@@ -804,5 +804,40 @@ namespace UnitsNet.Tests
             var quantity = Information.FromBits(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Information.FromBits(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Information)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Information.FromBits(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(InformationUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Information.FromBits(1.0);
+           Assert.Equal(QuantityType.Information, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Information.FromBits(1.0);
+           Assert.Equal(Information.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Information.FromBits(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

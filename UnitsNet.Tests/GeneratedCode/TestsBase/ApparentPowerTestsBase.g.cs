@@ -506,5 +506,40 @@ namespace UnitsNet.Tests
             var quantity = ApparentPower.FromVoltamperes(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ApparentPower)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ApparentPowerUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
+           Assert.Equal(QuantityType.ApparentPower, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
+           Assert.Equal(ApparentPower.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

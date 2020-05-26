@@ -746,5 +746,40 @@ namespace UnitsNet.Tests
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(VolumeConcentration)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumeConcentrationUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+           Assert.Equal(QuantityType.VolumeConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+           Assert.Equal(VolumeConcentration.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

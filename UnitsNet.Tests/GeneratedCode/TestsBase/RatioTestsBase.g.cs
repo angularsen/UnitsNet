@@ -536,5 +536,40 @@ namespace UnitsNet.Tests
             var quantity = Ratio.FromDecimalFractions(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Ratio)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(RatioUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+           Assert.Equal(QuantityType.Ratio, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+           Assert.Equal(Ratio.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

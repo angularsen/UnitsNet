@@ -804,5 +804,40 @@ namespace UnitsNet.Tests
             var quantity = BitRate.FromBitsPerSecond(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(BitRate)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(BitRateUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+           Assert.Equal(QuantityType.BitRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+           Assert.Equal(BitRate.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

@@ -551,5 +551,40 @@ namespace UnitsNet.Tests
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(VolumePerLength)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumePerLengthUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+           Assert.Equal(QuantityType.VolumePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+           Assert.Equal(VolumePerLength.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

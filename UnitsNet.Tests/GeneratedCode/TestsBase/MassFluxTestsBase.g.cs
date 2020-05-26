@@ -626,5 +626,40 @@ namespace UnitsNet.Tests
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(MassFlux)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassFluxUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+           Assert.Equal(QuantityType.MassFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+           Assert.Equal(MassFlux.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

@@ -461,5 +461,40 @@ namespace UnitsNet.Tests
             var quantity = LuminousFlux.FromLumens(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(LuminousFlux)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LuminousFluxUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+           Assert.Equal(QuantityType.LuminousFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+           Assert.Equal(LuminousFlux.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = LuminousFlux.FromLumens(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

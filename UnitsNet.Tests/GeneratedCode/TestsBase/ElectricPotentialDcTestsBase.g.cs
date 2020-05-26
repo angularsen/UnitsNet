@@ -521,5 +521,40 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricPotentialDc)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricPotentialDcUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+           Assert.Equal(QuantityType.ElectricPotentialDc, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+           Assert.Equal(ElectricPotentialDc.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

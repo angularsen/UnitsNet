@@ -1196,5 +1196,40 @@ namespace UnitsNet.Tests
             var quantity = Volume.FromCubicMeters(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Volume)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumeUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+           Assert.Equal(QuantityType.Volume, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+           Assert.Equal(Volume.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Volume.FromCubicMeters(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

@@ -461,5 +461,40 @@ namespace UnitsNet.Tests
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(AreaDensity)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AreaDensityUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+           Assert.Equal(QuantityType.AreaDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+           Assert.Equal(AreaDensity.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

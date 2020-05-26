@@ -761,5 +761,40 @@ namespace UnitsNet.Tests
             var quantity = Torque.FromNewtonMeters(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Torque)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TorqueUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+           Assert.Equal(QuantityType.Torque, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+           Assert.Equal(Torque.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

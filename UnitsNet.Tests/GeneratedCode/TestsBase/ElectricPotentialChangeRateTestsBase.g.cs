@@ -746,5 +746,40 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricPotentialChangeRate)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricPotentialChangeRateUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
+           Assert.Equal(QuantityType.ElectricPotentialChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
+           Assert.Equal(ElectricPotentialChangeRate.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

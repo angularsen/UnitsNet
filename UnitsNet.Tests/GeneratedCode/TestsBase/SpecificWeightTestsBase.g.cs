@@ -701,5 +701,40 @@ namespace UnitsNet.Tests
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(SpecificWeight)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SpecificWeightUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+           Assert.Equal(QuantityType.SpecificWeight, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+           Assert.Equal(SpecificWeight.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

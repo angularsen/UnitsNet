@@ -656,5 +656,40 @@ namespace UnitsNet.Tests
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricResistivity)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricResistivityUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+           Assert.Equal(QuantityType.ElectricResistivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+           Assert.Equal(ElectricResistivity.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

@@ -716,5 +716,40 @@ namespace UnitsNet.Tests
             var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(HeatFlux)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(HeatFluxUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+           Assert.Equal(QuantityType.HeatFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+           Assert.Equal(HeatFlux.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

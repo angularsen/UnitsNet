@@ -506,5 +506,40 @@ namespace UnitsNet.Tests
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ReactivePower.FromVoltamperesReactive(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ReactivePower)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ReactivePower.FromVoltamperesReactive(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ReactivePowerUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ReactivePower.FromVoltamperesReactive(1.0);
+           Assert.Equal(QuantityType.ReactivePower, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ReactivePower.FromVoltamperesReactive(1.0);
+           Assert.Equal(ReactivePower.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ReactivePower.FromVoltamperesReactive(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

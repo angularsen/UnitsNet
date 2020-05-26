@@ -510,5 +510,40 @@ namespace UnitsNet.Tests
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(AmplitudeRatio)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AmplitudeRatioUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+           Assert.Equal(QuantityType.AmplitudeRatio, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+           Assert.Equal(AmplitudeRatio.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

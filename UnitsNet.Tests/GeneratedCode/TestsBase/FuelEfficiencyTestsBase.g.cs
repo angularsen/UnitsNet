@@ -506,5 +506,40 @@ namespace UnitsNet.Tests
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(FuelEfficiency)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(FuelEfficiencyUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+           Assert.Equal(QuantityType.FuelEfficiency, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+           Assert.Equal(FuelEfficiency.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

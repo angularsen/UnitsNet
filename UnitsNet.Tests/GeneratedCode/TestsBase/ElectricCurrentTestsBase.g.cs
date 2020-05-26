@@ -566,5 +566,40 @@ namespace UnitsNet.Tests
             var quantity = ElectricCurrent.FromAmperes(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ElectricCurrent.FromAmperes(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricCurrent)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ElectricCurrent.FromAmperes(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricCurrentUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricCurrent.FromAmperes(1.0);
+           Assert.Equal(QuantityType.ElectricCurrent, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ElectricCurrent.FromAmperes(1.0);
+           Assert.Equal(ElectricCurrent.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricCurrent.FromAmperes(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

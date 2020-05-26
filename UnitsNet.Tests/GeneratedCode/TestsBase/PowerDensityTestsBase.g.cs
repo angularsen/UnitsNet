@@ -1106,5 +1106,40 @@ namespace UnitsNet.Tests
             var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(PowerDensity)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PowerDensityUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
+           Assert.Equal(QuantityType.PowerDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
+           Assert.Equal(PowerDensity.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

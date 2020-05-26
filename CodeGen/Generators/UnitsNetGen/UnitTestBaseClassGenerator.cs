@@ -586,6 +586,41 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }}
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof({_quantity.Name})));
+        }}
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof({_unitEnumName})));
+        }}
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+           Assert.Equal(QuantityType.{_quantity.Name}, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }}
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+           Assert.Equal({_quantity.Name}.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }}
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }}
     }}
 }}" );
             return Writer.ToString();

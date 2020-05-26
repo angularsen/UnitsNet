@@ -551,5 +551,40 @@ namespace UnitsNet.Tests
             var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Irradiation)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(IrradiationUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+           Assert.Equal(QuantityType.Irradiation, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+           Assert.Equal(Irradiation.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }

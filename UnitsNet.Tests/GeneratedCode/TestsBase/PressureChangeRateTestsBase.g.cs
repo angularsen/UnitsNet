@@ -551,5 +551,40 @@ namespace UnitsNet.Tests
             var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(PressureChangeRate)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PressureChangeRateUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+           Assert.Equal(QuantityType.PressureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+           Assert.Equal(PressureChangeRate.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
     }
 }
