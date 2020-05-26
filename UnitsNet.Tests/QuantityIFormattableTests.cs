@@ -43,7 +43,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VFormatEqualsValueToString()
         {
-            Assert.Equal(length.Value.ToString(CultureInfo.CurrentUICulture), length.ToString("v"));
+            Assert.Equal(length.Value.ToString(CultureInfo.CurrentCulture), length.ToString("v"));
         }
 
         [Fact]

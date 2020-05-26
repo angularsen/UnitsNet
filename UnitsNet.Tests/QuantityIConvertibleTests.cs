@@ -116,10 +116,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToStringTest()
         {
-            string expected = _length.ToString(CultureInfo.CurrentUICulture);
-            Assert.Equal(expected, LengthAsIConvertible.ToString(CultureInfo.CurrentUICulture));
-            Assert.Equal(expected, Convert.ToString(_length, CultureInfo.CurrentUICulture));
-            Assert.Equal(expected, Convert.ChangeType(_length, typeof(string), CultureInfo.CurrentUICulture));
+            string expected = _length.ToString(CultureInfo.CurrentCulture);
+            Assert.Equal(expected, LengthAsIConvertible.ToString(CultureInfo.CurrentCulture));
+            Assert.Equal(expected, Convert.ToString(_length, CultureInfo.CurrentCulture));
+            Assert.Equal(expected, Convert.ChangeType(_length, typeof(string), CultureInfo.CurrentCulture));
         }
 
         [Fact]

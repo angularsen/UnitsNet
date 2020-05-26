@@ -461,8 +461,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
                 Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
@@ -481,7 +481,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -510,10 +510,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1"));
                 Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
@@ -521,7 +521,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

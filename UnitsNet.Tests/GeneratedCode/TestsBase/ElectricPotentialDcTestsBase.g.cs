@@ -344,8 +344,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kVdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.KilovoltDc).ToString());
                 Assert.Equal("1 MVdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.MegavoltDc).ToString());
@@ -355,7 +355,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -375,10 +375,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s1"));
                 Assert.Equal("0.12 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s2"));
                 Assert.Equal("0.123 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s3"));
@@ -386,7 +386,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

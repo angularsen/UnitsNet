@@ -318,8 +318,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kvarh", new ReactiveEnergy(1, ReactiveEnergyUnit.KilovoltampereReactiveHour).ToString());
                 Assert.Equal("1 Mvarh", new ReactiveEnergy(1, ReactiveEnergyUnit.MegavoltampereReactiveHour).ToString());
@@ -327,7 +327,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -345,10 +345,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s1"));
                 Assert.Equal("0.12 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s2"));
                 Assert.Equal("0.123 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s3"));
@@ -356,7 +356,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

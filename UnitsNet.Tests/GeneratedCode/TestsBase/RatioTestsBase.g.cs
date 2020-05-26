@@ -357,8 +357,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString());
                 Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
@@ -369,7 +369,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -390,10 +390,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
                 Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
                 Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
@@ -401,7 +401,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
                 : CultureInfo.GetCultureInfo(cultureName);
 
             Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
-        }
+    }
 
         [Theory]
         [InlineData(null)]

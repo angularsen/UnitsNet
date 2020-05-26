@@ -344,8 +344,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kN·m/rad/m", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter).ToString());
                 Assert.Equal("1 kipf·ft/°/ft", new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot).ToString());
@@ -355,7 +355,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -375,10 +375,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 N·m/rad/m", new RotationalStiffnessPerLength(0.123456, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter).ToString("s1"));
                 Assert.Equal("0.12 N·m/rad/m", new RotationalStiffnessPerLength(0.123456, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter).ToString("s2"));
                 Assert.Equal("0.123 N·m/rad/m", new RotationalStiffnessPerLength(0.123456, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter).ToString("s3"));
@@ -386,7 +386,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

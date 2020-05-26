@@ -396,8 +396,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 BTU/lb·°F", new SpecificEntropy(1, SpecificEntropyUnit.BtuPerPoundFahrenheit).ToString());
                 Assert.Equal("1 cal/g.K", new SpecificEntropy(1, SpecificEntropyUnit.CaloriePerGramKelvin).ToString());
@@ -411,7 +411,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -435,10 +435,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s1"));
                 Assert.Equal("0.12 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s2"));
                 Assert.Equal("0.123 J/kg.K", new SpecificEntropy(0.123456, SpecificEntropyUnit.JoulePerKilogramKelvin).ToString("s3"));
@@ -446,7 +446,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
