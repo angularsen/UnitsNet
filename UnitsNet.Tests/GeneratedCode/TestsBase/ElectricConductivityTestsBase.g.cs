@@ -310,8 +310,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 S/ft", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerFoot).ToString());
                 Assert.Equal("1 S/in", new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerInch).ToString());
@@ -319,7 +319,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -337,10 +337,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s1"));
                 Assert.Equal("0.12 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s2"));
                 Assert.Equal("0.123 S/m", new ElectricConductivity(0.123456, ElectricConductivityUnit.SiemensPerMeter).ToString("s3"));
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

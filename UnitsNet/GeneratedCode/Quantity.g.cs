@@ -572,7 +572,7 @@ namespace UnitsNet
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>

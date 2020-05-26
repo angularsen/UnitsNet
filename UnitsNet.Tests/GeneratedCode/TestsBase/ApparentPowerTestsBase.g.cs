@@ -323,8 +323,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 GVA", new ApparentPower(1, ApparentPowerUnit.Gigavoltampere).ToString());
                 Assert.Equal("1 kVA", new ApparentPower(1, ApparentPowerUnit.Kilovoltampere).ToString());
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -352,10 +352,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s1"));
                 Assert.Equal("0.12 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s2"));
                 Assert.Equal("0.123 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s3"));
@@ -363,7 +363,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

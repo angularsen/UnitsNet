@@ -12,17 +12,17 @@ namespace UnitsNet
     ///     Global configuration for culture, used as default culture in methods like <see cref="Length.ToString()" /> and
     ///     <see cref="Length.Parse(string)" />.
     /// </summary>
-    [Obsolete("The only property DefaultCulture is now deprecated. Manipulate Thread.CurrentThread.CurrentUICulture instead.")]
+    [Obsolete("The only property DefaultCulture is now deprecated. Manipulate Thread.CurrentThread.CurrentCulture instead.")]
     public static class GlobalConfiguration
     {
         /// <summary>
-        ///     Wrapper for <see cref="Thread.CurrentUICulture"/>.
+        ///     Wrapper for <see cref="Thread.CurrentCulture"/>.
         /// </summary>
-        [Obsolete("Manipulate Thread.CurrentThread.CurrentUICulture instead, this property will be removed.")]
+        [Obsolete("Manipulate Thread.CurrentThread.CurrentCulture instead, this property will be removed.")]
         public static IFormatProvider DefaultCulture
         {
-            get => Thread.CurrentThread.CurrentUICulture;
-            set => Thread.CurrentThread.CurrentUICulture = (CultureInfo) value;
+            get => Thread.CurrentThread.CurrentCulture;
+            set => Thread.CurrentThread.CurrentCulture = (CultureInfo) value;
         }
     }
 }

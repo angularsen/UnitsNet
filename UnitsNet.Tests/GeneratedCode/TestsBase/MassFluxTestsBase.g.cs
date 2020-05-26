@@ -427,8 +427,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 g·h⁻¹·cm⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareCentimeter).ToString());
                 Assert.Equal("1 g·h⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.GramPerHourPerSquareMeter).ToString());
@@ -445,7 +445,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -472,10 +472,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s1"));
                 Assert.Equal("0.12 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s3"));
@@ -483,7 +483,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 

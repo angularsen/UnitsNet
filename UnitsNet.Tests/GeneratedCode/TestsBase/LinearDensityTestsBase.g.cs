@@ -453,8 +453,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 g/cm", new LinearDensity(1, LinearDensityUnit.GramPerCentimeter).ToString());
                 Assert.Equal("1 g/m", new LinearDensity(1, LinearDensityUnit.GramPerMeter).ToString());
@@ -473,7 +473,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -502,10 +502,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s1"));
                 Assert.Equal("0.12 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s2"));
                 Assert.Equal("0.123 kg/m", new LinearDensity(0.123456, LinearDensityUnit.KilogramPerMeter).ToString("s3"));
@@ -513,7 +513,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
