@@ -66,6 +66,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FormattingUsesSuppliedLocale()
+        {
+            Temperature t = Temperature.FromDegreesCelsius(2012.1234);
+            CultureInfo c = CultureInfo.CreateSpecificCulture("de-CH");
+            string formatted = string.Format(c, "{0:g}", t);
+            Assert.Equal("2'012.12 °C", formatted);
+        }
+
+        [Fact]
         public void UFormatEqualsUnitToString()
         {
             Assert.Equal(length.Unit.ToString(), length.ToString("u"));
