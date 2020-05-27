@@ -22,6 +22,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 namespace UnitsNet
 {
     /// <summary>
@@ -60,7 +62,7 @@ namespace UnitsNet
         /// <param name=""unit"">Unit enum value.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity? quantity)
         {
             switch (unit)
             {");
@@ -92,7 +94,7 @@ namespace UnitsNet
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 

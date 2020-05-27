@@ -34,7 +34,7 @@ namespace UnitsNet
         /// "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.
         /// </remarks>
         /// <returns>The string representation.</returns>
-        public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider formatProvider)
+        public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
