@@ -241,14 +241,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = PowerRatio.FromDecibelWatts(1);
             var b = PowerRatio.FromDecibelWatts(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = PowerRatio.FromDecibelWatts(1);
+            object b = PowerRatio.FromDecibelWatts(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

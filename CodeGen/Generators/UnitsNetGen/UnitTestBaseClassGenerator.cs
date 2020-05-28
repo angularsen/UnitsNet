@@ -339,14 +339,24 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {{
             var a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
             var b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }}
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {{
+            object a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            object b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }}
 
         [Fact]

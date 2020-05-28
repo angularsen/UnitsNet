@@ -517,14 +517,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = Information.FromBits(1);
             var b = Information.FromBits(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Information.FromBits(1);
+            object b = Information.FromBits(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

@@ -263,14 +263,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = ElectricInductance.FromHenries(1);
             var b = ElectricInductance.FromHenries(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = ElectricInductance.FromHenries(1);
+            object b = ElectricInductance.FromHenries(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

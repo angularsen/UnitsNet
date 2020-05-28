@@ -224,14 +224,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = Magnetization.FromAmperesPerMeter(1);
             var b = Magnetization.FromAmperesPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Magnetization.FromAmperesPerMeter(1);
+            object b = Magnetization.FromAmperesPerMeter(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

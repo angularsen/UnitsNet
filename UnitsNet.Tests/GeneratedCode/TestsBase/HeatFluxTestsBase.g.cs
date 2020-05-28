@@ -445,14 +445,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = HeatFlux.FromWattsPerSquareMeter(1);
             var b = HeatFlux.FromWattsPerSquareMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = HeatFlux.FromWattsPerSquareMeter(1);
+            object b = HeatFlux.FromWattsPerSquareMeter(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

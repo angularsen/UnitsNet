@@ -289,14 +289,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = AreaMomentOfInertia.FromMetersToTheFourth(1);
             var b = AreaMomentOfInertia.FromMetersToTheFourth(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            object b = AreaMomentOfInertia.FromMetersToTheFourth(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

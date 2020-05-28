@@ -640,14 +640,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = RotationalStiffness.FromNewtonMetersPerRadian(1);
             var b = RotationalStiffness.FromNewtonMetersPerRadian(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = RotationalStiffness.FromNewtonMetersPerRadian(1);
+            object b = RotationalStiffness.FromNewtonMetersPerRadian(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]

@@ -250,14 +250,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
             var b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            object b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
         }
 
         [Fact]
