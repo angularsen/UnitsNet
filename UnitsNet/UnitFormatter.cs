@@ -71,7 +71,7 @@ namespace UnitsNet
         /// <param name="culture">The current culture.</param>
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
-        public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
+        public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
             where TUnitType : Enum
         {
             string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);

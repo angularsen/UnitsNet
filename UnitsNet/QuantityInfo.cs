@@ -48,7 +48,6 @@ namespace UnitsNet
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
 
-
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
@@ -136,7 +135,7 @@ namespace UnitsNet
         /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
         public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
-            if(baseUnits == null)
+            if(baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
             var matchingUnitInfos = GetUnitInfosFor(baseUnits)
@@ -161,7 +160,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
         public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
         {
-            if(baseUnits == null)
+            if(baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
             return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
@@ -185,6 +184,7 @@ namespace UnitsNet
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
+            UnitType = baseUnit;
 
             // Obsolete members
 #pragma warning disable 618

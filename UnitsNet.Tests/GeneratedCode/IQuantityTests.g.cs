@@ -71,7 +71,7 @@ namespace UnitsNet.Tests
             Assertion(3, EntropyUnit.MegajoulePerKelvin, Quantity.From(3, EntropyUnit.MegajoulePerKelvin));
             Assertion(3, ForceUnit.TonneForce, Quantity.From(3, ForceUnit.TonneForce));
             Assertion(3, ForceChangeRateUnit.NewtonPerSecond, Quantity.From(3, ForceChangeRateUnit.NewtonPerSecond));
-            Assertion(3, ForcePerLengthUnit.PoundForcePerYard, Quantity.From(3, ForcePerLengthUnit.PoundForcePerYard));
+            Assertion(3, ForcePerLengthUnit.TonneForcePerMillimeter, Quantity.From(3, ForcePerLengthUnit.TonneForcePerMillimeter));
             Assertion(3, FrequencyUnit.Terahertz, Quantity.From(3, FrequencyUnit.Terahertz));
             Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
             Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
