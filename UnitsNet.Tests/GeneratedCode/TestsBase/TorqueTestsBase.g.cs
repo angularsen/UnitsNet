@@ -484,22 +484,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = Torque.FromNewtonMeters(1);
             var b = Torque.FromNewtonMeters(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Torque.FromNewtonMeters(1);
+            object b = Torque.FromNewtonMeters(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Torque.FromNewtonMeters(1);
             Assert.True(v.Equals(Torque.FromNewtonMeters(1), NewtonMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Torque.Zero, NewtonMetersTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Torque.FromNewtonMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Torque.FromNewtonMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -689,112 +706,129 @@ namespace UnitsNet.Tests
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Torque)));
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Torque)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TorqueUnit)));
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TorqueUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal(QuantityType.Torque, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(QuantityType.Torque, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Equal(Torque.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+            Assert.Equal(Torque.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = Torque.FromNewtonMeters(1.0);
+            Assert.Equal(new {Torque.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = Torque.FromNewtonMeters(value);
+            Assert.Equal(Torque.FromNewtonMeters(-value), -quantity);
+        }
+
     }
 }
