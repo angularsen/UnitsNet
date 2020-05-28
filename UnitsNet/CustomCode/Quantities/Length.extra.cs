@@ -102,7 +102,7 @@ namespace UnitsNet
 
             // This succeeds if only feet or inches are given, not both
             // Do not allow thousands separator here, since it may be equal to the unit abbreviation (').
-            if (TryParse(str, formatProvider, NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign, out result))
+            if (TryParse(str, formatProvider, NumberStyles.Float, out result))
                 return true;
 
             var quantityParser = QuantityParser.Default;
