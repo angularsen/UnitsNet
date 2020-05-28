@@ -72,9 +72,10 @@ namespace UnitsNet.Tests
         public void FormattingUsesSuppliedLocale()
         {
             Temperature t = Temperature.FromDegreesCelsius(2012.1234);
-            CultureInfo c = CultureInfo.CreateSpecificCulture("de-CH");
+            CultureInfo c = new CultureInfo("de-CH", false);
             string formatted = string.Format(c, "{0:g}", t);
-            Assert.Equal("2'012.12 °C", formatted);
+            // Let's be very explicit here
+            Assert.Equal("2" + c.NumberFormat.NumberGroupSeparator + "012" + c.NumberFormat.NumberDecimalSeparator + "12 °C", formatted);
         }
 
         /// <summary>
@@ -84,10 +85,10 @@ namespace UnitsNet.Tests
         public void FormatStringWorksWithSuppliedLocale()
         {
             Temperature t = Temperature.FromDegreesCelsius(2012.1234);
-            CultureInfo c = CultureInfo.CreateSpecificCulture("de-CH");
+            CultureInfo c = new CultureInfo("de-CH", false);
 
             FormattableString f = $"{t:g}";
-            Assert.Equal("2'012.12 °C", f.ToString(c));
+            Assert.Equal("2" + c.NumberFormat.NumberGroupSeparator + "012" + c.NumberFormat.NumberDecimalSeparator + "12 °C", f.ToString(c));
 
             // This does not work. Looks like a compiler bug to me.
             // string f2 = $"{t:g}".ToString(c);
