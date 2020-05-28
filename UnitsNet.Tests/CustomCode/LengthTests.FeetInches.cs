@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Collections.Generic;
+using System.Globalization;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -29,63 +31,121 @@ namespace UnitsNet.Tests.CustomCode
             AssertEx.EqualTolerance(3, feetInches.Inches, InchesTolerance);
         }
 
-        [Theory]
-        [InlineData("1'", 1)] // Feet only
-        [InlineData("1′", 1)] // Feet only
-        [InlineData("1\"", 0.08333333)] // Inches only
-        [InlineData("1″", 0.08333333)] // Inches only
-        [InlineData("0' 1\"", 0.08333333)] // Inches only
-        [InlineData("0' 1″", 0.08333333)] // Inches only
-        [InlineData("0′ 1\"", 0.08333333)] // Inches only
-        [InlineData("0′ 1″", 0.08333333)] // Inches only
-        [InlineData("1' 1\"", 1.08333333)] // Normal form
-        [InlineData("1′ 1″", 1.08333333)] // Normal form
-        [InlineData(" 1′ 1″ ", 1.08333333)] // Normal form, requires trimming
-        [InlineData("1'1\"", 1.08333333)] // Without space
-        [InlineData("1′1″", 1.08333333)] // Without space
-        [InlineData("1 ft 1 in", 1.08333333)]
-        [InlineData("1ft 1in", 1.08333333)]
-        [InlineData("-1'", -1)] // Feet only
-        [InlineData("-1′", -1)] // Feet only
-        [InlineData("-1\"", -0.08333333)] // Inches only
-        [InlineData("-1″", -0.08333333)] // Inches only
-        [InlineData("-0' 1\"", -0.08333333)] // Inches only
-        [InlineData("-0' 1″", -0.08333333)] // Inches only
-        [InlineData("-0′ 1\"", -0.08333333)] // Inches only
-        [InlineData("-0′ 1″", -0.08333333)] // Inches only
-        [InlineData("-1' 1\"", -1.08333333)] // Normal form
-        [InlineData("-1′ 1″", -1.08333333)] // Normal form
-        [InlineData(" -1′ 1″ ", -1.08333333)] // Normal form, requires trimming
-        [InlineData("-1'1\"", -1.08333333)] // Without space
-        [InlineData("-1′1″", -1.08333333)] // Without space
-        [InlineData("-1 ft 1 in", -1.08333333)]
-        [InlineData("-1ft 1in", -1.08333333)]
-        public void TryParseFeetInches(string str, double expectedFeet)
+        public static IEnumerable<object[]> ValidData => new List<object[]>
         {
-            Assert.True(Length.TryParseFeetInches(str, out Length result));
+            new object[]{"1'", 1, new CultureInfo("en-US")},                    // Feet only
+            new object[]{"1′", 1, new CultureInfo("en-US")},                    // Feet only
+            new object[]{"1\"", 0.08333333, new CultureInfo("en-US")},          // Inches only
+            new object[]{"1″", 0.08333333, new CultureInfo("en-US")},           // Inches only
+            new object[]{"0' 1\"", 0.08333333, new CultureInfo("en-US")},       // Inches only
+            new object[]{"0' 1″", 0.08333333, new CultureInfo("en-US")},        // Inches only
+            new object[]{"0′ 1\"", 0.08333333, new CultureInfo("en-US")},       // Inches only
+            new object[]{"0′ 1″", 0.08333333, new CultureInfo("en-US")},        // Inches only
+            new object[]{"1' 1\"", 1.08333333, new CultureInfo("en-US")},       // Normal form
+            new object[]{"1′ 1″", 1.08333333, new CultureInfo("en-US")},        // Normal form
+            new object[]{" 1′ 1″ ", 1.08333333, new CultureInfo("en-US")},      // Normal form, requires trimming
+            new object[]{"1'1\"", 1.08333333, new CultureInfo("en-US")},        // Without space
+            new object[]{"1′1″", 1.08333333, new CultureInfo("en-US")},         // Without space
+            new object[]{"1 ft 1 in", 1.08333333, new CultureInfo("en-US")},
+            new object[]{"1ft 1in", 1.08333333, new CultureInfo("en-US")},
+            new object[]{"-1'", -1, new CultureInfo("en-US")},                  // Feet only
+            new object[]{"-1′", -1, new CultureInfo("en-US")},                  // Feet only
+            new object[]{"-1\"", -0.08333333, new CultureInfo("en-US")},        // Inches only
+            new object[]{"-1″", -0.08333333, new CultureInfo("en-US")},         // Inches only
+            new object[]{"-0' 1\"", -0.08333333, new CultureInfo("en-US")},     // Inches only
+            new object[]{"-0' 1″", -0.08333333, new CultureInfo("en-US")},      // Inches only
+            new object[]{"-0′ 1\"", -0.08333333, new CultureInfo("en-US")},     // Inches only
+            new object[]{"-0′ 1″", -0.08333333, new CultureInfo("en-US")},      // Inches only
+            new object[]{"-1' 1\"", -1.08333333, new CultureInfo("en-US")},     // Normal form
+            new object[]{"-1′ 1″", -1.08333333, new CultureInfo("en-US")},      // Normal form
+            new object[]{" -1′ 1″ ", -1.08333333, new CultureInfo("en-US")},    // Normal form, requires trimming
+            new object[]{"-1'1\"", -1.08333333, new CultureInfo("en-US")},      // Without space
+            new object[]{"-1′1″", -1.08333333, new CultureInfo("en-US")},       // Without space
+            new object[]{"-1 ft 1 in", -1.08333333, new CultureInfo("en-US")},
+            new object[]{"-1ft 1in", -1.08333333, new CultureInfo("en-US")},
+            // Same as above, but with de-CH culture (uses ' as separator)
+            new object[]{"1'", 1, new CultureInfo("de-CH")},                    // Feet only
+            new object[]{"1′", 1, new CultureInfo("de-CH")},                    // Feet only
+            new object[]{"1\"", 0.08333333, new CultureInfo("de-CH")},          // Inches only
+            new object[]{"1″", 0.08333333, new CultureInfo("de-CH")},           // Inches only
+            new object[]{"0' 1\"", 0.08333333, new CultureInfo("de-CH")},       // Inches only
+            new object[]{"0' 1″", 0.08333333, new CultureInfo("de-CH")},        // Inches only
+            new object[]{"0′ 1\"", 0.08333333, new CultureInfo("de-CH")},       // Inches only
+            new object[]{"0′ 1″", 0.08333333, new CultureInfo("de-CH")},        // Inches only
+            new object[]{"1' 1\"", 1.08333333, new CultureInfo("de-CH")},       // Normal form
+            new object[]{"1′ 1″", 1.08333333, new CultureInfo("de-CH")},        // Normal form
+            new object[]{" 1′ 1″ ", 1.08333333, new CultureInfo("de-CH")},      // Normal form, requires trimming
+            new object[]{"1'1\"", 1.08333333, new CultureInfo("de-CH")},        // Without space
+            new object[]{"1′1″", 1.08333333, new CultureInfo("de-CH")},         // Without space
+            new object[]{"1 ft 1 in", 1.08333333, new CultureInfo("de-CH")},
+            new object[]{"1ft 1in", 1.08333333, new CultureInfo("de-CH")},
+            new object[]{"-1'", -1, new CultureInfo("de-CH")},                  // Feet only
+            new object[]{"-1′", -1, new CultureInfo("de-CH")},                  // Feet only
+            new object[]{"-1\"", -0.08333333, new CultureInfo("de-CH")},        // Inches only
+            new object[]{"-1″", -0.08333333, new CultureInfo("de-CH")},         // Inches only
+            new object[]{"-0' 1\"", -0.08333333, new CultureInfo("de-CH")},     // Inches only
+            new object[]{"-0' 1″", -0.08333333, new CultureInfo("de-CH")},      // Inches only
+            new object[]{"-0′ 1\"", -0.08333333, new CultureInfo("de-CH")},     // Inches only
+            new object[]{"-0′ 1″", -0.08333333, new CultureInfo("de-CH")},      // Inches only
+            new object[]{"-1' 1\"", -1.08333333, new CultureInfo("de-CH")},     // Normal form
+            new object[]{"-1′ 1″", -1.08333333, new CultureInfo("de-CH")},      // Normal form
+            new object[]{" -1′ 1″ ", -1.08333333, new CultureInfo("de-CH")},    // Normal form, requires trimming
+            new object[]{"-1'1\"", -1.08333333, new CultureInfo("de-CH")},      // Without space
+            new object[]{"-1′1″", -1.08333333, new CultureInfo("de-CH")},       // Without space
+            new object[]{"-1 ft 1 in", -1.08333333, new CultureInfo("de-CH")},
+            new object[]{"-1ft 1in", -1.08333333, new CultureInfo("de-CH")},
+        };
+
+        [Theory]
+        [MemberData(nameof(ValidData))]
+        public void TryParseFeetInches(string str, double expectedFeet, CultureInfo formatProvider)
+        {
+            Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
             AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
         }
 
-        [Theory]
-        [InlineData("a")] // Missing or invalid apostrophe or double prime chars
-        [InlineData("1")]
-        [InlineData("1`")]
-        [InlineData("1^")]
-        [InlineData("1' 1'")] // Feet apostrophe twice
-        [InlineData("1′ 1′")]
-        [InlineData("1' 1")] // No inches double prime
-        [InlineData("1′ 1")]
-        [InlineData("1′ 1`")] // Invalid inches double prime
-        [InlineData("1' 1`")]
-        [InlineData("1'1'")] // Same without space
-        [InlineData("1′1′")]
-        [InlineData("1'1")]
-        [InlineData("1′1")]
-        [InlineData("1′1`")]
-        [InlineData("1'1`")]
-        public void TryParseFeetInches_GivenInvalidString_ReturnsFalseAndZeroOut(string str)
+        public static IEnumerable<object[]> InvalidData => new List<object[]>
         {
-            Assert.False(Length.TryParseFeetInches(str, out Length result));
+            new object[]{"a", new CultureInfo("en-US")},        // Missing or invalid apostrophe or double prime chars
+            new object[]{"1", new CultureInfo("en-US")},
+            new object[]{"1`", new CultureInfo("en-US")},
+            new object[]{"1^", new CultureInfo("en-US")},
+            new object[]{"1' 1'", new CultureInfo("en-US")},    // Feet apostrophe twice
+            new object[]{"1′ 1′", new CultureInfo("en-US")},
+            new object[]{"1' 1", new CultureInfo("en-US")},     // No inches double prime
+            new object[]{"1′ 1", new CultureInfo("en-US")},
+            new object[]{"1′ 1`", new CultureInfo("en-US")},    // Invalid inches double prime
+            new object[]{"1' 1`", new CultureInfo("en-US")},
+            new object[]{"1'1'", new CultureInfo("en-US")},     // Same without space
+            new object[]{"1′1′", new CultureInfo("en-US")},
+            new object[]{"1'1", new CultureInfo("en-US")},
+            new object[]{"1′1", new CultureInfo("en-US")},
+            new object[]{"1′1`", new CultureInfo("en-US")},
+            new object[]{"1'1`", new CultureInfo("en-US")},
+            // Same as above, but with de-CH culture (uses ' as separator)
+            new object[]{"a", new CultureInfo("de-CH")},        // Missing or invalid apostrophe or double prime chars
+            new object[]{"1", new CultureInfo("de-CH")},
+            new object[]{"1`", new CultureInfo("de-CH")},
+            new object[]{"1^", new CultureInfo("de-CH")},
+            new object[]{"1' 1'", new CultureInfo("de-CH")},    // Feet apostrophe twice
+            new object[]{"1′ 1′", new CultureInfo("de-CH")},
+            new object[]{"1' 1", new CultureInfo("de-CH")},     // No inches double prime
+            new object[]{"1′ 1", new CultureInfo("de-CH")},
+            new object[]{"1′ 1`", new CultureInfo("de-CH")},    // Invalid inches double prime
+            new object[]{"1' 1`", new CultureInfo("de-CH")},
+            new object[]{"1'1'", new CultureInfo("de-CH")},     // Same without space
+            new object[]{"1′1′", new CultureInfo("de-CH")},
+            new object[]{"1'1", new CultureInfo("de-CH")},
+            new object[]{"1′1", new CultureInfo("de-CH")},
+            new object[]{"1′1`", new CultureInfo("de-CH")},
+            new object[]{"1'1`", new CultureInfo("de-CH")},
+        };
+
+        [Theory]
+        [MemberData(nameof(InvalidData))]
+        public void TryParseFeetInches_GivenInvalidString_ReturnsFalseAndZeroOut(string str, CultureInfo formatProvider)
+        {
+            Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
             Assert.Equal(Length.Zero, result);
         }
     }
