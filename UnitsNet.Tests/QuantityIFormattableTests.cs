@@ -65,6 +65,9 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, length.ToString(sFormatString, NumberFormatInfo.InvariantInfo));
         }
 
+        /// <summary>
+        /// This verifies that the culture is correctly considered when formatting objects with an explicit culture.
+        /// </summary>
         [Fact]
         public void FormattingUsesSuppliedLocale()
         {
@@ -72,6 +75,23 @@ namespace UnitsNet.Tests
             CultureInfo c = CultureInfo.CreateSpecificCulture("de-CH");
             string formatted = string.Format(c, "{0:g}", t);
             Assert.Equal("2'012.12 °C", formatted);
+        }
+
+        /// <summary>
+        /// This verifies that the culture is correctly considered when using <see cref="FormattableString.ToString(IFormatProvider)"/>
+        /// </summary>
+        [Fact]
+        public void FormatStringWorksWithSuppliedLocale()
+        {
+            Temperature t = Temperature.FromDegreesCelsius(2012.1234);
+            CultureInfo c = CultureInfo.CreateSpecificCulture("de-CH");
+
+            FormattableString f = $"{t:g}";
+            Assert.Equal("2'012.12 °C", f.ToString(c));
+
+            // This does not work. Looks like a compiler bug to me.
+            // string f2 = $"{t:g}".ToString(c);
+            // Assert.Equal("2'012.12 °C", f2.ToString(c)); // Actual value is formatted according to CurrentUiCulture.
         }
 
         [Fact]
