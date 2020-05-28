@@ -449,112 +449,122 @@ namespace UnitsNet.Tests
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricResistance)));
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricResistance)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricResistanceUnit)));
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricResistanceUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal(QuantityType.ElectricResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(QuantityType.ElectricResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Equal(ElectricResistance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+            Assert.Equal(ElectricResistance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-           Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = ElectricResistance.FromOhms(value);
+            Assert.Equal(ElectricResistance.FromOhms(-value), -quantity);
+        }
+
     }
 }
