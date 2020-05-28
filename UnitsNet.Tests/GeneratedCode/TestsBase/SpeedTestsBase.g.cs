@@ -648,11 +648,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Speed.FromMetersPerSecond(1);
             Assert.True(v.Equals(Speed.FromMetersPerSecond(1), MetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Speed.Zero, MetersPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Speed.FromMetersPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Speed.FromMetersPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

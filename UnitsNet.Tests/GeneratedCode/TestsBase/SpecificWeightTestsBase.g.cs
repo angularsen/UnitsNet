@@ -453,11 +453,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = SpecificWeight.FromNewtonsPerCubicMeter(1);
             Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificWeight.Zero, NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = SpecificWeight.FromNewtonsPerCubicMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

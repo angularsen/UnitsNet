@@ -323,11 +323,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Capacitance.FromFarads(1);
             Assert.True(v.Equals(Capacitance.FromFarads(1), FaradsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Capacitance.Zero, FaradsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Capacitance.FromFarads(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Capacitance.FromFarads(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

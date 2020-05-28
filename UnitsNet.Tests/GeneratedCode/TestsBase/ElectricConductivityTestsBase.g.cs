@@ -271,11 +271,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricConductivity.FromSiemensPerMeter(1);
             Assert.True(v.Equals(ElectricConductivity.FromSiemensPerMeter(1), SiemensPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricConductivity.Zero, SiemensPerMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricConductivity.FromSiemensPerMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

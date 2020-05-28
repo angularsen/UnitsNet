@@ -349,11 +349,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
             Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificEntropy.Zero, JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

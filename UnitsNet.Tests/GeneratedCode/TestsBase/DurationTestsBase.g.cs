@@ -362,11 +362,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Duration.FromSeconds(1);
             Assert.True(v.Equals(Duration.FromSeconds(1), SecondsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Duration.Zero, SecondsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Duration.FromSeconds(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Duration.FromSeconds(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

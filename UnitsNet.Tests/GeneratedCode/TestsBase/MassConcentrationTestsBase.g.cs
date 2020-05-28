@@ -752,11 +752,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = MassConcentration.FromKilogramsPerCubicMeter(1);
             Assert.True(v.Equals(MassConcentration.FromKilogramsPerCubicMeter(1), KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassConcentration.Zero, KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = MassConcentration.FromKilogramsPerCubicMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(MassConcentration.FromKilogramsPerCubicMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

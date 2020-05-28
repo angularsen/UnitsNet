@@ -271,11 +271,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
             Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), KilogramsPerJouleTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero, KilogramsPerJouleTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

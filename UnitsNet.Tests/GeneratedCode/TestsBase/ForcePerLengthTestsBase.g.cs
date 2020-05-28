@@ -726,11 +726,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ForcePerLength.FromNewtonsPerMeter(1);
             Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), NewtonsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ForcePerLength.Zero, NewtonsPerMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ForcePerLength.FromNewtonsPerMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ForcePerLength.FromNewtonsPerMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -323,11 +323,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = PressureChangeRate.FromPascalsPerSecond(1);
             Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1), PascalsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(PressureChangeRate.Zero, PascalsPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = PressureChangeRate.FromPascalsPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(PressureChangeRate.FromPascalsPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

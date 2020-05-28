@@ -661,11 +661,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Length.FromMeters(1);
             Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Length.FromMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Length.FromMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

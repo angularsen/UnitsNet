@@ -271,11 +271,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ReactiveEnergy.FromVoltampereReactiveHours(1);
             Assert.True(v.Equals(ReactiveEnergy.FromVoltampereReactiveHours(1), VoltampereReactiveHoursTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReactiveEnergy.Zero, VoltampereReactiveHoursTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ReactiveEnergy.FromVoltampereReactiveHours(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ReactiveEnergy.FromVoltampereReactiveHours(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

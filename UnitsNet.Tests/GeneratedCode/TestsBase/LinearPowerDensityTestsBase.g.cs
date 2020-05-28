@@ -557,11 +557,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = LinearPowerDensity.FromWattsPerMeter(1);
             Assert.True(v.Equals(LinearPowerDensity.FromWattsPerMeter(1), WattsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LinearPowerDensity.Zero, WattsPerMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = LinearPowerDensity.FromWattsPerMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LinearPowerDensity.FromWattsPerMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

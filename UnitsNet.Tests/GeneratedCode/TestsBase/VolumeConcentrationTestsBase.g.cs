@@ -492,11 +492,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = VolumeConcentration.FromDecimalFractions(1);
             Assert.True(v.Equals(VolumeConcentration.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumeConcentration.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = VolumeConcentration.FromDecimalFractions(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(VolumeConcentration.FromDecimalFractions(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

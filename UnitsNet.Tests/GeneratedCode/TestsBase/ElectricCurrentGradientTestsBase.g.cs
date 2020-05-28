@@ -245,11 +245,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricCurrentGradient.FromAmperesPerSecond(1);
             Assert.True(v.Equals(ElectricCurrentGradient.FromAmperesPerSecond(1), AmperesPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCurrentGradient.Zero, AmperesPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricCurrentGradient.FromAmperesPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricCurrentGradient.FromAmperesPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

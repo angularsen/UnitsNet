@@ -245,11 +245,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = LuminousIntensity.FromCandela(1);
             Assert.True(v.Equals(LuminousIntensity.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LuminousIntensity.Zero, CandelaTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = LuminousIntensity.FromCandela(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LuminousIntensity.FromCandela(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

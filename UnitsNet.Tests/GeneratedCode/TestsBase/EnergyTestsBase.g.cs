@@ -687,11 +687,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Energy.FromJoules(1);
             Assert.True(v.Equals(Energy.FromJoules(1), JoulesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Energy.Zero, JoulesTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Energy.FromJoules(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Energy.FromJoules(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

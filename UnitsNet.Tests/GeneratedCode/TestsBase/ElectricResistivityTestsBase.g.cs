@@ -414,11 +414,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricResistivity.FromOhmMeters(1);
             Assert.True(v.Equals(ElectricResistivity.FromOhmMeters(1), OhmMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricResistivity.Zero, OhmMetersTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricResistivity.FromOhmMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricResistivity.FromOhmMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

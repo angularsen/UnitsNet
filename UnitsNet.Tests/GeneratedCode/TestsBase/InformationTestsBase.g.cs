@@ -538,11 +538,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Information.FromBits(1);
             Assert.True(v.Equals(Information.FromBits(1), BitsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Information.Zero, BitsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Information.FromBits(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Information.FromBits(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

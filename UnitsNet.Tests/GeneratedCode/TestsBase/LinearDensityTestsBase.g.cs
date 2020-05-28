@@ -414,11 +414,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = LinearDensity.FromKilogramsPerMeter(1);
             Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LinearDensity.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = LinearDensity.FromKilogramsPerMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LinearDensity.FromKilogramsPerMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

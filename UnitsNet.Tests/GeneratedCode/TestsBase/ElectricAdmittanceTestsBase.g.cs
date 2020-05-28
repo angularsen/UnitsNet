@@ -284,11 +284,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricAdmittance.FromSiemens(1);
             Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricAdmittance.Zero, SiemensTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricAdmittance.FromSiemens(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricAdmittance.FromSiemens(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

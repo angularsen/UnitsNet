@@ -258,11 +258,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ThermalConductivity.FromWattsPerMeterKelvin(1);
             Assert.True(v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), WattsPerMeterKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ThermalConductivity.Zero, WattsPerMeterKelvinTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

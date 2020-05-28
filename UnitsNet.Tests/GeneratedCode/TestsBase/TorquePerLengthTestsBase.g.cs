@@ -505,11 +505,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = TorquePerLength.FromNewtonMetersPerMeter(1);
             Assert.True(v.Equals(TorquePerLength.FromNewtonMetersPerMeter(1), NewtonMetersPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TorquePerLength.Zero, NewtonMetersPerMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = TorquePerLength.FromNewtonMetersPerMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(TorquePerLength.FromNewtonMetersPerMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

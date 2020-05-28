@@ -414,11 +414,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Angle.FromDegrees(1);
             Assert.True(v.Equals(Angle.FromDegrees(1), DegreesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Angle.Zero, DegreesTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Angle.FromDegrees(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Angle.FromDegrees(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -297,11 +297,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricPotentialAc.FromVoltsAc(1);
             Assert.True(v.Equals(ElectricPotentialAc.FromVoltsAc(1), VoltsAcTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricPotentialAc.Zero, VoltsAcTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricPotentialAc.FromVoltsAc(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricPotentialAc.FromVoltsAc(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -661,11 +661,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = RotationalStiffness.FromNewtonMetersPerRadian(1);
             Assert.True(v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), NewtonMetersPerRadianTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalStiffness.Zero, NewtonMetersPerRadianTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = RotationalStiffness.FromNewtonMetersPerRadian(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

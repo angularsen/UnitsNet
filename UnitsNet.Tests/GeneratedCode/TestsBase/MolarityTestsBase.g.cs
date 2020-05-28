@@ -336,11 +336,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Molarity.FromMolesPerCubicMeter(1);
             Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), MolesPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Molarity.Zero, MolesPerCubicMeterTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Molarity.FromMolesPerCubicMeter(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Molarity.FromMolesPerCubicMeter(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -778,11 +778,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Pressure.FromPascals(1);
             Assert.True(v.Equals(Pressure.FromPascals(1), PascalsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Pressure.Zero, PascalsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Pressure.FromPascals(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Pressure.FromPascals(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

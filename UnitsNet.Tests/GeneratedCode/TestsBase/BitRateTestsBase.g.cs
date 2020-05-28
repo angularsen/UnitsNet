@@ -538,11 +538,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = BitRate.FromBitsPerSecond(1);
             Assert.True(v.Equals(BitRate.FromBitsPerSecond(1), BitsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(BitRate.Zero, BitsPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = BitRate.FromBitsPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(BitRate.FromBitsPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

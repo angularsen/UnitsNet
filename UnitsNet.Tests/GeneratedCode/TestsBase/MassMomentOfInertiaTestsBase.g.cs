@@ -596,11 +596,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = MassMomentOfInertia.FromKilogramSquareMeters(1);
             Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), KilogramSquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassMomentOfInertia.Zero, KilogramSquareMetersTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = MassMomentOfInertia.FromKilogramSquareMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

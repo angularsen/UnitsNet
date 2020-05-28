@@ -557,11 +557,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = SpecificEnergy.FromJoulesPerKilogram(1);
             Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), JoulesPerKilogramTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificEnergy.Zero, JoulesPerKilogramTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = SpecificEnergy.FromJoulesPerKilogram(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

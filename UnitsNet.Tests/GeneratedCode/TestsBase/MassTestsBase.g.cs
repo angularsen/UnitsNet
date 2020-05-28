@@ -557,11 +557,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Mass.FromKilograms(1);
             Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Mass.FromKilograms(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Mass.FromKilograms(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

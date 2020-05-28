@@ -414,11 +414,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Area.FromSquareMeters(1);
             Assert.True(v.Equals(Area.FromSquareMeters(1), SquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Area.Zero, SquareMetersTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Area.FromSquareMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Area.FromSquareMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -401,11 +401,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.True(v.Equals(RotationalSpeed.FromRadiansPerSecond(1), RadiansPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalSpeed.Zero, RadiansPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = RotationalSpeed.FromRadiansPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(RotationalSpeed.FromRadiansPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

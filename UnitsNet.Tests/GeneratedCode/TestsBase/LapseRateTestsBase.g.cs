@@ -245,11 +245,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = LapseRate.FromDegreesCelciusPerKilometer(1);
             Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1), DegreesCelciusPerKilometerTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LapseRate.Zero, DegreesCelciusPerKilometerTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1), -1, ComparisonType.Relative));
         }
 
         [Fact]

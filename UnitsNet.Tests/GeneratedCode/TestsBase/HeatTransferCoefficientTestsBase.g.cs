@@ -271,11 +271,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
             Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(HeatTransferCoefficient.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
