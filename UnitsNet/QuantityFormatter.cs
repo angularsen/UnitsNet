@@ -19,23 +19,51 @@ namespace UnitsNet
         private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'G', 'g', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
 
         /// <summary>
-        /// Formats the given quantity using the given format string. Uses the <see cref="CultureInfo.CurrentUICulture" />.
+        /// Formats a quantity using the given format string and format provider.
         /// </summary>
         /// <typeparam name="TUnitType">The quantity's unit type, for example <see cref="LengthUnit"/>.</typeparam>
         /// <param name="quantity">The quantity to format.</param>
         /// <param name="format">The format string.</param>
         /// <remarks>
         /// The valid format strings are as follows:
-        /// Any of the standard numeric format strings for double values except for "G" or "g" ("C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r").
-        /// "G" or "g": The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".
-        /// "A" or "a": The default unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />, such as "m".
-        /// "a0", "a1", ..., "aN": The Nth unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />. "a0" is the same as "a".
-        /// A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.
-        /// "V" or "v": String representation of <see cref="IQuantity.Value" />.
-        /// "U" or "u": The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".
-        /// "Q" or "q": The quantity name, such as "Length".
-        /// "s1", "s2", ..., "sN": The value with N significant digits after the radix followed by the unit abbreviation. For example,
-        /// "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term>A standard numeric format string.</term>
+        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" /> except for "G" or "g".
+        ///         "C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r" are all accepted.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"G" or "g".</term>
+        ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"A" or "a".</term>
+        ///         <description>The default unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />, such as "m".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"A0", "A1", ..., "An" or "a0", "a1", ..., "an".</term>
+        ///         <description>The n-th unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />. "a0" is the same as "a".
+        ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"V" or "v".</term>
+        ///         <description>The string representation of <see cref="IQuantity.Value" /> using the default ToString method.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"U" or "u".</term>
+        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"Q" or "q".</term>
+        ///         <description>The quantity name, such as "Length".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"S1", "S2", ..., "Sn" or "s1", "s2", ..., "sn".</term>
+        ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. For example,
+        ///         "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.</description>
+        ///     </item>
+        /// </list>
         /// </remarks>
         /// <returns>The string representation.</returns>
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
@@ -45,7 +73,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Formats the given quantity using the given format string and format provider.
+        /// Formats a quantity using the given format string and format provider.
         /// </summary>
         /// <typeparam name="TUnitType">The quantity's unit type, for example <see cref="LengthUnit"/>.</typeparam>
         /// <param name="quantity">The quantity to format.</param>
@@ -54,16 +82,44 @@ namespace UnitsNet
         /// <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <remarks>
         /// The valid format strings are as follows:
-        /// Any of the standard numeric format strings for double values except for "G" or "g" ("C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r").
-        /// "G" or "g": The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".
-        /// "A" or "a": The default unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />, such as "m".
-        /// "a0", "a1", ..., "aN": The Nth unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />. "a0" is the same as "a".
-        /// A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.
-        /// "V" or "v": String representation of <see cref="IQuantity.Value" />.
-        /// "U" or "u": The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".
-        /// "Q" or "q": The quantity name, such as "Length".
-        /// "s1", "s2", ..., "sN": The value with N significant digits after the radix followed by the unit abbreviation. For example,
-        /// "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term>A standard numeric format string.</term>
+        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" /> except for "G" or "g".
+        ///         "C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r" are all accepted.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"G" or "g".</term>
+        ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"A" or "a".</term>
+        ///         <description>The default unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />, such as "m".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"A0", "A1", ..., "An" or "a0", "a1", ..., "an".</term>
+        ///         <description>The n-th unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />. "a0" is the same as "a".
+        ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"V" or "v".</term>
+        ///         <description>The string representation of <see cref="IQuantity.Value" /> using the default ToString method.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"U" or "u".</term>
+        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"Q" or "q".</term>
+        ///         <description>The quantity name, such as "Length".</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>"S1", "S2", ..., "Sn" or "s1", "s2", ..., "sn".</term>
+        ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. For example,
+        ///         "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.</description>
+        ///     </item>
+        /// </list>
         /// </remarks>
         /// <returns>The string representation.</returns>
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
