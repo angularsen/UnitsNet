@@ -69,12 +69,12 @@ namespace UnitsNet
             return ParseWithRegex(valueString!, unitString!, fromDelegate, formatProvider);
         }
 
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
+        internal bool TryParse<TQuantity, TUnitType>(string? str,
+            IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
-            where TQuantity : IQuantity
-            where TUnitType : Enum
+            where TQuantity : struct, IQuantity
+            where TUnitType : struct, Enum
         {
             return TryParse(str, formatProvider, fromDelegate, ParseNumberStyles, out result);
         }
@@ -112,7 +112,7 @@ namespace UnitsNet
         ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
         /// </summary>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+        internal bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             NumberStyles allowedNumberStyles,
@@ -133,12 +133,12 @@ namespace UnitsNet
         /// <summary>
         ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
         /// </summary>
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
+        internal bool TryParse<TQuantity, TUnitType>(string? str,
+            IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
-            out IQuantity result)
-            where TQuantity : IQuantity
-            where TUnitType : Enum
+            out IQuantity? result)
+            where TQuantity : struct, IQuantity
+            where TUnitType : struct, Enum
         {
             return TryParse(str, formatProvider, fromDelegate, ParseNumberStyles, out result);
         }

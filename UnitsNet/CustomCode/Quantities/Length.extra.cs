@@ -70,7 +70,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        private static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, NumberStyles allowedNumberStyles, out Length result)
+        private static bool TryParse(string? str, IFormatProvider? provider, NumberStyles allowedNumberStyles, out Length result)
         {
             return QuantityParser.Default.TryParse<Length, LengthUnit>(
                 str,
