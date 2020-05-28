@@ -638,6 +638,13 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }}
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
+            Assert.Equal(new {{{_quantity.Name}.QuantityType, quantity.Value, quantity.Unit}}.GetHashCode(), quantity.GetHashCode());
+        }}
 ");
 
         if( _quantity.GenerateArithmetic )

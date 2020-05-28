@@ -634,6 +634,13 @@ namespace UnitsNet.Tests
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
 
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
+            Assert.Equal(new {SpecificEntropy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
         [Theory]
         [InlineData(1.0)]
         [InlineData(-1.0)]
