@@ -69,17 +69,18 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentUICulture;
 
-            if(string.IsNullOrEmpty(format))
+            if(string.IsNullOrWhiteSpace(format))
                 format = "g";
 
-            if(UnitsNetFormatSpecifiers.Any(c => c == format[0]))
+            char formatSpecifier = format[0];
+
+            if(UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
             {
                 // UnitsNet custom format string
 
                 int precisionSpecifier = 0;
-                char formatSpecifier = format[0];
 
                 switch(formatSpecifier)
                 {
