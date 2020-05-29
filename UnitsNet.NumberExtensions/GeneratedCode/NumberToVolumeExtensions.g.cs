@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         public static Volume AuTablespoons<T>(this T value) =>
             Volume.FromAuTablespoons(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromBoardFeet(UnitsNet.QuantityValue)" />
+        public static Volume BoardFeet<T>(this T value) =>
+            Volume.FromBoardFeet(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromCentiliters(UnitsNet.QuantityValue)" />
         public static Volume Centiliters<T>(this T value) =>
             Volume.FromCentiliters(Convert.ToDouble(value));

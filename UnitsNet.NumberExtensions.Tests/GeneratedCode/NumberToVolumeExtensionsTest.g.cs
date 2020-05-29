@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromAuTablespoons(2), 2.AuTablespoons());
 
         [Fact]
+        public void NumberToBoardFeetTest() =>
+            Assert.Equal(Volume.FromBoardFeet(2), 2.BoardFeet());
+
+        [Fact]
         public void NumberToCentilitersTest() =>
             Assert.Equal(Volume.FromCentiliters(2), 2.Centiliters());
 
