@@ -1372,6 +1372,8 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
                 ("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
+                ("en-US", typeof(VolumeUnit), (int)VolumeUnit.BoardFoot, new string[]{"bf", "board foot", "board feet"}),
+                ("fr-CA", typeof(VolumeUnit), (int)VolumeUnit.BoardFoot, new string[]{"pmp", "pied-planche", "pied de planche"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.Centiliter, new string[]{"cl"}),
                 ("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Centiliter, new string[]{"сл"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicCentimeter, new string[]{"cm³"}),

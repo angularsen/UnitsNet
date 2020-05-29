@@ -2147,6 +2147,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, Volume.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.AuTablespoon, q => q.ToUnit(VolumeUnit.AuTablespoon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, Volume.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.BoardFoot, q => q.ToUnit(VolumeUnit.BoardFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, Volume.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.Centiliter, q => q.ToUnit(VolumeUnit.Centiliter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, Volume.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.CubicCentimeter, q => q.ToUnit(VolumeUnit.CubicCentimeter));

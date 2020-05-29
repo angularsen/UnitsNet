@@ -54,6 +54,7 @@ namespace UnitsNet
                 new UnitInfo<VolumeUnit>[] {
                     new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.BoardFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, BaseUnits.Undefined),
@@ -223,6 +224,11 @@ namespace UnitsNet
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
+
+        /// <summary>
+        ///     Get Volume in BoardFeet.
+        /// </summary>
+        public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
         ///     Get Volume in Centiliters.
@@ -510,6 +516,15 @@ namespace UnitsNet
         {
             double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
+        }
+        /// <summary>
+        ///     Get Volume from BoardFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromBoardFeet(QuantityValue boardfeet)
+        {
+            double value = (double) boardfeet;
+            return new Volume(value, VolumeUnit.BoardFoot);
         }
         /// <summary>
         ///     Get Volume from Centiliters.
@@ -1374,6 +1389,7 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return _value/0.000810714;
                 case VolumeUnit.AuTablespoon: return _value*2e-5;
+                case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
@@ -1449,6 +1465,7 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
+                case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
