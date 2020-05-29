@@ -47,15 +47,15 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
-            if (TryFrom(value, unit, out IQuantity quantity))
-                return quantity;
+            if (TryFrom(value, unit, out IQuantity? quantity))
+                return quantity!;
 
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom(double value, Enum unit, out IQuantity? quantity)
         {
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
@@ -79,18 +79,19 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
+        public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
+            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
+                return quantity!;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
+        public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
 
         /// <summary>

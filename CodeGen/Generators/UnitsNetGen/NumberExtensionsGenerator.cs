@@ -24,7 +24,9 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(
 $@"
 using System;
-                        
+
+#nullable enable
+
 namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
 {{
     /// <summary>

@@ -250,22 +250,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
             var b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            object b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = CoefficientOfThermalExpansion.FromInverseKelvin(1);
             Assert.True(v.Equals(CoefficientOfThermalExpansion.FromInverseKelvin(1), InverseKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(CoefficientOfThermalExpansion.Zero, InverseKelvinTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(CoefficientOfThermalExpansion.FromInverseKelvin(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -361,5 +378,187 @@ namespace UnitsNet.Tests
             Assert.Equal("0.123 K⁻¹", new CoefficientOfThermalExpansion(0.123456, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString("s3", culture));
             Assert.Equal("0.1235 K⁻¹", new CoefficientOfThermalExpansion(0.123456, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString("s4", culture));
         }
+
+        #pragma warning disable 612, 618
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentCulture()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentCulture, "g"), quantity.ToString(null, "g"));
+        }
+
+        #pragma warning restore 612, 618
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(CoefficientOfThermalExpansion)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(CoefficientOfThermalExpansionUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(QuantityType.CoefficientOfThermalExpansion, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(CoefficientOfThermalExpansion.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(new {CoefficientOfThermalExpansion.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(value);
+            Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(-value), -quantity);
+        }
+
     }
 }
