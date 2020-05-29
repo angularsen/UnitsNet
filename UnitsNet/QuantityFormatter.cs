@@ -69,7 +69,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
             where TUnitType : Enum
         {
-            return Format(quantity, format, CultureInfo.CurrentUICulture);
+            return Format(quantity, format, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace UnitsNet
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            formatProvider ??= CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if(string.IsNullOrWhiteSpace(format))
                 format = "g";
@@ -152,39 +152,39 @@ namespace UnitsNet
                     case 'S':
                     case 's':
                         if(format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
-                    throw new FormatException($"The {format} format string is not supported.");
+                            throw new FormatException($"The {format} format string is not supported.");
                         break;
-            }
+                }
 
                 switch(formatSpecifier)
-            {
+                {
                     case 'G':
                     case 'g':
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
+                        return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
                     case 'A':
                     case 'a':
-                    var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
+                        var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
                         if(precisionSpecifier >= abbreviations.Length)
-                        throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
+                            throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];
                     case 'V':
                     case 'v':
-                    return quantity.Value.ToString(formatProvider);
+                        return quantity.Value.ToString(formatProvider);
                     case 'U':
                     case 'u':
-                    return quantity.Unit.ToString();
+                        return quantity.Unit.ToString();
                     case 'Q':
                     case 'q':
-                    return quantity.QuantityInfo.Name;
+                        return quantity.QuantityInfo.Name;
                     case 'S':
                     case 's':
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
-                default:
-                    throw new FormatException($"The {format} format string is not supported.");
+                    default:
+                        throw new FormatException($"The {format} format string is not supported.");
+                }
             }
-        }
             else
             {
                 // Anything else is a standard numeric format string with default unit abbreviation postfix.
