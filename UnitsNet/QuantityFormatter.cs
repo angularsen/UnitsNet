@@ -69,7 +69,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
             where TUnitType : Enum
         {
-            return Format(quantity, format, CultureInfo.CurrentUICulture);
+            return Format(quantity, format, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            formatProvider ??= CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if(string.IsNullOrWhiteSpace(format))
                 format = "g";

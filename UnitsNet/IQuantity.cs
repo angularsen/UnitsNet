@@ -73,7 +73,7 @@ namespace UnitsNet
         ///     Gets the string representation of value and unit. Uses two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
 
         /// <summary>
