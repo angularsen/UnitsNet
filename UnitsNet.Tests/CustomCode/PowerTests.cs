@@ -127,5 +127,19 @@ namespace UnitsNet.Tests.CustomCode
             MassFlow massFlow = Power.FromWatts(15.0) / SpecificEnergy.FromJoulesPerKilogram(3);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(5));
         }
+
+        [Fact]
+        public void CurrentMultipliedByPotentialEqualsPower()
+        {
+            ElectricCurrent i = ElectricCurrent.FromAmperes(5);
+            ElectricPotential u = ElectricPotential.FromVolts(10);
+            Power p = Power.FromWatts(50);
+            Assert.Equal(p, i * u);
+            Assert.Equal(p, u * i);
+
+            // Validate the inverse is true as well
+            Assert.Equal(i, p / u);
+            Assert.Equal(u, p / i);
+        }
     }
 }
