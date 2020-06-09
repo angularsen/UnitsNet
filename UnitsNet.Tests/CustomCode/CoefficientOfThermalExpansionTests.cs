@@ -30,7 +30,7 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double InverseDegreeCelsiusInOneInverseKelvin => 1.0;
 
-        protected override double InverseDegreeFahrenheitInOneInverseKelvin => 1.8;
+        protected override double InverseDegreeFahrenheitInOneInverseKelvin => 0.5555555555555556;
 
         protected override double InverseKelvinInOneInverseKelvin => 1.0;
     }
