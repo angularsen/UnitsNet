@@ -218,9 +218,9 @@ namespace UnitsNet
         public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
 
         /// <summary>
-        ///     Get DynamicViscosity in PoundPerFootSecond.
+        ///     Get DynamicViscosity in PoundsPerFootSecond.
         /// </summary>
-        public double PoundPerFootSecond => As(DynamicViscosityUnit.PoundPerFootSecond);
+        public double PoundsPerFootSecond => As(DynamicViscosityUnit.PoundPerFootSecond);
 
         /// <summary>
         ///     Get DynamicViscosity in Reyns.
@@ -329,12 +329,12 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
         }
         /// <summary>
-        ///     Get DynamicViscosity from PoundPerFootSecond.
+        ///     Get DynamicViscosity from PoundsPerFootSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPoundPerFootSecond(QuantityValue poundperfootsecond)
+        public static DynamicViscosity FromPoundsPerFootSecond(QuantityValue poundsperfootsecond)
         {
-            double value = (double) poundperfootsecond;
+            double value = (double) poundsperfootsecond;
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundPerFootSecond);
         }
         /// <summary>

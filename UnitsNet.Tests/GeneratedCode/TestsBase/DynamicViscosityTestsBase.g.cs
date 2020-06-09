@@ -44,7 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double PoiseInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PoundPerFootSecondInOneNewtonSecondPerMeterSquared { get; }
+        protected abstract double PoundsPerFootSecondInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double ReynsInOneNewtonSecondPerMeterSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
         protected virtual double PoiseTolerance { get { return 1e-5; } }
         protected virtual double PoundsForceSecondPerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double PoundsForceSecondPerSquareInchTolerance { get { return 1e-5; } }
-        protected virtual double PoundPerFootSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerFootSecondTolerance { get { return 1e-5; } }
         protected virtual double ReynsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -127,7 +127,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoiseInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.Poise, PoiseTolerance);
             AssertEx.EqualTolerance(PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
-            AssertEx.EqualTolerance(PoundPerFootSecondInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.PoundPerFootSecond, PoundPerFootSecondTolerance);
+            AssertEx.EqualTolerance(PoundsPerFootSecondInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
             AssertEx.EqualTolerance(ReynsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.Reyns, ReynsTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, quantity07.Unit);
 
             var quantity08 = DynamicViscosity.From(1, DynamicViscosityUnit.PoundPerFootSecond);
-            AssertEx.EqualTolerance(1, quantity08.PoundPerFootSecond, PoundPerFootSecondTolerance);
+            AssertEx.EqualTolerance(1, quantity08.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
             Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, quantity08.Unit);
 
             var quantity09 = DynamicViscosity.From(1, DynamicViscosityUnit.Reyn);
@@ -201,7 +201,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoiseInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.Poise), PoiseTolerance);
             AssertEx.EqualTolerance(PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot), PoundsForceSecondPerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.PoundForceSecondPerSquareInch), PoundsForceSecondPerSquareInchTolerance);
-            AssertEx.EqualTolerance(PoundPerFootSecondInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.PoundPerFootSecond), PoundPerFootSecondTolerance);
+            AssertEx.EqualTolerance(PoundsPerFootSecondInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.PoundPerFootSecond), PoundsPerFootSecondTolerance);
             AssertEx.EqualTolerance(ReynsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.Reyn), ReynsTolerance);
         }
 
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, poundforcesecondpersquareinchQuantity.Unit);
 
             var poundperfootsecondQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.PoundPerFootSecond);
-            AssertEx.EqualTolerance(PoundPerFootSecondInOneNewtonSecondPerMeterSquared, (double)poundperfootsecondQuantity.Value, PoundPerFootSecondTolerance);
+            AssertEx.EqualTolerance(PoundsPerFootSecondInOneNewtonSecondPerMeterSquared, (double)poundperfootsecondQuantity.Value, PoundsPerFootSecondTolerance);
             Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, poundperfootsecondQuantity.Unit);
 
             var reynQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.Reyn);
@@ -263,7 +263,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, DynamicViscosity.FromPoise(newtonsecondpermetersquared.Poise).NewtonSecondsPerMeterSquared, PoiseTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsForceSecondPerSquareFoot(newtonsecondpermetersquared.PoundsForceSecondPerSquareFoot).NewtonSecondsPerMeterSquared, PoundsForceSecondPerSquareFootTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsForceSecondPerSquareInch(newtonsecondpermetersquared.PoundsForceSecondPerSquareInch).NewtonSecondsPerMeterSquared, PoundsForceSecondPerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundPerFootSecond(newtonsecondpermetersquared.PoundPerFootSecond).NewtonSecondsPerMeterSquared, PoundPerFootSecondTolerance);
+            AssertEx.EqualTolerance(1, DynamicViscosity.FromPoundsPerFootSecond(newtonsecondpermetersquared.PoundsPerFootSecond).NewtonSecondsPerMeterSquared, PoundsPerFootSecondTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromReyns(newtonsecondpermetersquared.Reyns).NewtonSecondsPerMeterSquared, ReynsTolerance);
         }
 

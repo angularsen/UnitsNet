@@ -60,9 +60,9 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
         public static DynamicViscosity PoundsForceSecondPerSquareInch<T>(this T value) =>
             DynamicViscosity.FromPoundsForceSecondPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPoundPerFootSecond(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PoundPerFootSecond<T>(this T value) =>
-            DynamicViscosity.FromPoundPerFootSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="DynamicViscosity.FromPoundsPerFootSecond(UnitsNet.QuantityValue)" />
+        public static DynamicViscosity PoundsPerFootSecond<T>(this T value) =>
+            DynamicViscosity.FromPoundsPerFootSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromReyns(UnitsNet.QuantityValue)" />
         public static DynamicViscosity Reyns<T>(this T value) =>

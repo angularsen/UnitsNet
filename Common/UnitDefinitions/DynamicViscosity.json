@@ -85,7 +85,7 @@
     },
     {
       "SingularName": "PoundPerFootSecond",
-      "PluralName": "PoundPerFootSecond",
+      "PluralName": "PoundsPerFootSecond",
       "FromUnitToBaseFunc": "x * 1.4881639",
       "FromBaseToUnitFunc": "x / 1.4881639",
       "Localization": [
