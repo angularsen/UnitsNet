@@ -358,6 +358,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundForceSecondPerSquareInch, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundPerFootSecond, q => q.ToUnit(DynamicViscosityUnit.PoundPerFootSecond));
+            unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundPerFootSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.Reyn, q => q.ToUnit(DynamicViscosityUnit.Reyn));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Reyn, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittance.BaseUnit, ElectricAdmittanceUnit.Microsiemens, q => q.ToUnit(ElectricAdmittanceUnit.Microsiemens));

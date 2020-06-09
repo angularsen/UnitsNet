@@ -253,6 +253,7 @@ namespace UnitsNet
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Poise, new string[]{"P"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundForceSecondPerSquareFoot, new string[]{"lbf·s/ft²"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundForceSecondPerSquareInch, new string[]{"lbf·s/in²"}),
+                ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PoundPerFootSecond, new string[]{"lb/ft·s"}),
                 ("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Reyn, new string[]{"reyn"}),
                 ("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Microsiemens, new string[]{"µS"}),
                 ("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Millisiemens, new string[]{"mS"}),
