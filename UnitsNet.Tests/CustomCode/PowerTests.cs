@@ -129,17 +129,17 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void CurrentMultipliedByPotentialEqualsPower()
+        public void PowerDividedByElectricCurrentEqualsElectricPotential()
         {
-            ElectricCurrent i = ElectricCurrent.FromAmperes(5);
-            ElectricPotential u = ElectricPotential.FromVolts(10);
-            Power p = Power.FromWatts(50);
-            Assert.Equal(p, i * u);
-            Assert.Equal(p, u * i);
+            ElectricPotential u = Power.FromWatts(10) / ElectricCurrent.FromAmperes(2);
+            Assert.Equal(5, u.Volts);
+        }
 
-            // Validate the inverse is true as well
-            Assert.Equal(i, p / u);
-            Assert.Equal(u, p / i);
+        [Fact]
+        public void PowerDividedByElectricPotentialEqualsElectricCurrent()
+        {
+            ElectricCurrent i = Power.FromWatts(20) / ElectricPotential.FromVolts(5);
+            Assert.Equal(4, i.Amperes);
         }
     }
 }
