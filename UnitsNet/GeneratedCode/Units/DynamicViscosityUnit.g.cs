@@ -34,6 +34,7 @@ namespace UnitsNet.Units
         Poise,
         PoundForceSecondPerSquareFoot,
         PoundForceSecondPerSquareInch,
+        PoundPerFootSecond,
         Reyn,
     }
 
