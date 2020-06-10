@@ -40,5 +40,12 @@ namespace UnitsNet.Tests.CustomCode
             ElectricCurrent current = ElectricPotential.FromVolts(potential) / ElectricResistance.FromOhms(resistance);
             Assert.Equal(expected, current.Amperes);
         }
+
+        [Fact]
+        public void ElectricPotentialMultipliedByElectricCurrentEqualsPower()
+        {
+            Power p = ElectricPotential.FromVolts(10) * ElectricCurrent.FromAmperes(2);
+            Assert.Equal(20, p.Watts);
+        }
     }
 }
