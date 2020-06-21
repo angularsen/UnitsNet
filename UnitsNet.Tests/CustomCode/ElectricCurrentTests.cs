@@ -41,5 +41,12 @@ namespace UnitsNet.Tests.CustomCode
             Power p = ElectricCurrent.FromAmperes(2) * ElectricPotential.FromVolts(10);
             Assert.Equal(20, p.Watts);
         }
+
+        [Fact]
+        public void ElectricCurrentMultipliedByDurationEqualsElectricCharge()
+        {
+            ElectricCharge ah = ElectricCurrent.FromAmperes(4) * Duration.FromHours(5);
+            Assert.Equal(20, ah.AmpereHours);
+        }
     }
 }
