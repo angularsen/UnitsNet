@@ -181,5 +181,12 @@ namespace UnitsNet.Tests.CustomCode
 
             AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
         }
+
+        [Fact]
+        public void DurationMultipliedByElectricCurrentEqualsElectricCharge()
+        {
+            ElectricCharge ah = Duration.FromHours(5) * ElectricCurrent.FromAmperes(4);
+            Assert.Equal(20, ah.AmpereHours);
+        }
     }
 }

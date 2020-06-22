@@ -18,5 +18,11 @@ namespace UnitsNet
         {
             return Power.FromWatts(potential.Volts * current.Amperes);
         }
+
+        /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> multiplied by <see cref="Duration"/>.</summary>
+        public static ElectricCharge operator *(ElectricCurrent current, Duration time)
+        {
+            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
     }
 }
