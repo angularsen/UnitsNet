@@ -72,6 +72,10 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
         public static Acceleration MillimetersPerSecondSquared<T>(this T value) =>
             Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(UnitsNet.QuantityValue)" />
+        public static Acceleration MillistandardGravity<T>(this T value) =>
+            Acceleration.FromMillistandardGravity(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(UnitsNet.QuantityValue)" />
         public static Acceleration NanometersPerSecondSquared<T>(this T value) =>
             Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));

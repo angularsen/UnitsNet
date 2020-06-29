@@ -63,6 +63,7 @@ namespace UnitsNet
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, BaseUnits.Undefined),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                 },
@@ -233,6 +234,11 @@ namespace UnitsNet
         public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
+        ///     Get Acceleration in MillistandardGravity.
+        /// </summary>
+        public double MillistandardGravity => As(AccelerationUnit.MillistandardGravity);
+
+        /// <summary>
         ///     Get Acceleration in NanometersPerSecondSquared.
         /// </summary>
         public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
@@ -369,6 +375,15 @@ namespace UnitsNet
         {
             double value = (double) millimeterspersecondsquared;
             return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from MillistandardGravity.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromMillistandardGravity(QuantityValue millistandardgravity)
+        {
+            double value = (double) millistandardgravity;
+            return new Acceleration(value, AccelerationUnit.MillistandardGravity);
         }
         /// <summary>
         ///     Get Acceleration from NanometersPerSecondSquared.
@@ -828,6 +843,7 @@ namespace UnitsNet
                 case AccelerationUnit.MeterPerSecondSquared: return _value;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
                 case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
+                case AccelerationUnit.MillistandardGravity: return (_value*9.80665) * 1e-3d;
                 case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
                 case AccelerationUnit.StandardGravity: return _value*9.80665;
                 default:
@@ -866,6 +882,7 @@ namespace UnitsNet
                 case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
                 case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;
+                case AccelerationUnit.MillistandardGravity: return (baseUnitValue/9.80665) / 1e-3d;
                 case AccelerationUnit.NanometerPerSecondSquared: return (baseUnitValue) / 1e-9d;
                 case AccelerationUnit.StandardGravity: return baseUnitValue/9.80665;
                 default:

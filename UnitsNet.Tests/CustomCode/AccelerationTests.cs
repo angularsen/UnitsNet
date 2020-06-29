@@ -33,6 +33,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KnotsPerSecondInOneMeterPerSecondSquared => 1.94384449244060;
 
+        protected override double MillistandardGravityInOneMeterPerSecondSquared => 101.9716212977928;
+
         [Fact]
         public void AccelerationTimesDensityEqualsSpecificWeight()
         {

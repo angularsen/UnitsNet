@@ -69,6 +69,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Acceleration.FromMillimetersPerSecondSquared(2), 2.MillimetersPerSecondSquared());
 
         [Fact]
+        public void NumberToMillistandardGravityTest() =>
+            Assert.Equal(Acceleration.FromMillistandardGravity(2), 2.MillistandardGravity());
+
+        [Fact]
         public void NumberToNanometersPerSecondSquaredTest() =>
             Assert.Equal(Acceleration.FromNanometersPerSecondSquared(2), 2.NanometersPerSecondSquared());
 

@@ -53,6 +53,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MicrometerPerSecondSquared, Acceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.MillimeterPerSecondSquared, q => q.ToUnit(AccelerationUnit.MillimeterPerSecondSquared));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillimeterPerSecondSquared, Acceleration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.MillistandardGravity, q => q.ToUnit(AccelerationUnit.MillistandardGravity));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillistandardGravity, Acceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.NanometerPerSecondSquared, q => q.ToUnit(AccelerationUnit.NanometerPerSecondSquared));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.NanometerPerSecondSquared, Acceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Acceleration>(Acceleration.BaseUnit, AccelerationUnit.StandardGravity, q => q.ToUnit(AccelerationUnit.StandardGravity));

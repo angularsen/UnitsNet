@@ -137,12 +137,13 @@
       },
       "FromUnitToBaseFunc": "x*9.80665",
       "FromBaseToUnitFunc": "x/9.80665",
+      "Prefixes": [ "Milli"],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "g" ]
         },
-		{
+        {
           "Culture": "ru-RU",
           "Abbreviations": [ "g" ]
         }

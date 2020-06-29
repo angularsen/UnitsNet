@@ -51,6 +51,8 @@ namespace UnitsNet
                 ("ru-RU", typeof(AccelerationUnit), (int)AccelerationUnit.MicrometerPerSecondSquared, new string[]{"мкм/с²"}),
                 ("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.MillimeterPerSecondSquared, new string[]{"mm/s²"}),
                 ("ru-RU", typeof(AccelerationUnit), (int)AccelerationUnit.MillimeterPerSecondSquared, new string[]{"мм/с²"}),
+                ("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.MillistandardGravity, new string[]{"mg"}),
+                ("ru-RU", typeof(AccelerationUnit), (int)AccelerationUnit.MillistandardGravity, new string[]{"мg"}),
                 ("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.NanometerPerSecondSquared, new string[]{"nm/s²"}),
                 ("ru-RU", typeof(AccelerationUnit), (int)AccelerationUnit.NanometerPerSecondSquared, new string[]{"нм/с²"}),
                 ("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.StandardGravity, new string[]{"g"}),
