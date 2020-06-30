@@ -14,7 +14,7 @@
       "BaseUnits": {
         "N": "Mole"
       },
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -35,6 +35,21 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbmol" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Particle",
+      "PluralName": "Particles",
+      "BaseUnits": {
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/6.02214076E23",
+      "FromBaseToUnitFunc": "x*6.02214076E23",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "particles" ]
         }
       ]
     }
