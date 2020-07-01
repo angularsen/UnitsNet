@@ -86,6 +86,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.NanopoundMole, q => q.ToUnit(AmountOfSubstanceUnit.NanopoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Particle, q => q.ToUnit(AmountOfSubstanceUnit.Particle));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Particle, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.PoundMole, q => q.ToUnit(AmountOfSubstanceUnit.PoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatio.BaseUnit, AmplitudeRatioUnit.DecibelMicrovolt, q => q.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
@@ -1460,6 +1462,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.PoundPerMole, q => q.ToUnit(MolarMassUnit.PoundPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensityUnit.NumberPerCubicCentimeter, q => q.ToUnit(NumberDensityUnit.NumberPerCubicCentimeter));
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensityUnit.NumberPerCubicCentimeter, NumberDensity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensity.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensityUnit.NumberPerCubicMillimeter, q => q.ToUnit(NumberDensityUnit.NumberPerCubicMillimeter));
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensityUnit.NumberPerCubicMillimeter, NumberDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Permeability>(Permeability.BaseUnit, Permeability.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Permittivity>(Permittivity.BaseUnit, Permittivity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Power>(Power.BaseUnit, PowerUnit.BoilerHorsepower, q => q.ToUnit(PowerUnit.BoilerHorsepower));

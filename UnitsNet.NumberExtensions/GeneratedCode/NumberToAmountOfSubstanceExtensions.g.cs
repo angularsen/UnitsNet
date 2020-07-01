@@ -84,6 +84,10 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
         public static AmountOfSubstance NanopoundMoles<T>(this T value) =>
             AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="AmountOfSubstance.FromParticles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Particles<T>(this T value) =>
+            AmountOfSubstance.FromParticles(Convert.ToDouble(value));
+
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance PoundMoles<T>(this T value) =>
             AmountOfSubstance.FromPoundMoles(Convert.ToDouble(value));

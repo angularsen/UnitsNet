@@ -40,6 +40,7 @@ namespace UnitsNet.Units
         Mole,
         Nanomole,
         NanopoundMole,
+        Particle,
         PoundMole,
     }
 

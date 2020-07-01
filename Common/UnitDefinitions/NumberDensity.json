@@ -1,0 +1,60 @@
+{
+  "Name": "NumberDensity",
+  "BaseUnit": "NumberPerCubicMeter",
+  "XmlDoc": "The number density is an intensive quantity used to describe the degree of concentration of countable objects (particles, molecules, phonons, cells, galaxies, etc.) in physical space.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Number_density",
+  "BaseDimensions": {
+    "L": -3,
+    "N": 1
+  },
+  "Units": [
+    {
+      "SingularName": "NumberPerCubicMillimeter",
+      "PluralName": "NumberPerCubicMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-6",
+      "FromBaseToUnitFunc": "x*1e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁻³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerCubicCentimeter",
+      "PluralName": "NumberPerCubicCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁻³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerCubicMeter",
+      "PluralName": "NumberPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻³" ]
+        }
+      ]
+    }
+  ]
+}

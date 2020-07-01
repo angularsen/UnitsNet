@@ -17,32 +17,24 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
-{
-    // Disable missing XML comment warnings for the generated unit enums.
-    #pragma warning disable 1591
+using UnitsNet.NumberExtensions.NumberToNumberDensity;
+using Xunit;
 
-    public enum AmountOfSubstanceUnit
+namespace UnitsNet.Tests
+{    
+    public class NumberToNumberDensityExtensionsTests
     {
-        Undefined = 0,
-        Centimole,
-        CentipoundMole,
-        Decimole,
-        DecipoundMole,
-        Kilomole,
-        KilopoundMole,
-        Megamole,
-        Micromole,
-        MicropoundMole,
-        Millimole,
-        MillipoundMole,
-        Mole,
-        Nanomole,
-        NanopoundMole,
-        Particle,
-        PoundMole,
-    }
+        [Fact]
+        public void NumberToNumberPerCubicCentimeterTest() =>
+            Assert.Equal(NumberDensity.FromNumberPerCubicCentimeter(2), 2.NumberPerCubicCentimeter());
 
-    #pragma warning restore 1591
+        [Fact]
+        public void NumberToNumberPerCubicMeterTest() =>
+            Assert.Equal(NumberDensity.FromNumberPerCubicMeter(2), 2.NumberPerCubicMeter());
+
+        [Fact]
+        public void NumberToNumberPerCubicMillimeterTest() =>
+            Assert.Equal(NumberDensity.FromNumberPerCubicMillimeter(2), 2.NumberPerCubicMillimeter());
+
+    }
 }

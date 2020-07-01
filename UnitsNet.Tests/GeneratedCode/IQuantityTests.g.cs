@@ -102,6 +102,7 @@ namespace UnitsNet.Tests
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
             Assertion(3, MolarityUnit.PicomolesPerLiter, Quantity.From(3, MolarityUnit.PicomolesPerLiter));
             Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
+            Assertion(3, NumberDensityUnit.NumberPerCubicMillimeter, Quantity.From(3, NumberDensityUnit.NumberPerCubicMillimeter));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
             Assertion(3, PowerUnit.Watt, Quantity.From(3, PowerUnit.Watt));
@@ -210,6 +211,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
             Assertion(Molarity.Info, Molarity.Zero);
             Assertion(MolarMass.Info, MolarMass.Zero);
+            Assertion(NumberDensity.Info, NumberDensity.Zero);
             Assertion(Permeability.Info, Permeability.Zero);
             Assertion(Permittivity.Info, Permittivity.Zero);
             Assertion(Power.Info, Power.Zero);
@@ -318,6 +320,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.QuantityType, MolarEntropy.Zero);
             Assertion(Molarity.QuantityType, Molarity.Zero);
             Assertion(MolarMass.QuantityType, MolarMass.Zero);
+            Assertion(NumberDensity.QuantityType, NumberDensity.Zero);
             Assertion(Permeability.QuantityType, Permeability.Zero);
             Assertion(Permittivity.QuantityType, Permittivity.Zero);
             Assertion(Power.QuantityType, Power.Zero);
@@ -426,6 +429,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
             Assertion(Molarity.BaseDimensions, Molarity.Zero);
             Assertion(MolarMass.BaseDimensions, MolarMass.Zero);
+            Assertion(NumberDensity.BaseDimensions, NumberDensity.Zero);
             Assertion(Permeability.BaseDimensions, Permeability.Zero);
             Assertion(Permittivity.BaseDimensions, Permittivity.Zero);
             Assertion(Power.BaseDimensions, Power.Zero);

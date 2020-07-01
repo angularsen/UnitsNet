@@ -17,32 +17,14 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    // Disable missing XML comment warnings for the generated unit enums.
-    #pragma warning disable 1591
-
-    public enum AmountOfSubstanceUnit
+    public class NumberDensityTests : NumberDensityTestsBase
     {
-        Undefined = 0,
-        Centimole,
-        CentipoundMole,
-        Decimole,
-        DecipoundMole,
-        Kilomole,
-        KilopoundMole,
-        Megamole,
-        Micromole,
-        MicropoundMole,
-        Millimole,
-        MillipoundMole,
-        Mole,
-        Nanomole,
-        NanopoundMole,
-        Particle,
-        PoundMole,
+        protected override double NumberPerCubicMillimeterInOneNumberPerCubicMeter => 1e-9;
+        protected override double NumberPerCubicCentimeterInOneNumberPerCubicMeter => 1e-6;
+        protected override double NumberPerCubicMeterInOneNumberPerCubicMeter => 1;        
     }
-
-    #pragma warning restore 1591
 }

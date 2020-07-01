@@ -23,25 +23,12 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum AmountOfSubstanceUnit
+    public enum NumberDensityUnit
     {
         Undefined = 0,
-        Centimole,
-        CentipoundMole,
-        Decimole,
-        DecipoundMole,
-        Kilomole,
-        KilopoundMole,
-        Megamole,
-        Micromole,
-        MicropoundMole,
-        Millimole,
-        MillipoundMole,
-        Mole,
-        Nanomole,
-        NanopoundMole,
-        Particle,
-        PoundMole,
+        NumberPerCubicCentimeter,
+        NumberPerCubicMeter,
+        NumberPerCubicMillimeter,
     }
 
     #pragma warning restore 1591

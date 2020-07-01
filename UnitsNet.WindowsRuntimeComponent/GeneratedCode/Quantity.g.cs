@@ -245,6 +245,9 @@ namespace UnitsNet
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
                     return true;
+                case NumberDensityUnit numberDensityUnit:
+                    quantity = NumberDensity.From(value, numberDensityUnit);
+                    return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
                     return true;
@@ -597,6 +600,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(MolarMass))
                 return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
+
+            if (quantityType == typeof(NumberDensity))
+                return parser.TryParse<NumberDensity, NumberDensityUnit>(quantityString, formatProvider, NumberDensity.From, out quantity);
 
             if (quantityType == typeof(Permeability))
                 return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);

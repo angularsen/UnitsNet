@@ -81,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(AmountOfSubstance.FromNanopoundMoles(2), 2.NanopoundMoles());
 
         [Fact]
+        public void NumberToParticlesTest() =>
+            Assert.Equal(AmountOfSubstance.FromParticles(2), 2.Particles());
+
+        [Fact]
         public void NumberToPoundMolesTest() =>
             Assert.Equal(AmountOfSubstance.FromPoundMoles(2), 2.PoundMoles());
 

@@ -29,12 +29,15 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
+    ///     The number density is an intensive quantity used to describe the degree of concentration of countable objects (particles, molecules, phonons, cells, galaxies, etc.) in physical space.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Number_density
+    /// </remarks>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class AmountOfSubstance : IQuantity
+    public sealed partial class NumberDensity : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,21 +47,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly AmountOfSubstanceUnit? _unit;
+        private readonly NumberDensityUnit? _unit;
 
-        static AmountOfSubstance()
+        static NumberDensity()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo(QuantityType.AmountOfSubstance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+            Info = new QuantityInfo(QuantityType.NumberDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit Mole.
+        ///     Creates the quantity with a value of 0 in the base unit NumberPerCubicMeter.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public AmountOfSubstance()
+        public NumberDensity()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -71,9 +74,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private AmountOfSubstance(double value, AmountOfSubstanceUnit unit)
+        private NumberDensity(double value, NumberDensityUnit unit)
         {
-            if(unit == AmountOfSubstanceUnit.Undefined)
+            if(unit == NumberDensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -93,34 +96,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
+        ///     The base unit of NumberDensity, which is NumberPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+        public static NumberDensityUnit BaseUnit { get; } = NumberDensityUnit.NumberPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of AmountOfSubstance
+        /// Represents the largest possible value of NumberDensity
         /// </summary>
-        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static NumberDensity MaxValue { get; } = new NumberDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of AmountOfSubstance
+        /// Represents the smallest possible value of NumberDensity
         /// </summary>
-        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static NumberDensity MinValue { get; } = new NumberDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
+        public static QuantityType QuantityType { get; } = QuantityType.NumberDensity;
 
         /// <summary>
-        ///     All units of measurement for the AmountOfSubstance quantity.
+        ///     All units of measurement for the NumberDensity quantity.
         /// </summary>
-        public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
+        public static NumberDensityUnit[] Units { get; } = Enum.GetValues(typeof(NumberDensityUnit)).Cast<NumberDensityUnit>().Except(new NumberDensityUnit[]{ NumberDensityUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit NumberPerCubicMeter.
         /// </summary>
-        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
+        public static NumberDensity Zero { get; } = new NumberDensity(0, BaseUnit);
 
         #endregion
 
@@ -137,103 +140,38 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public NumberDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => AmountOfSubstance.QuantityType;
+        public QuantityType Type => NumberDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => AmountOfSubstance.BaseDimensions;
+        public BaseDimensions Dimensions => NumberDensity.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AmountOfSubstance in Centimoles.
+        ///     Get NumberDensity in NumberPerCubicCentimeter.
         /// </summary>
-        public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
+        public double NumberPerCubicCentimeter => As(NumberDensityUnit.NumberPerCubicCentimeter);
 
         /// <summary>
-        ///     Get AmountOfSubstance in CentipoundMoles.
+        ///     Get NumberDensity in NumberPerCubicMeter.
         /// </summary>
-        public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
+        public double NumberPerCubicMeter => As(NumberDensityUnit.NumberPerCubicMeter);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Decimoles.
+        ///     Get NumberDensity in NumberPerCubicMillimeter.
         /// </summary>
-        public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in DecipoundMoles.
-        /// </summary>
-        public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Kilomoles.
-        /// </summary>
-        public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in KilopoundMoles.
-        /// </summary>
-        public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Megamoles.
-        /// </summary>
-        public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Micromoles.
-        /// </summary>
-        public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in MicropoundMoles.
-        /// </summary>
-        public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Millimoles.
-        /// </summary>
-        public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in MillipoundMoles.
-        /// </summary>
-        public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Moles.
-        /// </summary>
-        public double Moles => As(AmountOfSubstanceUnit.Mole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Nanomoles.
-        /// </summary>
-        public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in NanopoundMoles.
-        /// </summary>
-        public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in Particles.
-        /// </summary>
-        public double Particles => As(AmountOfSubstanceUnit.Particle);
-
-        /// <summary>
-        ///     Get AmountOfSubstance in PoundMoles.
-        /// </summary>
-        public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
+        public double NumberPerCubicMillimeter => As(NumberDensityUnit.NumberPerCubicMillimeter);
 
         #endregion
 
@@ -244,7 +182,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(AmountOfSubstanceUnit unit)
+        public static string GetAbbreviation(NumberDensityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -255,7 +193,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(AmountOfSubstanceUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(NumberDensityUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -266,177 +204,47 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AmountOfSubstance from Centimoles.
+        ///     Get NumberDensity from NumberPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromCentimoles(double centimoles)
+        public static NumberDensity FromNumberPerCubicCentimeter(double numberpercubiccentimeter)
         {
-            double value = (double) centimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
+            double value = (double) numberpercubiccentimeter;
+            return new NumberDensity(value, NumberDensityUnit.NumberPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles.
+        ///     Get NumberDensity from NumberPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
+        public static NumberDensity FromNumberPerCubicMeter(double numberpercubicmeter)
         {
-            double value = (double) centipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
+            double value = (double) numberpercubicmeter;
+            return new NumberDensity(value, NumberDensityUnit.NumberPerCubicMeter);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Decimoles.
+        ///     Get NumberDensity from NumberPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromDecimoles(double decimoles)
+        public static NumberDensity FromNumberPerCubicMillimeter(double numberpercubicmillimeter)
         {
-            double value = (double) decimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
-        {
-            double value = (double) decipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromKilomoles(double kilomoles)
-        {
-            double value = (double) kilomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
-        {
-            double value = (double) kilopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Megamoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMegamoles(double megamoles)
-        {
-            double value = (double) megamoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Micromoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMicromoles(double micromoles)
-        {
-            double value = (double) micromoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
-        {
-            double value = (double) micropoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Millimoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMillimoles(double millimoles)
-        {
-            double value = (double) millimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
-        {
-            double value = (double) millipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Moles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromMoles(double moles)
-        {
-            double value = (double) moles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromNanomoles(double nanomoles)
-        {
-            double value = (double) nanomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
-        {
-            double value = (double) nanopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from Particles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromParticles(double particles)
-        {
-            double value = (double) particles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Particle);
-        }
-        /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static AmountOfSubstance FromPoundMoles(double poundmoles)
-        {
-            double value = (double) poundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
+            double value = (double) numberpercubicmillimeter;
+            return new NumberDensity(value, NumberDensityUnit.NumberPerCubicMillimeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.
+        ///     Dynamically convert from value and unit enum <see cref="NumberDensityUnit" /> to <see cref="NumberDensity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AmountOfSubstance unit value.</returns>
+        /// <returns>NumberDensity unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static AmountOfSubstance From(double value, AmountOfSubstanceUnit fromUnit)
+        public static NumberDensity From(double value, NumberDensityUnit fromUnit)
         {
-            return new AmountOfSubstance((double)value, fromUnit);
+            return new NumberDensity((double)value, fromUnit);
         }
 
         #endregion
@@ -465,7 +273,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AmountOfSubstance Parse(string str)
+        public static NumberDensity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -493,10 +301,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static AmountOfSubstance Parse(string str, [CanBeNull] string cultureName)
+        public static NumberDensity Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.Parse<NumberDensity, NumberDensityUnit>(
                 str,
                 provider,
                 From);
@@ -510,7 +318,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out AmountOfSubstance result)
+        public static bool TryParse([CanBeNull] string str, out NumberDensity result)
         {
             return TryParse(str, null, out result);
         }
@@ -525,10 +333,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out AmountOfSubstance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out NumberDensity result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.TryParse<NumberDensity, NumberDensityUnit>(
                 str,
                 provider,
                 From,
@@ -544,7 +352,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static AmountOfSubstanceUnit ParseUnit(string str)
+        public static NumberDensityUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -559,13 +367,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static AmountOfSubstanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static NumberDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<AmountOfSubstanceUnit>(str, provider);
+            return UnitParser.Default.Parse<NumberDensityUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out AmountOfSubstanceUnit unit)
+        public static bool TryParseUnit(string str, out NumberDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -580,10 +388,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out AmountOfSubstanceUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out NumberDensityUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<AmountOfSubstanceUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<NumberDensityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -593,13 +401,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AmountOfSubstance objAmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
+            if(!(obj is NumberDensity objNumberDensity)) throw new ArgumentException("Expected type NumberDensity.", nameof(obj));
 
-            return CompareTo(objAmountOfSubstance);
+            return CompareTo(objNumberDensity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(AmountOfSubstance other)
+        internal int CompareTo(NumberDensity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -607,20 +415,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is AmountOfSubstance objAmountOfSubstance))
+            if(obj is null || !(obj is NumberDensity objNumberDensity))
                 return false;
 
-            return Equals(objAmountOfSubstance);
+            return Equals(objNumberDensity);
         }
 
-        public bool Equals(AmountOfSubstance other)
+        public bool Equals(NumberDensity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another AmountOfSubstance within the given absolute or relative tolerance.
+        ///     Compare equality to another NumberDensity within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -658,7 +466,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AmountOfSubstance other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(NumberDensity other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -672,7 +480,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current AmountOfSubstance.</returns>
+        /// <returns>A hash code for the current NumberDensity.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -682,13 +490,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((AmountOfSubstanceUnit)unit);
+        double IQuantity.As(object unit) => As((NumberDensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(AmountOfSubstanceUnit unit)
+        public double As(NumberDensityUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -698,13 +506,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
+        ///     Converts this NumberDensity to another NumberDensity with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A AmountOfSubstance with the specified unit.</returns>
-        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
+        /// <returns>A NumberDensity with the specified unit.</returns>
+        public NumberDensity ToUnit(NumberDensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new AmountOfSubstance(convertedValue, unit);
+            return new NumberDensity(convertedValue, unit);
         }
 
         /// <summary>
@@ -716,28 +524,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
-                case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
-                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return _value;
-                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.Particle: return _value/6.02214076E23;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                case NumberDensityUnit.NumberPerCubicCentimeter: return _value/1e-3;
+                case NumberDensityUnit.NumberPerCubicMeter: return _value/1e3;
+                case NumberDensityUnit.NumberPerCubicMillimeter: return _value/1e-6;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AmountOfSubstanceUnit unit)
+        private double AsBaseNumericType(NumberDensityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -746,22 +541,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
-                case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
-                case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return baseUnitValue;
-                case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
-                case AmountOfSubstanceUnit.Particle: return baseUnitValue*6.02214076E23;
-                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
+                case NumberDensityUnit.NumberPerCubicCentimeter: return baseUnitValue*1e-3;
+                case NumberDensityUnit.NumberPerCubicMeter: return baseUnitValue*1e3;
+                case NumberDensityUnit.NumberPerCubicMillimeter: return baseUnitValue*1e-6;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
