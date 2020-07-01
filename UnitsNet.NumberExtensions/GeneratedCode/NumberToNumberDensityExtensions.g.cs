@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToNumberDensity
     /// </summary>
     public static class NumberToNumberDensityExtensions
     {
+        /// <inheritdoc cref="NumberDensity.FromNumberPerBarnCentiMeter(UnitsNet.QuantityValue)" />
+        public static NumberDensity NumberPerBarnCentiMeter<T>(this T value) =>
+            NumberDensity.FromNumberPerBarnCentiMeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="NumberDensity.FromNumberPerCubicCentimeter(UnitsNet.QuantityValue)" />
         public static NumberDensity NumberPerCubicCentimeter<T>(this T value) =>
             NumberDensity.FromNumberPerCubicCentimeter(Convert.ToDouble(value));

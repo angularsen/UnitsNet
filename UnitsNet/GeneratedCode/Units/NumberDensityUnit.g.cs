@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum NumberDensityUnit
     {
         Undefined = 0,
+        NumberPerBarnCentiMeter,
         NumberPerCubicCentimeter,
         NumberPerCubicMeter,
         NumberPerCubicMillimeter,

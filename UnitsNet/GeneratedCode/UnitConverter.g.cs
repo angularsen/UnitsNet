@@ -1462,6 +1462,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.PoundPerMole, q => q.ToUnit(MolarMassUnit.PoundPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensityUnit.NumberPerBarnCentiMeter, q => q.ToUnit(NumberDensityUnit.NumberPerBarnCentiMeter));
+            unitConverter.SetConversionFunction<NumberDensity>(NumberDensityUnit.NumberPerBarnCentiMeter, NumberDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensityUnit.NumberPerCubicCentimeter, q => q.ToUnit(NumberDensityUnit.NumberPerCubicCentimeter));
             unitConverter.SetConversionFunction<NumberDensity>(NumberDensityUnit.NumberPerCubicCentimeter, NumberDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<NumberDensity>(NumberDensity.BaseUnit, NumberDensity.BaseUnit, q => q);

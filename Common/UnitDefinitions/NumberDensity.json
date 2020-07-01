@@ -55,6 +55,22 @@
           "Abbreviations": [ "m⁻³" ]
         }
       ]
+    },
+    {
+      "SingularName": "NumberPerBarnCentiMeter",
+      "PluralName": "NumberPerBarnCentiMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-27",
+      "FromBaseToUnitFunc": "x*1e-27",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻³" ]
+        }
+      ]
     }
   ]
 }

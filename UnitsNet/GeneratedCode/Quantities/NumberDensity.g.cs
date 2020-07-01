@@ -55,6 +55,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<NumberDensityUnit>(QuantityType.NumberDensity,
                 new UnitInfo<NumberDensityUnit>[] {
+                    new UnitInfo<NumberDensityUnit>(NumberDensityUnit.NumberPerBarnCentiMeter, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Particle)),
                     new UnitInfo<NumberDensityUnit>(NumberDensityUnit.NumberPerCubicCentimeter, new BaseUnits(length: LengthUnit.Centimeter, amount: AmountOfSubstanceUnit.Particle)),
                     new UnitInfo<NumberDensityUnit>(NumberDensityUnit.NumberPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Particle)),
                     new UnitInfo<NumberDensityUnit>(NumberDensityUnit.NumberPerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, amount: AmountOfSubstanceUnit.Particle)),
@@ -171,6 +172,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get NumberDensity in NumberPerBarnCentiMeter.
+        /// </summary>
+        public double NumberPerBarnCentiMeter => As(NumberDensityUnit.NumberPerBarnCentiMeter);
+
+        /// <summary>
         ///     Get NumberDensity in NumberPerCubicCentimeter.
         /// </summary>
         public double NumberPerCubicCentimeter => As(NumberDensityUnit.NumberPerCubicCentimeter);
@@ -214,6 +220,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get NumberDensity from NumberPerBarnCentiMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static NumberDensity FromNumberPerBarnCentiMeter(QuantityValue numberperbarncentimeter)
+        {
+            double value = (double) numberperbarncentimeter;
+            return new NumberDensity(value, NumberDensityUnit.NumberPerBarnCentiMeter);
+        }
         /// <summary>
         ///     Get NumberDensity from NumberPerCubicCentimeter.
         /// </summary>
@@ -670,6 +685,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case NumberDensityUnit.NumberPerBarnCentiMeter: return _value/1e-27;
                 case NumberDensityUnit.NumberPerCubicCentimeter: return _value/1e-3;
                 case NumberDensityUnit.NumberPerCubicMeter: return _value/1e3;
                 case NumberDensityUnit.NumberPerCubicMillimeter: return _value/1e-6;
@@ -698,6 +714,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case NumberDensityUnit.NumberPerBarnCentiMeter: return baseUnitValue*1e-27;
                 case NumberDensityUnit.NumberPerCubicCentimeter: return baseUnitValue*1e-3;
                 case NumberDensityUnit.NumberPerCubicMeter: return baseUnitValue*1e3;
                 case NumberDensityUnit.NumberPerCubicMillimeter: return baseUnitValue*1e-6;

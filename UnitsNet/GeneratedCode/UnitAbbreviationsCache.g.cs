@@ -935,6 +935,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.NanogramPerMole, new string[]{"нг/моль"}),
                 ("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.PoundPerMole, new string[]{"lb/mol"}),
                 ("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.PoundPerMole, new string[]{"фунт/моль"}),
+                ("en-US", typeof(NumberDensityUnit), (int)NumberDensityUnit.NumberPerBarnCentiMeter, new string[]{"m⁻³"}),
                 ("en-US", typeof(NumberDensityUnit), (int)NumberDensityUnit.NumberPerCubicCentimeter, new string[]{"cm⁻³"}),
                 ("en-US", typeof(NumberDensityUnit), (int)NumberDensityUnit.NumberPerCubicMeter, new string[]{"m⁻³"}),
                 ("en-US", typeof(NumberDensityUnit), (int)NumberDensityUnit.NumberPerCubicMillimeter, new string[]{"mm⁻³"}),

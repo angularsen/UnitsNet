@@ -36,11 +36,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class NumberDensityTestsBase
     {
+        protected abstract double NumberPerBarnCentiMeterInOneNumberPerCubicMeter { get; }
         protected abstract double NumberPerCubicCentimeterInOneNumberPerCubicMeter { get; }
         protected abstract double NumberPerCubicMeterInOneNumberPerCubicMeter { get; }
         protected abstract double NumberPerCubicMillimeterInOneNumberPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double NumberPerBarnCentiMeterTolerance { get { return 1e-5; } }
         protected virtual double NumberPerCubicCentimeterTolerance { get { return 1e-5; } }
         protected virtual double NumberPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double NumberPerCubicMillimeterTolerance { get { return 1e-5; } }
@@ -105,6 +107,7 @@ namespace UnitsNet.Tests
         public void NumberPerCubicMeterToNumberDensityUnits()
         {
             NumberDensity numberpercubicmeter = NumberDensity.FromNumberPerCubicMeter(1);
+            AssertEx.EqualTolerance(NumberPerBarnCentiMeterInOneNumberPerCubicMeter, numberpercubicmeter.NumberPerBarnCentiMeter, NumberPerBarnCentiMeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicCentimeterInOneNumberPerCubicMeter, numberpercubicmeter.NumberPerCubicCentimeter, NumberPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicMeterInOneNumberPerCubicMeter, numberpercubicmeter.NumberPerCubicMeter, NumberPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicMillimeterInOneNumberPerCubicMeter, numberpercubicmeter.NumberPerCubicMillimeter, NumberPerCubicMillimeterTolerance);
@@ -113,17 +116,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.NumberPerCubicCentimeter, NumberPerCubicCentimeterTolerance);
-            Assert.Equal(NumberDensityUnit.NumberPerCubicCentimeter, quantity00.Unit);
+            var quantity00 = NumberDensity.From(1, NumberDensityUnit.NumberPerBarnCentiMeter);
+            AssertEx.EqualTolerance(1, quantity00.NumberPerBarnCentiMeter, NumberPerBarnCentiMeterTolerance);
+            Assert.Equal(NumberDensityUnit.NumberPerBarnCentiMeter, quantity00.Unit);
 
-            var quantity01 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity01.NumberPerCubicMeter, NumberPerCubicMeterTolerance);
-            Assert.Equal(NumberDensityUnit.NumberPerCubicMeter, quantity01.Unit);
+            var quantity01 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicCentimeter);
+            AssertEx.EqualTolerance(1, quantity01.NumberPerCubicCentimeter, NumberPerCubicCentimeterTolerance);
+            Assert.Equal(NumberDensityUnit.NumberPerCubicCentimeter, quantity01.Unit);
 
-            var quantity02 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicMillimeter);
-            AssertEx.EqualTolerance(1, quantity02.NumberPerCubicMillimeter, NumberPerCubicMillimeterTolerance);
-            Assert.Equal(NumberDensityUnit.NumberPerCubicMillimeter, quantity02.Unit);
+            var quantity02 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity02.NumberPerCubicMeter, NumberPerCubicMeterTolerance);
+            Assert.Equal(NumberDensityUnit.NumberPerCubicMeter, quantity02.Unit);
+
+            var quantity03 = NumberDensity.From(1, NumberDensityUnit.NumberPerCubicMillimeter);
+            AssertEx.EqualTolerance(1, quantity03.NumberPerCubicMillimeter, NumberPerCubicMillimeterTolerance);
+            Assert.Equal(NumberDensityUnit.NumberPerCubicMillimeter, quantity03.Unit);
 
         }
 
@@ -144,6 +151,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var numberpercubicmeter = NumberDensity.FromNumberPerCubicMeter(1);
+            AssertEx.EqualTolerance(NumberPerBarnCentiMeterInOneNumberPerCubicMeter, numberpercubicmeter.As(NumberDensityUnit.NumberPerBarnCentiMeter), NumberPerBarnCentiMeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicCentimeterInOneNumberPerCubicMeter, numberpercubicmeter.As(NumberDensityUnit.NumberPerCubicCentimeter), NumberPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicMeterInOneNumberPerCubicMeter, numberpercubicmeter.As(NumberDensityUnit.NumberPerCubicMeter), NumberPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NumberPerCubicMillimeterInOneNumberPerCubicMeter, numberpercubicmeter.As(NumberDensityUnit.NumberPerCubicMillimeter), NumberPerCubicMillimeterTolerance);
@@ -153,6 +161,10 @@ namespace UnitsNet.Tests
         public void ToUnit()
         {
             var numberpercubicmeter = NumberDensity.FromNumberPerCubicMeter(1);
+
+            var numberperbarncentimeterQuantity = numberpercubicmeter.ToUnit(NumberDensityUnit.NumberPerBarnCentiMeter);
+            AssertEx.EqualTolerance(NumberPerBarnCentiMeterInOneNumberPerCubicMeter, (double)numberperbarncentimeterQuantity.Value, NumberPerBarnCentiMeterTolerance);
+            Assert.Equal(NumberDensityUnit.NumberPerBarnCentiMeter, numberperbarncentimeterQuantity.Unit);
 
             var numberpercubiccentimeterQuantity = numberpercubicmeter.ToUnit(NumberDensityUnit.NumberPerCubicCentimeter);
             AssertEx.EqualTolerance(NumberPerCubicCentimeterInOneNumberPerCubicMeter, (double)numberpercubiccentimeterQuantity.Value, NumberPerCubicCentimeterTolerance);
@@ -171,6 +183,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             NumberDensity numberpercubicmeter = NumberDensity.FromNumberPerCubicMeter(1);
+            AssertEx.EqualTolerance(1, NumberDensity.FromNumberPerBarnCentiMeter(numberpercubicmeter.NumberPerBarnCentiMeter).NumberPerCubicMeter, NumberPerBarnCentiMeterTolerance);
             AssertEx.EqualTolerance(1, NumberDensity.FromNumberPerCubicCentimeter(numberpercubicmeter.NumberPerCubicCentimeter).NumberPerCubicMeter, NumberPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, NumberDensity.FromNumberPerCubicMeter(numberpercubicmeter.NumberPerCubicMeter).NumberPerCubicMeter, NumberPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, NumberDensity.FromNumberPerCubicMillimeter(numberpercubicmeter.NumberPerCubicMillimeter).NumberPerCubicMeter, NumberPerCubicMillimeterTolerance);
@@ -330,6 +343,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString());
                 Assert.Equal("1 cm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicCentimeter).ToString());
                 Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMeter).ToString());
                 Assert.Equal("1 mm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMillimeter).ToString());
@@ -346,6 +360,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString(swedishCulture));
             Assert.Equal("1 cm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 mm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMillimeter).ToString(swedishCulture));

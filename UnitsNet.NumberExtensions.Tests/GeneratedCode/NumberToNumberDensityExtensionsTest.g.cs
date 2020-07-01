@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToNumberDensityExtensionsTests
     {
         [Fact]
+        public void NumberToNumberPerBarnCentiMeterTest() =>
+            Assert.Equal(NumberDensity.FromNumberPerBarnCentiMeter(2), 2.NumberPerBarnCentiMeter());
+
+        [Fact]
         public void NumberToNumberPerCubicCentimeterTest() =>
             Assert.Equal(NumberDensity.FromNumberPerCubicCentimeter(2), 2.NumberPerCubicCentimeter());
 

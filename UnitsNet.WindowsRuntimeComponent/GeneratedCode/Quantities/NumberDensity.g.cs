@@ -159,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get NumberDensity in NumberPerBarnCentiMeter.
+        /// </summary>
+        public double NumberPerBarnCentiMeter => As(NumberDensityUnit.NumberPerBarnCentiMeter);
+
+        /// <summary>
         ///     Get NumberDensity in NumberPerCubicCentimeter.
         /// </summary>
         public double NumberPerCubicCentimeter => As(NumberDensityUnit.NumberPerCubicCentimeter);
@@ -203,6 +208,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get NumberDensity from NumberPerBarnCentiMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static NumberDensity FromNumberPerBarnCentiMeter(double numberperbarncentimeter)
+        {
+            double value = (double) numberperbarncentimeter;
+            return new NumberDensity(value, NumberDensityUnit.NumberPerBarnCentiMeter);
+        }
         /// <summary>
         ///     Get NumberDensity from NumberPerCubicCentimeter.
         /// </summary>
@@ -524,6 +539,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case NumberDensityUnit.NumberPerBarnCentiMeter: return _value/1e-27;
                 case NumberDensityUnit.NumberPerCubicCentimeter: return _value/1e-3;
                 case NumberDensityUnit.NumberPerCubicMeter: return _value/1e3;
                 case NumberDensityUnit.NumberPerCubicMillimeter: return _value/1e-6;
@@ -541,6 +557,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case NumberDensityUnit.NumberPerBarnCentiMeter: return baseUnitValue*1e-27;
                 case NumberDensityUnit.NumberPerCubicCentimeter: return baseUnitValue*1e-3;
                 case NumberDensityUnit.NumberPerCubicMeter: return baseUnitValue*1e3;
                 case NumberDensityUnit.NumberPerCubicMillimeter: return baseUnitValue*1e-6;

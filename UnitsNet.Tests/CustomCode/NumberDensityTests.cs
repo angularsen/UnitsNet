@@ -25,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double NumberPerCubicMillimeterInOneNumberPerCubicMeter => 1e-9;
         protected override double NumberPerCubicCentimeterInOneNumberPerCubicMeter => 1e-6;
-        protected override double NumberPerCubicMeterInOneNumberPerCubicMeter => 1;        
+        protected override double NumberPerCubicMeterInOneNumberPerCubicMeter => 1;
+
+        protected override double NumberPerBarnCentiMeterInOneNumberPerCubicMeter => 1e-30;
     }
 }
