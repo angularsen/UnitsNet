@@ -175,6 +175,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertia.BaseUnit, q => q);
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.MillimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensity.BaseUnit, AreaNumberDensityUnit.NumberPerBarn, q => q.ToUnit(AreaNumberDensityUnit.NumberPerBarn));
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensityUnit.NumberPerBarn, AreaNumberDensity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensity.BaseUnit, AreaNumberDensityUnit.NumberPerSquareCentimeter, q => q.ToUnit(AreaNumberDensityUnit.NumberPerSquareCentimeter));
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensityUnit.NumberPerSquareCentimeter, AreaNumberDensity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensity.BaseUnit, AreaNumberDensity.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensity.BaseUnit, AreaNumberDensityUnit.NumberPerSquareMillimeter, q => q.ToUnit(AreaNumberDensityUnit.NumberPerSquareMillimeter));
+            unitConverter.SetConversionFunction<AreaNumberDensity>(AreaNumberDensityUnit.NumberPerSquareMillimeter, AreaNumberDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<BitRate>(BitRate.BaseUnit, BitRate.BaseUnit, q => q);
             unitConverter.SetConversionFunction<BitRate>(BitRate.BaseUnit, BitRateUnit.BytePerSecond, q => q.ToUnit(BitRateUnit.BytePerSecond));
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BytePerSecond, BitRate.BaseUnit, q => q.ToBaseUnit());
@@ -1009,6 +1016,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerFoot, LinearDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.PoundPerInch, q => q.ToUnit(LinearDensityUnit.PoundPerInch));
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerInch, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearNumberDensity>(LinearNumberDensity.BaseUnit, LinearNumberDensityUnit.NumberPerCentimeter, q => q.ToUnit(LinearNumberDensityUnit.NumberPerCentimeter));
+            unitConverter.SetConversionFunction<LinearNumberDensity>(LinearNumberDensityUnit.NumberPerCentimeter, LinearNumberDensity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearNumberDensity>(LinearNumberDensity.BaseUnit, LinearNumberDensity.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<LinearNumberDensity>(LinearNumberDensity.BaseUnit, LinearNumberDensityUnit.NumberPerMillimeter, q => q.ToUnit(LinearNumberDensityUnit.NumberPerMillimeter));
+            unitConverter.SetConversionFunction<LinearNumberDensity>(LinearNumberDensityUnit.NumberPerMillimeter, LinearNumberDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensity.BaseUnit, LinearPowerDensityUnit.GigawattPerCentimeter, q => q.ToUnit(LinearPowerDensityUnit.GigawattPerCentimeter));
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerCentimeter, LinearPowerDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensity.BaseUnit, LinearPowerDensityUnit.GigawattPerFoot, q => q.ToUnit(LinearPowerDensityUnit.GigawattPerFoot));

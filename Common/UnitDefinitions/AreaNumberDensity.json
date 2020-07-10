@@ -1,0 +1,76 @@
+{
+  "Name": "AreaNumberDensity",
+  "BaseUnit": "NumberPerSquareMeter",
+  "XmlDoc": "The 2D area representation of NumberDensity",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Number_density",
+  "BaseDimensions": {
+    "L": -2,
+    "N": 1
+  },
+  "Units": [
+    {
+      "SingularName": "NumberPerSquareMillimeter",
+      "PluralName": "NumberPerSquareMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-4",
+      "FromBaseToUnitFunc": "x*1e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerSquareCentimeter",
+      "PluralName": "NumberPerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-2",
+      "FromBaseToUnitFunc": "x*1e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerSquareMeter",
+      "PluralName": "NumberPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e2",
+      "FromBaseToUnitFunc": "x*1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerBarn",
+      "PluralName": "NumberPerBarn",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-26",
+      "FromBaseToUnitFunc": "x*1e-26",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bn⁻¹" ]
+        }
+      ]
+    }
+  ]
+}

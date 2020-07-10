@@ -1,0 +1,60 @@
+{
+  "Name": "LinearNumberDensity",
+  "BaseUnit": "NumberPerMeter",
+  "XmlDoc": "The 1D linear representation of NumberDensity",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Number_density",
+  "BaseDimensions": {
+    "L": -1,
+    "N": 1
+  },
+  "Units": [
+    {
+      "SingularName": "NumberPerMillimeter",
+      "PluralName": "NumberPerMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerCentimeter",
+      "PluralName": "NumberPerCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x/1e-2",
+      "FromBaseToUnitFunc": "x*1e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NumberPerMeter",
+      "PluralName": "NumberPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Particle"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻¹" ]
+        }
+      ]
+    }
+  ]
+}

@@ -43,6 +43,7 @@ namespace UnitsNet.Tests
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
             Assertion(3, AreaDensityUnit.KilogramPerSquareMeter, Quantity.From(3, AreaDensityUnit.KilogramPerSquareMeter));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            Assertion(3, AreaNumberDensityUnit.NumberPerSquareMillimeter, Quantity.From(3, AreaNumberDensityUnit.NumberPerSquareMillimeter));
             Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
@@ -85,6 +86,7 @@ namespace UnitsNet.Tests
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
+            Assertion(3, LinearNumberDensityUnit.NumberPerMillimeter, Quantity.From(3, LinearNumberDensityUnit.NumberPerMillimeter));
             Assertion(3, LinearPowerDensityUnit.WattPerMillimeter, Quantity.From(3, LinearPowerDensityUnit.WattPerMillimeter));
             Assertion(3, LuminosityUnit.Watt, Quantity.From(3, LuminosityUnit.Watt));
             Assertion(3, LuminousFluxUnit.Lumen, Quantity.From(3, LuminousFluxUnit.Lumen));
@@ -152,6 +154,7 @@ namespace UnitsNet.Tests
             Assertion(Area.Info, Area.Zero);
             Assertion(AreaDensity.Info, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.Info, AreaMomentOfInertia.Zero);
+            Assertion(AreaNumberDensity.Info, AreaNumberDensity.Zero);
             Assertion(BitRate.Info, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.Info, Capacitance.Zero);
@@ -194,6 +197,7 @@ namespace UnitsNet.Tests
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
+            Assertion(LinearNumberDensity.Info, LinearNumberDensity.Zero);
             Assertion(LinearPowerDensity.Info, LinearPowerDensity.Zero);
             Assertion(Luminosity.Info, Luminosity.Zero);
             Assertion(LuminousFlux.Info, LuminousFlux.Zero);
@@ -261,6 +265,7 @@ namespace UnitsNet.Tests
             Assertion(Area.QuantityType, Area.Zero);
             Assertion(AreaDensity.QuantityType, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.QuantityType, AreaMomentOfInertia.Zero);
+            Assertion(AreaNumberDensity.QuantityType, AreaNumberDensity.Zero);
             Assertion(BitRate.QuantityType, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.QuantityType, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.QuantityType, Capacitance.Zero);
@@ -303,6 +308,7 @@ namespace UnitsNet.Tests
             Assertion(Length.QuantityType, Length.Zero);
             Assertion(Level.QuantityType, Level.Zero);
             Assertion(LinearDensity.QuantityType, LinearDensity.Zero);
+            Assertion(LinearNumberDensity.QuantityType, LinearNumberDensity.Zero);
             Assertion(LinearPowerDensity.QuantityType, LinearPowerDensity.Zero);
             Assertion(Luminosity.QuantityType, Luminosity.Zero);
             Assertion(LuminousFlux.QuantityType, LuminousFlux.Zero);
@@ -370,6 +376,7 @@ namespace UnitsNet.Tests
             Assertion(Area.BaseDimensions, Area.Zero);
             Assertion(AreaDensity.BaseDimensions, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.BaseDimensions, AreaMomentOfInertia.Zero);
+            Assertion(AreaNumberDensity.BaseDimensions, AreaNumberDensity.Zero);
             Assertion(BitRate.BaseDimensions, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.BaseDimensions, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.BaseDimensions, Capacitance.Zero);
@@ -412,6 +419,7 @@ namespace UnitsNet.Tests
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);
+            Assertion(LinearNumberDensity.BaseDimensions, LinearNumberDensity.Zero);
             Assertion(LinearPowerDensity.BaseDimensions, LinearPowerDensity.Zero);
             Assertion(Luminosity.BaseDimensions, Luminosity.Zero);
             Assertion(LuminousFlux.BaseDimensions, LuminousFlux.Zero);

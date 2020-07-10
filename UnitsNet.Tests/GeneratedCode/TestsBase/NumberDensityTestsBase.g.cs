@@ -343,7 +343,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString());
+                Assert.Equal("1 bn⁻¹·cm⁻¹", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString());
                 Assert.Equal("1 cm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicCentimeter).ToString());
                 Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMeter).ToString());
                 Assert.Equal("1 mm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMillimeter).ToString());
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString(swedishCulture));
+            Assert.Equal("1 bn⁻¹·cm⁻¹", new NumberDensity(1, NumberDensityUnit.NumberPerBarnCentiMeter).ToString(swedishCulture));
             Assert.Equal("1 cm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 m⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 mm⁻³", new NumberDensity(1, NumberDensityUnit.NumberPerCubicMillimeter).ToString(swedishCulture));

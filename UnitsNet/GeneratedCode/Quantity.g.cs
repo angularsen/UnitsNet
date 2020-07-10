@@ -60,6 +60,8 @@ namespace UnitsNet
                     return AreaDensity.From(value, AreaDensity.BaseUnit);
                 case QuantityType.AreaMomentOfInertia:
                     return AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit);
+                case QuantityType.AreaNumberDensity:
+                    return AreaNumberDensity.From(value, AreaNumberDensity.BaseUnit);
                 case QuantityType.BitRate:
                     return BitRate.From(value, BitRate.BaseUnit);
                 case QuantityType.BrakeSpecificFuelConsumption:
@@ -144,6 +146,8 @@ namespace UnitsNet
                     return Level.From(value, Level.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case QuantityType.LinearNumberDensity:
+                    return LinearNumberDensity.From(value, LinearNumberDensity.BaseUnit);
                 case QuantityType.LinearPowerDensity:
                     return LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit);
                 case QuantityType.Luminosity:
@@ -289,6 +293,9 @@ namespace UnitsNet
                 case AreaMomentOfInertiaUnit areaMomentOfInertiaUnit:
                     quantity = AreaMomentOfInertia.From(value, areaMomentOfInertiaUnit);
                     return true;
+                case AreaNumberDensityUnit areaNumberDensityUnit:
+                    quantity = AreaNumberDensity.From(value, areaNumberDensityUnit);
+                    return true;
                 case BitRateUnit bitRateUnit:
                     quantity = BitRate.From(value, bitRateUnit);
                     return true;
@@ -414,6 +421,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LinearNumberDensityUnit linearNumberDensityUnit:
+                    quantity = LinearNumberDensity.From(value, linearNumberDensityUnit);
                     return true;
                 case LinearPowerDensityUnit linearPowerDensityUnit:
                     quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
@@ -613,6 +623,8 @@ namespace UnitsNet
                     return parser.TryParse<AreaDensity, AreaDensityUnit>(quantityString, formatProvider, AreaDensity.From, out quantity);
                 case Type _ when quantityType == typeof(AreaMomentOfInertia):
                     return parser.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(quantityString, formatProvider, AreaMomentOfInertia.From, out quantity);
+                case Type _ when quantityType == typeof(AreaNumberDensity):
+                    return parser.TryParse<AreaNumberDensity, AreaNumberDensityUnit>(quantityString, formatProvider, AreaNumberDensity.From, out quantity);
                 case Type _ when quantityType == typeof(BitRate):
                     return parser.TryParse<BitRate, BitRateUnit>(quantityString, formatProvider, BitRate.From, out quantity);
                 case Type _ when quantityType == typeof(BrakeSpecificFuelConsumption):
@@ -697,6 +709,8 @@ namespace UnitsNet
                     return parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity):
                     return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+                case Type _ when quantityType == typeof(LinearNumberDensity):
+                    return parser.TryParse<LinearNumberDensity, LinearNumberDensityUnit>(quantityString, formatProvider, LinearNumberDensity.From, out quantity);
                 case Type _ when quantityType == typeof(LinearPowerDensity):
                     return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
                 case Type _ when quantityType == typeof(Luminosity):
