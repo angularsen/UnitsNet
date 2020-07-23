@@ -492,6 +492,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Kiloohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Megaohm, q => q.ToUnit(ElectricResistanceUnit.Megaohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Megaohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Microohm, q => q.ToUnit(ElectricResistanceUnit.Microohm));
+            unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Microohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Milliohm, q => q.ToUnit(ElectricResistanceUnit.Milliohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistance.BaseUnit, q => q);

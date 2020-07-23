@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         Gigaohm,
         Kiloohm,
         Megaohm,
+        Microohm,
         Milliohm,
         Ohm,
     }
