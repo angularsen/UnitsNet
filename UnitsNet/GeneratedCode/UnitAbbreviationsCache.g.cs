@@ -333,6 +333,7 @@ namespace UnitsNet
                 ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Gigaohm, new string[]{"GΩ"}),
                 ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Kiloohm, new string[]{"kΩ"}),
                 ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Megaohm, new string[]{"MΩ"}),
+                ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Microohm, new string[]{"µΩ"}),
                 ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Milliohm, new string[]{"mΩ"}),
                 ("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Ohm, new string[]{"Ω"}),
                 ("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.KiloohmCentimeter, new string[]{"kΩ·cm"}),

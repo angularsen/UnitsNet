@@ -40,6 +40,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
         public static ElectricResistance Megaohms<T>(this T value) =>
             ElectricResistance.FromMegaohms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricResistance.FromMicroohms(UnitsNet.QuantityValue)" />
+        public static ElectricResistance Microohms<T>(this T value) =>
+            ElectricResistance.FromMicroohms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Milliohms<T>(this T value) =>
             ElectricResistance.FromMilliohms(Convert.ToDouble(value));

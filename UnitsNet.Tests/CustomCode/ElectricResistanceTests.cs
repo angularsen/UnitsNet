@@ -7,6 +7,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
+        protected override double MicroohmsInOneOhm => 1e6;
+
         protected override double MilliohmsInOneOhm => 1000;
 
         protected override double OhmsInOneOhm => 1;
@@ -16,6 +18,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegaohmsInOneOhm => 1e-6;
 
         protected override double GigaohmsInOneOhm => 1e-9;
+
 
         [Theory]
         [InlineData(1, 1, 1)]
