@@ -441,6 +441,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(ForceUnit), (int)ForceUnit.Poundal, new string[]{"паундаль"}),
                 ("en-US", typeof(ForceUnit), (int)ForceUnit.PoundForce, new string[]{"lbf"}),
                 ("ru-RU", typeof(ForceUnit), (int)ForceUnit.PoundForce, new string[]{"фунт-сила"}),
+                ("en-US", typeof(ForceUnit), (int)ForceUnit.ShortTonForce, new string[]{"sh tn", "T"}),
                 ("en-US", typeof(ForceUnit), (int)ForceUnit.TonneForce, new string[]{"Ton"}),
                 ("ru-RU", typeof(ForceUnit), (int)ForceUnit.TonneForce, new string[]{"тс"}),
                 ("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.CentinewtonPerSecond, new string[]{"cN/s"}),

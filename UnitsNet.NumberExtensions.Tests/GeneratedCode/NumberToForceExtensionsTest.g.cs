@@ -77,6 +77,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Force.FromPoundsForce(2), 2.PoundsForce());
 
         [Fact]
+        public void NumberToShortTonsForceTest() =>
+            Assert.Equal(Force.FromShortTonsForce(2), 2.ShortTonsForce());
+
+        [Fact]
         public void NumberToTonnesForceTest() =>
             Assert.Equal(Force.FromTonnesForce(2), 2.TonnesForce());
 

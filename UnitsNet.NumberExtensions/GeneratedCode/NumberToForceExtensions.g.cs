@@ -80,6 +80,10 @@ namespace UnitsNet.NumberExtensions.NumberToForce
         public static Force PoundsForce<T>(this T value) =>
             Force.FromPoundsForce(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Force.FromShortTonsForce(UnitsNet.QuantityValue)" />
+        public static Force ShortTonsForce<T>(this T value) =>
+            Force.FromShortTonsForce(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Force.FromTonnesForce(UnitsNet.QuantityValue)" />
         public static Force TonnesForce<T>(this T value) =>
             Force.FromTonnesForce(Convert.ToDouble(value));
