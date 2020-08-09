@@ -53,7 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ton" ]
+          "Abbreviations": [ "tf", "Ton" ]
         },
         {
           "Culture": "ru-RU",
@@ -174,7 +174,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "sh tn", "T" ]
+          "Abbreviations": [ "tf (short)", "t (US)f", "short tons-force" ]
         }
       ]
     }

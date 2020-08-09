@@ -499,8 +499,8 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString());
                 Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString());
                 Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString());
-                Assert.Equal("1 sh tn", new Force(1, ForceUnit.ShortTonForce).ToString());
-                Assert.Equal("1 Ton", new Force(1, ForceUnit.TonneForce).ToString());
+                Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString());
+                Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString());
             }
             finally
             {
@@ -527,8 +527,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ozf", new Force(1, ForceUnit.OunceForce).ToString(swedishCulture));
             Assert.Equal("1 pdl", new Force(1, ForceUnit.Poundal).ToString(swedishCulture));
             Assert.Equal("1 lbf", new Force(1, ForceUnit.PoundForce).ToString(swedishCulture));
-            Assert.Equal("1 sh tn", new Force(1, ForceUnit.ShortTonForce).ToString(swedishCulture));
-            Assert.Equal("1 Ton", new Force(1, ForceUnit.TonneForce).ToString(swedishCulture));
+            Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString(swedishCulture));
+            Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString(swedishCulture));
         }
 
         [Fact]
