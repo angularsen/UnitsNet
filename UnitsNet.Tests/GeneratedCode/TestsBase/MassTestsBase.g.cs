@@ -636,7 +636,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString());
                 Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString());
                 Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString());
-                Assert.Equal("1 short tn", new Mass(1, MassUnit.ShortTon).ToString());
+                Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString());
                 Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString());
                 Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString());
                 Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
@@ -674,7 +674,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 oz", new Mass(1, MassUnit.Ounce).ToString(swedishCulture));
             Assert.Equal("1 lb", new Mass(1, MassUnit.Pound).ToString(swedishCulture));
             Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString(swedishCulture));
-            Assert.Equal("1 short tn", new Mass(1, MassUnit.ShortTon).ToString(swedishCulture));
+            Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString(swedishCulture));
             Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString(swedishCulture));
             Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
             Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(swedishCulture));

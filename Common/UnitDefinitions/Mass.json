@@ -59,7 +59,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "short tn", "ST" ]
+          "Abbreviations": [ "t (short)", "short tn", "ST" ]
         },
         {
           "Culture": "ru-RU",

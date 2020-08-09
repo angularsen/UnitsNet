@@ -636,6 +636,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.Poundal, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.PoundForce, q => q.ToUnit(ForceUnit.PoundForce));
             unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, Force.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.ShortTonForce, q => q.ToUnit(ForceUnit.ShortTonForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Force>(Force.BaseUnit, ForceUnit.TonneForce, q => q.ToUnit(ForceUnit.TonneForce));
             unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, Force.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.CentinewtonPerSecond, q => q.ToUnit(ForceChangeRateUnit.CentinewtonPerSecond));
