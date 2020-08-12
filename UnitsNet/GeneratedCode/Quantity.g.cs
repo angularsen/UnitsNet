@@ -126,6 +126,8 @@ namespace UnitsNet
                     return HeatFlux.From(value, HeatFlux.BaseUnit);
                 case QuantityType.HeatTransferCoefficient:
                     return HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit);
+                case QuantityType.Humidity:
+                    return Humidity.From(value, Humidity.BaseUnit);
                 case QuantityType.Illuminance:
                     return Illuminance.From(value, Illuminance.BaseUnit);
                 case QuantityType.Information:
@@ -385,6 +387,9 @@ namespace UnitsNet
                     return true;
                 case HeatTransferCoefficientUnit heatTransferCoefficientUnit:
                     quantity = HeatTransferCoefficient.From(value, heatTransferCoefficientUnit);
+                    return true;
+                case HumidityUnit humidityUnit:
+                    quantity = Humidity.From(value, humidityUnit);
                     return true;
                 case IlluminanceUnit illuminanceUnit:
                     quantity = Illuminance.From(value, illuminanceUnit);
@@ -674,6 +679,8 @@ namespace UnitsNet
                     return parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity);
                 case Type _ when quantityType == typeof(HeatTransferCoefficient):
                     return parser.TryParse<HeatTransferCoefficient, HeatTransferCoefficientUnit>(quantityString, formatProvider, HeatTransferCoefficient.From, out quantity);
+                case Type _ when quantityType == typeof(Humidity):
+                    return parser.TryParse<Humidity, HumidityUnit>(quantityString, formatProvider, Humidity.From, out quantity);
                 case Type _ when quantityType == typeof(Illuminance):
                     return parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity);
                 case Type _ when quantityType == typeof(Information):

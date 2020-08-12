@@ -76,6 +76,7 @@ namespace UnitsNet.Tests
             Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
             Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assertion(3, HumidityUnit.Percent, Quantity.From(3, HumidityUnit.Percent));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
             Assertion(3, InformationUnit.Terabyte, Quantity.From(3, InformationUnit.Terabyte));
             Assertion(3, IrradianceUnit.WattPerSquareMeter, Quantity.From(3, IrradianceUnit.WattPerSquareMeter));
@@ -184,6 +185,7 @@ namespace UnitsNet.Tests
             Assertion(FuelEfficiency.Info, FuelEfficiency.Zero);
             Assertion(HeatFlux.Info, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.Info, HeatTransferCoefficient.Zero);
+            Assertion(Humidity.Info, Humidity.Zero);
             Assertion(Illuminance.Info, Illuminance.Zero);
             Assertion(Information.Info, Information.Zero);
             Assertion(Irradiance.Info, Irradiance.Zero);
@@ -292,6 +294,7 @@ namespace UnitsNet.Tests
             Assertion(FuelEfficiency.QuantityType, FuelEfficiency.Zero);
             Assertion(HeatFlux.QuantityType, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.QuantityType, HeatTransferCoefficient.Zero);
+            Assertion(Humidity.QuantityType, Humidity.Zero);
             Assertion(Illuminance.QuantityType, Illuminance.Zero);
             Assertion(Information.QuantityType, Information.Zero);
             Assertion(Irradiance.QuantityType, Irradiance.Zero);
@@ -400,6 +403,7 @@ namespace UnitsNet.Tests
             Assertion(FuelEfficiency.BaseDimensions, FuelEfficiency.Zero);
             Assertion(HeatFlux.BaseDimensions, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.BaseDimensions, HeatTransferCoefficient.Zero);
+            Assertion(Humidity.BaseDimensions, Humidity.Zero);
             Assertion(Illuminance.BaseDimensions, Illuminance.Zero);
             Assertion(Information.BaseDimensions, Information.Zero);
             Assertion(Irradiance.BaseDimensions, Irradiance.Zero);

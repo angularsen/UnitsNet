@@ -167,6 +167,9 @@ namespace UnitsNet
                 case HeatTransferCoefficientUnit heatTransferCoefficientUnit:
                     quantity = HeatTransferCoefficient.From(value, heatTransferCoefficientUnit);
                     return true;
+                case HumidityUnit humidityUnit:
+                    quantity = Humidity.From(value, humidityUnit);
+                    return true;
                 case IlluminanceUnit illuminanceUnit:
                     quantity = Illuminance.From(value, illuminanceUnit);
                     return true;
@@ -519,6 +522,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(HeatTransferCoefficient))
                 return parser.TryParse<HeatTransferCoefficient, HeatTransferCoefficientUnit>(quantityString, formatProvider, HeatTransferCoefficient.From, out quantity);
+
+            if (quantityType == typeof(Humidity))
+                return parser.TryParse<Humidity, HumidityUnit>(quantityString, formatProvider, Humidity.From, out quantity);
 
             if (quantityType == typeof(Illuminance))
                 return parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity);

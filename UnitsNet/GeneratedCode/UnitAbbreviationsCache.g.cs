@@ -534,6 +534,7 @@ namespace UnitsNet
                 ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new string[]{"Btu/ft²·hr·°F"}),
                 ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new string[]{"W/m²·°C"}),
                 ("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new string[]{"W/m²·K"}),
+                ("en-US", typeof(HumidityUnit), (int)HumidityUnit.Percent, new string[]{"%Rh"}),
                 ("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Kilolux, new string[]{"klx"}),
                 ("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Lux, new string[]{"lx"}),
                 ("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Megalux, new string[]{"Mlx"}),

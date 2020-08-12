@@ -802,6 +802,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, q => q.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Humidity>(Humidity.BaseUnit, Humidity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Kilolux, q => q.ToUnit(IlluminanceUnit.Kilolux));
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, Illuminance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, Illuminance.BaseUnit, q => q);

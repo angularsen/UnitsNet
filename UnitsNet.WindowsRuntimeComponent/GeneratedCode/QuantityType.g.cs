@@ -71,6 +71,7 @@ namespace UnitsNet
         FuelEfficiency,
         HeatFlux,
         HeatTransferCoefficient,
+        Humidity,
         Illuminance,
         Information,
         Irradiance,

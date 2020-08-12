@@ -1,0 +1,19 @@
+{
+  "Name": "Humidity",
+  "BaseUnit": "Percent",
+  "XmlDoc": "Humidity: Humidity is the concentration of water vapor present in the air. Water vapor, the gaseous state of water, is generally invisible to the human eye.",
+  "Units": [
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percents",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%Rh" ]
+        }
+      ]
+    }
+  ]
+}
