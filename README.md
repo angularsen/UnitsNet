@@ -293,7 +293,7 @@ For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Pr
 var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
 jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
 
-string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) });
+string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) }, jsonSerializerSettings);
 
 object obj = JsonConvert.DeserializeObject(json);
 ```
