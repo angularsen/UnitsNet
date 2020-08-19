@@ -288,6 +288,32 @@ For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Pr
 
 * `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
+#### Example of JSON Serialization
+```c#
+var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
+jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+
+string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) });
+
+object obj = JsonConvert.DeserializeObject(json);
+```
+
+JSON output:
+```json
+{
+  "Name": "Raiden",
+  "Weight": {
+    "Unit": "MassUnit.Kilogram",
+    "Value": 90.0
+  }
+}
+```
+
+If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add 
+```c#
+jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+```
+
 **Important!** 
 We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
 
