@@ -39,7 +39,7 @@ namespace UnitsNet.Units
         Gigajoule,
         GigawattDay,
         GigawattHour,
-        HorsePowerHour,
+        HorsepowerHour,
         Joule,
         KilobritishThermalUnit,
         Kilocalorie,

@@ -78,7 +78,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TeraelectronVoltsInOneJoule => 6.2415093433e+6;
 
-        protected override double HorsePowerHoursInOneJoule => 3.725061361111e-7;
+        protected override double HorsepowerHoursInOneJoule => 3.725061361111e-7;
 
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()
