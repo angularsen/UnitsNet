@@ -65,6 +65,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Joule, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, BaseUnits.Undefined),
@@ -263,6 +264,11 @@ namespace UnitsNet
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
+
+        /// <summary>
+        ///     Get Energy in HorsepowerHours.
+        /// </summary>
+        public double HorsepowerHours => As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
         ///     Get Energy in Joules.
@@ -519,6 +525,15 @@ namespace UnitsNet
         {
             double value = (double) gigawatthours;
             return new Energy(value, EnergyUnit.GigawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from HorsepowerHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromHorsepowerHours(QuantityValue horsepowerhours)
+        {
+            double value = (double) horsepowerhours;
+            return new Energy(value, EnergyUnit.HorsepowerHour);
         }
         /// <summary>
         ///     Get Energy from Joules.
@@ -1160,6 +1175,7 @@ namespace UnitsNet
                 case EnergyUnit.Gigajoule: return (_value) * 1e9d;
                 case EnergyUnit.GigawattDay: return (_value*24*3600d) * 1e9d;
                 case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.HorsepowerHour: return _value*2.6845195377e6;
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
                 case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
@@ -1220,6 +1236,7 @@ namespace UnitsNet
                 case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
                 case EnergyUnit.GigawattDay: return (baseUnitValue/(24*3600d)) / 1e9d;
                 case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
+                case EnergyUnit.HorsepowerHour: return baseUnitValue/2.6845195377e6;
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
                 case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
