@@ -191,7 +191,7 @@
     },
 	{
       "SingularName": "HorsePowerHour",
-      "PluralName": "HorsePowerHour",
+      "PluralName": "HorsePowerHours",
       "FromUnitToBaseFunc": "x*2.6845195377e6",
       "FromBaseToUnitFunc": "x/2.6845195377e6",
       "Localization": [
