@@ -555,6 +555,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattDay, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.GigawattHour, q => q.ToUnit(EnergyUnit.GigawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattHour, Energy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.HorsePowerHour, q => q.ToUnit(EnergyUnit.HorsePowerHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.HorsePowerHour, Energy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, Energy.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Energy>(Energy.BaseUnit, EnergyUnit.KilobritishThermalUnit, q => q.ToUnit(EnergyUnit.KilobritishThermalUnit));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilobritishThermalUnit, Energy.BaseUnit, q => q.ToBaseUnit());

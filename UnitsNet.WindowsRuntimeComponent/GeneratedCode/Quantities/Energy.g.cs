@@ -221,6 +221,11 @@ namespace UnitsNet
         public double GigawattHours => As(EnergyUnit.GigawattHour);
 
         /// <summary>
+        ///     Get Energy in HorsePowerHour.
+        /// </summary>
+        public double HorsePowerHour => As(EnergyUnit.HorsePowerHour);
+
+        /// <summary>
         ///     Get Energy in Joules.
         /// </summary>
         public double Joules => As(EnergyUnit.Joule);
@@ -489,6 +494,16 @@ namespace UnitsNet
         {
             double value = (double) gigawatthours;
             return new Energy(value, EnergyUnit.GigawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from HorsePowerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromHorsePowerHour(double horsepowerhour)
+        {
+            double value = (double) horsepowerhour;
+            return new Energy(value, EnergyUnit.HorsePowerHour);
         }
         /// <summary>
         ///     Get Energy from Joules.
@@ -1014,6 +1029,7 @@ namespace UnitsNet
                 case EnergyUnit.Gigajoule: return (_value) * 1e9d;
                 case EnergyUnit.GigawattDay: return (_value*24*3600d) * 1e9d;
                 case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.HorsePowerHour: return _value*2.6845195377e6;
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
                 case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
@@ -1063,6 +1079,7 @@ namespace UnitsNet
                 case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
                 case EnergyUnit.GigawattDay: return (baseUnitValue/(24*3600d)) / 1e9d;
                 case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
+                case EnergyUnit.HorsePowerHour: return baseUnitValue/2.6845195377e6;
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
                 case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;

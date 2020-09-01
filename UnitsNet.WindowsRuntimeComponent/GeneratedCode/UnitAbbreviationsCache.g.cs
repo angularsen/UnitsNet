@@ -373,6 +373,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.GigawattDay, new string[]{"ГВт/д"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GWh"}),
                 ("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"ГВт/ч"}),
+                ("en-US", typeof(EnergyUnit), (int)EnergyUnit.HorsePowerHour, new string[]{"hp·h"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Joule, new string[]{"J"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilobritishThermalUnit, new string[]{"kBTU"}),
                 ("en-US", typeof(EnergyUnit), (int)EnergyUnit.Kilocalorie, new string[]{"kcal"}),
