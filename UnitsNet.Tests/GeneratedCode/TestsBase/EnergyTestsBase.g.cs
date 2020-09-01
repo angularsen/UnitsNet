@@ -49,7 +49,7 @@ namespace UnitsNet.Tests
         protected abstract double GigajoulesInOneJoule { get; }
         protected abstract double GigawattDaysInOneJoule { get; }
         protected abstract double GigawattHoursInOneJoule { get; }
-        protected abstract double HorsePowerHourInOneJoule { get; }
+        protected abstract double HorsePowerHoursInOneJoule { get; }
         protected abstract double JoulesInOneJoule { get; }
         protected abstract double KilobritishThermalUnitsInOneJoule { get; }
         protected abstract double KilocaloriesInOneJoule { get; }
@@ -87,7 +87,7 @@ namespace UnitsNet.Tests
         protected virtual double GigajoulesTolerance { get { return 1e-5; } }
         protected virtual double GigawattDaysTolerance { get { return 1e-5; } }
         protected virtual double GigawattHoursTolerance { get { return 1e-5; } }
-        protected virtual double HorsePowerHourTolerance { get { return 1e-5; } }
+        protected virtual double HorsePowerHoursTolerance { get { return 1e-5; } }
         protected virtual double JoulesTolerance { get { return 1e-5; } }
         protected virtual double KilobritishThermalUnitsTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesTolerance { get { return 1e-5; } }
@@ -184,7 +184,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigajoulesInOneJoule, joule.Gigajoules, GigajoulesTolerance);
             AssertEx.EqualTolerance(GigawattDaysInOneJoule, joule.GigawattDays, GigawattDaysTolerance);
             AssertEx.EqualTolerance(GigawattHoursInOneJoule, joule.GigawattHours, GigawattHoursTolerance);
-            AssertEx.EqualTolerance(HorsePowerHourInOneJoule, joule.HorsePowerHour, HorsePowerHourTolerance);
+            AssertEx.EqualTolerance(HorsePowerHoursInOneJoule, joule.HorsePowerHours, HorsePowerHoursTolerance);
             AssertEx.EqualTolerance(JoulesInOneJoule, joule.Joules, JoulesTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsInOneJoule, joule.KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(KilocaloriesInOneJoule, joule.Kilocalories, KilocaloriesTolerance);
@@ -265,7 +265,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyUnit.GigawattHour, quantity12.Unit);
 
             var quantity13 = Energy.From(1, EnergyUnit.HorsePowerHour);
-            AssertEx.EqualTolerance(1, quantity13.HorsePowerHour, HorsePowerHourTolerance);
+            AssertEx.EqualTolerance(1, quantity13.HorsePowerHours, HorsePowerHoursTolerance);
             Assert.Equal(EnergyUnit.HorsePowerHour, quantity13.Unit);
 
             var quantity14 = Energy.From(1, EnergyUnit.Joule);
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigajoulesInOneJoule, joule.As(EnergyUnit.Gigajoule), GigajoulesTolerance);
             AssertEx.EqualTolerance(GigawattDaysInOneJoule, joule.As(EnergyUnit.GigawattDay), GigawattDaysTolerance);
             AssertEx.EqualTolerance(GigawattHoursInOneJoule, joule.As(EnergyUnit.GigawattHour), GigawattHoursTolerance);
-            AssertEx.EqualTolerance(HorsePowerHourInOneJoule, joule.As(EnergyUnit.HorsePowerHour), HorsePowerHourTolerance);
+            AssertEx.EqualTolerance(HorsePowerHoursInOneJoule, joule.As(EnergyUnit.HorsePowerHour), HorsePowerHoursTolerance);
             AssertEx.EqualTolerance(JoulesInOneJoule, joule.As(EnergyUnit.Joule), JoulesTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsInOneJoule, joule.As(EnergyUnit.KilobritishThermalUnit), KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(KilocaloriesInOneJoule, joule.As(EnergyUnit.Kilocalorie), KilocaloriesTolerance);
@@ -471,7 +471,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyUnit.GigawattHour, gigawatthourQuantity.Unit);
 
             var horsepowerhourQuantity = joule.ToUnit(EnergyUnit.HorsePowerHour);
-            AssertEx.EqualTolerance(HorsePowerHourInOneJoule, (double)horsepowerhourQuantity.Value, HorsePowerHourTolerance);
+            AssertEx.EqualTolerance(HorsePowerHoursInOneJoule, (double)horsepowerhourQuantity.Value, HorsePowerHoursTolerance);
             Assert.Equal(EnergyUnit.HorsePowerHour, horsepowerhourQuantity.Unit);
 
             var jouleQuantity = joule.ToUnit(EnergyUnit.Joule);
@@ -580,7 +580,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Energy.FromGigajoules(joule.Gigajoules).Joules, GigajoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.FromGigawattDays(joule.GigawattDays).Joules, GigawattDaysTolerance);
             AssertEx.EqualTolerance(1, Energy.FromGigawattHours(joule.GigawattHours).Joules, GigawattHoursTolerance);
-            AssertEx.EqualTolerance(1, Energy.FromHorsePowerHour(joule.HorsePowerHour).Joules, HorsePowerHourTolerance);
+            AssertEx.EqualTolerance(1, Energy.FromHorsePowerHours(joule.HorsePowerHours).Joules, HorsePowerHoursTolerance);
             AssertEx.EqualTolerance(1, Energy.FromJoules(joule.Joules).Joules, JoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.FromKilobritishThermalUnits(joule.KilobritishThermalUnits).Joules, KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(1, Energy.FromKilocalories(joule.Kilocalories).Joules, KilocaloriesTolerance);

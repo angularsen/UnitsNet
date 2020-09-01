@@ -221,9 +221,9 @@ namespace UnitsNet
         public double GigawattHours => As(EnergyUnit.GigawattHour);
 
         /// <summary>
-        ///     Get Energy in HorsePowerHour.
+        ///     Get Energy in HorsePowerHours.
         /// </summary>
-        public double HorsePowerHour => As(EnergyUnit.HorsePowerHour);
+        public double HorsePowerHours => As(EnergyUnit.HorsePowerHour);
 
         /// <summary>
         ///     Get Energy in Joules.
@@ -496,13 +496,13 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigawattHour);
         }
         /// <summary>
-        ///     Get Energy from HorsePowerHour.
+        ///     Get Energy from HorsePowerHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Energy FromHorsePowerHour(double horsepowerhour)
+        public static Energy FromHorsePowerHours(double horsepowerhours)
         {
-            double value = (double) horsepowerhour;
+            double value = (double) horsepowerhours;
             return new Energy(value, EnergyUnit.HorsePowerHour);
         }
         /// <summary>

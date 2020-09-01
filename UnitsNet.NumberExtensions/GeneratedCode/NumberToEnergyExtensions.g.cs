@@ -80,9 +80,9 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy GigawattHours<T>(this T value) =>
             Energy.FromGigawattHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromHorsePowerHour(UnitsNet.QuantityValue)" />
-        public static Energy HorsePowerHour<T>(this T value) =>
-            Energy.FromHorsePowerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Energy.FromHorsePowerHours(UnitsNet.QuantityValue)" />
+        public static Energy HorsePowerHours<T>(this T value) =>
+            Energy.FromHorsePowerHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
         public static Energy Joules<T>(this T value) =>

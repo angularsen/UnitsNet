@@ -77,8 +77,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromGigawattHours(2), 2.GigawattHours());
 
         [Fact]
-        public void NumberToHorsePowerHourTest() =>
-            Assert.Equal(Energy.FromHorsePowerHour(2), 2.HorsePowerHour());
+        public void NumberToHorsePowerHoursTest() =>
+            Assert.Equal(Energy.FromHorsePowerHours(2), 2.HorsePowerHours());
 
         [Fact]
         public void NumberToJoulesTest() =>
