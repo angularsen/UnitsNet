@@ -11,24 +11,15 @@
       "PluralName": "Hertz",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [
-        "Kilo",
-        "Mega",
-        "Giga",
-        "Tera"
-      ],
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "Hz"
-          ]
+          "Abbreviations": [ "Hz" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [
-            "Гц"
-          ]
+          "Abbreviations": [ "Гц" ]
         }
       ]
     },
@@ -41,15 +32,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "rad/s"
-          ]
+          "Abbreviations": [ "rad/s" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [
-            "рад/с"
-          ]
+          "Abbreviations": [ "рад/с" ]
         }
       ]
     },
@@ -61,9 +48,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "cpm"
-          ]
+          "Abbreviations": [ "cpm" ]
         }
       ]
     },
@@ -75,9 +60,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "cph"
-          ]
+          "Abbreviations": [ "cph" ]
         }
       ]
     },
@@ -89,9 +72,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "bpm"
-          ]
+          "Abbreviations": [ "bpm" ]
         }
       ]
     },
@@ -103,15 +84,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [
-            "s⁻¹"
-          ]
+          "Abbreviations": [ "s⁻¹" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [
-            "с⁻¹"
-          ]
+          "Abbreviations": [ "с⁻¹" ]
         }
       ]
     }
