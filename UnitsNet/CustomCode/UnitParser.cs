@@ -204,7 +204,7 @@ namespace UnitsNet
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
-                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation( unitType, formatProvider, unitAbbreviation, ignoreCase: false);
+                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: false);
 
             if(unitIntValues.Count != 1)
                 return false;
