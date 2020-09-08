@@ -276,9 +276,11 @@ namespace UnitsNet
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
                 return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
 
-            var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
-            if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+            var abbreviations = new HashSet<string>();
+            abbreviations.UnionWith(lookup!.GetAbbreviationsForUnit(unitValue));
+
+            if(formatProvider != FallbackCulture)
+                abbreviations.UnionWith(GetUnitAbbreviations(unitType, unitValue, FallbackCulture));
 
             return abbreviations.ToArray();
         }
@@ -297,10 +299,32 @@ namespace UnitsNet
             if(!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
                 return formatProvider != FallbackCulture ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture) : new string[] { };
 
-            return lookup!.GetAllUnitAbbreviationsForQuantity();
+            var allAbbreviations = new HashSet<string>();
+            allAbbreviations.UnionWith(lookup!.GetAllUnitAbbreviationsForQuantity());
+
+            if(formatProvider != FallbackCulture)
+                allAbbreviations.UnionWith(GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture));
+
+            return allAbbreviations.ToArray();
         }
 
-        internal bool TryGetUnitValueAbbreviationLookup(Type unitType, IFormatProvider? formatProvider, out UnitValueAbbreviationLookup? unitToAbbreviations)
+        internal List<int> GetUnitsForAbbreviation(Type unitType, IFormatProvider? formatProvider, string abbreviation, bool ignoreCase)
+        {
+            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+
+            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
+                return formatProvider != FallbackCulture ? GetUnitsForAbbreviation(unitType, FallbackCulture, abbreviation, ignoreCase) : new List<int>();
+
+            var units = new HashSet<int>();
+            units.UnionWith(lookup!.GetUnitsForAbbreviation(abbreviation, ignoreCase));
+
+            if(formatProvider != FallbackCulture)
+                units.UnionWith(GetUnitsForAbbreviation(unitType, FallbackCulture, abbreviation, ignoreCase));
+
+            return units.ToList();
+        }
+
+        private bool TryGetUnitValueAbbreviationLookup(Type unitType, IFormatProvider? formatProvider, out UnitValueAbbreviationLookup? unitToAbbreviations)
         {
             unitToAbbreviations = null;
 
