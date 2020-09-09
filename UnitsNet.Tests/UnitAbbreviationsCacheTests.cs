@@ -297,10 +297,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MapUnitOverrideTest()
+        public void MapUnitToDefaultAbbreviation_ParsesUsingDefaultString()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(MassFlowUnit.GramPerSecond, NorwegianCulture, "grams/second");
-            Assert.Equal(MassFlow.FromPoundsPerSecond(10), Quantity.Parse(NorwegianCulture, typeof(MassFlow), "10 lb/s"));
+            var cache = new UnitAbbreviationsCache();
+            cache.MapUnitToDefaultAbbreviation(MassFlowUnit.GramPerSecond, NorwegianCulture, "grams/second");
+
+            var parser = new QuantityParser(cache);
+            Assert.Equal(MassFlow.FromPoundsPerSecond(10), parser.Parse<MassFlow, MassFlowUnit>("10 lb/s", NorwegianCulture, MassFlow.From));
         }
 
         [Fact]
