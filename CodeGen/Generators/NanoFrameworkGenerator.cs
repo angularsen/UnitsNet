@@ -48,6 +48,13 @@ namespace CodeGen.Generators
 
             foreach (var quantity in quantities)
             {
+                // Skip decimal based units, they are not supported by nanoFramework
+                if (quantity.BaseType == "decimal")
+                {
+                    Log.Information($"Skipping {quantity.Name} as it's decimal based");
+                    continue;
+                }
+
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
