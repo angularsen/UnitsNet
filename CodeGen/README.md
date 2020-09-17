@@ -31,3 +31,9 @@ CodeGen.exe --ver
 
 Hit TAB and it should now suggest `--version` and `--verbose` parameters.
 This should work with any .exe that is compiled with Dragonfruit's app model.
+
+## nanoFramework project generation
+
+By default, the code generator will as well generate automatically 1 project per Quantity.
+
+You can load all the projects at once using the automatically generated solution ```nanoFramework.UnitsNet.sln```
