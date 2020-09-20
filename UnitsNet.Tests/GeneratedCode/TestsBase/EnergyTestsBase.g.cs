@@ -1043,7 +1043,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Energy.FromJoules(1.0);
-            Assert.Equal(new {Energy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {Energy.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

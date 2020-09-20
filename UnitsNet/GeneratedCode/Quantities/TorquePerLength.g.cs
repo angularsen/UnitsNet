@@ -717,25 +717,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.CompareTo(right) <= 0;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.CompareTo(right) >= 0;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.CompareTo(right) == -1;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.CompareTo(right) == 1;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -764,7 +764,9 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TorquePerLength other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
         }
 
         /// <inheritdoc />
@@ -781,7 +783,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(TorquePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(TorquePerLength other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return CompareTo(other) == 0;
         }
 
         /// <summary>
@@ -841,7 +843,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current TorquePerLength.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            var roundedBaseValue = Math.Round(GetValueInBaseUnit(), 5);
+            return new { QuantityType, roundedBaseValue }.GetHashCode();
         }
 
         #endregion

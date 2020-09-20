@@ -653,7 +653,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(new {Duration.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {Duration.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

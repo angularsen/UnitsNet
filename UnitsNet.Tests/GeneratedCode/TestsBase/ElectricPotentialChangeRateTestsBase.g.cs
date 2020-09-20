@@ -803,7 +803,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(1.0);
-            Assert.Equal(new {ElectricPotentialChangeRate.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {ElectricPotentialChangeRate.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

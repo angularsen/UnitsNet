@@ -567,7 +567,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(new {AmplitudeRatio.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {AmplitudeRatio.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

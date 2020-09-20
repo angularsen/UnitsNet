@@ -713,7 +713,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Luminosity.FromWatts(1.0);
-            Assert.Equal(new {Luminosity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {Luminosity.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

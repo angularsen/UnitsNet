@@ -548,7 +548,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Equal(new {ElectricConductance.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {ElectricConductance.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -548,7 +548,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ApparentEnergy.FromVoltampereHours(1.0);
-            Assert.Equal(new {ApparentEnergy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {ApparentEnergy.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

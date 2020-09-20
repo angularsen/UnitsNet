@@ -713,7 +713,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(new {Area.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {Area.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

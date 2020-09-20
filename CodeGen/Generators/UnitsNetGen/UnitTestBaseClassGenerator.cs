@@ -643,7 +643,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(new {{{_quantity.Name}.QuantityType, quantity.Value, quantity.Unit}}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {{{_quantity.Name}.QuantityType, roundedBaseValue}}.GetHashCode(), quantity.GetHashCode());
         }}
 ");
 

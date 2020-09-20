@@ -548,7 +548,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrentDensity.FromAmperesPerSquareMeter(1.0);
-            Assert.Equal(new {ElectricCurrentDensity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {ElectricCurrentDensity.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

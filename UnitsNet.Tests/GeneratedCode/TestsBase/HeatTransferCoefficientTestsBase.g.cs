@@ -548,7 +548,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
-            Assert.Equal(new {HeatTransferCoefficient.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {HeatTransferCoefficient.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

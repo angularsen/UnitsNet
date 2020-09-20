@@ -713,7 +713,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Angle.FromDegrees(1.0);
-            Assert.Equal(new {Angle.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {Angle.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

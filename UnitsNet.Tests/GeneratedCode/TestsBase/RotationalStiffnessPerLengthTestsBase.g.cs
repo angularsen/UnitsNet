@@ -578,7 +578,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1.0);
-            Assert.Equal(new {RotationalStiffnessPerLength.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
+            Assert.Equal(new {RotationalStiffnessPerLength.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]
