@@ -48,7 +48,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetHasCode_WithSameQuantityInAnotherUnit_ReturnsSameValue()
+        public void GetHashCode_WithSameQuantityInAnotherUnit_ReturnsSameValue()
         {
             var firstMass = Mass.FromGrams(0.001);
             var secondMass = firstMass.ToUnit(MassUnit.Microgram);
@@ -57,7 +57,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetHasCode_WithVeryCloseQuantities_ReturnsSameValue()
+        public void GetHashCode_WithVeryCloseQuantities_ReturnsSameValue()
         {
             var firstMass = Mass.FromGrams(0);
             var secondMass = Mass.FromGrams(double.Epsilon);
