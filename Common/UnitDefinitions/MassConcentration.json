@@ -64,6 +64,23 @@
       ]
     },
     {
+      "SingularName": "GramPerMicroliter",
+      "PluralName": "GramsPerMicroliter",
+      "BaseUnits": {
+        "M": "Gram",
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e-6",
+      "FromBaseToUnitFunc": "x*1e-6",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/μL" ]
+        }
+      ]
+    },
+    {
       "SingularName": "GramPerMilliliter",
       "PluralName": "GramsPerMilliliter",
       "BaseUnits": {
