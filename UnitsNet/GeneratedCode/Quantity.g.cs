@@ -234,6 +234,8 @@ namespace UnitsNet
                     return Torque.From(value, Torque.BaseUnit);
                 case QuantityType.TorquePerLength:
                     return TorquePerLength.From(value, TorquePerLength.BaseUnit);
+                case QuantityType.Turbidity:
+                    return Turbidity.From(value, Turbidity.BaseUnit);
                 case QuantityType.VitaminA:
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
@@ -548,6 +550,9 @@ namespace UnitsNet
                 case TorquePerLengthUnit torquePerLengthUnit:
                     quantity = TorquePerLength.From(value, torquePerLengthUnit);
                     return true;
+                case TurbidityUnit turbidityUnit:
+                    quantity = Turbidity.From(value, turbidityUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
                     return true;
@@ -782,6 +787,8 @@ namespace UnitsNet
                     return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
                 case Type _ when quantityType == typeof(TorquePerLength):
                     return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
+                case Type _ when quantityType == typeof(Turbidity):
+                    return parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity);
                 case Type _ when quantityType == typeof(VitaminA):
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):

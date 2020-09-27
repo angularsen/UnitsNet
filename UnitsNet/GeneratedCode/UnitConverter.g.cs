@@ -2152,6 +2152,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLength.BaseUnit, TorquePerLengthUnit.TonneForceMillimeterPerMeter, q => q.ToUnit(TorquePerLengthUnit.TonneForceMillimeterPerMeter));
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Turbidity>(Turbidity.BaseUnit, Turbidity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<VitaminA>(VitaminA.BaseUnit, VitaminA.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.AcreFoot, q => q.ToUnit(VolumeUnit.AcreFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, Volume.BaseUnit, q => q.ToBaseUnit());
