@@ -1380,6 +1380,7 @@ namespace UnitsNet
                 ("en-US", typeof(TorquePerLengthUnit), (int)TorquePerLengthUnit.TonneForceCentimeterPerMeter, new string[]{"tf·cm/m"}),
                 ("en-US", typeof(TorquePerLengthUnit), (int)TorquePerLengthUnit.TonneForceMeterPerMeter, new string[]{"tf·m/m"}),
                 ("en-US", typeof(TorquePerLengthUnit), (int)TorquePerLengthUnit.TonneForceMillimeterPerMeter, new string[]{"tf·mm/m"}),
+                ("en-US", typeof(TurbidityUnit), (int)TurbidityUnit.NTU, new string[]{"NTU"}),
                 ("en-US", typeof(VitaminAUnit), (int)VitaminAUnit.InternationalUnit, new string[]{"IU"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.AcreFoot, new string[]{"ac-ft", "acre-foot", "acre-feet"}),
                 ("en-US", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
