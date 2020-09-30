@@ -246,6 +246,8 @@ namespace UnitsNet
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
                 case QuantityType.VolumePerLength:
                     return VolumePerLength.From(value, VolumePerLength.BaseUnit);
+                case QuantityType.WarpingMomentOfInertia:
+                    return WarpingMomentOfInertia.From(value, WarpingMomentOfInertia.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
@@ -568,6 +570,9 @@ namespace UnitsNet
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
+                case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
+                    quantity = WarpingMomentOfInertia.From(value, warpingMomentOfInertiaUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -799,6 +804,8 @@ namespace UnitsNet
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
                 case Type _ when quantityType == typeof(VolumePerLength):
                     return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
+                case Type _ when quantityType == typeof(WarpingMomentOfInertia):
+                    return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);
                 default:
                     return false;
             }

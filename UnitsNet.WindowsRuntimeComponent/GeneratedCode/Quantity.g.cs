@@ -347,6 +347,9 @@ namespace UnitsNet
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
+                case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
+                    quantity = WarpingMomentOfInertia.From(value, warpingMomentOfInertiaUnit);
+                    return true;
                 default:
                 {
                     quantity = default(IQuantity);
@@ -702,6 +705,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumePerLength))
                 return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
+
+            if (quantityType == typeof(WarpingMomentOfInertia))
+                return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);
 
             throw new ArgumentException(
                 $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");

@@ -136,6 +136,7 @@ namespace UnitsNet.Tests
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
             Assertion(3, VolumePerLengthUnit.OilBarrelPerFoot, Quantity.From(3, VolumePerLengthUnit.OilBarrelPerFoot));
+            Assertion(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, Quantity.From(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
         }
 
         [Fact]
@@ -245,6 +246,7 @@ namespace UnitsNet.Tests
             Assertion(VolumeConcentration.Info, VolumeConcentration.Zero);
             Assertion(VolumeFlow.Info, VolumeFlow.Zero);
             Assertion(VolumePerLength.Info, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.Info, WarpingMomentOfInertia.Zero);
         }
 
         [Fact]
@@ -354,6 +356,7 @@ namespace UnitsNet.Tests
             Assertion(VolumeConcentration.QuantityType, VolumeConcentration.Zero);
             Assertion(VolumeFlow.QuantityType, VolumeFlow.Zero);
             Assertion(VolumePerLength.QuantityType, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.QuantityType, WarpingMomentOfInertia.Zero);
         }
 
         [Fact]
@@ -463,6 +466,7 @@ namespace UnitsNet.Tests
             Assertion(VolumeConcentration.BaseDimensions, VolumeConcentration.Zero);
             Assertion(VolumeFlow.BaseDimensions, VolumeFlow.Zero);
             Assertion(VolumePerLength.BaseDimensions, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.BaseDimensions, WarpingMomentOfInertia.Zero);
         }
     }
 }

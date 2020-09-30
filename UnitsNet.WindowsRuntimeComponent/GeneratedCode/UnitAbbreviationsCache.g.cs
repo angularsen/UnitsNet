@@ -1560,6 +1560,12 @@ namespace UnitsNet
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.LiterPerMeter, new string[]{"l/m"}),
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.LiterPerMillimeter, new string[]{"l/mm"}),
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new string[]{"cm⁶", "cm^6"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new string[]{"dm⁶", "dm^6"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.FootToTheSixth, new string[]{"ft⁶", "ft^6"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.InchToTheSixth, new string[]{"in⁶", "in^6"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.MeterToTheSixth, new string[]{"m⁶", "m^6"}),
+                ("en-US", typeof(WarpingMomentOfInertiaUnit), (int)WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new string[]{"mm⁶", "mm^6"}),
             };
     }
 }
