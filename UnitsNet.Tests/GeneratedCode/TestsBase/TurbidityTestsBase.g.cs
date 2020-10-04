@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Turbidity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class TurbidityTestsBase
+    public abstract partial class TurbidityTestsBase : QuantityTestsBase
     {
         protected abstract double NTUInOneNTU { get; }
 
@@ -74,6 +75,21 @@ namespace UnitsNet.Tests
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new Turbidity(value: 1.0, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Turbidity(value: 1.0, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Turbidity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -134,6 +150,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Turbidity(value: 1.0, unit: Turbidity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var ntu = Turbidity.FromNTU(1);
@@ -141,6 +174,13 @@ namespace UnitsNet.Tests
             var ntuQuantity = ntu.ToUnit(TurbidityUnit.NTU);
             AssertEx.EqualTolerance(NTUInOneNTU, (double)ntuQuantity.Value, NTUTolerance);
             Assert.Equal(TurbidityUnit.NTU, ntuQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Turbidity.FromNTU(1).ToBaseUnit();
+            Assert.Equal(Turbidity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -529,6 +569,5 @@ namespace UnitsNet.Tests
             var quantity = Turbidity.FromNTU(value);
             Assert.Equal(Turbidity.FromNTU(-value), -quantity);
         }
-
     }
 }
