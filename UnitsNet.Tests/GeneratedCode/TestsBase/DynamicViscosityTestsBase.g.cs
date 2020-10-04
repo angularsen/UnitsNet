@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of DynamicViscosity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class DynamicViscosityTestsBase
+    public abstract partial class DynamicViscosityTestsBase : QuantityTestsBase
     {
         protected abstract double CentipoiseInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double MicropascalSecondsInOneNewtonSecondPerMeterSquared { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new DynamicViscosity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new DynamicViscosity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new DynamicViscosity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (DynamicViscosity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -206,6 +222,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new DynamicViscosity(value: 1, unit: DynamicViscosity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
@@ -249,6 +282,13 @@ namespace UnitsNet.Tests
             var reynQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.Reyn);
             AssertEx.EqualTolerance(ReynsInOneNewtonSecondPerMeterSquared, (double)reynQuantity.Value, ReynsTolerance);
             Assert.Equal(DynamicViscosityUnit.Reyn, reynQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1).ToBaseUnit();
+            Assert.Equal(DynamicViscosity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -664,6 +704,5 @@ namespace UnitsNet.Tests
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
             Assert.Equal(DynamicViscosity.FromNewtonSecondsPerMeterSquared(-value), -quantity);
         }
-
     }
 }

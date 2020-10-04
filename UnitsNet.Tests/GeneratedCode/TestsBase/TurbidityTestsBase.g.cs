@@ -74,13 +74,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Turbidity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Turbidity(value: 1, unitSystem: null));
         }
 
         [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Turbidity(value: 1.0, unitSystem: UnitSystem.SI);
+            Func<object> TestCode = () => new Turbidity(value: 1, unitSystem: UnitSystem.SI);
             if (SupportsSIUnitSystem)
             {
                 var quantity = (Turbidity) TestCode();
@@ -152,7 +152,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Turbidity(value: 1.0, unit: Turbidity.BaseUnit);
+            var quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)

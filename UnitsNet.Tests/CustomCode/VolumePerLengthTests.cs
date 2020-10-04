@@ -26,7 +26,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumePerLengthTests : VolumePerLengthTestsBase
     {
-        // Override properties in base class here
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CubicMetersPerMeterInOneCubicMeterPerMeter => 1;
 
         protected override double LitersPerMeterInOneCubicMeterPerMeter => 1000;
@@ -34,7 +34,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double OilBarrelsPerFootInOneCubicMeterPerMeter => 1.917134088;
 
         protected override double CubicYardsPerFootInOneCubicMeterPerMeter => 0.3986633487670267521605;
-        
+
         protected override double CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter => 0.3986641460953189427984;
 
         protected override double LitersPerKilometerInOneCubicMeterPerMeter => 1E6;

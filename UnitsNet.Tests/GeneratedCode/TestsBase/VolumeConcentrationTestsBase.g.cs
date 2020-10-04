@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of VolumeConcentration.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class VolumeConcentrationTestsBase
+    public abstract partial class VolumeConcentrationTestsBase : QuantityTestsBase
     {
         protected abstract double CentilitersPerLiterInOneDecimalFraction { get; }
         protected abstract double CentilitersPerMililiterInOneDecimalFraction { get; }
@@ -111,7 +112,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new VolumeConcentration(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new VolumeConcentration(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new VolumeConcentration(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (VolumeConcentration) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -286,6 +302,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decimalfraction = VolumeConcentration.FromDecimalFractions(1);
@@ -369,6 +402,13 @@ namespace UnitsNet.Tests
             var picoliterspermililiterQuantity = decimalfraction.ToUnit(VolumeConcentrationUnit.PicolitersPerMililiter);
             AssertEx.EqualTolerance(PicolitersPerMililiterInOneDecimalFraction, (double)picoliterspermililiterQuantity.Value, PicolitersPerMililiterTolerance);
             Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, picoliterspermililiterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = VolumeConcentration.FromDecimalFractions(1).ToBaseUnit();
+            Assert.Equal(VolumeConcentration.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -814,6 +854,5 @@ namespace UnitsNet.Tests
             var quantity = VolumeConcentration.FromDecimalFractions(value);
             Assert.Equal(VolumeConcentration.FromDecimalFractions(-value), -quantity);
         }
-
     }
 }

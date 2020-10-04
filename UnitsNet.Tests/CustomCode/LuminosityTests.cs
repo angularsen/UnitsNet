@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LuminosityTests : LuminosityTestsBase
     {
-        // Override properties in base class here
+        protected override bool SupportsSIUnitSystem => true;
         protected override double FemtowattsInOneWatt => 1e15;
 
         protected override double PicowattsInOneWatt => 1e12;

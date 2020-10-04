@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Area.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class AreaTestsBase
+    public abstract partial class AreaTestsBase : QuantityTestsBase
     {
         protected abstract double AcresInOneSquareMeter { get; }
         protected abstract double HectaresInOneSquareMeter { get; }
@@ -99,7 +100,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Area(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Area(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Area(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Area) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -238,6 +254,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Area(value: 1, unit: Area.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var squaremeter = Area.FromSquareMeters(1);
@@ -297,6 +330,13 @@ namespace UnitsNet.Tests
             var ussurveysquarefootQuantity = squaremeter.ToUnit(AreaUnit.UsSurveySquareFoot);
             AssertEx.EqualTolerance(UsSurveySquareFeetInOneSquareMeter, (double)ussurveysquarefootQuantity.Value, UsSurveySquareFeetTolerance);
             Assert.Equal(AreaUnit.UsSurveySquareFoot, ussurveysquarefootQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Area.FromSquareMeters(1).ToBaseUnit();
+            Assert.Equal(Area.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -724,6 +764,5 @@ namespace UnitsNet.Tests
             var quantity = Area.FromSquareMeters(value);
             Assert.Equal(Area.FromSquareMeters(-value), -quantity);
         }
-
     }
 }

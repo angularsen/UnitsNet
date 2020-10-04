@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Magnetization.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MagnetizationTestsBase
+    public abstract partial class MagnetizationTestsBase : QuantityTestsBase
     {
         protected abstract double AmperesPerMeterInOneAmperePerMeter { get; }
 
@@ -73,7 +74,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Magnetization(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Magnetization(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Magnetization(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Magnetization) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -134,6 +150,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Magnetization(value: 1, unit: Magnetization.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var amperepermeter = Magnetization.FromAmperesPerMeter(1);
@@ -141,6 +174,13 @@ namespace UnitsNet.Tests
             var amperepermeterQuantity = amperepermeter.ToUnit(MagnetizationUnit.AmperePerMeter);
             AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, (double)amperepermeterQuantity.Value, AmperesPerMeterTolerance);
             Assert.Equal(MagnetizationUnit.AmperePerMeter, amperepermeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Magnetization.FromAmperesPerMeter(1).ToBaseUnit();
+            Assert.Equal(Magnetization.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -529,6 +569,5 @@ namespace UnitsNet.Tests
             var quantity = Magnetization.FromAmperesPerMeter(value);
             Assert.Equal(Magnetization.FromAmperesPerMeter(-value), -quantity);
         }
-
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Illuminance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class IlluminanceTestsBase
+    public abstract partial class IlluminanceTestsBase : QuantityTestsBase
     {
         protected abstract double KiloluxInOneLux { get; }
         protected abstract double LuxInOneLux { get; }
@@ -79,7 +80,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Illuminance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Illuminance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Illuminance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Illuminance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -158,6 +174,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Illuminance(value: 1, unit: Illuminance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var lux = Illuminance.FromLux(1);
@@ -177,6 +210,13 @@ namespace UnitsNet.Tests
             var milliluxQuantity = lux.ToUnit(IlluminanceUnit.Millilux);
             AssertEx.EqualTolerance(MilliluxInOneLux, (double)milliluxQuantity.Value, MilliluxTolerance);
             Assert.Equal(IlluminanceUnit.Millilux, milliluxQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Illuminance.FromLux(1).ToBaseUnit();
+            Assert.Equal(Illuminance.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -574,6 +614,5 @@ namespace UnitsNet.Tests
             var quantity = Illuminance.FromLux(value);
             Assert.Equal(Illuminance.FromLux(-value), -quantity);
         }
-
     }
 }

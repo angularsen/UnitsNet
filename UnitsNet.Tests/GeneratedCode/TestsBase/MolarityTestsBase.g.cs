@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Molarity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MolarityTestsBase
+    public abstract partial class MolarityTestsBase : QuantityTestsBase
     {
         protected abstract double CentimolesPerLiterInOneMolesPerCubicMeter { get; }
         protected abstract double DecimolesPerLiterInOneMolesPerCubicMeter { get; }
@@ -87,7 +88,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Molarity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Molarity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Molarity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Molarity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -190,6 +206,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Molarity(value: 1, unit: Molarity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
@@ -225,6 +258,13 @@ namespace UnitsNet.Tests
             var picomolesperliterQuantity = molespercubicmeter.ToUnit(MolarityUnit.PicomolesPerLiter);
             AssertEx.EqualTolerance(PicomolesPerLiterInOneMolesPerCubicMeter, (double)picomolesperliterQuantity.Value, PicomolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.PicomolesPerLiter, picomolesperliterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Molarity.FromMolesPerCubicMeter(1).ToBaseUnit();
+            Assert.Equal(Molarity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -634,6 +674,5 @@ namespace UnitsNet.Tests
             var quantity = Molarity.FromMolesPerCubicMeter(value);
             Assert.Equal(Molarity.FromMolesPerCubicMeter(-value), -quantity);
         }
-
     }
 }

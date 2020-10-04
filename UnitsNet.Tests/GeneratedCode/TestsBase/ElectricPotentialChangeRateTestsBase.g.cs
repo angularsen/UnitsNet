@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricPotentialChangeRate.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricPotentialChangeRateTestsBase
+    public abstract partial class ElectricPotentialChangeRateTestsBase : QuantityTestsBase
     {
         protected abstract double KilovoltsPerHoursInOneVoltPerSecond { get; }
         protected abstract double KilovoltsPerMicrosecondsInOneVoltPerSecond { get; }
@@ -111,7 +112,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricPotentialChangeRate(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricPotentialChangeRate(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricPotentialChangeRate(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricPotentialChangeRate) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -286,6 +302,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricPotentialChangeRate(value: 1, unit: ElectricPotentialChangeRate.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var voltpersecond = ElectricPotentialChangeRate.FromVoltsPerSeconds(1);
@@ -369,6 +402,13 @@ namespace UnitsNet.Tests
             var voltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.VoltPerSecond);
             AssertEx.EqualTolerance(VoltsPerSecondsInOneVoltPerSecond, (double)voltpersecondQuantity.Value, VoltsPerSecondsTolerance);
             Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerSecond, voltpersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricPotentialChangeRate.FromVoltsPerSeconds(1).ToBaseUnit();
+            Assert.Equal(ElectricPotentialChangeRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -814,6 +854,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSeconds(value);
             Assert.Equal(ElectricPotentialChangeRate.FromVoltsPerSeconds(-value), -quantity);
         }
-
     }
 }

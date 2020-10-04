@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 

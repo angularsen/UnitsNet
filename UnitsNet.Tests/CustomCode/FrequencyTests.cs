@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class FrequencyTests : FrequencyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double HertzInOneHertz => 1;
 
         protected override double KilohertzInOneHertz => 1e-3;

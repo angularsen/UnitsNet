@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricField.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricFieldTestsBase
+    public abstract partial class ElectricFieldTestsBase : QuantityTestsBase
     {
         protected abstract double VoltsPerMeterInOneVoltPerMeter { get; }
 
@@ -73,7 +74,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricField(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricField(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricField(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricField) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -134,6 +150,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricField(value: 1, unit: ElectricField.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var voltpermeter = ElectricField.FromVoltsPerMeter(1);
@@ -141,6 +174,13 @@ namespace UnitsNet.Tests
             var voltpermeterQuantity = voltpermeter.ToUnit(ElectricFieldUnit.VoltPerMeter);
             AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, (double)voltpermeterQuantity.Value, VoltsPerMeterTolerance);
             Assert.Equal(ElectricFieldUnit.VoltPerMeter, voltpermeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricField.FromVoltsPerMeter(1).ToBaseUnit();
+            Assert.Equal(ElectricField.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -529,6 +569,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricField.FromVoltsPerMeter(value);
             Assert.Equal(ElectricField.FromVoltsPerMeter(-value), -quantity);
         }
-
     }
 }

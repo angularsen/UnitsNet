@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Force.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ForceTestsBase
+    public abstract partial class ForceTestsBase : QuantityTestsBase
     {
         protected abstract double DecanewtonsInOneNewton { get; }
         protected abstract double DyneInOneNewton { get; }
@@ -101,7 +102,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Force(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Force(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Force(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Force) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -246,6 +262,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Force(value: 1, unit: Force.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var newton = Force.FromNewtons(1);
@@ -309,6 +342,13 @@ namespace UnitsNet.Tests
             var tonneforceQuantity = newton.ToUnit(ForceUnit.TonneForce);
             AssertEx.EqualTolerance(TonnesForceInOneNewton, (double)tonneforceQuantity.Value, TonnesForceTolerance);
             Assert.Equal(ForceUnit.TonneForce, tonneforceQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Force.FromNewtons(1).ToBaseUnit();
+            Assert.Equal(Force.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -739,6 +779,5 @@ namespace UnitsNet.Tests
             var quantity = Force.FromNewtons(value);
             Assert.Equal(Force.FromNewtons(-value), -quantity);
         }
-
     }
 }

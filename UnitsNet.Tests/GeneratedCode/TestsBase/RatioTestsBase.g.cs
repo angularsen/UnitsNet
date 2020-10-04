@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Ratio.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class RatioTestsBase
+    public abstract partial class RatioTestsBase : QuantityTestsBase
     {
         protected abstract double DecimalFractionsInOneDecimalFraction { get; }
         protected abstract double PartsPerBillionInOneDecimalFraction { get; }
@@ -83,7 +84,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Ratio(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Ratio(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Ratio(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Ratio) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -174,6 +190,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decimalfraction = Ratio.FromDecimalFractions(1);
@@ -201,6 +234,13 @@ namespace UnitsNet.Tests
             var percentQuantity = decimalfraction.ToUnit(RatioUnit.Percent);
             AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(RatioUnit.Percent, percentQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Ratio.FromDecimalFractions(1).ToBaseUnit();
+            Assert.Equal(Ratio.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -604,6 +644,5 @@ namespace UnitsNet.Tests
             var quantity = Ratio.FromDecimalFractions(value);
             Assert.Equal(Ratio.FromDecimalFractions(-value), -quantity);
         }
-
     }
 }

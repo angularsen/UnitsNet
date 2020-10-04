@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TurbidityTests : TurbidityTestsBase
     {
-        // Override properties in base class here
         protected override bool SupportsSIUnitSystem => false;
         protected override double NTUInOneNTU => 1;
     }

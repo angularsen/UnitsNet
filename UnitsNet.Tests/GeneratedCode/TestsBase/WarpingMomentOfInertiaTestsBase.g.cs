@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of WarpingMomentOfInertia.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class WarpingMomentOfInertiaTestsBase
+    public abstract partial class WarpingMomentOfInertiaTestsBase : QuantityTestsBase
     {
         protected abstract double CentimetersToTheSixthInOneMeterToTheSixth { get; }
         protected abstract double DecimetersToTheSixthInOneMeterToTheSixth { get; }
@@ -83,7 +84,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new WarpingMomentOfInertia(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new WarpingMomentOfInertia(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new WarpingMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (WarpingMomentOfInertia) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -174,6 +190,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new WarpingMomentOfInertia(value: 1, unit: WarpingMomentOfInertia.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
@@ -201,6 +234,13 @@ namespace UnitsNet.Tests
             var millimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
             AssertEx.EqualTolerance(MillimetersToTheSixthInOneMeterToTheSixth, (double)millimetertothesixthQuantity.Value, MillimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, millimetertothesixthQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToBaseUnit();
+            Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -604,6 +644,5 @@ namespace UnitsNet.Tests
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(value);
             Assert.Equal(WarpingMomentOfInertia.FromMetersToTheSixth(-value), -quantity);
         }
-
     }
 }

@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LuminousFluxTests : LuminousFluxTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double LumensInOneLumen => 1;
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Pressure.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class PressureTestsBase
+    public abstract partial class PressureTestsBase : QuantityTestsBase
     {
         protected abstract double AtmospheresInOnePascal { get; }
         protected abstract double BarsInOnePascal { get; }
@@ -155,7 +156,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Pressure(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Pressure(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Pressure(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Pressure) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -462,6 +478,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Pressure(value: 1, unit: Pressure.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var pascal = Pressure.FromPascals(1);
@@ -633,6 +666,13 @@ namespace UnitsNet.Tests
             var torrQuantity = pascal.ToUnit(PressureUnit.Torr);
             AssertEx.EqualTolerance(TorrsInOnePascal, (double)torrQuantity.Value, TorrsTolerance);
             Assert.Equal(PressureUnit.Torr, torrQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Pressure.FromPascals(1).ToBaseUnit();
+            Assert.Equal(Pressure.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -1144,6 +1184,5 @@ namespace UnitsNet.Tests
             var quantity = Pressure.FromPascals(value);
             Assert.Equal(Pressure.FromPascals(-value), -quantity);
         }
-
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of BrakeSpecificFuelConsumption.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class BrakeSpecificFuelConsumptionTestsBase
+    public abstract partial class BrakeSpecificFuelConsumptionTestsBase : QuantityTestsBase
     {
         protected abstract double GramsPerKiloWattHourInOneKilogramPerJoule { get; }
         protected abstract double KilogramsPerJouleInOneKilogramPerJoule { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new BrakeSpecificFuelConsumption(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new BrakeSpecificFuelConsumption(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new BrakeSpecificFuelConsumption(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (BrakeSpecificFuelConsumption) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new BrakeSpecificFuelConsumption(value: 1, unit: BrakeSpecificFuelConsumption.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var poundpermechanicalhorsepowerhourQuantity = kilogramperjoule.ToUnit(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
             AssertEx.EqualTolerance(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, (double)poundpermechanicalhorsepowerhourQuantity.Value, PoundsPerMechanicalHorsepowerHourTolerance);
             Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, poundpermechanicalhorsepowerhourQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1).ToBaseUnit();
+            Assert.Equal(BrakeSpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
             Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(-value), -quantity);
         }
-
     }
 }

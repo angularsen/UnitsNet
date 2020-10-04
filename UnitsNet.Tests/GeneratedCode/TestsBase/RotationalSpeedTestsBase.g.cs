@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of RotationalSpeed.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class RotationalSpeedTestsBase
+    public abstract partial class RotationalSpeedTestsBase : QuantityTestsBase
     {
         protected abstract double CentiradiansPerSecondInOneRadianPerSecond { get; }
         protected abstract double DeciradiansPerSecondInOneRadianPerSecond { get; }
@@ -97,7 +98,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new RotationalSpeed(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new RotationalSpeed(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new RotationalSpeed(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (RotationalSpeed) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -230,6 +246,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
@@ -285,6 +318,13 @@ namespace UnitsNet.Tests
             var revolutionpersecondQuantity = radianpersecond.ToUnit(RotationalSpeedUnit.RevolutionPerSecond);
             AssertEx.EqualTolerance(RevolutionsPerSecondInOneRadianPerSecond, (double)revolutionpersecondQuantity.Value, RevolutionsPerSecondTolerance);
             Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, revolutionpersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = RotationalSpeed.FromRadiansPerSecond(1).ToBaseUnit();
+            Assert.Equal(RotationalSpeed.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -709,6 +749,5 @@ namespace UnitsNet.Tests
             var quantity = RotationalSpeed.FromRadiansPerSecond(value);
             Assert.Equal(RotationalSpeed.FromRadiansPerSecond(-value), -quantity);
         }
-
     }
 }

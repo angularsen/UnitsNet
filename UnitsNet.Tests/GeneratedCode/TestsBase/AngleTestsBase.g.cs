@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Angle.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class AngleTestsBase
+    public abstract partial class AngleTestsBase : QuantityTestsBase
     {
         protected abstract double ArcminutesInOneDegree { get; }
         protected abstract double ArcsecondsInOneDegree { get; }
@@ -99,7 +100,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Angle(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Angle(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Angle(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Angle) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -238,6 +254,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Angle(value: 1, unit: Angle.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var degree = Angle.FromDegrees(1);
@@ -297,6 +330,13 @@ namespace UnitsNet.Tests
             var revolutionQuantity = degree.ToUnit(AngleUnit.Revolution);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, (double)revolutionQuantity.Value, RevolutionsTolerance);
             Assert.Equal(AngleUnit.Revolution, revolutionQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Angle.FromDegrees(1).ToBaseUnit();
+            Assert.Equal(Angle.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -724,6 +764,5 @@ namespace UnitsNet.Tests
             var quantity = Angle.FromDegrees(value);
             Assert.Equal(Angle.FromDegrees(-value), -quantity);
         }
-
     }
 }

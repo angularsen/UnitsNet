@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricSurfaceChargeDensity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricSurfaceChargeDensityTestsBase
+    public abstract partial class ElectricSurfaceChargeDensityTestsBase : QuantityTestsBase
     {
         protected abstract double CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter { get; }
         protected abstract double CoulombsPerSquareInchInOneCoulombPerSquareMeter { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricSurfaceChargeDensity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricSurfaceChargeDensity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricSurfaceChargeDensity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricSurfaceChargeDensity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricSurfaceChargeDensity(value: 1, unit: ElectricSurfaceChargeDensity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var coulombpersquaremeter = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var coulombpersquaremeterQuantity = coulombpersquaremeter.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
             AssertEx.EqualTolerance(CoulombsPerSquareMeterInOneCoulombPerSquareMeter, (double)coulombpersquaremeterQuantity.Value, CoulombsPerSquareMeterTolerance);
             Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, coulombpersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1).ToBaseUnit();
+            Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value);
             Assert.Equal(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(-value), -quantity);
         }
-
     }
 }

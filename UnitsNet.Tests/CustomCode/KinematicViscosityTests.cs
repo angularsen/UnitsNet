@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class KinematicViscosityTests : KinematicViscosityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentistokesInOneSquareMeterPerSecond => 1e6;
 
         protected override double DecistokesInOneSquareMeterPerSecond => 1e5;

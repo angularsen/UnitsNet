@@ -9,6 +9,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureTests : TemperatureTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double DegreesCelsiusInOneKelvin => -272.15;
 
         protected override double DegreesDelisleInOneKelvin => 558.2249999999999;

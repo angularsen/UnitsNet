@@ -74,6 +74,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -87,7 +88,7 @@ namespace UnitsNet.Tests
     /// Test of {_quantity.Name}.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class {_quantity.Name}TestsBase
+    public abstract partial class {_quantity.Name}TestsBase : QuantityTestsBase
     {{");
             foreach (var unit in _quantity.Units) Writer.WL($@"
         protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
@@ -127,13 +128,28 @@ namespace UnitsNet.Tests
         {{
             Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
         }}
+"); Writer.WL($@"
 
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {{
-            Assert.Throws<ArgumentNullException>(() => new {_quantity.Name}(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new {_quantity.Name}(value: 1, unitSystem: null));
         }}
-"); Writer.WL($@"
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            Func<object> TestCode = () => new {_quantity.Name}(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {{
+                var quantity = ({_quantity.Name}) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }}
+            else
+            {{
+                Assert.Throws<ArgumentException>(TestCode);
+            }}
+        }}
 
         [Fact]
         public void {_quantity.Name}_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -208,6 +224,23 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {{
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }}
+            else
+            {{
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }}
+        }}
+
+        [Fact]
         public void ToUnit()
         {{
             var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
@@ -221,6 +254,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.PluralName}Tolerance);
             Assert.Equal({GetUnitFullName(unit)}, {asQuantityVariableName}.Unit);");
             }
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {{
+            var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToBaseUnit();
+            Assert.Equal({_quantity.Name}.BaseUnit, quantityInBaseUnit.Unit);");
             Writer.WL($@"
         }}
 
@@ -657,11 +698,10 @@ namespace UnitsNet.Tests
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(value);
             Assert.Equal({_quantity.Name}.From{_baseUnit.PluralName}(-value), -quantity);
-        }}
-");
+        }}");
         }
 
-Writer.WL( $@"
+Writer.WL($@"
     }}
 }}" );
             return Writer.ToString();

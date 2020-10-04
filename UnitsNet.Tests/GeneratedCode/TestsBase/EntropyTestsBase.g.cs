@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Entropy.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class EntropyTestsBase
+    public abstract partial class EntropyTestsBase : QuantityTestsBase
     {
         protected abstract double CaloriesPerKelvinInOneJoulePerKelvin { get; }
         protected abstract double JoulesPerDegreeCelsiusInOneJoulePerKelvin { get; }
@@ -85,7 +86,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Entropy(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Entropy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Entropy(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Entropy) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -182,6 +198,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
@@ -213,6 +246,13 @@ namespace UnitsNet.Tests
             var megajouleperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.MegajoulePerKelvin);
             AssertEx.EqualTolerance(MegajoulesPerKelvinInOneJoulePerKelvin, (double)megajouleperkelvinQuantity.Value, MegajoulesPerKelvinTolerance);
             Assert.Equal(EntropyUnit.MegajoulePerKelvin, megajouleperkelvinQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Entropy.FromJoulesPerKelvin(1).ToBaseUnit();
+            Assert.Equal(Entropy.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -619,6 +659,5 @@ namespace UnitsNet.Tests
             var quantity = Entropy.FromJoulesPerKelvin(value);
             Assert.Equal(Entropy.FromJoulesPerKelvin(-value), -quantity);
         }
-
     }
 }

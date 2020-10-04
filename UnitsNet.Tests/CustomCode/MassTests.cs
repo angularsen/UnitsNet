@@ -9,6 +9,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassTests : MassTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double CentigramsInOneKilogram => 1E5;
 
         protected override double DecagramsInOneKilogram => 1E2;

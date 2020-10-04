@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class WarpingMomentOfInertiaTests : WarpingMomentOfInertiaTestsBase
     {
-        // Override properties in base class here
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentimetersToTheSixthInOneMeterToTheSixth => 1e12;
         protected override double DecimetersToTheSixthInOneMeterToTheSixth => 1e6;
         protected override double FeetToTheSixthInOneMeterToTheSixth => 1247.12569;

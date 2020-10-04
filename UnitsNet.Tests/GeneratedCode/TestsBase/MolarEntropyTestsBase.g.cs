@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MolarEntropy.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MolarEntropyTestsBase
+    public abstract partial class MolarEntropyTestsBase : QuantityTestsBase
     {
         protected abstract double JoulesPerMoleKelvinInOneJoulePerMoleKelvin { get; }
         protected abstract double KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MolarEntropy(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MolarEntropy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MolarEntropy(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MolarEntropy) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MolarEntropy(value: 1, unit: MolarEntropy.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var megajoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin);
             AssertEx.EqualTolerance(MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)megajoulepermolekelvinQuantity.Value, MegajoulesPerMoleKelvinTolerance);
             Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, megajoulepermolekelvinQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MolarEntropy.FromJoulesPerMoleKelvin(1).ToBaseUnit();
+            Assert.Equal(MolarEntropy.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
             Assert.Equal(MolarEntropy.FromJoulesPerMoleKelvin(-value), -quantity);
         }
-
     }
 }

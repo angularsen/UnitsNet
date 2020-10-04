@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 

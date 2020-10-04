@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MagnetizationTests : MagnetizationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double AmperesPerMeterInOneAmperePerMeter => 1;
     }
 }

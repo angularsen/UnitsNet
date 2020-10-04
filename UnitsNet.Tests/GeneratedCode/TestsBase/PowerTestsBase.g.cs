@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Power.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class PowerTestsBase
+    public abstract partial class PowerTestsBase : QuantityTestsBase
     {
         protected abstract double BoilerHorsepowerInOneWatt { get; }
         protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
@@ -104,6 +105,27 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerUnit.Watt, quantity.Unit);
         }
 
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Power(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Power(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Power) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
+        }
 
         [Fact]
         public void Power_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -294,6 +316,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Power(value: 1, unit: Power.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var watt = Power.FromWatts(1);
@@ -397,6 +436,13 @@ namespace UnitsNet.Tests
             var wattQuantity = watt.ToUnit(PowerUnit.Watt);
             AssertEx.EqualTolerance(WattsInOneWatt, (double)wattQuantity.Value, WattsTolerance);
             Assert.Equal(PowerUnit.Watt, wattQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Power.FromWatts(1).ToBaseUnit();
+            Assert.Equal(Power.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -857,6 +903,5 @@ namespace UnitsNet.Tests
             var quantity = Power.FromWatts(value);
             Assert.Equal(Power.FromWatts(-value), -quantity);
         }
-
     }
 }

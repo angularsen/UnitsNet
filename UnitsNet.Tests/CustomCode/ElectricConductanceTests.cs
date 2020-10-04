@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricConductanceTests : ElectricConductanceTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double SiemensInOneSiemens => 1;
 
         protected override double MillisiemensInOneSiemens => 1E3;

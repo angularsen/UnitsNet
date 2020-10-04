@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MagneticFieldTests : MagneticFieldTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double TeslasInOneTesla => 1;
         protected override double NanoteslasInOneTesla => 1e9;
         protected override double MicroteslasInOneTesla => 1e6;

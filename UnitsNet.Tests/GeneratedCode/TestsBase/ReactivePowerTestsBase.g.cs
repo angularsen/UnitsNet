@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ReactivePower.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ReactivePowerTestsBase
+    public abstract partial class ReactivePowerTestsBase : QuantityTestsBase
     {
         protected abstract double GigavoltamperesReactiveInOneVoltampereReactive { get; }
         protected abstract double KilovoltamperesReactiveInOneVoltampereReactive { get; }
@@ -79,7 +80,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ReactivePower(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ReactivePower(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ReactivePower(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ReactivePower) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -158,6 +174,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ReactivePower(value: 1, unit: ReactivePower.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
@@ -177,6 +210,13 @@ namespace UnitsNet.Tests
             var voltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.VoltampereReactive);
             AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, (double)voltamperereactiveQuantity.Value, VoltamperesReactiveTolerance);
             Assert.Equal(ReactivePowerUnit.VoltampereReactive, voltamperereactiveQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ReactivePower.FromVoltamperesReactive(1).ToBaseUnit();
+            Assert.Equal(ReactivePower.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -574,6 +614,5 @@ namespace UnitsNet.Tests
             var quantity = ReactivePower.FromVoltamperesReactive(value);
             Assert.Equal(ReactivePower.FromVoltamperesReactive(-value), -quantity);
         }
-
     }
 }

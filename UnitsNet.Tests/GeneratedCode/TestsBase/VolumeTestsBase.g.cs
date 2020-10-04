@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Volume.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class VolumeTestsBase
+    public abstract partial class VolumeTestsBase : QuantityTestsBase
     {
         protected abstract double AcreFeetInOneCubicMeter { get; }
         protected abstract double AuTablespoonsInOneCubicMeter { get; }
@@ -173,7 +174,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Volume(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Volume(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Volume(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Volume) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -534,6 +550,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Volume(value: 1, unit: Volume.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var cubicmeter = Volume.FromCubicMeters(1);
@@ -741,6 +774,13 @@ namespace UnitsNet.Tests
             var usteaspoonQuantity = cubicmeter.ToUnit(VolumeUnit.UsTeaspoon);
             AssertEx.EqualTolerance(UsTeaspoonsInOneCubicMeter, (double)usteaspoonQuantity.Value, UsTeaspoonsTolerance);
             Assert.Equal(VolumeUnit.UsTeaspoon, usteaspoonQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Volume.FromCubicMeters(1).ToBaseUnit();
+            Assert.Equal(Volume.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -1279,6 +1319,5 @@ namespace UnitsNet.Tests
             var quantity = Volume.FromCubicMeters(value);
             Assert.Equal(Volume.FromCubicMeters(-value), -quantity);
         }
-
     }
 }

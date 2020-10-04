@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentilitersInOneCubicMeter => 1E5;
 
         protected override double CubicCentimetersInOneCubicMeter => 1E6;

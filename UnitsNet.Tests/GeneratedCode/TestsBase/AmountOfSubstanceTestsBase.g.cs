@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of AmountOfSubstance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class AmountOfSubstanceTestsBase
+    public abstract partial class AmountOfSubstanceTestsBase : QuantityTestsBase
     {
         protected abstract double CentimolesInOneMole { get; }
         protected abstract double CentipoundMolesInOneMole { get; }
@@ -101,7 +102,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new AmountOfSubstance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new AmountOfSubstance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new AmountOfSubstance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (AmountOfSubstance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -246,6 +262,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new AmountOfSubstance(value: 1, unit: AmountOfSubstance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var mole = AmountOfSubstance.FromMoles(1);
@@ -309,6 +342,13 @@ namespace UnitsNet.Tests
             var poundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.PoundMole);
             AssertEx.EqualTolerance(PoundMolesInOneMole, (double)poundmoleQuantity.Value, PoundMolesTolerance);
             Assert.Equal(AmountOfSubstanceUnit.PoundMole, poundmoleQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = AmountOfSubstance.FromMoles(1).ToBaseUnit();
+            Assert.Equal(AmountOfSubstance.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -739,6 +779,5 @@ namespace UnitsNet.Tests
             var quantity = AmountOfSubstance.FromMoles(value);
             Assert.Equal(AmountOfSubstance.FromMoles(-value), -quantity);
         }
-
     }
 }
