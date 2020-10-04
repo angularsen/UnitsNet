@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AmountOfSubstanceTests : AmountOfSubstanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double CentimolesInOneMole => 1e2;
         protected override double CentipoundMolesInOneMole => 0.002204622621848776 * 1e2;

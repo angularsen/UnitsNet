@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeFlowTests : VolumeFlowTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
         protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3.6e3;
 
         protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 6e4;

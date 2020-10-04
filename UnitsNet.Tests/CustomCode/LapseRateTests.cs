@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LapseRateTests : LapseRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
         protected override double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer => 1e0;
 
         [Fact]

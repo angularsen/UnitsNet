@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IlluminanceTests : IlluminanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
         protected override double MilliluxInOneLux => 1E3;
 
         protected override double LuxInOneLux => 1;

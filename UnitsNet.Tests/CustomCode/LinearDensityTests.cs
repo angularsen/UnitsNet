@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LinearDensityTests : LinearDensityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
 
         protected override double MicrogramsPerMillimeterInOneKilogramPerMeter => 1e6;
         protected override double MicrogramsPerCentimeterInOneKilogramPerMeter => 1e7;

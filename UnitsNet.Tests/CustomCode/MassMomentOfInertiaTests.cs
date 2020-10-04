@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassMomentOfInertiaTests : MassMomentOfInertiaTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
 
         protected override double GramSquareCentimetersInOneKilogramSquareMeter => 1e7;
 

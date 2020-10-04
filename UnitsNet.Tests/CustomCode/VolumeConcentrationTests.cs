@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeConcentrationTests : VolumeConcentrationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
+        protected override bool SupportsSIUnitSystem => false;
 
         #region Unit Conversion Coefficients
         protected override double LitersPerMililiterInOneDecimalFraction => 1E-3;

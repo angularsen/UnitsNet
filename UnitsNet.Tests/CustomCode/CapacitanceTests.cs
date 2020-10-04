@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class CapacitanceTests : CapacitanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double FaradsInOneFarad => 1;
 
