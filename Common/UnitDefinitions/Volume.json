@@ -29,6 +29,9 @@
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Hecto", "Kilo" ],
+      "BaseUnits": {
+        "L": "Meter"
+      },
       "Localization": [
         {
           "Culture": "en-US",

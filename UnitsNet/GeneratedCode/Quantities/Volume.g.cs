@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicHectometer, new BaseUnits(length: LengthUnit.Hectometer)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, BaseUnits.Undefined),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, BaseUnits.Undefined),
