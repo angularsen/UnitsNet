@@ -25,7 +25,7 @@ function Update-GeneratedCode {
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
+function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
@@ -51,6 +51,21 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    if ($lastexitcode -ne 0) { exit 1 }
+  }
+
+  if (-not $IncludeNanoFramework)
+  {
+    write-host -foreground yellow "Skipping NanoFramework build."
+  }
+  else
+  {
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.NanoFramework.msbuild.log"
+    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
+
+    # TODO FIX ME, `dotnet build` and `msbuild` both returns `error MSB4057: The target "Build" does not exist in the project.`
+    dotnet build --configuration Release "$root\UnitsNet.NanoFramework.sln" $fileLoggerArg $appVeyorLoggerArg
+    # & "$msbuild" "$root\UnitsNet.NanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -114,6 +129,14 @@ function Start-PackNugets {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
     & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   }
+
+  if (-not $IncludeNanoFramework) {
+    write-host -foreground yellow "Skipping NanoFramework nuget pack."
+  } else {
+    write-host -foreground yellow "NanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
+    & $nuget pack "$root\UnitsNet.NanoFramework\UnitsNet.NanoFramework.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  }
+
 
   write-host -foreground blue "Pack nugets...END`n"
 }
