@@ -119,7 +119,7 @@ namespace UnitsNet.Tests
                 Assert.Throws<ArgumentException>(() => new VolumeConcentration(1, UnitSystem.SI));
                 Assert.Throws<ArgumentException>(() => new VolumeFlow(1, UnitSystem.SI));
                 AssertUnitValue(new VolumePerLength(1, UnitSystem.SI), 1, VolumePerLengthUnit.CubicMeterPerMeter);
-                Assert.Throws<ArgumentException>(() => new Volume(1, UnitSystem.SI));
+                AssertUnitValue(new Volume(1, UnitSystem.SI), 1, VolumeUnit.CubicMeter);
             }
 
             private static void AssertUnitValue(IQuantity actual, double expectedValue, Enum expectedUnit)
