@@ -32,8 +32,10 @@ CodeGen.exe --ver
 Hit TAB and it should now suggest `--version` and `--verbose` parameters.
 This should work with any .exe that is compiled with Dragonfruit's app model.
 
-## nanoFramework project generation
+## nanoFramework
+
+.NET [nanoFramework](https://github.com/nanoframework/Home) goal is to be a platform that enables the writing of managed code applications for constrained embedded devices. Developers can harness the familiar IDE Visual Studio and their .NET (C#) knowledge to quickly write applications without having to worry about the low level hardware intricacies of a micro-controller. Examples of supported micro controllers are ESP32, STM32F429I, ST Nuclea64, TI CC3220SF and more! The pleasure of .NET where everyone is usually writting in C/C++.
 
 By default, the code generator will as well generate automatically 1 project per Quantity.
 
-You can load all the projects at once using the automatically generated solution ```nanoFramework.UnitsNet.sln```
+You can load all the projects at once using the automatically generated solution ```UnitsNet.nanoFramework.sln```

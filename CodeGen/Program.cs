@@ -43,7 +43,7 @@ namespace CodeGen
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
         /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
-        /// <param name="skipNanoFramework">Skip generate nanoFrmaework Units</param>
+        /// <param name="skipNanoFramework">Skip generate nanoFrmaework Units? Defaults to false</param>
         private static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false)
         {
             Log.Logger = new LoggerConfiguration()

@@ -28,7 +28,7 @@ namespace CodeGen.Generators
         /// <param name="quantities">The quantities to create</param>
         public static void Generate(string rootDir, Quantity[] quantities)
         {
-            var outputDir = Path.Combine(rootDir, "NanoFramework", "GeneratedCode");
+            var outputDir = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
             var outputQuantitites = Path.Combine(outputDir, "Quantities");
             var outputUnits = Path.Combine(outputDir, "Units");
             var outputProperties = Path.Combine(outputDir, "Properties");
@@ -46,6 +46,7 @@ namespace CodeGen.Generators
             GenerateProperties(Path.Combine(outputProperties, "AssemblyInfo.cs"));
             Log.Information($"Property(OK)");
 
+            int numberQuantity = 0;
             foreach (var quantity in quantities)
             {
                 // Skip decimal based units, they are not supported by nanoFramework
@@ -60,10 +61,12 @@ namespace CodeGen.Generators
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
                 GenerateProject(sb, quantity, Path.Combine(outputDir, $"{quantity.Name}.nfproj"));
                 Log.Information(sb.ToString());
+                numberQuantity++;
             }
 
-            GenerateSolution(quantities, Path.Combine(outputDir, "nanoFrmawork.UnitsNet.sln"));
-            Log.Information("nanoFrmawork.UnitsNet.sln generated");
+            GenerateSolution(quantities, Path.Combine(outputDir, "UnitsNet.nanoFrmawork.sln"));
+            Log.Information("UnitsNet.nanoFrmawork.sln generated");
+            Log.Information($"Total quantities generated: {numberQuantity}");
         }
 
         private static void GeneratePackage(string filePath)
@@ -100,8 +103,6 @@ namespace CodeGen.Generators
 
         private static void GenerateProject(StringBuilder sb, Quantity quantity, string filePath)
         {
-            // This will have to be adjusted
-            // $(MSBuildToolsPath)..\..\..\nanoFramework\v1.0\
             var content = new ProjectGenerator(quantity, @"$(MSBuildToolsPath)..\..\..\nanoFramework\v1.0\").Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("project(OK) ");
