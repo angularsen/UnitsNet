@@ -174,10 +174,10 @@ namespace UnitsNet
                     return MolarEnergy.From(value, MolarEnergy.BaseUnit);
                 case QuantityType.MolarEntropy:
                     return MolarEntropy.From(value, MolarEntropy.BaseUnit);
-                case QuantityType.Molarity:
-                    return Molarity.From(value, Molarity.BaseUnit);
                 case QuantityType.MolarMass:
                     return MolarMass.From(value, MolarMass.BaseUnit);
+                case QuantityType.Molarity:
+                    return Molarity.From(value, Molarity.BaseUnit);
                 case QuantityType.Permeability:
                     return Permeability.From(value, Permeability.BaseUnit);
                 case QuantityType.Permittivity:
@@ -458,11 +458,11 @@ namespace UnitsNet
                 case MolarEntropyUnit molarEntropyUnit:
                     quantity = MolarEntropy.From(value, molarEntropyUnit);
                     return true;
-                case MolarityUnit molarityUnit:
-                    quantity = Molarity.From(value, molarityUnit);
-                    return true;
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
+                    return true;
+                case MolarityUnit molarityUnit:
+                    quantity = Molarity.From(value, molarityUnit);
                     return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
@@ -722,10 +722,10 @@ namespace UnitsNet
                     return parser.TryParse<MolarEnergy, MolarEnergyUnit>(quantityString, formatProvider, MolarEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(MolarEntropy):
                     return parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity);
-                case Type _ when quantityType == typeof(Molarity):
-                    return parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity);
                 case Type _ when quantityType == typeof(MolarMass):
                     return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
+                case Type _ when quantityType == typeof(Molarity):
+                    return parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity);
                 case Type _ when quantityType == typeof(Permeability):
                     return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);
                 case Type _ when quantityType == typeof(Permittivity):
