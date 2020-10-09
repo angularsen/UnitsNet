@@ -29,12 +29,15 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Difference between two temperatures. The conversions are different than for Temperature.
+    ///     Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Turbidity
+    /// </remarks>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class TemperatureDelta : IQuantity
+    public sealed partial class Turbidity : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,21 +47,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly TemperatureDeltaUnit? _unit;
+        private readonly TurbidityUnit? _unit;
 
-        static TemperatureDelta()
+        static Turbidity()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo(QuantityType.TemperatureDelta, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo(QuantityType.Turbidity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit Kelvin.
+        ///     Creates the quantity with a value of 0 in the base unit NTU.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public TemperatureDelta()
+        public Turbidity()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -71,9 +74,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private TemperatureDelta(double value, TemperatureDeltaUnit unit)
+        private Turbidity(double value, TurbidityUnit unit)
         {
-            if(unit == TemperatureDeltaUnit.Undefined)
+            if(unit == TurbidityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -93,34 +96,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of TemperatureDelta, which is Kelvin. All conversions go via this value.
+        ///     The base unit of Turbidity, which is NTU. All conversions go via this value.
         /// </summary>
-        public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+        public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
 
         /// <summary>
-        /// Represents the largest possible value of TemperatureDelta
+        /// Represents the largest possible value of Turbidity
         /// </summary>
-        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
+        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of TemperatureDelta
+        /// Represents the smallest possible value of Turbidity
         /// </summary>
-        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
+        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
+        public static QuantityType QuantityType { get; } = QuantityType.Turbidity;
 
         /// <summary>
-        ///     All units of measurement for the TemperatureDelta quantity.
+        ///     All units of measurement for the Turbidity quantity.
         /// </summary>
-        public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
+        public static TurbidityUnit[] Units { get; } = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit NTU.
         /// </summary>
-        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, BaseUnit);
+        public static Turbidity Zero { get; } = new Turbidity(0, BaseUnit);
 
         #endregion
 
@@ -137,68 +140,28 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TurbidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => TemperatureDelta.QuantityType;
+        public QuantityType Type => Turbidity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => TemperatureDelta.BaseDimensions;
+        public BaseDimensions Dimensions => Turbidity.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesCelsius.
+        ///     Get Turbidity in NTU.
         /// </summary>
-        public double DegreesCelsius => As(TemperatureDeltaUnit.DegreeCelsius);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesDelisle.
-        /// </summary>
-        public double DegreesDelisle => As(TemperatureDeltaUnit.DegreeDelisle);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesFahrenheit.
-        /// </summary>
-        public double DegreesFahrenheit => As(TemperatureDeltaUnit.DegreeFahrenheit);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesNewton.
-        /// </summary>
-        public double DegreesNewton => As(TemperatureDeltaUnit.DegreeNewton);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesRankine.
-        /// </summary>
-        public double DegreesRankine => As(TemperatureDeltaUnit.DegreeRankine);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesReaumur.
-        /// </summary>
-        public double DegreesReaumur => As(TemperatureDeltaUnit.DegreeReaumur);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesRoemer.
-        /// </summary>
-        public double DegreesRoemer => As(TemperatureDeltaUnit.DegreeRoemer);
-
-        /// <summary>
-        ///     Get TemperatureDelta in Kelvins.
-        /// </summary>
-        public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
-
-        /// <summary>
-        ///     Get TemperatureDelta in MillidegreesCelsius.
-        /// </summary>
-        public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+        public double NTU => As(TurbidityUnit.NTU);
 
         #endregion
 
@@ -209,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(TemperatureDeltaUnit unit)
+        public static string GetAbbreviation(TurbidityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -220,7 +183,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(TemperatureDeltaUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(TurbidityUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -231,107 +194,27 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get TemperatureDelta from DegreesCelsius.
+        ///     Get Turbidity from NTU.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesCelsius(double degreescelsius)
+        public static Turbidity FromNTU(double ntu)
         {
-            double value = (double) degreescelsius;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesDelisle.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesDelisle(double degreesdelisle)
-        {
-            double value = (double) degreesdelisle;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesFahrenheit.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesFahrenheit(double degreesfahrenheit)
-        {
-            double value = (double) degreesfahrenheit;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesNewton.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesNewton(double degreesnewton)
-        {
-            double value = (double) degreesnewton;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesRankine.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesRankine(double degreesrankine)
-        {
-            double value = (double) degreesrankine;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesReaumur.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesReaumur(double degreesreaumur)
-        {
-            double value = (double) degreesreaumur;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesRoemer.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesRoemer(double degreesroemer)
-        {
-            double value = (double) degreesroemer;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from Kelvins.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromKelvins(double kelvins)
-        {
-            double value = (double) kelvins;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from MillidegreesCelsius.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromMillidegreesCelsius(double millidegreescelsius)
-        {
-            double value = (double) millidegreescelsius;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
+            double value = (double) ntu;
+            return new Turbidity(value, TurbidityUnit.NTU);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="TemperatureDeltaUnit" /> to <see cref="TemperatureDelta" />.
+        ///     Dynamically convert from value and unit enum <see cref="TurbidityUnit" /> to <see cref="Turbidity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>TemperatureDelta unit value.</returns>
+        /// <returns>Turbidity unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static TemperatureDelta From(double value, TemperatureDeltaUnit fromUnit)
+        public static Turbidity From(double value, TurbidityUnit fromUnit)
         {
-            return new TemperatureDelta((double)value, fromUnit);
+            return new Turbidity((double)value, fromUnit);
         }
 
         #endregion
@@ -360,7 +243,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static TemperatureDelta Parse(string str)
+        public static Turbidity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -388,10 +271,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static TemperatureDelta Parse(string str, [CanBeNull] string cultureName)
+        public static Turbidity Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<TemperatureDelta, TemperatureDeltaUnit>(
+            return QuantityParser.Default.Parse<Turbidity, TurbidityUnit>(
                 str,
                 provider,
                 From);
@@ -405,7 +288,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out TemperatureDelta result)
+        public static bool TryParse([CanBeNull] string str, out Turbidity result)
         {
             return TryParse(str, null, out result);
         }
@@ -420,10 +303,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out TemperatureDelta result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out Turbidity result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<TemperatureDelta, TemperatureDeltaUnit>(
+            return QuantityParser.Default.TryParse<Turbidity, TurbidityUnit>(
                 str,
                 provider,
                 From,
@@ -439,7 +322,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static TemperatureDeltaUnit ParseUnit(string str)
+        public static TurbidityUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -454,13 +337,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static TemperatureDeltaUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static TurbidityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<TemperatureDeltaUnit>(str, provider);
+            return UnitParser.Default.Parse<TurbidityUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit(string str, out TurbidityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -475,10 +358,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out TurbidityUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<TemperatureDeltaUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<TurbidityUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -488,13 +371,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is TemperatureDelta objTemperatureDelta)) throw new ArgumentException("Expected type TemperatureDelta.", nameof(obj));
+            if(!(obj is Turbidity objTurbidity)) throw new ArgumentException("Expected type Turbidity.", nameof(obj));
 
-            return CompareTo(objTemperatureDelta);
+            return CompareTo(objTurbidity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(TemperatureDelta other)
+        internal int CompareTo(Turbidity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -502,20 +385,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is TemperatureDelta objTemperatureDelta))
+            if(obj is null || !(obj is Turbidity objTurbidity))
                 return false;
 
-            return Equals(objTemperatureDelta);
+            return Equals(objTurbidity);
         }
 
-        public bool Equals(TemperatureDelta other)
+        public bool Equals(Turbidity other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another TemperatureDelta within the given absolute or relative tolerance.
+        ///     Compare equality to another Turbidity within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -553,7 +436,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(TemperatureDelta other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Turbidity other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -567,7 +450,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current TemperatureDelta.</returns>
+        /// <returns>A hash code for the current Turbidity.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -577,13 +460,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((TemperatureDeltaUnit)unit);
+        double IQuantity.As(object unit) => As((TurbidityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureDeltaUnit unit)
+        public double As(TurbidityUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -593,13 +476,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
+        ///     Converts this Turbidity to another Turbidity with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A TemperatureDelta with the specified unit.</returns>
-        public TemperatureDelta ToUnit(TemperatureDeltaUnit unit)
+        /// <returns>A Turbidity with the specified unit.</returns>
+        public Turbidity ToUnit(TurbidityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new TemperatureDelta(convertedValue, unit);
+            return new Turbidity(convertedValue, unit);
         }
 
         /// <summary>
@@ -611,21 +494,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
+                case TurbidityUnit.NTU: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(TemperatureDeltaUnit unit)
+        private double AsBaseNumericType(TurbidityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -634,15 +509,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
-                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue*33/100;
-                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
-                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
-                case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
+                case TurbidityUnit.NTU: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

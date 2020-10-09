@@ -130,11 +130,13 @@ namespace UnitsNet.Tests
             Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
             Assertion(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter, Quantity.From(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter));
+            Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));
             Assertion(3, VolumeUnit.UsTeaspoon, Quantity.From(3, VolumeUnit.UsTeaspoon));
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
             Assertion(3, VolumePerLengthUnit.OilBarrelPerFoot, Quantity.From(3, VolumePerLengthUnit.OilBarrelPerFoot));
+            Assertion(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, Quantity.From(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
         }
 
         [Fact]
@@ -238,11 +240,13 @@ namespace UnitsNet.Tests
             Assertion(ThermalResistance.Info, ThermalResistance.Zero);
             Assertion(Torque.Info, Torque.Zero);
             Assertion(TorquePerLength.Info, TorquePerLength.Zero);
+            Assertion(Turbidity.Info, Turbidity.Zero);
             Assertion(VitaminA.Info, VitaminA.Zero);
             Assertion(Volume.Info, Volume.Zero);
             Assertion(VolumeConcentration.Info, VolumeConcentration.Zero);
             Assertion(VolumeFlow.Info, VolumeFlow.Zero);
             Assertion(VolumePerLength.Info, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.Info, WarpingMomentOfInertia.Zero);
         }
 
         [Fact]
@@ -346,11 +350,13 @@ namespace UnitsNet.Tests
             Assertion(ThermalResistance.QuantityType, ThermalResistance.Zero);
             Assertion(Torque.QuantityType, Torque.Zero);
             Assertion(TorquePerLength.QuantityType, TorquePerLength.Zero);
+            Assertion(Turbidity.QuantityType, Turbidity.Zero);
             Assertion(VitaminA.QuantityType, VitaminA.Zero);
             Assertion(Volume.QuantityType, Volume.Zero);
             Assertion(VolumeConcentration.QuantityType, VolumeConcentration.Zero);
             Assertion(VolumeFlow.QuantityType, VolumeFlow.Zero);
             Assertion(VolumePerLength.QuantityType, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.QuantityType, WarpingMomentOfInertia.Zero);
         }
 
         [Fact]
@@ -454,11 +460,13 @@ namespace UnitsNet.Tests
             Assertion(ThermalResistance.BaseDimensions, ThermalResistance.Zero);
             Assertion(Torque.BaseDimensions, Torque.Zero);
             Assertion(TorquePerLength.BaseDimensions, TorquePerLength.Zero);
+            Assertion(Turbidity.BaseDimensions, Turbidity.Zero);
             Assertion(VitaminA.BaseDimensions, VitaminA.Zero);
             Assertion(Volume.BaseDimensions, Volume.Zero);
             Assertion(VolumeConcentration.BaseDimensions, VolumeConcentration.Zero);
             Assertion(VolumeFlow.BaseDimensions, VolumeFlow.Zero);
             Assertion(VolumePerLength.BaseDimensions, VolumePerLength.Zero);
+            Assertion(WarpingMomentOfInertia.BaseDimensions, WarpingMomentOfInertia.Zero);
         }
     }
 }
