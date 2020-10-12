@@ -1351,6 +1351,7 @@ namespace UnitsNet
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.NewtonMeter, new string[]{"N·m"}),
                 ("ru-RU", typeof(TorqueUnit), (int)TorqueUnit.NewtonMeter, new string[]{"Н·м"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.NewtonMillimeter, new string[]{"N·mm"}),
+                ("en-US", typeof(TorqueUnit), (int)TorqueUnit.PoundalFoot, new string[]{"pdl·ft"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.PoundForceFoot, new string[]{"lbf·ft"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.PoundForceInch, new string[]{"lbf·in"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.TonneForceCentimeter, new string[]{"tf·cm"}),

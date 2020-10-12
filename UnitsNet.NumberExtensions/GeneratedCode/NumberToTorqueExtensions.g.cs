@@ -92,6 +92,10 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
         public static Torque NewtonMillimeters<T>(this T value) =>
             Torque.FromNewtonMillimeters(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Torque.FromPoundalFeet(UnitsNet.QuantityValue)" />
+        public static Torque PoundalFeet<T>(this T value) =>
+            Torque.FromPoundalFeet(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Torque.FromPoundForceFeet(UnitsNet.QuantityValue)" />
         public static Torque PoundForceFeet<T>(this T value) =>
             Torque.FromPoundForceFeet(Convert.ToDouble(value));
