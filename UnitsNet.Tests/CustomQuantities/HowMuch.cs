@@ -8,7 +8,7 @@ namespace UnitsNet.Tests.CustomQuantities
     /// </summary>
     public struct HowMuch : IQuantity
     {
-        public HowMuch(double value, HowMuchUnit unit) : this()
+        public HowMuch(double value, HowMuchUnit unit)
         {
             Unit = unit;
             Value = value;
