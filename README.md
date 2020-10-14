@@ -30,12 +30,11 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Dynamically parse and convert](#dynamic-parsing) quantities and units
-* [Custom units](#custom-units)
+* [Extensible with custom units](#custom-units)
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
 * [Serialize with JSON.NET](#serialization)
-* Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
@@ -238,15 +237,15 @@ Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNe
 UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
 UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some); // "sm"
 UnitParser.Default.Parse<HowMuchUnit>("sm");  // HowMuchUnit.Some
-
-var unitConverter = UnitConverter.Default;
-unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Lots, HowMuchUnit.Some, x => new HowMuch(x.Value * 2, HowMuchUnit.Some));
-unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Lots, x => new HowMuch(x.Value * 10, HowMuchUnit.Lots));
-unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Some, x => new HowMuch(x.Value * 20, HowMuchUnit.Some));
 ```
 
 #### Convert between units of custom quantity
 ```c#
+var unitConverter = UnitConverter.Default;
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Lots, HowMuchUnit.Some, x => new HowMuch(x.Value * 2, HowMuchUnit.Some));
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Lots, x => new HowMuch(x.Value * 10, HowMuchUnit.Lots));
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Some, x => new HowMuch(x.Value * 20, HowMuchUnit.Some));
+
 var from = new HowMuch(10, HowMuchUnit.Tons);
 IQuantity Convert(HowMuchUnit toUnit) => unitConverter.GetConversionFunction<HowMuch>(from.Unit, toUnit)(from);
 
