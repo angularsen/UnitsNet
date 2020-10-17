@@ -7,21 +7,12 @@ Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
-Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested. If you have read this far, it is exactly what you are looking for and then some.
-
-### Upgrading from 3.x to 4.x?
-See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-3.x-to-4.x).
-
-### Build Targets
-
-* .NET Standard 2.0
-* .NET 4.0
-* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### Overview
 
-* [95 quantities with 1000+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [How to install](#how-to-install)
+* [100+ quantities with 1200+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
   * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
@@ -39,13 +30,18 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
 
-
-### Installing
+### <a name="how-to-install"></a>How to install
 
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete release history.
 
 ![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
+
+#### Build Targets
+
+* .NET Standard 2.0
+* .NET 4.0
+* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### <a name="static-typing"></a>Static Typing
 
