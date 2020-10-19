@@ -2115,6 +2115,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, Torque.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.NewtonMillimeter, q => q.ToUnit(TorqueUnit.NewtonMillimeter));
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.NewtonMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundalFoot, q => q.ToUnit(TorqueUnit.PoundalFoot));
+            unitConverter.SetConversionFunction<Torque>(TorqueUnit.PoundalFoot, Torque.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundForceFoot, q => q.ToUnit(TorqueUnit.PoundForceFoot));
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.PoundForceFoot, Torque.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundForceInch, q => q.ToUnit(TorqueUnit.PoundForceInch));

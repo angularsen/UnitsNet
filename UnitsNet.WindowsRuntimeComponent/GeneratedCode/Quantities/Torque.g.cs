@@ -236,6 +236,11 @@ namespace UnitsNet
         public double NewtonMillimeters => As(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
+        ///     Get Torque in PoundalFeet.
+        /// </summary>
+        public double PoundalFeet => As(TorqueUnit.PoundalFoot);
+
+        /// <summary>
         ///     Get Torque in PoundForceFeet.
         /// </summary>
         public double PoundForceFeet => As(TorqueUnit.PoundForceFoot);
@@ -449,6 +454,16 @@ namespace UnitsNet
         {
             double value = (double) newtonmillimeters;
             return new Torque(value, TorqueUnit.NewtonMillimeter);
+        }
+        /// <summary>
+        ///     Get Torque from PoundalFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromPoundalFeet(double poundalfeet)
+        {
+            double value = (double) poundalfeet;
+            return new Torque(value, TorqueUnit.PoundalFoot);
         }
         /// <summary>
         ///     Get Torque from PoundForceFeet.
@@ -807,6 +822,7 @@ namespace UnitsNet
                 case TorqueUnit.NewtonCentimeter: return _value*0.01;
                 case TorqueUnit.NewtonMeter: return _value;
                 case TorqueUnit.NewtonMillimeter: return _value*0.001;
+                case TorqueUnit.PoundalFoot: return _value*4.21401100938048e-2;
                 case TorqueUnit.PoundForceFoot: return _value*1.3558179483314;
                 case TorqueUnit.PoundForceInch: return _value*1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return _value*98.0665019960652;
@@ -842,6 +858,7 @@ namespace UnitsNet
                 case TorqueUnit.NewtonCentimeter: return baseUnitValue*100;
                 case TorqueUnit.NewtonMeter: return baseUnitValue;
                 case TorqueUnit.NewtonMillimeter: return baseUnitValue*1000;
+                case TorqueUnit.PoundalFoot: return baseUnitValue/4.21401100938048e-2;
                 case TorqueUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
                 case TorqueUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return baseUnitValue*0.0101971619222242;
