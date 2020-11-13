@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricCurrentDensity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricCurrentDensityTestsBase
+    public abstract partial class ElectricCurrentDensityTestsBase : QuantityTestsBase
     {
         protected abstract double AmperesPerSquareFootInOneAmperePerSquareMeter { get; }
         protected abstract double AmperesPerSquareInchInOneAmperePerSquareMeter { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricCurrentDensity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricCurrentDensity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricCurrentDensity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricCurrentDensity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricCurrentDensity(value: 1, unit: ElectricCurrentDensity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var amperepersquaremeterQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter);
             AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, (double)amperepersquaremeterQuantity.Value, AmperesPerSquareMeterTolerance);
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, amperepersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToBaseUnit();
+            Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
             Assert.Equal(ElectricCurrentDensity.FromAmperesPerSquareMeter(-value), -quantity);
         }
-
     }
 }

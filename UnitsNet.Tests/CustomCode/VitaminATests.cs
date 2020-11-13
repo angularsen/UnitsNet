@@ -5,6 +5,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VitaminATests : VitaminATestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double InternationalUnitsInOneInternationalUnit => 1;
     }
 }

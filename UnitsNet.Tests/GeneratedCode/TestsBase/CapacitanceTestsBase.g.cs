@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Capacitance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class CapacitanceTestsBase
+    public abstract partial class CapacitanceTestsBase : QuantityTestsBase
     {
         protected abstract double FaradsInOneFarad { get; }
         protected abstract double KilofaradsInOneFarad { get; }
@@ -85,7 +86,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Capacitance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Capacitance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Capacitance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Capacitance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -182,6 +198,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Capacitance(value: 1, unit: Capacitance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var farad = Capacitance.FromFarads(1);
@@ -213,6 +246,13 @@ namespace UnitsNet.Tests
             var picofaradQuantity = farad.ToUnit(CapacitanceUnit.Picofarad);
             AssertEx.EqualTolerance(PicofaradsInOneFarad, (double)picofaradQuantity.Value, PicofaradsTolerance);
             Assert.Equal(CapacitanceUnit.Picofarad, picofaradQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Capacitance.FromFarads(1).ToBaseUnit();
+            Assert.Equal(Capacitance.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -619,6 +659,5 @@ namespace UnitsNet.Tests
             var quantity = Capacitance.FromFarads(value);
             Assert.Equal(Capacitance.FromFarads(-value), -quantity);
         }
-
     }
 }

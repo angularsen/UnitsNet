@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Information.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class InformationTestsBase
+    public abstract partial class InformationTestsBase : QuantityTestsBase
     {
         protected abstract double BitsInOneBit { get; }
         protected abstract double BytesInOneBit { get; }
@@ -106,6 +107,27 @@ namespace UnitsNet.Tests
             Assert.Equal(InformationUnit.Bit, quantity.Unit);
         }
 
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Information(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Information(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Information) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
+        }
 
         [Fact]
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -302,6 +324,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Information(value: 1, unit: Information.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var bit = Information.FromBits(1);
@@ -409,6 +448,13 @@ namespace UnitsNet.Tests
             var terabyteQuantity = bit.ToUnit(InformationUnit.Terabyte);
             AssertEx.EqualTolerance(TerabytesInOneBit, (double)terabyteQuantity.Value, TerabytesTolerance);
             Assert.Equal(InformationUnit.Terabyte, terabyteQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Information.FromBits(1).ToBaseUnit();
+            Assert.Equal(Information.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -872,6 +918,5 @@ namespace UnitsNet.Tests
             var quantity = Information.FromBits(value);
             Assert.Equal(Information.FromBits(-value), -quantity);
         }
-
     }
 }

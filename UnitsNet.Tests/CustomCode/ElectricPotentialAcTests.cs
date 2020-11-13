@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricPotentialAcTests : ElectricPotentialAcTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilovoltsAcInOneVoltAc => 1e-3;
 
         protected override double MegavoltsAcInOneVoltAc => 1e-6;

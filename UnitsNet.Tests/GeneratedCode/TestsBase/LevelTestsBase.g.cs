@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Level.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class LevelTestsBase
+    public abstract partial class LevelTestsBase : QuantityTestsBase
     {
         protected abstract double DecibelsInOneDecibel { get; }
         protected abstract double NepersInOneDecibel { get; }
@@ -75,7 +76,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Level(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Level(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Level(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Level) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -142,6 +158,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Level(value: 1, unit: Level.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decibel = Level.FromDecibels(1);
@@ -153,6 +186,13 @@ namespace UnitsNet.Tests
             var neperQuantity = decibel.ToUnit(LevelUnit.Neper);
             AssertEx.EqualTolerance(NepersInOneDecibel, (double)neperQuantity.Value, NepersTolerance);
             Assert.Equal(LevelUnit.Neper, neperQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Level.FromDecibels(1).ToBaseUnit();
+            Assert.Equal(Level.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -548,6 +588,5 @@ namespace UnitsNet.Tests
             var quantity = Level.FromDecibels(value);
             Assert.Equal(Level.FromDecibels(-value), -quantity);
         }
-
     }
 }

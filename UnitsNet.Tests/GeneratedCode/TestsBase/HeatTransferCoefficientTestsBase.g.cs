@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of HeatTransferCoefficient.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class HeatTransferCoefficientTestsBase
+    public abstract partial class HeatTransferCoefficientTestsBase : QuantityTestsBase
     {
         protected abstract double BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin { get; }
         protected abstract double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new HeatTransferCoefficient(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new HeatTransferCoefficient(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new HeatTransferCoefficient(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (HeatTransferCoefficient) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new HeatTransferCoefficient(value: 1, unit: HeatTransferCoefficient.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var wattpersquaremeterkelvinQuantity = wattpersquaremeterkelvin.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
             AssertEx.EqualTolerance(WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, (double)wattpersquaremeterkelvinQuantity.Value, WattsPerSquareMeterKelvinTolerance);
             Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, wattpersquaremeterkelvinQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1).ToBaseUnit();
+            Assert.Equal(HeatTransferCoefficient.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
             Assert.Equal(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(-value), -quantity);
         }
-
     }
 }

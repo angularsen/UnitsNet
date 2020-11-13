@@ -27,6 +27,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassFractionTests : MassFractionTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         #region Unit Conversion Coefficients
         protected override double KilogramsPerKilogramInOneDecimalFraction => 1;
         protected override double HectogramsPerKilogramInOneDecimalFraction => 10;
@@ -54,7 +56,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PartsPerTrillionInOneDecimalFraction => 1e12;
 
         protected override double DecimalFractionsInOneDecimalFraction => 1;
-        protected override double PercentInOneDecimalFraction => 100; 
+        protected override double PercentInOneDecimalFraction => 100;
         #endregion
 
         [Fact]

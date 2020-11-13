@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Length.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class LengthTestsBase
+    public abstract partial class LengthTestsBase : QuantityTestsBase
     {
         protected abstract double AstronomicalUnitsInOneMeter { get; }
         protected abstract double CentimetersInOneMeter { get; }
@@ -137,7 +138,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Length(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Length(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Length(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Length) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -390,6 +406,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Length(value: 1, unit: Length.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var meter = Length.FromMeters(1);
@@ -525,6 +558,13 @@ namespace UnitsNet.Tests
             var yardQuantity = meter.ToUnit(LengthUnit.Yard);
             AssertEx.EqualTolerance(YardsInOneMeter, (double)yardQuantity.Value, YardsTolerance);
             Assert.Equal(LengthUnit.Yard, yardQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Length.FromMeters(1).ToBaseUnit();
+            Assert.Equal(Length.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -1009,6 +1049,5 @@ namespace UnitsNet.Tests
             var quantity = Length.FromMeters(value);
             Assert.Equal(Length.FromMeters(-value), -quantity);
         }
-
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Permeability.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class PermeabilityTestsBase
+    public abstract partial class PermeabilityTestsBase : QuantityTestsBase
     {
         protected abstract double HenriesPerMeterInOneHenryPerMeter { get; }
 
@@ -73,7 +74,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Permeability(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Permeability(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Permeability(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Permeability) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -134,6 +150,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var henrypermeter = Permeability.FromHenriesPerMeter(1);
@@ -141,6 +174,13 @@ namespace UnitsNet.Tests
             var henrypermeterQuantity = henrypermeter.ToUnit(PermeabilityUnit.HenryPerMeter);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, (double)henrypermeterQuantity.Value, HenriesPerMeterTolerance);
             Assert.Equal(PermeabilityUnit.HenryPerMeter, henrypermeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Permeability.FromHenriesPerMeter(1).ToBaseUnit();
+            Assert.Equal(Permeability.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -529,6 +569,5 @@ namespace UnitsNet.Tests
             var quantity = Permeability.FromHenriesPerMeter(value);
             Assert.Equal(Permeability.FromHenriesPerMeter(-value), -quantity);
         }
-
     }
 }

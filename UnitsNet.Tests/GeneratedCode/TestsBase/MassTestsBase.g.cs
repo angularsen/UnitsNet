@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Mass.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MassTestsBase
+    public abstract partial class MassTestsBase : QuantityTestsBase
     {
         protected abstract double CentigramsInOneKilogram { get; }
         protected abstract double DecagramsInOneKilogram { get; }
@@ -121,7 +122,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Mass(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Mass(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Mass(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Mass) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -326,6 +342,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var kilogram = Mass.FromKilograms(1);
@@ -429,6 +462,13 @@ namespace UnitsNet.Tests
             var tonneQuantity = kilogram.ToUnit(MassUnit.Tonne);
             AssertEx.EqualTolerance(TonnesInOneKilogram, (double)tonneQuantity.Value, TonnesTolerance);
             Assert.Equal(MassUnit.Tonne, tonneQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Mass.FromKilograms(1).ToBaseUnit();
+            Assert.Equal(Mass.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -889,6 +929,5 @@ namespace UnitsNet.Tests
             var quantity = Mass.FromKilograms(value);
             Assert.Equal(Mass.FromKilograms(-value), -quantity);
         }
-
     }
 }

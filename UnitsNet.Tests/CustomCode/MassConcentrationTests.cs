@@ -28,6 +28,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassConcentrationTests : MassConcentrationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         #region Unit Conversion Coefficients
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
         protected override double PicogramsPerMicroliterInOneKilogramPerCubicMeter => 1e6;
@@ -126,7 +128,7 @@ namespace UnitsNet.Tests.CustomCode
             var volume = new Volume(volumeValue, volumeUnit);
 
             Mass massComponent = massConcentration * volume;
-            
+
             AssertEx.EqualTolerance(expectedMassValue, massComponent.As(expectedMassUnit), tolerance);
         }
 

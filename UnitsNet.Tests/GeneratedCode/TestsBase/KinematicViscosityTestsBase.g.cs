@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of KinematicViscosity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class KinematicViscosityTestsBase
+    public abstract partial class KinematicViscosityTestsBase : QuantityTestsBase
     {
         protected abstract double CentistokesInOneSquareMeterPerSecond { get; }
         protected abstract double DecistokesInOneSquareMeterPerSecond { get; }
@@ -87,7 +88,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new KinematicViscosity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new KinematicViscosity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new KinematicViscosity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (KinematicViscosity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -190,6 +206,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
@@ -225,6 +258,13 @@ namespace UnitsNet.Tests
             var stokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Stokes);
             AssertEx.EqualTolerance(StokesInOneSquareMeterPerSecond, (double)stokesQuantity.Value, StokesTolerance);
             Assert.Equal(KinematicViscosityUnit.Stokes, stokesQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = KinematicViscosity.FromSquareMetersPerSecond(1).ToBaseUnit();
+            Assert.Equal(KinematicViscosity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -634,6 +674,5 @@ namespace UnitsNet.Tests
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(value);
             Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(-value), -quantity);
         }
-
     }
 }

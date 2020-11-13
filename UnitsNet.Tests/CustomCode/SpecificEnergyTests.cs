@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
         protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
@@ -38,7 +39,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-8;
         protected override double GigawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-11;
         protected override double TerawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-14;
-        
+
 
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()

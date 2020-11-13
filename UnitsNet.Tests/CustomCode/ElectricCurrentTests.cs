@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentTests : ElectricCurrentTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double PicoamperesInOneAmpere => 1e12;
 
         protected override double NanoamperesInOneAmpere => 1e9;

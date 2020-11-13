@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TorquePerLengthTests : TorquePerLengthTestsBase
     {
-        // Override properties in base class here
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilogramForceCentimetersPerMeterInOneNewtonMeterPerMeter => 10.197162130;
         protected override double KilogramForceMetersPerMeterInOneNewtonMeterPerMeter => 0.101971621;
         protected override double KilogramForceMillimetersPerMeterInOneNewtonMeterPerMeter => 101.971621298;

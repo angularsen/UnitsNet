@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MassFraction.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MassFractionTestsBase
+    public abstract partial class MassFractionTestsBase : QuantityTestsBase
     {
         protected abstract double CentigramsPerGramInOneDecimalFraction { get; }
         protected abstract double CentigramsPerKilogramInOneDecimalFraction { get; }
@@ -119,7 +120,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MassFraction(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MassFraction(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MassFraction(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MassFraction) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -318,6 +334,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MassFraction(value: 1, unit: MassFraction.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decimalfraction = MassFraction.FromDecimalFractions(1);
@@ -417,6 +450,13 @@ namespace UnitsNet.Tests
             var percentQuantity = decimalfraction.ToUnit(MassFractionUnit.Percent);
             AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(MassFractionUnit.Percent, percentQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MassFraction.FromDecimalFractions(1).ToBaseUnit();
+            Assert.Equal(MassFraction.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -874,6 +914,5 @@ namespace UnitsNet.Tests
             var quantity = MassFraction.FromDecimalFractions(value);
             Assert.Equal(MassFraction.FromDecimalFractions(-value), -quantity);
         }
-
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MassFlux.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MassFluxTestsBase
+    public abstract partial class MassFluxTestsBase : QuantityTestsBase
     {
         protected abstract double GramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
         protected abstract double GramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
@@ -95,7 +96,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MassFlux(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MassFlux(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MassFlux(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MassFlux) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -222,6 +238,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MassFlux(value: 1, unit: MassFlux.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var kilogrampersecondpersquaremeter = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
@@ -273,6 +306,13 @@ namespace UnitsNet.Tests
             var kilogrampersecondpersquaremillimeterQuantity = kilogrampersecondpersquaremeter.ToUnit(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
             AssertEx.EqualTolerance(KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter, (double)kilogrampersecondpersquaremillimeterQuantity.Value, KilogramsPerSecondPerSquareMillimeterTolerance);
             Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, kilogrampersecondpersquaremillimeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MassFlux.FromKilogramsPerSecondPerSquareMeter(1).ToBaseUnit();
+            Assert.Equal(MassFlux.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -694,6 +734,5 @@ namespace UnitsNet.Tests
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
             Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(-value), -quantity);
         }
-
     }
 }

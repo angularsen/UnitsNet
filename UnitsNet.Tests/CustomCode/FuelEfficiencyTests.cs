@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class FuelEfficiencyTests : FuelEfficiencyTestsBase
     {
-        // Override properties in base class here
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilometersPerLitersInOneLiterPer100Kilometers => 100;
         protected override double LitersPer100KilometersInOneLiterPer100Kilometers => 1;
         protected override double MilesPerUkGallonInOneLiterPer100Kilometers => 282.4809363;

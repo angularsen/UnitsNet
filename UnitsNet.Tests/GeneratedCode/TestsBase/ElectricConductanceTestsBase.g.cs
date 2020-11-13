@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricConductance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricConductanceTestsBase
+    public abstract partial class ElectricConductanceTestsBase : QuantityTestsBase
     {
         protected abstract double MicrosiemensInOneSiemens { get; }
         protected abstract double MillisiemensInOneSiemens { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricConductance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricConductance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricConductance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricConductance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var siemens = ElectricConductance.FromSiemens(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var siemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Siemens);
             AssertEx.EqualTolerance(SiemensInOneSiemens, (double)siemensQuantity.Value, SiemensTolerance);
             Assert.Equal(ElectricConductanceUnit.Siemens, siemensQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricConductance.FromSiemens(1).ToBaseUnit();
+            Assert.Equal(ElectricConductance.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricConductance.FromSiemens(value);
             Assert.Equal(ElectricConductance.FromSiemens(-value), -quantity);
         }
-
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Speed.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class SpeedTestsBase
+    public abstract partial class SpeedTestsBase : QuantityTestsBase
     {
         protected abstract double CentimetersPerHourInOneMeterPerSecond { get; }
         protected abstract double CentimetersPerMinutesInOneMeterPerSecond { get; }
@@ -135,7 +136,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Speed(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Speed(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Speed(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Speed) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -382,6 +398,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Speed(value: 1, unit: Speed.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var meterpersecond = Speed.FromMetersPerSecond(1);
@@ -513,6 +546,13 @@ namespace UnitsNet.Tests
             var yardpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.YardPerSecond);
             AssertEx.EqualTolerance(YardsPerSecondInOneMeterPerSecond, (double)yardpersecondQuantity.Value, YardsPerSecondTolerance);
             Assert.Equal(SpeedUnit.YardPerSecond, yardpersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Speed.FromMetersPerSecond(1).ToBaseUnit();
+            Assert.Equal(Speed.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -994,6 +1034,5 @@ namespace UnitsNet.Tests
             var quantity = Speed.FromMetersPerSecond(value);
             Assert.Equal(Speed.FromMetersPerSecond(-value), -quantity);
         }
-
     }
 }

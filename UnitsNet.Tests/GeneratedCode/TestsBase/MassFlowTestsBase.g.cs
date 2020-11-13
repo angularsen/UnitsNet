@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MassFlow.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MassFlowTestsBase
+    public abstract partial class MassFlowTestsBase : QuantityTestsBase
     {
         protected abstract double CentigramsPerDayInOneGramPerSecond { get; }
         protected abstract double CentigramsPerSecondInOneGramPerSecond { get; }
@@ -137,7 +138,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MassFlow(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MassFlow(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MassFlow(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MassFlow) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -390,6 +406,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MassFlow(value: 1, unit: MassFlow.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var grampersecond = MassFlow.FromGramsPerSecond(1);
@@ -525,6 +558,13 @@ namespace UnitsNet.Tests
             var tonneperhourQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerHour);
             AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, (double)tonneperhourQuantity.Value, TonnesPerHourTolerance);
             Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToBaseUnit();
+            Assert.Equal(MassFlow.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -1009,6 +1049,5 @@ namespace UnitsNet.Tests
             var quantity = MassFlow.FromGramsPerSecond(value);
             Assert.Equal(MassFlow.FromGramsPerSecond(-value), -quantity);
         }
-
     }
 }

@@ -26,6 +26,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double DegreesCelsiusInOneKelvin => 1;
         protected override double DegreesDelisleInOneKelvin => -1.5d;
         protected override double DegreesFahrenheitInOneKelvin => 1.8;

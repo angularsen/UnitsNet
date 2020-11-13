@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Frequency.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class FrequencyTestsBase
+    public abstract partial class FrequencyTestsBase : QuantityTestsBase
     {
         protected abstract double BeatsPerMinuteInOneHertz { get; }
         protected abstract double CyclesPerHourInOneHertz { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Frequency(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Frequency(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Frequency(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Frequency) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -206,6 +222,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var hertz = Frequency.FromHertz(1);
@@ -249,6 +282,13 @@ namespace UnitsNet.Tests
             var terahertzQuantity = hertz.ToUnit(FrequencyUnit.Terahertz);
             AssertEx.EqualTolerance(TerahertzInOneHertz, (double)terahertzQuantity.Value, TerahertzTolerance);
             Assert.Equal(FrequencyUnit.Terahertz, terahertzQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Frequency.FromHertz(1).ToBaseUnit();
+            Assert.Equal(Frequency.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -664,6 +704,5 @@ namespace UnitsNet.Tests
             var quantity = Frequency.FromHertz(value);
             Assert.Equal(Frequency.FromHertz(-value), -quantity);
         }
-
     }
 }

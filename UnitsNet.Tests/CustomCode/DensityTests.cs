@@ -7,6 +7,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
@@ -107,7 +109,7 @@ namespace UnitsNet.Tests.CustomCode
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
             Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
-        
+
         [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {

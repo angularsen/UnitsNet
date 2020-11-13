@@ -13,6 +13,7 @@ namespace UnitsNet.Tests.CustomCode
     [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class LengthTests : LengthTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentimetersInOneMeter => 100;
 
         protected override double DecimetersInOneMeter => 10;

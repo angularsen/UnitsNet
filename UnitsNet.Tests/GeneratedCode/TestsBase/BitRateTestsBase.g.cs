@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of BitRate.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class BitRateTestsBase
+    public abstract partial class BitRateTestsBase : QuantityTestsBase
     {
         protected abstract double BitsPerSecondInOneBitPerSecond { get; }
         protected abstract double BytesPerSecondInOneBitPerSecond { get; }
@@ -106,6 +107,27 @@ namespace UnitsNet.Tests
             Assert.Equal(BitRateUnit.BitPerSecond, quantity.Unit);
         }
 
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new BitRate(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new BitRate(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (BitRate) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
+        }
 
         [Fact]
         public void BitRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -302,6 +324,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var bitpersecond = BitRate.FromBitsPerSecond(1);
@@ -409,6 +448,13 @@ namespace UnitsNet.Tests
             var terabytepersecondQuantity = bitpersecond.ToUnit(BitRateUnit.TerabytePerSecond);
             AssertEx.EqualTolerance(TerabytesPerSecondInOneBitPerSecond, (double)terabytepersecondQuantity.Value, TerabytesPerSecondTolerance);
             Assert.Equal(BitRateUnit.TerabytePerSecond, terabytepersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = BitRate.FromBitsPerSecond(1).ToBaseUnit();
+            Assert.Equal(BitRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -872,6 +918,5 @@ namespace UnitsNet.Tests
             var quantity = BitRate.FromBitsPerSecond(value);
             Assert.Equal(BitRate.FromBitsPerSecond(-value), -quantity);
         }
-
     }
 }

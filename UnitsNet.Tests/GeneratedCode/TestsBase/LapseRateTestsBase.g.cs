@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of LapseRate.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class LapseRateTestsBase
+    public abstract partial class LapseRateTestsBase : QuantityTestsBase
     {
         protected abstract double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer { get; }
 
@@ -73,7 +74,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LapseRate(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new LapseRate(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new LapseRate(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (LapseRate) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -134,6 +150,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new LapseRate(value: 1, unit: LapseRate.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
@@ -141,6 +174,13 @@ namespace UnitsNet.Tests
             var degreecelsiusperkilometerQuantity = degreecelsiusperkilometer.ToUnit(LapseRateUnit.DegreeCelsiusPerKilometer);
             AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, (double)degreecelsiusperkilometerQuantity.Value, DegreesCelciusPerKilometerTolerance);
             Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = LapseRate.FromDegreesCelciusPerKilometer(1).ToBaseUnit();
+            Assert.Equal(LapseRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -529,6 +569,5 @@ namespace UnitsNet.Tests
             var quantity = LapseRate.FromDegreesCelciusPerKilometer(value);
             Assert.Equal(LapseRate.FromDegreesCelciusPerKilometer(-value), -quantity);
         }
-
     }
 }

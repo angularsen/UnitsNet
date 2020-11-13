@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of TemperatureChangeRate.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class TemperatureChangeRateTestsBase
+    public abstract partial class TemperatureChangeRateTestsBase : QuantityTestsBase
     {
         protected abstract double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new TemperatureChangeRate(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new TemperatureChangeRate(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new TemperatureChangeRate(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (TemperatureChangeRate) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -206,6 +222,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
@@ -249,6 +282,13 @@ namespace UnitsNet.Tests
             var nanodegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
             AssertEx.EqualTolerance(NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)nanodegreecelsiuspersecondQuantity.Value, NanodegreesCelsiusPerSecondTolerance);
             Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, nanodegreecelsiuspersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1).ToBaseUnit();
+            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -664,6 +704,5 @@ namespace UnitsNet.Tests
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(value);
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(-value), -quantity);
         }
-
     }
 }

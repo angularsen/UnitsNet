@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Temperature.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class TemperatureTestsBase
+    public abstract partial class TemperatureTestsBase : QuantityTestsBase
     {
         protected abstract double DegreesCelsiusInOneKelvin { get; }
         protected abstract double DegreesDelisleInOneKelvin { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Temperature(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Temperature(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Temperature(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Temperature) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -206,6 +222,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var kelvin = Temperature.FromKelvins(1);
@@ -249,6 +282,13 @@ namespace UnitsNet.Tests
             var solartemperatureQuantity = kelvin.ToUnit(TemperatureUnit.SolarTemperature);
             AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, (double)solartemperatureQuantity.Value, SolarTemperaturesTolerance);
             Assert.Equal(TemperatureUnit.SolarTemperature, solartemperatureQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Temperature.FromKelvins(1).ToBaseUnit();
+            Assert.Equal(Temperature.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

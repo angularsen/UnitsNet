@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of PowerRatio.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class PowerRatioTestsBase
+    public abstract partial class PowerRatioTestsBase : QuantityTestsBase
     {
         protected abstract double DecibelMilliwattsInOneDecibelWatt { get; }
         protected abstract double DecibelWattsInOneDecibelWatt { get; }
@@ -75,7 +76,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new PowerRatio(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new PowerRatio(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new PowerRatio(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (PowerRatio) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -142,6 +158,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new PowerRatio(value: 1, unit: PowerRatio.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decibelwatt = PowerRatio.FromDecibelWatts(1);
@@ -153,6 +186,13 @@ namespace UnitsNet.Tests
             var decibelwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelWatt);
             AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, (double)decibelwattQuantity.Value, DecibelWattsTolerance);
             Assert.Equal(PowerRatioUnit.DecibelWatt, decibelwattQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToBaseUnit();
+            Assert.Equal(PowerRatio.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -548,6 +588,5 @@ namespace UnitsNet.Tests
             var quantity = PowerRatio.FromDecibelWatts(value);
             Assert.Equal(PowerRatio.FromDecibelWatts(-value), -quantity);
         }
-
     }
 }

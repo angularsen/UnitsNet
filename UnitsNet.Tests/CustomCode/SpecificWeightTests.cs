@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificWeightTests : SpecificWeightTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter => 1.019716212977928e-7;
 
         protected override double KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter => 0.101971621;

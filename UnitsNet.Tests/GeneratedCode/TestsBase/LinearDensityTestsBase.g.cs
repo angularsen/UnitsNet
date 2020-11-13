@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of LinearDensity.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class LinearDensityTestsBase
+    public abstract partial class LinearDensityTestsBase : QuantityTestsBase
     {
         protected abstract double GramsPerCentimeterInOneKilogramPerMeter { get; }
         protected abstract double GramsPerMeterInOneKilogramPerMeter { get; }
@@ -99,7 +100,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LinearDensity(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new LinearDensity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new LinearDensity(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (LinearDensity) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -238,6 +254,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new LinearDensity(value: 1, unit: LinearDensity.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
@@ -297,6 +330,13 @@ namespace UnitsNet.Tests
             var poundperinchQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.PoundPerInch);
             AssertEx.EqualTolerance(PoundsPerInchInOneKilogramPerMeter, (double)poundperinchQuantity.Value, PoundsPerInchTolerance);
             Assert.Equal(LinearDensityUnit.PoundPerInch, poundperinchQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = LinearDensity.FromKilogramsPerMeter(1).ToBaseUnit();
+            Assert.Equal(LinearDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -724,6 +764,5 @@ namespace UnitsNet.Tests
             var quantity = LinearDensity.FromKilogramsPerMeter(value);
             Assert.Equal(LinearDensity.FromKilogramsPerMeter(-value), -quantity);
         }
-
     }
 }

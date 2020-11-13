@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of RotationalStiffnessPerLength.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class RotationalStiffnessPerLengthTestsBase
+    public abstract partial class RotationalStiffnessPerLengthTestsBase : QuantityTestsBase
     {
         protected abstract double KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter { get; }
         protected abstract double KilopoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter { get; }
@@ -81,7 +82,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new RotationalStiffnessPerLength(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new RotationalStiffnessPerLength(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new RotationalStiffnessPerLength(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (RotationalStiffnessPerLength) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -166,6 +182,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new RotationalStiffnessPerLength(value: 1, unit: RotationalStiffnessPerLength.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
@@ -189,6 +222,13 @@ namespace UnitsNet.Tests
             var poundforcefootperdegreesperfootQuantity = newtonmeterperradianpermeter.ToUnit(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
             AssertEx.EqualTolerance(PoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter, (double)poundforcefootperdegreesperfootQuantity.Value, PoundForceFeetPerDegreesPerFeetTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, poundforcefootperdegreesperfootQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1).ToBaseUnit();
+            Assert.Equal(RotationalStiffnessPerLength.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -589,6 +629,5 @@ namespace UnitsNet.Tests
             var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(value);
             Assert.Equal(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(-value), -quantity);
         }
-
     }
 }

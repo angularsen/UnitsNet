@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MolarEnergy.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MolarEnergyTestsBase
+    public abstract partial class MolarEnergyTestsBase : QuantityTestsBase
     {
         protected abstract double JoulesPerMoleInOneJoulePerMole { get; }
         protected abstract double KilojoulesPerMoleInOneJoulePerMole { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MolarEnergy(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MolarEnergy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MolarEnergy(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MolarEnergy) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MolarEnergy(value: 1, unit: MolarEnergy.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var joulepermole = MolarEnergy.FromJoulesPerMole(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var megajoulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.MegajoulePerMole);
             AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, (double)megajoulepermoleQuantity.Value, MegajoulesPerMoleTolerance);
             Assert.Equal(MolarEnergyUnit.MegajoulePerMole, megajoulepermoleQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MolarEnergy.FromJoulesPerMole(1).ToBaseUnit();
+            Assert.Equal(MolarEnergy.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = MolarEnergy.FromJoulesPerMole(value);
             Assert.Equal(MolarEnergy.FromJoulesPerMole(-value), -quantity);
         }
-
     }
 }

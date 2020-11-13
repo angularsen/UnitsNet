@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ApparentEnergy.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ApparentEnergyTestsBase
+    public abstract partial class ApparentEnergyTestsBase : QuantityTestsBase
     {
         protected abstract double KilovoltampereHoursInOneVoltampereHour { get; }
         protected abstract double MegavoltampereHoursInOneVoltampereHour { get; }
@@ -77,7 +78,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ApparentEnergy(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ApparentEnergy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ApparentEnergy(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ApparentEnergy) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -150,6 +166,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ApparentEnergy(value: 1, unit: ApparentEnergy.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var voltamperehour = ApparentEnergy.FromVoltampereHours(1);
@@ -165,6 +198,13 @@ namespace UnitsNet.Tests
             var voltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.VoltampereHour);
             AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, (double)voltamperehourQuantity.Value, VoltampereHoursTolerance);
             Assert.Equal(ApparentEnergyUnit.VoltampereHour, voltamperehourQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ApparentEnergy.FromVoltampereHours(1).ToBaseUnit();
+            Assert.Equal(ApparentEnergy.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -559,6 +599,5 @@ namespace UnitsNet.Tests
             var quantity = ApparentEnergy.FromVoltampereHours(value);
             Assert.Equal(ApparentEnergy.FromVoltampereHours(-value), -quantity);
         }
-
     }
 }

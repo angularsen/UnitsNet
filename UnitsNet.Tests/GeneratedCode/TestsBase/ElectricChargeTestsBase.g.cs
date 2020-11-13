@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ElectricCharge.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricChargeTestsBase
+    public abstract partial class ElectricChargeTestsBase : QuantityTestsBase
     {
         protected abstract double AmpereHoursInOneCoulomb { get; }
         protected abstract double CoulombsInOneCoulomb { get; }
@@ -81,7 +82,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricCharge(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricCharge(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricCharge(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricCharge) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -166,6 +182,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var coulomb = ElectricCharge.FromCoulombs(1);
@@ -189,6 +222,13 @@ namespace UnitsNet.Tests
             var milliamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.MilliampereHour);
             AssertEx.EqualTolerance(MilliampereHoursInOneCoulomb, (double)milliamperehourQuantity.Value, MilliampereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.MilliampereHour, milliamperehourQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricCharge.FromCoulombs(1).ToBaseUnit();
+            Assert.Equal(ElectricCharge.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -589,6 +629,5 @@ namespace UnitsNet.Tests
             var quantity = ElectricCharge.FromCoulombs(value);
             Assert.Equal(ElectricCharge.FromCoulombs(-value), -quantity);
         }
-
     }
 }

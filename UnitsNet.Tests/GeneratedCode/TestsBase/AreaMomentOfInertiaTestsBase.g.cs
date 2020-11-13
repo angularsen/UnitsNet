@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of AreaMomentOfInertia.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class AreaMomentOfInertiaTestsBase
+    public abstract partial class AreaMomentOfInertiaTestsBase : QuantityTestsBase
     {
         protected abstract double CentimetersToTheFourthInOneMeterToTheFourth { get; }
         protected abstract double DecimetersToTheFourthInOneMeterToTheFourth { get; }
@@ -83,7 +84,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new AreaMomentOfInertia(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new AreaMomentOfInertia(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new AreaMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (AreaMomentOfInertia) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -174,6 +190,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new AreaMomentOfInertia(value: 1, unit: AreaMomentOfInertia.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
@@ -201,6 +234,13 @@ namespace UnitsNet.Tests
             var millimetertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
             AssertEx.EqualTolerance(MillimetersToTheFourthInOneMeterToTheFourth, (double)millimetertothefourthQuantity.Value, MillimetersToTheFourthTolerance);
             Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, millimetertothefourthQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToBaseUnit();
+            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -604,6 +644,5 @@ namespace UnitsNet.Tests
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(value);
             Assert.Equal(AreaMomentOfInertia.FromMetersToTheFourth(-value), -quantity);
         }
-
     }
 }

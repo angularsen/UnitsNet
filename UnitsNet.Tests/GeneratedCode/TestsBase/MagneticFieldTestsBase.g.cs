@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MagneticField.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MagneticFieldTestsBase
+    public abstract partial class MagneticFieldTestsBase : QuantityTestsBase
     {
         protected abstract double MicroteslasInOneTesla { get; }
         protected abstract double MilliteslasInOneTesla { get; }
@@ -79,7 +80,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MagneticField(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MagneticField(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MagneticField(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MagneticField) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -158,6 +174,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MagneticField(value: 1, unit: MagneticField.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var tesla = MagneticField.FromTeslas(1);
@@ -177,6 +210,13 @@ namespace UnitsNet.Tests
             var teslaQuantity = tesla.ToUnit(MagneticFieldUnit.Tesla);
             AssertEx.EqualTolerance(TeslasInOneTesla, (double)teslaQuantity.Value, TeslasTolerance);
             Assert.Equal(MagneticFieldUnit.Tesla, teslaQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToBaseUnit();
+            Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -574,6 +614,5 @@ namespace UnitsNet.Tests
             var quantity = MagneticField.FromTeslas(value);
             Assert.Equal(MagneticField.FromTeslas(-value), -quantity);
         }
-
     }
 }

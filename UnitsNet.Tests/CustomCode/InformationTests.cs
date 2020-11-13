@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class InformationTests : InformationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double BitsInOneBit => 1d;
 
         protected override double BytesInOneBit => 0.125d;

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Irradiation.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class IrradiationTestsBase
+    public abstract partial class IrradiationTestsBase : QuantityTestsBase
     {
         protected abstract double JoulesPerSquareCentimeterInOneJoulePerSquareMeter { get; }
         protected abstract double JoulesPerSquareMeterInOneJoulePerSquareMeter { get; }
@@ -85,7 +86,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Irradiation(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Irradiation(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Irradiation(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Irradiation) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -182,6 +198,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Irradiation(value: 1, unit: Irradiation.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
@@ -213,6 +246,13 @@ namespace UnitsNet.Tests
             var watthourpersquaremeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.WattHourPerSquareMeter);
             AssertEx.EqualTolerance(WattHoursPerSquareMeterInOneJoulePerSquareMeter, (double)watthourpersquaremeterQuantity.Value, WattHoursPerSquareMeterTolerance);
             Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, watthourpersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Irradiation.FromJoulesPerSquareMeter(1).ToBaseUnit();
+            Assert.Equal(Irradiation.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -619,6 +659,5 @@ namespace UnitsNet.Tests
             var quantity = Irradiation.FromJoulesPerSquareMeter(value);
             Assert.Equal(Irradiation.FromJoulesPerSquareMeter(-value), -quantity);
         }
-
     }
 }

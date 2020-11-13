@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Duration.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class DurationTestsBase
+    public abstract partial class DurationTestsBase : QuantityTestsBase
     {
         protected abstract double DaysInOneSecond { get; }
         protected abstract double HoursInOneSecond { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Duration(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new Duration(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Duration(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Duration) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -206,6 +222,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var second = Duration.FromSeconds(1);
@@ -249,6 +282,13 @@ namespace UnitsNet.Tests
             var year365Quantity = second.ToUnit(DurationUnit.Year365);
             AssertEx.EqualTolerance(Years365InOneSecond, (double)year365Quantity.Value, Years365Tolerance);
             Assert.Equal(DurationUnit.Year365, year365Quantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Duration.FromSeconds(1).ToBaseUnit();
+            Assert.Equal(Duration.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -664,6 +704,5 @@ namespace UnitsNet.Tests
             var quantity = Duration.FromSeconds(value);
             Assert.Equal(Duration.FromSeconds(-value), -quantity);
         }
-
     }
 }
