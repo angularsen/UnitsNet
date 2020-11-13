@@ -7,21 +7,12 @@ Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
-Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested. If you have read this far, it is exactly what you are looking for and then some.
-
-### Upgrading from 3.x to 4.x?
-See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-3.x-to-4.x).
-
-### Build Targets
-
-* .NET Standard 2.0
-* .NET 4.0
-* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### Overview
 
-* [95 quantities with 1000+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [How to install](#how-to-install)
+* [100+ quantities with 1200+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
   * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
@@ -30,22 +21,27 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Dynamically parse and convert](#dynamic-parsing) quantities and units
+* [Extensible with custom units](#custom-units)
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
 * [Serialize with JSON.NET](#serialization)
-* Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
 
-
-### Installing
+### <a name="how-to-install"></a>How to install
 
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete release history.
 
 ![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
+
+#### Build Targets
+
+* .NET Standard 2.0
+* .NET 4.0
+* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### <a name="static-typing"></a>Static Typing
 
@@ -223,6 +219,36 @@ Sometimes you only have strings to work with, that works too!
 ```c#
 UnitConverter.ConvertByName(1, "Length", "Centimeter", "Millimeter"); // 10 mm
 UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
+```
+
+### <a name="custom-units"></a>Custom units
+
+Units.NET allows you to add your own units and quantities at runtime, to represent as `IQuantity` and reusing Units.NET for parsing and converting between units.
+
+Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units).
+
+#### Map between unit enum values and unit abbreviations
+```c#
+// Map unit enum values to unit abbreviations
+UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some); // "sm"
+UnitParser.Default.Parse<HowMuchUnit>("sm");  // HowMuchUnit.Some
+```
+
+#### Convert between units of custom quantity
+```c#
+var unitConverter = UnitConverter.Default;
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Lots, HowMuchUnit.Some, x => new HowMuch(x.Value * 2, HowMuchUnit.Some));
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Lots, x => new HowMuch(x.Value * 10, HowMuchUnit.Lots));
+unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Some, x => new HowMuch(x.Value * 20, HowMuchUnit.Some));
+
+var from = new HowMuch(10, HowMuchUnit.Tons);
+IQuantity Convert(HowMuchUnit toUnit) => unitConverter.GetConversionFunction<HowMuch>(from.Unit, toUnit)(from);
+
+Console.WriteLine($"Convert 10 tons to:");
+Console.WriteLine(Convert(HowMuchUnit.Some)); // 200 sm
+Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
+Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app

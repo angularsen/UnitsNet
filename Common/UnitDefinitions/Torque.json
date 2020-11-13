@@ -52,6 +52,18 @@
       ]
     },
     {
+      "SingularName": "PoundalFoot",
+      "PluralName": "PoundalFeet",
+      "FromUnitToBaseFunc": "x*4.21401100938048e-2",
+      "FromBaseToUnitFunc": "x/4.21401100938048e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pdl·ft" ]
+        }
+      ]
+    },
+    {
       "SingularName": "PoundForceInch",
       "PluralName": "PoundForceInches",
       "FromUnitToBaseFunc": "x*1.129848290276167e-1",

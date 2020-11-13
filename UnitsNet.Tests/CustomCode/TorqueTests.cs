@@ -49,6 +49,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TonneForceMillimetersInOneNewtonMeter => 1.01972e-1;
 
+        protected override double PoundalFeetInOneNewtonMeter => 23.730360404231938;
+
         [Fact]
         public void TorqueDividedByForceEqualsLength()
         {
