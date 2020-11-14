@@ -176,6 +176,7 @@
       "PluralName": "LitersPerSecond",
       "FromUnitToBaseFunc": "x/1000",
       "FromBaseToUnitFunc": "x*1000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
