@@ -174,10 +174,10 @@ namespace UnitsNet
                     return MolarEnergy.From(value, MolarEnergy.BaseUnit);
                 case QuantityType.MolarEntropy:
                     return MolarEntropy.From(value, MolarEntropy.BaseUnit);
-                case QuantityType.MolarMass:
-                    return MolarMass.From(value, MolarMass.BaseUnit);
                 case QuantityType.Molarity:
                     return Molarity.From(value, Molarity.BaseUnit);
+                case QuantityType.MolarMass:
+                    return MolarMass.From(value, MolarMass.BaseUnit);
                 case QuantityType.Permeability:
                     return Permeability.From(value, Permeability.BaseUnit);
                 case QuantityType.Permittivity:
