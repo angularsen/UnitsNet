@@ -8,6 +8,36 @@ namespace UnitsNet.Tests
     public class UnitMathTests
     {
         [Fact]
+        public void AbsoluteValueOfZeroReturnsZero()
+        {
+            var quantity = Length.Zero;
+
+            var result = quantity.Abs();
+
+            Assert.StrictEqual(quantity, result);
+        }
+
+        [Fact]
+        public void AbsoluteValueOfPositiveReturnsZero()
+        {
+            var quantity = Length.FromCentimeters(1);
+
+            var result = quantity.Abs();
+
+            Assert.StrictEqual(quantity, result);
+        }
+
+        [Fact]
+        public void AbsoluteValueOfNegativeReturnsPositive()
+        {
+            var quantity = Length.FromCentimeters(-1);
+
+            var result = quantity.Abs();
+
+            Assert.StrictEqual(-quantity, result);
+        }
+
+        [Fact]
         public void AverageOfDifferentUnitsThrowsException()
         {
             var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
@@ -62,6 +92,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MaxOfTwoLengthsCalculatesCorrectly()
+        {
+            var firstValue = Length.FromMeters(1);
+            var secondValue = Length.FromCentimeters(50);
+
+            Length max = UnitMath.Max(firstValue, secondValue);
+
+            Assert.Equal(1, max.Value);
+            Assert.Equal(LengthUnit.Meter, max.Unit);
+        }
+
+        [Fact]
         public void MaxOfDifferentUnitsThrowsException()
         {
             var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
@@ -113,6 +155,18 @@ namespace UnitsNet.Tests
 
             Assert.Equal(100, max.Value);
             Assert.Equal(LengthUnit.Centimeter, max.Unit);
+        }
+
+        [Fact]
+        public void MinOfTwoLengthsCalculatesCorrectly()
+        {
+            var firstValue = Length.FromMeters(1);
+            var secondValue = Length.FromCentimeters(50);
+
+            Length min = UnitMath.Min(firstValue, secondValue);
+
+            Assert.Equal(50, min.Value);
+            Assert.Equal(LengthUnit.Centimeter, min.Unit);
         }
 
         [Fact]
