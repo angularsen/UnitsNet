@@ -715,6 +715,7 @@ namespace UnitsNet
                 ("en-US", typeof(LuminosityUnit), (int)LuminosityUnit.Watt, new string[]{"W"}),
                 ("en-US", typeof(LuminousFluxUnit), (int)LuminousFluxUnit.Lumen, new string[]{"lm"}),
                 ("en-US", typeof(LuminousIntensityUnit), (int)LuminousIntensityUnit.Candela, new string[]{"cd"}),
+                ("en-US", typeof(MagneticFieldUnit), (int)MagneticFieldUnit.Gauss, new string[]{"G"}),
                 ("en-US", typeof(MagneticFieldUnit), (int)MagneticFieldUnit.Microtesla, new string[]{"µT"}),
                 ("en-US", typeof(MagneticFieldUnit), (int)MagneticFieldUnit.Millitesla, new string[]{"mT"}),
                 ("en-US", typeof(MagneticFieldUnit), (int)MagneticFieldUnit.Nanotesla, new string[]{"nT"}),
