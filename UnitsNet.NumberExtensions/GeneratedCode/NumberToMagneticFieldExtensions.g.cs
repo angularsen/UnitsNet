@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
     /// </summary>
     public static class NumberToMagneticFieldExtensions
     {
+        /// <inheritdoc cref="MagneticField.FromGausses(UnitsNet.QuantityValue)" />
+        public static MagneticField Gausses<T>(this T value) =>
+            MagneticField.FromGausses(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
         public static MagneticField Microteslas<T>(this T value) =>
             MagneticField.FromMicroteslas(Convert.ToDouble(value));

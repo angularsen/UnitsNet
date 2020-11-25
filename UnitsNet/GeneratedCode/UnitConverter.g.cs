@@ -1091,6 +1091,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(Luminosity.BaseUnit, Luminosity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<LuminousFlux>(LuminousFlux.BaseUnit, LuminousFlux.BaseUnit, q => q);
             unitConverter.SetConversionFunction<LuminousIntensity>(LuminousIntensity.BaseUnit, LuminousIntensity.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Gauss, q => q.ToUnit(MagneticFieldUnit.Gauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticField.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Microtesla, q => q.ToUnit(MagneticFieldUnit.Microtesla));
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Millitesla, q => q.ToUnit(MagneticFieldUnit.Millitesla));
