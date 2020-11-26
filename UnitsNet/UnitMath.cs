@@ -15,7 +15,7 @@ namespace UnitsNet
         ///     but less than or equal to <see cref="F:System.Double.MaxValue" />.
         /// </param>
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
-        public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : struct, IQuantity
+        public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
             return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
