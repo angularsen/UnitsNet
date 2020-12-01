@@ -56,6 +56,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         public static VolumeFlow CentilitersPerSecond<T>(this T value) =>
             VolumeFlow.FromCentilitersPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow CubicCentimetersPerMinute<T>(this T value) =>
+            VolumeFlow.FromCubicCentimetersPerMinute(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
         public static VolumeFlow CubicDecimetersPerMinute<T>(this T value) =>
             VolumeFlow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));

@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         CentiliterPerDay,
         CentiliterPerMinute,
         CentiliterPerSecond,
+        CubicCentimeterPerMinute,
         CubicDecimeterPerMinute,
         CubicFootPerHour,
         CubicFootPerMinute,
