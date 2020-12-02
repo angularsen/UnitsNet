@@ -466,8 +466,8 @@
     {
       "SingularName": "CubicCentimeterPerMinute",
       "PluralName": "CubicCentimetersPerMinute",
-      "FromUnitToBaseFunc": "x*0.00000001667",
-      "FromBaseToUnitFunc": "x/0.00000001667",
+      "FromUnitToBaseFunc": "x*1.6666666666667e-8",
+      "FromBaseToUnitFunc": "x/1.6666666666667e-8",
       "Localization": [
         {
           "Culture": "en-US",

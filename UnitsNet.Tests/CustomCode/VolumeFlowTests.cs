@@ -131,7 +131,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
 
-        protected override double CubicCentimetersPerMinuteInOneCubicMeterPerSecond => 59988002.39;
+        protected override double CubicCentimetersPerMinuteInOneCubicMeterPerSecond => 6e7;
 
         [Theory]
         [InlineData(20, 2, 40)]
