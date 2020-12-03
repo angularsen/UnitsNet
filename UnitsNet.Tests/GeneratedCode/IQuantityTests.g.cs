@@ -113,6 +113,7 @@ namespace UnitsNet.Tests
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
             Assertion(3, ReactiveEnergyUnit.VoltampereReactiveHour, Quantity.From(3, ReactiveEnergyUnit.VoltampereReactiveHour));
             Assertion(3, ReactivePowerUnit.VoltampereReactive, Quantity.From(3, ReactivePowerUnit.VoltampereReactive));
+            Assertion(3, RelativeHumidityUnit.Percent, Quantity.From(3, RelativeHumidityUnit.Percent));
             Assertion(3, RotationalAccelerationUnit.RevolutionPerSecondSquared, Quantity.From(3, RotationalAccelerationUnit.RevolutionPerSecondSquared));
             Assertion(3, RotationalSpeedUnit.RevolutionPerSecond, Quantity.From(3, RotationalSpeedUnit.RevolutionPerSecond));
             Assertion(3, RotationalStiffnessUnit.PoundForceFootPerDegrees, Quantity.From(3, RotationalStiffnessUnit.PoundForceFootPerDegrees));
@@ -223,6 +224,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.Info, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.Info, ReactiveEnergy.Zero);
             Assertion(ReactivePower.Info, ReactivePower.Zero);
+            Assertion(RelativeHumidity.Info, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.Info, RotationalAcceleration.Zero);
             Assertion(RotationalSpeed.Info, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.Info, RotationalStiffness.Zero);
@@ -333,6 +335,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.QuantityType, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.QuantityType, ReactiveEnergy.Zero);
             Assertion(ReactivePower.QuantityType, ReactivePower.Zero);
+            Assertion(RelativeHumidity.QuantityType, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.QuantityType, RotationalAcceleration.Zero);
             Assertion(RotationalSpeed.QuantityType, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.QuantityType, RotationalStiffness.Zero);
@@ -443,6 +446,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.BaseDimensions, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.BaseDimensions, ReactiveEnergy.Zero);
             Assertion(ReactivePower.BaseDimensions, ReactivePower.Zero);
+            Assertion(RelativeHumidity.BaseDimensions, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.BaseDimensions, RotationalAcceleration.Zero);
             Assertion(RotationalSpeed.BaseDimensions, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.BaseDimensions, RotationalStiffness.Zero);

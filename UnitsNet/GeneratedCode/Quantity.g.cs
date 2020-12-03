@@ -200,6 +200,8 @@ namespace UnitsNet
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case QuantityType.ReactivePower:
                     return ReactivePower.From(value, ReactivePower.BaseUnit);
+                case QuantityType.RelativeHumidity:
+                    return RelativeHumidity.From(value, RelativeHumidity.BaseUnit);
                 case QuantityType.RotationalAcceleration:
                     return RotationalAcceleration.From(value, RotationalAcceleration.BaseUnit);
                 case QuantityType.RotationalSpeed:
@@ -501,6 +503,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower.From(value, reactivePowerUnit);
                     return true;
+                case RelativeHumidityUnit relativeHumidityUnit:
+                    quantity = RelativeHumidity.From(value, relativeHumidityUnit);
+                    return true;
                 case RotationalAccelerationUnit rotationalAccelerationUnit:
                     quantity = RotationalAcceleration.From(value, rotationalAccelerationUnit);
                     return true;
@@ -758,6 +763,8 @@ namespace UnitsNet
                     return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower):
                     return parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity);
+                case Type _ when quantityType == typeof(RelativeHumidity):
+                    return parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalAcceleration):
                     return parser.TryParse<RotationalAcceleration, RotationalAccelerationUnit>(quantityString, formatProvider, RotationalAcceleration.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalSpeed):

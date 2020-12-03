@@ -1127,6 +1127,7 @@ namespace UnitsNet
                 ("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.KilovoltampereReactive, new string[]{"kvar"}),
                 ("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.MegavoltampereReactive, new string[]{"Mvar"}),
                 ("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.VoltampereReactive, new string[]{"var"}),
+                ("en-US", typeof(RelativeHumidityUnit), (int)RelativeHumidityUnit.Percent, new string[]{"%RH"}),
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.DegreePerSecondSquared, new string[]{"°/s²", "deg/s²"}),
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RadianPerSecondSquared, new string[]{"rad/s²"}),
                 ("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new string[]{"rpm/s"}),
