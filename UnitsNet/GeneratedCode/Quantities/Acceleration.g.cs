@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration,
+            Info = new QuantityInfo<AccelerationUnit>("Acceleration",
                 new UnitInfo<AccelerationUnit>[] {
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, BaseUnits.Undefined),
@@ -130,11 +130,6 @@ namespace UnitsNet
         public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
-
-        /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
@@ -163,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Acceleration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -736,7 +726,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Acceleration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1045,8 +1035,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AccelerationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Acceleration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Acceleration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Acceleration.BaseDimensions;
             else

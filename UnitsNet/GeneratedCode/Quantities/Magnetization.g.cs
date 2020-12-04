@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization,
+            Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
                 new UnitInfo<MagnetizationUnit>[] {
                     new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Magnetization;
-
-        /// <summary>
         ///     All units of measurement for the Magnetization quantity.
         /// </summary>
         public static MagnetizationUnit[] Units { get; } = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Magnetization.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Magnetization.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagnetizationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Magnetization.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Magnetization.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Magnetization.BaseDimensions;
             else

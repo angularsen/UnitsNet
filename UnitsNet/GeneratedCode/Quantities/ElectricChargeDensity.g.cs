@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity,
+            Info = new QuantityInfo<ElectricChargeDensityUnit>("ElectricChargeDensity",
                 new UnitInfo<ElectricChargeDensityUnit>[] {
                     new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricChargeDensity;
-
-        /// <summary>
         ///     All units of measurement for the ElectricChargeDensity quantity.
         /// </summary>
         public static ElectricChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricChargeDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricChargeDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricChargeDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricChargeDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricChargeDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricChargeDensity.BaseDimensions;
             else

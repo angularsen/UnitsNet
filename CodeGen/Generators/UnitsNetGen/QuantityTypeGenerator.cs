@@ -1,4 +1,4 @@
-using CodeGen.JsonTypes;
+﻿using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
 {
@@ -24,17 +24,18 @@ namespace UnitsNet
     ///     This is useful for populating options in the UI, such as creating a generic conversion
     ///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
     /// </summary>
-    public enum QuantityType
+
+    using System.Collections.Generic;
+
+    public static partial class Quantity
     {
-// Missing XML comment for public type or member
-#pragma warning disable CS1591
-        Undefined = 0,");
+        public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
+        {");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
-        {quantity.Name},");
+            {{ ""{quantity.Name}"", {quantity.Name}.Info }},");
             Writer.WL(@"
-// Missing XML comment for public type or member
-#pragma warning restore CS1591
+        };
     }
 }");
             return Writer.ToString();

@@ -149,7 +149,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -897,7 +896,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(QuantityType.LinearPowerDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(LinearPowerDensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -918,7 +917,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(new {LinearPowerDensity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {LinearPowerDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity,
+            Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[] {
                     new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
                 },
@@ -117,11 +117,6 @@ namespace UnitsNet
         public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
-
-        /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
@@ -150,11 +145,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => AreaDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -541,7 +531,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current AreaDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -824,8 +814,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return AreaDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return AreaDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return AreaDensity.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length,
+            Info = new QuantityInfo<LengthUnit>("Length",
                 new UnitInfo<LengthUnit>[] {
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
@@ -149,11 +149,6 @@ namespace UnitsNet
         public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Length;
-
-        /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
         public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
@@ -182,11 +177,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Length.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1021,7 +1011,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Length.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1368,8 +1358,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Length.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Length.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Length.BaseDimensions;
             else

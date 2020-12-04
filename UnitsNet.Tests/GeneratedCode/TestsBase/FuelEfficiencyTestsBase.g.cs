@@ -107,7 +107,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(FuelEfficiency.Zero, quantityInfo.Zero);
             Assert.Equal("FuelEfficiency", quantityInfo.Name);
-            Assert.Equal(QuantityType.FuelEfficiency, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<FuelEfficiencyUnit>().Except(new[] {FuelEfficiencyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -582,7 +581,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
-            Assert.Equal(QuantityType.FuelEfficiency, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(FuelEfficiency.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -603,7 +602,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
-            Assert.Equal(new {FuelEfficiency.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {FuelEfficiency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

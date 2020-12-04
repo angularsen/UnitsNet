@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricCurrentGradient, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().Except(new[] {ElectricCurrentGradientUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
-            Assert.Equal(QuantityType.ElectricCurrentGradient, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricCurrentGradient.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
-            Assert.Equal(new {ElectricCurrentGradient.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricCurrentGradient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

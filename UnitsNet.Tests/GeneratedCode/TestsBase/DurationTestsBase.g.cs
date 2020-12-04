@@ -119,7 +119,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
-            Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -672,7 +671,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(QuantityType.Duration, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Duration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -693,7 +692,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(new {Duration.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Duration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

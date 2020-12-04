@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption,
+            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
                 new UnitInfo<BrakeSpecificFuelConsumptionUnit>[] {
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BaseUnits.Undefined),
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BaseUnits.Undefined),
@@ -119,11 +119,6 @@ namespace UnitsNet
         public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.BrakeSpecificFuelConsumption;
-
-        /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit[] Units { get; } = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
@@ -152,11 +147,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => BrakeSpecificFuelConsumption.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -571,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current BrakeSpecificFuelConsumption.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -858,8 +848,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(BrakeSpecificFuelConsumptionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return BrakeSpecificFuelConsumption.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return BrakeSpecificFuelConsumption.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return BrakeSpecificFuelConsumption.BaseDimensions;
             else

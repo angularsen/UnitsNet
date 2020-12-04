@@ -193,7 +193,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
-            Assert.Equal(QuantityType.MassConcentration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().Except(new[] {MassConcentrationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1227,7 +1226,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.MassConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(MassConcentration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -1248,7 +1247,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(new {MassConcentration.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {MassConcentration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<HeatFluxUnit>(QuantityType.HeatFlux,
+            Info = new QuantityInfo<HeatFluxUnit>("HeatFlux",
                 new UnitInfo<HeatFluxUnit>[] {
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, BaseUnits.Undefined),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, BaseUnits.Undefined),
@@ -134,11 +134,6 @@ namespace UnitsNet
         public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.HeatFlux;
-
-        /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>
         public static HeatFluxUnit[] Units { get; } = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
@@ -167,11 +162,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => HeatFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -796,7 +786,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current HeatFlux.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1113,8 +1103,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return HeatFlux.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return HeatFlux.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return HeatFlux.BaseDimensions;
             else

@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity,
+            Info = new QuantityInfo<PermittivityUnit>("Permittivity",
                 new UnitInfo<PermittivityUnit>[] {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, BaseUnits.Undefined),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
-
-        /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
         public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Permittivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Permittivity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermittivityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Permittivity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Permittivity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Permittivity.BaseDimensions;
             else

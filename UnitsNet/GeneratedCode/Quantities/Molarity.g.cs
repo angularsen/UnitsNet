@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
-            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity,
+            Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[] {
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
@@ -127,11 +127,6 @@ namespace UnitsNet
         public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
-
-        /// <summary>
         ///     All units of measurement for the Molarity quantity.
         /// </summary>
         public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
@@ -160,11 +155,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Molarity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -649,7 +639,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Molarity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -946,8 +936,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Molarity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Molarity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Molarity.BaseDimensions;
             else

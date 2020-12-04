@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity,
+            Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
                 new UnitInfo<ElectricResistivityUnit>[] {
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, BaseUnits.Undefined),
@@ -133,11 +133,6 @@ namespace UnitsNet
         public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistivity;
-
-        /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().Except(new ElectricResistivityUnit[]{ ElectricResistivityUnit.Undefined }).ToArray();
@@ -166,11 +161,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricResistivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -739,7 +729,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricResistivity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1048,8 +1038,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricResistivityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricResistivity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricResistivity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricResistivity.BaseDimensions;
             else

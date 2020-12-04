@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
-            Info = new QuantityInfo<IlluminanceUnit>(QuantityType.Illuminance,
+            Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
                 new UnitInfo<IlluminanceUnit>[] {
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, BaseUnits.Undefined),
@@ -123,11 +123,6 @@ namespace UnitsNet
         public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Illuminance;
-
-        /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
         public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
@@ -156,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Illuminance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -589,7 +579,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Illuminance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -878,8 +868,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IlluminanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Illuminance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Illuminance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Illuminance.BaseDimensions;
             else

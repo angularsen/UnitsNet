@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate,
+            Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
                 new UnitInfo<TemperatureChangeRateUnit>[] {
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, BaseUnits.Undefined),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, BaseUnits.Undefined),
@@ -126,11 +126,6 @@ namespace UnitsNet
         public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureChangeRate;
-
-        /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
         /// </summary>
         public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
@@ -159,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TemperatureChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -676,7 +666,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -977,8 +967,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureChangeRateUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return TemperatureChangeRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return TemperatureChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return TemperatureChangeRate.BaseDimensions;
             else

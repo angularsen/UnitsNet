@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AmplitudeRatioUnit>(QuantityType.AmplitudeRatio,
+            Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
                 new UnitInfo<AmplitudeRatioUnit>[] {
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, BaseUnits.Undefined),
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
-
-        /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
         /// </summary>
         public static AmplitudeRatioUnit[] Units { get; } = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => AmplitudeRatio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -594,7 +584,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current AmplitudeRatio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -883,8 +873,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AmplitudeRatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return AmplitudeRatio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return AmplitudeRatio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return AmplitudeRatio.BaseDimensions;
             else

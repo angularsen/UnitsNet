@@ -179,7 +179,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Density.Zero, quantityInfo.Zero);
             Assert.Equal("Density", quantityInfo.Name);
-            Assert.Equal(QuantityType.Density, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<DensityUnit>().Except(new[] {DensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1122,7 +1121,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.Density, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Density.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -1143,7 +1142,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(new {Density.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Density.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -115,7 +115,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
-            Assert.Equal(QuantityType.KinematicViscosity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<KinematicViscosityUnit>().Except(new[] {KinematicViscosityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -642,7 +641,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
-            Assert.Equal(QuantityType.KinematicViscosity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(KinematicViscosity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -663,7 +662,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
-            Assert.Equal(new {KinematicViscosity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {KinematicViscosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

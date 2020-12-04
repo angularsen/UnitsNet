@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<ElectricPotentialDcUnit>(QuantityType.ElectricPotentialDc,
+            Info = new QuantityInfo<ElectricPotentialDcUnit>("ElectricPotentialDc",
                 new UnitInfo<ElectricPotentialDcUnit>[] {
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, BaseUnits.Undefined),
@@ -121,11 +121,6 @@ namespace UnitsNet
         public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialDc;
-
-        /// <summary>
         ///     All units of measurement for the ElectricPotentialDc quantity.
         /// </summary>
         public static ElectricPotentialDcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().Except(new ElectricPotentialDcUnit[]{ ElectricPotentialDcUnit.Undefined }).ToArray();
@@ -154,11 +149,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricPotentialDc.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -601,7 +591,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricPotentialDc.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -892,8 +882,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricPotentialDcUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricPotentialDc.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricPotentialDc.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricPotentialDc.BaseDimensions;
             else

@@ -149,7 +149,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
-            Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassUnit>().Except(new[] {MassUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -897,7 +896,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(QuantityType.Mass, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Mass.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -918,7 +917,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(new {Mass.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Mass.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

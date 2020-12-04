@@ -13,23 +13,16 @@ namespace UnitsNet
 
         static Quantity()
         {
-            var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] {QuantityType.Undefined}).ToArray();
-            Types = quantityTypes;
+            var quantityTypes = Quantity.ByName.Values;
             Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
 
-            InfosLazy = new Lazy<QuantityInfo[]>(() => Types
-                .Select(quantityType => FromQuantityType(quantityType, 0.0).QuantityInfo)
+            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityTypes
                 .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
         }
 
         /// <summary>
-        /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
-        /// </summary>
-        public static QuantityType[] Types { get; }
-
-        /// <summary>
-        /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
+        /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
         public static string[] Names { get; }
 
@@ -93,16 +86,6 @@ namespace UnitsNet
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
-
-        /// <summary>
-        ///     Get information about the given quantity type.
-        /// </summary>
-        /// <param name="quantityType">The quantity type enum value.</param>
-        /// <returns>Information about the quantity and its units.</returns>
-        public static QuantityInfo GetInfo(QuantityType quantityType)
-        {
-            return Infos.First(qi => qi.QuantityType == quantityType);
-        }
 
         /// <summary>
         ///     Get a list of quantities that has the given base dimensions.

@@ -136,7 +136,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Power.Zero, quantityInfo.Zero);
             Assert.Equal("Power", quantityInfo.Name);
-            Assert.Equal(QuantityType.Power, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PowerUnit>().Except(new[] {PowerUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -871,7 +870,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Power.FromWatts(1.0);
-            Assert.Equal(QuantityType.Power, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Power.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -892,7 +891,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Power.FromWatts(1.0);
-            Assert.Equal(new {Power.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Power.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta,
+            Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[] {
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, BaseUnits.Undefined),
@@ -125,11 +125,6 @@ namespace UnitsNet
         public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
-
-        /// <summary>
         ///     All units of measurement for the TemperatureDelta quantity.
         /// </summary>
         public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
@@ -158,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TemperatureDelta.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -661,7 +651,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureDelta.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -960,8 +950,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureDeltaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return TemperatureDelta.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return TemperatureDelta.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return TemperatureDelta.BaseDimensions;
             else

@@ -103,7 +103,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalConductivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ThermalConductivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ThermalConductivityUnit>().Except(new[] {ThermalConductivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -552,7 +551,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
-            Assert.Equal(QuantityType.ThermalConductivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ThermalConductivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -573,7 +572,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
-            Assert.Equal(new {ThermalConductivity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ThermalConductivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

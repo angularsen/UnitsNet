@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<LevelUnit>(QuantityType.Level,
+            Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[] {
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, BaseUnits.Undefined),
@@ -118,11 +118,6 @@ namespace UnitsNet
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Level;
-
-        /// <summary>
         ///     All units of measurement for the Level quantity.
         /// </summary>
         public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
@@ -151,11 +146,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Level.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -564,7 +554,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Level.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -849,8 +839,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LevelUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Level.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Level.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Level.BaseDimensions;
             else

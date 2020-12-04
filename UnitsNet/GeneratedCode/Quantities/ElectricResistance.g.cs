@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricResistanceUnit>(QuantityType.ElectricResistance,
+            Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[] {
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, BaseUnits.Undefined),
@@ -122,11 +122,6 @@ namespace UnitsNet
         public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
-
-        /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
         /// </summary>
         public static ElectricResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
@@ -155,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricResistance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -616,7 +606,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricResistance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -909,8 +899,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricResistanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricResistance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricResistance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricResistance.BaseDimensions;
             else

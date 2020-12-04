@@ -113,7 +113,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Entropy.Zero, quantityInfo.Zero);
             Assert.Equal("Entropy", quantityInfo.Name);
-            Assert.Equal(QuantityType.Entropy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<EntropyUnit>().Except(new[] {EntropyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -627,7 +626,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
-            Assert.Equal(QuantityType.Entropy, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Entropy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -648,7 +647,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
-            Assert.Equal(new {Entropy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Entropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

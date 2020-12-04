@@ -117,7 +117,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureDelta", quantityInfo.Name);
-            Assert.Equal(QuantityType.TemperatureDelta, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TemperatureDeltaUnit>().Except(new[] {TemperatureDeltaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -657,7 +656,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
-            Assert.Equal(QuantityType.TemperatureDelta, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(TemperatureDelta.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -678,7 +677,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
-            Assert.Equal(new {TemperatureDelta.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {TemperatureDelta.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

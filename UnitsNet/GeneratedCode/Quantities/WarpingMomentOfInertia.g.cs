@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<WarpingMomentOfInertiaUnit>(QuantityType.WarpingMomentOfInertia,
+            Info = new QuantityInfo<WarpingMomentOfInertiaUnit>("WarpingMomentOfInertia",
                 new UnitInfo<WarpingMomentOfInertiaUnit>[] {
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new BaseUnits(length: LengthUnit.Centimeter)),
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new BaseUnits(length: LengthUnit.Decimeter)),
@@ -122,11 +122,6 @@ namespace UnitsNet
         public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.WarpingMomentOfInertia;
-
-        /// <summary>
         ///     All units of measurement for the WarpingMomentOfInertia quantity.
         /// </summary>
         public static WarpingMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
@@ -155,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => WarpingMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -616,7 +606,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current WarpingMomentOfInertia.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -909,8 +899,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(WarpingMomentOfInertiaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return WarpingMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return WarpingMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return WarpingMomentOfInertia.BaseDimensions;
             else

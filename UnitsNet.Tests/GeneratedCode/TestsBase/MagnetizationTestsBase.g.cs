@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
             Assert.Equal("Magnetization", quantityInfo.Name);
-            Assert.Equal(QuantityType.Magnetization, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MagnetizationUnit>().Except(new[] {MagnetizationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Magnetization.FromAmperesPerMeter(1.0);
-            Assert.Equal(QuantityType.Magnetization, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Magnetization.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Magnetization.FromAmperesPerMeter(1.0);
-            Assert.Equal(new {Magnetization.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Magnetization.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

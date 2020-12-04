@@ -129,7 +129,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Force.Zero, quantityInfo.Zero);
             Assert.Equal("Force", quantityInfo.Name);
-            Assert.Equal(QuantityType.Force, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -747,7 +746,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(QuantityType.Force, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Force.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -768,7 +767,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(new {Force.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Force.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

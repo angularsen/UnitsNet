@@ -1,4 +1,4 @@
-using CodeGen.Helpers;
+﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
@@ -31,30 +31,6 @@ namespace UnitsNet
     /// </summary>
     public static partial class Quantity
     {
-        /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name=""quantityType"">The <see cref=""QuantityType""/> of the quantity to create.</param>
-        /// <param name=""value"">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
-        {
-            switch(quantityType)
-            {");
-            foreach (var quantity in _quantities)
-            {
-                var quantityName = quantity.Name;
-                Writer.WL($@"
-                case QuantityType.{quantityName}:
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
-            }
-
-            Writer.WL(@"
-                default:
-                    throw new ArgumentException($""{quantityType} is not a supported quantity type."");
-            }
-        }
-
         /// <summary>
         ///     Try to dynamically construct a quantity.
         /// </summary>

@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance,
+            Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
                 new UnitInfo<CapacitanceUnit>[] {
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, BaseUnits.Undefined),
@@ -126,11 +126,6 @@ namespace UnitsNet
         public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Capacitance;
-
-        /// <summary>
         ///     All units of measurement for the Capacitance quantity.
         /// </summary>
         public static CapacitanceUnit[] Units { get; } = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
@@ -159,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Capacitance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -634,7 +624,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Capacitance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -929,8 +919,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(CapacitanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Capacitance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Capacitance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Capacitance.BaseDimensions;
             else

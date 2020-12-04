@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
 
-            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy,
+            Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[] {
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, BaseUnits.Undefined),
@@ -119,11 +119,6 @@ namespace UnitsNet
         public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.MolarEnergy;
-
-        /// <summary>
         ///     All units of measurement for the MolarEnergy quantity.
         /// </summary>
         public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
@@ -152,11 +147,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MolarEnergy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -571,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MolarEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -858,8 +848,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MolarEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MolarEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MolarEnergy.BaseDimensions;
             else

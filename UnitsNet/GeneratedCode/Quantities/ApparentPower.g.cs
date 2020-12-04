@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ApparentPowerUnit>(QuantityType.ApparentPower,
+            Info = new QuantityInfo<ApparentPowerUnit>("ApparentPower",
                 new UnitInfo<ApparentPowerUnit>[] {
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, BaseUnits.Undefined),
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, BaseUnits.Undefined),
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ApparentPower;
-
-        /// <summary>
         ///     All units of measurement for the ApparentPower quantity.
         /// </summary>
         public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ApparentPower.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -586,7 +576,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ApparentPower.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -875,8 +865,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ApparentPowerUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ApparentPower.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ApparentPower.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ApparentPower.BaseDimensions;
             else

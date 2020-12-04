@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DensityUnit>(QuantityType.Density,
+            Info = new QuantityInfo<DensityUnit>("Density",
                 new UnitInfo<DensityUnit>[] {
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, BaseUnits.Undefined),
@@ -159,11 +159,6 @@ namespace UnitsNet
         public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Density;
-
-        /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
         public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
@@ -192,11 +187,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Density.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1129,7 +1119,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Density.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1490,8 +1480,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Density.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Density.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Density.BaseDimensions;
             else

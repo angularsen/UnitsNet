@@ -143,7 +143,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Torque.Zero, quantityInfo.Zero);
             Assert.Equal("Torque", quantityInfo.Name);
-            Assert.Equal(QuantityType.Torque, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TorqueUnit>().Except(new[] {TorqueUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -852,7 +851,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-            Assert.Equal(QuantityType.Torque, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Torque.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -873,7 +872,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-            Assert.Equal(new {Torque.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Torque.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

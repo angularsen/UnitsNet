@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LuminosityUnit>(QuantityType.Luminosity,
+            Info = new QuantityInfo<LuminosityUnit>("Luminosity",
                 new UnitInfo<LuminosityUnit>[] {
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, BaseUnits.Undefined),
@@ -133,11 +133,6 @@ namespace UnitsNet
         public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Luminosity;
-
-        /// <summary>
         ///     All units of measurement for the Luminosity quantity.
         /// </summary>
         public static LuminosityUnit[] Units { get; } = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
@@ -166,11 +161,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Luminosity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -739,7 +729,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Luminosity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1048,8 +1038,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LuminosityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Luminosity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Luminosity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Luminosity.BaseDimensions;
             else

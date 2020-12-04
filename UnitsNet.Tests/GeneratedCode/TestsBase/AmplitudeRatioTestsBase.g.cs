@@ -107,7 +107,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
-            Assert.Equal(QuantityType.AmplitudeRatio, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().Except(new[] {AmplitudeRatioUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -586,7 +585,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(QuantityType.AmplitudeRatio, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(AmplitudeRatio.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -607,7 +606,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(new {AmplitudeRatio.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {AmplitudeRatio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

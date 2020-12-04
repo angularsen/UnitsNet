@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance,
+            Info = new QuantityInfo<ElectricAdmittanceUnit>("ElectricAdmittance",
                 new UnitInfo<ElectricAdmittanceUnit>[] {
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, BaseUnits.Undefined),
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
-
-        /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
         /// </summary>
         public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricAdmittance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -586,7 +576,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricAdmittance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -875,8 +865,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricAdmittanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricAdmittance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricAdmittance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricAdmittance.BaseDimensions;
             else

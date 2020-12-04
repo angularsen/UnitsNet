@@ -109,7 +109,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricPotentialDc.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialDc", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricPotentialDc, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricPotentialDcUnit>().Except(new[] {ElectricPotentialDcUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -597,7 +596,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
-            Assert.Equal(QuantityType.ElectricPotentialDc, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricPotentialDc.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -618,7 +617,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
-            Assert.Equal(new {ElectricPotentialDc.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricPotentialDc.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LapseRate.Zero, quantityInfo.Zero);
             Assert.Equal("LapseRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.LapseRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = LapseRate.FromDegreesCelciusPerKilometer(1.0);
-            Assert.Equal(QuantityType.LapseRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(LapseRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LapseRate.FromDegreesCelciusPerKilometer(1.0);
-            Assert.Equal(new {LapseRate.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {LapseRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

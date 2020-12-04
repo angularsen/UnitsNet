@@ -119,7 +119,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.TemperatureChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().Except(new[] {TemperatureChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -672,7 +671,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
-            Assert.Equal(QuantityType.TemperatureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(TemperatureChangeRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -693,7 +692,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
-            Assert.Equal(new {TemperatureChangeRate.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {TemperatureChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

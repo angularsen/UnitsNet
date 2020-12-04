@@ -113,7 +113,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Capacitance.Zero, quantityInfo.Zero);
             Assert.Equal("Capacitance", quantityInfo.Name);
-            Assert.Equal(QuantityType.Capacitance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -627,7 +626,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Capacitance.FromFarads(1.0);
-            Assert.Equal(QuantityType.Capacitance, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Capacitance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -648,7 +647,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Capacitance.FromFarads(1.0);
-            Assert.Equal(new {Capacitance.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Capacitance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

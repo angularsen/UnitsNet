@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DurationUnit>(QuantityType.Duration,
+            Info = new QuantityInfo<DurationUnit>("Duration",
                 new UnitInfo<DurationUnit>[] {
                     new UnitInfo<DurationUnit>(DurationUnit.Day, new BaseUnits(time: DurationUnit.Day)),
                     new UnitInfo<DurationUnit>(DurationUnit.Hour, new BaseUnits(time: DurationUnit.Hour)),
@@ -126,11 +126,6 @@ namespace UnitsNet
         public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Duration;
-
-        /// <summary>
         ///     All units of measurement for the Duration quantity.
         /// </summary>
         public static DurationUnit[] Units { get; } = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
@@ -159,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Duration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -676,7 +666,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Duration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -977,8 +967,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DurationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Duration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Duration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Duration.BaseDimensions;
             else

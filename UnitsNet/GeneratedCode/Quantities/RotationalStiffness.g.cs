@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<RotationalStiffnessUnit>(QuantityType.RotationalStiffness,
+            Info = new QuantityInfo<RotationalStiffnessUnit>("RotationalStiffness",
                 new UnitInfo<RotationalStiffnessUnit>[] {
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMeterPerDegree, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, BaseUnits.Undefined),
@@ -149,11 +149,6 @@ namespace UnitsNet
         public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffness;
-
-        /// <summary>
         ///     All units of measurement for the RotationalStiffness quantity.
         /// </summary>
         public static RotationalStiffnessUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessUnit)).Cast<RotationalStiffnessUnit>().Except(new RotationalStiffnessUnit[]{ RotationalStiffnessUnit.Undefined }).ToArray();
@@ -182,11 +177,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => RotationalStiffness.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1021,7 +1011,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RotationalStiffness.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1368,8 +1358,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalStiffnessUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return RotationalStiffness.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return RotationalStiffness.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return RotationalStiffness.BaseDimensions;
             else

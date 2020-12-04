@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion,
+            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
                 new UnitInfo<CoefficientOfThermalExpansionUnit>[] {
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
@@ -119,11 +119,6 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansion MinValue { get; } = new CoefficientOfThermalExpansion(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.CoefficientOfThermalExpansion;
-
-        /// <summary>
         ///     All units of measurement for the CoefficientOfThermalExpansion quantity.
         /// </summary>
         public static CoefficientOfThermalExpansionUnit[] Units { get; } = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
@@ -152,11 +147,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => CoefficientOfThermalExpansion.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -571,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current CoefficientOfThermalExpansion.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -858,8 +848,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(CoefficientOfThermalExpansionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return CoefficientOfThermalExpansion.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return CoefficientOfThermalExpansion.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return CoefficientOfThermalExpansion.BaseDimensions;
             else

@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
-            Assert.Equal(QuantityType.VitaminA, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VitaminA.FromInternationalUnits(1.0);
-            Assert.Equal(QuantityType.VitaminA, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(VitaminA.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VitaminA.FromInternationalUnits(1.0);
-            Assert.Equal(new {VitaminA.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {VitaminA.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

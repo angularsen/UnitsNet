@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(CoefficientOfThermalExpansion.Zero, quantityInfo.Zero);
             Assert.Equal("CoefficientOfThermalExpansion", quantityInfo.Name);
-            Assert.Equal(QuantityType.CoefficientOfThermalExpansion, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().Except(new[] {CoefficientOfThermalExpansionUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
-            Assert.Equal(QuantityType.CoefficientOfThermalExpansion, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(CoefficientOfThermalExpansion.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
-            Assert.Equal(new {CoefficientOfThermalExpansion.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {CoefficientOfThermalExpansion.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

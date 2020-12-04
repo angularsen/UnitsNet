@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricCurrentUnit>(QuantityType.ElectricCurrent,
+            Info = new QuantityInfo<ElectricCurrentUnit>("ElectricCurrent",
                 new UnitInfo<ElectricCurrentUnit>[] {
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, new BaseUnits(current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, BaseUnits.Undefined),
@@ -124,11 +124,6 @@ namespace UnitsNet
         public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
         public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
@@ -157,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCurrent.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -646,7 +636,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCurrent.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -943,8 +933,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCurrent.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCurrent.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCurrent.BaseDimensions;
             else

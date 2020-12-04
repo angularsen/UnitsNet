@@ -117,7 +117,7 @@ namespace UnitsNet
 ");
 
             Writer.WL($@"
-            Info = new QuantityInfo<{_unitEnumName}>(QuantityType.{_quantity.Name},
+            Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
                 new UnitInfo<{_unitEnumName}>[] {{");
 
             foreach (var unit in _quantity.Units)
@@ -234,11 +234,6 @@ namespace UnitsNet
         public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref=""QuantityType"" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
-
-        /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
         /// </summary>
         public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
@@ -280,11 +275,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref=""QuantityType"" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => {_quantity.Name}.QuantityType;
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -792,7 +782,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current {_quantity.Name}.</returns>
         public override int GetHashCode()
         {{
-            return new {{ QuantityType, Value, Unit }}.GetHashCode();
+            return new {{ Info.Name, Value, Unit }}.GetHashCode();
         }}
 
         #endregion
@@ -1104,8 +1094,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof({_unitEnumName}))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return {_quantity.Name}.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return {_quantity.Name}.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return {_quantity.Name}.BaseDimensions;
             else

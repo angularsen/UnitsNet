@@ -115,7 +115,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricCurrent.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrent", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricCurrent, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricCurrentUnit>().Except(new[] {ElectricCurrentUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -642,7 +641,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricCurrent.FromAmperes(1.0);
-            Assert.Equal(QuantityType.ElectricCurrent, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricCurrent.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -663,7 +662,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrent.FromAmperes(1.0);
-            Assert.Equal(new {ElectricCurrent.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricCurrent.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

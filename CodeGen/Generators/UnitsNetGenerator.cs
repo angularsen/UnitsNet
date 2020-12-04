@@ -72,7 +72,7 @@ namespace CodeGen.Generators
 
             Log.Information("");
             GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
-            GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
+            GenerateQuantityType(quantities, $"{outputDir}/QuantityInfo.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
             GenerateUnitConverter(quantities, $"{outputDir}/UnitConverter.g.cs");
 

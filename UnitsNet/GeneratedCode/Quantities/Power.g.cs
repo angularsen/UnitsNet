@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<PowerUnit>(QuantityType.Power,
+            Info = new QuantityInfo<PowerUnit>("Power",
                 new UnitInfo<PowerUnit>[] {
                     new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, BaseUnits.Undefined),
@@ -141,11 +141,6 @@ namespace UnitsNet
         public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Power;
-
-        /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
         public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
@@ -176,11 +171,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Power.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -903,7 +893,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Power.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1234,8 +1224,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Power.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Power.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Power.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
+            Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
                 new UnitInfo<VolumePerLengthUnit>[] {
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, BaseUnits.Undefined),
@@ -123,11 +123,6 @@ namespace UnitsNet
         public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
-
-        /// <summary>
         ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
         public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
@@ -156,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -631,7 +621,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current VolumePerLength.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -926,8 +916,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumePerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return VolumePerLength.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VolumePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VolumePerLength.BaseDimensions;
             else

@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Permittivity.Zero, quantityInfo.Zero);
             Assert.Equal("Permittivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.Permittivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PermittivityUnit>().Except(new[] {PermittivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Permittivity.FromFaradsPerMeter(1.0);
-            Assert.Equal(QuantityType.Permittivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Permittivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Permittivity.FromFaradsPerMeter(1.0);
-            Assert.Equal(new {Permittivity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Permittivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

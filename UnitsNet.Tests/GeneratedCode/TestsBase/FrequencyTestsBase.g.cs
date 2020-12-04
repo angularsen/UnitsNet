@@ -119,7 +119,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
-            Assert.Equal(QuantityType.Frequency, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<FrequencyUnit>().Except(new[] {FrequencyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -672,7 +671,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Frequency.FromHertz(1.0);
-            Assert.Equal(QuantityType.Frequency, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Frequency.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -693,7 +692,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Frequency.FromHertz(1.0);
-            Assert.Equal(new {Frequency.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Frequency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<PowerDensityUnit>(QuantityType.PowerDensity,
+            Info = new QuantityInfo<PowerDensityUnit>("PowerDensity",
                 new UnitInfo<PowerDensityUnit>[] {
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, BaseUnits.Undefined),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, BaseUnits.Undefined),
@@ -160,11 +160,6 @@ namespace UnitsNet
         public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.PowerDensity;
-
-        /// <summary>
         ///     All units of measurement for the PowerDensity quantity.
         /// </summary>
         public static PowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
@@ -193,11 +188,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => PowerDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1186,7 +1176,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PowerDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1555,8 +1545,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return PowerDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return PowerDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return PowerDensity.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<RotationalSpeedUnit>(QuantityType.RotationalSpeed,
+            Info = new QuantityInfo<RotationalSpeedUnit>("RotationalSpeed",
                 new UnitInfo<RotationalSpeedUnit>[] {
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, BaseUnits.Undefined),
@@ -129,11 +129,6 @@ namespace UnitsNet
         public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalSpeed;
-
-        /// <summary>
         ///     All units of measurement for the RotationalSpeed quantity.
         /// </summary>
         public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().Except(new RotationalSpeedUnit[]{ RotationalSpeedUnit.Undefined }).ToArray();
@@ -162,11 +157,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => RotationalSpeed.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -721,7 +711,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RotationalSpeed.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1028,8 +1018,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalSpeedUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return RotationalSpeed.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return RotationalSpeed.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return RotationalSpeed.BaseDimensions;
             else

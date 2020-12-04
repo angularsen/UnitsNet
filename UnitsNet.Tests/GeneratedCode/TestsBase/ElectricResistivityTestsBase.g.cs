@@ -127,7 +127,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricResistivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricResistivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricResistivityUnit>().Except(new[] {ElectricResistivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -732,7 +731,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
-            Assert.Equal(QuantityType.ElectricResistivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricResistivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -753,7 +752,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
-            Assert.Equal(new {ElectricResistivity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricResistivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

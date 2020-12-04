@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio,
+            Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[] {
                     new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, BaseUnits.Undefined),
@@ -122,11 +122,6 @@ namespace UnitsNet
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
-
-        /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
@@ -155,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Ratio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -616,7 +606,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Ratio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -909,8 +899,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Ratio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Ratio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Ratio.BaseDimensions;
             else

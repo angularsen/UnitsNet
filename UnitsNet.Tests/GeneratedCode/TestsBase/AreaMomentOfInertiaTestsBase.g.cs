@@ -111,7 +111,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
-            Assert.Equal(QuantityType.AreaMomentOfInertia, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -612,7 +611,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(QuantityType.AreaMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(AreaMomentOfInertia.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -633,7 +632,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(new {AreaMomentOfInertia.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {AreaMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

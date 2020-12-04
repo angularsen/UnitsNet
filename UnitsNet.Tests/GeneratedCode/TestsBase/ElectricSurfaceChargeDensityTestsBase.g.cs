@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricSurfaceChargeDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricSurfaceChargeDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().Except(new[] {ElectricSurfaceChargeDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1.0);
-            Assert.Equal(QuantityType.ElectricSurfaceChargeDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricSurfaceChargeDensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1.0);
-            Assert.Equal(new {ElectricSurfaceChargeDensity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricSurfaceChargeDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

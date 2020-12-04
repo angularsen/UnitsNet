@@ -107,7 +107,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReactivePower.Zero, quantityInfo.Zero);
             Assert.Equal("ReactivePower", quantityInfo.Name);
-            Assert.Equal(QuantityType.ReactivePower, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().Except(new[] {ReactivePowerUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -582,7 +581,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
-            Assert.Equal(QuantityType.ReactivePower, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ReactivePower.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -603,7 +602,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
-            Assert.Equal(new {ReactivePower.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ReactivePower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

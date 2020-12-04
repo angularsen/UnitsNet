@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ReactiveEnergyUnit>(QuantityType.ReactiveEnergy,
+            Info = new QuantityInfo<ReactiveEnergyUnit>("ReactiveEnergy",
                 new UnitInfo<ReactiveEnergyUnit>[] {
                     new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, BaseUnits.Undefined),
                     new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, BaseUnits.Undefined),
@@ -119,11 +119,6 @@ namespace UnitsNet
         public static ReactiveEnergy MinValue { get; } = new ReactiveEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ReactiveEnergy;
-
-        /// <summary>
         ///     All units of measurement for the ReactiveEnergy quantity.
         /// </summary>
         public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
@@ -152,11 +147,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ReactiveEnergy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -571,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ReactiveEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -858,8 +848,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ReactiveEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ReactiveEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ReactiveEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ReactiveEnergy.BaseDimensions;
             else

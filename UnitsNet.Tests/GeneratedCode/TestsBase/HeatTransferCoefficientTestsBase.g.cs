@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
-            Assert.Equal(QuantityType.HeatTransferCoefficient, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().Except(new[] {HeatTransferCoefficientUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
-            Assert.Equal(QuantityType.HeatTransferCoefficient, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(HeatTransferCoefficient.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
-            Assert.Equal(new {HeatTransferCoefficient.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {HeatTransferCoefficient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

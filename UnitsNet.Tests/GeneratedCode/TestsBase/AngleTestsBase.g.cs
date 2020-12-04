@@ -127,7 +127,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Angle.Zero, quantityInfo.Zero);
             Assert.Equal("Angle", quantityInfo.Name);
-            Assert.Equal(QuantityType.Angle, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AngleUnit>().Except(new[] {AngleUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -732,7 +731,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Angle.FromDegrees(1.0);
-            Assert.Equal(QuantityType.Angle, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Angle.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -753,7 +752,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Angle.FromDegrees(1.0);
-            Assert.Equal(new {Angle.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Angle.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

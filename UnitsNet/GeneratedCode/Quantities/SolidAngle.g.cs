@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle,
+            Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
                 new UnitInfo<SolidAngleUnit>[] {
                     new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, BaseUnits.Undefined),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.SolidAngle;
-
-        /// <summary>
         ///     All units of measurement for the SolidAngle quantity.
         /// </summary>
         public static SolidAngleUnit[] Units { get; } = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => SolidAngle.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SolidAngle.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SolidAngleUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return SolidAngle.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return SolidAngle.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return SolidAngle.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information,
+            Info = new QuantityInfo<InformationUnit>("Information",
                 new UnitInfo<InformationUnit>[] {
                     new UnitInfo<InformationUnit>(InformationUnit.Bit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Byte, BaseUnits.Undefined),
@@ -142,11 +142,6 @@ namespace UnitsNet
         public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Information;
-
-        /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
         public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
@@ -177,11 +172,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Information.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -918,7 +908,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Information.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1251,8 +1241,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(InformationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Information.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Information.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Information.BaseDimensions;
             else

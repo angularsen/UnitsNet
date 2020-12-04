@@ -101,7 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricField", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricField, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().Except(new[] {ElectricFieldUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -537,7 +536,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricField.FromVoltsPerMeter(1.0);
-            Assert.Equal(QuantityType.ElectricField, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricField.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -558,7 +557,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricField.FromVoltsPerMeter(1.0);
-            Assert.Equal(new {ElectricField.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricField.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

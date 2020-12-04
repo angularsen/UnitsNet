@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VolumeConcentrationUnit>(QuantityType.VolumeConcentration,
+            Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
                 new UnitInfo<VolumeConcentrationUnit>[] {
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, BaseUnits.Undefined),
@@ -139,11 +139,6 @@ namespace UnitsNet
         public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeConcentration;
-
-        /// <summary>
         ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
         public static VolumeConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
@@ -172,11 +167,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumeConcentration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -829,7 +819,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current VolumeConcentration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1150,8 +1140,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumeConcentrationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return VolumeConcentration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VolumeConcentration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VolumeConcentration.BaseDimensions;
             else

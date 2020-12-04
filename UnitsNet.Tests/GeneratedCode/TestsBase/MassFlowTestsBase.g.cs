@@ -165,7 +165,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
-            Assert.Equal(QuantityType.MassFlow, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassFlowUnit>().Except(new[] {MassFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1017,7 +1016,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(QuantityType.MassFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(MassFlow.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -1038,7 +1037,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(new {MassFlow.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {MassFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

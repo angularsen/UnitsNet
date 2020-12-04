@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AreaUnit>(QuantityType.Area,
+            Info = new QuantityInfo<AreaUnit>("Area",
                 new UnitInfo<AreaUnit>[] {
                     new UnitInfo<AreaUnit>(AreaUnit.Acre, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.Hectare, BaseUnits.Undefined),
@@ -130,11 +130,6 @@ namespace UnitsNet
         public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Area;
-
-        /// <summary>
         ///     All units of measurement for the Area quantity.
         /// </summary>
         public static AreaUnit[] Units { get; } = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
@@ -163,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Area.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -736,7 +726,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Area.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1045,8 +1035,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Area.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Area.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Area.BaseDimensions;
             else

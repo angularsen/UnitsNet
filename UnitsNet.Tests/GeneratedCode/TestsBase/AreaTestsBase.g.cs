@@ -127,7 +127,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
-            Assert.Equal(QuantityType.Area, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -732,7 +731,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(QuantityType.Area, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(Area.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -753,7 +752,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(new {Area.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Area.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

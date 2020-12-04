@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<MassFractionUnit>(QuantityType.MassFraction,
+            Info = new QuantityInfo<MassFractionUnit>("MassFraction",
                 new UnitInfo<MassFractionUnit>[] {
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, BaseUnits.Undefined),
@@ -143,11 +143,6 @@ namespace UnitsNet
         public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.MassFraction;
-
-        /// <summary>
         ///     All units of measurement for the MassFraction quantity.
         /// </summary>
         public static MassFractionUnit[] Units { get; } = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
@@ -176,11 +171,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassFraction.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -889,7 +879,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFraction.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1218,8 +1208,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFractionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassFraction.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassFraction.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassFraction.BaseDimensions;
             else

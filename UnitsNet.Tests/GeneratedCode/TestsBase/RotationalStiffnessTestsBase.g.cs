@@ -165,7 +165,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalStiffness.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalStiffness", quantityInfo.Name);
-            Assert.Equal(QuantityType.RotationalStiffness, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RotationalStiffnessUnit>().Except(new[] {RotationalStiffnessUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1017,7 +1016,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal(QuantityType.RotationalStiffness, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(RotationalStiffness.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -1038,7 +1037,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal(new {RotationalStiffness.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {RotationalStiffness.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -107,7 +107,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalAcceleration.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalAcceleration", quantityInfo.Name);
-            Assert.Equal(QuantityType.RotationalAcceleration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -582,7 +581,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
-            Assert.Equal(QuantityType.RotationalAcceleration, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(RotationalAcceleration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -603,7 +602,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
-            Assert.Equal(new {RotationalAcceleration.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {RotationalAcceleration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

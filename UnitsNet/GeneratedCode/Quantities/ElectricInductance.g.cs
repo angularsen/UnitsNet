@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance,
+            Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
                 new UnitInfo<ElectricInductanceUnit>[] {
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, BaseUnits.Undefined),
@@ -123,11 +123,6 @@ namespace UnitsNet
         public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricInductance;
-
-        /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>
         public static ElectricInductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().Except(new ElectricInductanceUnit[]{ ElectricInductanceUnit.Undefined }).ToArray();
@@ -156,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricInductance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -589,7 +579,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricInductance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -878,8 +868,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricInductanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricInductance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricInductance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricInductance.BaseDimensions;
             else

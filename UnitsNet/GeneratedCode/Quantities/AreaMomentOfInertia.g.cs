@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<AreaMomentOfInertiaUnit>(QuantityType.AreaMomentOfInertia,
+            Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
                 new UnitInfo<AreaMomentOfInertiaUnit>[] {
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new BaseUnits(length: LengthUnit.Centimeter)),
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new BaseUnits(length: LengthUnit.Decimeter)),
@@ -122,11 +122,6 @@ namespace UnitsNet
         public static AreaMomentOfInertia MinValue { get; } = new AreaMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.AreaMomentOfInertia;
-
-        /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>
         public static AreaMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().Except(new AreaMomentOfInertiaUnit[]{ AreaMomentOfInertiaUnit.Undefined }).ToArray();
@@ -155,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => AreaMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -616,7 +606,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current AreaMomentOfInertia.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -909,8 +899,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaMomentOfInertiaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return AreaMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return AreaMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return AreaMomentOfInertia.BaseDimensions;
             else

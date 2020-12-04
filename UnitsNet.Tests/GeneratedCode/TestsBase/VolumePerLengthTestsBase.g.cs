@@ -113,7 +113,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("VolumePerLength", quantityInfo.Name);
-            Assert.Equal(QuantityType.VolumePerLength, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VolumePerLengthUnit>().Except(new[] {VolumePerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -627,7 +626,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
-            Assert.Equal(QuantityType.VolumePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(VolumePerLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -648,7 +647,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
-            Assert.Equal(new {VolumePerLength.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {VolumePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

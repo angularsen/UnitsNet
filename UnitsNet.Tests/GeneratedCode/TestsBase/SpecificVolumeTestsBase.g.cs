@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificVolume.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificVolume", quantityInfo.Name);
-            Assert.Equal(QuantityType.SpecificVolume, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>().Except(new[] {SpecificVolumeUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificVolume.FromCubicMetersPerKilogram(1.0);
-            Assert.Equal(QuantityType.SpecificVolume, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(SpecificVolume.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificVolume.FromCubicMetersPerKilogram(1.0);
-            Assert.Equal(new {SpecificVolume.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {SpecificVolume.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricConductivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricConductivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricConductivityUnit>().Except(new[] {ElectricConductivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricConductivity.FromSiemensPerMeter(1.0);
-            Assert.Equal(QuantityType.ElectricConductivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(ElectricConductivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricConductivity.FromSiemensPerMeter(1.0);
-            Assert.Equal(new {ElectricConductivity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricConductivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

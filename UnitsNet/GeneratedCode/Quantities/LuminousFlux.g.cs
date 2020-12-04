@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
-            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux,
+            Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[] {
                     new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, BaseUnits.Undefined),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.LuminousFlux;
-
-        /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
         /// </summary>
         public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => LuminousFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LuminousFlux.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LuminousFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return LuminousFlux.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LuminousFlux.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LuminousFlux.BaseDimensions;
             else

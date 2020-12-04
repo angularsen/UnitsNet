@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricFieldUnit>(QuantityType.ElectricField,
+            Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
                 new UnitInfo<ElectricFieldUnit>[] {
                     new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricField;
-
-        /// <summary>
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>
         public static ElectricFieldUnit[] Units { get; } = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricField.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricField.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricFieldUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricField.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricField.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricField.BaseDimensions;
             else

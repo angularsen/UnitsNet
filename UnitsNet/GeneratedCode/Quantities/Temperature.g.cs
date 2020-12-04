@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature,
+            Info = new QuantityInfo<TemperatureUnit>("Temperature",
                 new UnitInfo<TemperatureUnit>[] {
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
@@ -126,11 +126,6 @@ namespace UnitsNet
         public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Temperature;
-
-        /// <summary>
         ///     All units of measurement for the Temperature quantity.
         /// </summary>
         public static TemperatureUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().Except(new TemperatureUnit[]{ TemperatureUnit.Undefined }).ToArray();
@@ -159,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Temperature.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -630,7 +620,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Temperature.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -931,8 +921,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Temperature.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Temperature.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Temperature.BaseDimensions;
             else

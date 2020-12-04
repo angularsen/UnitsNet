@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient,
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
                 new UnitInfo<ElectricCurrentGradientUnit>[] {
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, BaseUnits.Undefined),
                 },
@@ -117,11 +117,6 @@ namespace UnitsNet
         public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
         /// </summary>
         public static ElectricCurrentGradientUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
@@ -150,11 +145,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCurrentGradient.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -541,7 +531,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCurrentGradient.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -824,8 +814,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentGradientUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCurrentGradient.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCurrentGradient.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCurrentGradient.BaseDimensions;
             else

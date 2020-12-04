@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<TorquePerLengthUnit>(QuantityType.TorquePerLength,
+            Info = new QuantityInfo<TorquePerLengthUnit>("TorquePerLength",
                 new UnitInfo<TorquePerLengthUnit>[] {
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, BaseUnits.Undefined),
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, BaseUnits.Undefined),
@@ -137,11 +137,6 @@ namespace UnitsNet
         public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.TorquePerLength;
-
-        /// <summary>
         ///     All units of measurement for the TorquePerLength quantity.
         /// </summary>
         public static TorquePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
@@ -170,11 +165,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TorquePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -841,7 +831,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TorquePerLength.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1164,8 +1154,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TorquePerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return TorquePerLength.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return TorquePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return TorquePerLength.BaseDimensions;
             else

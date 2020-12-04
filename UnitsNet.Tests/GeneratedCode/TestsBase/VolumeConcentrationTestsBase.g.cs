@@ -139,7 +139,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
-            Assert.Equal(QuantityType.VolumeConcentration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -822,7 +821,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            Assert.Equal(QuantityType.VolumeConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(VolumeConcentration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -843,7 +842,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            Assert.Equal(new {VolumeConcentration.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {VolumeConcentration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

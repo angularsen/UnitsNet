@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricChargeUnit>(QuantityType.ElectricCharge,
+            Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[] {
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, BaseUnits.Undefined),
@@ -124,11 +124,6 @@ namespace UnitsNet
         public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCharge;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
         public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
@@ -157,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCharge.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -604,7 +594,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCharge.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -895,8 +885,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricChargeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCharge.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCharge.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCharge.BaseDimensions;
             else

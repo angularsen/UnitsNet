@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio,
+            Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[] {
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, BaseUnits.Undefined),
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, BaseUnits.Undefined),
@@ -118,11 +118,6 @@ namespace UnitsNet
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
-
-        /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
         public static PowerRatioUnit[] Units { get; } = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
@@ -151,11 +146,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => PowerRatio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -564,7 +554,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PowerRatio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -849,8 +839,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerRatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return PowerRatio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return PowerRatio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return PowerRatio.BaseDimensions;
             else

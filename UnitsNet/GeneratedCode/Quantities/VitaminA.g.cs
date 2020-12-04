@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA,
+            Info = new QuantityInfo<VitaminAUnit>("VitaminA",
                 new UnitInfo<VitaminAUnit>[] {
                     new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, BaseUnits.Undefined),
                 },
@@ -117,11 +117,6 @@ namespace UnitsNet
         public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.VitaminA;
-
-        /// <summary>
         ///     All units of measurement for the VitaminA quantity.
         /// </summary>
         public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
@@ -150,11 +145,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VitaminA.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -541,7 +531,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current VitaminA.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -824,8 +814,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VitaminAUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return VitaminA.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VitaminA.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VitaminA.BaseDimensions;
             else

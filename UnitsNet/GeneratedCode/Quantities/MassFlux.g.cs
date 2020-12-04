@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux,
+            Info = new QuantityInfo<MassFluxUnit>("MassFlux",
                 new UnitInfo<MassFluxUnit>[] {
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, BaseUnits.Undefined),
@@ -128,11 +128,6 @@ namespace UnitsNet
         public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
-
-        /// <summary>
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
         public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
@@ -161,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -706,7 +696,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFlux.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1011,8 +1001,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassFlux.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassFlux.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassFlux.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate,
+            Info = new QuantityInfo<LapseRateUnit>("LapseRate",
                 new UnitInfo<LapseRateUnit>[] {
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, BaseUnits.Undefined),
                 },
@@ -117,11 +117,6 @@ namespace UnitsNet
         public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.LapseRate;
-
-        /// <summary>
         ///     All units of measurement for the LapseRate quantity.
         /// </summary>
         public static LapseRateUnit[] Units { get; } = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
@@ -150,11 +145,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => LapseRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -541,7 +531,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LapseRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -824,8 +814,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LapseRateUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return LapseRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LapseRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LapseRate.BaseDimensions;
             else

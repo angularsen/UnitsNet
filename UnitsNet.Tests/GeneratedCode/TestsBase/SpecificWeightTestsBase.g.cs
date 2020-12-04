@@ -133,7 +133,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
-            Assert.Equal(QuantityType.SpecificWeight, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().Except(new[] {SpecificWeightUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -777,7 +776,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.SpecificWeight, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(SpecificWeight.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -798,7 +797,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal(new {SpecificWeight.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {SpecificWeight.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy,
+            Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[] {
                     new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, BaseUnits.Undefined),
@@ -123,11 +123,6 @@ namespace UnitsNet
         public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
-
-        /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
@@ -156,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Entropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -631,7 +621,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Entropy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -926,8 +916,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(EntropyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Entropy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Entropy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Entropy.BaseDimensions;
             else

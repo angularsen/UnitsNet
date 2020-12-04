@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate,
+            Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[] {
                     new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, BaseUnits.Undefined),
@@ -145,11 +145,6 @@ namespace UnitsNet
         public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
-
-        /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
         public static BitRateUnit[] Units { get; } = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
@@ -180,11 +175,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => BitRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -921,7 +911,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current BitRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1254,8 +1244,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(BitRateUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return BitRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return BitRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return BitRate.BaseDimensions;
             else

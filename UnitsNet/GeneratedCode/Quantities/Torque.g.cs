@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque,
+            Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[] {
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
@@ -138,11 +138,6 @@ namespace UnitsNet
         public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Torque;
-
-        /// <summary>
         ///     All units of measurement for the Torque quantity.
         /// </summary>
         public static TorqueUnit[] Units { get; } = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>().Except(new TorqueUnit[]{ TorqueUnit.Undefined }).ToArray();
@@ -171,11 +166,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Torque.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -856,7 +846,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Torque.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1181,8 +1171,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TorqueUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Torque.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Torque.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Torque.BaseDimensions;
             else

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
-            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass,
+            Info = new QuantityInfo<MolarMassUnit>("MolarMass",
                 new UnitInfo<MolarMassUnit>[] {
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, BaseUnits.Undefined),
@@ -128,11 +128,6 @@ namespace UnitsNet
         public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.MolarMass;
-
-        /// <summary>
         ///     All units of measurement for the MolarMass quantity.
         /// </summary>
         public static MolarMassUnit[] Units { get; } = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().Except(new MolarMassUnit[]{ MolarMassUnit.Undefined }).ToArray();
@@ -161,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MolarMass.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -706,7 +696,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MolarMass.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1011,8 +1001,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarMassUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MolarMass.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MolarMass.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MolarMass.BaseDimensions;
             else

@@ -149,7 +149,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEnergy", quantityInfo.Name);
-            Assert.Equal(QuantityType.SpecificEnergy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -897,7 +896,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
-            Assert.Equal(QuantityType.SpecificEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(SpecificEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -918,7 +917,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
-            Assert.Equal(new {SpecificEnergy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {SpecificEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

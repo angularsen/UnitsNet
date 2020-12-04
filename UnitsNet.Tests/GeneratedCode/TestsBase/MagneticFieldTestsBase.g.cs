@@ -109,7 +109,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticField", quantityInfo.Name);
-            Assert.Equal(QuantityType.MagneticField, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().Except(new[] {MagneticFieldUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -597,7 +596,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MagneticField.FromTeslas(1.0);
-            Assert.Equal(QuantityType.MagneticField, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(MagneticField.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -618,7 +617,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MagneticField.FromTeslas(1.0);
-            Assert.Equal(new {MagneticField.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {MagneticField.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<EnergyUnit>(QuantityType.Energy,
+            Info = new QuantityInfo<EnergyUnit>("Energy",
                 new UnitInfo<EnergyUnit>[] {
                     new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, BaseUnits.Undefined),
@@ -152,11 +152,6 @@ namespace UnitsNet
         public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Energy;
-
-        /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>
         public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
@@ -185,11 +180,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Energy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1066,7 +1056,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Energy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1419,8 +1409,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(EnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Energy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Energy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Energy.BaseDimensions;
             else

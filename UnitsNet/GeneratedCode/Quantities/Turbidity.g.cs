@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<TurbidityUnit>(QuantityType.Turbidity,
+            Info = new QuantityInfo<TurbidityUnit>("Turbidity",
                 new UnitInfo<TurbidityUnit>[] {
                     new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, BaseUnits.Undefined),
                 },
@@ -120,11 +120,6 @@ namespace UnitsNet
         public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Turbidity;
-
-        /// <summary>
         ///     All units of measurement for the Turbidity quantity.
         /// </summary>
         public static TurbidityUnit[] Units { get; } = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
@@ -153,11 +148,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Turbidity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -544,7 +534,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Turbidity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -827,8 +817,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TurbidityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Turbidity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Turbidity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Turbidity.BaseDimensions;
             else

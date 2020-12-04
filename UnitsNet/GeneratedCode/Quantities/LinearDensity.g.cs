@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity,
+            Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
                 new UnitInfo<LinearDensityUnit>[] {
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, BaseUnits.Undefined),
@@ -133,11 +133,6 @@ namespace UnitsNet
         public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.LinearDensity;
-
-        /// <summary>
         ///     All units of measurement for the LinearDensity quantity.
         /// </summary>
         public static LinearDensityUnit[] Units { get; } = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().Except(new LinearDensityUnit[]{ LinearDensityUnit.Undefined }).ToArray();
@@ -166,11 +161,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => LinearDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -739,7 +729,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LinearDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1048,8 +1038,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LinearDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return LinearDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LinearDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LinearDensity.BaseDimensions;
             else

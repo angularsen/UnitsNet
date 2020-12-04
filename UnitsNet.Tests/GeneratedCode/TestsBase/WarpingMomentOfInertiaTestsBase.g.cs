@@ -111,7 +111,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("WarpingMomentOfInertia", quantityInfo.Name);
-            Assert.Equal(QuantityType.WarpingMomentOfInertia, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<WarpingMomentOfInertiaUnit>().Except(new[] {WarpingMomentOfInertiaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -612,7 +611,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
-            Assert.Equal(QuantityType.WarpingMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(WarpingMomentOfInertia.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -633,7 +632,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
-            Assert.Equal(new {WarpingMomentOfInertia.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {WarpingMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

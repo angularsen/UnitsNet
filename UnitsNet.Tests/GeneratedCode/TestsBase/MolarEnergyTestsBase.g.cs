@@ -105,7 +105,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
-            Assert.Equal(QuantityType.MolarEnergy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().Except(new[] {MolarEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -567,7 +566,7 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MolarEnergy.FromJoulesPerMole(1.0);
-            Assert.Equal(QuantityType.MolarEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+            Assert.Equal(MolarEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
@@ -588,7 +587,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarEnergy.FromJoulesPerMole(1.0);
-            Assert.Equal(new {MolarEnergy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {MolarEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

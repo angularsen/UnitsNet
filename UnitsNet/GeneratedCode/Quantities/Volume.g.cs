@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumeUnit>(QuantityType.Volume,
+            Info = new QuantityInfo<VolumeUnit>("Volume",
                 new UnitInfo<VolumeUnit>[] {
                     new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
@@ -167,11 +167,6 @@ namespace UnitsNet
         public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Volume;
-
-        /// <summary>
         ///     All units of measurement for the Volume quantity.
         /// </summary>
         public static VolumeUnit[] Units { get; } = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
@@ -200,11 +195,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Volume.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1291,7 +1281,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Volume.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1674,8 +1664,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Volume.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Volume.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Volume.BaseDimensions;
             else

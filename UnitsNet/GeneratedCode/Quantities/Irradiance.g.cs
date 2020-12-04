@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance,
+            Info = new QuantityInfo<IrradianceUnit>("Irradiance",
                 new UnitInfo<IrradianceUnit>[] {
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, BaseUnits.Undefined),
@@ -130,11 +130,6 @@ namespace UnitsNet
         public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
-
-        /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
         public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
@@ -163,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Irradiance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -736,7 +726,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Irradiance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1045,8 +1035,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IrradianceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Irradiance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Irradiance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Irradiance.BaseDimensions;
             else

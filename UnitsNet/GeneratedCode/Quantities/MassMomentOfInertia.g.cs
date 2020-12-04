@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia,
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>("MassMomentOfInertia",
                 new UnitInfo<MassMomentOfInertiaUnit>[] {
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, BaseUnits.Undefined),
@@ -144,11 +144,6 @@ namespace UnitsNet
         public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.MassMomentOfInertia;
-
-        /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
         /// </summary>
         public static MassMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
@@ -177,11 +172,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -946,7 +936,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassMomentOfInertia.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1283,8 +1273,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassMomentOfInertiaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassMomentOfInertia.BaseDimensions;
             else
