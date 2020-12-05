@@ -133,6 +133,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Force;
 
         /// <summary>

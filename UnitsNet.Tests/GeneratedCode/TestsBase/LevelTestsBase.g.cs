@@ -103,6 +103,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Level.Zero, quantityInfo.Zero);
             Assert.Equal("Level", quantityInfo.Name);
+            Assert.Equal(QuantityType.Level, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LevelUnit>().Except(new[] {LevelUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

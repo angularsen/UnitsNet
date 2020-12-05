@@ -127,6 +127,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
             Assert.Equal("Acceleration", quantityInfo.Name);
+            Assert.Equal(QuantityType.Acceleration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AccelerationUnit>().Except(new[] {AccelerationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -149,6 +149,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

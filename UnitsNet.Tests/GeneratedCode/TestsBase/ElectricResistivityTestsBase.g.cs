@@ -127,6 +127,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricResistivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistivity", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricResistivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricResistivityUnit>().Except(new[] {ElectricResistivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

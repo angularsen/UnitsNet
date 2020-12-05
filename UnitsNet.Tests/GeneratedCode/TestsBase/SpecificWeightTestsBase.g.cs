@@ -133,6 +133,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
+            Assert.Equal(QuantityType.SpecificWeight, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().Except(new[] {SpecificWeightUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

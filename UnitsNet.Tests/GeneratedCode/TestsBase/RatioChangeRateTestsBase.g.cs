@@ -103,6 +103,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RatioChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("RatioChangeRate", quantityInfo.Name);
+            Assert.Equal(QuantityType.RatioChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>().Except(new[] {RatioChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

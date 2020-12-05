@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricChargeDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricChargeDensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricChargeDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricChargeDensityUnit>().Except(new[] {ElectricChargeDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

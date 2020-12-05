@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Permeability.Zero, quantityInfo.Zero);
             Assert.Equal("Permeability", quantityInfo.Name);
+            Assert.Equal(QuantityType.Permeability, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PermeabilityUnit>().Except(new[] {PermeabilityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -121,6 +121,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ForceChangeRate", quantityInfo.Name);
+            Assert.Equal(QuantityType.ForceChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>().Except(new[] {ForceChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -113,6 +113,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Irradiation.Zero, quantityInfo.Zero);
             Assert.Equal("Irradiation", quantityInfo.Name);
+            Assert.Equal(QuantityType.Irradiation, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<IrradiationUnit>().Except(new[] {IrradiationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

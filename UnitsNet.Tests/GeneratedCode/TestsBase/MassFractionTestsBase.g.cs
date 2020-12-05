@@ -147,6 +147,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFraction.Zero, quantityInfo.Zero);
             Assert.Equal("MassFraction", quantityInfo.Name);
+            Assert.Equal(QuantityType.MassFraction, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassFractionUnit>().Except(new[] {MassFractionUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -125,6 +125,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalSpeed", quantityInfo.Name);
+            Assert.Equal(QuantityType.RotationalSpeed, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RotationalSpeedUnit>().Except(new[] {RotationalSpeedUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

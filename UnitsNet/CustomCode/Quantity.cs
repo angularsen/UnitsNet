@@ -22,6 +22,12 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Infos property instead.")]
+        public static QuantityType[] Types { get; }
+
+        /// <summary>
         /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
         public static string[] Names { get; }
@@ -86,6 +92,16 @@ namespace UnitsNet
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
+
+        /// <summary>
+        ///     Get information about the given quantity type.
+        /// </summary>
+        /// <param name="quantityType">The quantity type enum value.</param>
+        /// <returns>Information about the quantity and its units.</returns>
+        public static QuantityInfo GetInfo(QuantityType quantityType)
+        {
+            return Infos.First(qi => qi.QuantityType == quantityType);
+        }
 
         /// <summary>
         ///     Get a list of quantities that has the given base dimensions.

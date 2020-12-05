@@ -129,6 +129,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
             Assert.Equal("AmountOfSubstance", quantityInfo.Name);
+            Assert.Equal(QuantityType.AmountOfSubstance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AmountOfSubstanceUnit>().Except(new[] {AmountOfSubstanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

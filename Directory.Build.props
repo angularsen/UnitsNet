@@ -9,4 +9,10 @@
   <Target Name="VSTestIfTestProject">
     <CallTarget Targets="VSTest" Condition="'$(IsTestProject)' == 'true'" />
   </Target>
+  
+  <!-- Warnings and errors -->
+  <PropertyGroup>
+    <!-- Don't err on obsoleted members -->
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+  </PropertyGroup>
 </Project>

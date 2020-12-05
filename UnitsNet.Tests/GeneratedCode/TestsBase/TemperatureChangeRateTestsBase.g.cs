@@ -119,6 +119,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
+            Assert.Equal(QuantityType.TemperatureChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().Except(new[] {TemperatureChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -105,6 +105,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificVolume.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificVolume", quantityInfo.Name);
+            Assert.Equal(QuantityType.SpecificVolume, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>().Except(new[] {SpecificVolumeUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

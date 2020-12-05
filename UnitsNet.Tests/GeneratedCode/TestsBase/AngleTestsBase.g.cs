@@ -127,6 +127,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Angle.Zero, quantityInfo.Zero);
             Assert.Equal("Angle", quantityInfo.Name);
+            Assert.Equal(QuantityType.Angle, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AngleUnit>().Except(new[] {AngleUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

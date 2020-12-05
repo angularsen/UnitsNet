@@ -44,6 +44,68 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void GetInfo_GivenLength_ReturnsQuantityInfoForLength()
+        {
+            var knownLengthUnits = new Enum[] { LengthUnit.Meter, LengthUnit.Centimeter, LengthUnit.Kilometer };
+            var knownLengthUnitNames = new[] { "Meter", "Centimeter", "Kilometer" };
+            var lengthUnitCount = Enum.GetValues(typeof(LengthUnit)).Length - 1; // Exclude LengthUnit.Undefined
+
+            QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Length);
+
+            Assert.Equal("Length", quantityInfo.Name);
+            Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Superset(knownLengthUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
+            Assert.Superset(knownLengthUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
+            Assert.Equal(lengthUnitCount, quantityInfo.UnitNames.Length);
+            Assert.Equal(lengthUnitCount, quantityInfo.Units.Length);
+#pragma warning restore 618
+            Assert.Equal(typeof(LengthUnit), quantityInfo.UnitType);
+            Assert.Equal(typeof(Length), quantityInfo.ValueType);
+            Assert.Equal(Length.Zero, quantityInfo.Zero);
+        }
+
+        [Fact]
+        public void GetInfo_GivenMass_ReturnsQuantityInfoForMass()
+        {
+            var knownMassUnits = new Enum[] { MassUnit.Kilogram, MassUnit.Gram, MassUnit.Tonne };
+            var knownMassUnitNames = new[] { "Kilogram", "Gram", "Tonne" };
+            var massUnitCount = Enum.GetValues(typeof(MassUnit)).Length - 1; // Exclude MassUnit.Undefined
+
+            QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Mass);
+
+            Assert.Equal("Mass", quantityInfo.Name);
+            Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
+            // Obsolete members
+#pragma warning disable 618
+            Assert.Superset(knownMassUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
+            Assert.Superset(knownMassUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
+            Assert.Equal(massUnitCount, quantityInfo.UnitNames.Length);
+            Assert.Equal(massUnitCount, quantityInfo.Units.Length);
+#pragma warning restore 618
+            Assert.Equal(typeof(MassUnit), quantityInfo.UnitType);
+            Assert.Equal(typeof(Mass), quantityInfo.ValueType);
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+        }
+
+        [Fact]
+        public void Infos_ReturnsKnownQuantityInfoObjects()
+        {
+            var knownQuantityInfos = new[]
+            {
+                Quantity.GetInfo(QuantityType.Length),
+                Quantity.GetInfo(QuantityType.Force),
+                Quantity.GetInfo(QuantityType.Mass)
+            };
+
+            var infos = Quantity.Infos;
+
+            Assert.Superset(knownQuantityInfos.ToHashSet(), infos.ToHashSet());
+            Assert.Equal(QuantityCount, infos.Length);
+        }
+
+        [Fact]
         public void Parse_GivenValueAndUnit_ReturnsQuantity()
         {
             Assert.Equal(Length.FromCentimeters(3), Quantity.Parse(CultureInfo.InvariantCulture, typeof(Length), "3 cm"));

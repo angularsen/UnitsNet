@@ -117,6 +117,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEntropy", quantityInfo.Name);
+            Assert.Equal(QuantityType.SpecificEntropy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificEntropyUnit>().Except(new[] {SpecificEntropyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

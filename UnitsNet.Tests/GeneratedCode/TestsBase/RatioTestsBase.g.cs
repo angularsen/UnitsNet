@@ -111,6 +111,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Ratio.Zero, quantityInfo.Zero);
             Assert.Equal("Ratio", quantityInfo.Name);
+            Assert.Equal(QuantityType.Ratio, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RatioUnit>().Except(new[] {RatioUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

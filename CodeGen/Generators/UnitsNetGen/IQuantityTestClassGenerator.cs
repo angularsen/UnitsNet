@@ -63,10 +63,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void Type_EqualsStaticQuantityTypeProperty()
         {{
-            void Assertion(QuantityInfo expected, IQuantity quantity) => Assert.Equal(expected, quantity.QuantityInfo);
+            void Assertion(QuantityType expected, IQuantity quantity) => Assert.Equal(expected, quantity.Type);
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.Info, {quantity.Name}.Zero);");
+            Assertion({quantity.Name}.QuantityType, {quantity.Name}.Zero);");
             Writer.WL($@"
         }}
 

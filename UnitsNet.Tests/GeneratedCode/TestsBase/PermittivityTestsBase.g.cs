@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Permittivity.Zero, quantityInfo.Zero);
             Assert.Equal("Permittivity", quantityInfo.Name);
+            Assert.Equal(QuantityType.Permittivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PermittivityUnit>().Except(new[] {PermittivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

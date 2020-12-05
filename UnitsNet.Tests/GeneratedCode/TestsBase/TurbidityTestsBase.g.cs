@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
+            Assert.Equal(QuantityType.Turbidity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TurbidityUnit>().Except(new[] {TurbidityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

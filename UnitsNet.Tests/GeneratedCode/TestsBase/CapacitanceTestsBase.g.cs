@@ -113,6 +113,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Capacitance.Zero, quantityInfo.Zero);
             Assert.Equal("Capacitance", quantityInfo.Name);
+            Assert.Equal(QuantityType.Capacitance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

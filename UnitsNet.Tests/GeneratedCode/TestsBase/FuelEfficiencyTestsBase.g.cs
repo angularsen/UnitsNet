@@ -107,6 +107,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(FuelEfficiency.Zero, quantityInfo.Zero);
             Assert.Equal("FuelEfficiency", quantityInfo.Name);
+            Assert.Equal(QuantityType.FuelEfficiency, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<FuelEfficiencyUnit>().Except(new[] {FuelEfficiencyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

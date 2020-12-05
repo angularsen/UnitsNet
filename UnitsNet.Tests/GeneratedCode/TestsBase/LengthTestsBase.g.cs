@@ -165,6 +165,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
+            Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

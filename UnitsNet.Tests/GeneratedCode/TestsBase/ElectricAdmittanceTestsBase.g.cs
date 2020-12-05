@@ -107,6 +107,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricAdmittance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricAdmittance", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricAdmittance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -21,7 +21,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-using System.Collections.Generic;
 
 namespace UnitsNet
 {
@@ -30,73 +29,6 @@ namespace UnitsNet
     /// </summary>
     internal static partial class Quantity
     {
-        public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
-        {");
-            foreach (var quantity in _quantities)
-                Writer.WL($@"
-            {{ ""{quantity.Name}"", {quantity.Name}.Info }},");
-            Writer.WL(@"
-        };
-
-        // Used by the QuantityInfo .ctor to map a name to a QuantityType. Will be removed when QuantityType
-        // will be removed.
-        internal static readonly IDictionary<string, QuantityType> QuantityTypeByName = new Dictionary<string, QuantityType>
-        {");
-            foreach (var quantity in _quantities)
-                Writer.WL($@"
-            {{ ""{quantity.Name}"", QuantityType.{quantity.Name} }},");
-            Writer.WL(@"
-        };
-
-        /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name=""quantityType"">The <see cref=""QuantityType""/> of the quantity to create.</param>
-        /// <param name=""value"">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
-        {
-            switch(quantityType)
-            {");
-            foreach (var quantity in _quantities)
-            {
-                var quantityName = quantity.Name;
-                Writer.WL($@"
-                case QuantityType.{quantityName}:
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
-            }
-
-            Writer.WL(@"
-                default:
-                    throw new ArgumentException($""{quantityType} is not a supported quantity type."");
-            }
-        }
-
-        /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref=""QuantityInfo""/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name=""quantityInfo"">The <see cref=""QuantityInfo""/> of the quantity to create.</param>
-        /// <param name=""value"">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
-        {
-            switch(quantityInfo.Name)
-            {");
-            foreach (var quantity in _quantities)
-            {
-                var quantityName = quantity.Name;
-                Writer.WL($@"
-                case ""{quantityName}"":
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
-            }
-
-            Writer.WL(@"
-                default:
-                    throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."");
-            }
-        }
-
         /// <summary>
         ///     Try to dynamically construct a quantity.
         /// </summary>

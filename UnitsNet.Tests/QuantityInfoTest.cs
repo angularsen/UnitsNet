@@ -60,6 +60,7 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
+            Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
             Assert.Equal(expectedQuantityInfo, info);
 

@@ -109,6 +109,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricPotential.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotential", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricPotential, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricPotentialUnit>().Except(new[] {ElectricPotentialUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

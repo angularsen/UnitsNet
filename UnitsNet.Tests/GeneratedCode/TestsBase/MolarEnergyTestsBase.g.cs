@@ -105,6 +105,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
+            Assert.Equal(QuantityType.MolarEnergy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().Except(new[] {MolarEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

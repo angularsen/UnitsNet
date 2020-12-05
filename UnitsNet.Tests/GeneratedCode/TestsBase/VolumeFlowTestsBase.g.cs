@@ -209,6 +209,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
+            Assert.Equal(QuantityType.VolumeFlow, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().Except(new[] {VolumeFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

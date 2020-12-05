@@ -127,6 +127,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearDensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.LinearDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LinearDensityUnit>().Except(new[] {LinearDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

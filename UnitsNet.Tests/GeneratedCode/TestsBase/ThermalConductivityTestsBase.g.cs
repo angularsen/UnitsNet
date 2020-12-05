@@ -103,6 +103,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalConductivity", quantityInfo.Name);
+            Assert.Equal(QuantityType.ThermalConductivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ThermalConductivityUnit>().Except(new[] {ThermalConductivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

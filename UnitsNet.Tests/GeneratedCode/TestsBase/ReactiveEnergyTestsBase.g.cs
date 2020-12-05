@@ -105,6 +105,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReactiveEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ReactiveEnergy", quantityInfo.Name);
+            Assert.Equal(QuantityType.ReactiveEnergy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

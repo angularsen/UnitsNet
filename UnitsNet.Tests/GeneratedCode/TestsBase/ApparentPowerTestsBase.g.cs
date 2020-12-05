@@ -107,6 +107,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ApparentPower.Zero, quantityInfo.Zero);
             Assert.Equal("ApparentPower", quantityInfo.Name);
+            Assert.Equal(QuantityType.ApparentPower, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ApparentPowerUnit>().Except(new[] {ApparentPowerUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

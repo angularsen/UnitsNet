@@ -123,6 +123,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlux", quantityInfo.Name);
+            Assert.Equal(QuantityType.MassFlux, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassFluxUnit>().Except(new[] {MassFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

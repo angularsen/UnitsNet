@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
+            Assert.Equal(QuantityType.VitaminA, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

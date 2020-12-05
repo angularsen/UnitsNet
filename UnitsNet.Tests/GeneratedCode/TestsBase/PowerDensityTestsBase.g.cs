@@ -187,6 +187,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("PowerDensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.PowerDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PowerDensityUnit>().Except(new[] {PowerDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

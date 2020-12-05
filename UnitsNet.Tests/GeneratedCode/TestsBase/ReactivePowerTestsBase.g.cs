@@ -107,6 +107,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReactivePower.Zero, quantityInfo.Zero);
             Assert.Equal("ReactivePower", quantityInfo.Name);
+            Assert.Equal(QuantityType.ReactivePower, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().Except(new[] {ReactivePowerUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

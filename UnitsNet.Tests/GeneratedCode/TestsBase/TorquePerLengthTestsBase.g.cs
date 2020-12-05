@@ -141,6 +141,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TorquePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("TorquePerLength", quantityInfo.Name);
+            Assert.Equal(QuantityType.TorquePerLength, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -138,6 +138,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Information.Zero, quantityInfo.Zero);
             Assert.Equal("Information", quantityInfo.Name);
+            Assert.Equal(QuantityType.Information, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

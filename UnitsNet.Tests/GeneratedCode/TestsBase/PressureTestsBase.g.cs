@@ -183,6 +183,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
+            Assert.Equal(QuantityType.Pressure, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PressureUnit>().Except(new[] {PressureUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

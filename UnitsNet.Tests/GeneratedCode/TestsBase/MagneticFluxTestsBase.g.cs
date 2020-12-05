@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MagneticFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticFlux", quantityInfo.Name);
+            Assert.Equal(QuantityType.MagneticFlux, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MagneticFluxUnit>().Except(new[] {MagneticFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

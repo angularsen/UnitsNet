@@ -146,12 +146,17 @@ namespace UnitsNet
             TAttribute? attribute = (TAttribute)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
             if (attribute != null)
             {
-                // TODO
-                //QuantityType expected = default(TQuantity).Type;
-                //QuantityType actual = QuantityType.Undefined;
+                QuantityType expected = default(TQuantity).Type;
+                QuantityType actual = QuantityType.Undefined;
 
-                //if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;
-                //if (actual != QuantityType.Undefined && expected != actual)
+                if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;
+                if (actual != QuantityType.Undefined && expected != actual)
+                    throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
+
+                //QuantityInfo expected1 = default(TQuantity).QuantityInfo;
+                //QuantityInfo actual1 = QuantityInfo.
+                //if (attribute.UnitType != null) actual1 = Quantity.From(1, attribute.UnitType).Info;
+                //if (actual1 != QuantityType.Undefined && expected1 != actual)
                 //    throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
             }
 

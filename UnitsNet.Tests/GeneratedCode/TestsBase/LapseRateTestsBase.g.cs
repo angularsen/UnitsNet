@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LapseRate.Zero, quantityInfo.Zero);
             Assert.Equal("LapseRate", quantityInfo.Name);
+            Assert.Equal(QuantityType.LapseRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -111,6 +111,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
+            Assert.Equal(QuantityType.AreaMomentOfInertia, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

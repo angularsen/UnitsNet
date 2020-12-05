@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
             Assert.Equal("LuminousIntensity", quantityInfo.Name);
+            Assert.Equal(QuantityType.LuminousIntensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LuminousIntensityUnit>().Except(new[] {LuminousIntensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

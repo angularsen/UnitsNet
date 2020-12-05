@@ -119,6 +119,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
+            Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

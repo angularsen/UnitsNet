@@ -115,6 +115,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
+            Assert.Equal(QuantityType.KinematicViscosity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<KinematicViscosityUnit>().Except(new[] {KinematicViscosityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

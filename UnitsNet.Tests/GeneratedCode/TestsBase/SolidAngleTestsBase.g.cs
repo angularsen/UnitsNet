@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
+            Assert.Equal(QuantityType.SolidAngle, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SolidAngleUnit>().Except(new[] {SolidAngleUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
