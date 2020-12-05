@@ -117,6 +117,11 @@ namespace UnitsNet
         public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
+
+        /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
         /// </summary>
         public static ElectricCurrentGradientUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
@@ -145,6 +150,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricCurrentGradient.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -814,6 +824,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentGradientUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricCurrentGradient.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricCurrentGradient.Info;
             else if(conversionType == typeof(BaseDimensions))

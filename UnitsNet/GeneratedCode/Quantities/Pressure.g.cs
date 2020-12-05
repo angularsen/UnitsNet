@@ -158,6 +158,11 @@ namespace UnitsNet
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Pressure;
+
+        /// <summary>
         ///     All units of measurement for the Pressure quantity.
         /// </summary>
         public static PressureUnit[] Units { get; } = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
@@ -186,6 +191,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Pressure.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1511,6 +1521,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PressureUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Pressure.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Pressure.Info;
             else if(conversionType == typeof(BaseDimensions))

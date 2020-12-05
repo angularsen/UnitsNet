@@ -127,6 +127,11 @@ namespace UnitsNet
         public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
+
+        /// <summary>
         ///     All units of measurement for the Molarity quantity.
         /// </summary>
         public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
@@ -155,6 +160,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Molarity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -936,6 +946,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Molarity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Molarity.Info;
             else if(conversionType == typeof(BaseDimensions))

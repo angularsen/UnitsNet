@@ -23,6 +23,7 @@ namespace UnitsNet.Tests.CustomQuantities
 
         private static readonly HowMuch Zero = new HowMuch(0, HowMuchUnit.Some);
 
+        public QuantityType Type => QuantityType.Undefined;
         public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
 
         public QuantityInfo QuantityInfo => new QuantityInfo("HowMuch",

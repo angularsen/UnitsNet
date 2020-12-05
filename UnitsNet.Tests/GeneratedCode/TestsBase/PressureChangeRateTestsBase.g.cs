@@ -626,6 +626,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
+            Assert.Equal(QuantityType.PressureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
             Assert.Equal(PressureChangeRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

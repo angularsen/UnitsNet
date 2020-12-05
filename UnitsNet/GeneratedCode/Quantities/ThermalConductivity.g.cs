@@ -121,6 +121,11 @@ namespace UnitsNet
         public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ThermalConductivity;
+
+        /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
         /// </summary>
         public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
@@ -149,6 +154,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ThermalConductivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -834,6 +844,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ThermalConductivityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ThermalConductivity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ThermalConductivity.Info;
             else if(conversionType == typeof(BaseDimensions))

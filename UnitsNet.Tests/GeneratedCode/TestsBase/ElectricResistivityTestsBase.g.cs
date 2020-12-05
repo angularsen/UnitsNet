@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
+            Assert.Equal(QuantityType.ElectricResistivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricResistivity.FromOhmMeters(1.0);
             Assert.Equal(ElectricResistivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

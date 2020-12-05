@@ -120,6 +120,11 @@ namespace UnitsNet
         public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.MagneticFlux;
+
+        /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
         public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MagneticFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -817,6 +827,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagneticFluxUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MagneticFlux.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MagneticFlux.Info;
             else if(conversionType == typeof(BaseDimensions))

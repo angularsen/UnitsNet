@@ -611,6 +611,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
+            Assert.Equal(QuantityType.AreaMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
             Assert.Equal(AreaMomentOfInertia.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

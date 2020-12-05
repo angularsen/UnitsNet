@@ -626,6 +626,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Capacitance.FromFarads(1.0);
+            Assert.Equal(QuantityType.Capacitance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Capacitance.FromFarads(1.0);
             Assert.Equal(Capacitance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

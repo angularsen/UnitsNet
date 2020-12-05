@@ -24,18 +24,17 @@ namespace UnitsNet
     ///     This is useful for populating options in the UI, such as creating a generic conversion
     ///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
     /// </summary>
-
-    using System.Collections.Generic;
-
-    public static partial class Quantity
+    public enum QuantityType
     {
-        public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
-        {");
+// Missing XML comment for public type or member
+#pragma warning disable CS1591
+        Undefined = 0,");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
-            {{ ""{quantity.Name}"", {quantity.Name}.Info }},");
+        {quantity.Name},");
             Writer.WL(@"
-        };
+// Missing XML comment for public type or member
+#pragma warning restore CS1591
     }
 }");
             return Writer.ToString();

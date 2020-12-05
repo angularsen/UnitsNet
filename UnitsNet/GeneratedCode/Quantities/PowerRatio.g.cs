@@ -118,6 +118,11 @@ namespace UnitsNet
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
+
+        /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
         public static PowerRatioUnit[] Units { get; } = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
@@ -146,6 +151,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => PowerRatio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -839,6 +849,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerRatioUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return PowerRatio.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return PowerRatio.Info;
             else if(conversionType == typeof(BaseDimensions))

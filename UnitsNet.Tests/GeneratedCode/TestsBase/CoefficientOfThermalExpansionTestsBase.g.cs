@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(QuantityType.CoefficientOfThermalExpansion, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
             Assert.Equal(CoefficientOfThermalExpansion.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

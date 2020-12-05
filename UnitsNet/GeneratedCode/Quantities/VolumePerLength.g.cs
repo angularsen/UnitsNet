@@ -123,6 +123,11 @@ namespace UnitsNet
         public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
+
+        /// <summary>
         ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
         public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
@@ -151,6 +156,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => VolumePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -916,6 +926,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumePerLengthUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return VolumePerLength.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return VolumePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))

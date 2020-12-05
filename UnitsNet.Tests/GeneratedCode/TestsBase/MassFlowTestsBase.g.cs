@@ -1016,6 +1016,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
+            Assert.Equal(QuantityType.MassFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassFlow.FromGramsPerSecond(1.0);
             Assert.Equal(MassFlow.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

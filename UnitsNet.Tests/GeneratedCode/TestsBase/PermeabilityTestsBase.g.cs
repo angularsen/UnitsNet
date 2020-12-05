@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Permeability.FromHenriesPerMeter(1.0);
+            Assert.Equal(QuantityType.Permeability, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Permeability.FromHenriesPerMeter(1.0);
             Assert.Equal(Permeability.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

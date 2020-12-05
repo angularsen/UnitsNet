@@ -885,6 +885,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
+            Assert.Equal(QuantityType.BitRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
             Assert.Equal(BitRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

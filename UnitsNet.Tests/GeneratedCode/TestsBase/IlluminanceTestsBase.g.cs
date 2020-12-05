@@ -581,6 +581,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Illuminance.FromLux(1.0);
+            Assert.Equal(QuantityType.Illuminance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Illuminance.FromLux(1.0);
             Assert.Equal(Illuminance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

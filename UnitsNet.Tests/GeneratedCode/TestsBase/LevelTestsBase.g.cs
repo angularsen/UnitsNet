@@ -555,6 +555,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Level.FromDecibels(1.0);
+            Assert.Equal(QuantityType.Level, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Level.FromDecibels(1.0);
             Assert.Equal(Level.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -120,6 +120,11 @@ namespace UnitsNet
         public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
+
+        /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
         public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Permittivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -817,6 +827,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermittivityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Permittivity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Permittivity.Info;
             else if(conversionType == typeof(BaseDimensions))

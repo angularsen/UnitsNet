@@ -159,6 +159,11 @@ namespace UnitsNet
         public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Density;
+
+        /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
         public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
@@ -187,6 +192,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Density.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1480,6 +1490,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DensityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Density.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Density.Info;
             else if(conversionType == typeof(BaseDimensions))

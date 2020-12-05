@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
+            Assert.Equal(QuantityType.ElectricConductance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricConductance.FromSiemens(1.0);
             Assert.Equal(ElectricConductance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
+            Assert.Equal(QuantityType.LinearDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
             Assert.Equal(LinearDensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1.0);
+            Assert.Equal(QuantityType.BrakeSpecificFuelConsumption, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1.0);
             Assert.Equal(BrakeSpecificFuelConsumption.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

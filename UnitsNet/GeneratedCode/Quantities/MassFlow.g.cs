@@ -149,6 +149,11 @@ namespace UnitsNet
         public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.MassFlow;
+
+        /// <summary>
         ///     All units of measurement for the MassFlow quantity.
         /// </summary>
         public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().Except(new MassFlowUnit[]{ MassFlowUnit.Undefined }).ToArray();
@@ -177,6 +182,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MassFlow.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1358,6 +1368,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFlowUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MassFlow.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassFlow.Info;
             else if(conversionType == typeof(BaseDimensions))

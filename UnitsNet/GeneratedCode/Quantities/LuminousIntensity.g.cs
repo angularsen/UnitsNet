@@ -120,6 +120,11 @@ namespace UnitsNet
         public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.LuminousIntensity;
+
+        /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>
         public static LuminousIntensityUnit[] Units { get; } = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().Except(new LuminousIntensityUnit[]{ LuminousIntensityUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => LuminousIntensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -817,6 +827,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LuminousIntensityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return LuminousIntensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return LuminousIntensity.Info;
             else if(conversionType == typeof(BaseDimensions))

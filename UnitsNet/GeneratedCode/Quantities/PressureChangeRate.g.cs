@@ -123,6 +123,11 @@ namespace UnitsNet
         public static PressureChangeRate MinValue { get; } = new PressureChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.PressureChangeRate;
+
+        /// <summary>
         ///     All units of measurement for the PressureChangeRate quantity.
         /// </summary>
         public static PressureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().Except(new PressureChangeRateUnit[]{ PressureChangeRateUnit.Undefined }).ToArray();
@@ -151,6 +156,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => PressureChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -916,6 +926,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PressureChangeRateUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return PressureChangeRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return PressureChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -701,6 +701,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
+            Assert.Equal(QuantityType.MassFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
             Assert.Equal(MassFlux.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

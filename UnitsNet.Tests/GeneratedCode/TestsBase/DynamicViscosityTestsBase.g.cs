@@ -671,6 +671,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
+            Assert.Equal(QuantityType.DynamicViscosity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
             Assert.Equal(DynamicViscosity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

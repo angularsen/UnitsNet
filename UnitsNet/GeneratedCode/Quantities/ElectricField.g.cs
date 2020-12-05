@@ -120,6 +120,11 @@ namespace UnitsNet
         public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricField;
+
+        /// <summary>
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>
         public static ElectricFieldUnit[] Units { get; } = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricField.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -817,6 +827,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricFieldUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricField.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricField.Info;
             else if(conversionType == typeof(BaseDimensions))

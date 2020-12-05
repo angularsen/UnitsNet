@@ -555,6 +555,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = PowerRatio.FromDecibelWatts(1.0);
+            Assert.Equal(QuantityType.PowerRatio, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = PowerRatio.FromDecibelWatts(1.0);
             Assert.Equal(PowerRatio.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

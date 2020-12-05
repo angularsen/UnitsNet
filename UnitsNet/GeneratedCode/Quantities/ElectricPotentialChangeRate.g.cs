@@ -136,6 +136,11 @@ namespace UnitsNet
         public static ElectricPotentialChangeRate MinValue { get; } = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialChangeRate;
+
+        /// <summary>
         ///     All units of measurement for the ElectricPotentialChangeRate quantity.
         /// </summary>
         public static ElectricPotentialChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
@@ -164,6 +169,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricPotentialChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1137,6 +1147,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricPotentialChangeRateUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricPotentialChangeRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricPotentialChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))

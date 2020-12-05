@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Area.FromSquareMeters(1.0);
+            Assert.Equal(QuantityType.Area, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Area.FromSquareMeters(1.0);
             Assert.Equal(Area.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -596,6 +596,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1.0);
+            Assert.Equal(QuantityType.RotationalStiffnessPerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1.0);
             Assert.Equal(RotationalStiffnessPerLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

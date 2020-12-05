@@ -791,6 +791,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
+            Assert.Equal(QuantityType.HeatFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
             Assert.Equal(HeatFlux.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

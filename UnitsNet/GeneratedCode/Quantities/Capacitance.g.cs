@@ -126,6 +126,11 @@ namespace UnitsNet
         public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Capacitance;
+
+        /// <summary>
         ///     All units of measurement for the Capacitance quantity.
         /// </summary>
         public static CapacitanceUnit[] Units { get; } = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
@@ -154,6 +159,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Capacitance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -919,6 +929,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(CapacitanceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Capacitance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Capacitance.Info;
             else if(conversionType == typeof(BaseDimensions))

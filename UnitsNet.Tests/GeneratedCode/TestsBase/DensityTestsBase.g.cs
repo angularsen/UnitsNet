@@ -1121,6 +1121,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Density.FromKilogramsPerCubicMeter(1.0);
+            Assert.Equal(QuantityType.Density, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
             Assert.Equal(Density.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -626,6 +626,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
+            Assert.Equal(QuantityType.Entropy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Entropy.FromJoulesPerKelvin(1.0);
             Assert.Equal(Entropy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

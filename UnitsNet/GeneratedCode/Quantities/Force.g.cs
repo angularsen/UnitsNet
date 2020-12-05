@@ -131,6 +131,11 @@ namespace UnitsNet
         public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Force;
+
+        /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
         public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
@@ -159,6 +164,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Force.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1052,6 +1062,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ForceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Force.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Force.Info;
             else if(conversionType == typeof(BaseDimensions))

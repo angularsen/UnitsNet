@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
+            Assert.Equal(QuantityType.ReactiveEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
             Assert.Equal(ReactiveEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

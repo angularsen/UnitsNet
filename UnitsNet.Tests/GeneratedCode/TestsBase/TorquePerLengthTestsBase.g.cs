@@ -836,6 +836,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = TorquePerLength.FromNewtonMetersPerMeter(1.0);
+            Assert.Equal(QuantityType.TorquePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = TorquePerLength.FromNewtonMetersPerMeter(1.0);
             Assert.Equal(TorquePerLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

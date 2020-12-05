@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Permittivity.FromFaradsPerMeter(1.0);
+            Assert.Equal(QuantityType.Permittivity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Permittivity.FromFaradsPerMeter(1.0);
             Assert.Equal(Permittivity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

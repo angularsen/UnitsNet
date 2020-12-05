@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
+            Assert.Equal(QuantityType.ElectricChargeDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
             Assert.Equal(ElectricChargeDensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

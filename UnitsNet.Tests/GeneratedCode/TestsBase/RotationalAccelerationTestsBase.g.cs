@@ -581,6 +581,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
+            Assert.Equal(QuantityType.RotationalAcceleration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
             Assert.Equal(RotationalAcceleration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

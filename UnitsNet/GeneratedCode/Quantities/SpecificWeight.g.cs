@@ -136,6 +136,11 @@ namespace UnitsNet
         public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
+
+        /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
         /// </summary>
         public static SpecificWeightUnit[] Units { get; } = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
@@ -164,6 +169,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => SpecificWeight.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1089,6 +1099,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpecificWeightUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return SpecificWeight.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return SpecificWeight.Info;
             else if(conversionType == typeof(BaseDimensions))

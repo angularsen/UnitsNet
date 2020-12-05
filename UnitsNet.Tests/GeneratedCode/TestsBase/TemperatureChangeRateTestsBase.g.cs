@@ -671,6 +671,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(QuantityType.TemperatureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
             Assert.Equal(TemperatureChangeRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

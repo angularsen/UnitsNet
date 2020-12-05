@@ -881,6 +881,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(QuantityType.MassFraction, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
             Assert.Equal(MassFraction.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

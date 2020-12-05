@@ -596,6 +596,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(QuantityType.MagneticField, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
             Assert.Equal(MagneticField.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -141,6 +141,11 @@ namespace UnitsNet
         public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Mass;
+
+        /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
         public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
@@ -169,6 +174,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Mass.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1222,6 +1232,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Mass.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Mass.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -119,6 +119,11 @@ namespace UnitsNet
         public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ApparentEnergy;
+
+        /// <summary>
         ///     All units of measurement for the ApparentEnergy quantity.
         /// </summary>
         public static ApparentEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
@@ -147,6 +152,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ApparentEnergy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -848,6 +858,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ApparentEnergyUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ApparentEnergy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ApparentEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))

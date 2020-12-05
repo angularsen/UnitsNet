@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
+            Assert.Equal(QuantityType.ElectricCurrentGradient, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
             Assert.Equal(ElectricCurrentGradient.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

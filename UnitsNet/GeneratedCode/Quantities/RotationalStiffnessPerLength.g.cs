@@ -121,6 +121,11 @@ namespace UnitsNet
         public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffnessPerLength;
+
+        /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>
         public static RotationalStiffnessPerLengthUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
@@ -149,6 +154,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => RotationalStiffnessPerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -882,6 +892,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalStiffnessPerLengthUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return RotationalStiffnessPerLength.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RotationalStiffnessPerLength.Info;
             else if(conversionType == typeof(BaseDimensions))

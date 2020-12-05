@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
+            Assert.Equal(QuantityType.Irradiance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
             Assert.Equal(Irradiance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

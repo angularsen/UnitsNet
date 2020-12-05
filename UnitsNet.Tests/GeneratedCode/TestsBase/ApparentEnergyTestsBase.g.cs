@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ApparentEnergy.FromVoltampereHours(1.0);
+            Assert.Equal(QuantityType.ApparentEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ApparentEnergy.FromVoltampereHours(1.0);
             Assert.Equal(ApparentEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -671,6 +671,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Duration.FromSeconds(1.0);
+            Assert.Equal(QuantityType.Duration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Duration.FromSeconds(1.0);
             Assert.Equal(Duration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

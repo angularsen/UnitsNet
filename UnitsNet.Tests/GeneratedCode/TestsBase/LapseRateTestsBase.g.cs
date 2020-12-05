@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = LapseRate.FromDegreesCelciusPerKilometer(1.0);
+            Assert.Equal(QuantityType.LapseRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = LapseRate.FromDegreesCelciusPerKilometer(1.0);
             Assert.Equal(LapseRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

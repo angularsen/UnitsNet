@@ -686,6 +686,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
+            Assert.Equal(QuantityType.ForceChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
             Assert.Equal(ForceChangeRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

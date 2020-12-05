@@ -581,6 +581,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ApparentPower.FromVoltamperes(1.0);
+            Assert.Equal(QuantityType.ApparentPower, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ApparentPower.FromVoltamperes(1.0);
             Assert.Equal(ApparentPower.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = LuminousIntensity.FromCandela(1.0);
+            Assert.Equal(QuantityType.LuminousIntensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = LuminousIntensity.FromCandela(1.0);
             Assert.Equal(LuminousIntensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -941,6 +941,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
+            Assert.Equal(QuantityType.MassMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
             Assert.Equal(MassMomentOfInertia.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

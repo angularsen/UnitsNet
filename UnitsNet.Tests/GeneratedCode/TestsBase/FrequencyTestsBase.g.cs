@@ -671,6 +671,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal(QuantityType.Frequency, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Frequency.FromHertz(1.0);
             Assert.Equal(Frequency.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

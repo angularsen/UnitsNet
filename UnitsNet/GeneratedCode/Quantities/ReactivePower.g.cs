@@ -120,6 +120,11 @@ namespace UnitsNet
         public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ReactivePower;
+
+        /// <summary>
         ///     All units of measurement for the ReactivePower quantity.
         /// </summary>
         public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ReactivePower.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -865,6 +875,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ReactivePowerUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ReactivePower.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ReactivePower.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -1061,6 +1061,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Energy.FromJoules(1.0);
+            Assert.Equal(QuantityType.Energy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Energy.FromJoules(1.0);
             Assert.Equal(Energy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

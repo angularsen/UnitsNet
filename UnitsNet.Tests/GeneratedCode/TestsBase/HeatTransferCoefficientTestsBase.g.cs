@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
+            Assert.Equal(QuantityType.HeatTransferCoefficient, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
             Assert.Equal(HeatTransferCoefficient.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

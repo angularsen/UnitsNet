@@ -581,6 +581,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
+            Assert.Equal(QuantityType.FuelEfficiency, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
             Assert.Equal(FuelEfficiency.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

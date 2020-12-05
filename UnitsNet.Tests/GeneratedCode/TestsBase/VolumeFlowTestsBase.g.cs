@@ -1346,6 +1346,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
+            Assert.Equal(QuantityType.VolumeFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
             Assert.Equal(VolumeFlow.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
+            Assert.Equal(QuantityType.MolarEntropy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
             Assert.Equal(MolarEntropy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -130,6 +130,11 @@ namespace UnitsNet
         public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
+
+        /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
@@ -158,6 +163,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Acceleration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1035,6 +1045,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AccelerationUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Acceleration.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Acceleration.Info;
             else if(conversionType == typeof(BaseDimensions))

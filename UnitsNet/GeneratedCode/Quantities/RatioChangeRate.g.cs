@@ -118,6 +118,11 @@ namespace UnitsNet
         public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
+
+        /// <summary>
         ///     All units of measurement for the RatioChangeRate quantity.
         /// </summary>
         public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
@@ -146,6 +151,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => RatioChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -831,6 +841,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RatioChangeRateUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return RatioChangeRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RatioChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))

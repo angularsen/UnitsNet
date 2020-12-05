@@ -148,6 +148,11 @@ namespace UnitsNet
         public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Speed;
+
+        /// <summary>
         ///     All units of measurement for the Speed quantity.
         /// </summary>
         public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
@@ -176,6 +181,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Speed.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1341,6 +1351,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpeedUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Speed.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Speed.Info;
             else if(conversionType == typeof(BaseDimensions))

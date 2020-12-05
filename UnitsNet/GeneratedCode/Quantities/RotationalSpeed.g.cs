@@ -129,6 +129,11 @@ namespace UnitsNet
         public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalSpeed;
+
+        /// <summary>
         ///     All units of measurement for the RotationalSpeed quantity.
         /// </summary>
         public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().Except(new RotationalSpeedUnit[]{ RotationalSpeedUnit.Undefined }).ToArray();
@@ -157,6 +162,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => RotationalSpeed.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1018,6 +1028,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalSpeedUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return RotationalSpeed.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RotationalSpeed.Info;
             else if(conversionType == typeof(BaseDimensions))

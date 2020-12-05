@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MagneticFlux.FromWebers(1.0);
+            Assert.Equal(QuantityType.MagneticFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MagneticFlux.FromWebers(1.0);
             Assert.Equal(MagneticFlux.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

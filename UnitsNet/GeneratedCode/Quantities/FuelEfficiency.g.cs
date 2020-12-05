@@ -123,6 +123,11 @@ namespace UnitsNet
         public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.FuelEfficiency;
+
+        /// <summary>
         ///     All units of measurement for the FuelEfficiency quantity.
         /// </summary>
         public static FuelEfficiencyUnit[] Units { get; } = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
@@ -151,6 +156,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => FuelEfficiency.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -868,6 +878,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(FuelEfficiencyUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return FuelEfficiency.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return FuelEfficiency.Info;
             else if(conversionType == typeof(BaseDimensions))

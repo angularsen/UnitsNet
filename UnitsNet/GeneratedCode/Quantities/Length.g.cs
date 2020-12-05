@@ -149,6 +149,11 @@ namespace UnitsNet
         public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Length;
+
+        /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
         public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
@@ -177,6 +182,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Length.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1358,6 +1368,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LengthUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Length.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Length.Info;
             else if(conversionType == typeof(BaseDimensions))

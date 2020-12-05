@@ -641,6 +641,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
+            Assert.Equal(QuantityType.KinematicViscosity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
             Assert.Equal(KinematicViscosity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -134,6 +134,11 @@ namespace UnitsNet
         public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.HeatFlux;
+
+        /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>
         public static HeatFluxUnit[] Units { get; } = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
@@ -162,6 +167,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => HeatFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1103,6 +1113,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatFluxUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return HeatFlux.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return HeatFlux.Info;
             else if(conversionType == typeof(BaseDimensions))

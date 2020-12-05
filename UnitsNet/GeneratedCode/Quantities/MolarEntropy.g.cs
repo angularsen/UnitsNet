@@ -119,6 +119,11 @@ namespace UnitsNet
         public static MolarEntropy MinValue { get; } = new MolarEntropy(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.MolarEntropy;
+
+        /// <summary>
         ///     All units of measurement for the MolarEntropy quantity.
         /// </summary>
         public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
@@ -147,6 +152,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MolarEntropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -848,6 +858,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarEntropyUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MolarEntropy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MolarEntropy.Info;
             else if(conversionType == typeof(BaseDimensions))

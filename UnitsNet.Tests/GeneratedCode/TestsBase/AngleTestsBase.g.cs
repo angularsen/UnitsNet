@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Angle.FromDegrees(1.0);
+            Assert.Equal(QuantityType.Angle, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Angle.FromDegrees(1.0);
             Assert.Equal(Angle.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

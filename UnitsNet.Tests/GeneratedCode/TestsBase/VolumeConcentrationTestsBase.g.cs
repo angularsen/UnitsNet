@@ -821,6 +821,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
+            Assert.Equal(QuantityType.VolumeConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
             Assert.Equal(VolumeConcentration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -701,6 +701,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MolarMass.FromKilogramsPerMole(1.0);
+            Assert.Equal(QuantityType.MolarMass, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MolarMass.FromKilogramsPerMole(1.0);
             Assert.Equal(MolarMass.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

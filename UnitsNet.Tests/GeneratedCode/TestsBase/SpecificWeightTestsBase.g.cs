@@ -776,6 +776,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
+            Assert.Equal(QuantityType.SpecificWeight, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
             Assert.Equal(SpecificWeight.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

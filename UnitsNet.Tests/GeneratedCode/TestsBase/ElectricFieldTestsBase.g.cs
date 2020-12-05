@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricField.FromVoltsPerMeter(1.0);
+            Assert.Equal(QuantityType.ElectricField, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricField.FromVoltsPerMeter(1.0);
             Assert.Equal(ElectricField.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

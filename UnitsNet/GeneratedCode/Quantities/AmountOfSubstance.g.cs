@@ -131,6 +131,11 @@ namespace UnitsNet
         public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
+
+        /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
         /// </summary>
         public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
@@ -159,6 +164,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AmountOfSubstance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1052,6 +1062,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AmountOfSubstanceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return AmountOfSubstance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return AmountOfSubstance.Info;
             else if(conversionType == typeof(BaseDimensions))

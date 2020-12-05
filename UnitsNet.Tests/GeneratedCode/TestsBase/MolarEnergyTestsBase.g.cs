@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MolarEnergy.FromJoulesPerMole(1.0);
+            Assert.Equal(QuantityType.MolarEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MolarEnergy.FromJoulesPerMole(1.0);
             Assert.Equal(MolarEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

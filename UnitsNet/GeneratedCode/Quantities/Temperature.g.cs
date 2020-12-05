@@ -126,6 +126,11 @@ namespace UnitsNet
         public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Temperature;
+
+        /// <summary>
         ///     All units of measurement for the Temperature quantity.
         /// </summary>
         public static TemperatureUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().Except(new TemperatureUnit[]{ TemperatureUnit.Undefined }).ToArray();
@@ -154,6 +159,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Temperature.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -921,6 +931,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Temperature.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Temperature.Info;
             else if(conversionType == typeof(BaseDimensions))

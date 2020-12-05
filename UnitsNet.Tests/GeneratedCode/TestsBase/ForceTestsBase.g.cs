@@ -746,6 +746,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Force.FromNewtons(1.0);
+            Assert.Equal(QuantityType.Force, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Force.FromNewtons(1.0);
             Assert.Equal(Force.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

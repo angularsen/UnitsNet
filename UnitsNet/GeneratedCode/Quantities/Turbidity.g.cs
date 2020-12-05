@@ -120,6 +120,11 @@ namespace UnitsNet
         public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Turbidity;
+
+        /// <summary>
         ///     All units of measurement for the Turbidity quantity.
         /// </summary>
         public static TurbidityUnit[] Units { get; } = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
@@ -148,6 +153,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Turbidity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -817,6 +827,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TurbidityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Turbidity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Turbidity.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -129,6 +129,11 @@ namespace UnitsNet
         public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.DynamicViscosity;
+
+        /// <summary>
         ///     All units of measurement for the DynamicViscosity quantity.
         /// </summary>
         public static DynamicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().Except(new DynamicViscosityUnit[]{ DynamicViscosityUnit.Undefined }).ToArray();
@@ -157,6 +162,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => DynamicViscosity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -970,6 +980,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DynamicViscosityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return DynamicViscosity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return DynamicViscosity.Info;
             else if(conversionType == typeof(BaseDimensions))

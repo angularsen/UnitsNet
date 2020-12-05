@@ -626,6 +626,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
+            Assert.Equal(QuantityType.Irradiation, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
             Assert.Equal(Irradiation.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

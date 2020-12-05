@@ -126,6 +126,11 @@ namespace UnitsNet
         public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.TemperatureChangeRate;
+
+        /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
         /// </summary>
         public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
@@ -154,6 +159,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => TemperatureChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,6 +977,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureChangeRateUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return TemperatureChangeRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return TemperatureChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))

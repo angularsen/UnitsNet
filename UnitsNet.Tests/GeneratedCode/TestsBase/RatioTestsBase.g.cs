@@ -611,6 +611,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Ratio.FromDecimalFractions(1.0);
+            Assert.Equal(QuantityType.Ratio, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Ratio.FromDecimalFractions(1.0);
             Assert.Equal(Ratio.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

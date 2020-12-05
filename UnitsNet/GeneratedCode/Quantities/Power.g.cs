@@ -141,6 +141,11 @@ namespace UnitsNet
         public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Power;
+
+        /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
         public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
@@ -171,6 +176,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Power.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1224,6 +1234,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Power.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Power.Info;
             else if(conversionType == typeof(BaseDimensions))

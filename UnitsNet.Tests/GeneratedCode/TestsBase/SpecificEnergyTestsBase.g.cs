@@ -896,6 +896,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal(QuantityType.SpecificEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
             Assert.Equal(SpecificEnergy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

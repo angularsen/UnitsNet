@@ -117,5 +117,27 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
         }
+
+        [Fact]
+        public void FromQuantityType_GivenUndefinedQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType(QuantityType.Undefined, 0.0));
+        }
+
+        [Fact]
+        public void FromQuantityType_GivenInvalidQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType((QuantityType)(-1), 0.0));
+        }
+
+        [Fact]
+        public void FromQuantityType_GivenLengthQuantityType_ReturnsLengthQuantity()
+        {
+            var fromQuantity = Quantity.FromQuantityType(QuantityType.Length, 0.0);
+
+            Assert.Equal(0.0, fromQuantity.Value);
+            Assert.Equal(QuantityType.Length, fromQuantity.Type);
+            Assert.Equal(Length.BaseUnit, fromQuantity.Unit);
+        }
     }
 }

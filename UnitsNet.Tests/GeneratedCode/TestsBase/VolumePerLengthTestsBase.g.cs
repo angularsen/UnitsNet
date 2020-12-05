@@ -626,6 +626,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
+            Assert.Equal(QuantityType.VolumePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
             Assert.Equal(VolumePerLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

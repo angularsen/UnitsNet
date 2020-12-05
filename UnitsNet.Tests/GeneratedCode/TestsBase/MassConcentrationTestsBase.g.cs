@@ -1226,6 +1226,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
+            Assert.Equal(QuantityType.MassConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
             Assert.Equal(MassConcentration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

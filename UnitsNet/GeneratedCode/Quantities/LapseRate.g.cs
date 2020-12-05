@@ -117,6 +117,11 @@ namespace UnitsNet
         public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.LapseRate;
+
+        /// <summary>
         ///     All units of measurement for the LapseRate quantity.
         /// </summary>
         public static LapseRateUnit[] Units { get; } = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
@@ -145,6 +150,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => LapseRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -814,6 +824,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LapseRateUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return LapseRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return LapseRate.Info;
             else if(conversionType == typeof(BaseDimensions))

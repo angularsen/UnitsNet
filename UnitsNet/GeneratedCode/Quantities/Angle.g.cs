@@ -130,6 +130,11 @@ namespace UnitsNet
         public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Angle;
+
+        /// <summary>
         ///     All units of measurement for the Angle quantity.
         /// </summary>
         public static AngleUnit[] Units { get; } = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
@@ -158,6 +163,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Angle.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1035,6 +1045,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AngleUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Angle.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Angle.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -1091,6 +1091,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
+            Assert.Equal(QuantityType.ForcePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
             Assert.Equal(ForcePerLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

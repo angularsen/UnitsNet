@@ -566,6 +566,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = SpecificVolume.FromCubicMetersPerKilogram(1.0);
+            Assert.Equal(QuantityType.SpecificVolume, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = SpecificVolume.FromCubicMetersPerKilogram(1.0);
             Assert.Equal(SpecificVolume.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

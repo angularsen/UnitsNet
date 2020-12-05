@@ -885,6 +885,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Information.FromBits(1.0);
+            Assert.Equal(QuantityType.Information, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Information.FromBits(1.0);
             Assert.Equal(Information.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

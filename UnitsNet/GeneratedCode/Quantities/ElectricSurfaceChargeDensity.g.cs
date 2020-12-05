@@ -122,6 +122,11 @@ namespace UnitsNet
         public static ElectricSurfaceChargeDensity MinValue { get; } = new ElectricSurfaceChargeDensity(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricSurfaceChargeDensity;
+
+        /// <summary>
         ///     All units of measurement for the ElectricSurfaceChargeDensity quantity.
         /// </summary>
         public static ElectricSurfaceChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().Except(new ElectricSurfaceChargeDensityUnit[]{ ElectricSurfaceChargeDensityUnit.Undefined }).ToArray();
@@ -150,6 +155,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricSurfaceChargeDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -851,6 +861,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricSurfaceChargeDensityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricSurfaceChargeDensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricSurfaceChargeDensity.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -731,6 +731,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Acceleration.FromMetersPerSecondSquared(1.0);
+            Assert.Equal(QuantityType.Acceleration, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Acceleration.FromMetersPerSecondSquared(1.0);
             Assert.Equal(Acceleration.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

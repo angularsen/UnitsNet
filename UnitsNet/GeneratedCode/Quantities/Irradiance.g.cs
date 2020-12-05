@@ -130,6 +130,11 @@ namespace UnitsNet
         public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
+
+        /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
         public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
@@ -158,6 +163,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Irradiance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1035,6 +1045,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IrradianceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Irradiance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Irradiance.Info;
             else if(conversionType == typeof(BaseDimensions))

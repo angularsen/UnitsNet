@@ -1016,6 +1016,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Length.FromMeters(1.0);
+            Assert.Equal(QuantityType.Length, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Length.FromMeters(1.0);
             Assert.Equal(Length.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

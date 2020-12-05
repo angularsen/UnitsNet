@@ -596,6 +596,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricPotentialAc.FromVoltsAc(1.0);
+            Assert.Equal(QuantityType.ElectricPotentialAc, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricPotentialAc.FromVoltsAc(1.0);
             Assert.Equal(ElectricPotentialAc.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

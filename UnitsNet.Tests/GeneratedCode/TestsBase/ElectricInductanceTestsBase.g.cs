@@ -581,6 +581,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ElectricInductance.FromHenries(1.0);
+            Assert.Equal(QuantityType.ElectricInductance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricInductance.FromHenries(1.0);
             Assert.Equal(ElectricInductance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

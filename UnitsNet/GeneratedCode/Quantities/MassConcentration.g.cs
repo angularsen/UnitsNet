@@ -166,6 +166,11 @@ namespace UnitsNet
         public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.MassConcentration;
+
+        /// <summary>
         ///     All units of measurement for the MassConcentration quantity.
         /// </summary>
         public static MassConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
@@ -194,6 +199,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MassConcentration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1599,6 +1609,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassConcentrationUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MassConcentration.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassConcentration.Info;
             else if(conversionType == typeof(BaseDimensions))

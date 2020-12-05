@@ -122,6 +122,11 @@ namespace UnitsNet
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
+
+        /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
@@ -150,6 +155,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Ratio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -899,6 +909,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RatioUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Ratio.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Ratio.Info;
             else if(conversionType == typeof(BaseDimensions))

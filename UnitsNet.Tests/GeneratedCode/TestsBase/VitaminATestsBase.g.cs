@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = VitaminA.FromInternationalUnits(1.0);
+            Assert.Equal(QuantityType.VitaminA, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = VitaminA.FromInternationalUnits(1.0);
             Assert.Equal(VitaminA.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

@@ -536,6 +536,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
+            Assert.Equal(QuantityType.AreaDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
             Assert.Equal(AreaDensity.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

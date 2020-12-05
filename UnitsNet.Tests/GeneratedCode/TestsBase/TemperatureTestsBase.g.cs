@@ -659,6 +659,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = Temperature.FromKelvins(1.0);
+            Assert.Equal(QuantityType.Temperature, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Temperature.FromKelvins(1.0);
             Assert.Equal(Temperature.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

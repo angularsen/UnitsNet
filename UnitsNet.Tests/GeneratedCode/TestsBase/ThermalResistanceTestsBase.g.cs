@@ -596,6 +596,13 @@ namespace UnitsNet.Tests
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
             var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(QuantityType.ThermalResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
             Assert.Equal(ThermalResistance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 

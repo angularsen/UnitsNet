@@ -122,6 +122,11 @@ namespace UnitsNet
         public static AreaMomentOfInertia MinValue { get; } = new AreaMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.AreaMomentOfInertia;
+
+        /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>
         public static AreaMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().Except(new AreaMomentOfInertiaUnit[]{ AreaMomentOfInertiaUnit.Undefined }).ToArray();
@@ -150,6 +155,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AreaMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -899,6 +909,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaMomentOfInertiaUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return AreaMomentOfInertia.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return AreaMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))

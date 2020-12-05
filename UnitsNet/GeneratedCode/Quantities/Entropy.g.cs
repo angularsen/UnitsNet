@@ -123,6 +123,11 @@ namespace UnitsNet
         public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
+
+        /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
@@ -151,6 +156,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Entropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -916,6 +926,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(EntropyUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Entropy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Entropy.Info;
             else if(conversionType == typeof(BaseDimensions))

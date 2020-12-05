@@ -122,6 +122,11 @@ namespace UnitsNet
         public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
 
         /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductance;
+
+        /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
         /// </summary>
         public static ElectricConductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().Except(new ElectricConductanceUnit[]{ ElectricConductanceUnit.Undefined }).ToArray();
@@ -150,6 +155,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricConductance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -851,6 +861,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricConductanceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricConductance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricConductance.Info;
             else if(conversionType == typeof(BaseDimensions))
