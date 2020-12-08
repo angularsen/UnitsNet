@@ -278,6 +278,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower.From(value, reactivePowerUnit);
                     return true;
+                case RelativeHumidityUnit relativeHumidityUnit:
+                    quantity = RelativeHumidity.From(value, relativeHumidityUnit);
+                    return true;
                 case RotationalAccelerationUnit rotationalAccelerationUnit:
                     quantity = RotationalAcceleration.From(value, rotationalAccelerationUnit);
                     return true;
@@ -636,6 +639,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ReactivePower))
                 return parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity);
+
+            if (quantityType == typeof(RelativeHumidity))
+                return parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity);
 
             if (quantityType == typeof(RotationalAcceleration))
                 return parser.TryParse<RotationalAcceleration, RotationalAccelerationUnit>(quantityString, formatProvider, RotationalAcceleration.From, out quantity);

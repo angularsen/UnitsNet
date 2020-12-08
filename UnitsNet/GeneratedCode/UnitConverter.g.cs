@@ -1745,6 +1745,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePowerUnit.MegavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePower.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePower.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<RelativeHumidity>(RelativeHumidity.BaseUnit, RelativeHumidity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.DegreePerSecondSquared, q => q.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAcceleration.BaseUnit, q => q);
