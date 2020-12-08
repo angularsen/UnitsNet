@@ -53,6 +53,10 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromCentilitersPerSecond(2), 2.CentilitersPerSecond());
 
         [Fact]
+        public void NumberToCubicCentimetersPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromCubicCentimetersPerMinute(2), 2.CubicCentimetersPerMinute());
+
+        [Fact]
         public void NumberToCubicDecimetersPerMinuteTest() =>
             Assert.Equal(VolumeFlow.FromCubicDecimetersPerMinute(2), 2.CubicDecimetersPerMinute());
 

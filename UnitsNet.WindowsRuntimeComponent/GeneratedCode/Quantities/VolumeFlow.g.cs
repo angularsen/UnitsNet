@@ -191,6 +191,11 @@ namespace UnitsNet
         public double CentilitersPerSecond => As(VolumeFlowUnit.CentiliterPerSecond);
 
         /// <summary>
+        ///     Get VolumeFlow in CubicCentimetersPerMinute.
+        /// </summary>
+        public double CubicCentimetersPerMinute => As(VolumeFlowUnit.CubicCentimeterPerMinute);
+
+        /// <summary>
         ///     Get VolumeFlow in CubicDecimetersPerMinute.
         /// </summary>
         public double CubicDecimetersPerMinute => As(VolumeFlowUnit.CubicDecimeterPerMinute);
@@ -529,6 +534,16 @@ namespace UnitsNet
         {
             double value = (double) centiliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerSecond);
+        }
+        /// <summary>
+        ///     Get VolumeFlow from CubicCentimetersPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeFlow FromCubicCentimetersPerMinute(double cubiccentimetersperminute)
+        {
+            double value = (double) cubiccentimetersperminute;
+            return new VolumeFlow(value, VolumeFlowUnit.CubicCentimeterPerMinute);
         }
         /// <summary>
         ///     Get VolumeFlow from CubicDecimetersPerMinute.
@@ -1308,6 +1323,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CentiliterPerDay: return (_value/86400000) * 1e-2d;
                 case VolumeFlowUnit.CentiliterPerMinute: return (_value/60000.00000) * 1e-2d;
                 case VolumeFlowUnit.CentiliterPerSecond: return (_value/1000) * 1e-2d;
+                case VolumeFlowUnit.CubicCentimeterPerMinute: return _value*1.6666666666667e-8;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return _value/2118.88000326;
@@ -1377,6 +1393,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CentiliterPerDay: return (baseUnitValue*86400000) / 1e-2d;
                 case VolumeFlowUnit.CentiliterPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
                 case VolumeFlowUnit.CentiliterPerSecond: return (baseUnitValue*1000) / 1e-2d;
+                case VolumeFlowUnit.CubicCentimeterPerMinute: return baseUnitValue/1.6666666666667e-8;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return baseUnitValue*60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return baseUnitValue*2118.88000326;
