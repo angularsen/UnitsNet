@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -17,7 +16,7 @@ namespace UnitsNet
 #pragma warning disable 612,618
             Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
 #pragma warning restore 612,618
-            Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
+            Names = quantityTypes.Select(qt => qt.Name).ToArray();
 
             InfosLazy = new Lazy<QuantityInfo[]>(() => quantityTypes
                 .OrderBy(quantityInfo => quantityInfo.Name)
