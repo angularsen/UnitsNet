@@ -252,6 +252,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Type_EqualsStaticQuantityTypeProperty()
         {
+#pragma warning disable 612,618
             void Assertion(QuantityType expected, IQuantity quantity) => Assert.Equal(expected, quantity.Type);
 
             Assertion(Acceleration.QuantityType, Acceleration.Zero);
@@ -357,6 +358,7 @@ namespace UnitsNet.Tests
             Assertion(VolumeFlow.QuantityType, VolumeFlow.Zero);
             Assertion(VolumePerLength.QuantityType, VolumePerLength.Zero);
             Assertion(WarpingMomentOfInertia.QuantityType, WarpingMomentOfInertia.Zero);
+#pragma warning restore 612,618
         }
 
         [Fact]

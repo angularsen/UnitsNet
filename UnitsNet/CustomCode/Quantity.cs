@@ -101,6 +101,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="quantityType">The quantity type enum value.</param>
         /// <returns>Information about the quantity and its units.</returns>
+        [Obsolete("QuantityType will be removed in the future.")]
         public static QuantityInfo GetInfo(QuantityType quantityType)
         {
             return Infos.First(qi => qi.QuantityType == quantityType);

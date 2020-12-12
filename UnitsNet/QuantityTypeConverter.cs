@@ -148,10 +148,10 @@ namespace UnitsNet
             {
 #pragma warning disable 612,618
                 QuantityType expected = default(TQuantity).Type;
-#pragma warning restore 612,618
                 QuantityType actual = QuantityType.Undefined;
 
                 if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;
+#pragma warning restore 612,618
                 if (actual != QuantityType.Undefined && expected != actual)
                     throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
 
