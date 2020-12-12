@@ -21,7 +21,6 @@ namespace UnitsNet.Tests
             };
             var expectedBaseUnit = LengthUnit.Centimeter;
             var expectedQuantityType = QuantityType.Length;
-            var expectedQuantityInfo = Length.Info;
             var expectedBaseDimensions = Length.BaseDimensions;
 
 #pragma warning disable 612,618
@@ -36,7 +35,6 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedQuantityType, info.QuantityType);
 #pragma warning restore 612,618
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
-            Assert.Equal(expectedQuantityInfo, info);
 
             // Obsolete members
 #pragma warning disable 618
@@ -55,7 +53,6 @@ namespace UnitsNet.Tests
             };
             var expectedBaseUnit = LengthUnit.Centimeter;
             var expectedQuantityType = QuantityType.Length;
-            var expectedQuantityInfo = Length.Info;
             var expectedBaseDimensions = Length.BaseDimensions;
 
 #pragma warning disable 618
@@ -67,7 +64,6 @@ namespace UnitsNet.Tests
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
-            Assert.Equal(expectedQuantityInfo, info);
 
             // Obsolete members
 #pragma warning disable 618
@@ -78,20 +74,6 @@ namespace UnitsNet.Tests
         }
 
 #pragma warning disable 618
-        [Fact]
-        public void Constructor_GivenUndefinedAsQuantityType_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new QuantityInfo(QuantityType.Undefined,
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
-        }
-
-        [Fact]
-        public void GenericsConstructor_GivenUndefinedAsQuantityType_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new QuantityInfo<LengthUnit>(QuantityType.Undefined,
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
-        }
-
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor_GivenNullAsUnitInfos_ThrowsArgumentNullException()
