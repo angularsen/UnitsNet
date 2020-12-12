@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
         }
 
         /// <summary>

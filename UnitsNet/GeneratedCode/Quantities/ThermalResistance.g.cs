@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, BaseUnits.Undefined),
                     new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalResistance);
         }
 
         /// <summary>

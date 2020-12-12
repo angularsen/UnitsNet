@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
         }
 
         /// <summary>

@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
         }
 
         /// <summary>

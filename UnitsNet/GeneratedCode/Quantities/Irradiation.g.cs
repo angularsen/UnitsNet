@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiation);
         }
 
         /// <summary>

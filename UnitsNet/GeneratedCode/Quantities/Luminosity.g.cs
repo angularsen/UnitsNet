@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
         }
 
         /// <summary>

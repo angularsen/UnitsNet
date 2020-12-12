@@ -79,7 +79,7 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Information);
         }
 
         /// <summary>

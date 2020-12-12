@@ -57,7 +57,7 @@ namespace UnitsNet
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, BaseUnits.Undefined),
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
         }
 
         /// <summary>

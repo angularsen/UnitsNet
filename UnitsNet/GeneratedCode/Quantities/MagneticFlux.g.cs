@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<MagneticFluxUnit>[] {
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
         }
 
         /// <summary>

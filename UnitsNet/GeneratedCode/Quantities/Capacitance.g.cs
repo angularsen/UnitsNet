@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, BaseUnits.Undefined),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
         }
 
         /// <summary>

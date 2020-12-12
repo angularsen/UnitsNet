@@ -96,7 +96,7 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Density);
         }
 
         /// <summary>

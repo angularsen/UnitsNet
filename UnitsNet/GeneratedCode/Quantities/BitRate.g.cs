@@ -82,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
         }
 
         /// <summary>

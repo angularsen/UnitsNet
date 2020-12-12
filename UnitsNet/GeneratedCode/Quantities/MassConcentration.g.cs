@@ -103,7 +103,7 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
         }
 
         /// <summary>

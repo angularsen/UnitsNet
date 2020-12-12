@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiance);
         }
 
         /// <summary>

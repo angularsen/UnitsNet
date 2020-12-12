@@ -56,7 +56,7 @@ namespace UnitsNet
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEnergy);
         }
 
         /// <summary>

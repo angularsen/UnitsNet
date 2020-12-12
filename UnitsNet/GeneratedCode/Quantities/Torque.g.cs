@@ -75,7 +75,7 @@ namespace UnitsNet
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
         }
 
         /// <summary>

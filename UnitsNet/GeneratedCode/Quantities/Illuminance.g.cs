@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
         }
 
         /// <summary>

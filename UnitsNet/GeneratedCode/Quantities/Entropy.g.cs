@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
         }
 
         /// <summary>

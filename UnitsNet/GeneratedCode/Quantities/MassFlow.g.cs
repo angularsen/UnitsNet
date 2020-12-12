@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
         }
 
         /// <summary>

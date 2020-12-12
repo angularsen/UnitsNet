@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
         }
 
         /// <summary>

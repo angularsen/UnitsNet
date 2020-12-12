@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
         }
 
         /// <summary>

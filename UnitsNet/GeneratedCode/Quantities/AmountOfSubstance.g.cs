@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
         }
 
         /// <summary>

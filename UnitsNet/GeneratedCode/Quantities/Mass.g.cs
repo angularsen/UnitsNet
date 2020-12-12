@@ -78,7 +78,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Stone, new BaseUnits(mass: MassUnit.Stone)),
                     new UnitInfo<MassUnit>(MassUnit.Tonne, new BaseUnits(mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Mass);
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
         }
 
         /// <summary>

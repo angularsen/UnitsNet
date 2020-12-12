@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MolarMass);
         }
 
         /// <summary>

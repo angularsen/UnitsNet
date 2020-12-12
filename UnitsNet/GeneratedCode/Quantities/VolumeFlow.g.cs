@@ -108,7 +108,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlow);
         }
 
         /// <summary>

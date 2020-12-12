@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
         }
 
         /// <summary>

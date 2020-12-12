@@ -55,7 +55,7 @@ namespace UnitsNet
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Level);
         }
 
         /// <summary>

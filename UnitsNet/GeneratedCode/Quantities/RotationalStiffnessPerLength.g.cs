@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
         }
 
         /// <summary>

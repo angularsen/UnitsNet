@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Force);
         }
 
         /// <summary>

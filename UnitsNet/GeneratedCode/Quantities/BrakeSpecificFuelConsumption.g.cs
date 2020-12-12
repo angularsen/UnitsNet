@@ -56,7 +56,7 @@ namespace UnitsNet
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BaseUnits.Undefined),
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
         }
 
         /// <summary>

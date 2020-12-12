@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
         }
 
         /// <summary>

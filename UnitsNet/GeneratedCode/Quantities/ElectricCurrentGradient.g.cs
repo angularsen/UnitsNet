@@ -54,7 +54,7 @@ namespace UnitsNet
                 new UnitInfo<ElectricCurrentGradientUnit>[] {
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
         }
 
         /// <summary>

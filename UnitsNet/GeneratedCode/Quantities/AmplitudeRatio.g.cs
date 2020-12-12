@@ -57,7 +57,7 @@ namespace UnitsNet
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
         }
 
         /// <summary>

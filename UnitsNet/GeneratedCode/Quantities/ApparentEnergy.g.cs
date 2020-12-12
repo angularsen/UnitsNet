@@ -56,7 +56,7 @@ namespace UnitsNet
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
         }
 
         /// <summary>

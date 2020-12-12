@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, BaseUnits.Undefined),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.PressureChangeRate);
         }
 
         /// <summary>

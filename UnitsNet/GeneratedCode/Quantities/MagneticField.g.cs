@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
         }
 
         /// <summary>

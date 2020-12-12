@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<AngleUnit>(AngleUnit.Radian, BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Revolution, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
         }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, BaseUnits.Undefined),
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalAcceleration);
         }
 
         /// <summary>

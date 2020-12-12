@@ -89,7 +89,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Energy);
         }
 
         /// <summary>

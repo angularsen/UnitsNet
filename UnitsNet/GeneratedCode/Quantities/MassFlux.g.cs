@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
         }
 
         /// <summary>

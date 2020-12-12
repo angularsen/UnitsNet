@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
         }
 
         /// <summary>

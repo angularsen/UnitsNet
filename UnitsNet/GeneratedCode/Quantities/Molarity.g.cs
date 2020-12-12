@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
         }
 
         /// <summary>

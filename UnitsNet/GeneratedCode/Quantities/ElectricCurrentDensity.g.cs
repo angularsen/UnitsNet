@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
         }
 
         /// <summary>

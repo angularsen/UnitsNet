@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFootPerDegrees, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffness);
         }
 
         /// <summary>

@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
         }
 
         /// <summary>

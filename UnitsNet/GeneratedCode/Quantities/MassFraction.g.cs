@@ -80,7 +80,7 @@ namespace UnitsNet
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFraction);
         }
 
         /// <summary>

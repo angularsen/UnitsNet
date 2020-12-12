@@ -147,10 +147,10 @@ namespace UnitsNet
                 }
             }
 
-            Writer.WL(@"
-                },
-                BaseUnit, Zero, BaseDimensions);
-        }
+            Writer.WL($@"
+                }},
+                BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+        }}
 ");
         }
 

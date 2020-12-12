@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
         }
 
         /// <summary>

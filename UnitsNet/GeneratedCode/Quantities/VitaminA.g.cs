@@ -54,7 +54,7 @@ namespace UnitsNet
                 new UnitInfo<VitaminAUnit>[] {
                     new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
         }
 
         /// <summary>

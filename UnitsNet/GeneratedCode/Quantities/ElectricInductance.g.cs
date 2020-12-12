@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
         }
 
         /// <summary>

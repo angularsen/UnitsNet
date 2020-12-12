@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotential);
         }
 
         /// <summary>

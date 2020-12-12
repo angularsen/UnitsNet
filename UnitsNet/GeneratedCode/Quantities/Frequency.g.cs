@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
         }
 
         /// <summary>

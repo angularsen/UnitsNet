@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new BaseUnits(length: LengthUnit.Millimeter)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.WarpingMomentOfInertia);
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace UnitsNet
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, BaseUnits.Undefined),
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEntropy);
         }
 
         /// <summary>

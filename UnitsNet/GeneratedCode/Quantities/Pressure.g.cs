@@ -95,7 +95,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Torr, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Pressure);
         }
 
         /// <summary>

@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
         }
 
         /// <summary>

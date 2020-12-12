@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
         }
 
         /// <summary>

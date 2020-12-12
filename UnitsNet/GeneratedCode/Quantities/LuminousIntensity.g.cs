@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<LuminousIntensityUnit>[] {
                     new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
         }
 
         /// <summary>

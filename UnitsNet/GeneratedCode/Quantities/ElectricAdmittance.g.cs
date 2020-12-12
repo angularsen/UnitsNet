@@ -57,7 +57,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
         }
 
         /// <summary>

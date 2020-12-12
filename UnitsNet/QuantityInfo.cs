@@ -42,28 +42,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
         [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(string, UnitInfo[], Enum, IQuantity, BaseDimensions) instead.")]
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+            : this(quantityType.ToString(), unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
-            if (quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
-            if (baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
-
-            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
-
-            Name = quantityType.ToString();
-            QuantityType = quantityType;
-            UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
-            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
-            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
-            ValueType = zero.GetType();
-            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
-
-            // Obsolete members
-#pragma warning disable 618
-            UnitNames = UnitInfos.Select(unitInfo => unitInfo.Name).ToArray();
-            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
-#pragma warning restore 618
         }
 
         /// <summary>
@@ -74,9 +54,11 @@ namespace UnitsNet
         /// <param name="baseUnit">The base unit enum value.</param>
         /// <param name="zero">The zero quantity.</param>
         /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+        /// <param name="quantityType">The the quantity type. Defaults to Undefined.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        public QuantityInfo([NotNull] string name, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo([NotNull] string name, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
+           QuantityType quantityType = QuantityType.Undefined)
         {
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
@@ -96,10 +78,7 @@ namespace UnitsNet
             UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
             Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
             BaseUnit = BaseUnitInfo.Value;
-            if (Quantity.QuantityTypeByName.TryGetValue(name, out var quantityType))
-                QuantityType = quantityType;
-            else
-                QuantityType = QuantityType.Undefined;
+            QuantityType = quantityType;
 #pragma warning restore 618
         }
 
@@ -216,26 +195,17 @@ namespace UnitsNet
     public class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
-        /// <inheritdoc />
-        [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(string, UnitInfo<TUnit>[], TUnit, IQuantity<TUnit>, BaseDimensions) instead.")]
+        /// <inheritdoc cref="QuantityInfo{TUnit}(string,UnitsNet.UnitInfo{TUnit}[],TUnit,UnitsNet.IQuantity{TUnit},UnitsNet.BaseDimensions,UnitsNet.QuantityType)" />
+        [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(QuantityType, string, UnitInfo{TUnit}[], TUnit, IQuantity{TUnit}, BaseDimensions) instead.")]
         public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(quantityType, unitInfos, baseUnit, zero, baseDimensions)
+            : this(quantityType.ToString(), unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
-            Zero = zero;
-            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
-            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
-            UnitType = baseUnit;
-
-            // Obsolete members
-#pragma warning disable 618
-            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
-#pragma warning restore 618
         }
 
         /// <inheritdoc />
-        public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(name, unitInfos, baseUnit, zero, baseDimensions)
+        public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions,
+            QuantityType quantityType = QuantityType.Undefined)
+            : base(name, unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));

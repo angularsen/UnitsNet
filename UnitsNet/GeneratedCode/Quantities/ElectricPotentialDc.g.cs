@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialDc);
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
         }
 
         /// <summary>

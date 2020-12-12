@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, BaseUnits.Undefined),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
         }
 
         /// <summary>

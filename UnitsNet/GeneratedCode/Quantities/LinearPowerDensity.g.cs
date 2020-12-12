@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
         }
 
         /// <summary>

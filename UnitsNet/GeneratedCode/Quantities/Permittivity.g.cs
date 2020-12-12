@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<PermittivityUnit>[] {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
         }
 
         /// <summary>

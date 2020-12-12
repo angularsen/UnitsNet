@@ -56,7 +56,7 @@ namespace UnitsNet
                     new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, BaseUnits.Undefined),
                     new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ReactiveEnergy);
         }
 
         /// <summary>

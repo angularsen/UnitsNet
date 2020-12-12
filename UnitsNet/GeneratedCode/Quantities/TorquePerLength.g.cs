@@ -74,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, BaseUnits.Undefined),
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.TorquePerLength);
         }
 
         /// <summary>

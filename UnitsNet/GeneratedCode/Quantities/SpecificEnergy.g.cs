@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
         }
 
         /// <summary>

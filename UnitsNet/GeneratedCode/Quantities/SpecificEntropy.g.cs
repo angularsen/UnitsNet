@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
         }
 
         /// <summary>

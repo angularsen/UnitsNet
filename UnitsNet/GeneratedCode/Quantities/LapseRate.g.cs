@@ -54,7 +54,7 @@ namespace UnitsNet
                 new UnitInfo<LapseRateUnit>[] {
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
         }
 
         /// <summary>

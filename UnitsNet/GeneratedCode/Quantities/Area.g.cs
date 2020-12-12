@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.SquareYard, new BaseUnits(length: LengthUnit.Yard)),
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Area);
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new BaseUnits(length: LengthUnit.Millimeter)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, BaseUnits.Undefined),
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
         }
 
         /// <summary>

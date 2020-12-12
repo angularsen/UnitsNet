@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<DurationUnit>(DurationUnit.Week, new BaseUnits(time: DurationUnit.Week)),
                     new UnitInfo<DurationUnit>(DurationUnit.Year365, new BaseUnits(time: DurationUnit.Year365)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
         }
 
         /// <summary>

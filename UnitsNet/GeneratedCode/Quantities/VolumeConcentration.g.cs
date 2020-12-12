@@ -76,7 +76,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
         }
 
         /// <summary>

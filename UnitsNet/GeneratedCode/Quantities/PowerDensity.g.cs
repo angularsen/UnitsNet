@@ -97,7 +97,7 @@ namespace UnitsNet
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.PowerDensity);
         }
 
         /// <summary>

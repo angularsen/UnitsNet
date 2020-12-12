@@ -73,7 +73,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificWeight);
         }
 
         /// <summary>

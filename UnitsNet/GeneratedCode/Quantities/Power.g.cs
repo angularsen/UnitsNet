@@ -78,7 +78,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.Terawatt, BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Watt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Power);
         }
 
         /// <summary>

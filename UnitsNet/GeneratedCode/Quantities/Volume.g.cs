@@ -104,7 +104,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Volume);
         }
 
         /// <summary>

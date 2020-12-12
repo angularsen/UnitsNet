@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
         }
 
         /// <summary>

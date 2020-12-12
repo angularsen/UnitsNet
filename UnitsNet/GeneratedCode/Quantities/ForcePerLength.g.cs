@@ -91,7 +91,7 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ForcePerLength);
         }
 
         /// <summary>

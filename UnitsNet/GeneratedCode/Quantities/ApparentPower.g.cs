@@ -57,7 +57,7 @@ namespace UnitsNet
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, BaseUnits.Undefined),
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentPower);
         }
 
         /// <summary>

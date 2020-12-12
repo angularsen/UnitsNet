@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Acceleration);
         }
 
         /// <summary>

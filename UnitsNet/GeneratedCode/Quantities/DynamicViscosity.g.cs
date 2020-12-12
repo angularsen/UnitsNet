@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
         }
 
         /// <summary>

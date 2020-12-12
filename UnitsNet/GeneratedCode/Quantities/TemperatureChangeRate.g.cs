@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, BaseUnits.Undefined),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureChangeRate);
         }
 
         /// <summary>

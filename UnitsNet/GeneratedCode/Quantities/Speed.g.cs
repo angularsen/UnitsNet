@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Speed);
         }
 
         /// <summary>
