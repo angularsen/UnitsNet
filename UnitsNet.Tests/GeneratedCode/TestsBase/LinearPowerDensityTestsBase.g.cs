@@ -149,7 +149,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

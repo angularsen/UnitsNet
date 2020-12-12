@@ -105,7 +105,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReactiveEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ReactiveEnergy", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ReactiveEnergy, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

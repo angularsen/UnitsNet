@@ -157,7 +157,9 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+#pragma warning disable 612,618
         public QuantityType Type => ReactiveEnergy.QuantityType;
+#pragma warning restore 612, 618
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -860,7 +862,9 @@ namespace UnitsNet
             else if(conversionType == typeof(ReactiveEnergyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
+#pragma warning disable 612,618
                 return ReactiveEnergy.QuantityType;
+#pragma warning restore 612,618
             else if(conversionType == typeof(QuantityInfo))
                 return ReactiveEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))

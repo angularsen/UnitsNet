@@ -101,7 +101,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Permeability.Zero, quantityInfo.Zero);
             Assert.Equal("Permeability", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Permeability, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<PermeabilityUnit>().Except(new[] {PermeabilityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

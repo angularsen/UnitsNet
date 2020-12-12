@@ -24,13 +24,17 @@ namespace UnitsNet.Tests
             var expectedQuantityInfo = Length.Info;
             var expectedBaseDimensions = Length.BaseDimensions;
 
+#pragma warning disable 612,618
             var info = new QuantityInfo(expectedQuantityType, expectedUnitInfos,
                 expectedBaseUnit, expectedZero, expectedBaseDimensions);
+#pragma warning restore 612,618
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
+#pragma warning disable 612,618
             Assert.Equal(expectedQuantityType, info.QuantityType);
+#pragma warning restore 612,618
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
             Assert.Equal(expectedQuantityInfo, info);
 

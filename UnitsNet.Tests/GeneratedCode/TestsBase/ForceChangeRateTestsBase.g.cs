@@ -121,7 +121,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ForceChangeRate", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ForceChangeRate, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>().Except(new[] {ForceChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

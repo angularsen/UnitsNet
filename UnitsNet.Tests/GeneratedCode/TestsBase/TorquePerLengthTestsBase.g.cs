@@ -141,7 +141,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TorquePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("TorquePerLength", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.TorquePerLength, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

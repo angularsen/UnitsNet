@@ -107,7 +107,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalAcceleration.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalAcceleration", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.RotationalAcceleration, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

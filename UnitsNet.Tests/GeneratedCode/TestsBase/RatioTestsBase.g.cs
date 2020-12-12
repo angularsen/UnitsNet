@@ -111,7 +111,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Ratio.Zero, quantityInfo.Zero);
             Assert.Equal("Ratio", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Ratio, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<RatioUnit>().Except(new[] {RatioUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

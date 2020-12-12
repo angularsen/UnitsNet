@@ -146,7 +146,9 @@ namespace UnitsNet
             TAttribute? attribute = (TAttribute)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
             if (attribute != null)
             {
+#pragma warning disable 612,618
                 QuantityType expected = default(TQuantity).Type;
+#pragma warning restore 612,618
                 QuantityType actual = QuantityType.Undefined;
 
                 if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;

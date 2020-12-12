@@ -103,7 +103,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalConductivity", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ThermalConductivity, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ThermalConductivityUnit>().Except(new[] {ThermalConductivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

@@ -101,7 +101,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Turbidity, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<TurbidityUnit>().Except(new[] {TurbidityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

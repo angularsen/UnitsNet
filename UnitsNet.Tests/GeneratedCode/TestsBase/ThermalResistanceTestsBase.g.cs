@@ -109,7 +109,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ThermalResistance, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().Except(new[] {ThermalResistanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

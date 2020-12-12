@@ -127,7 +127,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Irradiance.Zero, quantityInfo.Zero);
             Assert.Equal("Irradiance", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Irradiance, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<IrradianceUnit>().Except(new[] {IrradianceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

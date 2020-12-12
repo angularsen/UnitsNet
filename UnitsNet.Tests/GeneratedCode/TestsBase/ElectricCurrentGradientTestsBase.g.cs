@@ -101,7 +101,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ElectricCurrentGradient, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().Except(new[] {ElectricCurrentGradientUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

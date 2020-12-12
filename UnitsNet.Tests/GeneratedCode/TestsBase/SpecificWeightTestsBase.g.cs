@@ -133,7 +133,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.SpecificWeight, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().Except(new[] {SpecificWeightUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

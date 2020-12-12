@@ -111,7 +111,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistance", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ElectricResistance, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ElectricResistanceUnit>().Except(new[] {ElectricResistanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

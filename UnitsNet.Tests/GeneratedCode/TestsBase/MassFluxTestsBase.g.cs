@@ -123,7 +123,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlux", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.MassFlux, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<MassFluxUnit>().Except(new[] {MassFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

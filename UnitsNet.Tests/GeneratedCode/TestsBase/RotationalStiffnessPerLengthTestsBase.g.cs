@@ -109,7 +109,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalStiffnessPerLength", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.RotationalStiffnessPerLength, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>().Except(new[] {RotationalStiffnessPerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

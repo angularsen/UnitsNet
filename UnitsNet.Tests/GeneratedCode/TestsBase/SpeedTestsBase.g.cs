@@ -163,7 +163,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Speed.Zero, quantityInfo.Zero);
             Assert.Equal("Speed", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Speed, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

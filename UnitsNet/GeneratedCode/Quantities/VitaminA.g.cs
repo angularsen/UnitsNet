@@ -155,7 +155,9 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+#pragma warning disable 612,618
         public QuantityType Type => VitaminA.QuantityType;
+#pragma warning restore 612, 618
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -826,7 +828,9 @@ namespace UnitsNet
             else if(conversionType == typeof(VitaminAUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
+#pragma warning disable 612,618
                 return VitaminA.QuantityType;
+#pragma warning restore 612,618
             else if(conversionType == typeof(QuantityInfo))
                 return VitaminA.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -183,19 +183,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromQuantityType_GivenUndefinedQuantityType_ThrowsArgumentException()
         {
+#pragma warning disable 612,618
             Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType(QuantityType.Undefined, 0.0));
+#pragma warning restore 612,618
         }
 
         [Fact]
         public void FromQuantityType_GivenInvalidQuantityType_ThrowsArgumentException()
         {
+#pragma warning disable 612,618
             Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType((QuantityType)(-1), 0.0));
+#pragma warning restore 612,618
         }
 
         [Fact]
         public void FromQuantityType_GivenLengthQuantityType_ReturnsLengthQuantity()
         {
+#pragma warning disable 612,618
             var fromQuantity = Quantity.FromQuantityType(QuantityType.Length, 0.0);
+#pragma warning restore 612,618
 
             Assert.Equal(0.0, fromQuantity.Value);
             Assert.Equal(QuantityType.Length, fromQuantity.Type);

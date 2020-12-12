@@ -135,7 +135,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HeatFlux.Zero, quantityInfo.Zero);
             Assert.Equal("HeatFlux", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.HeatFlux, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<HeatFluxUnit>().Except(new[] {HeatFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

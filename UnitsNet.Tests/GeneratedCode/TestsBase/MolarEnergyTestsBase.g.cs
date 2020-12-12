@@ -105,7 +105,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.MolarEnergy, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().Except(new[] {MolarEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

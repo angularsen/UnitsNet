@@ -127,7 +127,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Area, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

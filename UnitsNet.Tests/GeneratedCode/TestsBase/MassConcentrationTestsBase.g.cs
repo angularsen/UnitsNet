@@ -193,7 +193,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.MassConcentration, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().Except(new[] {MassConcentrationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

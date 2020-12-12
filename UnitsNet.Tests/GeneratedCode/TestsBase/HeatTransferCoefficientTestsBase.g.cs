@@ -105,7 +105,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.HeatTransferCoefficient, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().Except(new[] {HeatTransferCoefficientUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

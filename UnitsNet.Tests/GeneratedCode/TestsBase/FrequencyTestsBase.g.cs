@@ -119,7 +119,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.Frequency, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<FrequencyUnit>().Except(new[] {FrequencyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

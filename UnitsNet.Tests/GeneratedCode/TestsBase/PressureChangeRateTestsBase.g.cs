@@ -113,7 +113,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(PressureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("PressureChangeRate", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.PressureChangeRate, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());

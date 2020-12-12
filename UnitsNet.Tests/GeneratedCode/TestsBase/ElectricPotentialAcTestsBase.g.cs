@@ -109,7 +109,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricPotentialAc.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialAc", quantityInfo.Name);
+#pragma warning disable 612,618
             Assert.Equal(QuantityType.ElectricPotentialAc, quantityInfo.QuantityType);
+#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ElectricPotentialAcUnit>().Except(new[] {ElectricPotentialAcUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
