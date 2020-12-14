@@ -110,7 +110,10 @@ namespace UnitsNet.Tests
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {{
             var quantity = new {_quantity.Name}();
-            Assert.Equal(0, quantity.Value);
+            Assert.Equal(0, quantity.Value);");
+            if (_quantity.BaseType == "decimal") Writer.WL($@"
+            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
+            Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 

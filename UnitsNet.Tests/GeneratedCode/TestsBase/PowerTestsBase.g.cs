@@ -102,6 +102,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Power();
             Assert.Equal(0, quantity.Value);
+            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);
             Assert.Equal(PowerUnit.Watt, quantity.Unit);
         }
 

@@ -34,7 +34,7 @@ namespace UnitsNet
     /// <summary>
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
-    public partial struct Information : IQuantity<InformationUnit>, IEquatable<Information>, IComparable, IComparable<Information>, IConvertible, IFormattable
+    public partial struct Information : IQuantity<InformationUnit>, IDecimalQuantity, IEquatable<Information>, IComparable, IComparable<Information>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -166,6 +166,9 @@ namespace UnitsNet
         public decimal Value => _value;
 
         double IQuantity.Value => (double) _value;
+
+        /// <inheritdoc cref="IDecimalQuantity.Value"/>
+        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 

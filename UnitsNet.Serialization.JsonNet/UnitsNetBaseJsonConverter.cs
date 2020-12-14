@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
-         /// <summary>
+        /// <summary>
         /// Reads the "Unit" and "Value" properties from a JSON string
         /// </summary>
         /// <param name="jsonToken">The JSON data to read from</param>
@@ -32,16 +33,35 @@ namespace UnitsNet.Serialization.JsonNet
 
             var unit = jsonObject.GetValue(nameof(ValueUnit.Unit), StringComparison.OrdinalIgnoreCase);
             var value = jsonObject.GetValue(nameof(ValueUnit.Value), StringComparison.OrdinalIgnoreCase);
+            var valueType = jsonObject.GetValue(nameof(ExtendedValueUnit.ValueType), StringComparison.OrdinalIgnoreCase);
+            var valueString = jsonObject.GetValue(nameof(ExtendedValueUnit.ValueString), StringComparison.OrdinalIgnoreCase);
 
             if (unit == null || value == null)
             {
                 return null;
             }
 
-            return new ValueUnit()
+            if (valueType == null)
+            {
+                if (value.Type != JTokenType.Float && value.Type != JTokenType.Integer)
+                {
+                    return null;
+                }
+
+                return new ValueUnit {Unit = unit.Value<string>(), Value = value.Value<double>()};
+            }
+
+            if (valueType.Type != JTokenType.String)
+            {
+                return null;
+            }
+
+            return new ExtendedValueUnit
             {
                 Unit = unit.Value<string>(),
-                Value = value.Value<double>()
+                Value = value.Value<double>(),
+                ValueType = valueType.Value<string>(),
+                ValueString = valueString?.Value<string>()
             };
         }
 
@@ -53,17 +73,28 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>An IQuantity</returns>
         protected IQuantity ConvertValueUnit(ValueUnit valueUnit)
         {
-            if (valueUnit == null || string.IsNullOrWhiteSpace(valueUnit.Unit))
+            if (string.IsNullOrWhiteSpace(valueUnit?.Unit))
             {
                 return null;
             }
 
-            var unitParts = valueUnit.Unit.Split('.');
+            var unit = GetUnit(valueUnit.Unit);
+
+            return valueUnit switch
+            {
+                ExtendedValueUnit {ValueType: "decimal"} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString), unit),
+                _ => Quantity.From(valueUnit.Value, unit)
+            };
+        }
+
+        private static Enum GetUnit(string unit)
+        {
+            var unitParts = unit.Split('.');
 
             if (unitParts.Length != 2)
             {
-                var ex = new UnitsNetException($"\"{valueUnit.Unit}\" is not a valid unit.");
-                ex.Data["type"] = valueUnit.Unit;
+                var ex = new UnitsNetException($"\"{unit}\" is not a valid unit.");
+                ex.Data["type"] = unit;
                 throw ex;
             }
 
@@ -83,27 +114,31 @@ namespace UnitsNet.Serialization.JsonNet
                 throw ex;
             }
 
-            var value = valueUnit.Value;
-            var unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
-
-            return Quantity.From(value, unitValue);
+            var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
+            return unitValue;
         }
 
         /// <summary>
         /// Convert an <see cref="IQuantity"/> to a <see cref="ValueUnit"/>
         /// </summary>
         /// <param name="quantity">The quantity to convert</param>
-        /// <returns></returns>
+        /// <returns>A serializable object.</returns>
         protected ValueUnit ConvertIQuantity(IQuantity quantity)
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            return new ValueUnit
+            if (quantity is IDecimalQuantity d)
             {
-                // See ValueUnit about precision loss for quantities using decimal type.
-                Value = quantity.Value,
-                Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"
-            };
+                return new ExtendedValueUnit
+                {
+                    Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}",
+                    Value = quantity.Value,
+                    ValueString = d.Value.ToString(CultureInfo.InvariantCulture),
+                    ValueType = "decimal"
+                };
+            }
+
+            return new ValueUnit {Value = quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
         }
 
         /// <summary>
@@ -156,28 +191,43 @@ namespace UnitsNet.Serialization.JsonNet
         /// <summary>
         ///     A structure used to serialize/deserialize Units.NET unit instances.
         /// </summary>
-        /// <remarks>
-        ///     Quantities may use decimal, long or double as base value type and this might result
-        ///     in a loss of precision when serializing/deserializing to decimal.
-        ///     Decimal is the highest precision type available in .NET, but has a smaller
-        ///     range than double.
-        ///
-        ///     Json: Support decimal precision #503
-        ///     https://github.com/angularsen/UnitsNet/issues/503
-        /// </remarks>
-        protected sealed class ValueUnit
+        protected class ValueUnit
         {
             /// <summary>
-            /// The name of the unit
+            ///     The unit of the value.
             /// </summary>
             /// <example>MassUnit.Pound</example>
             /// <example>InformationUnit.Kilobyte</example>
+            [JsonProperty(Order = 1)]
             public string Unit { get; [UsedImplicitly] set; }
 
             /// <summary>
-            /// The value of the unit
+            ///     The value.
             /// </summary>
+            [JsonProperty(Order = 2)]
             public double Value { get; [UsedImplicitly] set; }
+        }
+
+        /// <summary>
+        ///     A structure used to serialize/deserialize non-double Units.NET unit instances.
+        /// </summary>
+        /// <remarks>
+        ///     This type was added for lossless serialization of quantities with <see cref="decimal"/> values.
+        ///     The <see cref="decimal"/> type distinguishes between 100 and 100.00 but Json.NET does not, therefore we serialize decimal values as string.
+        /// </remarks>
+        protected sealed class ExtendedValueUnit : ValueUnit
+        {
+            /// <summary>
+            ///     The value as a string.
+            /// </summary>
+            [JsonProperty(Order = 3)]
+            public string ValueString { get; [UsedImplicitly] set; }
+
+            /// <summary>
+            ///     The type of the value, e.g. "decimal".
+            /// </summary>
+            [JsonProperty(Order = 4)]
+            public string ValueType { get; [UsedImplicitly] set; }
         }
     }
 }

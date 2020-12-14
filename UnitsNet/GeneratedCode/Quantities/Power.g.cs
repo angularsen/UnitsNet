@@ -34,7 +34,7 @@ namespace UnitsNet
     /// <summary>
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
-    public partial struct Power : IQuantity<PowerUnit>, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+    public partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -165,6 +165,9 @@ namespace UnitsNet
         public decimal Value => _value;
 
         double IQuantity.Value => (double) _value;
+
+        /// <inheritdoc cref="IDecimalQuantity.Value"/>
+        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 

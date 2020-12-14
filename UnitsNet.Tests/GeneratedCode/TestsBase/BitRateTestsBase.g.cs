@@ -104,6 +104,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new BitRate();
             Assert.Equal(0, quantity.Value);
+            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);
             Assert.Equal(BitRateUnit.BitPerSecond, quantity.Unit);
         }
 
