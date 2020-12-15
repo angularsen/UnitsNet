@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CodeGen.JsonTypes;
@@ -11,6 +11,7 @@ namespace CodeGen
     internal class PrefixInfo
     {
         private const string Russian = "ru-RU";
+        private const string Chinese = "zh-CN";
 
         public static readonly IReadOnlyDictionary<Prefix, PrefixInfo> Entries = new[]
         {
@@ -30,7 +31,7 @@ namespace CodeGen
             new PrefixInfo(Prefix.Deci, "1e-1d", "d", (Russian, "д")),
             new PrefixInfo(Prefix.Deca, "1e1d", "da", (Russian, "да")),
             new PrefixInfo(Prefix.Hecto, "1e2d", "h", (Russian, "г")),
-            new PrefixInfo(Prefix.Kilo, "1e3d", "k", (Russian, "к")),
+            new PrefixInfo(Prefix.Kilo, "1e3d", "k", (Russian, "к"),(Chinese, "千")),
             new PrefixInfo(Prefix.Mega, "1e6d", "M", (Russian, "М")),
             new PrefixInfo(Prefix.Giga, "1e9d", "G", (Russian, "Г")),
             new PrefixInfo(Prefix.Tera, "1e12d", "T", (Russian, "Т")),

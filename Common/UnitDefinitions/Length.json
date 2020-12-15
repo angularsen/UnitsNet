@@ -23,6 +23,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "м" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "米" ]
         }
       ]
     },
@@ -42,6 +46,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "миля" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英里" ]
         }
       ]
     },
@@ -61,6 +69,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "ярд" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "码" ]
         }
       ]
     },
@@ -80,6 +92,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фут" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英尺" ]
         }
       ]
     },
@@ -114,6 +130,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "дюйм" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英寸" ]
         }
       ]
     },
@@ -133,6 +153,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мил" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "密耳" ]
         }
       ]
     },
@@ -152,6 +176,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мил" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "纳米" ]
         }
       ]
     },
@@ -201,6 +229,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "микродюйм" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "微英寸" ]
         }
       ]
     },
