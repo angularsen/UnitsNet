@@ -1745,6 +1745,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePowerUnit.MegavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePower.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePower.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<RelativeHumidity>(RelativeHumidity.BaseUnit, RelativeHumidity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.DegreePerSecondSquared, q => q.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAcceleration.BaseUnit, q => q);
@@ -2326,6 +2327,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CentiliterPerMinute, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.CentiliterPerSecond, q => q.ToUnit(VolumeFlowUnit.CentiliterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CentiliterPerSecond, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.CubicCentimeterPerMinute, q => q.ToUnit(VolumeFlowUnit.CubicCentimeterPerMinute));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicCentimeterPerMinute, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.CubicDecimeterPerMinute, q => q.ToUnit(VolumeFlowUnit.CubicDecimeterPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicDecimeterPerMinute, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.CubicFootPerHour, q => q.ToUnit(VolumeFlowUnit.CubicFootPerHour));
