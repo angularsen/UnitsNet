@@ -4,7 +4,6 @@
     <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
-    <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 

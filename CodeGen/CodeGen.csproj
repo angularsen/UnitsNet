@@ -5,6 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <!-- Allow compile with various nullability warnings until fixed. -->
+    <WarningsNotAsErrors>8600,8601,8603,8604,8618,8619,8625</WarningsNotAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
