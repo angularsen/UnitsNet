@@ -151,7 +151,7 @@ namespace UnitsNet
                 string attributeQuantityName = Quantity.From(1, attribute.UnitType).QuantityInfo.Name;
                 if (converterQuantityName != attributeQuantityName)
                 {
-                    throw new ArgumentException($"The {attribute.GetType()}'s Unittype [{attribute.UnitType}] is not compatible with the converter's quantity [{converterQuantityName}].");
+                    throw new ArgumentException($"The {attribute.GetType()}'s UnitType [{attribute.UnitType}] is not compatible with the converter's quantity [{converterQuantityName}].");
                 }
             }
 
