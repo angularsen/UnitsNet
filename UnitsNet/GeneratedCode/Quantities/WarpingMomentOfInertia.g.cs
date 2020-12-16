@@ -160,9 +160,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-#pragma warning disable 612,618
         public QuantityType Type => WarpingMomentOfInertia.QuantityType;
-#pragma warning restore 612, 618
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -913,9 +911,7 @@ namespace UnitsNet
             else if(conversionType == typeof(WarpingMomentOfInertiaUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-#pragma warning disable 612,618
                 return WarpingMomentOfInertia.QuantityType;
-#pragma warning restore 612,618
             else if(conversionType == typeof(QuantityInfo))
                 return WarpingMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))

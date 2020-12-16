@@ -113,18 +113,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Capacitance.Zero, quantityInfo.Zero);
             Assert.Equal("Capacitance", quantityInfo.Name);
-#pragma warning disable 612,618
             Assert.Equal(QuantityType.Capacitance, quantityInfo.QuantityType);
-#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -481,7 +477,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4", culture));
         }
 
-        #pragma warning disable 612, 618
 
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
@@ -504,7 +499,6 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
-        #pragma warning restore 612, 618
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

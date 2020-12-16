@@ -74,12 +74,10 @@ namespace UnitsNet
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
 
             // Obsolete members
-#pragma warning disable 618
             UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
             Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
             BaseUnit = BaseUnitInfo.Value;
             QuantityType = quantityType;
-#pragma warning restore 618
         }
 
         /// <summary>
@@ -213,10 +211,8 @@ namespace UnitsNet
             UnitType = baseUnit;
 
             // Obsolete members
-#pragma warning disable 618
             Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
             BaseUnit = BaseUnitInfo.Value;
-#pragma warning restore 618
         }
 
         /// <inheritdoc cref="QuantityInfo.UnitInfos" />

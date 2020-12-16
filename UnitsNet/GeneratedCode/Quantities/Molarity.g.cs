@@ -32,7 +32,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration
@@ -165,9 +165,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-#pragma warning disable 612,618
         public QuantityType Type => Molarity.QuantityType;
-#pragma warning restore 612, 618
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -950,9 +948,7 @@ namespace UnitsNet
             else if(conversionType == typeof(MolarityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-#pragma warning disable 612,618
                 return Molarity.QuantityType;
-#pragma warning restore 612,618
             else if(conversionType == typeof(QuantityInfo))
                 return Molarity.Info;
             else if(conversionType == typeof(BaseDimensions))

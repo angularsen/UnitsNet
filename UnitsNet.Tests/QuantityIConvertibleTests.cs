@@ -142,10 +142,8 @@ namespace UnitsNet.Tests
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(DurationUnit)));
 
             // QuantityType
-#pragma warning disable 612,618
             Assert.Equal(Length.QuantityType, lengthAsIConvertible.ToType(typeof(QuantityType), null));
             Assert.Equal(Length.QuantityType, Convert.ChangeType(length, typeof(QuantityType)));
-#pragma warning restore 612,618
 
             // QuantityInfo
             Assert.Equal(Length.Info, lengthAsIConvertible.ToType(typeof(QuantityInfo), null));

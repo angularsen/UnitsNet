@@ -209,18 +209,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
-#pragma warning disable 612,618
             Assert.Equal(QuantityType.VolumeFlow, quantityInfo.QuantityType);
-#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().Except(new[] {VolumeFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -1201,7 +1197,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4", culture));
         }
 
-        #pragma warning disable 612, 618
 
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
@@ -1224,7 +1219,6 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
-        #pragma warning restore 612, 618
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

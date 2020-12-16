@@ -129,18 +129,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Force.Zero, quantityInfo.Zero);
             Assert.Equal("Force", quantityInfo.Name);
-#pragma warning disable 612,618
             Assert.Equal(QuantityType.Force, quantityInfo.QuantityType);
-#pragma warning restore 612,618
 
             var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -601,7 +597,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4", culture));
         }
 
-        #pragma warning disable 612, 618
 
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
@@ -624,7 +619,6 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
-        #pragma warning restore 612, 618
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

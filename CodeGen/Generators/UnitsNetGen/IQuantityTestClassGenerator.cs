@@ -63,13 +63,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void Type_EqualsStaticQuantityTypeProperty()
         {{
-#pragma warning disable 612,618
             void Assertion(QuantityType expected, IQuantity quantity) => Assert.Equal(expected, quantity.Type);
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
             Assertion({quantity.Name}.QuantityType, {quantity.Name}.Zero);");
             Writer.WL($@"
-#pragma warning restore 612,618
         }}
 
         [Fact]

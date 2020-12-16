@@ -23,24 +23,18 @@ namespace UnitsNet.Tests
             var expectedQuantityType = QuantityType.Length;
             var expectedBaseDimensions = Length.BaseDimensions;
 
-#pragma warning disable 612,618
             var info = new QuantityInfo(expectedQuantityType, expectedUnitInfos,
                 expectedBaseUnit, expectedZero, expectedBaseDimensions);
-#pragma warning restore 612,618
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
-#pragma warning disable 612,618
             Assert.Equal(expectedQuantityType, info.QuantityType);
-#pragma warning restore 612,618
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
         }
 
         [Fact]
@@ -55,25 +49,19 @@ namespace UnitsNet.Tests
             var expectedQuantityType = QuantityType.Length;
             var expectedBaseDimensions = Length.BaseDimensions;
 
-#pragma warning disable 618
             var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnitInfos,
                 expectedBaseUnit, expectedZero, expectedBaseDimensions);
-#pragma warning restore 618
-
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
         }
 
-#pragma warning disable 618
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor_GivenNullAsUnitInfos_ThrowsArgumentNullException()
@@ -129,8 +117,6 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length,
                 Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
         }
-#pragma warning restore 618
-
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor2_GivenNullAsUnitInfos_ThrowsArgumentNullException()

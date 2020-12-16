@@ -50,19 +50,14 @@ namespace UnitsNet.Tests
             var knownLengthUnitNames = new[] { "Meter", "Centimeter", "Kilometer" };
             var lengthUnitCount = Enum.GetValues(typeof(LengthUnit)).Length - 1; // Exclude LengthUnit.Undefined
 
-#pragma warning disable 618
             QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Length);
-#pragma warning restore 618
-
             Assert.Equal("Length", quantityInfo.Name);
-#pragma warning disable 618
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
             // Obsolete members
             Assert.Superset(knownLengthUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownLengthUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(lengthUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(lengthUnitCount, quantityInfo.Units.Length);
-#pragma warning restore 618
             Assert.Equal(typeof(LengthUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Length), quantityInfo.ValueType);
             Assert.Equal(Length.Zero, quantityInfo.Zero);
@@ -75,19 +70,14 @@ namespace UnitsNet.Tests
             var knownMassUnitNames = new[] { "Kilogram", "Gram", "Tonne" };
             var massUnitCount = Enum.GetValues(typeof(MassUnit)).Length - 1; // Exclude MassUnit.Undefined
 
-#pragma warning disable 618
             QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Mass);
-#pragma warning restore 618
-
             Assert.Equal("Mass", quantityInfo.Name);
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
             Assert.Superset(knownMassUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownMassUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(massUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(massUnitCount, quantityInfo.Units.Length);
-#pragma warning restore 618
             Assert.Equal(typeof(MassUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Mass), quantityInfo.ValueType);
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
@@ -96,15 +86,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void Infos_ReturnsKnownQuantityInfoObjects()
         {
-#pragma warning disable 618
             var knownQuantityInfos = new[]
             {
                 Quantity.GetInfo(QuantityType.Length),
                 Quantity.GetInfo(QuantityType.Force),
                 Quantity.GetInfo(QuantityType.Mass)
             };
-#pragma warning restore 618
-
             var infos = Quantity.Infos;
 
             Assert.Superset(knownQuantityInfos.ToHashSet(), infos.ToHashSet());
@@ -189,28 +176,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromQuantityType_GivenUndefinedQuantityType_ThrowsArgumentException()
         {
-#pragma warning disable 612,618
             Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType(QuantityType.Undefined, 0.0));
-#pragma warning restore 612,618
         }
 
         [Fact]
         public void FromQuantityType_GivenInvalidQuantityType_ThrowsArgumentException()
         {
-#pragma warning disable 612,618
             Assert.Throws<ArgumentException>(() => Quantity.FromQuantityType((QuantityType)(-1), 0.0));
-#pragma warning restore 612,618
         }
 
         [Fact]
         public void FromQuantityType_GivenLengthQuantityType_ReturnsLengthQuantity()
         {
-#pragma warning disable 612,618
             var fromQuantity = Quantity.FromQuantityType(QuantityType.Length, 0.0);
 
             Assert.Equal(0.0, fromQuantity.Value);
             Assert.Equal(QuantityType.Length, fromQuantity.Type);
-#pragma warning restore 612,618
             Assert.Equal(Length.BaseUnit, fromQuantity.Unit);
         }
     }

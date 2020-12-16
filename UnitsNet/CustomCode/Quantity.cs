@@ -13,9 +13,7 @@ namespace UnitsNet
         static Quantity()
         {
             var quantityTypes = Quantity.ByName.Values;
-#pragma warning disable 612,618
             Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
-#pragma warning restore 612,618
             Names = quantityTypes.Select(qt => qt.Name).ToArray();
 
             InfosLazy = new Lazy<QuantityInfo[]>(() => quantityTypes
