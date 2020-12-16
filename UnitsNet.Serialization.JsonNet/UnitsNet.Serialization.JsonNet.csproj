@@ -24,7 +24,6 @@
     <LangVersion>latest</LangVersion>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
-    <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- SourceLink -->
