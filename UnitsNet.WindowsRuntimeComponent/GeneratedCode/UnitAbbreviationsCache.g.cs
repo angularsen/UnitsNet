@@ -1518,7 +1518,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CentiliterPerMinute, new string[]{"сл/мин"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CentiliterPerSecond, new string[]{"cL/s", "cLPS"}),
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CentiliterPerSecond, new string[]{"сл/c"}),
-                ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicCentimeterPerMinute, new string[]{"sm³/min"}),
+                ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicCentimeterPerMinute, new string[]{"cm³/min"}),
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicCentimeterPerMinute, new string[]{"см³/мин"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicDecimeterPerMinute, new string[]{"dm³/min"}),
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicDecimeterPerMinute, new string[]{"дм³/мин"}),

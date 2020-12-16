@@ -1066,7 +1066,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString());
                 Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
                 Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
-                Assert.Equal("1 sm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
+                Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
                 Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString());
                 Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString());
                 Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString());
@@ -1135,7 +1135,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString(swedishCulture));
             Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 sm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString(swedishCulture));
             Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString(swedishCulture));
