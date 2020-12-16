@@ -12,11 +12,11 @@ namespace UnitsNet
 
         static Quantity()
         {
-            var quantityTypes = Quantity.ByName.Values;
+            ICollection<QuantityInfo> quantityInfos = ByName.Values;
             Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
-            Names = quantityTypes.Select(qt => qt.Name).ToArray();
+            Names = quantityInfos.Select(qt => qt.Name).ToArray();
 
-            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityTypes
+            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
                 .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
         }
