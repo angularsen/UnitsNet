@@ -33,10 +33,8 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
         }
 
         [Fact]
@@ -53,7 +51,6 @@ namespace UnitsNet.Tests
 
             var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnitInfos,
                 expectedBaseUnit, expectedZero, expectedBaseDimensions);
-
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
@@ -61,12 +58,9 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
         }
-
         [Fact]
         public void Constructor_GivenUndefinedAsQuantityType_ThrowsArgumentException()
         {

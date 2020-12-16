@@ -10,7 +10,6 @@
     <Product>UnitsNet.Benchmark</Product>
     <LangVersion>latest</LangVersion>
     <RootNamespace>UnitsNet</RootNamespace>
-    <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
