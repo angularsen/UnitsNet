@@ -117,6 +117,7 @@ namespace UnitsNet
             { "RatioChangeRate", RatioChangeRate.Info },
             { "ReactiveEnergy", ReactiveEnergy.Info },
             { "ReactivePower", ReactivePower.Info },
+            { "RelativeHumidity", RelativeHumidity.Info },
             { "RotationalAcceleration", RotationalAcceleration.Info },
             { "RotationalSpeed", RotationalSpeed.Info },
             { "RotationalStiffness", RotationalStiffness.Info },
@@ -226,6 +227,7 @@ namespace UnitsNet
             { "RatioChangeRate", QuantityType.RatioChangeRate },
             { "ReactiveEnergy", QuantityType.ReactiveEnergy },
             { "ReactivePower", QuantityType.ReactivePower },
+            { "RelativeHumidity", QuantityType.RelativeHumidity },
             { "RotationalAcceleration", QuantityType.RotationalAcceleration },
             { "RotationalSpeed", QuantityType.RotationalSpeed },
             { "RotationalStiffness", QuantityType.RotationalStiffness },
@@ -644,6 +646,8 @@ namespace UnitsNet
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case "ReactivePower":
                     return ReactivePower.From(value, ReactivePower.BaseUnit);
+                case "RelativeHumidity":
+                    return RelativeHumidity.From(value, RelativeHumidity.BaseUnit);
                 case "RotationalAcceleration":
                     return RotationalAcceleration.From(value, RotationalAcceleration.BaseUnit);
                 case "RotationalSpeed":
