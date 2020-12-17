@@ -20,6 +20,46 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        public void Information_CanDeserializeMaxValue()
+        {
+            var original = Information.MaxValue;
+            var json = SerializeObject(original);
+            var deserialized = DeserializeObject<Information>(json);
+
+            Assert.Equal(original, deserialized);
+        }
+
+        [Fact]
+        public void Information_CanDeserializeMinValue()
+        {
+            var original = Information.MinValue;
+            var json = SerializeObject(original);
+            var deserialized = DeserializeObject<Information>(json);
+
+            Assert.Equal(original, deserialized);
+        }
+
+        [Fact]
+        public void Length_CanDeserializeMaxValue()
+        {
+            var original = Length.MaxValue;
+            var json = SerializeObject(original);
+            var deserialized = DeserializeObject<Length>(json);
+
+            Assert.Equal(original, deserialized);
+        }
+
+        [Fact]
+        public void Length_CanDeserializeMinValue()
+        {
+            var original = Length.MinValue;
+            var json = SerializeObject(original);
+            var deserialized = DeserializeObject<Length>(json);
+
+            Assert.Equal(original, deserialized);
+        }
+
+        [Fact]
         public void Mass_ExpectJsonCorrectlyDeserialized()
         {
             var originalMass = Mass.FromKilograms(33.33);

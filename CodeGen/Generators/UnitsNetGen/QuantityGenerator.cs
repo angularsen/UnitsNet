@@ -69,8 +69,15 @@ namespace UnitsNet
     ///     {_quantity.XmlDocRemarks}
     /// </remarks>");
 
+            Writer.W(@$"
+    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
+            if (_quantity.BaseType == "decimal")
+            {
+                Writer.W("IDecimalQuantity, ");
+            }
+
+            Writer.WL($"IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
             Writer.WL($@"
-    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable
     {{
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -268,6 +275,11 @@ namespace UnitsNet
             if (_quantity.BaseType != "double")
                 Writer.WL(@"
         double IQuantity.Value => (double) _value;
+");
+            if (_quantity.BaseType == "decimal")
+                Writer.WL(@"
+        /// <inheritdoc cref=""IDecimalQuantity.Value""/>
+        decimal IDecimalQuantity.Value => _value;
 ");
 
             Writer.WL($@"

@@ -37,7 +37,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
-    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
+    public partial struct BitRate : IQuantity<BitRateUnit>, IDecimalQuantity, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -170,6 +170,9 @@ namespace UnitsNet
         public decimal Value => _value;
 
         double IQuantity.Value => (double) _value;
+
+        /// <inheritdoc cref="IDecimalQuantity.Value"/>
+        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
