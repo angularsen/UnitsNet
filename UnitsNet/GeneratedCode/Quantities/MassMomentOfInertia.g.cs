@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia,
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>("MassMomentOfInertia",
                 new UnitInfo<MassMomentOfInertiaUnit>[] {
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, BaseUnits.Undefined),
@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassMomentOfInertia);
         }
 
         /// <summary>
@@ -146,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MassMomentOfInertia;
 
         /// <summary>
@@ -946,7 +947,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassMomentOfInertia.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1285,6 +1286,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MassMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassMomentOfInertia.BaseDimensions;
             else

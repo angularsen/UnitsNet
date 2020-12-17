@@ -53,13 +53,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricConductivityUnit>(QuantityType.ElectricConductivity,
+            Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
                 new UnitInfo<ElectricConductivityUnit>[] {
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
         }
 
         /// <summary>
@@ -124,6 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricConductivity;
 
         /// <summary>
@@ -574,7 +575,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricConductivity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -863,6 +864,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricConductivity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricConductivity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricConductivity.BaseDimensions;
             else

@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LinearPowerDensityUnit>(QuantityType.LinearPowerDensity,
+            Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[] {
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, BaseUnits.Undefined),
@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
         }
 
         /// <summary>
@@ -146,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.LinearPowerDensity;
 
         /// <summary>
@@ -904,7 +905,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LinearPowerDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1237,6 +1238,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return LinearPowerDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LinearPowerDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LinearPowerDensity.BaseDimensions;
             else

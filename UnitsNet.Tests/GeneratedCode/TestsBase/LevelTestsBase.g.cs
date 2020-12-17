@@ -556,6 +556,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Level.FromDecibels(1.0);
+            Assert.Equal(Level.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = Level.FromDecibels(1.0);
@@ -573,7 +580,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Level.FromDecibels(1.0);
-            Assert.Equal(new {Level.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Level.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

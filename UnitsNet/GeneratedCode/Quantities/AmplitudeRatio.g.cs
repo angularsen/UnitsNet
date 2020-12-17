@@ -50,14 +50,14 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AmplitudeRatioUnit>(QuantityType.AmplitudeRatio,
+            Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
                 new UnitInfo<AmplitudeRatioUnit>[] {
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
         }
 
         /// <summary>
@@ -122,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
 
         /// <summary>
@@ -594,7 +595,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current AmplitudeRatio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -885,6 +886,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return AmplitudeRatio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return AmplitudeRatio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return AmplitudeRatio.BaseDimensions;
             else

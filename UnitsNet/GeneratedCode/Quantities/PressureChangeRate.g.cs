@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<PressureChangeRateUnit>(QuantityType.PressureChangeRate,
+            Info = new QuantityInfo<PressureChangeRateUnit>("PressureChangeRate",
                 new UnitInfo<PressureChangeRateUnit>[] {
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, BaseUnits.Undefined),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, BaseUnits.Undefined),
@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, BaseUnits.Undefined),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.PressureChangeRate);
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.PressureChangeRate;
 
         /// <summary>
@@ -631,7 +632,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PressureChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -928,6 +929,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return PressureChangeRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return PressureChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return PressureChangeRate.BaseDimensions;
             else

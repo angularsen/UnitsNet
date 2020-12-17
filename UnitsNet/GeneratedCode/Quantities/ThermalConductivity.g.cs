@@ -53,12 +53,12 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<ThermalConductivityUnit>(QuantityType.ThermalConductivity,
+            Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
                 new UnitInfo<ThermalConductivityUnit>[] {
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
         }
 
         /// <summary>
@@ -123,6 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ThermalConductivity;
 
         /// <summary>
@@ -559,7 +560,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ThermalConductivity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -846,6 +847,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ThermalConductivity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ThermalConductivity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ThermalConductivity.BaseDimensions;
             else

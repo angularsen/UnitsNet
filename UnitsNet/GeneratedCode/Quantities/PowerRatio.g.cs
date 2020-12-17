@@ -50,12 +50,12 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio,
+            Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[] {
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, BaseUnits.Undefined),
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
         }
 
         /// <summary>
@@ -120,6 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
 
         /// <summary>
@@ -564,7 +565,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PowerRatio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -851,6 +852,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return PowerRatio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return PowerRatio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return PowerRatio.BaseDimensions;
             else

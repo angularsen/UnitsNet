@@ -50,13 +50,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
 
-            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy,
+            Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[] {
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, BaseUnits.Undefined),
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEnergy);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MolarEnergy;
 
         /// <summary>
@@ -571,7 +572,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MolarEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -860,6 +861,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MolarEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MolarEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MolarEnergy.BaseDimensions;
             else

@@ -597,6 +597,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricPotential.FromVolts(1.0);
+            Assert.Equal(ElectricPotential.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = ElectricPotential.FromVolts(1.0);
@@ -614,7 +621,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotential.FromVolts(1.0);
-            Assert.Equal(new {ElectricPotential.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {ElectricPotential.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

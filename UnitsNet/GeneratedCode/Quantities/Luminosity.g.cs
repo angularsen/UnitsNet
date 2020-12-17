@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LuminosityUnit>(QuantityType.Luminosity,
+            Info = new QuantityInfo<LuminosityUnit>("Luminosity",
                 new UnitInfo<LuminosityUnit>[] {
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, BaseUnits.Undefined),
@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
         }
 
         /// <summary>
@@ -135,6 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Luminosity;
 
         /// <summary>
@@ -739,7 +740,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Luminosity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1050,6 +1051,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Luminosity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Luminosity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Luminosity.BaseDimensions;
             else

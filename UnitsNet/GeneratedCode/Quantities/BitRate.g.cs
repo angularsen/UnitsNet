@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate,
+            Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[] {
                     new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, BaseUnits.Undefined),
@@ -82,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
         }
 
         /// <summary>
@@ -147,6 +147,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.BitRate;
 
         /// <summary>
@@ -921,7 +922,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current BitRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1256,6 +1257,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return BitRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return BitRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return BitRate.BaseDimensions;
             else

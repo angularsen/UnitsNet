@@ -50,11 +50,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient,
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
                 new UnitInfo<ElectricCurrentGradientUnit>[] {
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
         }
 
         /// <summary>
@@ -119,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
 
         /// <summary>
@@ -541,7 +542,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCurrentGradient.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -826,6 +827,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricCurrentGradient.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCurrentGradient.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCurrentGradient.BaseDimensions;
             else

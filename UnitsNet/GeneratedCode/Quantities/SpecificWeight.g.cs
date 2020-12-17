@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<SpecificWeightUnit>(QuantityType.SpecificWeight,
+            Info = new QuantityInfo<SpecificWeightUnit>("SpecificWeight",
                 new UnitInfo<SpecificWeightUnit>[] {
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, BaseUnits.Undefined),
@@ -73,7 +73,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificWeight);
         }
 
         /// <summary>
@@ -138,6 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
 
         /// <summary>
@@ -784,7 +785,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificWeight.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1101,6 +1102,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return SpecificWeight.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return SpecificWeight.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return SpecificWeight.BaseDimensions;
             else

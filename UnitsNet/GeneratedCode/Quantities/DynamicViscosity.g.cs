@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity,
+            Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[] {
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, BaseUnits.Undefined),
@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
         }
 
         /// <summary>
@@ -131,6 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.DynamicViscosity;
 
         /// <summary>
@@ -679,7 +680,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current DynamicViscosity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -982,6 +983,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return DynamicViscosity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return DynamicViscosity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return DynamicViscosity.BaseDimensions;
             else

@@ -747,6 +747,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Force.FromNewtons(1.0);
+            Assert.Equal(Force.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = Force.FromNewtons(1.0);
@@ -764,7 +771,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(new {Force.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Force.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

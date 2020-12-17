@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information,
+            Info = new QuantityInfo<InformationUnit>("Information",
                 new UnitInfo<InformationUnit>[] {
                     new UnitInfo<InformationUnit>(InformationUnit.Bit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Byte, BaseUnits.Undefined),
@@ -79,7 +79,7 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Information);
         }
 
         /// <summary>
@@ -144,6 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Information;
 
         /// <summary>
@@ -918,7 +919,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Information.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1253,6 +1254,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Information.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Information.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Information.BaseDimensions;
             else

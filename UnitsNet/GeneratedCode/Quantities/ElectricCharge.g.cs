@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricChargeUnit>(QuantityType.ElectricCharge,
+            Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[] {
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, BaseUnits.Undefined),
@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
         }
 
         /// <summary>
@@ -126,6 +126,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricCharge;
 
         /// <summary>
@@ -604,7 +605,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCharge.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -897,6 +898,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricCharge.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCharge.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCharge.BaseDimensions;
             else

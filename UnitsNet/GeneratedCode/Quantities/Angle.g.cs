@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle,
+            Info = new QuantityInfo<AngleUnit>("Angle",
                 new UnitInfo<AngleUnit>[] {
                     new UnitInfo<AngleUnit>(AngleUnit.Arcminute, BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, BaseUnits.Undefined),
@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<AngleUnit>(AngleUnit.Radian, BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Revolution, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
         }
 
         /// <summary>
@@ -132,6 +132,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Angle;
 
         /// <summary>
@@ -736,7 +737,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Angle.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1047,6 +1048,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Angle.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Angle.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Angle.BaseDimensions;
             else

@@ -657,6 +657,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
+            Assert.Equal(SpecificEntropy.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
@@ -674,7 +681,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
-            Assert.Equal(new {SpecificEntropy.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {SpecificEntropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

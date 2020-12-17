@@ -50,11 +50,11 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RelativeHumidityUnit>(QuantityType.RelativeHumidity,
+            Info = new QuantityInfo<RelativeHumidityUnit>("RelativeHumidity",
                 new UnitInfo<RelativeHumidityUnit>[] {
                     new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RelativeHumidity);
         }
 
         /// <summary>
@@ -119,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.RelativeHumidity;
 
         /// <summary>
@@ -541,7 +542,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RelativeHumidity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -826,6 +827,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return RelativeHumidity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return RelativeHumidity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return RelativeHumidity.BaseDimensions;
             else

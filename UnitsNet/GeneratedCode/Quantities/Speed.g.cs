@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed,
+            Info = new QuantityInfo<SpeedUnit>("Speed",
                 new UnitInfo<SpeedUnit>[] {
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, BaseUnits.Undefined),
@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Speed);
         }
 
         /// <summary>
@@ -150,6 +150,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Speed;
 
         /// <summary>
@@ -1006,7 +1007,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Speed.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1353,6 +1354,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Speed.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Speed.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Speed.BaseDimensions;
             else

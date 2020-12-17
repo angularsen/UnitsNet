@@ -50,14 +50,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ReactivePowerUnit>(QuantityType.ReactivePower,
+            Info = new QuantityInfo<ReactivePowerUnit>("ReactivePower",
                 new UnitInfo<ReactivePowerUnit>[] {
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, BaseUnits.Undefined),
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, BaseUnits.Undefined),
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, BaseUnits.Undefined),
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
         }
 
         /// <summary>
@@ -122,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ReactivePower;
 
         /// <summary>
@@ -586,7 +587,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ReactivePower.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -877,6 +878,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ReactivePower.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ReactivePower.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ReactivePower.BaseDimensions;
             else

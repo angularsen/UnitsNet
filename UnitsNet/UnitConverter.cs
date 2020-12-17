@@ -374,7 +374,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityInfo" /> for all
         ///     values.
         /// </param>
         /// <param name="fromUnitAbbrev">

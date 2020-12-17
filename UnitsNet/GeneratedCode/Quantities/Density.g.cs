@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DensityUnit>(QuantityType.Density,
+            Info = new QuantityInfo<DensityUnit>("Density",
                 new UnitInfo<DensityUnit>[] {
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, BaseUnits.Undefined),
@@ -96,7 +96,7 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Density);
         }
 
         /// <summary>
@@ -161,6 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Density;
 
         /// <summary>
@@ -1129,7 +1130,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Density.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1492,6 +1493,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Density.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Density.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Density.BaseDimensions;
             else

@@ -53,14 +53,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance,
+            Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
                 new UnitInfo<ElectricInductanceUnit>[] {
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricInductance;
 
         /// <summary>
@@ -589,7 +590,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricInductance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -880,6 +881,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricInductance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricInductance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricInductance.BaseDimensions;
             else

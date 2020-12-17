@@ -50,13 +50,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ApparentEnergyUnit>(QuantityType.ApparentEnergy,
+            Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
                 new UnitInfo<ApparentEnergyUnit>[] {
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ApparentEnergy;
 
         /// <summary>
@@ -571,7 +572,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ApparentEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -860,6 +861,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ApparentEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ApparentEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ApparentEnergy.BaseDimensions;
             else

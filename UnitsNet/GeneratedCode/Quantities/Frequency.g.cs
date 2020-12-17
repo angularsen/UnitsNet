@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency,
+            Info = new QuantityInfo<FrequencyUnit>("Frequency",
                 new UnitInfo<FrequencyUnit>[] {
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, BaseUnits.Undefined),
@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Frequency;
 
         /// <summary>
@@ -676,7 +677,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Frequency.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -979,6 +980,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Frequency.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Frequency.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Frequency.BaseDimensions;
             else

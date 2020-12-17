@@ -50,13 +50,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption,
+            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
                 new UnitInfo<BrakeSpecificFuelConsumptionUnit>[] {
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BaseUnits.Undefined),
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BaseUnits.Undefined),
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.BrakeSpecificFuelConsumption;
 
         /// <summary>
@@ -571,7 +572,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current BrakeSpecificFuelConsumption.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -860,6 +861,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return BrakeSpecificFuelConsumption.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return BrakeSpecificFuelConsumption.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return BrakeSpecificFuelConsumption.BaseDimensions;
             else

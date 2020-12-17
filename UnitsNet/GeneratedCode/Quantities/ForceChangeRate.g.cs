@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<ForceChangeRateUnit>(QuantityType.ForceChangeRate,
+            Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
                 new UnitInfo<ForceChangeRateUnit>[] {
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, BaseUnits.Undefined),
@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
         }
 
         /// <summary>
@@ -129,6 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ForceChangeRate;
 
         /// <summary>
@@ -691,7 +692,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ForceChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -996,6 +997,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ForceChangeRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ForceChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ForceChangeRate.BaseDimensions;
             else

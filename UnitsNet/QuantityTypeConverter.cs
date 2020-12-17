@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -140,18 +140,19 @@ namespace UnitsNet
 
         private static TAttribute? GetAttribute<TAttribute>(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
         {
-            if(context is null || context.PropertyDescriptor is null)
-                return null;
+            if (context?.PropertyDescriptor is null) return null;
 
-            TAttribute? attribute = (TAttribute)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
-            if (attribute != null)
+            var attribute = (TAttribute?)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
+
+            // Ensure the attribute's unit is compatible with this converter's quantity.
+            if (attribute?.UnitType != null)
             {
-                QuantityType expected = default(TQuantity).Type;
-                QuantityType actual = QuantityType.Undefined;
-
-                if (attribute.UnitType != null) actual = Quantity.From(1, attribute.UnitType).Type;
-                if (actual != QuantityType.Undefined && expected != actual)
-                    throw new ArgumentException($"The specified UnitType:'{attribute.UnitType}' dose not match QuantityType:'{expected}'");
+                string converterQuantityName = default(TQuantity).QuantityInfo.Name;
+                string attributeQuantityName = Quantity.From(1, attribute.UnitType).QuantityInfo.Name;
+                if (converterQuantityName != attributeQuantityName)
+                {
+                    throw new ArgumentException($"The {attribute.GetType()}'s UnitType [{attribute.UnitType}] is not compatible with the converter's quantity [{converterQuantityName}].");
+                }
             }
 
             return attribute;

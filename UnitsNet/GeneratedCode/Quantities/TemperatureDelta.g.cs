@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta,
+            Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[] {
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, BaseUnits.Undefined),
@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
         }
 
         /// <summary>
@@ -127,6 +127,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
 
         /// <summary>
@@ -661,7 +662,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureDelta.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -962,6 +963,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return TemperatureDelta.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return TemperatureDelta.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return TemperatureDelta.BaseDimensions;
             else

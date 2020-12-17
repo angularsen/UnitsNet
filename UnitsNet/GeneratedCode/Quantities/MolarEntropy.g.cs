@@ -50,13 +50,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
 
-            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy,
+            Info = new QuantityInfo<MolarEntropyUnit>("MolarEntropy",
                 new UnitInfo<MolarEntropyUnit>[] {
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, BaseUnits.Undefined),
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, BaseUnits.Undefined),
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEntropy);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MolarEntropy;
 
         /// <summary>
@@ -571,7 +572,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MolarEntropy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -860,6 +861,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MolarEntropy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MolarEntropy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MolarEntropy.BaseDimensions;
             else

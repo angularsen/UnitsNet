@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity,
+            Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
                 new UnitInfo<LinearDensityUnit>[] {
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, BaseUnits.Undefined),
@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
         }
 
         /// <summary>
@@ -135,6 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.LinearDensity;
 
         /// <summary>
@@ -739,7 +740,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LinearDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1050,6 +1051,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return LinearDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LinearDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LinearDensity.BaseDimensions;
             else

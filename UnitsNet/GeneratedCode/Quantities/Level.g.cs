@@ -50,12 +50,12 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<LevelUnit>(QuantityType.Level,
+            Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[] {
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Level);
         }
 
         /// <summary>
@@ -120,6 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Level;
 
         /// <summary>
@@ -564,7 +565,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Level.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -851,6 +852,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Level.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Level.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Level.BaseDimensions;
             else

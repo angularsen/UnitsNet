@@ -50,11 +50,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate,
+            Info = new QuantityInfo<LapseRateUnit>("LapseRate",
                 new UnitInfo<LapseRateUnit>[] {
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
         }
 
         /// <summary>
@@ -119,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.LapseRate;
 
         /// <summary>
@@ -541,7 +542,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LapseRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -826,6 +827,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return LapseRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LapseRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LapseRate.BaseDimensions;
             else

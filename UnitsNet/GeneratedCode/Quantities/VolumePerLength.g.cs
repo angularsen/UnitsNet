@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumePerLengthUnit>(QuantityType.VolumePerLength,
+            Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
                 new UnitInfo<VolumePerLengthUnit>[] {
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, BaseUnits.Undefined),
@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
 
         /// <summary>
@@ -631,7 +632,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current VolumePerLength.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -928,6 +929,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return VolumePerLength.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VolumePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VolumePerLength.BaseDimensions;
             else

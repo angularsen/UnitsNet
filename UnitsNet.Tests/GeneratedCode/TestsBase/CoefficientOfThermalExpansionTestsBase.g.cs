@@ -567,6 +567,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
+            Assert.Equal(CoefficientOfThermalExpansion.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
@@ -584,7 +591,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
-            Assert.Equal(new {CoefficientOfThermalExpansion.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {CoefficientOfThermalExpansion.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

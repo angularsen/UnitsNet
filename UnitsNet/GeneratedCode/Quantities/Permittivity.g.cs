@@ -53,11 +53,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity,
+            Info = new QuantityInfo<PermittivityUnit>("Permittivity",
                 new UnitInfo<PermittivityUnit>[] {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
         }
 
         /// <summary>
@@ -122,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
 
         /// <summary>
@@ -544,7 +545,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Permittivity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -829,6 +830,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Permittivity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Permittivity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Permittivity.BaseDimensions;
             else

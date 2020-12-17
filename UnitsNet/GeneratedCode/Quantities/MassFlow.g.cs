@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassFlowUnit>(QuantityType.MassFlow,
+            Info = new QuantityInfo<MassFlowUnit>("MassFlow",
                 new UnitInfo<MassFlowUnit>[] {
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, BaseUnits.Undefined),
@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
         }
 
         /// <summary>
@@ -151,6 +151,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MassFlow;
 
         /// <summary>
@@ -1021,7 +1022,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFlow.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1370,6 +1371,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MassFlow.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassFlow.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassFlow.BaseDimensions;
             else

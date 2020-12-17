@@ -53,14 +53,14 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<FuelEfficiencyUnit>(QuantityType.FuelEfficiency,
+            Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
                 new UnitInfo<FuelEfficiencyUnit>[] {
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, BaseUnits.Undefined),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, BaseUnits.Undefined),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, BaseUnits.Undefined),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.FuelEfficiency;
 
         /// <summary>
@@ -589,7 +590,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current FuelEfficiency.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -880,6 +881,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return FuelEfficiency.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return FuelEfficiency.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return FuelEfficiency.BaseDimensions;
             else

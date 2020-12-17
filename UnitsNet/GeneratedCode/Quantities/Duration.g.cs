@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<DurationUnit>(QuantityType.Duration,
+            Info = new QuantityInfo<DurationUnit>("Duration",
                 new UnitInfo<DurationUnit>[] {
                     new UnitInfo<DurationUnit>(DurationUnit.Day, new BaseUnits(time: DurationUnit.Day)),
                     new UnitInfo<DurationUnit>(DurationUnit.Hour, new BaseUnits(time: DurationUnit.Hour)),
@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<DurationUnit>(DurationUnit.Week, new BaseUnits(time: DurationUnit.Week)),
                     new UnitInfo<DurationUnit>(DurationUnit.Year365, new BaseUnits(time: DurationUnit.Year365)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Duration;
 
         /// <summary>
@@ -676,7 +677,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Duration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -979,6 +980,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Duration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Duration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Duration.BaseDimensions;
             else

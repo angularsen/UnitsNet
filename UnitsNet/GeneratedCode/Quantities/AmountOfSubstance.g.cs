@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
 
-            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance,
+            Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
                 new UnitInfo<AmountOfSubstanceUnit>[] {
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, BaseUnits.Undefined),
@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
         }
 
         /// <summary>
@@ -133,6 +133,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
 
         /// <summary>
@@ -751,7 +752,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current AmountOfSubstance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1064,6 +1065,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return AmountOfSubstance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return AmountOfSubstance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return AmountOfSubstance.BaseDimensions;
             else

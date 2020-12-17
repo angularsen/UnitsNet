@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy,
+            Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
                 new UnitInfo<SpecificEnergyUnit>[] {
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, BaseUnits.Undefined),
@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
         }
 
         /// <summary>
@@ -146,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
 
         /// <summary>
@@ -904,7 +905,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1237,6 +1238,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return SpecificEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return SpecificEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return SpecificEnergy.BaseDimensions;
             else

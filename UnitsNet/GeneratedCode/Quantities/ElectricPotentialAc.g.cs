@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<ElectricPotentialAcUnit>(QuantityType.ElectricPotentialAc,
+            Info = new QuantityInfo<ElectricPotentialAcUnit>("ElectricPotentialAc",
                 new UnitInfo<ElectricPotentialAcUnit>[] {
                     new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.KilovoltAc, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MegavoltAc, BaseUnits.Undefined),
@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialAc);
         }
 
         /// <summary>
@@ -123,6 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialAc;
 
         /// <summary>
@@ -601,7 +602,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricPotentialAc.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -894,6 +895,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricPotentialAc.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricPotentialAc.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricPotentialAc.BaseDimensions;
             else

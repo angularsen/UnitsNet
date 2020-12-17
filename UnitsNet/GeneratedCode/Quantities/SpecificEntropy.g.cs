@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy,
+            Info = new QuantityInfo<SpecificEntropyUnit>("SpecificEntropy",
                 new UnitInfo<SpecificEntropyUnit>[] {
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, BaseUnits.Undefined),
@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
         }
 
         /// <summary>
@@ -127,6 +127,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.SpecificEntropy;
 
         /// <summary>
@@ -661,7 +662,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificEntropy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -962,6 +963,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return SpecificEntropy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return SpecificEntropy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return SpecificEntropy.BaseDimensions;
             else

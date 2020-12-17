@@ -53,13 +53,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricConductanceUnit>(QuantityType.ElectricConductance,
+            Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[] {
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
         }
 
         /// <summary>
@@ -124,6 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricConductance;
 
         /// <summary>
@@ -574,7 +575,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricConductance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -863,6 +864,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricConductance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricConductance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricConductance.BaseDimensions;
             else

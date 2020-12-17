@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VolumeConcentrationUnit>(QuantityType.VolumeConcentration,
+            Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
                 new UnitInfo<VolumeConcentrationUnit>[] {
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, BaseUnits.Undefined),
@@ -76,7 +76,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
         }
 
         /// <summary>
@@ -141,6 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.VolumeConcentration;
 
         /// <summary>
@@ -829,7 +830,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current VolumeConcentration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1152,6 +1153,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return VolumeConcentration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VolumeConcentration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VolumeConcentration.BaseDimensions;
             else

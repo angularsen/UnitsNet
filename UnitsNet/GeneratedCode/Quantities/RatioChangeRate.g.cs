@@ -50,12 +50,12 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RatioChangeRateUnit>(QuantityType.RatioChangeRate,
+            Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
                 new UnitInfo<RatioChangeRateUnit>[] {
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, BaseUnits.Undefined),
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
         }
 
         /// <summary>
@@ -120,6 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
 
         /// <summary>
@@ -556,7 +557,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RatioChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -843,6 +844,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return RatioChangeRate.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return RatioChangeRate.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return RatioChangeRate.BaseDimensions;
             else

@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField,
+            Info = new QuantityInfo<MagneticFieldUnit>("MagneticField",
                 new UnitInfo<MagneticFieldUnit>[] {
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, BaseUnits.Undefined),
@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
         }
 
         /// <summary>
@@ -126,6 +126,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MagneticField;
 
         /// <summary>
@@ -604,7 +605,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MagneticField.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -897,6 +898,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MagneticField.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MagneticField.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MagneticField.BaseDimensions;
             else

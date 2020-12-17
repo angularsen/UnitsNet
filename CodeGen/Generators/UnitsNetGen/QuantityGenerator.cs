@@ -117,7 +117,7 @@ namespace UnitsNet
 ");
 
             Writer.WL($@"
-            Info = new QuantityInfo<{_unitEnumName}>(QuantityType.{_quantity.Name},
+            Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
                 new UnitInfo<{_unitEnumName}>[] {{");
 
             foreach (var unit in _quantity.Units)
@@ -147,10 +147,10 @@ namespace UnitsNet
                 }
             }
 
-            Writer.WL(@"
-                },
-                BaseUnit, Zero, BaseDimensions);
-        }
+            Writer.WL($@"
+                }},
+                BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+        }}
 ");
         }
 
@@ -236,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
+        [Obsolete(""QuantityType will be removed in the future. Use Info property instead."")]
         public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
 
         /// <summary>
@@ -792,7 +793,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current {_quantity.Name}.</returns>
         public override int GetHashCode()
         {{
-            return new {{ QuantityType, Value, Unit }}.GetHashCode();
+            return new {{ Info.Name, Value, Unit }}.GetHashCode();
         }}
 
         #endregion
@@ -1106,6 +1107,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return {_quantity.Name}.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return {_quantity.Name}.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return {_quantity.Name}.BaseDimensions;
             else

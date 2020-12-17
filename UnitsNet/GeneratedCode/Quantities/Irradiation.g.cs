@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation,
+            Info = new QuantityInfo<IrradiationUnit>("Irradiation",
                 new UnitInfo<IrradiationUnit>[] {
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, BaseUnits.Undefined),
@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiation);
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Irradiation;
 
         /// <summary>
@@ -634,7 +635,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Irradiation.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -931,6 +932,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Irradiation.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Irradiation.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Irradiation.BaseDimensions;
             else

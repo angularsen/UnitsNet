@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio,
+            Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[] {
                     new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, BaseUnits.Undefined),
@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
         }
 
         /// <summary>
@@ -124,6 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Ratio;
 
         /// <summary>
@@ -616,7 +617,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Ratio.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -911,6 +912,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Ratio.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Ratio.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Ratio.BaseDimensions;
             else

@@ -50,14 +50,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance,
+            Info = new QuantityInfo<ElectricAdmittanceUnit>("ElectricAdmittance",
                 new UnitInfo<ElectricAdmittanceUnit>[] {
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
         }
 
         /// <summary>
@@ -122,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
 
         /// <summary>
@@ -586,7 +587,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricAdmittance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -877,6 +878,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricAdmittance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricAdmittance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricAdmittance.BaseDimensions;
             else

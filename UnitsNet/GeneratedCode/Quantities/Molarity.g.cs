@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
-            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity,
+            Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[] {
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, BaseUnits.Undefined),
@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
         }
 
         /// <summary>
@@ -129,6 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Molarity;
 
         /// <summary>
@@ -649,7 +650,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Molarity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -948,6 +949,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Molarity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Molarity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Molarity.BaseDimensions;
             else

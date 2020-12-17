@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
-            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance,
+            Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
                 new UnitInfo<CapacitanceUnit>[] {
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, BaseUnits.Undefined),
@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, BaseUnits.Undefined),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Capacitance;
 
         /// <summary>
@@ -634,7 +635,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Capacitance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -931,6 +932,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Capacitance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Capacitance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Capacitance.BaseDimensions;
             else

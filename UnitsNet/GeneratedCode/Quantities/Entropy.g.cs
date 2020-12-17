@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy,
+            Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[] {
                     new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, BaseUnits.Undefined),
@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Entropy;
 
         /// <summary>
@@ -631,7 +632,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Entropy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -928,6 +929,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Entropy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Entropy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Entropy.BaseDimensions;
             else

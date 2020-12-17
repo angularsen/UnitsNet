@@ -53,11 +53,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
 
-            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux,
+            Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
                 new UnitInfo<MagneticFluxUnit>[] {
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
         }
 
         /// <summary>
@@ -122,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MagneticFlux;
 
         /// <summary>
@@ -544,7 +545,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MagneticFlux.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -829,6 +830,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MagneticFlux.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MagneticFlux.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MagneticFlux.BaseDimensions;
             else

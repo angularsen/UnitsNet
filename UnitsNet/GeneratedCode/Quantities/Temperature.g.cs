@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature,
+            Info = new QuantityInfo<TemperatureUnit>("Temperature",
                 new UnitInfo<TemperatureUnit>[] {
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Temperature;
 
         /// <summary>
@@ -630,7 +631,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Temperature.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -933,6 +934,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Temperature.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Temperature.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Temperature.BaseDimensions;
             else

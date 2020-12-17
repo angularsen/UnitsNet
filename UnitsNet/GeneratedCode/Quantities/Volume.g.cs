@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumeUnit>(QuantityType.Volume,
+            Info = new QuantityInfo<VolumeUnit>("Volume",
                 new UnitInfo<VolumeUnit>[] {
                     new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
@@ -104,7 +104,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Volume);
         }
 
         /// <summary>
@@ -169,6 +169,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Volume;
 
         /// <summary>
@@ -1291,7 +1292,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Volume.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1676,6 +1677,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Volume.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Volume.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Volume.BaseDimensions;
             else

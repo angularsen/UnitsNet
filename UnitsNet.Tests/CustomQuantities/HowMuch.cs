@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -26,7 +26,7 @@ namespace UnitsNet.Tests.CustomQuantities
         public QuantityType Type => QuantityType.Undefined;
         public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
 
-        public QuantityInfo QuantityInfo => new QuantityInfo(Type,
+        public QuantityInfo QuantityInfo => new QuantityInfo("HowMuch",
             new UnitInfo[]
             {
                 new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),

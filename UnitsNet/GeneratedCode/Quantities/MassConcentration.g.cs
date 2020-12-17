@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassConcentrationUnit>(QuantityType.MassConcentration,
+            Info = new QuantityInfo<MassConcentrationUnit>("MassConcentration",
                 new UnitInfo<MassConcentrationUnit>[] {
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, BaseUnits.Undefined),
@@ -103,7 +103,7 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
         }
 
         /// <summary>
@@ -168,6 +168,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MassConcentration;
 
         /// <summary>
@@ -1234,7 +1235,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassConcentration.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1611,6 +1612,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MassConcentration.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassConcentration.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassConcentration.BaseDimensions;
             else

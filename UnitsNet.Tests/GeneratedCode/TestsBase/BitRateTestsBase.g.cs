@@ -886,6 +886,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = BitRate.FromBitsPerSecond(1.0);
+            Assert.Equal(BitRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
@@ -903,7 +910,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Equal(new {BitRate.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {BitRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

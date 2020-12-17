@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -13,12 +12,11 @@ namespace UnitsNet
 
         static Quantity()
         {
-            var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] {QuantityType.Undefined}).ToArray();
-            Types = quantityTypes;
-            Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
+            ICollection<QuantityInfo> quantityInfos = ByName.Values;
+            Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
+            Names = quantityInfos.Select(qt => qt.Name).ToArray();
 
-            InfosLazy = new Lazy<QuantityInfo[]>(() => Types
-                .Select(quantityType => FromQuantityType(quantityType, 0.0).QuantityInfo)
+            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
                 .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
         }
@@ -26,10 +24,11 @@ namespace UnitsNet
         /// <summary>
         /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Infos property instead.")]
         public static QuantityType[] Types { get; }
 
         /// <summary>
-        /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
+        /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
         public static string[] Names { get; }
 
@@ -99,6 +98,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="quantityType">The quantity type enum value.</param>
         /// <returns>Information about the quantity and its units.</returns>
+        [Obsolete("QuantityType will be removed in the future.")]
         public static QuantityInfo GetInfo(QuantityType quantityType)
         {
             return Infos.First(qi => qi.QuantityType == quantityType);

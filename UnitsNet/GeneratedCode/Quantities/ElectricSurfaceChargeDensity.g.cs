@@ -53,13 +53,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>(QuantityType.ElectricSurfaceChargeDensity,
+            Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>("ElectricSurfaceChargeDensity",
                 new UnitInfo<ElectricSurfaceChargeDensityUnit>[] {
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
         }
 
         /// <summary>
@@ -124,6 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricSurfaceChargeDensity;
 
         /// <summary>
@@ -574,7 +575,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricSurfaceChargeDensity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -863,6 +864,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricSurfaceChargeDensity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricSurfaceChargeDensity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricSurfaceChargeDensity.BaseDimensions;
             else

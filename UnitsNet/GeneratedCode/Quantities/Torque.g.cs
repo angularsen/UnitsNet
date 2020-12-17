@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque,
+            Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[] {
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
@@ -75,7 +75,7 @@ namespace UnitsNet
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
         }
 
         /// <summary>
@@ -140,6 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Torque;
 
         /// <summary>
@@ -856,7 +857,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Torque.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1183,6 +1184,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Torque.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Torque.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Torque.BaseDimensions;
             else

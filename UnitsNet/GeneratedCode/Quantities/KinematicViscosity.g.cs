@@ -53,7 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<KinematicViscosityUnit>(QuantityType.KinematicViscosity,
+            Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
                 new UnitInfo<KinematicViscosityUnit>[] {
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, BaseUnits.Undefined),
@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
         }
 
         /// <summary>
@@ -129,6 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.KinematicViscosity;
 
         /// <summary>
@@ -649,7 +650,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current KinematicViscosity.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -948,6 +949,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return KinematicViscosity.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return KinematicViscosity.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return KinematicViscosity.BaseDimensions;
             else
