@@ -25,6 +25,18 @@ namespace UnitsNet.Tests
     public class NumberToElectricCurrentGradientExtensionsTests
     {
         [Fact]
+        public void NumberToAmperePerMicrosecondTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromAmperePerMicrosecond(2), 2.AmperePerMicrosecond());
+
+        [Fact]
+        public void NumberToAmperePerMillisecondTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromAmperePerMillisecond(2), 2.AmperePerMillisecond());
+
+        [Fact]
+        public void NumberToAmperePerNanosecondTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromAmperePerNanosecond(2), 2.AmperePerNanosecond());
+
+        [Fact]
         public void NumberToAmperesPerSecondTest() =>
             Assert.Equal(ElectricCurrentGradient.FromAmperesPerSecond(2), 2.AmperesPerSecond());
 

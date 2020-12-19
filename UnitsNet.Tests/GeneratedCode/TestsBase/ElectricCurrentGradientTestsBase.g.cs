@@ -37,9 +37,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricCurrentGradientTestsBase : QuantityTestsBase
     {
+        protected abstract double AmperePerMicrosecondInOneAmperePerSecond { get; }
+        protected abstract double AmperePerMillisecondInOneAmperePerSecond { get; }
+        protected abstract double AmperePerNanosecondInOneAmperePerSecond { get; }
         protected abstract double AmperesPerSecondInOneAmperePerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double AmperePerMicrosecondTolerance { get { return 1e-5; } }
+        protected virtual double AmperePerMillisecondTolerance { get { return 1e-5; } }
+        protected virtual double AmperePerNanosecondTolerance { get { return 1e-5; } }
         protected virtual double AmperesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -115,15 +121,30 @@ namespace UnitsNet.Tests
         public void AmperePerSecondToElectricCurrentGradientUnits()
         {
             ElectricCurrentGradient amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+            AssertEx.EqualTolerance(AmperePerMicrosecondInOneAmperePerSecond, amperepersecond.AmperePerMicrosecond, AmperePerMicrosecondTolerance);
+            AssertEx.EqualTolerance(AmperePerMillisecondInOneAmperePerSecond, amperepersecond.AmperePerMillisecond, AmperePerMillisecondTolerance);
+            AssertEx.EqualTolerance(AmperePerNanosecondInOneAmperePerSecond, amperepersecond.AmperePerNanosecond, AmperePerNanosecondTolerance);
             AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, amperepersecond.AmperesPerSecond, AmperesPerSecondTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerSecond);
-            AssertEx.EqualTolerance(1, quantity00.AmperesPerSecond, AmperesPerSecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity00.Unit);
+            var quantity00 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMicrosecond);
+            AssertEx.EqualTolerance(1, quantity00.AmperePerMicrosecond, AmperePerMicrosecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity00.Unit);
+
+            var quantity01 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMillisecond);
+            AssertEx.EqualTolerance(1, quantity01.AmperePerMillisecond, AmperePerMillisecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, quantity01.Unit);
+
+            var quantity02 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerNanosecond);
+            AssertEx.EqualTolerance(1, quantity02.AmperePerNanosecond, AmperePerNanosecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, quantity02.Unit);
+
+            var quantity03 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerSecond);
+            AssertEx.EqualTolerance(1, quantity03.AmperesPerSecond, AmperesPerSecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity03.Unit);
 
         }
 
@@ -144,6 +165,9 @@ namespace UnitsNet.Tests
         public void As()
         {
             var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+            AssertEx.EqualTolerance(AmperePerMicrosecondInOneAmperePerSecond, amperepersecond.As(ElectricCurrentGradientUnit.AmperePerMicrosecond), AmperePerMicrosecondTolerance);
+            AssertEx.EqualTolerance(AmperePerMillisecondInOneAmperePerSecond, amperepersecond.As(ElectricCurrentGradientUnit.AmperePerMillisecond), AmperePerMillisecondTolerance);
+            AssertEx.EqualTolerance(AmperePerNanosecondInOneAmperePerSecond, amperepersecond.As(ElectricCurrentGradientUnit.AmperePerNanosecond), AmperePerNanosecondTolerance);
             AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, amperepersecond.As(ElectricCurrentGradientUnit.AmperePerSecond), AmperesPerSecondTolerance);
         }
 
@@ -169,6 +193,18 @@ namespace UnitsNet.Tests
         {
             var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
 
+            var amperepermicrosecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond);
+            AssertEx.EqualTolerance(AmperePerMicrosecondInOneAmperePerSecond, (double)amperepermicrosecondQuantity.Value, AmperePerMicrosecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, amperepermicrosecondQuantity.Unit);
+
+            var amperepermillisecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond);
+            AssertEx.EqualTolerance(AmperePerMillisecondInOneAmperePerSecond, (double)amperepermillisecondQuantity.Value, AmperePerMillisecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, amperepermillisecondQuantity.Unit);
+
+            var amperepernanosecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond);
+            AssertEx.EqualTolerance(AmperePerNanosecondInOneAmperePerSecond, (double)amperepernanosecondQuantity.Value, AmperePerNanosecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, amperepernanosecondQuantity.Unit);
+
             var amperepersecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond);
             AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, (double)amperepersecondQuantity.Value, AmperesPerSecondTolerance);
             Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, amperepersecondQuantity.Unit);
@@ -185,6 +221,9 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ElectricCurrentGradient amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+            AssertEx.EqualTolerance(1, ElectricCurrentGradient.FromAmperePerMicrosecond(amperepersecond.AmperePerMicrosecond).AmperesPerSecond, AmperePerMicrosecondTolerance);
+            AssertEx.EqualTolerance(1, ElectricCurrentGradient.FromAmperePerMillisecond(amperepersecond.AmperePerMillisecond).AmperesPerSecond, AmperePerMillisecondTolerance);
+            AssertEx.EqualTolerance(1, ElectricCurrentGradient.FromAmperePerNanosecond(amperepersecond.AmperePerNanosecond).AmperesPerSecond, AmperePerNanosecondTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrentGradient.FromAmperesPerSecond(amperepersecond.AmperesPerSecond).AmperesPerSecond, AmperesPerSecondTolerance);
         }
 
@@ -342,6 +381,9 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString());
+                Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString());
+                Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString());
                 Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString());
             }
             finally
@@ -356,6 +398,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 A/μs", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMicrosecond).ToString(swedishCulture));
+            Assert.Equal("1 A/ms", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerMillisecond).ToString(swedishCulture));
+            Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString(swedishCulture));
             Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString(swedishCulture));
         }
 
