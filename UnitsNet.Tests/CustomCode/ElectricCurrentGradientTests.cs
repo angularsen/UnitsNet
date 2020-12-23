@@ -29,8 +29,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => false;
         protected override double AmperesPerSecondInOneAmperePerSecond => 1;
-        protected override double AmperePerMillisecondInOneAmperePerSecond => 1e03;
-        protected override double AmperePerMicrosecondInOneAmperePerSecond => 1e06;
-        protected override double AmperePerNanosecondInOneAmperePerSecond => 1e09;
+        protected override double AmperePerMillisecondInOneAmperePerSecond => 1e-03;
+        protected override double AmperePerMicrosecondInOneAmperePerSecond => 1e-06;
+        protected override double AmperePerNanosecondInOneAmperePerSecond => 1e-09;
     }
 }
