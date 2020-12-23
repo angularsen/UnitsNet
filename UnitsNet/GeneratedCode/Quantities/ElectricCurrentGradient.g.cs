@@ -170,19 +170,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperePerMicrosecond.
+        ///     Get ElectricCurrentGradient in AmperesPerMicrosecond.
         /// </summary>
-        public double AmperePerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
+        public double AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperePerMillisecond.
+        ///     Get ElectricCurrentGradient in AmperesPerMillisecond.
         /// </summary>
-        public double AmperePerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
+        public double AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperePerNanosecond.
+        ///     Get ElectricCurrentGradient in AmperesPerNanosecond.
         /// </summary>
-        public double AmperePerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
+        public double AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
 
         /// <summary>
         ///     Get ElectricCurrentGradient in AmperesPerSecond.
@@ -219,30 +219,30 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperePerMicrosecond.
+        ///     Get ElectricCurrentGradient from AmperesPerMicrosecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperePerMicrosecond(QuantityValue amperepermicrosecond)
+        public static ElectricCurrentGradient FromAmperesPerMicrosecond(QuantityValue amperespermicrosecond)
         {
-            double value = (double) amperepermicrosecond;
+            double value = (double) amperespermicrosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperePerMillisecond.
+        ///     Get ElectricCurrentGradient from AmperesPerMillisecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperePerMillisecond(QuantityValue amperepermillisecond)
+        public static ElectricCurrentGradient FromAmperesPerMillisecond(QuantityValue amperespermillisecond)
         {
-            double value = (double) amperepermillisecond;
+            double value = (double) amperespermillisecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperePerNanosecond.
+        ///     Get ElectricCurrentGradient from AmperesPerNanosecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperePerNanosecond(QuantityValue amperepernanosecond)
+        public static ElectricCurrentGradient FromAmperesPerNanosecond(QuantityValue amperespernanosecond)
         {
-            double value = (double) amperepernanosecond;
+            double value = (double) amperespernanosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
         /// <summary>

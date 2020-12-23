@@ -21,7 +21,7 @@
     },
     {
       "SingularName": "AmperePerMillisecond",
-      "PluralName": "AmperePerMillisecond",
+      "PluralName": "AmperesPerMillisecond",
       "BaseUnits": {
         "T": "Millisecond",
         "I": "Ampere"
@@ -37,7 +37,7 @@
     },
     {
       "SingularName": "AmperePerMicrosecond",
-      "PluralName": "AmperePerMicrosecond",
+      "PluralName": "AmperesPerMicrosecond",
       "BaseUnits": {
         "T": "Microsecond",
         "I": "Ampere"
@@ -53,7 +53,7 @@
     },
     {
       "SingularName": "AmperePerNanosecond",
-      "PluralName": "AmperePerNanosecond",
+      "PluralName": "AmperesPerNanosecond",
       "BaseUnits": {
         "T": "Nanosecond",
         "I": "Ampere"
