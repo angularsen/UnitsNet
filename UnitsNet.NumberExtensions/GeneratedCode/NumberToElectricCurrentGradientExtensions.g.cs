@@ -28,6 +28,18 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
     /// </summary>
     public static class NumberToElectricCurrentGradientExtensions
     {
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value) =>
+            ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value) =>
+            ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value) =>
+            ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));

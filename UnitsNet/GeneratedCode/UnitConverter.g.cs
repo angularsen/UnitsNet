@@ -411,6 +411,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensityUnit.AmperePerSquareInch, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerMicrosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerMillisecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerNanosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradient.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ElectricField>(ElectricField.BaseUnit, ElectricField.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductance.BaseUnit, q => q);
