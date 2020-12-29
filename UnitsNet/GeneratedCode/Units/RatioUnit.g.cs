@@ -26,6 +26,8 @@ namespace UnitsNet.Units
     public enum RatioUnit
     {
         Undefined = 0,
+        Decimal,
+        [System.Obsolete("Use Decimal instead. This unit will be removed.")]
         DecimalFraction,
         PartPerBillion,
         PartPerMillion,

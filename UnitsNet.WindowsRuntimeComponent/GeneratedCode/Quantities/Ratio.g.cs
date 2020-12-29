@@ -53,7 +53,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit DecimalFraction.
+        ///     Creates the quantity with a value of 0 in the base unit Decimal.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
@@ -93,9 +93,9 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
+        ///     The base unit of Ratio, which is Decimal. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
+        public static RatioUnit BaseUnit { get; } = RatioUnit.Decimal;
 
         /// <summary>
         /// Represents the largest possible value of Ratio
@@ -118,7 +118,7 @@ namespace UnitsNet
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Decimal.
         /// </summary>
         public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
 
@@ -156,8 +156,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Ratio in Decimal.
+        /// </summary>
+        public double Decimal => As(RatioUnit.Decimal);
+
+        /// <summary>
         ///     Get Ratio in DecimalFractions.
         /// </summary>
+        [System.Obsolete("Use Decimal instead. This unit will be removed.")]
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
@@ -216,9 +222,20 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Ratio from Decimal.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Ratio FromDecimal(double decimal)
+        {
+            double value = (double) decimal;
+            return new Ratio(value, RatioUnit.Decimal);
+        }
+        /// <summary>
         ///     Get Ratio from DecimalFractions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [System.Obsolete("Use Decimal instead. This unit will be removed.")]
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromDecimalFractions(double decimalfractions)
         {
@@ -566,6 +583,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case RatioUnit.Decimal: return _value;
                 case RatioUnit.DecimalFraction: return _value;
                 case RatioUnit.PartPerBillion: return _value/1e9;
                 case RatioUnit.PartPerMillion: return _value/1e6;
@@ -586,6 +604,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case RatioUnit.Decimal: return baseUnitValue;
                 case RatioUnit.DecimalFraction: return baseUnitValue;
                 case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
                 case RatioUnit.PartPerMillion: return baseUnitValue*1e6;

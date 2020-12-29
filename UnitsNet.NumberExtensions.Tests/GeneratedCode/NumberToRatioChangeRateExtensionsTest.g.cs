@@ -25,8 +25,13 @@ namespace UnitsNet.Tests
     public class NumberToRatioChangeRateExtensionsTests
     {
         [Fact]
+        [System.Obsolete(Use DecimalPerSecond instead. This unit will be removed.)]
         public void NumberToDecimalFractionsPerSecondTest() =>
             Assert.Equal(RatioChangeRate.FromDecimalFractionsPerSecond(2), 2.DecimalFractionsPerSecond());
+
+        [Fact]
+        public void NumberToDecimalPerSecondTest() =>
+            Assert.Equal(RatioChangeRate.FromDecimalPerSecond(2), 2.DecimalPerSecond());
 
         [Fact]
         public void NumberToPercentsPerSecondTest() =>

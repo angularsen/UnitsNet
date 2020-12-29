@@ -53,6 +53,7 @@ namespace UnitsNet
             Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
                 new UnitInfo<RatioChangeRateUnit>[] {
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalPerSecond, BaseUnits.Undefined),
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
@@ -103,9 +104,9 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
+        ///     The base unit of RatioChangeRate, which is DecimalPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
@@ -129,7 +130,7 @@ namespace UnitsNet
         public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalPerSecond.
         /// </summary>
         public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
 
@@ -170,7 +171,13 @@ namespace UnitsNet
         /// <summary>
         ///     Get RatioChangeRate in DecimalFractionsPerSecond.
         /// </summary>
+        [System.Obsolete("Use DecimalPerSecond instead. This unit will be removed.")]
         public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
+
+        /// <summary>
+        ///     Get RatioChangeRate in DecimalPerSecond.
+        /// </summary>
+        public double DecimalPerSecond => As(RatioChangeRateUnit.DecimalPerSecond);
 
         /// <summary>
         ///     Get RatioChangeRate in PercentsPerSecond.
@@ -210,10 +217,20 @@ namespace UnitsNet
         ///     Get RatioChangeRate from DecimalFractionsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [System.Obsolete("Use DecimalPerSecond instead. This unit will be removed.")]
         public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
         {
             double value = (double) decimalfractionspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
+        }
+        /// <summary>
+        ///     Get RatioChangeRate from DecimalPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RatioChangeRate FromDecimalPerSecond(QuantityValue decimalpersecond)
+        {
+            double value = (double) decimalpersecond;
+            return new RatioChangeRate(value, RatioChangeRateUnit.DecimalPerSecond);
         }
         /// <summary>
         ///     Get RatioChangeRate from PercentsPerSecond.
@@ -423,7 +440,7 @@ namespace UnitsNet
         /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
         public static double operator /(RatioChangeRate left, RatioChangeRate right)
         {
-            return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
+            return left.DecimalPerSecond / right.DecimalPerSecond;
         }
 
         #endregion
@@ -654,6 +671,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case RatioChangeRateUnit.DecimalFractionPerSecond: return _value;
+                case RatioChangeRateUnit.DecimalPerSecond: return _value;
                 case RatioChangeRateUnit.PercentPerSecond: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -681,6 +699,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue;
+                case RatioChangeRateUnit.DecimalPerSecond: return baseUnitValue;
                 case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

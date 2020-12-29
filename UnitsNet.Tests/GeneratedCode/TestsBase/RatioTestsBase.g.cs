@@ -37,14 +37,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RatioTestsBase : QuantityTestsBase
     {
-        protected abstract double DecimalFractionsInOneDecimalFraction { get; }
-        protected abstract double PartsPerBillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerMillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerThousandInOneDecimalFraction { get; }
-        protected abstract double PartsPerTrillionInOneDecimalFraction { get; }
-        protected abstract double PercentInOneDecimalFraction { get; }
+        protected abstract double DecimalInOneDecimal { get; }
+        protected abstract double DecimalFractionsInOneDecimal { get; }
+        protected abstract double PartsPerBillionInOneDecimal { get; }
+        protected abstract double PartsPerMillionInOneDecimal { get; }
+        protected abstract double PartsPerThousandInOneDecimal { get; }
+        protected abstract double PartsPerTrillionInOneDecimal { get; }
+        protected abstract double PercentInOneDecimal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double DecimalTolerance { get { return 1e-5; } }
         protected virtual double DecimalFractionsTolerance { get { return 1e-5; } }
         protected virtual double PartsPerBillionTolerance { get { return 1e-5; } }
         protected virtual double PartsPerMillionTolerance { get { return 1e-5; } }
@@ -64,21 +66,21 @@ namespace UnitsNet.Tests
         {
             var quantity = new Ratio();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(RatioUnit.DecimalFraction, quantity.Unit);
+            Assert.Equal(RatioUnit.Decimal, quantity.Unit);
         }
 
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Ratio(double.PositiveInfinity, RatioUnit.DecimalFraction));
-            Assert.Throws<ArgumentException>(() => new Ratio(double.NegativeInfinity, RatioUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new Ratio(double.PositiveInfinity, RatioUnit.Decimal));
+            Assert.Throws<ArgumentException>(() => new Ratio(double.NegativeInfinity, RatioUnit.Decimal));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Ratio(double.NaN, RatioUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new Ratio(double.NaN, RatioUnit.Decimal));
         }
 
         [Fact]
@@ -105,7 +107,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ratio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            var quantity = new Ratio(1, RatioUnit.DecimalFraction);
+            var quantity = new Ratio(1, RatioUnit.Decimal);
 
             QuantityInfo<RatioUnit> quantityInfo = quantity.QuantityInfo;
 
@@ -122,69 +124,75 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void DecimalFractionToRatioUnits()
+        public void DecimalToRatioUnits()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, decimalfraction.DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, decimalfraction.PartsPerBillion, PartsPerBillionTolerance);
-            AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, decimalfraction.PartsPerMillion, PartsPerMillionTolerance);
-            AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, decimalfraction.PartsPerThousand, PartsPerThousandTolerance);
-            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimalFraction, decimalfraction.PartsPerTrillion, PartsPerTrillionTolerance);
-            AssertEx.EqualTolerance(PercentInOneDecimalFraction, decimalfraction.Percent, PercentTolerance);
+            Ratio decimal = Ratio.FromDecimal(1);
+            AssertEx.EqualTolerance(DecimalInOneDecimal, decimal.Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(DecimalFractionsInOneDecimal, decimal.DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(PartsPerBillionInOneDecimal, decimal.PartsPerBillion, PartsPerBillionTolerance);
+            AssertEx.EqualTolerance(PartsPerMillionInOneDecimal, decimal.PartsPerMillion, PartsPerMillionTolerance);
+            AssertEx.EqualTolerance(PartsPerThousandInOneDecimal, decimal.PartsPerThousand, PartsPerThousandTolerance);
+            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimal, decimal.PartsPerTrillion, PartsPerTrillionTolerance);
+            AssertEx.EqualTolerance(PercentInOneDecimal, decimal.Percent, PercentTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Ratio.From(1, RatioUnit.DecimalFraction);
-            AssertEx.EqualTolerance(1, quantity00.DecimalFractions, DecimalFractionsTolerance);
-            Assert.Equal(RatioUnit.DecimalFraction, quantity00.Unit);
+            var quantity00 = Ratio.From(1, RatioUnit.Decimal);
+            AssertEx.EqualTolerance(1, quantity00.Decimal, DecimalTolerance);
+            Assert.Equal(RatioUnit.Decimal, quantity00.Unit);
 
-            var quantity01 = Ratio.From(1, RatioUnit.PartPerBillion);
-            AssertEx.EqualTolerance(1, quantity01.PartsPerBillion, PartsPerBillionTolerance);
-            Assert.Equal(RatioUnit.PartPerBillion, quantity01.Unit);
+            var quantity01 = Ratio.From(1, RatioUnit.DecimalFraction);
+            AssertEx.EqualTolerance(1, quantity01.DecimalFractions, DecimalFractionsTolerance);
+            Assert.Equal(RatioUnit.DecimalFraction, quantity01.Unit);
 
-            var quantity02 = Ratio.From(1, RatioUnit.PartPerMillion);
-            AssertEx.EqualTolerance(1, quantity02.PartsPerMillion, PartsPerMillionTolerance);
-            Assert.Equal(RatioUnit.PartPerMillion, quantity02.Unit);
+            var quantity02 = Ratio.From(1, RatioUnit.PartPerBillion);
+            AssertEx.EqualTolerance(1, quantity02.PartsPerBillion, PartsPerBillionTolerance);
+            Assert.Equal(RatioUnit.PartPerBillion, quantity02.Unit);
 
-            var quantity03 = Ratio.From(1, RatioUnit.PartPerThousand);
-            AssertEx.EqualTolerance(1, quantity03.PartsPerThousand, PartsPerThousandTolerance);
-            Assert.Equal(RatioUnit.PartPerThousand, quantity03.Unit);
+            var quantity03 = Ratio.From(1, RatioUnit.PartPerMillion);
+            AssertEx.EqualTolerance(1, quantity03.PartsPerMillion, PartsPerMillionTolerance);
+            Assert.Equal(RatioUnit.PartPerMillion, quantity03.Unit);
 
-            var quantity04 = Ratio.From(1, RatioUnit.PartPerTrillion);
-            AssertEx.EqualTolerance(1, quantity04.PartsPerTrillion, PartsPerTrillionTolerance);
-            Assert.Equal(RatioUnit.PartPerTrillion, quantity04.Unit);
+            var quantity04 = Ratio.From(1, RatioUnit.PartPerThousand);
+            AssertEx.EqualTolerance(1, quantity04.PartsPerThousand, PartsPerThousandTolerance);
+            Assert.Equal(RatioUnit.PartPerThousand, quantity04.Unit);
 
-            var quantity05 = Ratio.From(1, RatioUnit.Percent);
-            AssertEx.EqualTolerance(1, quantity05.Percent, PercentTolerance);
-            Assert.Equal(RatioUnit.Percent, quantity05.Unit);
+            var quantity05 = Ratio.From(1, RatioUnit.PartPerTrillion);
+            AssertEx.EqualTolerance(1, quantity05.PartsPerTrillion, PartsPerTrillionTolerance);
+            Assert.Equal(RatioUnit.PartPerTrillion, quantity05.Unit);
+
+            var quantity06 = Ratio.From(1, RatioUnit.Percent);
+            AssertEx.EqualTolerance(1, quantity06.Percent, PercentTolerance);
+            Assert.Equal(RatioUnit.Percent, quantity06.Unit);
 
         }
 
         [Fact]
-        public void FromDecimalFractions_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecimal_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimal(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimal(double.NegativeInfinity));
         }
 
         [Fact]
-        public void FromDecimalFractions_WithNanValue_ThrowsArgumentException()
+        public void FromDecimal_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NaN));
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimal(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var decimalfraction = Ratio.FromDecimalFractions(1);
-            AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, decimalfraction.As(RatioUnit.DecimalFraction), DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerBillion), PartsPerBillionTolerance);
-            AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerMillion), PartsPerMillionTolerance);
-            AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerThousand), PartsPerThousandTolerance);
-            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerTrillion), PartsPerTrillionTolerance);
-            AssertEx.EqualTolerance(PercentInOneDecimalFraction, decimalfraction.As(RatioUnit.Percent), PercentTolerance);
+            var decimal = Ratio.FromDecimal(1);
+            AssertEx.EqualTolerance(DecimalInOneDecimal, decimal.As(RatioUnit.Decimal), DecimalTolerance);
+            AssertEx.EqualTolerance(DecimalFractionsInOneDecimal, decimal.As(RatioUnit.DecimalFraction), DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(PartsPerBillionInOneDecimal, decimal.As(RatioUnit.PartPerBillion), PartsPerBillionTolerance);
+            AssertEx.EqualTolerance(PartsPerMillionInOneDecimal, decimal.As(RatioUnit.PartPerMillion), PartsPerMillionTolerance);
+            AssertEx.EqualTolerance(PartsPerThousandInOneDecimal, decimal.As(RatioUnit.PartPerThousand), PartsPerThousandTolerance);
+            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimal, decimal.As(RatioUnit.PartPerTrillion), PartsPerTrillionTolerance);
+            AssertEx.EqualTolerance(PercentInOneDecimal, decimal.As(RatioUnit.Percent), PercentTolerance);
         }
 
         [Fact]
@@ -207,110 +215,115 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var decimalfraction = Ratio.FromDecimalFractions(1);
+            var decimal = Ratio.FromDecimal(1);
 
-            var decimalfractionQuantity = decimalfraction.ToUnit(RatioUnit.DecimalFraction);
-            AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, (double)decimalfractionQuantity.Value, DecimalFractionsTolerance);
+            var decimalQuantity = decimal.ToUnit(RatioUnit.Decimal);
+            AssertEx.EqualTolerance(DecimalInOneDecimal, (double)decimalQuantity.Value, DecimalTolerance);
+            Assert.Equal(RatioUnit.Decimal, decimalQuantity.Unit);
+
+            var decimalfractionQuantity = decimal.ToUnit(RatioUnit.DecimalFraction);
+            AssertEx.EqualTolerance(DecimalFractionsInOneDecimal, (double)decimalfractionQuantity.Value, DecimalFractionsTolerance);
             Assert.Equal(RatioUnit.DecimalFraction, decimalfractionQuantity.Unit);
 
-            var partperbillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerBillion);
-            AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, (double)partperbillionQuantity.Value, PartsPerBillionTolerance);
+            var partperbillionQuantity = decimal.ToUnit(RatioUnit.PartPerBillion);
+            AssertEx.EqualTolerance(PartsPerBillionInOneDecimal, (double)partperbillionQuantity.Value, PartsPerBillionTolerance);
             Assert.Equal(RatioUnit.PartPerBillion, partperbillionQuantity.Unit);
 
-            var partpermillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerMillion);
-            AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, (double)partpermillionQuantity.Value, PartsPerMillionTolerance);
+            var partpermillionQuantity = decimal.ToUnit(RatioUnit.PartPerMillion);
+            AssertEx.EqualTolerance(PartsPerMillionInOneDecimal, (double)partpermillionQuantity.Value, PartsPerMillionTolerance);
             Assert.Equal(RatioUnit.PartPerMillion, partpermillionQuantity.Unit);
 
-            var partperthousandQuantity = decimalfraction.ToUnit(RatioUnit.PartPerThousand);
-            AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, (double)partperthousandQuantity.Value, PartsPerThousandTolerance);
+            var partperthousandQuantity = decimal.ToUnit(RatioUnit.PartPerThousand);
+            AssertEx.EqualTolerance(PartsPerThousandInOneDecimal, (double)partperthousandQuantity.Value, PartsPerThousandTolerance);
             Assert.Equal(RatioUnit.PartPerThousand, partperthousandQuantity.Unit);
 
-            var partpertrillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerTrillion);
-            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimalFraction, (double)partpertrillionQuantity.Value, PartsPerTrillionTolerance);
+            var partpertrillionQuantity = decimal.ToUnit(RatioUnit.PartPerTrillion);
+            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimal, (double)partpertrillionQuantity.Value, PartsPerTrillionTolerance);
             Assert.Equal(RatioUnit.PartPerTrillion, partpertrillionQuantity.Unit);
 
-            var percentQuantity = decimalfraction.ToUnit(RatioUnit.Percent);
-            AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
+            var percentQuantity = decimal.ToUnit(RatioUnit.Percent);
+            AssertEx.EqualTolerance(PercentInOneDecimal, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(RatioUnit.Percent, percentQuantity.Unit);
         }
 
         [Fact]
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Ratio.FromDecimalFractions(1).ToBaseUnit();
+            var quantityInBaseUnit = Ratio.FromDecimal(1).ToBaseUnit();
             Assert.Equal(Ratio.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            AssertEx.EqualTolerance(1, Ratio.FromDecimalFractions(decimalfraction.DecimalFractions).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(1, Ratio.FromPartsPerBillion(decimalfraction.PartsPerBillion).DecimalFractions, PartsPerBillionTolerance);
-            AssertEx.EqualTolerance(1, Ratio.FromPartsPerMillion(decimalfraction.PartsPerMillion).DecimalFractions, PartsPerMillionTolerance);
-            AssertEx.EqualTolerance(1, Ratio.FromPartsPerThousand(decimalfraction.PartsPerThousand).DecimalFractions, PartsPerThousandTolerance);
-            AssertEx.EqualTolerance(1, Ratio.FromPartsPerTrillion(decimalfraction.PartsPerTrillion).DecimalFractions, PartsPerTrillionTolerance);
-            AssertEx.EqualTolerance(1, Ratio.FromPercent(decimalfraction.Percent).DecimalFractions, PercentTolerance);
+            Ratio decimal = Ratio.FromDecimal(1);
+            AssertEx.EqualTolerance(1, Ratio.FromDecimal(decimal.Decimal).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromDecimalFractions(decimal.DecimalFractions).Decimal, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromPartsPerBillion(decimal.PartsPerBillion).Decimal, PartsPerBillionTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromPartsPerMillion(decimal.PartsPerMillion).Decimal, PartsPerMillionTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromPartsPerThousand(decimal.PartsPerThousand).Decimal, PartsPerThousandTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromPartsPerTrillion(decimal.PartsPerTrillion).Decimal, PartsPerTrillionTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromPercent(decimal.Percent).Decimal, PercentTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Ratio v = Ratio.FromDecimalFractions(1);
-            AssertEx.EqualTolerance(-1, -v.DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, (Ratio.FromDecimalFractions(3)-v).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, (Ratio.FromDecimalFractions(10)/5).DecimalFractions, DecimalFractionsTolerance);
-            AssertEx.EqualTolerance(2, Ratio.FromDecimalFractions(10)/Ratio.FromDecimalFractions(5), DecimalFractionsTolerance);
+            Ratio v = Ratio.FromDecimal(1);
+            AssertEx.EqualTolerance(-1, -v.Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(2, (Ratio.FromDecimal(3)-v).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(2, (Ratio.FromDecimal(10)/5).Decimal, DecimalTolerance);
+            AssertEx.EqualTolerance(2, Ratio.FromDecimal(10)/Ratio.FromDecimal(5), DecimalTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Ratio oneDecimalFraction = Ratio.FromDecimalFractions(1);
-            Ratio twoDecimalFractions = Ratio.FromDecimalFractions(2);
+            Ratio oneDecimal = Ratio.FromDecimal(1);
+            Ratio twoDecimal = Ratio.FromDecimal(2);
 
-            Assert.True(oneDecimalFraction < twoDecimalFractions);
-            Assert.True(oneDecimalFraction <= twoDecimalFractions);
-            Assert.True(twoDecimalFractions > oneDecimalFraction);
-            Assert.True(twoDecimalFractions >= oneDecimalFraction);
+            Assert.True(oneDecimal < twoDecimal);
+            Assert.True(oneDecimal <= twoDecimal);
+            Assert.True(twoDecimal > oneDecimal);
+            Assert.True(twoDecimal >= oneDecimal);
 
-            Assert.False(oneDecimalFraction > twoDecimalFractions);
-            Assert.False(oneDecimalFraction >= twoDecimalFractions);
-            Assert.False(twoDecimalFractions < oneDecimalFraction);
-            Assert.False(twoDecimalFractions <= oneDecimalFraction);
+            Assert.False(oneDecimal > twoDecimal);
+            Assert.False(oneDecimal >= twoDecimal);
+            Assert.False(twoDecimal < oneDecimal);
+            Assert.False(twoDecimal <= oneDecimal);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            Assert.Equal(0, decimalfraction.CompareTo(decimalfraction));
-            Assert.True(decimalfraction.CompareTo(Ratio.Zero) > 0);
-            Assert.True(Ratio.Zero.CompareTo(decimalfraction) < 0);
+            Ratio decimal = Ratio.FromDecimal(1);
+            Assert.Equal(0, decimal.CompareTo(decimal));
+            Assert.True(decimal.CompareTo(Ratio.Zero) > 0);
+            Assert.True(Ratio.Zero.CompareTo(decimal) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            Assert.Throws<ArgumentException>(() => decimalfraction.CompareTo(new object()));
+            Ratio decimal = Ratio.FromDecimal(1);
+            Assert.Throws<ArgumentException>(() => decimal.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            Assert.Throws<ArgumentNullException>(() => decimalfraction.CompareTo(null));
+            Ratio decimal = Ratio.FromDecimal(1);
+            Assert.Throws<ArgumentNullException>(() => decimal.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Ratio.FromDecimalFractions(1);
-            var b = Ratio.FromDecimalFractions(2);
+            var a = Ratio.FromDecimal(1);
+            var b = Ratio.FromDecimal(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -329,8 +342,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Ratio.FromDecimalFractions(1);
-            var b = Ratio.FromDecimalFractions(2);
+            var a = Ratio.FromDecimal(1);
+            var b = Ratio.FromDecimal(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -339,8 +352,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_QuantityAsObject_IsImplemented()
         {
-            object a = Ratio.FromDecimalFractions(1);
-            object b = Ratio.FromDecimalFractions(2);
+            object a = Ratio.FromDecimal(1);
+            object b = Ratio.FromDecimal(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -350,30 +363,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Ratio.FromDecimalFractions(1);
-            Assert.True(v.Equals(Ratio.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Ratio.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+            var v = Ratio.FromDecimal(1);
+            Assert.True(v.Equals(Ratio.FromDecimal(1), DecimalTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Ratio.Zero, DecimalTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
         {
-            var v = Ratio.FromDecimalFractions(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Ratio.FromDecimalFractions(1), -1, ComparisonType.Relative));
+            var v = Ratio.FromDecimal(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Ratio.FromDecimal(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            Assert.False(decimalfraction.Equals(new object()));
+            Ratio decimal = Ratio.FromDecimal(1);
+            Assert.False(decimal.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Ratio decimalfraction = Ratio.FromDecimalFractions(1);
-            Assert.False(decimalfraction.Equals(null));
+            Ratio decimal = Ratio.FromDecimal(1);
+            Assert.False(decimal.Equals(null));
         }
 
         [Fact]
@@ -407,6 +420,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 ", new Ratio(1, RatioUnit.Decimal).ToString());
                 Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString());
                 Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
                 Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString());
@@ -426,6 +440,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 ", new Ratio(1, RatioUnit.Decimal).ToString(swedishCulture));
             Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString(swedishCulture));
             Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString(swedishCulture));
             Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString(swedishCulture));
@@ -441,10 +456,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
+                Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s1"));
+                Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s2"));
+                Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s3"));
+                Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s4"));
             }
             finally
             {
@@ -456,31 +471,31 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1", culture));
-            Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2", culture));
-            Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4", culture));
+            Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s1", culture));
+            Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s2", culture));
+            Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s3", culture));
+            Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.Decimal).ToString("s4", culture));
         }
 
 
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
         [Fact]
         public void ToString_NullArgs_ThrowsArgumentNullException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
 
         [Fact]
         public void ToString_NullProvider_EqualsCurrentUICulture()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
@@ -488,154 +503,154 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
         }
 
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
            Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
         public void Convert_ToChar_ThrowsInvalidCastException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
         }
 
         [Fact]
         public void Convert_ToDateTime_ThrowsInvalidCastException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
         }
 
         [Fact]
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Ratio)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(RatioUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(QuantityType.Ratio, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(Ratio.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(Ratio.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
 
         [Fact]
         public void GetHashCode_Equals()
         {
-            var quantity = Ratio.FromDecimalFractions(1.0);
+            var quantity = Ratio.FromDecimal(1.0);
             Assert.Equal(new {Ratio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
@@ -644,8 +659,8 @@ namespace UnitsNet.Tests
         [InlineData(-1.0)]
         public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
         {
-            var quantity = Ratio.FromDecimalFractions(value);
-            Assert.Equal(Ratio.FromDecimalFractions(-value), -quantity);
+            var quantity = Ratio.FromDecimal(value);
+            Assert.Equal(Ratio.FromDecimal(-value), -quantity);
         }
     }
 }

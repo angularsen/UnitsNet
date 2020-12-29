@@ -26,7 +26,9 @@ namespace UnitsNet.Units
     public enum RatioChangeRateUnit
     {
         Undefined = 0,
+        [System.Obsolete("Use DecimalPerSecond instead. This unit will be removed.")]
         DecimalFractionPerSecond,
+        DecimalPerSecond,
         PercentPerSecond,
     }
 

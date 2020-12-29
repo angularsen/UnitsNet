@@ -28,7 +28,12 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
     /// </summary>
     public static class NumberToRatioExtensions
     {
+        /// <inheritdoc cref="Ratio.FromDecimal(UnitsNet.QuantityValue)" />
+        public static Ratio Decimal<T>(this T value) =>
+            Ratio.FromDecimal(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Use Decimal instead. This unit will be removed.")]
         public static Ratio DecimalFractions<T>(this T value) =>
             Ratio.FromDecimalFractions(Convert.ToDouble(value));
 

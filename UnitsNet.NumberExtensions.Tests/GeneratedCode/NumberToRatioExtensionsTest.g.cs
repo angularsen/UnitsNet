@@ -25,6 +25,11 @@ namespace UnitsNet.Tests
     public class NumberToRatioExtensionsTests
     {
         [Fact]
+        public void NumberToDecimalTest() =>
+            Assert.Equal(Ratio.FromDecimal(2), 2.Decimal());
+
+        [Fact]
+        [System.Obsolete(Use Decimal instead. This unit will be removed.)]
         public void NumberToDecimalFractionsTest() =>
             Assert.Equal(Ratio.FromDecimalFractions(2), 2.DecimalFractions());
 

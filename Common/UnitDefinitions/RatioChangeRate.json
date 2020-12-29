@@ -1,8 +1,20 @@
 {
   "Name": "RatioChangeRate",
-  "BaseUnit": "DecimalFractionPerSecond",
+  "BaseUnit": "DecimalPerSecond",
   "XmlDoc": "The change in ratio per unit of time.",
   "Units": [
+    {
+      "SingularName": "DecimalPerSecond",
+      "PluralName": "DecimalPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "/s" ]
+        }
+      ]
+    },
     {
       "SingularName": "PercentPerSecond",
       "PluralName": "PercentsPerSecond",
@@ -16,6 +28,7 @@
       ]
     },
     {
+      "ObsoleteText": "Use DecimalPerSecond instead. This unit will be removed.",
       "SingularName": "DecimalFractionPerSecond",
       "PluralName": "DecimalFractionsPerSecond",
       "FromUnitToBaseFunc": "x",
