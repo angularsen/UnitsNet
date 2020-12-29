@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "CoefficientOfThermalExpansion",
   "BaseUnit": "InverseKelvin",
   "XmlDoc": "A unit that represents a fractional change in size in response to a change in temperature.",
@@ -42,8 +42,8 @@
       "BaseUnits": {
         "Θ": "DegreeFahrenheit"
       },
-      "FromUnitToBaseFunc": "x*5/9",
-      "FromBaseToUnitFunc": "x*9/5",
+      "FromUnitToBaseFunc": "x*9/5",
+      "FromBaseToUnitFunc": "x*5/9",
       "Localization": [
         {
           "Culture": "en-US",

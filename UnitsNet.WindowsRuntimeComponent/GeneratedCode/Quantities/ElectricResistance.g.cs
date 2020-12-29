@@ -171,6 +171,11 @@ namespace UnitsNet
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
+        ///     Get ElectricResistance in Microohms.
+        /// </summary>
+        public double Microohms => As(ElectricResistanceUnit.Microohm);
+
+        /// <summary>
         ///     Get ElectricResistance in Milliohms.
         /// </summary>
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
@@ -239,6 +244,16 @@ namespace UnitsNet
         {
             double value = (double) megaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
+        }
+        /// <summary>
+        ///     Get ElectricResistance from Microohms.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricResistance FromMicroohms(double microohms)
+        {
+            double value = (double) microohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
         /// <summary>
         ///     Get ElectricResistance from Milliohms.
@@ -554,6 +569,7 @@ namespace UnitsNet
                 case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
+                case ElectricResistanceUnit.Microohm: return (_value) * 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
                 case ElectricResistanceUnit.Ohm: return _value;
                 default:
@@ -573,6 +589,7 @@ namespace UnitsNet
                 case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
+                case ElectricResistanceUnit.Microohm: return (baseUnitValue) / 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
                 case ElectricResistanceUnit.Ohm: return baseUnitValue;
                 default:

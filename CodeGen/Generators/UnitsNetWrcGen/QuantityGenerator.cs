@@ -734,17 +734,17 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
 
         /// <summary>
         /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
         /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
         /// </summary>
-        private static string GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null
-            : $"[System.Obsolete({obsoleteText})]";
+            : $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }

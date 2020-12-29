@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -46,19 +48,22 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassConcentrationUnit>(QuantityType.MassConcentration,
+            Info = new QuantityInfo<MassConcentrationUnit>("MassConcentration",
                 new UnitInfo<MassConcentrationUnit>[] {
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicCentimeter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerLiter, new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram)),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMicroliter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMilliliter, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, BaseUnits.Undefined),
@@ -69,16 +74,20 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMilliliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicFoot, new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicInch, new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound)),
@@ -89,7 +98,7 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
         }
 
         /// <summary>
@@ -117,7 +126,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassConcentration(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -154,6 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MassConcentration;
 
         /// <summary>
@@ -177,29 +187,6 @@ namespace UnitsNet
 
         double IQuantity.Value => Convert.ToDouble(Value);
 
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public MassConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<MassConcentrationUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassConcentration<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => MassConcentration<T>.BaseDimensions;
-
-        #endregion
-
         #region Conversion Properties
 
         /// <summary>
@@ -211,6 +198,11 @@ namespace UnitsNet
         ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerLiter.
         /// </summary>
         public T CentigramsPerLiter => As(MassConcentrationUnit.CentigramPerLiter);
+
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerMicroliter.
+        /// </summary>
+        public T CentigramsPerMicroliter => As(MassConcentrationUnit.CentigramPerMicroliter);
 
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerMilliliter.
@@ -226,6 +218,11 @@ namespace UnitsNet
         ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerLiter.
         /// </summary>
         public T DecigramsPerLiter => As(MassConcentrationUnit.DecigramPerLiter);
+
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerMicroliter.
+        /// </summary>
+        public T DecigramsPerMicroliter => As(MassConcentrationUnit.DecigramPerMicroliter);
 
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerMilliliter.
@@ -256,6 +253,11 @@ namespace UnitsNet
         ///     Get <see cref="MassConcentration{T}" /> in GramsPerLiter.
         /// </summary>
         public T GramsPerLiter => As(MassConcentrationUnit.GramPerLiter);
+
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerMicroliter.
+        /// </summary>
+        public T GramsPerMicroliter => As(MassConcentrationUnit.GramPerMicroliter);
 
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in GramsPerMilliliter.
@@ -308,6 +310,11 @@ namespace UnitsNet
         public T MicrogramsPerLiter => As(MassConcentrationUnit.MicrogramPerLiter);
 
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerMicroliter.
+        /// </summary>
+        public T MicrogramsPerMicroliter => As(MassConcentrationUnit.MicrogramPerMicroliter);
+
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerMilliliter.
         /// </summary>
         public T MicrogramsPerMilliliter => As(MassConcentrationUnit.MicrogramPerMilliliter);
@@ -328,6 +335,11 @@ namespace UnitsNet
         public T MilligramsPerLiter => As(MassConcentrationUnit.MilligramPerLiter);
 
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerMicroliter.
+        /// </summary>
+        public T MilligramsPerMicroliter => As(MassConcentrationUnit.MilligramPerMicroliter);
+
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerMilliliter.
         /// </summary>
         public T MilligramsPerMilliliter => As(MassConcentrationUnit.MilligramPerMilliliter);
@@ -343,6 +355,11 @@ namespace UnitsNet
         public T NanogramsPerLiter => As(MassConcentrationUnit.NanogramPerLiter);
 
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerMicroliter.
+        /// </summary>
+        public T NanogramsPerMicroliter => As(MassConcentrationUnit.NanogramPerMicroliter);
+
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerMilliliter.
         /// </summary>
         public T NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
@@ -356,6 +373,11 @@ namespace UnitsNet
         ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerLiter.
         /// </summary>
         public T PicogramsPerLiter => As(MassConcentrationUnit.PicogramPerLiter);
+
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerMicroliter.
+        /// </summary>
+        public T PicogramsPerMicroliter => As(MassConcentrationUnit.PicogramPerMicroliter);
 
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerMilliliter.
@@ -422,7 +444,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(MassConcentrationUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(MassConcentrationUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -448,6 +470,14 @@ namespace UnitsNet
             return new MassConcentration<T>(centigramsperliter, MassConcentrationUnit.CentigramPerLiter);
         }
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromCentigramsPerMicroliter(T centigramspermicroliter)
+        {
+            return new MassConcentration<T>(centigramspermicroliter, MassConcentrationUnit.CentigramPerMicroliter);
+        }
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -470,6 +500,14 @@ namespace UnitsNet
         public static MassConcentration<T> FromDecigramsPerLiter(T decigramsperliter)
         {
             return new MassConcentration<T>(decigramsperliter, MassConcentrationUnit.DecigramPerLiter);
+        }
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromDecigramsPerMicroliter(T decigramspermicroliter)
+        {
+            return new MassConcentration<T>(decigramspermicroliter, MassConcentrationUnit.DecigramPerMicroliter);
         }
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerMilliliter.
@@ -518,6 +556,14 @@ namespace UnitsNet
         public static MassConcentration<T> FromGramsPerLiter(T gramsperliter)
         {
             return new MassConcentration<T>(gramsperliter, MassConcentrationUnit.GramPerLiter);
+        }
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromGramsPerMicroliter(T gramspermicroliter)
+        {
+            return new MassConcentration<T>(gramspermicroliter, MassConcentrationUnit.GramPerMicroliter);
         }
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from GramsPerMilliliter.
@@ -600,6 +646,14 @@ namespace UnitsNet
             return new MassConcentration<T>(microgramsperliter, MassConcentrationUnit.MicrogramPerLiter);
         }
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromMicrogramsPerMicroliter(T microgramspermicroliter)
+        {
+            return new MassConcentration<T>(microgramspermicroliter, MassConcentrationUnit.MicrogramPerMicroliter);
+        }
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -632,6 +686,14 @@ namespace UnitsNet
             return new MassConcentration<T>(milligramsperliter, MassConcentrationUnit.MilligramPerLiter);
         }
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromMilligramsPerMicroliter(T milligramspermicroliter)
+        {
+            return new MassConcentration<T>(milligramspermicroliter, MassConcentrationUnit.MilligramPerMicroliter);
+        }
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -656,6 +718,14 @@ namespace UnitsNet
             return new MassConcentration<T>(nanogramsperliter, MassConcentrationUnit.NanogramPerLiter);
         }
         /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromNanogramsPerMicroliter(T nanogramspermicroliter)
+        {
+            return new MassConcentration<T>(nanogramspermicroliter, MassConcentrationUnit.NanogramPerMicroliter);
+        }
+        /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -678,6 +748,14 @@ namespace UnitsNet
         public static MassConcentration<T> FromPicogramsPerLiter(T picogramsperliter)
         {
             return new MassConcentration<T>(picogramsperliter, MassConcentrationUnit.PicogramPerLiter);
+        }
+        /// <summary>
+        ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerMicroliter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration<T> FromPicogramsPerMicroliter(T picogramspermicroliter)
+        {
+            return new MassConcentration<T>(picogramspermicroliter, MassConcentrationUnit.PicogramPerMicroliter);
         }
         /// <summary>
         ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerMilliliter.
@@ -817,7 +895,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MassConcentration<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static MassConcentration<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<MassConcentration<T>, MassConcentrationUnit>(
                 str,
@@ -833,7 +911,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out MassConcentration<T> result)
+        public static bool TryParse(string? str, out MassConcentration<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -848,7 +926,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MassConcentration<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration<T> result)
         {
             return QuantityParser.Default.TryParse<MassConcentration<T>, MassConcentrationUnit>(
                 str,
@@ -881,7 +959,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassConcentrationUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static MassConcentrationUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<MassConcentrationUnit>(str, provider);
         }
@@ -902,7 +980,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out MassConcentrationUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassConcentrationUnit unit)
         {
             return UnitParser.Default.TryParse<MassConcentrationUnit>(str, provider, out unit);
         }
@@ -1087,7 +1165,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="MassConcentration{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1110,7 +1188,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1158,7 +1236,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MassConcentration<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1196,15 +1274,18 @@ namespace UnitsNet
             {
                 case MassConcentrationUnit.CentigramPerDeciliter: return (Value/1e-1) * 1e-2d;
                 case MassConcentrationUnit.CentigramPerLiter: return (Value) * 1e-2d;
+                case MassConcentrationUnit.CentigramPerMicroliter: return (Value/1e-6) * 1e-2d;
                 case MassConcentrationUnit.CentigramPerMilliliter: return (Value/1e-3) * 1e-2d;
                 case MassConcentrationUnit.DecigramPerDeciliter: return (Value/1e-1) * 1e-1d;
                 case MassConcentrationUnit.DecigramPerLiter: return (Value) * 1e-1d;
+                case MassConcentrationUnit.DecigramPerMicroliter: return (Value/1e-6) * 1e-1d;
                 case MassConcentrationUnit.DecigramPerMilliliter: return (Value/1e-3) * 1e-1d;
                 case MassConcentrationUnit.GramPerCubicCentimeter: return Value/1e-3;
                 case MassConcentrationUnit.GramPerCubicMeter: return Value/1e3;
                 case MassConcentrationUnit.GramPerCubicMillimeter: return Value/1e-6;
                 case MassConcentrationUnit.GramPerDeciliter: return Value/1e-1;
                 case MassConcentrationUnit.GramPerLiter: return Value;
+                case MassConcentrationUnit.GramPerMicroliter: return Value/1e-6;
                 case MassConcentrationUnit.GramPerMilliliter: return Value/1e-3;
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (Value/1e-3) * 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (Value/1e3) * 1e3d;
@@ -1215,16 +1296,20 @@ namespace UnitsNet
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (Value/1e3) * 1e-6d;
                 case MassConcentrationUnit.MicrogramPerDeciliter: return (Value/1e-1) * 1e-6d;
                 case MassConcentrationUnit.MicrogramPerLiter: return (Value) * 1e-6d;
+                case MassConcentrationUnit.MicrogramPerMicroliter: return (Value/1e-6) * 1e-6d;
                 case MassConcentrationUnit.MicrogramPerMilliliter: return (Value/1e-3) * 1e-6d;
                 case MassConcentrationUnit.MilligramPerCubicMeter: return (Value/1e3) * 1e-3d;
                 case MassConcentrationUnit.MilligramPerDeciliter: return (Value/1e-1) * 1e-3d;
                 case MassConcentrationUnit.MilligramPerLiter: return (Value) * 1e-3d;
+                case MassConcentrationUnit.MilligramPerMicroliter: return (Value/1e-6) * 1e-3d;
                 case MassConcentrationUnit.MilligramPerMilliliter: return (Value/1e-3) * 1e-3d;
                 case MassConcentrationUnit.NanogramPerDeciliter: return (Value/1e-1) * 1e-9d;
                 case MassConcentrationUnit.NanogramPerLiter: return (Value) * 1e-9d;
+                case MassConcentrationUnit.NanogramPerMicroliter: return (Value/1e-6) * 1e-9d;
                 case MassConcentrationUnit.NanogramPerMilliliter: return (Value/1e-3) * 1e-9d;
                 case MassConcentrationUnit.PicogramPerDeciliter: return (Value/1e-1) * 1e-12d;
                 case MassConcentrationUnit.PicogramPerLiter: return (Value) * 1e-12d;
+                case MassConcentrationUnit.PicogramPerMicroliter: return (Value/1e-6) * 1e-12d;
                 case MassConcentrationUnit.PicogramPerMilliliter: return (Value/1e-3) * 1e-12d;
                 case MassConcentrationUnit.PoundPerCubicFoot: return Value/0.062427961;
                 case MassConcentrationUnit.PoundPerCubicInch: return Value/3.6127298147753e-5;
@@ -1261,15 +1346,18 @@ namespace UnitsNet
             {
                 case MassConcentrationUnit.CentigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-2d;
                 case MassConcentrationUnit.CentigramPerLiter: return (baseUnitValue) / 1e-2d;
+                case MassConcentrationUnit.CentigramPerMicroliter: return (baseUnitValue*1e-6) / 1e-2d;
                 case MassConcentrationUnit.CentigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-2d;
                 case MassConcentrationUnit.DecigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-1d;
                 case MassConcentrationUnit.DecigramPerLiter: return (baseUnitValue) / 1e-1d;
+                case MassConcentrationUnit.DecigramPerMicroliter: return (baseUnitValue*1e-6) / 1e-1d;
                 case MassConcentrationUnit.DecigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-1d;
                 case MassConcentrationUnit.GramPerCubicCentimeter: return baseUnitValue*1e-3;
                 case MassConcentrationUnit.GramPerCubicMeter: return baseUnitValue*1e3;
                 case MassConcentrationUnit.GramPerCubicMillimeter: return baseUnitValue*1e-6;
                 case MassConcentrationUnit.GramPerDeciliter: return baseUnitValue*1e-1;
                 case MassConcentrationUnit.GramPerLiter: return baseUnitValue;
+                case MassConcentrationUnit.GramPerMicroliter: return baseUnitValue*1e-6;
                 case MassConcentrationUnit.GramPerMilliliter: return baseUnitValue*1e-3;
                 case MassConcentrationUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
                 case MassConcentrationUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
@@ -1280,16 +1368,20 @@ namespace UnitsNet
                 case MassConcentrationUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
                 case MassConcentrationUnit.MicrogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-6d;
                 case MassConcentrationUnit.MicrogramPerLiter: return (baseUnitValue) / 1e-6d;
+                case MassConcentrationUnit.MicrogramPerMicroliter: return (baseUnitValue*1e-6) / 1e-6d;
                 case MassConcentrationUnit.MicrogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-6d;
                 case MassConcentrationUnit.MilligramPerCubicMeter: return (baseUnitValue*1e3) / 1e-3d;
                 case MassConcentrationUnit.MilligramPerDeciliter: return (baseUnitValue*1e-1) / 1e-3d;
                 case MassConcentrationUnit.MilligramPerLiter: return (baseUnitValue) / 1e-3d;
+                case MassConcentrationUnit.MilligramPerMicroliter: return (baseUnitValue*1e-6) / 1e-3d;
                 case MassConcentrationUnit.MilligramPerMilliliter: return (baseUnitValue*1e-3) / 1e-3d;
                 case MassConcentrationUnit.NanogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-9d;
                 case MassConcentrationUnit.NanogramPerLiter: return (baseUnitValue) / 1e-9d;
+                case MassConcentrationUnit.NanogramPerMicroliter: return (baseUnitValue*1e-6) / 1e-9d;
                 case MassConcentrationUnit.NanogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-9d;
                 case MassConcentrationUnit.PicogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-12d;
                 case MassConcentrationUnit.PicogramPerLiter: return (baseUnitValue) / 1e-12d;
+                case MassConcentrationUnit.PicogramPerMicroliter: return (baseUnitValue*1e-6) / 1e-12d;
                 case MassConcentrationUnit.PicogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-12d;
                 case MassConcentrationUnit.PoundPerCubicFoot: return baseUnitValue*0.062427961;
                 case MassConcentrationUnit.PoundPerCubicInch: return baseUnitValue*3.6127298147753e-5;
@@ -1322,7 +1414,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1334,7 +1426,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1349,7 +1441,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1377,11 +1469,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<MassConcentrationUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<MassConcentrationUnit>(this, format, provider);
         }
 
         #endregion
@@ -1461,6 +1553,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MassConcentration<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassConcentration<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassConcentration<T>.BaseDimensions;
             else

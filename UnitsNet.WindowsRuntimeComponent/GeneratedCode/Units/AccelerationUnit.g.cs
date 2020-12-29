@@ -37,6 +37,7 @@ namespace UnitsNet.Units
         MeterPerSecondSquared,
         MicrometerPerSecondSquared,
         MillimeterPerSecondSquared,
+        MillistandardGravity,
         NanometerPerSecondSquared,
         StandardGravity,
     }

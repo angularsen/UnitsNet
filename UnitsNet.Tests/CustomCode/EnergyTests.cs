@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class EnergyTests : EnergyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double ThermsImperialInOneJoule => 9.478171203551087813109937767482e-9;
 
         protected override double JoulesInOneJoule => 1;
@@ -17,6 +18,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilojoulesInOneJoule => 1E-3;
 
         protected override double MegabritishThermalUnitsInOneJoule => 9.4781712e-10;
+
+        protected override double MegacaloriesInOneJoule => 0.239005736e-6;
 
         protected override double MegajoulesInOneJoule => 1E-6;
 
@@ -30,13 +33,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecathermsUsInOneJoule => 9.480434279733486e-10;
 
-        protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
-
         protected override double ErgsInOneJoule => 10000000;
 
         protected override double MillijoulesInOneJoule => 1000;
 
         protected override double TerawattHoursInOneJoule => 2.77777778e-16;
+
+        protected override double TerawattDaysInOneJoule => 1.157407407407410E-17;
 
         protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
 
@@ -44,17 +47,39 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GigabritishThermalUnitsInOneJoule => 9.4781712e-13;
 
+        protected override double GigajoulesInOneJoule => 1e-9;
+
         protected override double GigawattHoursInOneJoule => 2.77777778e-13;
+
+        protected override double GigawattDaysInOneJoule => 1.157407407407410E-14;
 
         protected override double KilocaloriesInOneJoule => 0.00023900573614;
 
         protected override double KilowattHoursInOneJoule => 2.77777778e-7;
 
+        protected override double KilowattDaysInOneJoule => 1.157407407407410E-08;
+
         protected override double MegawattHoursInOneJoule => 2.77777778e-10;
+
+        protected override double MegawattDaysInOneJoule => 1.157407407407410E-11;
 
         protected override double ThermsUsInOneJoule => 9.4804342797334860315281322406817e-9;
 
         protected override double WattHoursInOneJoule => 0.000277777778;
+
+        protected override double WattDaysInOneJoule => 1.157407407407410E-05;
+
+        protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
+
+        protected override double KiloelectronVoltsInOneJoule => 6.2415093433e+15;
+
+        protected override double MegaelectronVoltsInOneJoule => 6.2415093433e+12;
+
+        protected override double GigaelectronVoltsInOneJoule => 6.2415093433e+9;
+
+        protected override double TeraelectronVoltsInOneJoule => 6.2415093433e+6;
+
+        protected override double HorsepowerHoursInOneJoule => 3.725061361111e-7;
 
         [Fact]
         public void Constructor_UnitSystemSI_AssignsSIUnit()

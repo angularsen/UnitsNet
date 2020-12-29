@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -43,13 +45,13 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
 
-            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion,
+            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
                 new UnitInfo<CoefficientOfThermalExpansionUnit>[] {
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public CoefficientOfThermalExpansion(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -114,6 +116,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.CoefficientOfThermalExpansion;
 
         /// <summary>
@@ -136,29 +139,6 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
-
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public CoefficientOfThermalExpansionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<CoefficientOfThermalExpansionUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => CoefficientOfThermalExpansion<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => CoefficientOfThermalExpansion<T>.BaseDimensions;
-
-        #endregion
 
         #region Conversion Properties
 
@@ -197,7 +177,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(CoefficientOfThermalExpansionUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(CoefficientOfThermalExpansionUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -296,7 +276,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static CoefficientOfThermalExpansion<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static CoefficientOfThermalExpansion<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<CoefficientOfThermalExpansion<T>, CoefficientOfThermalExpansionUnit>(
                 str,
@@ -312,7 +292,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out CoefficientOfThermalExpansion<T> result)
+        public static bool TryParse(string? str, out CoefficientOfThermalExpansion<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -327,7 +307,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out CoefficientOfThermalExpansion<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out CoefficientOfThermalExpansion<T> result)
         {
             return QuantityParser.Default.TryParse<CoefficientOfThermalExpansion<T>, CoefficientOfThermalExpansionUnit>(
                 str,
@@ -360,7 +340,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static CoefficientOfThermalExpansionUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static CoefficientOfThermalExpansionUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<CoefficientOfThermalExpansionUnit>(str, provider);
         }
@@ -381,7 +361,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out CoefficientOfThermalExpansionUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out CoefficientOfThermalExpansionUnit unit)
         {
             return UnitParser.Default.TryParse<CoefficientOfThermalExpansionUnit>(str, provider, out unit);
         }
@@ -566,7 +546,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="CoefficientOfThermalExpansion{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -589,7 +569,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -637,7 +617,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public CoefficientOfThermalExpansion<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -674,7 +654,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return Value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return Value*5/9;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return Value*9/5;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -702,7 +682,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*9/5;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*5/9;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
@@ -727,7 +707,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -739,7 +719,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -754,7 +734,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -782,11 +762,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<CoefficientOfThermalExpansionUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<CoefficientOfThermalExpansionUnit>(this, format, provider);
         }
 
         #endregion
@@ -866,6 +846,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return CoefficientOfThermalExpansion<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return CoefficientOfThermalExpansion<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return CoefficientOfThermalExpansion<T>.BaseDimensions;
             else

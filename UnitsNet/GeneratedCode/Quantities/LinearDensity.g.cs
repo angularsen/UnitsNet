@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -46,13 +48,24 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity,
+            Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
                 new UnitInfo<LinearDensityUnit>[] {
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, BaseUnits.Undefined),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
         }
 
         /// <summary>
@@ -80,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public LinearDensity(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -117,6 +130,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.LinearDensity;
 
         /// <summary>
@@ -140,30 +154,12 @@ namespace UnitsNet
 
         double IQuantity.Value => Convert.ToDouble(Value);
 
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public LinearDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => LinearDensity<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => LinearDensity<T>.BaseDimensions;
-
-        #endregion
-
         #region Conversion Properties
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in GramsPerCentimeter.
+        /// </summary>
+        public T GramsPerCentimeter => As(LinearDensityUnit.GramPerCentimeter);
 
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in GramsPerMeter.
@@ -171,14 +167,64 @@ namespace UnitsNet
         public T GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
 
         /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in GramsPerMillimeter.
+        /// </summary>
+        public T GramsPerMillimeter => As(LinearDensityUnit.GramPerMillimeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in KilogramsPerCentimeter.
+        /// </summary>
+        public T KilogramsPerCentimeter => As(LinearDensityUnit.KilogramPerCentimeter);
+
+        /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in KilogramsPerMeter.
         /// </summary>
         public T KilogramsPerMeter => As(LinearDensityUnit.KilogramPerMeter);
 
         /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in KilogramsPerMillimeter.
+        /// </summary>
+        public T KilogramsPerMillimeter => As(LinearDensityUnit.KilogramPerMillimeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MicrogramsPerCentimeter.
+        /// </summary>
+        public T MicrogramsPerCentimeter => As(LinearDensityUnit.MicrogramPerCentimeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MicrogramsPerMeter.
+        /// </summary>
+        public T MicrogramsPerMeter => As(LinearDensityUnit.MicrogramPerMeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MicrogramsPerMillimeter.
+        /// </summary>
+        public T MicrogramsPerMillimeter => As(LinearDensityUnit.MicrogramPerMillimeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MilligramsPerCentimeter.
+        /// </summary>
+        public T MilligramsPerCentimeter => As(LinearDensityUnit.MilligramPerCentimeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MilligramsPerMeter.
+        /// </summary>
+        public T MilligramsPerMeter => As(LinearDensityUnit.MilligramPerMeter);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in MilligramsPerMillimeter.
+        /// </summary>
+        public T MilligramsPerMillimeter => As(LinearDensityUnit.MilligramPerMillimeter);
+
+        /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> in PoundsPerFoot.
         /// </summary>
         public T PoundsPerFoot => As(LinearDensityUnit.PoundPerFoot);
+
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> in PoundsPerInch.
+        /// </summary>
+        public T PoundsPerInch => As(LinearDensityUnit.PoundPerInch);
 
         #endregion
 
@@ -200,7 +246,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(LinearDensityUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(LinearDensityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -210,12 +256,36 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from GramsPerCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromGramsPerCentimeter(T gramspercentimeter)
+        {
+            return new LinearDensity<T>(gramspercentimeter, LinearDensityUnit.GramPerCentimeter);
+        }
+        /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> from GramsPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearDensity<T> FromGramsPerMeter(T gramspermeter)
         {
             return new LinearDensity<T>(gramspermeter, LinearDensityUnit.GramPerMeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from GramsPerMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromGramsPerMillimeter(T gramspermillimeter)
+        {
+            return new LinearDensity<T>(gramspermillimeter, LinearDensityUnit.GramPerMillimeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from KilogramsPerCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromKilogramsPerCentimeter(T kilogramspercentimeter)
+        {
+            return new LinearDensity<T>(kilogramspercentimeter, LinearDensityUnit.KilogramPerCentimeter);
         }
         /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> from KilogramsPerMeter.
@@ -226,12 +296,76 @@ namespace UnitsNet
             return new LinearDensity<T>(kilogramspermeter, LinearDensityUnit.KilogramPerMeter);
         }
         /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from KilogramsPerMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromKilogramsPerMillimeter(T kilogramspermillimeter)
+        {
+            return new LinearDensity<T>(kilogramspermillimeter, LinearDensityUnit.KilogramPerMillimeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MicrogramsPerCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMicrogramsPerCentimeter(T microgramspercentimeter)
+        {
+            return new LinearDensity<T>(microgramspercentimeter, LinearDensityUnit.MicrogramPerCentimeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MicrogramsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMicrogramsPerMeter(T microgramspermeter)
+        {
+            return new LinearDensity<T>(microgramspermeter, LinearDensityUnit.MicrogramPerMeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MicrogramsPerMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMicrogramsPerMillimeter(T microgramspermillimeter)
+        {
+            return new LinearDensity<T>(microgramspermillimeter, LinearDensityUnit.MicrogramPerMillimeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MilligramsPerCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMilligramsPerCentimeter(T milligramspercentimeter)
+        {
+            return new LinearDensity<T>(milligramspercentimeter, LinearDensityUnit.MilligramPerCentimeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MilligramsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMilligramsPerMeter(T milligramspermeter)
+        {
+            return new LinearDensity<T>(milligramspermeter, LinearDensityUnit.MilligramPerMeter);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from MilligramsPerMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromMilligramsPerMillimeter(T milligramspermillimeter)
+        {
+            return new LinearDensity<T>(milligramspermillimeter, LinearDensityUnit.MilligramPerMillimeter);
+        }
+        /// <summary>
         ///     Get <see cref="LinearDensity{T}" /> from PoundsPerFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearDensity<T> FromPoundsPerFoot(T poundsperfoot)
         {
             return new LinearDensity<T>(poundsperfoot, LinearDensityUnit.PoundPerFoot);
+        }
+        /// <summary>
+        ///     Get <see cref="LinearDensity{T}" /> from PoundsPerInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity<T> FromPoundsPerInch(T poundsperinch)
+        {
+            return new LinearDensity<T>(poundsperinch, LinearDensityUnit.PoundPerInch);
         }
 
         /// <summary>
@@ -299,7 +433,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static LinearDensity<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static LinearDensity<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<LinearDensity<T>, LinearDensityUnit>(
                 str,
@@ -315,7 +449,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out LinearDensity<T> result)
+        public static bool TryParse(string? str, out LinearDensity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -330,7 +464,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out LinearDensity<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out LinearDensity<T> result)
         {
             return QuantityParser.Default.TryParse<LinearDensity<T>, LinearDensityUnit>(
                 str,
@@ -363,7 +497,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static LinearDensityUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static LinearDensityUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<LinearDensityUnit>(str, provider);
         }
@@ -384,7 +518,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out LinearDensityUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out LinearDensityUnit unit)
         {
             return UnitParser.Default.TryParse<LinearDensityUnit>(str, provider, out unit);
         }
@@ -569,7 +703,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="LinearDensity{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -592,7 +726,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -640,7 +774,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public LinearDensity<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -676,9 +810,20 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case LinearDensityUnit.GramPerCentimeter: return Value*1e-1;
                 case LinearDensityUnit.GramPerMeter: return Value*1e-3;
+                case LinearDensityUnit.GramPerMillimeter: return Value;
+                case LinearDensityUnit.KilogramPerCentimeter: return (Value*1e-1) * 1e3d;
                 case LinearDensityUnit.KilogramPerMeter: return (Value*1e-3) * 1e3d;
+                case LinearDensityUnit.KilogramPerMillimeter: return (Value) * 1e3d;
+                case LinearDensityUnit.MicrogramPerCentimeter: return (Value*1e-1) * 1e-6d;
+                case LinearDensityUnit.MicrogramPerMeter: return (Value*1e-3) * 1e-6d;
+                case LinearDensityUnit.MicrogramPerMillimeter: return (Value) * 1e-6d;
+                case LinearDensityUnit.MilligramPerCentimeter: return (Value*1e-1) * 1e-3d;
+                case LinearDensityUnit.MilligramPerMeter: return (Value*1e-3) * 1e-3d;
+                case LinearDensityUnit.MilligramPerMillimeter: return (Value) * 1e-3d;
                 case LinearDensityUnit.PoundPerFoot: return Value*1.48816394;
+                case LinearDensityUnit.PoundPerInch: return Value/5.5997415e-2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -704,9 +849,20 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case LinearDensityUnit.GramPerCentimeter: return baseUnitValue/1e-1;
                 case LinearDensityUnit.GramPerMeter: return baseUnitValue/1e-3;
+                case LinearDensityUnit.GramPerMillimeter: return baseUnitValue;
+                case LinearDensityUnit.KilogramPerCentimeter: return (baseUnitValue/1e-1) / 1e3d;
                 case LinearDensityUnit.KilogramPerMeter: return (baseUnitValue/1e-3) / 1e3d;
+                case LinearDensityUnit.KilogramPerMillimeter: return (baseUnitValue) / 1e3d;
+                case LinearDensityUnit.MicrogramPerCentimeter: return (baseUnitValue/1e-1) / 1e-6d;
+                case LinearDensityUnit.MicrogramPerMeter: return (baseUnitValue/1e-3) / 1e-6d;
+                case LinearDensityUnit.MicrogramPerMillimeter: return (baseUnitValue) / 1e-6d;
+                case LinearDensityUnit.MilligramPerCentimeter: return (baseUnitValue/1e-1) / 1e-3d;
+                case LinearDensityUnit.MilligramPerMeter: return (baseUnitValue/1e-3) / 1e-3d;
+                case LinearDensityUnit.MilligramPerMillimeter: return (baseUnitValue) / 1e-3d;
                 case LinearDensityUnit.PoundPerFoot: return baseUnitValue/1.48816394;
+                case LinearDensityUnit.PoundPerInch: return baseUnitValue*5.5997415e-2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -730,7 +886,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -742,7 +898,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -757,7 +913,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -785,11 +941,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<LinearDensityUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<LinearDensityUnit>(this, format, provider);
         }
 
         #endregion
@@ -869,6 +1025,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return LinearDensity<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return LinearDensity<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return LinearDensity<T>.BaseDimensions;
             else

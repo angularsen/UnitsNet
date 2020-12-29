@@ -29,6 +29,9 @@
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Hecto", "Kilo" ],
+      "BaseUnits": {
+        "L": "Meter"
+      },
       "Localization": [
         {
           "Culture": "en-US",
@@ -242,7 +245,7 @@
       "PluralName": "UsGallons",
       "FromUnitToBaseFunc": "x*0.00378541",
       "FromBaseToUnitFunc": "x/0.00378541",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -490,6 +493,22 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "pt (imp.)", "UK pt", "pt", "p" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BoardFoot",
+      "PluralName": "BoardFeet",
+      "FromUnitToBaseFunc": "x*2.3597372158e-3",
+      "FromBaseToUnitFunc": "x/2.3597372158e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bf", "board foot", "board feet" ]
+        },
+        {
+          "Culture": "fr-CA",
+          "Abbreviations": [ "pmp", "pied-planche", "pied de planche" ]
         }
       ]
     }

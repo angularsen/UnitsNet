@@ -98,5 +98,11 @@ namespace UnitsNet
             var value = CompiledLambdas.Multiply(volumeFlow.CubicMetersPerSecond, duration.Seconds);
             return Volume<T>.FromCubicMeters(value);
         }
+
+        /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(Duration time, ElectricCurrent current)
+        {
+            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
     }
 }

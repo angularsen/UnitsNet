@@ -506,8 +506,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value*1e2;
-                case RatioChangeRateUnit.PercentPerSecond: return _value;
+                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value;
+                case RatioChangeRateUnit.PercentPerSecond: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -522,8 +522,8 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue/1e2;
-                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue;
+                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue;
+                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

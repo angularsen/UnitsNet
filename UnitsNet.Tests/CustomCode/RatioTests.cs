@@ -5,6 +5,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RatioTests : RatioTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double DecimalFractionsInOneDecimalFraction => 1;
 
         protected override double PartsPerBillionInOneDecimalFraction => 1e9;

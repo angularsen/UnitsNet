@@ -22,6 +22,9 @@ using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Collections.Generic;
+
+#nullable enable
 
 namespace UnitsNet
 {
@@ -31,11 +34,233 @@ namespace UnitsNet
     public static partial class Quantity
     {
         /// <summary>
+        /// All QuantityInfo instances mapped by quantity name that are present in UnitsNet by default.
+        /// </summary>
+        public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
+        {
+            { "Acceleration", Acceleration.Info },
+            { "AmountOfSubstance", AmountOfSubstance.Info },
+            { "AmplitudeRatio", AmplitudeRatio.Info },
+            { "Angle", Angle.Info },
+            { "ApparentEnergy", ApparentEnergy.Info },
+            { "ApparentPower", ApparentPower.Info },
+            { "Area", Area.Info },
+            { "AreaDensity", AreaDensity.Info },
+            { "AreaMomentOfInertia", AreaMomentOfInertia.Info },
+            { "BitRate", BitRate.Info },
+            { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
+            { "Capacitance", Capacitance.Info },
+            { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
+            { "Density", Density.Info },
+            { "Duration", Duration.Info },
+            { "DynamicViscosity", DynamicViscosity.Info },
+            { "ElectricAdmittance", ElectricAdmittance.Info },
+            { "ElectricCharge", ElectricCharge.Info },
+            { "ElectricChargeDensity", ElectricChargeDensity.Info },
+            { "ElectricConductance", ElectricConductance.Info },
+            { "ElectricConductivity", ElectricConductivity.Info },
+            { "ElectricCurrent", ElectricCurrent.Info },
+            { "ElectricCurrentDensity", ElectricCurrentDensity.Info },
+            { "ElectricCurrentGradient", ElectricCurrentGradient.Info },
+            { "ElectricField", ElectricField.Info },
+            { "ElectricInductance", ElectricInductance.Info },
+            { "ElectricPotential", ElectricPotential.Info },
+            { "ElectricPotentialAc", ElectricPotentialAc.Info },
+            { "ElectricPotentialChangeRate", ElectricPotentialChangeRate.Info },
+            { "ElectricPotentialDc", ElectricPotentialDc.Info },
+            { "ElectricResistance", ElectricResistance.Info },
+            { "ElectricResistivity", ElectricResistivity.Info },
+            { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
+            { "Energy", Energy.Info },
+            { "Entropy", Entropy.Info },
+            { "Force", Force.Info },
+            { "ForceChangeRate", ForceChangeRate.Info },
+            { "ForcePerLength", ForcePerLength.Info },
+            { "Frequency", Frequency.Info },
+            { "FuelEfficiency", FuelEfficiency.Info },
+            { "HeatFlux", HeatFlux.Info },
+            { "HeatTransferCoefficient", HeatTransferCoefficient.Info },
+            { "Illuminance", Illuminance.Info },
+            { "Information", Information.Info },
+            { "Irradiance", Irradiance.Info },
+            { "Irradiation", Irradiation.Info },
+            { "KinematicViscosity", KinematicViscosity.Info },
+            { "LapseRate", LapseRate.Info },
+            { "Length", Length.Info },
+            { "Level", Level.Info },
+            { "LinearDensity", LinearDensity.Info },
+            { "LinearPowerDensity", LinearPowerDensity.Info },
+            { "Luminosity", Luminosity.Info },
+            { "LuminousFlux", LuminousFlux.Info },
+            { "LuminousIntensity", LuminousIntensity.Info },
+            { "MagneticField", MagneticField.Info },
+            { "MagneticFlux", MagneticFlux.Info },
+            { "Magnetization", Magnetization.Info },
+            { "Mass", Mass.Info },
+            { "MassConcentration", MassConcentration.Info },
+            { "MassFlow", MassFlow.Info },
+            { "MassFlux", MassFlux.Info },
+            { "MassFraction", MassFraction.Info },
+            { "MassMomentOfInertia", MassMomentOfInertia.Info },
+            { "MolarEnergy", MolarEnergy.Info },
+            { "MolarEntropy", MolarEntropy.Info },
+            { "Molarity", Molarity.Info },
+            { "MolarMass", MolarMass.Info },
+            { "Permeability", Permeability.Info },
+            { "Permittivity", Permittivity.Info },
+            { "Power", Power.Info },
+            { "PowerDensity", PowerDensity.Info },
+            { "PowerRatio", PowerRatio.Info },
+            { "Pressure", Pressure.Info },
+            { "PressureChangeRate", PressureChangeRate.Info },
+            { "Ratio", Ratio.Info },
+            { "RatioChangeRate", RatioChangeRate.Info },
+            { "ReactiveEnergy", ReactiveEnergy.Info },
+            { "ReactivePower", ReactivePower.Info },
+            { "RelativeHumidity", RelativeHumidity.Info },
+            { "RotationalAcceleration", RotationalAcceleration.Info },
+            { "RotationalSpeed", RotationalSpeed.Info },
+            { "RotationalStiffness", RotationalStiffness.Info },
+            { "RotationalStiffnessPerLength", RotationalStiffnessPerLength.Info },
+            { "SolidAngle", SolidAngle.Info },
+            { "SpecificEnergy", SpecificEnergy.Info },
+            { "SpecificEntropy", SpecificEntropy.Info },
+            { "SpecificVolume", SpecificVolume.Info },
+            { "SpecificWeight", SpecificWeight.Info },
+            { "Speed", Speed.Info },
+            { "Temperature", Temperature.Info },
+            { "TemperatureChangeRate", TemperatureChangeRate.Info },
+            { "TemperatureDelta", TemperatureDelta.Info },
+            { "ThermalConductivity", ThermalConductivity.Info },
+            { "ThermalResistance", ThermalResistance.Info },
+            { "Torque", Torque.Info },
+            { "TorquePerLength", TorquePerLength.Info },
+            { "Turbidity", Turbidity.Info },
+            { "VitaminA", VitaminA.Info },
+            { "Volume", Volume.Info },
+            { "VolumeConcentration", VolumeConcentration.Info },
+            { "VolumeFlow", VolumeFlow.Info },
+            { "VolumePerLength", VolumePerLength.Info },
+            { "WarpingMomentOfInertia", WarpingMomentOfInertia.Info },
+        };
+
+        // Used by the QuantityInfo .ctor to map a name to a QuantityType. Will be removed when QuantityType
+        // will be removed.
+        internal static readonly IDictionary<string, QuantityType> QuantityTypeByName = new Dictionary<string, QuantityType>
+        {
+            { "Acceleration", QuantityType.Acceleration },
+            { "AmountOfSubstance", QuantityType.AmountOfSubstance },
+            { "AmplitudeRatio", QuantityType.AmplitudeRatio },
+            { "Angle", QuantityType.Angle },
+            { "ApparentEnergy", QuantityType.ApparentEnergy },
+            { "ApparentPower", QuantityType.ApparentPower },
+            { "Area", QuantityType.Area },
+            { "AreaDensity", QuantityType.AreaDensity },
+            { "AreaMomentOfInertia", QuantityType.AreaMomentOfInertia },
+            { "BitRate", QuantityType.BitRate },
+            { "BrakeSpecificFuelConsumption", QuantityType.BrakeSpecificFuelConsumption },
+            { "Capacitance", QuantityType.Capacitance },
+            { "CoefficientOfThermalExpansion", QuantityType.CoefficientOfThermalExpansion },
+            { "Density", QuantityType.Density },
+            { "Duration", QuantityType.Duration },
+            { "DynamicViscosity", QuantityType.DynamicViscosity },
+            { "ElectricAdmittance", QuantityType.ElectricAdmittance },
+            { "ElectricCharge", QuantityType.ElectricCharge },
+            { "ElectricChargeDensity", QuantityType.ElectricChargeDensity },
+            { "ElectricConductance", QuantityType.ElectricConductance },
+            { "ElectricConductivity", QuantityType.ElectricConductivity },
+            { "ElectricCurrent", QuantityType.ElectricCurrent },
+            { "ElectricCurrentDensity", QuantityType.ElectricCurrentDensity },
+            { "ElectricCurrentGradient", QuantityType.ElectricCurrentGradient },
+            { "ElectricField", QuantityType.ElectricField },
+            { "ElectricInductance", QuantityType.ElectricInductance },
+            { "ElectricPotential", QuantityType.ElectricPotential },
+            { "ElectricPotentialAc", QuantityType.ElectricPotentialAc },
+            { "ElectricPotentialChangeRate", QuantityType.ElectricPotentialChangeRate },
+            { "ElectricPotentialDc", QuantityType.ElectricPotentialDc },
+            { "ElectricResistance", QuantityType.ElectricResistance },
+            { "ElectricResistivity", QuantityType.ElectricResistivity },
+            { "ElectricSurfaceChargeDensity", QuantityType.ElectricSurfaceChargeDensity },
+            { "Energy", QuantityType.Energy },
+            { "Entropy", QuantityType.Entropy },
+            { "Force", QuantityType.Force },
+            { "ForceChangeRate", QuantityType.ForceChangeRate },
+            { "ForcePerLength", QuantityType.ForcePerLength },
+            { "Frequency", QuantityType.Frequency },
+            { "FuelEfficiency", QuantityType.FuelEfficiency },
+            { "HeatFlux", QuantityType.HeatFlux },
+            { "HeatTransferCoefficient", QuantityType.HeatTransferCoefficient },
+            { "Illuminance", QuantityType.Illuminance },
+            { "Information", QuantityType.Information },
+            { "Irradiance", QuantityType.Irradiance },
+            { "Irradiation", QuantityType.Irradiation },
+            { "KinematicViscosity", QuantityType.KinematicViscosity },
+            { "LapseRate", QuantityType.LapseRate },
+            { "Length", QuantityType.Length },
+            { "Level", QuantityType.Level },
+            { "LinearDensity", QuantityType.LinearDensity },
+            { "LinearPowerDensity", QuantityType.LinearPowerDensity },
+            { "Luminosity", QuantityType.Luminosity },
+            { "LuminousFlux", QuantityType.LuminousFlux },
+            { "LuminousIntensity", QuantityType.LuminousIntensity },
+            { "MagneticField", QuantityType.MagneticField },
+            { "MagneticFlux", QuantityType.MagneticFlux },
+            { "Magnetization", QuantityType.Magnetization },
+            { "Mass", QuantityType.Mass },
+            { "MassConcentration", QuantityType.MassConcentration },
+            { "MassFlow", QuantityType.MassFlow },
+            { "MassFlux", QuantityType.MassFlux },
+            { "MassFraction", QuantityType.MassFraction },
+            { "MassMomentOfInertia", QuantityType.MassMomentOfInertia },
+            { "MolarEnergy", QuantityType.MolarEnergy },
+            { "MolarEntropy", QuantityType.MolarEntropy },
+            { "Molarity", QuantityType.Molarity },
+            { "MolarMass", QuantityType.MolarMass },
+            { "Permeability", QuantityType.Permeability },
+            { "Permittivity", QuantityType.Permittivity },
+            { "Power", QuantityType.Power },
+            { "PowerDensity", QuantityType.PowerDensity },
+            { "PowerRatio", QuantityType.PowerRatio },
+            { "Pressure", QuantityType.Pressure },
+            { "PressureChangeRate", QuantityType.PressureChangeRate },
+            { "Ratio", QuantityType.Ratio },
+            { "RatioChangeRate", QuantityType.RatioChangeRate },
+            { "ReactiveEnergy", QuantityType.ReactiveEnergy },
+            { "ReactivePower", QuantityType.ReactivePower },
+            { "RelativeHumidity", QuantityType.RelativeHumidity },
+            { "RotationalAcceleration", QuantityType.RotationalAcceleration },
+            { "RotationalSpeed", QuantityType.RotationalSpeed },
+            { "RotationalStiffness", QuantityType.RotationalStiffness },
+            { "RotationalStiffnessPerLength", QuantityType.RotationalStiffnessPerLength },
+            { "SolidAngle", QuantityType.SolidAngle },
+            { "SpecificEnergy", QuantityType.SpecificEnergy },
+            { "SpecificEntropy", QuantityType.SpecificEntropy },
+            { "SpecificVolume", QuantityType.SpecificVolume },
+            { "SpecificWeight", QuantityType.SpecificWeight },
+            { "Speed", QuantityType.Speed },
+            { "Temperature", QuantityType.Temperature },
+            { "TemperatureChangeRate", QuantityType.TemperatureChangeRate },
+            { "TemperatureDelta", QuantityType.TemperatureDelta },
+            { "ThermalConductivity", QuantityType.ThermalConductivity },
+            { "ThermalResistance", QuantityType.ThermalResistance },
+            { "Torque", QuantityType.Torque },
+            { "TorquePerLength", QuantityType.TorquePerLength },
+            { "Turbidity", QuantityType.Turbidity },
+            { "VitaminA", QuantityType.VitaminA },
+            { "Volume", QuantityType.Volume },
+            { "VolumeConcentration", QuantityType.VolumeConcentration },
+            { "VolumeFlow", QuantityType.VolumeFlow },
+            { "VolumePerLength", QuantityType.VolumePerLength },
+            { "WarpingMomentOfInertia", QuantityType.WarpingMomentOfInertia },
+        };
+
+        /// <summary>
         /// Dynamically constructs a quantity of the given <see cref="QuantityType"/> with the value in the quantity's base units.
         /// </summary>
         /// <param name="quantityType">The <see cref="QuantityType"/> of the quantity to create.</param>
         /// <param name="value">The value to construct the quantity with.</param>
         /// <returns>The created quantity.</returns>
+        [Obsolete("QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead.")]
         public static IQuantity FromQuantityType<T>(QuantityType quantityType, QuantityValue value)
         {
             switch(quantityType)
@@ -96,6 +321,8 @@ namespace UnitsNet
                     return ElectricPotential<T>.From(value, ElectricPotential<T>.BaseUnit);
                 case QuantityType.ElectricPotentialAc:
                     return ElectricPotentialAc<T>.From(value, ElectricPotentialAc<T>.BaseUnit);
+                case QuantityType.ElectricPotentialChangeRate:
+                    return ElectricPotentialChangeRate<T>.From(value, ElectricPotentialChangeRate<T>.BaseUnit);
                 case QuantityType.ElectricPotentialDc:
                     return ElectricPotentialDc<T>.From(value, ElectricPotentialDc<T>.BaseUnit);
                 case QuantityType.ElectricResistance:
@@ -140,6 +367,8 @@ namespace UnitsNet
                     return Level<T>.From(value, Level<T>.BaseUnit);
                 case QuantityType.LinearDensity:
                     return LinearDensity<T>.From(value, LinearDensity<T>.BaseUnit);
+                case QuantityType.LinearPowerDensity:
+                    return LinearPowerDensity<T>.From(value, LinearPowerDensity<T>.BaseUnit);
                 case QuantityType.Luminosity:
                     return Luminosity<T>.From(value, Luminosity<T>.BaseUnit);
                 case QuantityType.LuminousFlux:
@@ -194,6 +423,8 @@ namespace UnitsNet
                     return ReactiveEnergy<T>.From(value, ReactiveEnergy<T>.BaseUnit);
                 case QuantityType.ReactivePower:
                     return ReactivePower<T>.From(value, ReactivePower<T>.BaseUnit);
+                case QuantityType.RelativeHumidity:
+                    return RelativeHumidity<T>.From(value, RelativeHumidity<T>.BaseUnit);
                 case QuantityType.RotationalAcceleration:
                     return RotationalAcceleration<T>.From(value, RotationalAcceleration<T>.BaseUnit);
                 case QuantityType.RotationalSpeed:
@@ -226,6 +457,10 @@ namespace UnitsNet
                     return ThermalResistance<T>.From(value, ThermalResistance<T>.BaseUnit);
                 case QuantityType.Torque:
                     return Torque<T>.From(value, Torque<T>.BaseUnit);
+                case QuantityType.TorquePerLength:
+                    return TorquePerLength<T>.From(value, TorquePerLength<T>.BaseUnit);
+                case QuantityType.Turbidity:
+                    return Turbidity<T>.From(value, Turbidity<T>.BaseUnit);
                 case QuantityType.VitaminA:
                     return VitaminA<T>.From(value, VitaminA<T>.BaseUnit);
                 case QuantityType.Volume:
@@ -236,8 +471,233 @@ namespace UnitsNet
                     return VolumeFlow<T>.From(value, VolumeFlow<T>.BaseUnit);
                 case QuantityType.VolumePerLength:
                     return VolumePerLength<T>.From(value, VolumePerLength<T>.BaseUnit);
+                case QuantityType.WarpingMomentOfInertia:
+                    return WarpingMomentOfInertia<T>.From(value, WarpingMomentOfInertia<T>.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
+            }
+        }
+
+        /// <summary>
+        /// Dynamically constructs a quantity of the given <see cref="QuantityInfo"/> with the value in the quantity's base units.
+        /// </summary>
+        /// <param name="quantityInfo">The <see cref="QuantityInfo"/> of the quantity to create.</param>
+        /// <param name="value">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
+        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
+        {
+            switch(quantityInfo.Name)
+            {
+                case "Acceleration":
+                    return Acceleration.From(value, Acceleration.BaseUnit);
+                case "AmountOfSubstance":
+                    return AmountOfSubstance.From(value, AmountOfSubstance.BaseUnit);
+                case "AmplitudeRatio":
+                    return AmplitudeRatio.From(value, AmplitudeRatio.BaseUnit);
+                case "Angle":
+                    return Angle.From(value, Angle.BaseUnit);
+                case "ApparentEnergy":
+                    return ApparentEnergy.From(value, ApparentEnergy.BaseUnit);
+                case "ApparentPower":
+                    return ApparentPower.From(value, ApparentPower.BaseUnit);
+                case "Area":
+                    return Area.From(value, Area.BaseUnit);
+                case "AreaDensity":
+                    return AreaDensity.From(value, AreaDensity.BaseUnit);
+                case "AreaMomentOfInertia":
+                    return AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit);
+                case "BitRate":
+                    return BitRate.From(value, BitRate.BaseUnit);
+                case "BrakeSpecificFuelConsumption":
+                    return BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit);
+                case "Capacitance":
+                    return Capacitance.From(value, Capacitance.BaseUnit);
+                case "CoefficientOfThermalExpansion":
+                    return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
+                case "Density":
+                    return Density.From(value, Density.BaseUnit);
+                case "Duration":
+                    return Duration.From(value, Duration.BaseUnit);
+                case "DynamicViscosity":
+                    return DynamicViscosity.From(value, DynamicViscosity.BaseUnit);
+                case "ElectricAdmittance":
+                    return ElectricAdmittance.From(value, ElectricAdmittance.BaseUnit);
+                case "ElectricCharge":
+                    return ElectricCharge.From(value, ElectricCharge.BaseUnit);
+                case "ElectricChargeDensity":
+                    return ElectricChargeDensity.From(value, ElectricChargeDensity.BaseUnit);
+                case "ElectricConductance":
+                    return ElectricConductance.From(value, ElectricConductance.BaseUnit);
+                case "ElectricConductivity":
+                    return ElectricConductivity.From(value, ElectricConductivity.BaseUnit);
+                case "ElectricCurrent":
+                    return ElectricCurrent.From(value, ElectricCurrent.BaseUnit);
+                case "ElectricCurrentDensity":
+                    return ElectricCurrentDensity.From(value, ElectricCurrentDensity.BaseUnit);
+                case "ElectricCurrentGradient":
+                    return ElectricCurrentGradient.From(value, ElectricCurrentGradient.BaseUnit);
+                case "ElectricField":
+                    return ElectricField.From(value, ElectricField.BaseUnit);
+                case "ElectricInductance":
+                    return ElectricInductance.From(value, ElectricInductance.BaseUnit);
+                case "ElectricPotential":
+                    return ElectricPotential.From(value, ElectricPotential.BaseUnit);
+                case "ElectricPotentialAc":
+                    return ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit);
+                case "ElectricPotentialChangeRate":
+                    return ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit);
+                case "ElectricPotentialDc":
+                    return ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit);
+                case "ElectricResistance":
+                    return ElectricResistance.From(value, ElectricResistance.BaseUnit);
+                case "ElectricResistivity":
+                    return ElectricResistivity.From(value, ElectricResistivity.BaseUnit);
+                case "ElectricSurfaceChargeDensity":
+                    return ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit);
+                case "Energy":
+                    return Energy.From(value, Energy.BaseUnit);
+                case "Entropy":
+                    return Entropy.From(value, Entropy.BaseUnit);
+                case "Force":
+                    return Force.From(value, Force.BaseUnit);
+                case "ForceChangeRate":
+                    return ForceChangeRate.From(value, ForceChangeRate.BaseUnit);
+                case "ForcePerLength":
+                    return ForcePerLength.From(value, ForcePerLength.BaseUnit);
+                case "Frequency":
+                    return Frequency.From(value, Frequency.BaseUnit);
+                case "FuelEfficiency":
+                    return FuelEfficiency.From(value, FuelEfficiency.BaseUnit);
+                case "HeatFlux":
+                    return HeatFlux.From(value, HeatFlux.BaseUnit);
+                case "HeatTransferCoefficient":
+                    return HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit);
+                case "Illuminance":
+                    return Illuminance.From(value, Illuminance.BaseUnit);
+                case "Information":
+                    return Information.From(value, Information.BaseUnit);
+                case "Irradiance":
+                    return Irradiance.From(value, Irradiance.BaseUnit);
+                case "Irradiation":
+                    return Irradiation.From(value, Irradiation.BaseUnit);
+                case "KinematicViscosity":
+                    return KinematicViscosity.From(value, KinematicViscosity.BaseUnit);
+                case "LapseRate":
+                    return LapseRate.From(value, LapseRate.BaseUnit);
+                case "Length":
+                    return Length.From(value, Length.BaseUnit);
+                case "Level":
+                    return Level.From(value, Level.BaseUnit);
+                case "LinearDensity":
+                    return LinearDensity.From(value, LinearDensity.BaseUnit);
+                case "LinearPowerDensity":
+                    return LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit);
+                case "Luminosity":
+                    return Luminosity.From(value, Luminosity.BaseUnit);
+                case "LuminousFlux":
+                    return LuminousFlux.From(value, LuminousFlux.BaseUnit);
+                case "LuminousIntensity":
+                    return LuminousIntensity.From(value, LuminousIntensity.BaseUnit);
+                case "MagneticField":
+                    return MagneticField.From(value, MagneticField.BaseUnit);
+                case "MagneticFlux":
+                    return MagneticFlux.From(value, MagneticFlux.BaseUnit);
+                case "Magnetization":
+                    return Magnetization.From(value, Magnetization.BaseUnit);
+                case "Mass":
+                    return Mass.From(value, Mass.BaseUnit);
+                case "MassConcentration":
+                    return MassConcentration.From(value, MassConcentration.BaseUnit);
+                case "MassFlow":
+                    return MassFlow.From(value, MassFlow.BaseUnit);
+                case "MassFlux":
+                    return MassFlux.From(value, MassFlux.BaseUnit);
+                case "MassFraction":
+                    return MassFraction.From(value, MassFraction.BaseUnit);
+                case "MassMomentOfInertia":
+                    return MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit);
+                case "MolarEnergy":
+                    return MolarEnergy.From(value, MolarEnergy.BaseUnit);
+                case "MolarEntropy":
+                    return MolarEntropy.From(value, MolarEntropy.BaseUnit);
+                case "Molarity":
+                    return Molarity.From(value, Molarity.BaseUnit);
+                case "MolarMass":
+                    return MolarMass.From(value, MolarMass.BaseUnit);
+                case "Permeability":
+                    return Permeability.From(value, Permeability.BaseUnit);
+                case "Permittivity":
+                    return Permittivity.From(value, Permittivity.BaseUnit);
+                case "Power":
+                    return Power.From(value, Power.BaseUnit);
+                case "PowerDensity":
+                    return PowerDensity.From(value, PowerDensity.BaseUnit);
+                case "PowerRatio":
+                    return PowerRatio.From(value, PowerRatio.BaseUnit);
+                case "Pressure":
+                    return Pressure.From(value, Pressure.BaseUnit);
+                case "PressureChangeRate":
+                    return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
+                case "Ratio":
+                    return Ratio.From(value, Ratio.BaseUnit);
+                case "RatioChangeRate":
+                    return RatioChangeRate.From(value, RatioChangeRate.BaseUnit);
+                case "ReactiveEnergy":
+                    return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
+                case "ReactivePower":
+                    return ReactivePower.From(value, ReactivePower.BaseUnit);
+                case "RelativeHumidity":
+                    return RelativeHumidity.From(value, RelativeHumidity.BaseUnit);
+                case "RotationalAcceleration":
+                    return RotationalAcceleration.From(value, RotationalAcceleration.BaseUnit);
+                case "RotationalSpeed":
+                    return RotationalSpeed.From(value, RotationalSpeed.BaseUnit);
+                case "RotationalStiffness":
+                    return RotationalStiffness.From(value, RotationalStiffness.BaseUnit);
+                case "RotationalStiffnessPerLength":
+                    return RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit);
+                case "SolidAngle":
+                    return SolidAngle.From(value, SolidAngle.BaseUnit);
+                case "SpecificEnergy":
+                    return SpecificEnergy.From(value, SpecificEnergy.BaseUnit);
+                case "SpecificEntropy":
+                    return SpecificEntropy.From(value, SpecificEntropy.BaseUnit);
+                case "SpecificVolume":
+                    return SpecificVolume.From(value, SpecificVolume.BaseUnit);
+                case "SpecificWeight":
+                    return SpecificWeight.From(value, SpecificWeight.BaseUnit);
+                case "Speed":
+                    return Speed.From(value, Speed.BaseUnit);
+                case "Temperature":
+                    return Temperature.From(value, Temperature.BaseUnit);
+                case "TemperatureChangeRate":
+                    return TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit);
+                case "TemperatureDelta":
+                    return TemperatureDelta.From(value, TemperatureDelta.BaseUnit);
+                case "ThermalConductivity":
+                    return ThermalConductivity.From(value, ThermalConductivity.BaseUnit);
+                case "ThermalResistance":
+                    return ThermalResistance.From(value, ThermalResistance.BaseUnit);
+                case "Torque":
+                    return Torque.From(value, Torque.BaseUnit);
+                case "TorquePerLength":
+                    return TorquePerLength.From(value, TorquePerLength.BaseUnit);
+                case "Turbidity":
+                    return Turbidity.From(value, Turbidity.BaseUnit);
+                case "VitaminA":
+                    return VitaminA.From(value, VitaminA.BaseUnit);
+                case "Volume":
+                    return Volume.From(value, Volume.BaseUnit);
+                case "VolumeConcentration":
+                    return VolumeConcentration.From(value, VolumeConcentration.BaseUnit);
+                case "VolumeFlow":
+                    return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case "VolumePerLength":
+                    return VolumePerLength.From(value, VolumePerLength.BaseUnit);
+                case "WarpingMomentOfInertia":
+                    return WarpingMomentOfInertia.From(value, WarpingMomentOfInertia.BaseUnit);
+                default:
+                    throw new ArgumentException($"{quantityInfo.Name} is not a supported quantity.");
             }
         }
 
@@ -248,7 +708,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom<T>(QuantityValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom<T>(QuantityValue value, Enum unit, out IQuantity? quantity)
         {
             switch (unit)
             {
@@ -336,6 +796,9 @@ namespace UnitsNet
                 case ElectricPotentialAcUnit electricPotentialAcUnit:
                     quantity = ElectricPotentialAc<T>.From(value, electricPotentialAcUnit);
                     return true;
+                case ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit:
+                    quantity = ElectricPotentialChangeRate<T>.From(value, electricPotentialChangeRateUnit);
+                    return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc<T>.From(value, electricPotentialDcUnit);
                     return true;
@@ -401,6 +864,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity<T>.From(value, linearDensityUnit);
+                    return true;
+                case LinearPowerDensityUnit linearPowerDensityUnit:
+                    quantity = LinearPowerDensity<T>.From(value, linearPowerDensityUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity<T>.From(value, luminosityUnit);
@@ -483,6 +949,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower<T>.From(value, reactivePowerUnit);
                     return true;
+                case RelativeHumidityUnit relativeHumidityUnit:
+                    quantity = RelativeHumidity<T>.From(value, relativeHumidityUnit);
+                    return true;
                 case RotationalAccelerationUnit rotationalAccelerationUnit:
                     quantity = RotationalAcceleration<T>.From(value, rotationalAccelerationUnit);
                     return true;
@@ -531,6 +1000,12 @@ namespace UnitsNet
                 case TorqueUnit torqueUnit:
                     quantity = Torque<T>.From(value, torqueUnit);
                     return true;
+                case TorquePerLengthUnit torquePerLengthUnit:
+                    quantity = TorquePerLength<T>.From(value, torquePerLengthUnit);
+                    return true;
+                case TurbidityUnit turbidityUnit:
+                    quantity = Turbidity<T>.From(value, turbidityUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA<T>.From(value, vitaminAUnit);
                     return true;
@@ -545,6 +1020,9 @@ namespace UnitsNet
                     return true;
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength<T>.From(value, volumePerLengthUnit);
+                    return true;
+                case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
+                    quantity = WarpingMomentOfInertia<T>.From(value, warpingMomentOfInertiaUnit);
                     return true;
                 default:
                 {
@@ -562,7 +1040,7 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse<T>([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
+        public static bool TryParse<T>(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 
@@ -629,6 +1107,8 @@ namespace UnitsNet
                     return parser.TryParse<ElectricPotential<T>, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential<T>.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialAc<T>):
                     return parser.TryParse<ElectricPotentialAc<T>, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc<T>.From, out quantity);
+                case Type _ when quantityType == typeof(ElectricPotentialChangeRate<T>):
+                    return parser.TryParse<ElectricPotentialChangeRate<T>, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate<T>.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricPotentialDc<T>):
                     return parser.TryParse<ElectricPotentialDc<T>, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc<T>.From, out quantity);
                 case Type _ when quantityType == typeof(ElectricResistance<T>):
@@ -673,6 +1153,8 @@ namespace UnitsNet
                     return parser.TryParse<Level<T>, LevelUnit>(quantityString, formatProvider, Level<T>.From, out quantity);
                 case Type _ when quantityType == typeof(LinearDensity<T>):
                     return parser.TryParse<LinearDensity<T>, LinearDensityUnit>(quantityString, formatProvider, LinearDensity<T>.From, out quantity);
+                case Type _ when quantityType == typeof(LinearPowerDensity<T>):
+                    return parser.TryParse<LinearPowerDensity<T>, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity<T>.From, out quantity);
                 case Type _ when quantityType == typeof(Luminosity<T>):
                     return parser.TryParse<Luminosity<T>, LuminosityUnit>(quantityString, formatProvider, Luminosity<T>.From, out quantity);
                 case Type _ when quantityType == typeof(LuminousFlux<T>):
@@ -727,6 +1209,8 @@ namespace UnitsNet
                     return parser.TryParse<ReactiveEnergy<T>, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy<T>.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower<T>):
                     return parser.TryParse<ReactivePower<T>, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower<T>.From, out quantity);
+                case Type _ when quantityType == typeof(RelativeHumidity<T>):
+                    return parser.TryParse<RelativeHumidity<T>, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity<T>.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalAcceleration<T>):
                     return parser.TryParse<RotationalAcceleration<T>, RotationalAccelerationUnit>(quantityString, formatProvider, RotationalAcceleration<T>.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalSpeed<T>):
@@ -759,6 +1243,10 @@ namespace UnitsNet
                     return parser.TryParse<ThermalResistance<T>, ThermalResistanceUnit>(quantityString, formatProvider, ThermalResistance<T>.From, out quantity);
                 case Type _ when quantityType == typeof(Torque<T>):
                     return parser.TryParse<Torque<T>, TorqueUnit>(quantityString, formatProvider, Torque<T>.From, out quantity);
+                case Type _ when quantityType == typeof(TorquePerLength<T>):
+                    return parser.TryParse<TorquePerLength<T>, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength<T>.From, out quantity);
+                case Type _ when quantityType == typeof(Turbidity<T>):
+                    return parser.TryParse<Turbidity<T>, TurbidityUnit>(quantityString, formatProvider, Turbidity<T>.From, out quantity);
                 case Type _ when quantityType == typeof(VitaminA<T>):
                     return parser.TryParse<VitaminA<T>, VitaminAUnit>(quantityString, formatProvider, VitaminA<T>.From, out quantity);
                 case Type _ when quantityType == typeof(Volume<T>):
@@ -769,6 +1257,8 @@ namespace UnitsNet
                     return parser.TryParse<VolumeFlow<T>, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow<T>.From, out quantity);
                 case Type _ when quantityType == typeof(VolumePerLength<T>):
                     return parser.TryParse<VolumePerLength<T>, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength<T>.From, out quantity);
+                case Type _ when quantityType == typeof(WarpingMomentOfInertia<T>):
+                    return parser.TryParse<WarpingMomentOfInertia<T>, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia<T>.From, out quantity);
                 default:
                     return false;
             }

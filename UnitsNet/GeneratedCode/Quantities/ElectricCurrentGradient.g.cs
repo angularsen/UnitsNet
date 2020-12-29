@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -43,11 +45,14 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient,
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
                 new UnitInfo<ElectricCurrentGradientUnit>[] {
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
         }
 
         /// <summary>
@@ -75,7 +80,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricCurrentGradient(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -112,6 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
 
         /// <summary>
@@ -135,30 +141,22 @@ namespace UnitsNet
 
         double IQuantity.Value => Convert.ToDouble(Value);
 
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCurrentGradient<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricCurrentGradient<T>.BaseDimensions;
-
-        #endregion
-
         #region Conversion Properties
+
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> in AmperesPerMicrosecond.
+        /// </summary>
+        public T AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
+
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> in AmperesPerMillisecond.
+        /// </summary>
+        public T AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
+
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> in AmperesPerNanosecond.
+        /// </summary>
+        public T AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
 
         /// <summary>
         ///     Get <see cref="ElectricCurrentGradient{T}" /> in AmperesPerSecond.
@@ -185,7 +183,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(ElectricCurrentGradientUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(ElectricCurrentGradientUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -194,6 +192,30 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> from AmperesPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient<T> FromAmperesPerMicrosecond(T amperespermicrosecond)
+        {
+            return new ElectricCurrentGradient<T>(amperespermicrosecond, ElectricCurrentGradientUnit.AmperePerMicrosecond);
+        }
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> from AmperesPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient<T> FromAmperesPerMillisecond(T amperespermillisecond)
+        {
+            return new ElectricCurrentGradient<T>(amperespermillisecond, ElectricCurrentGradientUnit.AmperePerMillisecond);
+        }
+        /// <summary>
+        ///     Get <see cref="ElectricCurrentGradient{T}" /> from AmperesPerNanosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient<T> FromAmperesPerNanosecond(T amperespernanosecond)
+        {
+            return new ElectricCurrentGradient<T>(amperespernanosecond, ElectricCurrentGradientUnit.AmperePerNanosecond);
+        }
         /// <summary>
         ///     Get <see cref="ElectricCurrentGradient{T}" /> from AmperesPerSecond.
         /// </summary>
@@ -268,7 +290,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricCurrentGradient<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricCurrentGradient<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<ElectricCurrentGradient<T>, ElectricCurrentGradientUnit>(
                 str,
@@ -284,7 +306,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricCurrentGradient<T> result)
+        public static bool TryParse(string? str, out ElectricCurrentGradient<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -299,7 +321,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricCurrentGradient<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrentGradient<T> result)
         {
             return QuantityParser.Default.TryParse<ElectricCurrentGradient<T>, ElectricCurrentGradientUnit>(
                 str,
@@ -332,7 +354,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricCurrentGradientUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricCurrentGradientUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<ElectricCurrentGradientUnit>(str, provider);
         }
@@ -353,7 +375,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out ElectricCurrentGradientUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricCurrentGradientUnit unit)
         {
             return UnitParser.Default.TryParse<ElectricCurrentGradientUnit>(str, provider, out unit);
         }
@@ -538,7 +560,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="ElectricCurrentGradient{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -561,7 +583,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -609,7 +631,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricCurrentGradient<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -645,6 +667,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return Value*1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return Value*1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return Value*1E9;
                 case ElectricCurrentGradientUnit.AmperePerSecond: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -671,6 +696,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue/1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue/1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue/1E9;
                 case ElectricCurrentGradientUnit.AmperePerSecond: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
@@ -695,7 +723,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -707,7 +735,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -722,7 +750,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -750,11 +778,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<ElectricCurrentGradientUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<ElectricCurrentGradientUnit>(this, format, provider);
         }
 
         #endregion
@@ -834,6 +862,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricCurrentGradient<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricCurrentGradient<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricCurrentGradient<T>.BaseDimensions;
             else

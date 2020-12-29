@@ -1,15 +1,13 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace UnitsNet.Tests.Helpers
 {
     /// <summary>
-    /// Is used to imitate e property with attributes
+    /// Is used to imitate a property with attributes
     /// </summary>
     public class TypeDescriptorContext : ITypeDescriptorContext
     {
@@ -55,6 +53,10 @@ namespace UnitsNet.Tests.Helpers
         public TypeDescriptorContext(string name, Attribute[] attributes)
         {
             PropertyDescriptor = new PropertyDescriptor_(name, attributes);
+        }
+
+        public TypeDescriptorContext()
+        {
         }
 
         public IContainer Container => throw new NotImplementedException();

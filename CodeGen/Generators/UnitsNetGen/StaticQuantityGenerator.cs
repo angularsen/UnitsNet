@@ -21,6 +21,9 @@ using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Collections.Generic;
+
+#nullable enable
 
 namespace UnitsNet
 {
@@ -30,11 +33,33 @@ namespace UnitsNet
     public static partial class Quantity
     {
         /// <summary>
+        /// All QuantityInfo instances mapped by quantity name that are present in UnitsNet by default.
+        /// </summary>
+        public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
+        {");
+            foreach (var quantity in _quantities)
+                Writer.WL($@"
+            {{ ""{quantity.Name}"", {quantity.Name}.Info }},");
+            Writer.WL(@"
+        };
+
+        // Used by the QuantityInfo .ctor to map a name to a QuantityType. Will be removed when QuantityType
+        // will be removed.
+        internal static readonly IDictionary<string, QuantityType> QuantityTypeByName = new Dictionary<string, QuantityType>
+        {");
+            foreach (var quantity in _quantities)
+                Writer.WL($@"
+            {{ ""{quantity.Name}"", QuantityType.{quantity.Name} }},");
+            Writer.WL(@"
+        };
+
+        /// <summary>
         /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
         /// </summary>
         /// <param name=""quantityType"">The <see cref=""QuantityType""/> of the quantity to create.</param>
         /// <param name=""value"">The value to construct the quantity with.</param>
         /// <returns>The created quantity.</returns>
+        [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
         public static IQuantity FromQuantityType<T>(QuantityType quantityType, QuantityValue value)
         {
             switch(quantityType)
@@ -54,13 +79,37 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Dynamically constructs a quantity of the given <see cref=""QuantityInfo""/> with the value in the quantity's base units.
+        /// </summary>
+        /// <param name=""quantityInfo"">The <see cref=""QuantityInfo""/> of the quantity to create.</param>
+        /// <param name=""value"">The value to construct the quantity with.</param>
+        /// <returns>The created quantity.</returns>
+        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
+        {
+            switch(quantityInfo.Name)
+            {");
+            foreach (var quantity in _quantities)
+            {
+                var quantityName = quantity.Name;
+                Writer.WL($@"
+                case ""{quantityName}"":
+                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+            }
+
+            Writer.WL(@"
+                default:
+                    throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."");
+            }
+        }
+
+        /// <summary>
         ///     Try to dynamically construct a quantity.
         /// </summary>
         /// <param name=""value"">Numeric value.</param>
         /// <param name=""unit"">Unit enum value.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom<T>(QuantityValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom<T>(QuantityValue value, Enum unit, out IQuantity? quantity)
         {
             switch (unit)
             {");
@@ -92,7 +141,7 @@ namespace UnitsNet
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse<T>([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
+        public static bool TryParse<T>(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 

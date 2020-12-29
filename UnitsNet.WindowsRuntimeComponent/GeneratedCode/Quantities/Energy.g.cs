@@ -201,9 +201,29 @@ namespace UnitsNet
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in GigaelectronVolts.
+        /// </summary>
+        public double GigaelectronVolts => As(EnergyUnit.GigaelectronVolt);
+
+        /// <summary>
+        ///     Get Energy in Gigajoules.
+        /// </summary>
+        public double Gigajoules => As(EnergyUnit.Gigajoule);
+
+        /// <summary>
+        ///     Get Energy in GigawattDays.
+        /// </summary>
+        public double GigawattDays => As(EnergyUnit.GigawattDay);
+
+        /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
+
+        /// <summary>
+        ///     Get Energy in HorsepowerHours.
+        /// </summary>
+        public double HorsepowerHours => As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
         ///     Get Energy in Joules.
@@ -221,9 +241,19 @@ namespace UnitsNet
         public double Kilocalories => As(EnergyUnit.Kilocalorie);
 
         /// <summary>
+        ///     Get Energy in KiloelectronVolts.
+        /// </summary>
+        public double KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
+
+        /// <summary>
         ///     Get Energy in Kilojoules.
         /// </summary>
         public double Kilojoules => As(EnergyUnit.Kilojoule);
+
+        /// <summary>
+        ///     Get Energy in KilowattDays.
+        /// </summary>
+        public double KilowattDays => As(EnergyUnit.KilowattDay);
 
         /// <summary>
         ///     Get Energy in KilowattHours.
@@ -236,9 +266,24 @@ namespace UnitsNet
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in Megacalories.
+        /// </summary>
+        public double Megacalories => As(EnergyUnit.Megacalorie);
+
+        /// <summary>
+        ///     Get Energy in MegaelectronVolts.
+        /// </summary>
+        public double MegaelectronVolts => As(EnergyUnit.MegaelectronVolt);
+
+        /// <summary>
         ///     Get Energy in Megajoules.
         /// </summary>
         public double Megajoules => As(EnergyUnit.Megajoule);
+
+        /// <summary>
+        ///     Get Energy in MegawattDays.
+        /// </summary>
+        public double MegawattDays => As(EnergyUnit.MegawattDay);
 
         /// <summary>
         ///     Get Energy in MegawattHours.
@@ -249,6 +294,16 @@ namespace UnitsNet
         ///     Get Energy in Millijoules.
         /// </summary>
         public double Millijoules => As(EnergyUnit.Millijoule);
+
+        /// <summary>
+        ///     Get Energy in TeraelectronVolts.
+        /// </summary>
+        public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
+
+        /// <summary>
+        ///     Get Energy in TerawattDays.
+        /// </summary>
+        public double TerawattDays => As(EnergyUnit.TerawattDay);
 
         /// <summary>
         ///     Get Energy in TerawattHours.
@@ -269,6 +324,11 @@ namespace UnitsNet
         ///     Get Energy in ThermsUs.
         /// </summary>
         public double ThermsUs => As(EnergyUnit.ThermUs);
+
+        /// <summary>
+        ///     Get Energy in WattDays.
+        /// </summary>
+        public double WattDays => As(EnergyUnit.WattDay);
 
         /// <summary>
         ///     Get Energy in WattHours.
@@ -396,6 +456,36 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from GigaelectronVolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromGigaelectronVolts(double gigaelectronvolts)
+        {
+            double value = (double) gigaelectronvolts;
+            return new Energy(value, EnergyUnit.GigaelectronVolt);
+        }
+        /// <summary>
+        ///     Get Energy from Gigajoules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromGigajoules(double gigajoules)
+        {
+            double value = (double) gigajoules;
+            return new Energy(value, EnergyUnit.Gigajoule);
+        }
+        /// <summary>
+        ///     Get Energy from GigawattDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromGigawattDays(double gigawattdays)
+        {
+            double value = (double) gigawattdays;
+            return new Energy(value, EnergyUnit.GigawattDay);
+        }
+        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -404,6 +494,16 @@ namespace UnitsNet
         {
             double value = (double) gigawatthours;
             return new Energy(value, EnergyUnit.GigawattHour);
+        }
+        /// <summary>
+        ///     Get Energy from HorsepowerHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromHorsepowerHours(double horsepowerhours)
+        {
+            double value = (double) horsepowerhours;
+            return new Energy(value, EnergyUnit.HorsepowerHour);
         }
         /// <summary>
         ///     Get Energy from Joules.
@@ -436,6 +536,16 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
         /// <summary>
+        ///     Get Energy from KiloelectronVolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKiloelectronVolts(double kiloelectronvolts)
+        {
+            double value = (double) kiloelectronvolts;
+            return new Energy(value, EnergyUnit.KiloelectronVolt);
+        }
+        /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -444,6 +554,16 @@ namespace UnitsNet
         {
             double value = (double) kilojoules;
             return new Energy(value, EnergyUnit.Kilojoule);
+        }
+        /// <summary>
+        ///     Get Energy from KilowattDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKilowattDays(double kilowattdays)
+        {
+            double value = (double) kilowattdays;
+            return new Energy(value, EnergyUnit.KilowattDay);
         }
         /// <summary>
         ///     Get Energy from KilowattHours.
@@ -466,6 +586,26 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from Megacalories.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMegacalories(double megacalories)
+        {
+            double value = (double) megacalories;
+            return new Energy(value, EnergyUnit.Megacalorie);
+        }
+        /// <summary>
+        ///     Get Energy from MegaelectronVolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMegaelectronVolts(double megaelectronvolts)
+        {
+            double value = (double) megaelectronvolts;
+            return new Energy(value, EnergyUnit.MegaelectronVolt);
+        }
+        /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -474,6 +614,16 @@ namespace UnitsNet
         {
             double value = (double) megajoules;
             return new Energy(value, EnergyUnit.Megajoule);
+        }
+        /// <summary>
+        ///     Get Energy from MegawattDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromMegawattDays(double megawattdays)
+        {
+            double value = (double) megawattdays;
+            return new Energy(value, EnergyUnit.MegawattDay);
         }
         /// <summary>
         ///     Get Energy from MegawattHours.
@@ -494,6 +644,26 @@ namespace UnitsNet
         {
             double value = (double) millijoules;
             return new Energy(value, EnergyUnit.Millijoule);
+        }
+        /// <summary>
+        ///     Get Energy from TeraelectronVolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromTeraelectronVolts(double teraelectronvolts)
+        {
+            double value = (double) teraelectronvolts;
+            return new Energy(value, EnergyUnit.TeraelectronVolt);
+        }
+        /// <summary>
+        ///     Get Energy from TerawattDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromTerawattDays(double terawattdays)
+        {
+            double value = (double) terawattdays;
+            return new Energy(value, EnergyUnit.TerawattDay);
         }
         /// <summary>
         ///     Get Energy from TerawattHours.
@@ -534,6 +704,16 @@ namespace UnitsNet
         {
             double value = (double) thermsus;
             return new Energy(value, EnergyUnit.ThermUs);
+        }
+        /// <summary>
+        ///     Get Energy from WattDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromWattDays(double wattdays)
+        {
+            double value = (double) wattdays;
+            return new Energy(value, EnergyUnit.WattDay);
         }
         /// <summary>
         ///     Get Energy from WattHours.
@@ -845,20 +1025,32 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return _value*1e-7;
                 case EnergyUnit.FootPound: return _value*1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.GigaelectronVolt: return (_value*1.602176565e-19) * 1e9d;
+                case EnergyUnit.Gigajoule: return (_value) * 1e9d;
+                case EnergyUnit.GigawattDay: return (_value*24*3600d) * 1e9d;
                 case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.HorsepowerHour: return _value*2.6845195377e6;
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
                 case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
+                case EnergyUnit.KiloelectronVolt: return (_value*1.602176565e-19) * 1e3d;
                 case EnergyUnit.Kilojoule: return (_value) * 1e3d;
+                case EnergyUnit.KilowattDay: return (_value*24*3600d) * 1e3d;
                 case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megacalorie: return (_value*4.184) * 1e6d;
+                case EnergyUnit.MegaelectronVolt: return (_value*1.602176565e-19) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
+                case EnergyUnit.MegawattDay: return (_value*24*3600d) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
                 case EnergyUnit.Millijoule: return (_value) * 1e-3d;
+                case EnergyUnit.TeraelectronVolt: return (_value*1.602176565e-19) * 1e12d;
+                case EnergyUnit.TerawattDay: return (_value*24*3600d) * 1e12d;
                 case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value*1.05505585262e8;
                 case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
                 case EnergyUnit.ThermUs: return _value*1.054804e8;
+                case EnergyUnit.WattDay: return _value*24*3600d;
                 case EnergyUnit.WattHour: return _value*3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -883,20 +1075,32 @@ namespace UnitsNet
                 case EnergyUnit.Erg: return baseUnitValue/1e-7;
                 case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
                 case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
+                case EnergyUnit.GigaelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e9d;
+                case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
+                case EnergyUnit.GigawattDay: return (baseUnitValue/(24*3600d)) / 1e9d;
                 case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
+                case EnergyUnit.HorsepowerHour: return baseUnitValue/2.6845195377e6;
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
                 case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
+                case EnergyUnit.KiloelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e3d;
                 case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
+                case EnergyUnit.KilowattDay: return (baseUnitValue/(24*3600d)) / 1e3d;
                 case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
+                case EnergyUnit.Megacalorie: return (baseUnitValue/4.184) / 1e6d;
+                case EnergyUnit.MegaelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
+                case EnergyUnit.MegawattDay: return (baseUnitValue/(24*3600d)) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
                 case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
+                case EnergyUnit.TeraelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e12d;
+                case EnergyUnit.TerawattDay: return (baseUnitValue/(24*3600d)) / 1e12d;
                 case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
                 case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
+                case EnergyUnit.WattDay: return baseUnitValue/(24*3600d);
                 case EnergyUnit.WattHour: return baseUnitValue/3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

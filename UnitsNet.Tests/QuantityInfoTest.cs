@@ -33,10 +33,8 @@ namespace UnitsNet.Tests
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
         }
 
         [Fact]
@@ -53,32 +51,15 @@ namespace UnitsNet.Tests
 
             var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnitInfos,
                 expectedBaseUnit, expectedZero, expectedBaseDimensions);
-
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
-            Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
 
             // Obsolete members
-#pragma warning disable 618
+            Assert.Equal(expectedQuantityType, info.QuantityType);
             Assert.Equal( expectedBaseUnit, info.BaseUnit );
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
-#pragma warning restore 618
-        }
-
-        [Fact]
-        public void Constructor_GivenUndefinedAsQuantityType_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new QuantityInfo(QuantityType.Undefined,
-                Length<double>.Info.UnitInfos, Length<double>.BaseUnit, Length<double>.Zero, Length<double>.BaseDimensions));
-        }
-
-        [Fact]
-        public void GenericsConstructor_GivenUndefinedAsQuantityType_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new QuantityInfo<LengthUnit>(QuantityType.Undefined,
-                Length<double>.Info.UnitInfos, Length<double>.BaseUnit, Length<double>.Zero, Length<double>.BaseDimensions));
         }
 
         [Fact]
@@ -128,6 +109,13 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length,
                 Length<double>.Info.UnitInfos, Length<double>.BaseUnit, Length<double>.Zero, null));
         }
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void Constructor2_GivenNullAsUnitInfos_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length<double>.Info.Name,
+                null, Length<double>.BaseUnit, Length<double>.Zero, Length<double>.BaseDimensions));
+        }
 
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
@@ -135,6 +123,54 @@ namespace UnitsNet.Tests
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length,
                 Length<double>.Info.UnitInfos, Length<double>.BaseUnit, Length<double>.Zero, null));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void GenericsConstructor2_GivenNullAsUnitInfos_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length<double>.Info.Name,
+                null, Length<double>.BaseUnit, Length<double>.Zero, Length<double>.BaseDimensions));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void Constructor2_GivenNullAsBaseUnit_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name,
+                Length.Info.UnitInfos, null, Length.Zero, Length.BaseDimensions));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void Constructor2_GivenNullAsZero_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name,
+                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void GenericsConstructor2_GivenNullAsZero_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length.Info.Name,
+                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void Constructor2_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name,
+                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void GenericsConstructor2_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length.Info.Name,
+                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
         }
 
         [Fact]
@@ -155,7 +191,7 @@ namespace UnitsNet.Tests
         {
             var baseUnits = new BaseUnits(LengthUnit.Meter);
 
-            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length,
+            var quantityInfo = new QuantityInfo<LengthUnit>(Length.Info.Name,
                 new UnitInfo<LengthUnit>[]{
                     new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
                     new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },
@@ -191,7 +227,7 @@ namespace UnitsNet.Tests
         {
             var baseUnits = new BaseUnits(LengthUnit.Meter);
 
-            var quantityInfo = new QuantityInfo<LengthUnit>(QuantityType.Length,
+            var quantityInfo = new QuantityInfo<LengthUnit>(Length.Info.Name,
                 new UnitInfo<LengthUnit>[]{
                     new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
                     new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },

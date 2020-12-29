@@ -8,13 +8,18 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerTests : PowerTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double FemtowattsInOneWatt => 1e15;
+
+        protected override double GigajoulesPerHourInOneWatt => 3600e-9;
 
         protected override double PicowattsInOneWatt => 1e12;
 
         protected override double NanowattsInOneWatt => 1e9;
 
         protected override double MicrowattsInOneWatt => 1e6;
+
+        protected override double MillijoulesPerHourInOneWatt => 3600e3;
 
         protected override double MilliwattsInOneWatt => 1e3;
 
@@ -24,7 +29,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecawattsInOneWatt => 1e-1;
 
+        protected override double KilojoulesPerHourInOneWatt => 3600e-3;
+
         protected override double KilowattsInOneWatt => 1e-3;
+
+        protected override double MegajoulesPerHourInOneWatt => 3600e-6;
 
         protected override double MegawattsInOneWatt => 1e-6;
 
@@ -33,6 +42,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TerawattsInOneWatt => 1e-12;
 
         protected override double PetawattsInOneWatt => 1e-15;
+
+        protected override double JoulesPerHourInOneWatt => 3600;
 
         protected override double KilobritishThermalUnitsPerHourInOneWatt => 3.412141633e-3;
 
@@ -116,6 +127,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             var massFlow = Power<double>.FromWatts(15.0) / SpecificEnergy<double>.FromJoulesPerKilogram(3);
             Assert.Equal(massFlow, MassFlow<double>.FromKilogramsPerSecond(5));
+        }
+
+        [Fact]
+        public void PowerDividedByElectricCurrentEqualsElectricPotential()
+        {
+            ElectricPotential u = Power.FromWatts(10) / ElectricCurrent.FromAmperes(2);
+            Assert.Equal(5, u.Volts);
+        }
+
+        [Fact]
+        public void PowerDividedByElectricPotentialEqualsElectricCurrent()
+        {
+            ElectricCurrent i = Power.FromWatts(20) / ElectricPotential.FromVolts(5);
+            Assert.Equal(4, i.Amperes);
         }
     }
 }

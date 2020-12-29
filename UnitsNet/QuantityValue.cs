@@ -49,7 +49,6 @@ namespace UnitsNet
 
         #region To QuantityValue
 
-#pragma warning disable 618
         // Prefer double for integer types, since most quantities use that type as of now and
         // that avoids unnecessary casts back and forth.
         // If we later change to use decimal more, we should revisit this.
@@ -67,8 +66,6 @@ namespace UnitsNet
         public static implicit operator QuantityValue(double val) => new QuantityValue(val); // double
         /// <summary>Implicit cast from <see cref="decimal"/> to <see cref="QuantityValue"/>.</summary>
         public static implicit operator QuantityValue(decimal val) => new QuantityValue(val); // decimal
-#pragma warning restore 618
-
         #endregion
 
         #region To double

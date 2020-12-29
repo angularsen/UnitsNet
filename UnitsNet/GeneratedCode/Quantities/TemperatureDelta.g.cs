@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -41,9 +43,9 @@ namespace UnitsNet
 
         static TemperatureDelta()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta,
+            Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[] {
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, BaseUnits.Undefined),
@@ -53,8 +55,9 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
         }
 
         /// <summary>
@@ -82,7 +85,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public TemperatureDelta(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -119,6 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
 
         /// <summary>
@@ -141,29 +145,6 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
-
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<TemperatureDeltaUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TemperatureDelta<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => TemperatureDelta<T>.BaseDimensions;
-
-        #endregion
 
         #region Conversion Properties
 
@@ -207,6 +188,11 @@ namespace UnitsNet
         /// </summary>
         public T Kelvins => As(TemperatureDeltaUnit.Kelvin);
 
+        /// <summary>
+        ///     Get <see cref="TemperatureDelta{T}" /> in MillidegreesCelsius.
+        /// </summary>
+        public T MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+
         #endregion
 
         #region Static Methods
@@ -227,7 +213,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(TemperatureDeltaUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(TemperatureDeltaUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -300,6 +286,14 @@ namespace UnitsNet
         {
             return new TemperatureDelta<T>(kelvins, TemperatureDeltaUnit.Kelvin);
         }
+        /// <summary>
+        ///     Get <see cref="TemperatureDelta{T}" /> from MillidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static TemperatureDelta<T> FromMillidegreesCelsius(T millidegreescelsius)
+        {
+            return new TemperatureDelta<T>(millidegreescelsius, TemperatureDeltaUnit.MillidegreeCelsius);
+        }
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureDeltaUnit" /> to <see cref="TemperatureDelta{T}" />.
@@ -366,7 +360,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static TemperatureDelta<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static TemperatureDelta<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<TemperatureDelta<T>, TemperatureDeltaUnit>(
                 str,
@@ -382,7 +376,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out TemperatureDelta<T> result)
+        public static bool TryParse(string? str, out TemperatureDelta<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -397,7 +391,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out TemperatureDelta<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out TemperatureDelta<T> result)
         {
             return QuantityParser.Default.TryParse<TemperatureDelta<T>, TemperatureDeltaUnit>(
                 str,
@@ -430,7 +424,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static TemperatureDeltaUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static TemperatureDeltaUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<TemperatureDeltaUnit>(str, provider);
         }
@@ -451,7 +445,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out TemperatureDeltaUnit unit)
         {
             return UnitParser.Default.TryParse<TemperatureDeltaUnit>(str, provider, out unit);
         }
@@ -636,7 +630,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="TemperatureDelta{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -659,7 +653,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -707,7 +701,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public TemperatureDelta<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -751,6 +745,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return Value*5/4;
                 case TemperatureDeltaUnit.DegreeRoemer: return Value*40/21;
                 case TemperatureDeltaUnit.Kelvin: return Value;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (Value) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -784,6 +779,7 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
                 case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
+                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -807,7 +803,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -819,7 +815,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -834,7 +830,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -862,11 +858,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<TemperatureDeltaUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<TemperatureDeltaUnit>(this, format, provider);
         }
 
         #endregion
@@ -946,6 +942,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return TemperatureDelta<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return TemperatureDelta<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return TemperatureDelta<T>.BaseDimensions;
             else

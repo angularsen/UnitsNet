@@ -129,7 +129,7 @@ namespace UnitsNet
         ///     Optional culture to format number and localize unit abbreviations.
         ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
         /// </param>
-        public string ToString([CanBeNull] IFormatProvider cultureInfo)
+        public string ToString(IFormatProvider? cultureInfo)
         {
             cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
 

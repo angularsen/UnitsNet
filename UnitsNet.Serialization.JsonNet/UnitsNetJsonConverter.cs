@@ -2,9 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UnitsNet.Serialization.JsonNet.Internal;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -20,6 +22,7 @@ namespace UnitsNet.Serialization.JsonNet
     ///     * Unit enums are of type UnitsNet.Units.LengthUnit etc.
     ///     * Unit class has a BaseUnit property returning the base unit, such as LengthUnit.Meter
     /// </remarks>
+    [Obsolete("Replaced by UnitsNetIQuantityJsonConverter and UnitsNetIComparableJsonConverter (if you need support for IComparable)")]
     public class UnitsNetJsonConverter : JsonConverter
     {
         /// <summary>
@@ -40,10 +43,33 @@ namespace UnitsNet.Serialization.JsonNet
                 return reader.Value;
 
             object obj = TryDeserializeIComparable(reader, serializer);
-            // A null System.Nullable value or a comparable type was deserialized so return this
-            if (!(obj is ValueUnit vu))
-                return obj;
+            if (obj is Array values)
+            {
 
+                // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]` 
+                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), MultiDimensionalArrayHelpers.LastIndex(values));
+
+                // Fill array with parsed quantities
+                int[] index = MultiDimensionalArrayHelpers.FirstIndex(values);
+                while (index != null)
+                {
+                    arrayOfQuantities.SetValue(values.GetValue(index), index);
+                }
+
+                return arrayOfQuantities;
+            }
+            else if (obj is ValueUnit valueUnit)
+            {
+                return ParseValueUnit(valueUnit);
+            }
+            else
+            {
+                return obj;
+            }
+        }
+
+        private static IQuantity ParseValueUnit(ValueUnit vu)
+        {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
             string unitEnumValue = vu.Unit.Split('.')[1];
@@ -69,9 +95,23 @@ namespace UnitsNet.Serialization.JsonNet
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
+
+            if (token is JArray)
+            {
+                object[] results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
+                return results;
+            }
+            else
+            {
+                return TryDeserializeIComparable(token, serializer);
+            }
+        }
+
+        private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
+        {
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
@@ -79,7 +119,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else
             {
-                return new ValueUnit()
+                return new ValueUnit
                 {
                     Unit = token[nameof(ValueUnit.Unit)].ToString(),
                     Value = token[nameof(ValueUnit.Value)].ToObject<double>()
@@ -96,29 +136,49 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
         {
-            Type quantityType = obj.GetType();
-
             // ValueUnit should be written as usual (but read in a custom way)
-            if(quantityType == typeof(ValueUnit))
+            if (obj is ValueUnit valueUnit)
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
-                JToken t = JToken.FromObject(obj, localSerializer);
 
+                var t = JToken.FromObject(valueUnit, localSerializer);
                 t.WriteTo(writer);
-                return;
             }
+            else if (obj is Array values)
+            {
 
-            IQuantity quantity = obj as IQuantity;
+                var results = Array.CreateInstance(typeof(ValueUnit), MultiDimensionalArrayHelpers.LastIndex(values));
+                var ind = MultiDimensionalArrayHelpers.FirstIndex(values);
 
-            serializer.Serialize(writer, new ValueUnit
+                while (ind != null)
+                {
+                    results.SetValue((IQuantity)values.GetValue(ind), ind);
+                    ind = MultiDimensionalArrayHelpers.NextIndex(results, ind);
+                }                
+                
+                serializer.Serialize(writer, results);
+            }
+            else if (obj is IQuantity quantity)
+            {
+                serializer.Serialize(writer, ToValueUnit(quantity));
+            }
+            else
+            {
+                throw new NotSupportedException($"Unsupported type: {obj.GetType()}");
+            }
+        }
+
+        private static ValueUnit ToValueUnit(IQuantity value)
+        {
+            return new ValueUnit
             {
                 // See ValueUnit about precision loss for quantities using decimal type.
-                Value = quantity.Value,
-                Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}" // Example: "MassUnit.Kilogram"
-            } );
+                Value = value.Value,
+                Unit = $"{value.QuantityInfo.UnitType.Name}.{value.Unit}"
+            };
         }
 
         /// <summary>
@@ -181,5 +241,6 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         #endregion
+
     }
 }

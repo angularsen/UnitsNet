@@ -34,6 +34,7 @@ namespace UnitsNet.Units
         DegreeReaumur,
         DegreeRoemer,
         Kelvin,
+        MillidegreeCelsius,
     }
 
     #pragma warning restore 1591

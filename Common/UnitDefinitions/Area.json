@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Area",
   "BaseUnit": "SquareMeter",
   "XmlDoc": "Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).",
@@ -22,6 +22,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "км²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方公里" ]
         }
       ]
     },
@@ -41,6 +45,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "м²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方米" ]
         }
       ]
     },
@@ -60,6 +68,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "дм²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方分米" ]
         }
       ]
     },
@@ -79,6 +91,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "см²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方厘米" ]
         }
       ]
     },
@@ -98,6 +114,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мм²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方毫米" ]
         }
       ]
     },
@@ -117,6 +137,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мкм²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方微米" ]
         }
       ]
     },
@@ -136,6 +160,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "миля²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方英里" ]
         }
       ]
     },
@@ -155,6 +183,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "ярд²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方码" ]
         }
       ]
     },
@@ -174,6 +206,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фут²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方英尺" ]
         }
       ]
     },
@@ -189,6 +225,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft² (US)" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут² (US)" ]
         }
       ]
     },
@@ -208,6 +248,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "дюйм²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方英寸" ]
         }
       ]
     },
@@ -220,6 +264,14 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ac" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "акр" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英亩" ]
         }
       ]
     },
@@ -232,6 +284,14 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ha" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "га" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英亩" ]
         }
       ]
     },
@@ -243,7 +303,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": ["nmi²"]
+          "Abbreviations": [ "nmi²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "морск.миля²" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "平方海里" ]
         }
       ]
     }

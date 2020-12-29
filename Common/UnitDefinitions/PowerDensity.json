@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "PowerDensity",
   "BaseUnit": "WattPerCubicMeter",
   "XmlDoc": "The amount of power in a volume.",

@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "KinematicViscosity",
   "BaseUnit": "SquareMeterPerSecond",
   "XmlDoc": "The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.",

@@ -7,6 +7,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
@@ -107,7 +109,7 @@ namespace UnitsNet.Tests.CustomCode
             var dynamicViscosity = Density<double>.FromKilogramsPerCubicMeter(2) * KinematicViscosity<double>.FromSquareMetersPerSecond(10);
             Assert.Equal(dynamicViscosity, DynamicViscosity<double>.FromNewtonSecondsPerMeterSquared(20));
         }
-        
+
         [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {
@@ -120,6 +122,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             var specificWeight = Density<double>.FromKilogramsPerCubicMeter(10) * Acceleration<double>.FromMetersPerSecondSquared(2);
             Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMeter(20), specificWeight);
+        }
+
+        [Fact]
+        public void DensityTimesAreaEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
+            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
         }
     }
 }

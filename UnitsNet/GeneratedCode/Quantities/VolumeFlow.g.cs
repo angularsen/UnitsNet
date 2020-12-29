@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -43,7 +45,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow,
+            Info = new QuantityInfo<VolumeFlowUnit>("VolumeFlow",
                 new UnitInfo<VolumeFlowUnit>[] {
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, BaseUnits.Undefined),
@@ -51,6 +53,8 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, BaseUnits.Undefined),
@@ -66,8 +70,10 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, BaseUnits.Undefined),
@@ -77,11 +83,14 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonsPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, BaseUnits.Undefined),
@@ -95,7 +104,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlow);
         }
 
         /// <summary>
@@ -123,7 +132,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public VolumeFlow(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -160,6 +169,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.VolumeFlow;
 
         /// <summary>
@@ -182,29 +192,6 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
-
-        Enum IQuantity.Unit => Unit;
-
-        /// <inheritdoc />
-        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <inheritdoc />
-        public QuantityInfo<VolumeFlowUnit> QuantityInfo => Info;
-
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumeFlow<T>.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumeFlow<T>.BaseDimensions;
-
-        #endregion
 
         #region Conversion Properties
 
@@ -237,6 +224,16 @@ namespace UnitsNet
         ///     Get <see cref="VolumeFlow{T}" /> in CentilitersPerMinute.
         /// </summary>
         public T CentilitersPerMinute => As(VolumeFlowUnit.CentiliterPerMinute);
+
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in CentilitersPerSecond.
+        /// </summary>
+        public T CentilitersPerSecond => As(VolumeFlowUnit.CentiliterPerSecond);
+
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in CubicCentimetersPerMinute.
+        /// </summary>
+        public T CubicCentimetersPerMinute => As(VolumeFlowUnit.CubicCentimeterPerMinute);
 
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in CubicDecimetersPerMinute.
@@ -314,6 +311,11 @@ namespace UnitsNet
         public T DecilitersPerMinute => As(VolumeFlowUnit.DeciliterPerMinute);
 
         /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in DecilitersPerSecond.
+        /// </summary>
+        public T DecilitersPerSecond => As(VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in KilolitersPerDay.
         /// </summary>
         public T KilolitersPerDay => As(VolumeFlowUnit.KiloliterPerDay);
@@ -322,6 +324,11 @@ namespace UnitsNet
         ///     Get <see cref="VolumeFlow{T}" /> in KilolitersPerMinute.
         /// </summary>
         public T KilolitersPerMinute => As(VolumeFlowUnit.KiloliterPerMinute);
+
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in KilolitersPerSecond.
+        /// </summary>
+        public T KilolitersPerSecond => As(VolumeFlowUnit.KiloliterPerSecond);
 
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in KilousGallonsPerMinute.
@@ -369,6 +376,11 @@ namespace UnitsNet
         public T MicrolitersPerMinute => As(VolumeFlowUnit.MicroliterPerMinute);
 
         /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in MicrolitersPerSecond.
+        /// </summary>
+        public T MicrolitersPerSecond => As(VolumeFlowUnit.MicroliterPerSecond);
+
+        /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in MillilitersPerDay.
         /// </summary>
         public T MillilitersPerDay => As(VolumeFlowUnit.MilliliterPerDay);
@@ -377,6 +389,11 @@ namespace UnitsNet
         ///     Get <see cref="VolumeFlow{T}" /> in MillilitersPerMinute.
         /// </summary>
         public T MillilitersPerMinute => As(VolumeFlowUnit.MilliliterPerMinute);
+
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in MillilitersPerSecond.
+        /// </summary>
+        public T MillilitersPerSecond => As(VolumeFlowUnit.MilliliterPerSecond);
 
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in MillionUsGallonsPerDay.
@@ -392,6 +409,11 @@ namespace UnitsNet
         ///     Get <see cref="VolumeFlow{T}" /> in NanolitersPerMinute.
         /// </summary>
         public T NanolitersPerMinute => As(VolumeFlowUnit.NanoliterPerMinute);
+
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> in NanolitersPerSecond.
+        /// </summary>
+        public T NanolitersPerSecond => As(VolumeFlowUnit.NanoliterPerSecond);
 
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> in OilBarrelsPerDay.
@@ -473,7 +495,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(VolumeFlowUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(VolumeFlowUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -529,6 +551,22 @@ namespace UnitsNet
         public static VolumeFlow<T> FromCentilitersPerMinute(T centilitersperminute)
         {
             return new VolumeFlow<T>(centilitersperminute, VolumeFlowUnit.CentiliterPerMinute);
+        }
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from CentilitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromCentilitersPerSecond(T centiliterspersecond)
+        {
+            return new VolumeFlow<T>(centiliterspersecond, VolumeFlowUnit.CentiliterPerSecond);
+        }
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from CubicCentimetersPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromCubicCentimetersPerMinute(T cubiccentimetersperminute)
+        {
+            return new VolumeFlow<T>(cubiccentimetersperminute, VolumeFlowUnit.CubicCentimeterPerMinute);
         }
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from CubicDecimetersPerMinute.
@@ -651,6 +689,14 @@ namespace UnitsNet
             return new VolumeFlow<T>(decilitersperminute, VolumeFlowUnit.DeciliterPerMinute);
         }
         /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from DecilitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromDecilitersPerSecond(T deciliterspersecond)
+        {
+            return new VolumeFlow<T>(deciliterspersecond, VolumeFlowUnit.DeciliterPerSecond);
+        }
+        /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from KilolitersPerDay.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -665,6 +711,14 @@ namespace UnitsNet
         public static VolumeFlow<T> FromKilolitersPerMinute(T kilolitersperminute)
         {
             return new VolumeFlow<T>(kilolitersperminute, VolumeFlowUnit.KiloliterPerMinute);
+        }
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from KilolitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromKilolitersPerSecond(T kiloliterspersecond)
+        {
+            return new VolumeFlow<T>(kiloliterspersecond, VolumeFlowUnit.KiloliterPerSecond);
         }
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from KilousGallonsPerMinute.
@@ -739,6 +793,14 @@ namespace UnitsNet
             return new VolumeFlow<T>(microlitersperminute, VolumeFlowUnit.MicroliterPerMinute);
         }
         /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from MicrolitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromMicrolitersPerSecond(T microliterspersecond)
+        {
+            return new VolumeFlow<T>(microliterspersecond, VolumeFlowUnit.MicroliterPerSecond);
+        }
+        /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from MillilitersPerDay.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -753,6 +815,14 @@ namespace UnitsNet
         public static VolumeFlow<T> FromMillilitersPerMinute(T millilitersperminute)
         {
             return new VolumeFlow<T>(millilitersperminute, VolumeFlowUnit.MilliliterPerMinute);
+        }
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from MillilitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromMillilitersPerSecond(T milliliterspersecond)
+        {
+            return new VolumeFlow<T>(milliliterspersecond, VolumeFlowUnit.MilliliterPerSecond);
         }
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from MillionUsGallonsPerDay.
@@ -777,6 +847,14 @@ namespace UnitsNet
         public static VolumeFlow<T> FromNanolitersPerMinute(T nanolitersperminute)
         {
             return new VolumeFlow<T>(nanolitersperminute, VolumeFlowUnit.NanoliterPerMinute);
+        }
+        /// <summary>
+        ///     Get <see cref="VolumeFlow{T}" /> from NanolitersPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow<T> FromNanolitersPerSecond(T nanoliterspersecond)
+        {
+            return new VolumeFlow<T>(nanoliterspersecond, VolumeFlowUnit.NanoliterPerSecond);
         }
         /// <summary>
         ///     Get <see cref="VolumeFlow{T}" /> from OilBarrelsPerDay.
@@ -940,7 +1018,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static VolumeFlow<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static VolumeFlow<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<VolumeFlow<T>, VolumeFlowUnit>(
                 str,
@@ -956,7 +1034,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out VolumeFlow<T> result)
+        public static bool TryParse(string? str, out VolumeFlow<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -971,7 +1049,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out VolumeFlow<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out VolumeFlow<T> result)
         {
             return QuantityParser.Default.TryParse<VolumeFlow<T>, VolumeFlowUnit>(
                 str,
@@ -1004,7 +1082,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static VolumeFlowUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static VolumeFlowUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<VolumeFlowUnit>(str, provider);
         }
@@ -1025,7 +1103,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out VolumeFlowUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out VolumeFlowUnit unit)
         {
             return UnitParser.Default.TryParse<VolumeFlowUnit>(str, provider, out unit);
         }
@@ -1210,7 +1288,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="VolumeFlow{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1233,7 +1311,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1281,7 +1359,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public VolumeFlow<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1323,6 +1401,8 @@ namespace UnitsNet
                 case VolumeFlowUnit.AcreFootPerSecond: return Value/0.000810713194;
                 case VolumeFlowUnit.CentiliterPerDay: return (Value/86400000) * 1e-2d;
                 case VolumeFlowUnit.CentiliterPerMinute: return (Value/60000.00000) * 1e-2d;
+                case VolumeFlowUnit.CentiliterPerSecond: return (Value/1000) * 1e-2d;
+                case VolumeFlowUnit.CubicCentimeterPerMinute: return Value*1.6666666666667e-8;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return Value/60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return Value*7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return Value/2118.88000326;
@@ -1338,8 +1418,10 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerSecond: return Value*0.764554857984;
                 case VolumeFlowUnit.DeciliterPerDay: return (Value/86400000) * 1e-1d;
                 case VolumeFlowUnit.DeciliterPerMinute: return (Value/60000.00000) * 1e-1d;
+                case VolumeFlowUnit.DeciliterPerSecond: return (Value/1000) * 1e-1d;
                 case VolumeFlowUnit.KiloliterPerDay: return (Value/86400000) * 1e3d;
                 case VolumeFlowUnit.KiloliterPerMinute: return (Value/60000.00000) * 1e3d;
+                case VolumeFlowUnit.KiloliterPerSecond: return (Value/1000) * 1e3d;
                 case VolumeFlowUnit.KilousGallonPerMinute: return Value/15.850323141489;
                 case VolumeFlowUnit.LiterPerDay: return Value/86400000;
                 case VolumeFlowUnit.LiterPerHour: return Value/3600000.000;
@@ -1349,11 +1431,14 @@ namespace UnitsNet
                 case VolumeFlowUnit.MegaukGallonPerSecond: return (Value/219.969) * 1e6d;
                 case VolumeFlowUnit.MicroliterPerDay: return (Value/86400000) * 1e-6d;
                 case VolumeFlowUnit.MicroliterPerMinute: return (Value/60000.00000) * 1e-6d;
+                case VolumeFlowUnit.MicroliterPerSecond: return (Value/1000) * 1e-6d;
                 case VolumeFlowUnit.MilliliterPerDay: return (Value/86400000) * 1e-3d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (Value/60000.00000) * 1e-3d;
+                case VolumeFlowUnit.MilliliterPerSecond: return (Value/1000) * 1e-3d;
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return Value/22.824465227;
                 case VolumeFlowUnit.NanoliterPerDay: return (Value/86400000) * 1e-9d;
                 case VolumeFlowUnit.NanoliterPerMinute: return (Value/60000.00000) * 1e-9d;
+                case VolumeFlowUnit.NanoliterPerSecond: return (Value/1000) * 1e-9d;
                 case VolumeFlowUnit.OilBarrelPerDay: return Value*1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelPerHour: return Value*4.41631375e-5;
                 case VolumeFlowUnit.OilBarrelPerMinute: return Value*2.64978825e-3;
@@ -1397,6 +1482,8 @@ namespace UnitsNet
                 case VolumeFlowUnit.AcreFootPerSecond: return baseUnitValue*0.000810713194;
                 case VolumeFlowUnit.CentiliterPerDay: return (baseUnitValue*86400000) / 1e-2d;
                 case VolumeFlowUnit.CentiliterPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
+                case VolumeFlowUnit.CentiliterPerSecond: return (baseUnitValue*1000) / 1e-2d;
+                case VolumeFlowUnit.CubicCentimeterPerMinute: return baseUnitValue/1.6666666666667e-8;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return baseUnitValue*60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return baseUnitValue*2118.88000326;
@@ -1412,8 +1499,10 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;
                 case VolumeFlowUnit.DeciliterPerDay: return (baseUnitValue*86400000) / 1e-1d;
                 case VolumeFlowUnit.DeciliterPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
+                case VolumeFlowUnit.DeciliterPerSecond: return (baseUnitValue*1000) / 1e-1d;
                 case VolumeFlowUnit.KiloliterPerDay: return (baseUnitValue*86400000) / 1e3d;
                 case VolumeFlowUnit.KiloliterPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
+                case VolumeFlowUnit.KiloliterPerSecond: return (baseUnitValue*1000) / 1e3d;
                 case VolumeFlowUnit.KilousGallonPerMinute: return baseUnitValue*15.850323141489;
                 case VolumeFlowUnit.LiterPerDay: return baseUnitValue*86400000;
                 case VolumeFlowUnit.LiterPerHour: return baseUnitValue*3600000.000;
@@ -1423,11 +1512,14 @@ namespace UnitsNet
                 case VolumeFlowUnit.MegaukGallonPerSecond: return (baseUnitValue*219.969) / 1e6d;
                 case VolumeFlowUnit.MicroliterPerDay: return (baseUnitValue*86400000) / 1e-6d;
                 case VolumeFlowUnit.MicroliterPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
+                case VolumeFlowUnit.MicroliterPerSecond: return (baseUnitValue*1000) / 1e-6d;
                 case VolumeFlowUnit.MilliliterPerDay: return (baseUnitValue*86400000) / 1e-3d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
+                case VolumeFlowUnit.MilliliterPerSecond: return (baseUnitValue*1000) / 1e-3d;
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
                 case VolumeFlowUnit.NanoliterPerDay: return (baseUnitValue*86400000) / 1e-9d;
                 case VolumeFlowUnit.NanoliterPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
+                case VolumeFlowUnit.NanoliterPerSecond: return (baseUnitValue*1000) / 1e-9d;
                 case VolumeFlowUnit.OilBarrelPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelPerHour: return baseUnitValue/4.41631375e-5;
                 case VolumeFlowUnit.OilBarrelPerMinute: return baseUnitValue/2.64978825e-3;
@@ -1463,7 +1555,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1475,7 +1567,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1490,7 +1582,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1518,11 +1610,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<VolumeFlowUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<VolumeFlowUnit>(this, format, provider);
         }
 
         #endregion
@@ -1602,6 +1694,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return VolumeFlow<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return VolumeFlow<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return VolumeFlow<T>.BaseDimensions;
             else

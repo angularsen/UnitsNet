@@ -28,6 +28,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaMomentOfInertiaTests : AreaMomentOfInertiaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double CentimetersToTheFourthInOneMeterToTheFourth => 1e8;
 
         protected override double DecimetersToTheFourthInOneMeterToTheFourth => 1e4;

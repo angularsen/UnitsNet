@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,7 +37,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
-    public partial struct BitRate<T> : IQuantityT<BitRateUnit, T>, IEquatable<BitRate<T>>, IComparable, IComparable<BitRate<T>>, IConvertible, IFormattable
+    public partial struct BitRate<T> : IQuantityT<BitRateUnit, T>, IDecimalQuantity, IEquatable<BitRate<T>>, IComparable, IComparable<BitRate<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -46,7 +48,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate,
+            Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[] {
                     new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, BaseUnits.Undefined),
@@ -75,7 +77,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public BitRate(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -140,6 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.BitRate;
 
         /// <summary>
@@ -163,13 +166,16 @@ namespace UnitsNet
 
         double IQuantity.Value => Convert.ToDouble(Value);
 
+        /// <inheritdoc cref="IDecimalQuantity.Value"/>
+        decimal IDecimalQuantity.Value => _value;
+
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
+        public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -177,12 +183,12 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => BitRate<T>.QuantityType;
+        public QuantityType Type => {_quantity.Name}<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => BitRate<T>.BaseDimensions;
+        public BaseDimensions Dimensions => {_quantity.Name}<T>.BaseDimensions;
 
         #endregion
 
@@ -338,7 +344,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(BitRateUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(BitRateUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -621,7 +627,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static BitRate<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static BitRate<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<BitRate<T>, BitRateUnit>(
                 str,
@@ -637,7 +643,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out BitRate<T> result)
+        public static bool TryParse(string? str, out BitRate<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -652,7 +658,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out BitRate<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out BitRate<T> result)
         {
             return QuantityParser.Default.TryParse<BitRate<T>, BitRateUnit>(
                 str,
@@ -685,7 +691,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static BitRateUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static BitRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<BitRateUnit>(str, provider);
         }
@@ -706,7 +712,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out BitRateUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out BitRateUnit unit)
         {
             return UnitParser.Default.TryParse<BitRateUnit>(str, provider, out unit);
         }
@@ -891,7 +897,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="BitRate{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -914,7 +920,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -962,7 +968,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public BitRate<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1098,7 +1104,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1110,7 +1116,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1125,7 +1131,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1153,11 +1159,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<BitRateUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<BitRateUnit>(this, format, provider);
         }
 
         #endregion
@@ -1237,6 +1243,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return BitRate<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return BitRate<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return BitRate<T>.BaseDimensions;
             else

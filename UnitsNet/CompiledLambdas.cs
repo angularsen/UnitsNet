@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 namespace UnitsNet
 {
     /// <summary>
-    /// Compiled lambda expressions that can be invoked with generic run-time parameters.
+    /// Compiled lambda expressions that can be invoked with generic run-time parameters. This is used for performance as
+    /// it is far faster than reflection based alternatives.
     /// </summary>
     internal static class CompiledLambdas
     {
@@ -15,7 +16,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The multiplied result.</returns>
-        internal static T Multiply<T>(T left, T right) => Multiply<T, T, T>(left, right);
+        internal static T Multiply<T>(T left, T right) => MultiplyImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Multiplies the given values.
@@ -36,7 +37,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The divided result.</returns>
-        internal static T Divide<T>(T left, T right) => Divide<T, T, T>(left, right);
+        internal static T Divide<T>(T left, T right) => DivideImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Divides the given values.
@@ -57,7 +58,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The added result.</returns>
-        internal static T Add<T>(T left, T right) => Add<T, T, T>(left, right);
+        internal static T Add<T>(T left, T right) => AddImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Adds the given values.
@@ -78,7 +79,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The subtracted result.</returns>
-        internal static T Subtract<T>(T left, T right) => Subtract<T, T, T>(left, right);
+        internal static T Subtract<T>(T left, T right) => SubtractImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Subtracts the given values.
@@ -99,7 +100,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The modulus.</returns>
-        internal static T Modulo<T>(T left, T right) => Modulo<T, T, T>(left, right);
+        internal static T Modulo<T>(T left, T right) => ModuloImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Gets the modulus of the given values.
@@ -120,7 +121,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if equal, otherwise false.</returns>
-        internal static bool Equal<T>(T left, T right) => Equal<T, T>(left, right);
+        internal static bool Equal<T>(T left, T right) => EqualImplementation<T, T>.Invoke(left, right);
 
         /// <summary>
         /// Checks if the left and right hand side are equal.
@@ -140,7 +141,7 @@ namespace UnitsNet
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if not equal, otherwise false.</returns>
-        internal static bool NotEqual<T>(T left, T right) => NotEqual<T, T>(left, right);
+        internal static bool NotEqual<T>(T left, T right) => NotEqualImplementation<T, T>.Invoke(left, right);
 
         /// <summary>
         /// Checks if the left and right hand side are not equal.

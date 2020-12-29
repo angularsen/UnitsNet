@@ -53,7 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ton" ]
+          "Abbreviations": [ "tf", "Ton" ]
         },
         {
           "Culture": "ru-RU",
@@ -145,6 +145,36 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ozf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForce",
+      "PluralName": "KilopoundsForce",
+      "FromUnitToBaseFunc": "x*4448.2216152605095551842641431421",
+      "FromBaseToUnitFunc": "x/4448.2216152605095551842641431421",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf", "kip", "k" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кипф", "койка", "К" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ShortTonForce",
+      "PluralName": "ShortTonsForce",
+      "FromUnitToBaseFunc": "x*8.896443230521e3",
+      "FromBaseToUnitFunc": "x/8.896443230521e3",
+      "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf (short)", "t (US)f", "short tons-force" ]
         }
       ]
     }

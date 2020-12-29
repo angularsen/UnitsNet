@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -13,12 +12,11 @@ namespace UnitsNet
 
         static Quantity()
         {
-            var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] {QuantityType.Undefined}).ToArray();
-            Types = quantityTypes;
-            Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
+            ICollection<QuantityInfo> quantityInfos = ByName.Values;
+            Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
+            Names = quantityInfos.Select(qt => qt.Name).ToArray();
 
-            InfosLazy = new Lazy<QuantityInfo[]>(() => Types
-                .Select(quantityType => FromQuantityType<double>(quantityType, 0.0).QuantityInfo)
+            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
                 .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
         }
@@ -26,10 +24,11 @@ namespace UnitsNet
         /// <summary>
         /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Infos property instead.")]
         public static QuantityType[] Types { get; }
 
         /// <summary>
-        /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
+        /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
         public static string[] Names { get; }
 
@@ -47,15 +46,15 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From<T>( QuantityValue value, Enum unit)
         {
-            if (TryFrom<T>( value, unit, out IQuantity quantity))
-                return quantity;
+            if (TryFrom<T>(value, unit, out IQuantity? quantity))
+                return quantity!;
 
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom<T>( double value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom<T>(double value, Enum unit, out IQuantity? quantity)
         {
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
@@ -65,7 +64,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return TryFrom<T>( (QuantityValue)value, unit, out quantity);
+            return TryFrom<T>((QuantityValue)value, unit, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
@@ -79,25 +78,27 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        public static IQuantity Parse<T>([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
+        public static IQuantity Parse<T>(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
-            if (TryParse<T>( formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
+            if (TryParse<T>(formatProvider, quantityType, quantityString, out IQuantity? quantity))
+                return quantity!;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse<T>( Type quantityType, string quantityString, out IQuantity quantity) =>
-            TryParse<T>( null, quantityType, quantityString, out quantity);
+        public static bool TryParse<T>(Type quantityType, string quantityString, out IQuantity? quantity) =>
+            TryParse<T>(null, quantityType, quantityString, out quantity);
 
         /// <summary>
         ///     Get information about the given quantity type.
         /// </summary>
         /// <param name="quantityType">The quantity type enum value.</param>
         /// <returns>Information about the quantity and its units.</returns>
+        [Obsolete("QuantityType will be removed in the future.")]
         public static QuantityInfo GetInfo(QuantityType quantityType)
         {
             return Infos.First(qi => qi.QuantityType == quantityType);

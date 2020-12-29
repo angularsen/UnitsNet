@@ -7,11 +7,13 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
         protected override double KilogramsForceInOneNewton => 0.101972;
 
+        protected override double KilopoundsForceInOneNewton => 0.22481e-3;
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
@@ -30,6 +32,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicronewtonsInOneNewton => 1.0e6;
 
         protected override double OunceForceInOneNewton => 3.596943089595368;
+
+        protected override double ShortTonsForceInOneNewton => 1.12404471549816e-4;
 
         [Fact]
         public void ForceDividedByAreaEqualsPressure()

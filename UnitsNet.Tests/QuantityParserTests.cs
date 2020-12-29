@@ -9,6 +9,53 @@ namespace UnitsNet.Tests
     public class QuantityParserTests
     {
         [Fact]
+        public void Parse_WithSingleCaseInsensitiveMatch_ParsesWithMatchedUnit()
+        {
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
+            var quantityParser = new QuantityParser(unitAbbreviationsCache);
+
+            HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
+                null,
+                (value, unit) => new HowMuch((double) value, unit));
+
+            Assert.Equal(HowMuchUnit.Some, q.Unit);
+            Assert.Equal(1, q.Value);
+        }
+
+        [Fact]
+        public void Parse_WithOneCaseInsensitiveMatchAndOneExactMatch_ParsesWithTheExactMatchUnit()
+        {
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "FOO");
+            var quantityParser = new QuantityParser(unitAbbreviationsCache);
+
+            HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
+                null,
+                (value, unit) => new HowMuch((double) value, unit));
+
+            Assert.Equal(HowMuchUnit.ATon, q.Unit);
+            Assert.Equal(1, q.Value);
+        }
+
+        [Fact]
+        public void Parse_WithMultipleCaseInsensitiveMatchesButNoExactMatches_ThrowsUnitNotFoundException()
+        {
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "foo");
+            unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "FOO");
+            var quantityParser = new QuantityParser(unitAbbreviationsCache);
+
+            void Act()
+            {
+                quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
+            }
+
+            Assert.Throws<UnitNotFoundException>(Act);
+        }
+
+        [Fact]
         public void Parse_MappedCustomUnit()
         {
             var unitAbbreviationsCache = new UnitAbbreviationsCache();

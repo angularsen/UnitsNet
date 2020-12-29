@@ -5,7 +5,7 @@ namespace UnitsNet
 {
     public partial struct ForcePerLength<T>
     {
-        /// <summary>Get <see cref="Force{T}"/> from <see cref="ForcePerLength{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        /// <summary>Get <see cref="Force{T}"/> from <see cref="ForcePerLength{T}"/> multiplied by <see cref="Length{T}"/>.</summary>
         public static Force<T> operator *(ForcePerLength<T> forcePerLength, Length<T> length )
         {
             return Force<T>.FromNewtons(forcePerLength.NewtonsPerMeter * length.Meters);
@@ -21,6 +21,12 @@ namespace UnitsNet
         public static Pressure<T> operator /(ForcePerLength<T> forcePerLength, Length<T> length )
         {
             return Pressure<T>.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="ForcePerLength"/> multiplied by <see cref="Area"/>.</summary>
+        public static Torque operator *(ForcePerLength forcePerLength, Area area)
+        {
+            return Torque.FromNewtonMeters(forcePerLength.NewtonsPerMeter * area.SquareMeters);
         }
     }
 }

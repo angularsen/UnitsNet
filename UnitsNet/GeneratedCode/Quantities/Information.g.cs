@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -32,7 +34,7 @@ namespace UnitsNet
     /// <summary>
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
-    public partial struct Information<T> : IQuantityT<InformationUnit, T>, IEquatable<Information<T>>, IComparable, IComparable<Information<T>>, IConvertible, IFormattable
+    public partial struct Information<T> : IQuantityT<InformationUnit, T>, IDecimalQuantity, IEquatable<Information<T>>, IComparable, IComparable<Information<T>>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -43,7 +45,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information,
+            Info = new QuantityInfo<InformationUnit>("Information",
                 new UnitInfo<InformationUnit>[] {
                     new UnitInfo<InformationUnit>(InformationUnit.Bit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Byte, BaseUnits.Undefined),
@@ -72,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Information);
         }
 
         /// <summary>
@@ -100,7 +102,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Information(T value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -137,6 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Information;
 
         /// <summary>
@@ -160,13 +163,16 @@ namespace UnitsNet
 
         double IQuantity.Value => Convert.ToDouble(Value);
 
+        /// <inheritdoc cref="IDecimalQuantity.Value"/>
+        decimal IDecimalQuantity.Value => _value;
+
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<InformationUnit> QuantityInfo => Info;
+        public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -174,12 +180,12 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Information<T>.QuantityType;
+        public QuantityType Type => {_quantity.Name}<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Information<T>.BaseDimensions;
+        public BaseDimensions Dimensions => {_quantity.Name}<T>.BaseDimensions;
 
         #endregion
 
@@ -335,7 +341,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(InformationUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(InformationUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -618,7 +624,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Information<T> Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Information<T> Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Information<T>, InformationUnit>(
                 str,
@@ -634,7 +640,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Information<T> result)
+        public static bool TryParse(string? str, out Information<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -649,7 +655,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Information<T> result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Information<T> result)
         {
             return QuantityParser.Default.TryParse<Information<T>, InformationUnit>(
                 str,
@@ -682,7 +688,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static InformationUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static InformationUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<InformationUnit>(str, provider);
         }
@@ -703,7 +709,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out InformationUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out InformationUnit unit)
         {
             return UnitParser.Default.TryParse<InformationUnit>(str, provider, out unit);
         }
@@ -888,7 +894,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current <see cref="Information{T}" />.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -911,7 +917,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public T As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -959,7 +965,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Information<T> ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1095,7 +1101,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1107,7 +1113,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1122,7 +1128,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1150,11 +1156,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<InformationUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<InformationUnit>(this, format, provider);
         }
 
         #endregion
@@ -1234,6 +1240,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Information<T>.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Information<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Information<T>.BaseDimensions;
             else

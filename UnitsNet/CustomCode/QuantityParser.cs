@@ -42,7 +42,7 @@ namespace UnitsNet
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
+            IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
             where TUnitType : Enum
@@ -59,28 +59,28 @@ namespace UnitsNet
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
-            if (!ExtractValueAndUnit(regex, str, out var valueString, out var unitString))
+            if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
             {
                 var ex = new FormatException("Unable to parse quantity. Expected the form \"{value} {unit abbreviation}\", such as \"5.5 m\". The spacing is optional.");
                 ex.Data["input"] = str;
                 throw ex;
             }
 
-            return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
+            return ParseWithRegex(valueString!, unitString!, fromDelegate, formatProvider);
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
+        internal bool TryParse<TQuantity, TUnitType>(string? str,
+            IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
-            where TQuantity : IQuantity
-            where TUnitType : Enum
+            where TQuantity : struct, IQuantity
+            where TUnitType : struct, Enum
         {
             result = default;
 
             if(string.IsNullOrWhiteSpace(str)) return false;
-            str = str.Trim();
+            str = str!.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -91,7 +91,7 @@ namespace UnitsNet
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
-            if (!ExtractValueAndUnit(regex, str, out var valueString, out var unitString))
+            if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
                 return false;
 
             return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
@@ -102,11 +102,11 @@ namespace UnitsNet
         /// </summary>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
+            IFormatProvider? formatProvider,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
-            out IQuantity result)
-            where TQuantity : IQuantity
-            where TUnitType : Enum
+            out IQuantity? result)
+            where TQuantity : struct, IQuantity
+            where TUnitType : struct, Enum
         {
             if (TryParse(str, formatProvider, fromDelegate, out TQuantity parsedQuantity))
             {
@@ -120,7 +120,7 @@ namespace UnitsNet
 
         internal string CreateRegexPatternForUnit<TUnitType>(
             TUnitType unit,
-            IFormatProvider formatProvider,
+            IFormatProvider? formatProvider,
             bool matchEntireString = true)
             where TUnitType : Enum
         {
@@ -147,7 +147,7 @@ namespace UnitsNet
         private TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString,
             string unitString,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
-            IFormatProvider formatProvider)
+            IFormatProvider? formatProvider)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
@@ -160,13 +160,13 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private bool TryParseWithRegex<TQuantity, TUnitType>(string valueString,
-            string unitString,
+        private bool TryParseWithRegex<TQuantity, TUnitType>(string? valueString,
+            string? unitString,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
-            IFormatProvider formatProvider,
+            IFormatProvider? formatProvider,
             out TQuantity result)
-            where TQuantity : IQuantity
-            where TUnitType : Enum
+            where TQuantity : struct, IQuantity
+            where TUnitType : struct, Enum
         {
             result = default;
 
@@ -180,7 +180,7 @@ namespace UnitsNet
             return true;
         }
 
-        private static bool ExtractValueAndUnit(Regex regex, string str, out string valueString, out string unitString)
+        private static bool TryExtractValueAndUnit(Regex regex, string str, out string? valueString, out string? unitString)
         {
             var match = regex.Match(str);
 
@@ -210,7 +210,7 @@ namespace UnitsNet
             return true;
         }
 
-        private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider formatProvider) where TUnitType : Enum
+        private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
         {
             var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
             var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
@@ -219,10 +219,10 @@ namespace UnitsNet
             return $"^{pattern}$";
         }
 
-        private Regex CreateRegexForQuantity<TUnitType>([CanBeNull] IFormatProvider formatProvider) where TUnitType : Enum
+        private Regex CreateRegexForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
         {
             var pattern = CreateRegexPatternForQuantity<TUnitType>(formatProvider);
-            return new Regex(pattern, RegexOptions.Singleline);
+            return new Regex(pattern, RegexOptions.Singleline | RegexOptions.IgnoreCase);
         }
     }
 }

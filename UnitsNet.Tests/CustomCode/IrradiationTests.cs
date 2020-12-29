@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IrradiationTests : IrradiationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerSquareMeterInOneJoulePerSquareMeter => 1;
 
         protected override double KilojoulesPerSquareMeterInOneJoulePerSquareMeter => 1E-3;

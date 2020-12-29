@@ -191,6 +191,11 @@ namespace UnitsNet
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Get Frequency in PerSecond.
+        /// </summary>
+        public double PerSecond => As(FrequencyUnit.PerSecond);
+
+        /// <summary>
         ///     Get Frequency in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
@@ -299,6 +304,16 @@ namespace UnitsNet
         {
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
+        }
+        /// <summary>
+        ///     Get Frequency from PerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Frequency FromPerSecond(double persecond)
+        {
+            double value = (double) persecond;
+            return new Frequency(value, FrequencyUnit.PerSecond);
         }
         /// <summary>
         ///     Get Frequency from RadiansPerSecond.
@@ -618,6 +633,7 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return _value;
                 case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
                 case FrequencyUnit.Megahertz: return (_value) * 1e6d;
+                case FrequencyUnit.PerSecond: return _value;
                 case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
                 case FrequencyUnit.Terahertz: return (_value) * 1e12d;
                 default:
@@ -641,6 +657,7 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return baseUnitValue;
                 case FrequencyUnit.Kilohertz: return (baseUnitValue) / 1e3d;
                 case FrequencyUnit.Megahertz: return (baseUnitValue) / 1e6d;
+                case FrequencyUnit.PerSecond: return baseUnitValue;
                 case FrequencyUnit.RadianPerSecond: return baseUnitValue*6.2831853072;
                 case FrequencyUnit.Terahertz: return (baseUnitValue) / 1e12d;
                 default:

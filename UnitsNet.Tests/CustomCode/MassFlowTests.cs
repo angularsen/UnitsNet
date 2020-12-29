@@ -8,7 +8,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassFlowTests : MassFlowTestsBase
     {
-        /// <inheritdoc />
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double GramsPerSecondInOneGramPerSecond => 1;
 
         protected override double DecagramsPerSecondInOneGramPerSecond => 1E-1;

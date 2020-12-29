@@ -5,6 +5,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureChangeRateTests : TemperatureChangeRateTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond => 1;
 
         protected override double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond => 1E-1;

@@ -28,6 +28,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeConcentrationTests : VolumeConcentrationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         #region Unit Conversion Coefficients
         protected override double LitersPerMililiterInOneDecimalFraction => 1E-3;
         protected override double DecilitersPerMililiterInOneDecimalFraction => 1E-2;
@@ -44,7 +46,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrolitersPerLiterInOneDecimalFraction => 1E6;
         protected override double NanolitersPerLiterInOneDecimalFraction => 1E9;
         protected override double PicolitersPerLiterInOneDecimalFraction => 1E12;
-        
+
         protected override double PartsPerThousandInOneDecimalFraction => 1e3;
         protected override double PartsPerMillionInOneDecimalFraction => 1e6;
         protected override double PartsPerBillionInOneDecimalFraction => 1e9;
@@ -60,7 +62,7 @@ namespace UnitsNet.Tests.CustomCode
                     5, MassConcentrationUnit.GramPerCubicMeter)]    // synthetic data
         [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
                     KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
-                    23.03422, MassConcentrationUnit.GramPerLiter)]  // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol 
+                    23.03422, MassConcentrationUnit.GramPerLiter)]  // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
         public void MassConcentrationFromVolumeConcentrationAndComponentDensity(
             double volumeConcValue, VolumeConcentrationUnit volumeConcUnit,
             double componentDensityValue, DensityUnit componentDensityUnit,

@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.IO;
@@ -37,20 +37,34 @@ namespace CodeGen.Generators
         public static void Generate(string rootDir, Quantity[] quantities)
         {
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
+            var extensionsOutputDir = $"{rootDir}/UnitsNet.NumberExtensions/GeneratedCode";
+            var extensionsTestOutputDir = $"{rootDir}/UnitsNet.NumberExtensions.Tests/GeneratedCode";
             var testProjectDir = $"{rootDir}/UnitsNet.Tests";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");
             Directory.CreateDirectory($"{outputDir}/Units");
+            Directory.CreateDirectory($"{extensionsOutputDir}");
+            Directory.CreateDirectory($"{extensionsTestOutputDir}");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
+            Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
+            Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/QuantityTests");
 
             foreach (var quantity in quantities)
             {
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
-                GenerateUnitTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/{quantity.Name}TestsBase.g.cs");
-                GenerateUnitTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
+                GenerateNumberToExtensions(sb, quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
+                GenerateNumberToExtensionsTestClass(sb, quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
+
+                // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
+                // This way when new units are added to the quantity JSON definition, we auto-generate the new
+                // conversion function tests that needs to be manually implemented by the developer to fix the compile error
+                // so it cannot be forgotten.
+                GenerateQuantityTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/TestsBase/{quantity.Name}TestsBase.g.cs");
+                GenerateQuantityTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
+
                 Log.Information(sb.ToString());
             }
 
@@ -68,7 +82,7 @@ namespace CodeGen.Generators
             Log.Information("");
         }
 
-        private static void GenerateUnitTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantityTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -88,6 +102,20 @@ namespace CodeGen.Generators
             sb.Append("quantity(OK) ");
         }
 
+        private static void GenerateNumberToExtensions(StringBuilder sb, Quantity quantity, string filePath)
+        {
+            var content = new NumberExtensionsGenerator(quantity).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            sb.Append("number extensions(OK) ");
+        }
+
+        private static void GenerateNumberToExtensionsTestClass(StringBuilder sb, Quantity quantity, string filePath)
+        {
+            var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            sb.Append("number extensions tests(OK) ");
+        }
+
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTypeGenerator(quantity).Generate();
@@ -95,7 +123,7 @@ namespace CodeGen.Generators
             sb.Append("unit(OK) ");
         }
 
-        private static void GenerateUnitTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantityTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTestBaseClassGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);

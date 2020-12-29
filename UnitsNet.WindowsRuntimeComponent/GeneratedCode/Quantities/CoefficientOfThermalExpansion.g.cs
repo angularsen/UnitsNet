@@ -522,7 +522,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*5/9;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*9/5;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -539,7 +539,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*9/5;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*5/9;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
