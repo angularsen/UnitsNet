@@ -52,9 +52,9 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
             return Writer.ToString();
         }
 
-        private string GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) =>
             string.IsNullOrWhiteSpace(obsoleteText) ?
             null :
-            $"[System.Obsolete({obsoleteText})]";
+            $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }
