@@ -521,9 +521,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case CloudCoverUnit.Fraction: return _value;
+                case CloudCoverUnit.Fraction: return UnitsNetMath.Clamp(_value,0,1);
                 case CloudCoverUnit.Okta: return _value * 0.125;
-                case CloudCoverUnit.Percent: return _value/1e2;
+                case CloudCoverUnit.Percent: return UnitsNetMath.Clamp(_value/1e2,0,1);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,9 +538,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case CloudCoverUnit.Fraction: return baseUnitValue;
-                case CloudCoverUnit.Okta: return Clamp(System.Math.Round(baseUnitValue / 0.125, MidpointRounding.AwayFromZero),0,8);
-                case CloudCoverUnit.Percent: return baseUnitValue*1e2;
+                case CloudCoverUnit.Fraction: return UnitsNetMath.Clamp(baseUnitValue,0,1);
+                case CloudCoverUnit.Okta: return UnitsNetMath.Clamp(System.Math.Round(baseUnitValue / 0.125, MidpointRounding.AwayFromZero),0,8);
+                case CloudCoverUnit.Percent: return UnitsNetMath.Clamp(baseUnitValue*1e2,0,1e2);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
