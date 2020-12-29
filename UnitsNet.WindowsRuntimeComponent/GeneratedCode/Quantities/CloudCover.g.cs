@@ -539,7 +539,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case CloudCoverUnit.Fraction: return baseUnitValue;
-                case CloudCoverUnit.Okta: return Convert.ToByte(System.Math.Round(baseUnitValue / 0.125, MidpointRounding.AwayFromZero));
+                case CloudCoverUnit.Okta: return Clamp(System.Math.Round(baseUnitValue / 0.125, MidpointRounding.AwayFromZero),0,8);
                 case CloudCoverUnit.Percent: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

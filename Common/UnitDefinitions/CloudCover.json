@@ -7,7 +7,7 @@
       "SingularName": "Okta",
       "PluralName": "Oktas",
       "FromUnitToBaseFunc": "x * 0.125",
-      "FromBaseToUnitFunc": "System.Math.Round(x / 0.125, MidpointRounding.AwayFromZero)",
+      "FromBaseToUnitFunc": "NumericExtensions.Clamp(System.Math.Round(x / 0.125, MidpointRounding.AwayFromZero),0,8)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -18,8 +18,8 @@
     {
       "SingularName": "Percent",
       "PluralName": "Percent",
-      "FromUnitToBaseFunc": "x/1e2",
-      "FromBaseToUnitFunc": "x*1e2",
+      "FromUnitToBaseFunc": "NumericExtensions.Clamp(x/1e2,0,1)",
+      "FromBaseToUnitFunc": "NumericExtensions.Clamp(x*1e2,0,1e2)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,8 +30,8 @@
     {
       "SingularName": "Fraction",
       "PluralName": "Fractions",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "NumericExtensions.Clamp(x,0,1)",
+      "FromBaseToUnitFunc": "NumericExtensions.Clamp(x,0,1)",
       "Localization": [
         {
           "Culture": "en-US",

@@ -24,11 +24,8 @@ namespace UnitsNet.Tests.CustomCode
     public class CloudCoverTests : CloudCoverTestsBase
     {
         protected override double FractionsInOneFraction => 1;
-        protected override double FractionsTolerance => base.FractionsTolerance;
         protected override double OktasInOneFraction => 8;
-        protected override double OktasTolerance => base.OktasTolerance;
         protected override double PercentInOneFraction => 1e2;
-        protected override double PercentTolerance => base.PercentTolerance;
         protected override bool SupportsSIUnitSystem => false;
     }
 }
