@@ -29,7 +29,7 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temeperature.
+    ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
