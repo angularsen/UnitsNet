@@ -50,6 +50,7 @@ namespace UnitsNet
             { "BitRate", BitRate.Info },
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
+            { "CloudCover", CloudCover.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Density", Density.Info },
             { "Duration", Duration.Info },
@@ -160,6 +161,7 @@ namespace UnitsNet
             { "BitRate", QuantityType.BitRate },
             { "BrakeSpecificFuelConsumption", QuantityType.BrakeSpecificFuelConsumption },
             { "Capacitance", QuantityType.Capacitance },
+            { "CloudCover", QuantityType.CloudCover },
             { "CoefficientOfThermalExpansion", QuantityType.CoefficientOfThermalExpansion },
             { "Density", QuantityType.Density },
             { "Duration", QuantityType.Duration },
@@ -289,6 +291,8 @@ namespace UnitsNet
                     return BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit);
                 case QuantityType.Capacitance:
                     return Capacitance.From(value, Capacitance.BaseUnit);
+                case QuantityType.CloudCover:
+                    return CloudCover.From(value, CloudCover.BaseUnit);
                 case QuantityType.CoefficientOfThermalExpansion:
                     return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
                 case QuantityType.Density:
@@ -512,6 +516,8 @@ namespace UnitsNet
                     return BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit);
                 case "Capacitance":
                     return Capacitance.From(value, Capacitance.BaseUnit);
+                case "CloudCover":
+                    return CloudCover.From(value, CloudCover.BaseUnit);
                 case "CoefficientOfThermalExpansion":
                     return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
                 case "Density":
@@ -747,6 +753,9 @@ namespace UnitsNet
                     return true;
                 case CapacitanceUnit capacitanceUnit:
                     quantity = Capacitance.From(value, capacitanceUnit);
+                    return true;
+                case CloudCoverUnit cloudCoverUnit:
+                    quantity = CloudCover.From(value, cloudCoverUnit);
                     return true;
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
@@ -1075,6 +1084,8 @@ namespace UnitsNet
                     return parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity);
                 case Type _ when quantityType == typeof(Capacitance):
                     return parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity);
+                case Type _ when quantityType == typeof(CloudCover):
+                    return parser.TryParse<CloudCover, CloudCoverUnit>(quantityString, formatProvider, CloudCover.From, out quantity);
                 case Type _ when quantityType == typeof(CoefficientOfThermalExpansion):
                     return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
                 case Type _ when quantityType == typeof(Density):

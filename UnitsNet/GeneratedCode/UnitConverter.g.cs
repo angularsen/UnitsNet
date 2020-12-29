@@ -242,6 +242,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Nanofarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Picofarad, q => q.ToUnit(CapacitanceUnit.Picofarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<CloudCover>(CloudCover.BaseUnit, CloudCover.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<CloudCover>(CloudCover.BaseUnit, CloudCoverUnit.Okta, q => q.ToUnit(CloudCoverUnit.Okta));
+            unitConverter.SetConversionFunction<CloudCover>(CloudCoverUnit.Okta, CloudCover.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<CloudCover>(CloudCover.BaseUnit, CloudCoverUnit.Percent, q => q.ToUnit(CloudCoverUnit.Percent));
+            unitConverter.SetConversionFunction<CloudCover>(CloudCoverUnit.Percent, CloudCover.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, q => q.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansion.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, q => q.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));

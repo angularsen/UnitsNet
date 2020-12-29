@@ -77,6 +77,9 @@ namespace UnitsNet
                 case CapacitanceUnit capacitanceUnit:
                     quantity = Capacitance.From(value, capacitanceUnit);
                     return true;
+                case CloudCoverUnit cloudCoverUnit:
+                    quantity = CloudCover.From(value, cloudCoverUnit);
+                    return true;
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
                     return true;
@@ -438,6 +441,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Capacitance))
                 return parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity);
+
+            if (quantityType == typeof(CloudCover))
+                return parser.TryParse<CloudCover, CloudCoverUnit>(quantityString, formatProvider, CloudCover.From, out quantity);
 
             if (quantityType == typeof(CoefficientOfThermalExpansion))
                 return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);

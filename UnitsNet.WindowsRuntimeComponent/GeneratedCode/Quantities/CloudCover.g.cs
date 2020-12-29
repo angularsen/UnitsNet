@@ -29,12 +29,12 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
+    ///     Cloud cover (also known as cloudiness, cloudage, or cloud amount) refers to the fraction of the sky obscured by clouds when observed from a particular location.
     /// </summary>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class RelativeHumidity : IQuantity
+    public sealed partial class CloudCover : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,21 +44,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly RelativeHumidityUnit? _unit;
+        private readonly CloudCoverUnit? _unit;
 
-        static RelativeHumidity()
+        static CloudCover()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.RelativeHumidity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.CloudCover, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit Percent.
+        ///     Creates the quantity with a value of 0 in the base unit Fraction.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public RelativeHumidity()
+        public CloudCover()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -71,9 +71,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private RelativeHumidity(double value, RelativeHumidityUnit unit)
+        private CloudCover(double value, CloudCoverUnit unit)
         {
-            if(unit == RelativeHumidityUnit.Undefined)
+            if(unit == CloudCoverUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -93,34 +93,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RelativeHumidity, which is Percent. All conversions go via this value.
+        ///     The base unit of CloudCover, which is Fraction. All conversions go via this value.
         /// </summary>
-        public static RelativeHumidityUnit BaseUnit { get; } = RelativeHumidityUnit.Percent;
+        public static CloudCoverUnit BaseUnit { get; } = CloudCoverUnit.Fraction;
 
         /// <summary>
-        /// Represents the largest possible value of RelativeHumidity
+        /// Represents the largest possible value of CloudCover
         /// </summary>
-        public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, BaseUnit);
+        public static CloudCover MaxValue { get; } = new CloudCover(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of RelativeHumidity
+        /// Represents the smallest possible value of CloudCover
         /// </summary>
-        public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, BaseUnit);
+        public static CloudCover MinValue { get; } = new CloudCover(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.RelativeHumidity;
+        public static QuantityType QuantityType { get; } = QuantityType.CloudCover;
 
         /// <summary>
-        ///     All units of measurement for the RelativeHumidity quantity.
+        ///     All units of measurement for the CloudCover quantity.
         /// </summary>
-        public static RelativeHumidityUnit[] Units { get; } = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
+        public static CloudCoverUnit[] Units { get; } = Enum.GetValues(typeof(CloudCoverUnit)).Cast<CloudCoverUnit>().Except(new CloudCoverUnit[]{ CloudCoverUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Percent.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Fraction.
         /// </summary>
-        public static RelativeHumidity Zero { get; } = new RelativeHumidity(0, BaseUnit);
+        public static CloudCover Zero { get; } = new CloudCover(0, BaseUnit);
 
         #endregion
 
@@ -137,28 +137,38 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public RelativeHumidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public CloudCoverUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => RelativeHumidity.QuantityType;
+        public QuantityType Type => CloudCover.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => RelativeHumidity.BaseDimensions;
+        public BaseDimensions Dimensions => CloudCover.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RelativeHumidity in Percent.
+        ///     Get CloudCover in Fractions.
         /// </summary>
-        public double Percent => As(RelativeHumidityUnit.Percent);
+        public double Fractions => As(CloudCoverUnit.Fraction);
+
+        /// <summary>
+        ///     Get CloudCover in Oktas.
+        /// </summary>
+        public double Oktas => As(CloudCoverUnit.Okta);
+
+        /// <summary>
+        ///     Get CloudCover in Percent.
+        /// </summary>
+        public double Percent => As(CloudCoverUnit.Percent);
 
         #endregion
 
@@ -169,7 +179,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(RelativeHumidityUnit unit)
+        public static string GetAbbreviation(CloudCoverUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -180,7 +190,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(RelativeHumidityUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(CloudCoverUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -191,27 +201,47 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RelativeHumidity from Percent.
+        ///     Get CloudCover from Fractions.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RelativeHumidity FromPercent(double percent)
+        public static CloudCover FromFractions(double fractions)
+        {
+            double value = (double) fractions;
+            return new CloudCover(value, CloudCoverUnit.Fraction);
+        }
+        /// <summary>
+        ///     Get CloudCover from Oktas.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static CloudCover FromOktas(double oktas)
+        {
+            double value = (double) oktas;
+            return new CloudCover(value, CloudCoverUnit.Okta);
+        }
+        /// <summary>
+        ///     Get CloudCover from Percent.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static CloudCover FromPercent(double percent)
         {
             double value = (double) percent;
-            return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
+            return new CloudCover(value, CloudCoverUnit.Percent);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RelativeHumidityUnit" /> to <see cref="RelativeHumidity" />.
+        ///     Dynamically convert from value and unit enum <see cref="CloudCoverUnit" /> to <see cref="CloudCover" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RelativeHumidity unit value.</returns>
+        /// <returns>CloudCover unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static RelativeHumidity From(double value, RelativeHumidityUnit fromUnit)
+        public static CloudCover From(double value, CloudCoverUnit fromUnit)
         {
-            return new RelativeHumidity((double)value, fromUnit);
+            return new CloudCover((double)value, fromUnit);
         }
 
         #endregion
@@ -240,7 +270,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RelativeHumidity Parse(string str)
+        public static CloudCover Parse(string str)
         {
             return Parse(str, null);
         }
@@ -268,10 +298,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static RelativeHumidity Parse(string str, [CanBeNull] string cultureName)
+        public static CloudCover Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<RelativeHumidity, RelativeHumidityUnit>(
+            return QuantityParser.Default.Parse<CloudCover, CloudCoverUnit>(
                 str,
                 provider,
                 From);
@@ -285,7 +315,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out RelativeHumidity result)
+        public static bool TryParse([CanBeNull] string str, out CloudCover result)
         {
             return TryParse(str, null, out result);
         }
@@ -300,10 +330,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out RelativeHumidity result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out CloudCover result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<RelativeHumidity, RelativeHumidityUnit>(
+            return QuantityParser.Default.TryParse<CloudCover, CloudCoverUnit>(
                 str,
                 provider,
                 From,
@@ -319,7 +349,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static RelativeHumidityUnit ParseUnit(string str)
+        public static CloudCoverUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -334,13 +364,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static RelativeHumidityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static CloudCoverUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<RelativeHumidityUnit>(str, provider);
+            return UnitParser.Default.Parse<CloudCoverUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out RelativeHumidityUnit unit)
+        public static bool TryParseUnit(string str, out CloudCoverUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -355,10 +385,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out RelativeHumidityUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out CloudCoverUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<RelativeHumidityUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<CloudCoverUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -368,13 +398,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RelativeHumidity objRelativeHumidity)) throw new ArgumentException("Expected type RelativeHumidity.", nameof(obj));
+            if(!(obj is CloudCover objCloudCover)) throw new ArgumentException("Expected type CloudCover.", nameof(obj));
 
-            return CompareTo(objRelativeHumidity);
+            return CompareTo(objCloudCover);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(RelativeHumidity other)
+        internal int CompareTo(CloudCover other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -382,20 +412,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is RelativeHumidity objRelativeHumidity))
+            if(obj is null || !(obj is CloudCover objCloudCover))
                 return false;
 
-            return Equals(objRelativeHumidity);
+            return Equals(objCloudCover);
         }
 
-        public bool Equals(RelativeHumidity other)
+        public bool Equals(CloudCover other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another RelativeHumidity within the given absolute or relative tolerance.
+        ///     Compare equality to another CloudCover within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -433,7 +463,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RelativeHumidity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(CloudCover other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -447,7 +477,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current RelativeHumidity.</returns>
+        /// <returns>A hash code for the current CloudCover.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -457,13 +487,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((RelativeHumidityUnit)unit);
+        double IQuantity.As(object unit) => As((CloudCoverUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RelativeHumidityUnit unit)
+        public double As(CloudCoverUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -473,13 +503,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this RelativeHumidity to another RelativeHumidity with the unit representation <paramref name="unit" />.
+        ///     Converts this CloudCover to another CloudCover with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A RelativeHumidity with the specified unit.</returns>
-        public RelativeHumidity ToUnit(RelativeHumidityUnit unit)
+        /// <returns>A CloudCover with the specified unit.</returns>
+        public CloudCover ToUnit(CloudCoverUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new RelativeHumidity(convertedValue, unit);
+            return new CloudCover(convertedValue, unit);
         }
 
         /// <summary>
@@ -491,13 +521,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RelativeHumidityUnit.Percent: return _value;
+                case CloudCoverUnit.Fraction: return _value;
+                case CloudCoverUnit.Okta: return _value * 0.125;
+                case CloudCoverUnit.Percent: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(RelativeHumidityUnit unit)
+        private double AsBaseNumericType(CloudCoverUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -506,7 +538,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RelativeHumidityUnit.Percent: return baseUnitValue;
+                case CloudCoverUnit.Fraction: return baseUnitValue;
+                case CloudCoverUnit.Okta: return Convert.ToByte(System.Math.Round(baseUnitValue / 0.125, MidpointRounding.AwayFromZero));
+                case CloudCoverUnit.Percent: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

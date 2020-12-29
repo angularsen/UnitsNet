@@ -41,6 +41,7 @@ namespace UnitsNet
         BitRate,
         BrakeSpecificFuelConsumption,
         Capacitance,
+        CloudCover,
         CoefficientOfThermalExpansion,
         Density,
         Duration,
