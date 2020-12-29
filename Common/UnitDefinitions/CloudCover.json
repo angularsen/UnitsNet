@@ -1,0 +1,43 @@
+{
+  "Name": "CloudCover",
+  "BaseUnit": "Fraction",
+  "XmlDoc": "Cloud cover (also known as cloudiness, cloudage, or cloud amount) refers to the fraction of the sky obscured by clouds when observed from a particular location.",
+  "Units": [
+    {
+      "SingularName": "Okta",
+      "PluralName": "Oktas",
+      "FromUnitToBaseFunc": "x * 0.125",
+      "FromBaseToUnitFunc": "System.Math.Round(x / 0.125, MidpointRounding.AwayFromZero)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "oktas" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percent",
+      "FromUnitToBaseFunc": "x/1e2",
+      "FromBaseToUnitFunc": "x*1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Fraction",
+      "PluralName": "Fractions",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    }
+  ]
+}
