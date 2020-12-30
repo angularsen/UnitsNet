@@ -112,11 +112,13 @@ namespace UnitsNet
         /// </summary>
         public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of FuelEfficiency
         /// </summary>
         public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of FuelEfficiency
         /// </summary>

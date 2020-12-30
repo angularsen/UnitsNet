@@ -109,11 +109,13 @@ namespace UnitsNet
         /// </summary>
         public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of ApparentPower
         /// </summary>
         public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of ApparentPower
         /// </summary>

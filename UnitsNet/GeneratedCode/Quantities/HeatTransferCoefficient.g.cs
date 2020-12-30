@@ -108,11 +108,13 @@ namespace UnitsNet
         /// </summary>
         public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of HeatTransferCoefficient
         /// </summary>
         public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of HeatTransferCoefficient
         /// </summary>

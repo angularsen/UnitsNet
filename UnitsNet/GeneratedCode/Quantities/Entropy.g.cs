@@ -112,11 +112,13 @@ namespace UnitsNet
         /// </summary>
         public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
         public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>

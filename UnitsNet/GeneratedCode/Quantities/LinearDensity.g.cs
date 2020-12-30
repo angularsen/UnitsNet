@@ -122,11 +122,13 @@ namespace UnitsNet
         /// </summary>
         public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of LinearDensity
         /// </summary>
         public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of LinearDensity
         /// </summary>

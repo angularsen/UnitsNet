@@ -114,11 +114,13 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of TemperatureDelta
         /// </summary>
         public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of TemperatureDelta
         /// </summary>

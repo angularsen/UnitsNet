@@ -120,11 +120,13 @@ namespace UnitsNet
         /// </summary>
         public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
         public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>

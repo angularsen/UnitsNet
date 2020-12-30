@@ -110,11 +110,13 @@ namespace UnitsNet
         /// </summary>
         public static ThermalConductivityUnit BaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of ThermalConductivity
         /// </summary>
         public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of ThermalConductivity
         /// </summary>

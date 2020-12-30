@@ -148,11 +148,13 @@ namespace UnitsNet
         /// </summary>
         public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of Density
         /// </summary>
         public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of Density
         /// </summary>

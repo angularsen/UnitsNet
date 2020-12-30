@@ -109,11 +109,13 @@ namespace UnitsNet
         /// </summary>
         public static RotationalAccelerationUnit BaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of RotationalAcceleration
         /// </summary>
         public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of RotationalAcceleration
         /// </summary>

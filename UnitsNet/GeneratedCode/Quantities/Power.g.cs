@@ -130,11 +130,13 @@ namespace UnitsNet
         /// </summary>
         public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
         public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>

@@ -132,11 +132,13 @@ namespace UnitsNet
         /// </summary>
         public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of MassFraction
         /// </summary>
         public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of MassFraction
         /// </summary>

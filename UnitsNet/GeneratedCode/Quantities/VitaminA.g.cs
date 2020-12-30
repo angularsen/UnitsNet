@@ -106,11 +106,13 @@ namespace UnitsNet
         /// </summary>
         public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of VitaminA
         /// </summary>
         public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of VitaminA
         /// </summary>

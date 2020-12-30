@@ -108,11 +108,13 @@ namespace UnitsNet
         /// </summary>
         public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of MolarEnergy
         /// </summary>
         public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of MolarEnergy
         /// </summary>

@@ -109,11 +109,13 @@ namespace UnitsNet
         /// </summary>
         public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of ElectricField
         /// </summary>
         public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of ElectricField
         /// </summary>

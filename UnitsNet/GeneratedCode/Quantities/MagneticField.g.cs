@@ -113,11 +113,13 @@ namespace UnitsNet
         /// </summary>
         public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of MagneticField
         /// </summary>
         public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of MagneticField
         /// </summary>

@@ -117,11 +117,13 @@ namespace UnitsNet
         /// </summary>
         public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
         public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
 
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
