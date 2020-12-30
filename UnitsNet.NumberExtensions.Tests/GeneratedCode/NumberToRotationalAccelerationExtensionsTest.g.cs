@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToRotationalAcceleration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRotationalAccelerationExtensionsTests
     {
         [Fact]

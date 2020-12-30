@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToHeatFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToHeatFluxExtensionsTests
     {
         [Fact]

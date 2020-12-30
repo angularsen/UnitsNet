@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToInformation;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToInformationExtensionsTests
     {
         [Fact]

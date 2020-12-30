@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAmountOfSubstance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAmountOfSubstanceExtensionsTests
     {
         [Fact]

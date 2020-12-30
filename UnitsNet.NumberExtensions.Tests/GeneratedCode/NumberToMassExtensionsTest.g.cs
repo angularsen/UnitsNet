@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMass;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMassExtensionsTests
     {
         [Fact]

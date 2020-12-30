@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToFrequency;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToFrequencyExtensionsTests
     {
         [Fact]

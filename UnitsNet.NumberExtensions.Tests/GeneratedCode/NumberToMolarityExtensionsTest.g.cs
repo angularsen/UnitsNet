@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMolarity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMolarityExtensionsTests
     {
         [Fact]

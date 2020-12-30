@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToPermittivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPermittivityExtensionsTests
     {
         [Fact]

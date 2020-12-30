@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMolarEntropy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMolarEntropyExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToDuration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToDurationExtensionsTests
     {
         [Fact]

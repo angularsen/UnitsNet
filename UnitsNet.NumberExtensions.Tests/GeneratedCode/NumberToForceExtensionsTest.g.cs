@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToForce;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToForceExtensionsTests
     {
         [Fact]

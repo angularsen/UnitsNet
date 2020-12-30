@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricCurrentGradient;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricCurrentGradientExtensionsTests
     {
         [Fact]

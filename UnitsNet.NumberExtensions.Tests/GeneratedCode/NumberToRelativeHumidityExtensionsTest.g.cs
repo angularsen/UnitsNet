@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToRelativeHumidity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRelativeHumidityExtensionsTests
     {
         [Fact]

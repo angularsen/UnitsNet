@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToLinearDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLinearDensityExtensionsTests
     {
         [Fact]

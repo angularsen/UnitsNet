@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricAdmittance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricAdmittanceExtensionsTests
     {
         [Fact]

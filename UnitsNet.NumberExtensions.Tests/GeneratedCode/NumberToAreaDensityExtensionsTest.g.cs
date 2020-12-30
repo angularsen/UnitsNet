@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAreaDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAreaDensityExtensionsTests
     {
         [Fact]

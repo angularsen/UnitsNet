@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMolarEnergy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMolarEnergyExtensionsTests
     {
         [Fact]

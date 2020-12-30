@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToArea;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAreaExtensionsTests
     {
         [Fact]

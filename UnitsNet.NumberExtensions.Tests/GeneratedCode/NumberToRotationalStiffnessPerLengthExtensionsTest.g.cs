@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRotationalStiffnessPerLengthExtensionsTests
     {
         [Fact]

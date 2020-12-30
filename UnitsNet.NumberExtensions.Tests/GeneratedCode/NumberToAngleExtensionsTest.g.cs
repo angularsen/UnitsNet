@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAngle;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAngleExtensionsTests
     {
         [Fact]

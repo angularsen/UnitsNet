@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToPressure;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPressureExtensionsTests
     {
         [Fact]

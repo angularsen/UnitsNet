@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToCoefficientOfThermalExpansionExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricConductance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricConductanceExtensionsTests
     {
         [Fact]

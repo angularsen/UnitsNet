@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMagneticField;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagneticFieldExtensionsTests
     {
         [Fact]

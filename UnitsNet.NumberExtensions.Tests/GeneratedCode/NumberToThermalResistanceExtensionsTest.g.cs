@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToThermalResistance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToThermalResistanceExtensionsTests
     {
         [Fact]

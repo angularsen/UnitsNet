@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricSurfaceChargeDensityExtensionsTests
     {
         [Fact]

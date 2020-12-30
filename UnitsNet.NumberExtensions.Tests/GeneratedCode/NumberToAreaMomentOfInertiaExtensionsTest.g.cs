@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAreaMomentOfInertiaExtensionsTests
     {
         [Fact]

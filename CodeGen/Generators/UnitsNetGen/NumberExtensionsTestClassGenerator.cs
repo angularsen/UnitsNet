@@ -28,7 +28,7 @@ using UnitsNet.NumberExtensions.NumberTo{_quantityName};
 using Xunit;
 
 namespace UnitsNet.Tests
-{{    
+{{
     public class NumberTo{_quantityName}ExtensionsTests
     {{");
 

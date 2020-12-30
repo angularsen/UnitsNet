@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMassFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMassFluxExtensionsTests
     {
         [Fact]

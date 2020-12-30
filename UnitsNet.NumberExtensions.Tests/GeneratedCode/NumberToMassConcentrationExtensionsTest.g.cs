@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMassConcentration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMassConcentrationExtensionsTests
     {
         [Fact]

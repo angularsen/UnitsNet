@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToCapacitance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToCapacitanceExtensionsTests
     {
         [Fact]

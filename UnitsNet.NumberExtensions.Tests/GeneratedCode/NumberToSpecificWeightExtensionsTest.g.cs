@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToSpecificWeight;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSpecificWeightExtensionsTests
     {
         [Fact]

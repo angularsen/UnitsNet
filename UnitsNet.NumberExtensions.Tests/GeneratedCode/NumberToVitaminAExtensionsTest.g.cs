@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToVitaminA;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVitaminAExtensionsTests
     {
         [Fact]

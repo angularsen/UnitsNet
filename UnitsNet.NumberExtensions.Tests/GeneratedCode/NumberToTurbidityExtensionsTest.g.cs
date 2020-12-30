@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToTurbidity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTurbidityExtensionsTests
     {
         [Fact]

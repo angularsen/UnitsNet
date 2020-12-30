@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAcceleration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAccelerationExtensionsTests
     {
         [Fact]

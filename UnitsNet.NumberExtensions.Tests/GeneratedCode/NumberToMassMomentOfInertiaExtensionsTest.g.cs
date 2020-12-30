@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMassMomentOfInertia;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMassMomentOfInertiaExtensionsTests
     {
         [Fact]

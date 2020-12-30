@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToLuminousFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLuminousFluxExtensionsTests
     {
         [Fact]
