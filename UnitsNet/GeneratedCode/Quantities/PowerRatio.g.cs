@@ -107,16 +107,16 @@ namespace UnitsNet
         /// </summary>
         public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of PowerRatio
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
 
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of PowerRatio
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 
         /// <summary>

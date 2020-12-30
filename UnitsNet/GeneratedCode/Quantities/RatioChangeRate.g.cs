@@ -107,16 +107,16 @@ namespace UnitsNet
         /// </summary>
         public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
 
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         /// <summary>
         /// Represents the smallest possible value of RatioChangeRate
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
