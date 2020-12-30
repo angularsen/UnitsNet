@@ -6,7 +6,7 @@
     <title>Units.NET - Windows Runtime Component</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
-    <license type="expression">MIT</license>
+    <license type="expression">MIT-0</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>For C#/VB Universal Windows code (UWP), use UnitsNet instead. This is a Windows Runtime Component with reduced functionality to support all UWP languages, such as JavaScript and C++, and other runtime components.</description>
