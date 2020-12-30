@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     public partial struct MolarEntropy<T> : IQuantityT<MolarEntropyUnit, T>, IEquatable<MolarEntropy<T>>, IComparable, IComparable<MolarEntropy<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -106,12 +107,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="MolarEntropy{T}" />
         /// </summary>
-        public static MolarEntropy<T> MaxValue { get; } = new MolarEntropy<T>(double.MaxValue, BaseUnit);
+        public static MolarEntropy<T> MaxValue { get; } = new MolarEntropy<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="MolarEntropy{T}" />
         /// </summary>
-        public static MolarEntropy<T> MinValue { get; } = new MolarEntropy<T>(double.MinValue, BaseUnit);
+        public static MolarEntropy<T> MinValue { get; } = new MolarEntropy<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -127,7 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMoleKelvin.
         /// </summary>
-        public static MolarEntropy<T> Zero { get; } = new MolarEntropy<T>((T)0, BaseUnit);
+        public static MolarEntropy<T> Zero { get; } = new MolarEntropy<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -139,6 +140,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MolarEntropy<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MolarEntropy<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -278,7 +302,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MolarEntropy<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarEntropy<T>, MolarEntropyUnit>(
+            return QuantityParser.Default.Parse<T, MolarEntropy<T>, MolarEntropyUnit>(
                 str,
                 provider,
                 From);
@@ -309,7 +333,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MolarEntropy<T> result)
         {
-            return QuantityParser.Default.TryParse<MolarEntropy<T>, MolarEntropyUnit>(
+            return QuantityParser.Default.TryParse<T, MolarEntropy<T>, MolarEntropyUnit>(
                 str,
                 provider,
                 From,
@@ -531,10 +555,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MolarEntropy<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MolarEntropy<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

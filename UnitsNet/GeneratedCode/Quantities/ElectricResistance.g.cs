@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
     public partial struct ElectricResistance<T> : IQuantityT<ElectricResistanceUnit, T>, IEquatable<ElectricResistance<T>>, IComparable, IComparable<ElectricResistance<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -109,12 +110,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ElectricResistance{T}" />
         /// </summary>
-        public static ElectricResistance<T> MaxValue { get; } = new ElectricResistance<T>(double.MaxValue, BaseUnit);
+        public static ElectricResistance<T> MaxValue { get; } = new ElectricResistance<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ElectricResistance{T}" />
         /// </summary>
-        public static ElectricResistance<T> MinValue { get; } = new ElectricResistance<T>(double.MinValue, BaseUnit);
+        public static ElectricResistance<T> MinValue { get; } = new ElectricResistance<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance<T> Zero { get; } = new ElectricResistance<T>((T)0, BaseUnit);
+        public static ElectricResistance<T> Zero { get; } = new ElectricResistance<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,6 +143,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ElectricResistanceUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricResistance<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricResistance<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -320,7 +344,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ElectricResistance<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricResistance<T>, ElectricResistanceUnit>(
+            return QuantityParser.Default.Parse<T, ElectricResistance<T>, ElectricResistanceUnit>(
                 str,
                 provider,
                 From);
@@ -351,7 +375,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistance<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricResistance<T>, ElectricResistanceUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricResistance<T>, ElectricResistanceUnit>(
                 str,
                 provider,
                 From,
@@ -573,10 +597,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricResistance<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricResistance<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
     public partial struct AreaMomentOfInertia<T> : IQuantityT<AreaMomentOfInertiaUnit, T>, IEquatable<AreaMomentOfInertia<T>>, IComparable, IComparable<AreaMomentOfInertia<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -109,12 +110,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="AreaMomentOfInertia{T}" />
         /// </summary>
-        public static AreaMomentOfInertia<T> MaxValue { get; } = new AreaMomentOfInertia<T>(double.MaxValue, BaseUnit);
+        public static AreaMomentOfInertia<T> MaxValue { get; } = new AreaMomentOfInertia<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="AreaMomentOfInertia{T}" />
         /// </summary>
-        public static AreaMomentOfInertia<T> MinValue { get; } = new AreaMomentOfInertia<T>(double.MinValue, BaseUnit);
+        public static AreaMomentOfInertia<T> MinValue { get; } = new AreaMomentOfInertia<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheFourth.
         /// </summary>
-        public static AreaMomentOfInertia<T> Zero { get; } = new AreaMomentOfInertia<T>((T)0, BaseUnit);
+        public static AreaMomentOfInertia<T> Zero { get; } = new AreaMomentOfInertia<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,6 +143,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AreaMomentOfInertia<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => AreaMomentOfInertia<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -320,7 +344,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static AreaMomentOfInertia<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
+            return QuantityParser.Default.Parse<T, AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
                 str,
                 provider,
                 From);
@@ -351,7 +375,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out AreaMomentOfInertia<T> result)
         {
-            return QuantityParser.Default.TryParse<AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
+            return QuantityParser.Default.TryParse<T, AreaMomentOfInertia<T>, AreaMomentOfInertiaUnit>(
                 str,
                 provider,
                 From,
@@ -573,10 +597,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AreaMomentOfInertia<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(AreaMomentOfInertia<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

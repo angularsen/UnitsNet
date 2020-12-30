@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     public partial struct ElectricCurrentDensity<T> : IQuantityT<ElectricCurrentDensityUnit, T>, IEquatable<ElectricCurrentDensity<T>>, IComparable, IComparable<ElectricCurrentDensity<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -109,12 +110,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ElectricCurrentDensity{T}" />
         /// </summary>
-        public static ElectricCurrentDensity<T> MaxValue { get; } = new ElectricCurrentDensity<T>(double.MaxValue, BaseUnit);
+        public static ElectricCurrentDensity<T> MaxValue { get; } = new ElectricCurrentDensity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ElectricCurrentDensity{T}" />
         /// </summary>
-        public static ElectricCurrentDensity<T> MinValue { get; } = new ElectricCurrentDensity<T>(double.MinValue, BaseUnit);
+        public static ElectricCurrentDensity<T> MinValue { get; } = new ElectricCurrentDensity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSquareMeter.
         /// </summary>
-        public static ElectricCurrentDensity<T> Zero { get; } = new ElectricCurrentDensity<T>((T)0, BaseUnit);
+        public static ElectricCurrentDensity<T> Zero { get; } = new ElectricCurrentDensity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,6 +143,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ElectricCurrentDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ElectricCurrentDensityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricCurrentDensity<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricCurrentDensity<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -281,7 +305,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ElectricCurrentDensity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
+            return QuantityParser.Default.Parse<T, ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
                 str,
                 provider,
                 From);
@@ -312,7 +336,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrentDensity<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricCurrentDensity<T>, ElectricCurrentDensityUnit>(
                 str,
                 provider,
                 From,
@@ -534,10 +558,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrentDensity<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrentDensity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

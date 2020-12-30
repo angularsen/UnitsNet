@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permeability_(electromagnetism)
     /// </remarks>
     public partial struct Permeability<T> : IQuantityT<PermeabilityUnit, T>, IEquatable<Permeability<T>>, IComparable, IComparable<Permeability<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,12 +108,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Permeability{T}" />
         /// </summary>
-        public static Permeability<T> MaxValue { get; } = new Permeability<T>(double.MaxValue, BaseUnit);
+        public static Permeability<T> MaxValue { get; } = new Permeability<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Permeability{T}" />
         /// </summary>
-        public static Permeability<T> MinValue { get; } = new Permeability<T>(double.MinValue, BaseUnit);
+        public static Permeability<T> MinValue { get; } = new Permeability<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -128,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit HenryPerMeter.
         /// </summary>
-        public static Permeability<T> Zero { get; } = new Permeability<T>((T)0, BaseUnit);
+        public static Permeability<T> Zero { get; } = new Permeability<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -140,6 +141,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public PermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<PermeabilityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Permeability<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Permeability<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -253,7 +277,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Permeability<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Permeability<T>, PermeabilityUnit>(
+            return QuantityParser.Default.Parse<T, Permeability<T>, PermeabilityUnit>(
                 str,
                 provider,
                 From);
@@ -284,7 +308,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Permeability<T> result)
         {
-            return QuantityParser.Default.TryParse<Permeability<T>, PermeabilityUnit>(
+            return QuantityParser.Default.TryParse<T, Permeability<T>, PermeabilityUnit>(
                 str,
                 provider,
                 From,
@@ -506,10 +530,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Permeability<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Permeability<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

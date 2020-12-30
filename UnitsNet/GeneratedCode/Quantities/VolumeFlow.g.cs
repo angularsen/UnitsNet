@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.
     /// </summary>
     public partial struct VolumeFlow<T> : IQuantityT<VolumeFlowUnit, T>, IEquatable<VolumeFlow<T>>, IComparable, IComparable<VolumeFlow<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -159,12 +160,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="VolumeFlow{T}" />
         /// </summary>
-        public static VolumeFlow<T> MaxValue { get; } = new VolumeFlow<T>(double.MaxValue, BaseUnit);
+        public static VolumeFlow<T> MaxValue { get; } = new VolumeFlow<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="VolumeFlow{T}" />
         /// </summary>
-        public static VolumeFlow<T> MinValue { get; } = new VolumeFlow<T>(double.MinValue, BaseUnit);
+        public static VolumeFlow<T> MinValue { get; } = new VolumeFlow<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -180,7 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlow<T> Zero { get; } = new VolumeFlow<T>((T)0, BaseUnit);
+        public static VolumeFlow<T> Zero { get; } = new VolumeFlow<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -192,6 +193,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<VolumeFlowUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => VolumeFlow<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => VolumeFlow<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -1020,7 +1044,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static VolumeFlow<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<VolumeFlow<T>, VolumeFlowUnit>(
+            return QuantityParser.Default.Parse<T, VolumeFlow<T>, VolumeFlowUnit>(
                 str,
                 provider,
                 From);
@@ -1051,7 +1075,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out VolumeFlow<T> result)
         {
-            return QuantityParser.Default.TryParse<VolumeFlow<T>, VolumeFlowUnit>(
+            return QuantityParser.Default.TryParse<T, VolumeFlow<T>, VolumeFlowUnit>(
                 str,
                 provider,
                 From,
@@ -1273,10 +1297,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(VolumeFlow<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VolumeFlow<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

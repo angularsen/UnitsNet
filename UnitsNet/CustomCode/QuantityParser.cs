@@ -13,6 +13,10 @@ using JetBrains.Annotations;
 namespace UnitsNet
 {
 
+    internal delegate TQuantity QuantityFromDelegate<in TValue, out TQuantity, in TUnitType>(TValue value, TUnitType fromUnit)
+        where TValue : struct
+        where TQuantity : IQuantity
+        where TUnitType : Enum;
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
@@ -41,9 +45,10 @@ namespace UnitsNet
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
+        internal TQuantity Parse<TValue, TQuantity, TUnitType>([NotNull] string str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
+            [NotNull] QuantityFromDelegate<TValue, TQuantity, TUnitType> fromDelegate)
+            where TValue : struct
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
@@ -70,10 +75,11 @@ namespace UnitsNet
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>(string? str,
+        internal bool TryParse<TValue, TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            [NotNull] QuantityFromDelegate<TValue, TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
+            where TValue : struct
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
         {
@@ -101,10 +107,11 @@ namespace UnitsNet
         ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
         /// </summary>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+        internal bool TryParse<TValue, TQuantity, TUnitType>([NotNull] string str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            [NotNull] QuantityFromDelegate<TValue, TQuantity, TUnitType> fromDelegate,
             out IQuantity? result)
+            where TValue : struct
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
         {

@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetization
     /// </remarks>
     public partial struct Magnetization<T> : IQuantityT<MagnetizationUnit, T>, IEquatable<Magnetization<T>>, IComparable, IComparable<Magnetization<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,12 +108,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Magnetization{T}" />
         /// </summary>
-        public static Magnetization<T> MaxValue { get; } = new Magnetization<T>(double.MaxValue, BaseUnit);
+        public static Magnetization<T> MaxValue { get; } = new Magnetization<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Magnetization{T}" />
         /// </summary>
-        public static Magnetization<T> MinValue { get; } = new Magnetization<T>(double.MinValue, BaseUnit);
+        public static Magnetization<T> MinValue { get; } = new Magnetization<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -128,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerMeter.
         /// </summary>
-        public static Magnetization<T> Zero { get; } = new Magnetization<T>((T)0, BaseUnit);
+        public static Magnetization<T> Zero { get; } = new Magnetization<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -140,6 +141,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Magnetization<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Magnetization<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -253,7 +277,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Magnetization<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Magnetization<T>, MagnetizationUnit>(
+            return QuantityParser.Default.Parse<T, Magnetization<T>, MagnetizationUnit>(
                 str,
                 provider,
                 From);
@@ -284,7 +308,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Magnetization<T> result)
         {
-            return QuantityParser.Default.TryParse<Magnetization<T>, MagnetizationUnit>(
+            return QuantityParser.Default.TryParse<T, Magnetization<T>, MagnetizationUnit>(
                 str,
                 provider,
                 From,
@@ -506,10 +530,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Magnetization<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Magnetization<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

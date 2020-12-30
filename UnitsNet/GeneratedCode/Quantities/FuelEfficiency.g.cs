@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
     /// </remarks>
     public partial struct FuelEfficiency<T> : IQuantityT<FuelEfficiencyUnit, T>, IEquatable<FuelEfficiency<T>>, IComparable, IComparable<FuelEfficiency<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -110,12 +111,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="FuelEfficiency{T}" />
         /// </summary>
-        public static FuelEfficiency<T> MaxValue { get; } = new FuelEfficiency<T>(double.MaxValue, BaseUnit);
+        public static FuelEfficiency<T> MaxValue { get; } = new FuelEfficiency<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="FuelEfficiency{T}" />
         /// </summary>
-        public static FuelEfficiency<T> MinValue { get; } = new FuelEfficiency<T>(double.MinValue, BaseUnit);
+        public static FuelEfficiency<T> MinValue { get; } = new FuelEfficiency<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -131,7 +132,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit LiterPer100Kilometers.
         /// </summary>
-        public static FuelEfficiency<T> Zero { get; } = new FuelEfficiency<T>((T)0, BaseUnit);
+        public static FuelEfficiency<T> Zero { get; } = new FuelEfficiency<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -143,6 +144,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public FuelEfficiencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<FuelEfficiencyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => FuelEfficiency<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => FuelEfficiency<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -295,7 +319,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static FuelEfficiency<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<FuelEfficiency<T>, FuelEfficiencyUnit>(
+            return QuantityParser.Default.Parse<T, FuelEfficiency<T>, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From);
@@ -326,7 +350,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out FuelEfficiency<T> result)
         {
-            return QuantityParser.Default.TryParse<FuelEfficiency<T>, FuelEfficiencyUnit>(
+            return QuantityParser.Default.TryParse<T, FuelEfficiency<T>, FuelEfficiencyUnit>(
                 str,
                 provider,
                 From,
@@ -548,10 +572,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(FuelEfficiency<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(FuelEfficiency<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

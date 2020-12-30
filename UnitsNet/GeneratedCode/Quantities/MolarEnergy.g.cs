@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Molar energy is the amount of energy stored in 1 mole of a substance.
     /// </summary>
     public partial struct MolarEnergy<T> : IQuantityT<MolarEnergyUnit, T>, IEquatable<MolarEnergy<T>>, IComparable, IComparable<MolarEnergy<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -106,12 +107,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="MolarEnergy{T}" />
         /// </summary>
-        public static MolarEnergy<T> MaxValue { get; } = new MolarEnergy<T>(double.MaxValue, BaseUnit);
+        public static MolarEnergy<T> MaxValue { get; } = new MolarEnergy<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="MolarEnergy{T}" />
         /// </summary>
-        public static MolarEnergy<T> MinValue { get; } = new MolarEnergy<T>(double.MinValue, BaseUnit);
+        public static MolarEnergy<T> MinValue { get; } = new MolarEnergy<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -127,7 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMole.
         /// </summary>
-        public static MolarEnergy<T> Zero { get; } = new MolarEnergy<T>((T)0, BaseUnit);
+        public static MolarEnergy<T> Zero { get; } = new MolarEnergy<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -139,6 +140,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public MolarEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<MolarEnergyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MolarEnergy<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MolarEnergy<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -278,7 +302,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MolarEnergy<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarEnergy<T>, MolarEnergyUnit>(
+            return QuantityParser.Default.Parse<T, MolarEnergy<T>, MolarEnergyUnit>(
                 str,
                 provider,
                 From);
@@ -309,7 +333,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MolarEnergy<T> result)
         {
-            return QuantityParser.Default.TryParse<MolarEnergy<T>, MolarEnergyUnit>(
+            return QuantityParser.Default.TryParse<T, MolarEnergy<T>, MolarEnergyUnit>(
                 str,
                 provider,
                 From,
@@ -531,10 +555,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MolarEnergy<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MolarEnergy<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

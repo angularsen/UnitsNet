@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
     public partial struct Volume<T> : IQuantityT<VolumeUnit, T>, IEquatable<Volume<T>>, IComparable, IComparable<Volume<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -154,12 +155,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Volume{T}" />
         /// </summary>
-        public static Volume<T> MaxValue { get; } = new Volume<T>(double.MaxValue, BaseUnit);
+        public static Volume<T> MaxValue { get; } = new Volume<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Volume{T}" />
         /// </summary>
-        public static Volume<T> MinValue { get; } = new Volume<T>(double.MinValue, BaseUnit);
+        public static Volume<T> MinValue { get; } = new Volume<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -175,7 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume<T> Zero { get; } = new Volume<T>((T)0, BaseUnit);
+        public static Volume<T> Zero { get; } = new Volume<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -187,6 +188,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<VolumeUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Volume<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Volume<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -950,7 +974,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Volume<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Volume<T>, VolumeUnit>(
+            return QuantityParser.Default.Parse<T, Volume<T>, VolumeUnit>(
                 str,
                 provider,
                 From);
@@ -981,7 +1005,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Volume<T> result)
         {
-            return QuantityParser.Default.TryParse<Volume<T>, VolumeUnit>(
+            return QuantityParser.Default.TryParse<T, Volume<T>, VolumeUnit>(
                 str,
                 provider,
                 From,
@@ -1203,10 +1227,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Volume<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Volume<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

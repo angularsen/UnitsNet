@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
     public partial struct RotationalStiffness<T> : IQuantityT<RotationalStiffnessUnit, T>, IEquatable<RotationalStiffness<T>>, IComparable, IComparable<RotationalStiffness<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -136,12 +137,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="RotationalStiffness{T}" />
         /// </summary>
-        public static RotationalStiffness<T> MaxValue { get; } = new RotationalStiffness<T>(double.MaxValue, BaseUnit);
+        public static RotationalStiffness<T> MaxValue { get; } = new RotationalStiffness<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="RotationalStiffness{T}" />
         /// </summary>
-        public static RotationalStiffness<T> MinValue { get; } = new RotationalStiffness<T>(double.MinValue, BaseUnit);
+        public static RotationalStiffness<T> MinValue { get; } = new RotationalStiffness<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -157,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadian.
         /// </summary>
-        public static RotationalStiffness<T> Zero { get; } = new RotationalStiffness<T>((T)0, BaseUnit);
+        public static RotationalStiffness<T> Zero { get; } = new RotationalStiffness<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -169,6 +170,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => RotationalStiffness<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => RotationalStiffness<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -698,7 +722,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static RotationalStiffness<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RotationalStiffness<T>, RotationalStiffnessUnit>(
+            return QuantityParser.Default.Parse<T, RotationalStiffness<T>, RotationalStiffnessUnit>(
                 str,
                 provider,
                 From);
@@ -729,7 +753,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out RotationalStiffness<T> result)
         {
-            return QuantityParser.Default.TryParse<RotationalStiffness<T>, RotationalStiffnessUnit>(
+            return QuantityParser.Default.TryParse<T, RotationalStiffness<T>, RotationalStiffnessUnit>(
                 str,
                 provider,
                 From,
@@ -951,10 +975,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RotationalStiffness<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RotationalStiffness<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

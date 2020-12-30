@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
     public partial struct Pressure<T> : IQuantityT<PressureUnit, T>, IEquatable<Pressure<T>>, IComparable, IComparable<Pressure<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -145,12 +146,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Pressure{T}" />
         /// </summary>
-        public static Pressure<T> MaxValue { get; } = new Pressure<T>(double.MaxValue, BaseUnit);
+        public static Pressure<T> MaxValue { get; } = new Pressure<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Pressure{T}" />
         /// </summary>
-        public static Pressure<T> MinValue { get; } = new Pressure<T>(double.MinValue, BaseUnit);
+        public static Pressure<T> MinValue { get; } = new Pressure<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -166,7 +167,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure<T> Zero { get; } = new Pressure<T>((T)0, BaseUnit);
+        public static Pressure<T> Zero { get; } = new Pressure<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -178,6 +179,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<PressureUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Pressure<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Pressure<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -824,7 +848,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Pressure<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Pressure<T>, PressureUnit>(
+            return QuantityParser.Default.Parse<T, Pressure<T>, PressureUnit>(
                 str,
                 provider,
                 From);
@@ -855,7 +879,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Pressure<T> result)
         {
-            return QuantityParser.Default.TryParse<Pressure<T>, PressureUnit>(
+            return QuantityParser.Default.TryParse<T, Pressure<T>, PressureUnit>(
                 str,
                 provider,
                 From,
@@ -1077,10 +1101,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Pressure<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Pressure<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

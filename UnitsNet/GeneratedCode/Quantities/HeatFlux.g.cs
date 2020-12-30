@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     public partial struct HeatFlux<T> : IQuantityT<HeatFluxUnit, T>, IEquatable<HeatFlux<T>>, IComparable, IComparable<HeatFlux<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -121,12 +122,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="HeatFlux{T}" />
         /// </summary>
-        public static HeatFlux<T> MaxValue { get; } = new HeatFlux<T>(double.MaxValue, BaseUnit);
+        public static HeatFlux<T> MaxValue { get; } = new HeatFlux<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="HeatFlux{T}" />
         /// </summary>
-        public static HeatFlux<T> MinValue { get; } = new HeatFlux<T>(double.MinValue, BaseUnit);
+        public static HeatFlux<T> MinValue { get; } = new HeatFlux<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +143,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static HeatFlux<T> Zero { get; } = new HeatFlux<T>((T)0, BaseUnit);
+        public static HeatFlux<T> Zero { get; } = new HeatFlux<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -154,6 +155,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public HeatFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<HeatFluxUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => HeatFlux<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => HeatFlux<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -488,7 +512,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static HeatFlux<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<HeatFlux<T>, HeatFluxUnit>(
+            return QuantityParser.Default.Parse<T, HeatFlux<T>, HeatFluxUnit>(
                 str,
                 provider,
                 From);
@@ -519,7 +543,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out HeatFlux<T> result)
         {
-            return QuantityParser.Default.TryParse<HeatFlux<T>, HeatFluxUnit>(
+            return QuantityParser.Default.TryParse<T, HeatFlux<T>, HeatFluxUnit>(
                 str,
                 provider,
                 From,
@@ -741,10 +765,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(HeatFlux<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(HeatFlux<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

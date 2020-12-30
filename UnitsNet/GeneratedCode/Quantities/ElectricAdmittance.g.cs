@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
     public partial struct ElectricAdmittance<T> : IQuantityT<ElectricAdmittanceUnit, T>, IEquatable<ElectricAdmittance<T>>, IComparable, IComparable<ElectricAdmittance<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,12 +108,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ElectricAdmittance{T}" />
         /// </summary>
-        public static ElectricAdmittance<T> MaxValue { get; } = new ElectricAdmittance<T>(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance<T> MaxValue { get; } = new ElectricAdmittance<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ElectricAdmittance{T}" />
         /// </summary>
-        public static ElectricAdmittance<T> MinValue { get; } = new ElectricAdmittance<T>(double.MinValue, BaseUnit);
+        public static ElectricAdmittance<T> MinValue { get; } = new ElectricAdmittance<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -128,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance<T> Zero { get; } = new ElectricAdmittance<T>((T)0, BaseUnit);
+        public static ElectricAdmittance<T> Zero { get; } = new ElectricAdmittance<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -140,6 +141,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ElectricAdmittanceUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricAdmittance<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricAdmittance<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -292,7 +316,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ElectricAdmittance<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricAdmittance<T>, ElectricAdmittanceUnit>(
+            return QuantityParser.Default.Parse<T, ElectricAdmittance<T>, ElectricAdmittanceUnit>(
                 str,
                 provider,
                 From);
@@ -323,7 +347,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricAdmittance<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricAdmittance<T>, ElectricAdmittanceUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricAdmittance<T>, ElectricAdmittanceUnit>(
                 str,
                 provider,
                 From,
@@ -545,10 +569,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricAdmittance<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricAdmittance<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

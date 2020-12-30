@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
     /// </summary>
     public partial struct Temperature<T> : IQuantityT<TemperatureUnit, T>, IEquatable<Temperature<T>>, IComparable, IComparable<Temperature<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -113,12 +114,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Temperature{T}" />
         /// </summary>
-        public static Temperature<T> MaxValue { get; } = new Temperature<T>(double.MaxValue, BaseUnit);
+        public static Temperature<T> MaxValue { get; } = new Temperature<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Temperature{T}" />
         /// </summary>
-        public static Temperature<T> MinValue { get; } = new Temperature<T>(double.MinValue, BaseUnit);
+        public static Temperature<T> MinValue { get; } = new Temperature<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -134,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature<T> Zero { get; } = new Temperature<T>((T)0, BaseUnit);
+        public static Temperature<T> Zero { get; } = new Temperature<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -146,6 +147,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public TemperatureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<TemperatureUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Temperature<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Temperature<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -376,7 +400,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Temperature<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Temperature<T>, TemperatureUnit>(
+            return QuantityParser.Default.Parse<T, Temperature<T>, TemperatureUnit>(
                 str,
                 provider,
                 From);
@@ -407,7 +431,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Temperature<T> result)
         {
-            return QuantityParser.Default.TryParse<Temperature<T>, TemperatureUnit>(
+            return QuantityParser.Default.TryParse<T, Temperature<T>, TemperatureUnit>(
                 str,
                 provider,
                 From,
@@ -578,10 +602,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Temperature<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Temperature<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

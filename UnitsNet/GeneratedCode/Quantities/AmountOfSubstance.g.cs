@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
     public partial struct AmountOfSubstance<T> : IQuantityT<AmountOfSubstanceUnit, T>, IEquatable<AmountOfSubstance<T>>, IComparable, IComparable<AmountOfSubstance<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -118,12 +119,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="AmountOfSubstance{T}" />
         /// </summary>
-        public static AmountOfSubstance<T> MaxValue { get; } = new AmountOfSubstance<T>(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance<T> MaxValue { get; } = new AmountOfSubstance<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="AmountOfSubstance{T}" />
         /// </summary>
-        public static AmountOfSubstance<T> MinValue { get; } = new AmountOfSubstance<T>(double.MinValue, BaseUnit);
+        public static AmountOfSubstance<T> MinValue { get; } = new AmountOfSubstance<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance<T> Zero { get; } = new AmountOfSubstance<T>((T)0, BaseUnit);
+        public static AmountOfSubstance<T> Zero { get; } = new AmountOfSubstance<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -151,6 +152,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<AmountOfSubstanceUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AmountOfSubstance<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => AmountOfSubstance<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -446,7 +470,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static AmountOfSubstance<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<AmountOfSubstance<T>, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.Parse<T, AmountOfSubstance<T>, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From);
@@ -477,7 +501,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out AmountOfSubstance<T> result)
         {
-            return QuantityParser.Default.TryParse<AmountOfSubstance<T>, AmountOfSubstanceUnit>(
+            return QuantityParser.Default.TryParse<T, AmountOfSubstance<T>, AmountOfSubstanceUnit>(
                 str,
                 provider,
                 From,
@@ -699,10 +723,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(AmountOfSubstance<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(AmountOfSubstance<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

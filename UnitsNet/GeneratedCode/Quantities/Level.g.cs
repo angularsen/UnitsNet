@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     public partial struct Level<T> : IQuantityT<LevelUnit, T>, IEquatable<Level<T>>, IComparable, IComparable<Level<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -105,12 +106,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Level{T}" />
         /// </summary>
-        public static Level<T> MaxValue { get; } = new Level<T>(double.MaxValue, BaseUnit);
+        public static Level<T> MaxValue { get; } = new Level<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Level{T}" />
         /// </summary>
-        public static Level<T> MinValue { get; } = new Level<T>(double.MinValue, BaseUnit);
+        public static Level<T> MinValue { get; } = new Level<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,7 +127,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Decibel.
         /// </summary>
-        public static Level<T> Zero { get; } = new Level<T>((T)0, BaseUnit);
+        public static Level<T> Zero { get; } = new Level<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -138,6 +139,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Level<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Level<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -264,7 +288,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Level<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Level<T>, LevelUnit>(
+            return QuantityParser.Default.Parse<T, Level<T>, LevelUnit>(
                 str,
                 provider,
                 From);
@@ -295,7 +319,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Level<T> result)
         {
-            return QuantityParser.Default.TryParse<Level<T>, LevelUnit>(
+            return QuantityParser.Default.TryParse<T, Level<T>, LevelUnit>(
                 str,
                 provider,
                 From,
@@ -520,10 +544,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Level<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Level<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

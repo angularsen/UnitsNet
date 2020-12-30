@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     public partial struct Speed<T> : IQuantityT<SpeedUnit, T>, IEquatable<Speed<T>>, IComparable, IComparable<Speed<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -135,12 +136,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Speed{T}" />
         /// </summary>
-        public static Speed<T> MaxValue { get; } = new Speed<T>(double.MaxValue, BaseUnit);
+        public static Speed<T> MaxValue { get; } = new Speed<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Speed{T}" />
         /// </summary>
-        public static Speed<T> MinValue { get; } = new Speed<T>(double.MinValue, BaseUnit);
+        public static Speed<T> MinValue { get; } = new Speed<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -156,7 +157,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
         /// </summary>
-        public static Speed<T> Zero { get; } = new Speed<T>((T)0, BaseUnit);
+        public static Speed<T> Zero { get; } = new Speed<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -168,6 +169,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<SpeedUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Speed<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Speed<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -684,7 +708,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Speed<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Speed<T>, SpeedUnit>(
+            return QuantityParser.Default.Parse<T, Speed<T>, SpeedUnit>(
                 str,
                 provider,
                 From);
@@ -715,7 +739,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Speed<T> result)
         {
-            return QuantityParser.Default.TryParse<Speed<T>, SpeedUnit>(
+            return QuantityParser.Default.TryParse<T, Speed<T>, SpeedUnit>(
                 str,
                 provider,
                 From,
@@ -937,10 +961,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Speed<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Speed<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

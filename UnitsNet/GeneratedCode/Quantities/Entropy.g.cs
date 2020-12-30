@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
     public partial struct Entropy<T> : IQuantityT<EntropyUnit, T>, IEquatable<Entropy<T>>, IComparable, IComparable<Entropy<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -110,12 +111,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Entropy{T}" />
         /// </summary>
-        public static Entropy<T> MaxValue { get; } = new Entropy<T>(double.MaxValue, BaseUnit);
+        public static Entropy<T> MaxValue { get; } = new Entropy<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Entropy{T}" />
         /// </summary>
-        public static Entropy<T> MinValue { get; } = new Entropy<T>(double.MinValue, BaseUnit);
+        public static Entropy<T> MinValue { get; } = new Entropy<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -131,7 +132,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy<T> Zero { get; } = new Entropy<T>((T)0, BaseUnit);
+        public static Entropy<T> Zero { get; } = new Entropy<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -143,6 +144,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<EntropyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Entropy<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Entropy<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -334,7 +358,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Entropy<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Entropy<T>, EntropyUnit>(
+            return QuantityParser.Default.Parse<T, Entropy<T>, EntropyUnit>(
                 str,
                 provider,
                 From);
@@ -365,7 +389,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Entropy<T> result)
         {
-            return QuantityParser.Default.TryParse<Entropy<T>, EntropyUnit>(
+            return QuantityParser.Default.TryParse<T, Entropy<T>, EntropyUnit>(
                 str,
                 provider,
                 From,
@@ -587,10 +611,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Entropy<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Entropy<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

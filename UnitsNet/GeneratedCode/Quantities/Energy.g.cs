@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
     public partial struct Energy<T> : IQuantityT<EnergyUnit, T>, IEquatable<Energy<T>>, IComparable, IComparable<Energy<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -139,12 +140,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Energy{T}" />
         /// </summary>
-        public static Energy<T> MaxValue { get; } = new Energy<T>(double.MaxValue, BaseUnit);
+        public static Energy<T> MaxValue { get; } = new Energy<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Energy{T}" />
         /// </summary>
-        public static Energy<T> MinValue { get; } = new Energy<T>(double.MinValue, BaseUnit);
+        public static Energy<T> MinValue { get; } = new Energy<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -160,7 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
         /// </summary>
-        public static Energy<T> Zero { get; } = new Energy<T>((T)0, BaseUnit);
+        public static Energy<T> Zero { get; } = new Energy<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -172,6 +173,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<EnergyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Energy<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Energy<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -740,7 +764,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Energy<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Energy<T>, EnergyUnit>(
+            return QuantityParser.Default.Parse<T, Energy<T>, EnergyUnit>(
                 str,
                 provider,
                 From);
@@ -771,7 +795,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Energy<T> result)
         {
-            return QuantityParser.Default.TryParse<Energy<T>, EnergyUnit>(
+            return QuantityParser.Default.TryParse<T, Energy<T>, EnergyUnit>(
                 str,
                 provider,
                 From,
@@ -993,10 +1017,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Energy<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Energy<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

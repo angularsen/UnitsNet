@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     public partial struct Mass<T> : IQuantityT<MassUnit, T>, IEquatable<Mass<T>>, IComparable, IComparable<Mass<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -128,12 +129,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Mass{T}" />
         /// </summary>
-        public static Mass<T> MaxValue { get; } = new Mass<T>(double.MaxValue, BaseUnit);
+        public static Mass<T> MaxValue { get; } = new Mass<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Mass{T}" />
         /// </summary>
-        public static Mass<T> MinValue { get; } = new Mass<T>(double.MinValue, BaseUnit);
+        public static Mass<T> MinValue { get; } = new Mass<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -149,7 +150,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass<T> Zero { get; } = new Mass<T>((T)0, BaseUnit);
+        public static Mass<T> Zero { get; } = new Mass<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -161,6 +162,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<MassUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Mass<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Mass<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -586,7 +610,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Mass<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Mass<T>, MassUnit>(
+            return QuantityParser.Default.Parse<T, Mass<T>, MassUnit>(
                 str,
                 provider,
                 From);
@@ -617,7 +641,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Mass<T> result)
         {
-            return QuantityParser.Default.TryParse<Mass<T>, MassUnit>(
+            return QuantityParser.Default.TryParse<T, Mass<T>, MassUnit>(
                 str,
                 provider,
                 From,
@@ -839,10 +863,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Mass<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Mass<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

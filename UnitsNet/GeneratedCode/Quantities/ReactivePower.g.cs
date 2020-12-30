@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.
     /// </summary>
     public partial struct ReactivePower<T> : IQuantityT<ReactivePowerUnit, T>, IEquatable<ReactivePower<T>>, IComparable, IComparable<ReactivePower<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,12 +108,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ReactivePower{T}" />
         /// </summary>
-        public static ReactivePower<T> MaxValue { get; } = new ReactivePower<T>(double.MaxValue, BaseUnit);
+        public static ReactivePower<T> MaxValue { get; } = new ReactivePower<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ReactivePower{T}" />
         /// </summary>
-        public static ReactivePower<T> MinValue { get; } = new ReactivePower<T>(double.MinValue, BaseUnit);
+        public static ReactivePower<T> MinValue { get; } = new ReactivePower<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -128,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ReactivePower<T> Zero { get; } = new ReactivePower<T>((T)0, BaseUnit);
+        public static ReactivePower<T> Zero { get; } = new ReactivePower<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -140,6 +141,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ReactivePowerUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ReactivePower<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ReactivePower<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -292,7 +316,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ReactivePower<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ReactivePower<T>, ReactivePowerUnit>(
+            return QuantityParser.Default.Parse<T, ReactivePower<T>, ReactivePowerUnit>(
                 str,
                 provider,
                 From);
@@ -323,7 +347,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ReactivePower<T> result)
         {
-            return QuantityParser.Default.TryParse<ReactivePower<T>, ReactivePowerUnit>(
+            return QuantityParser.Default.TryParse<T, ReactivePower<T>, ReactivePowerUnit>(
                 str,
                 provider,
                 From,
@@ -545,10 +569,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ReactivePower<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ReactivePower<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

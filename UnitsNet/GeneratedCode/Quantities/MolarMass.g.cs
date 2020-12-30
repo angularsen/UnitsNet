@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
     public partial struct MolarMass<T> : IQuantityT<MolarMassUnit, T>, IEquatable<MolarMass<T>>, IComparable, IComparable<MolarMass<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -115,12 +116,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="MolarMass{T}" />
         /// </summary>
-        public static MolarMass<T> MaxValue { get; } = new MolarMass<T>(double.MaxValue, BaseUnit);
+        public static MolarMass<T> MaxValue { get; } = new MolarMass<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="MolarMass{T}" />
         /// </summary>
-        public static MolarMass<T> MinValue { get; } = new MolarMass<T>(double.MinValue, BaseUnit);
+        public static MolarMass<T> MinValue { get; } = new MolarMass<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -136,7 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMole.
         /// </summary>
-        public static MolarMass<T> Zero { get; } = new MolarMass<T>((T)0, BaseUnit);
+        public static MolarMass<T> Zero { get; } = new MolarMass<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -148,6 +149,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public MolarMassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<MolarMassUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => MolarMass<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MolarMass<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -404,7 +428,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MolarMass<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MolarMass<T>, MolarMassUnit>(
+            return QuantityParser.Default.Parse<T, MolarMass<T>, MolarMassUnit>(
                 str,
                 provider,
                 From);
@@ -435,7 +459,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MolarMass<T> result)
         {
-            return QuantityParser.Default.TryParse<MolarMass<T>, MolarMassUnit>(
+            return QuantityParser.Default.TryParse<T, MolarMass<T>, MolarMassUnit>(
                 str,
                 provider,
                 From,
@@ -657,10 +681,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MolarMass<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MolarMass<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

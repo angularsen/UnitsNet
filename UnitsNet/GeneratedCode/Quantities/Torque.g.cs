@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.
     /// </summary>
     public partial struct Torque<T> : IQuantityT<TorqueUnit, T>, IEquatable<Torque<T>>, IComparable, IComparable<Torque<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -125,12 +126,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Torque{T}" />
         /// </summary>
-        public static Torque<T> MaxValue { get; } = new Torque<T>(double.MaxValue, BaseUnit);
+        public static Torque<T> MaxValue { get; } = new Torque<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Torque{T}" />
         /// </summary>
-        public static Torque<T> MinValue { get; } = new Torque<T>(double.MinValue, BaseUnit);
+        public static Torque<T> MinValue { get; } = new Torque<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -146,7 +147,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeter.
         /// </summary>
-        public static Torque<T> Zero { get; } = new Torque<T>((T)0, BaseUnit);
+        public static Torque<T> Zero { get; } = new Torque<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -158,6 +159,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public TorqueUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<TorqueUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Torque<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Torque<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -544,7 +568,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Torque<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Torque<T>, TorqueUnit>(
+            return QuantityParser.Default.Parse<T, Torque<T>, TorqueUnit>(
                 str,
                 provider,
                 From);
@@ -575,7 +599,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Torque<T> result)
         {
-            return QuantityParser.Default.TryParse<Torque<T>, TorqueUnit>(
+            return QuantityParser.Default.TryParse<T, Torque<T>, TorqueUnit>(
                 str,
                 provider,
                 From,
@@ -797,10 +821,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Torque<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Torque<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
     public partial struct Acceleration<T> : IQuantityT<AccelerationUnit, T>, IEquatable<Acceleration<T>>, IComparable, IComparable<Acceleration<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -117,12 +118,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Acceleration{T}" />
         /// </summary>
-        public static Acceleration<T> MaxValue { get; } = new Acceleration<T>(double.MaxValue, BaseUnit);
+        public static Acceleration<T> MaxValue { get; } = new Acceleration<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Acceleration{T}" />
         /// </summary>
-        public static Acceleration<T> MinValue { get; } = new Acceleration<T>(double.MinValue, BaseUnit);
+        public static Acceleration<T> MinValue { get; } = new Acceleration<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -138,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration<T> Zero { get; } = new Acceleration<T>((T)0, BaseUnit);
+        public static Acceleration<T> Zero { get; } = new Acceleration<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -150,6 +151,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Acceleration<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Acceleration<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -432,7 +456,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Acceleration<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Acceleration<T>, AccelerationUnit>(
+            return QuantityParser.Default.Parse<T, Acceleration<T>, AccelerationUnit>(
                 str,
                 provider,
                 From);
@@ -463,7 +487,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Acceleration<T> result)
         {
-            return QuantityParser.Default.TryParse<Acceleration<T>, AccelerationUnit>(
+            return QuantityParser.Default.TryParse<T, Acceleration<T>, AccelerationUnit>(
                 str,
                 provider,
                 From,
@@ -685,10 +709,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Acceleration<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Acceleration<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

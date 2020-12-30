@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
     public partial struct SolidAngle<T> : IQuantityT<SolidAngleUnit, T>, IEquatable<SolidAngle<T>>, IComparable, IComparable<SolidAngle<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,12 +108,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="SolidAngle{T}" />
         /// </summary>
-        public static SolidAngle<T> MaxValue { get; } = new SolidAngle<T>(double.MaxValue, BaseUnit);
+        public static SolidAngle<T> MaxValue { get; } = new SolidAngle<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="SolidAngle{T}" />
         /// </summary>
-        public static SolidAngle<T> MinValue { get; } = new SolidAngle<T>(double.MinValue, BaseUnit);
+        public static SolidAngle<T> MinValue { get; } = new SolidAngle<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -128,7 +129,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Steradian.
         /// </summary>
-        public static SolidAngle<T> Zero { get; } = new SolidAngle<T>((T)0, BaseUnit);
+        public static SolidAngle<T> Zero { get; } = new SolidAngle<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -140,6 +141,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => SolidAngle<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SolidAngle<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -253,7 +277,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static SolidAngle<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SolidAngle<T>, SolidAngleUnit>(
+            return QuantityParser.Default.Parse<T, SolidAngle<T>, SolidAngleUnit>(
                 str,
                 provider,
                 From);
@@ -284,7 +308,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out SolidAngle<T> result)
         {
-            return QuantityParser.Default.TryParse<SolidAngle<T>, SolidAngleUnit>(
+            return QuantityParser.Default.TryParse<T, SolidAngle<T>, SolidAngleUnit>(
                 str,
                 provider,
                 From,
@@ -506,10 +530,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(SolidAngle<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(SolidAngle<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

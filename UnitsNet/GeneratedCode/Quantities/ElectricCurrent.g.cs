@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
     public partial struct ElectricCurrent<T> : IQuantityT<ElectricCurrentUnit, T>, IEquatable<ElectricCurrent<T>>, IComparable, IComparable<ElectricCurrent<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -111,12 +112,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ElectricCurrent{T}" />
         /// </summary>
-        public static ElectricCurrent<T> MaxValue { get; } = new ElectricCurrent<T>(double.MaxValue, BaseUnit);
+        public static ElectricCurrent<T> MaxValue { get; } = new ElectricCurrent<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ElectricCurrent{T}" />
         /// </summary>
-        public static ElectricCurrent<T> MinValue { get; } = new ElectricCurrent<T>(double.MinValue, BaseUnit);
+        public static ElectricCurrent<T> MinValue { get; } = new ElectricCurrent<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -132,7 +133,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent<T> Zero { get; } = new ElectricCurrent<T>((T)0, BaseUnit);
+        public static ElectricCurrent<T> Zero { get; } = new ElectricCurrent<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -144,6 +145,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ElectricCurrentUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricCurrent<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricCurrent<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -348,7 +372,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ElectricCurrent<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricCurrent<T>, ElectricCurrentUnit>(
+            return QuantityParser.Default.Parse<T, ElectricCurrent<T>, ElectricCurrentUnit>(
                 str,
                 provider,
                 From);
@@ -379,7 +403,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrent<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricCurrent<T>, ElectricCurrentUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricCurrent<T>, ElectricCurrentUnit>(
                 str,
                 provider,
                 From,
@@ -601,10 +625,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrent<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrent<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

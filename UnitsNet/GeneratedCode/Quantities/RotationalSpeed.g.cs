@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
     public partial struct RotationalSpeed<T> : IQuantityT<RotationalSpeedUnit, T>, IEquatable<RotationalSpeed<T>>, IComparable, IComparable<RotationalSpeed<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -116,12 +117,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="RotationalSpeed{T}" />
         /// </summary>
-        public static RotationalSpeed<T> MaxValue { get; } = new RotationalSpeed<T>(double.MaxValue, BaseUnit);
+        public static RotationalSpeed<T> MaxValue { get; } = new RotationalSpeed<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="RotationalSpeed{T}" />
         /// </summary>
-        public static RotationalSpeed<T> MinValue { get; } = new RotationalSpeed<T>(double.MinValue, BaseUnit);
+        public static RotationalSpeed<T> MinValue { get; } = new RotationalSpeed<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -137,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecond.
         /// </summary>
-        public static RotationalSpeed<T> Zero { get; } = new RotationalSpeed<T>((T)0, BaseUnit);
+        public static RotationalSpeed<T> Zero { get; } = new RotationalSpeed<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -149,6 +150,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public RotationalSpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<RotationalSpeedUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => RotationalSpeed<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => RotationalSpeed<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -418,7 +442,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static RotationalSpeed<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RotationalSpeed<T>, RotationalSpeedUnit>(
+            return QuantityParser.Default.Parse<T, RotationalSpeed<T>, RotationalSpeedUnit>(
                 str,
                 provider,
                 From);
@@ -449,7 +473,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out RotationalSpeed<T> result)
         {
-            return QuantityParser.Default.TryParse<RotationalSpeed<T>, RotationalSpeedUnit>(
+            return QuantityParser.Default.TryParse<T, RotationalSpeed<T>, RotationalSpeedUnit>(
                 str,
                 provider,
                 From,
@@ -671,10 +695,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RotationalSpeed<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RotationalSpeed<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

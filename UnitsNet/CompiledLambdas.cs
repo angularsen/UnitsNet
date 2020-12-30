@@ -10,6 +10,14 @@ namespace UnitsNet
     internal static class CompiledLambdas
     {
         /// <summary>
+        /// Returns the absolute value.
+        /// </summary>
+        /// <typeparam name="T">The type of the value to negate.</typeparam>
+        /// <param name="value">The value to get absolute of.</param>
+        /// <returns>The absolute value.</returns>
+        internal static T AbsoluteValue<T>(T value) where T : struct => AbsoluteValueImplementation<T>.Invoke(value);
+
+        /// <summary>
         /// Multiplies the given values.
         /// </summary>
         /// <typeparam name="T">The type of the operation (left hand side, right hand side, and result).</typeparam>
@@ -207,6 +215,28 @@ namespace UnitsNet
         internal static T Negate<T>(T value) => NegateImplementation<T, T>.Invoke(value);
 
         #region Implementation Classes
+
+        private static class AbsoluteValueImplementation<T>
+            where T : struct
+        {
+            private static readonly Func<T, T> Function;
+
+            static AbsoluteValueImplementation()
+            {
+                ParameterExpression A = Expression.Parameter(typeof(T));
+                LabelTarget RETURN = Expression.Label(typeof(T));
+                Expression BODY = Expression.Block(
+                    Expression.IfThenElse(
+                        Expression.LessThan(A, Expression.Constant(default(T))),
+                        Expression.Return(RETURN, Expression.Negate(A)),
+                        Expression.Return(RETURN, A)),
+                    Expression.Label(RETURN, Expression.Constant(default(T), typeof(T))));
+
+                Function = Expression.Lambda<Func<T, T>>(BODY, A).Compile();
+            }
+
+            internal static T Invoke(T value) => Function(value);
+        }
 
         private static class MultiplyImplementation<TLeft, TRight, TResult>
         {

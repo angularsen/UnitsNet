@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
     /// </summary>
     public partial struct SpecificVolume<T> : IQuantityT<SpecificVolumeUnit, T>, IEquatable<SpecificVolume<T>>, IComparable, IComparable<SpecificVolume<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -106,12 +107,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="SpecificVolume{T}" />
         /// </summary>
-        public static SpecificVolume<T> MaxValue { get; } = new SpecificVolume<T>(double.MaxValue, BaseUnit);
+        public static SpecificVolume<T> MaxValue { get; } = new SpecificVolume<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="SpecificVolume{T}" />
         /// </summary>
-        public static SpecificVolume<T> MinValue { get; } = new SpecificVolume<T>(double.MinValue, BaseUnit);
+        public static SpecificVolume<T> MinValue { get; } = new SpecificVolume<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -127,7 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerKilogram.
         /// </summary>
-        public static SpecificVolume<T> Zero { get; } = new SpecificVolume<T>((T)0, BaseUnit);
+        public static SpecificVolume<T> Zero { get; } = new SpecificVolume<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -139,6 +140,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public SpecificVolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<SpecificVolumeUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => SpecificVolume<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificVolume<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -278,7 +302,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static SpecificVolume<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SpecificVolume<T>, SpecificVolumeUnit>(
+            return QuantityParser.Default.Parse<T, SpecificVolume<T>, SpecificVolumeUnit>(
                 str,
                 provider,
                 From);
@@ -309,7 +333,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out SpecificVolume<T> result)
         {
-            return QuantityParser.Default.TryParse<SpecificVolume<T>, SpecificVolumeUnit>(
+            return QuantityParser.Default.TryParse<T, SpecificVolume<T>, SpecificVolumeUnit>(
                 str,
                 provider,
                 From,
@@ -531,10 +555,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(SpecificVolume<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(SpecificVolume<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

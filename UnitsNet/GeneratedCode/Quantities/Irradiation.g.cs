@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Irradiation
     /// </remarks>
     public partial struct Irradiation<T> : IQuantityT<IrradiationUnit, T>, IEquatable<Irradiation<T>>, IComparable, IComparable<Irradiation<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -113,12 +114,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Irradiation{T}" />
         /// </summary>
-        public static Irradiation<T> MaxValue { get; } = new Irradiation<T>(double.MaxValue, BaseUnit);
+        public static Irradiation<T> MaxValue { get; } = new Irradiation<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Irradiation{T}" />
         /// </summary>
-        public static Irradiation<T> MinValue { get; } = new Irradiation<T>(double.MinValue, BaseUnit);
+        public static Irradiation<T> MinValue { get; } = new Irradiation<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -134,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerSquareMeter.
         /// </summary>
-        public static Irradiation<T> Zero { get; } = new Irradiation<T>((T)0, BaseUnit);
+        public static Irradiation<T> Zero { get; } = new Irradiation<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -146,6 +147,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public IrradiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<IrradiationUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Irradiation<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Irradiation<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -337,7 +361,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Irradiation<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Irradiation<T>, IrradiationUnit>(
+            return QuantityParser.Default.Parse<T, Irradiation<T>, IrradiationUnit>(
                 str,
                 provider,
                 From);
@@ -368,7 +392,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Irradiation<T> result)
         {
-            return QuantityParser.Default.TryParse<Irradiation<T>, IrradiationUnit>(
+            return QuantityParser.Default.TryParse<T, Irradiation<T>, IrradiationUnit>(
                 str,
                 provider,
                 From,
@@ -590,10 +614,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Irradiation<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Irradiation<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

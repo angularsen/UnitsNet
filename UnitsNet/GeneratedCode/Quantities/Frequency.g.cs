@@ -35,6 +35,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     public partial struct Frequency<T> : IQuantityT<FrequencyUnit, T>, IEquatable<Frequency<T>>, IComparable, IComparable<Frequency<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -113,12 +114,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="Frequency{T}" />
         /// </summary>
-        public static Frequency<T> MaxValue { get; } = new Frequency<T>(double.MaxValue, BaseUnit);
+        public static Frequency<T> MaxValue { get; } = new Frequency<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="Frequency{T}" />
         /// </summary>
-        public static Frequency<T> MinValue { get; } = new Frequency<T>(double.MinValue, BaseUnit);
+        public static Frequency<T> MinValue { get; } = new Frequency<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -134,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency<T> Zero { get; } = new Frequency<T>((T)0, BaseUnit);
+        public static Frequency<T> Zero { get; } = new Frequency<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -146,6 +147,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Frequency<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Frequency<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -376,7 +400,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Frequency<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Frequency<T>, FrequencyUnit>(
+            return QuantityParser.Default.Parse<T, Frequency<T>, FrequencyUnit>(
                 str,
                 provider,
                 From);
@@ -407,7 +431,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Frequency<T> result)
         {
-            return QuantityParser.Default.TryParse<Frequency<T>, FrequencyUnit>(
+            return QuantityParser.Default.TryParse<T, Frequency<T>, FrequencyUnit>(
                 str,
                 provider,
                 From,
@@ -629,10 +653,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Frequency<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Frequency<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

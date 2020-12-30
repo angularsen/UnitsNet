@@ -42,6 +42,7 @@ namespace CodeGen.Generators.UnitsNetGen
 
         public override string Generate()
         {
+            var decimalQuantityDeclaration = _quantity.BaseType == "decimal" ? "IDecimalQuantity, " : "";
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
@@ -69,15 +70,9 @@ namespace UnitsNet
     ///     {_quantity.XmlDocRemarks}
     /// </remarks>");
 
-            Writer.W(@$"
-    public partial struct {_quantity.Name}<T> : IQuantityT<{_unitEnumName}, T>, ");
-            if (_quantity.BaseType == "decimal")
-            {
-                Writer.W("IDecimalQuantity, ");
-            }
-
-            Writer.WL($"IEquatable<{_quantity.Name}<T>>, IComparable, IComparable<{_quantity.Name}<T>>, IConvertible, IFormattable");
-            Writer.WL($@"
+            Writer.WL(@$"
+    public partial struct {_quantity.Name}<T> : IQuantityT<{_unitEnumName}, T>, {decimalQuantityDeclaration}IEquatable<{_quantity.Name}<T>>, IComparable, IComparable<{_quantity.Name}<T>>, IConvertible, IFormattable
+        where T : struct
     {{
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -216,12 +211,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref=""{_quantity.Name}{{T}}"" />
         /// </summary>
-        public static {_quantity.Name}<T> MaxValue {{ get; }} = new {_quantity.Name}<T>({_valueType}.MaxValue, BaseUnit);
+        public static {_quantity.Name}<T> MaxValue {{ get; }} = new {_quantity.Name}<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref=""{_quantity.Name}{{T}}"" />
         /// </summary>
-        public static {_quantity.Name}<T> MinValue {{ get; }} = new {_quantity.Name}<T>({_valueType}.MinValue, BaseUnit);
+        public static {_quantity.Name}<T> MinValue {{ get; }} = new {_quantity.Name}<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
@@ -237,7 +232,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
-        public static {_quantity.Name}<T> Zero {{ get; }} = new {_quantity.Name}<T>((T)0, BaseUnit);
+        public static {_quantity.Name}<T> Zero {{ get; }} = new {_quantity.Name}<T>(default(T), BaseUnit);
 
         #endregion
 ");
@@ -259,7 +254,8 @@ namespace UnitsNet
                 Writer.WL(@"
         /// <inheritdoc cref=""IDecimalQuantity.Value""/>
         decimal IDecimalQuantity.Value => _value;
-
+");
+        Writer.WL($@"
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -282,7 +278,7 @@ namespace UnitsNet
         public BaseDimensions Dimensions => {_quantity.Name}<T>.BaseDimensions;
 
         #endregion
-" );
+");
         }
 
         private void GenerateConversionProperties()
@@ -374,7 +370,7 @@ namespace UnitsNet
         }}
 
         #endregion
-" );
+");
         }
 
         private void GenerateStaticParseMethods()
@@ -434,7 +430,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         public static {_quantity.Name}<T> Parse(string str, IFormatProvider? provider)
         {{
-            return QuantityParser.Default.Parse<{_quantity.Name}<T>, {_unitEnumName}>(
+            return QuantityParser.Default.Parse<T, {_quantity.Name}<T>, {_unitEnumName}>(
                 str,
                 provider,
                 From);
@@ -465,7 +461,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out {_quantity.Name}<T> result)
         {{
-            return QuantityParser.Default.TryParse<{_quantity.Name}<T>, {_unitEnumName}>(
+            return QuantityParser.Default.TryParse<T, {_quantity.Name}<T>, {_unitEnumName}>(
                 str,
                 provider,
                 From,
@@ -769,10 +765,10 @@ namespace UnitsNet
         /// <param name=""tolerance"">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name=""comparisonType"">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals({_quantity.Name}<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals({_quantity.Name}<T> other, T tolerance, ComparisonType comparisonType)
         {{
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), ""Tolerance must be greater than or equal to 0"");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
@@ -895,7 +891,7 @@ namespace UnitsNet
         private T GetValueInBaseUnit()
         {{
             switch(Unit)
-            {{" );
+            {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("x", "Value");
@@ -1028,7 +1024,7 @@ namespace UnitsNet
         }}
 
         #endregion
-" );
+");
         }
 
         private void GenerateIConvertibleMethods()
@@ -1132,7 +1128,7 @@ namespace UnitsNet
             return Convert.ToUInt64(Value);
         }}
 
-        #endregion" );
+        #endregion");
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>

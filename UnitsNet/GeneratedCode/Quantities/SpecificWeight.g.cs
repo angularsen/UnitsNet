@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Specificweight
     /// </remarks>
     public partial struct SpecificWeight<T> : IQuantityT<SpecificWeightUnit, T>, IEquatable<SpecificWeight<T>>, IComparable, IComparable<SpecificWeight<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -123,12 +124,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="SpecificWeight{T}" />
         /// </summary>
-        public static SpecificWeight<T> MaxValue { get; } = new SpecificWeight<T>(double.MaxValue, BaseUnit);
+        public static SpecificWeight<T> MaxValue { get; } = new SpecificWeight<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="SpecificWeight{T}" />
         /// </summary>
-        public static SpecificWeight<T> MinValue { get; } = new SpecificWeight<T>(double.MinValue, BaseUnit);
+        public static SpecificWeight<T> MinValue { get; } = new SpecificWeight<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -144,7 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight<T> Zero { get; } = new SpecificWeight<T>((T)0, BaseUnit);
+        public static SpecificWeight<T> Zero { get; } = new SpecificWeight<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -156,6 +157,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => SpecificWeight<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificWeight<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -477,7 +501,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static SpecificWeight<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<SpecificWeight<T>, SpecificWeightUnit>(
+            return QuantityParser.Default.Parse<T, SpecificWeight<T>, SpecificWeightUnit>(
                 str,
                 provider,
                 From);
@@ -508,7 +532,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out SpecificWeight<T> result)
         {
-            return QuantityParser.Default.TryParse<SpecificWeight<T>, SpecificWeightUnit>(
+            return QuantityParser.Default.TryParse<T, SpecificWeight<T>, SpecificWeightUnit>(
                 str,
                 provider,
                 From,
@@ -730,10 +754,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(SpecificWeight<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(SpecificWeight<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

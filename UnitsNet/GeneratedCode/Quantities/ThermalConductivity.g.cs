@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thermal_Conductivity
     /// </remarks>
     public partial struct ThermalConductivity<T> : IQuantityT<ThermalConductivityUnit, T>, IEquatable<ThermalConductivity<T>>, IComparable, IComparable<ThermalConductivity<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -108,12 +109,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="ThermalConductivity{T}" />
         /// </summary>
-        public static ThermalConductivity<T> MaxValue { get; } = new ThermalConductivity<T>(double.MaxValue, BaseUnit);
+        public static ThermalConductivity<T> MaxValue { get; } = new ThermalConductivity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="ThermalConductivity{T}" />
         /// </summary>
-        public static ThermalConductivity<T> MinValue { get; } = new ThermalConductivity<T>(double.MinValue, BaseUnit);
+        public static ThermalConductivity<T> MinValue { get; } = new ThermalConductivity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -129,7 +130,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeterKelvin.
         /// </summary>
-        public static ThermalConductivity<T> Zero { get; } = new ThermalConductivity<T>((T)0, BaseUnit);
+        public static ThermalConductivity<T> Zero { get; } = new ThermalConductivity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -141,6 +142,29 @@ namespace UnitsNet
         public T Value{ get; }
 
         double IQuantity.Value => Convert.ToDouble(Value);
+
+        Enum IQuantity.Unit => Unit;
+
+        /// <inheritdoc />
+        public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        /// <inheritdoc />
+        public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ThermalConductivity<T>.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ThermalConductivity<T>.BaseDimensions;
+
+        #endregion
 
         #region Conversion Properties
 
@@ -267,7 +291,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ThermalConductivity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ThermalConductivity<T>, ThermalConductivityUnit>(
+            return QuantityParser.Default.Parse<T, ThermalConductivity<T>, ThermalConductivityUnit>(
                 str,
                 provider,
                 From);
@@ -298,7 +322,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ThermalConductivity<T> result)
         {
-            return QuantityParser.Default.TryParse<ThermalConductivity<T>, ThermalConductivityUnit>(
+            return QuantityParser.Default.TryParse<T, ThermalConductivity<T>, ThermalConductivityUnit>(
                 str,
                 provider,
                 From,
@@ -520,10 +544,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ThermalConductivity<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ThermalConductivity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);

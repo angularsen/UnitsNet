@@ -38,6 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     public partial struct BitRate<T> : IQuantityT<BitRateUnit, T>, IDecimalQuantity, IEquatable<BitRate<T>>, IComparable, IComparable<BitRate<T>>, IConvertible, IFormattable
+        where T : struct
     {
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -132,12 +133,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of <see cref="BitRate{T}" />
         /// </summary>
-        public static BitRate<T> MaxValue { get; } = new BitRate<T>(decimal.MaxValue, BaseUnit);
+        public static BitRate<T> MaxValue { get; } = new BitRate<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of <see cref="BitRate{T}" />
         /// </summary>
-        public static BitRate<T> MinValue { get; } = new BitRate<T>(decimal.MinValue, BaseUnit);
+        public static BitRate<T> MinValue { get; } = new BitRate<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -153,7 +154,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate<T> Zero { get; } = new BitRate<T>((T)0, BaseUnit);
+        public static BitRate<T> Zero { get; } = new BitRate<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -172,10 +173,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
+        public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
+        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -183,12 +184,12 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => {_quantity.Name}<T>.QuantityType;
+        public QuantityType Type => BitRate<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => {_quantity.Name}<T>.BaseDimensions;
+        public BaseDimensions Dimensions => BitRate<T>.BaseDimensions;
 
         #endregion
 
@@ -629,7 +630,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static BitRate<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<BitRate<T>, BitRateUnit>(
+            return QuantityParser.Default.Parse<T, BitRate<T>, BitRateUnit>(
                 str,
                 provider,
                 From);
@@ -660,7 +661,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out BitRate<T> result)
         {
-            return QuantityParser.Default.TryParse<BitRate<T>, BitRateUnit>(
+            return QuantityParser.Default.TryParse<T, BitRate<T>, BitRateUnit>(
                 str,
                 provider,
                 From,
@@ -882,10 +883,10 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(BitRate<T> other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(BitRate<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var otherValueInThisUnits = other.As(this.Unit);
             return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
