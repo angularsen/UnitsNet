@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>4.81.1</Version>
+    <Version>4.81.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -12,7 +12,7 @@
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
-    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
   </PropertyGroup>
