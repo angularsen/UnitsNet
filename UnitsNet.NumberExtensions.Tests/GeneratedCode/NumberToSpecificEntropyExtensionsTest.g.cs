@@ -21,44 +21,44 @@ using UnitsNet.NumberExtensions.NumberToSpecificEntropy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSpecificEntropyExtensionsTests
     {
         [Fact]
         public void NumberToBtusPerPoundFahrenheitTest() =>
-            Assert.Equal(SpecificEntropy.FromBtusPerPoundFahrenheit(2), 2.BtusPerPoundFahrenheit());
+            Assert.Equal(SpecificEntropy<double>.FromBtusPerPoundFahrenheit(2), 2.BtusPerPoundFahrenheit());
 
         [Fact]
         public void NumberToCaloriesPerGramKelvinTest() =>
-            Assert.Equal(SpecificEntropy.FromCaloriesPerGramKelvin(2), 2.CaloriesPerGramKelvin());
+            Assert.Equal(SpecificEntropy<double>.FromCaloriesPerGramKelvin(2), 2.CaloriesPerGramKelvin());
 
         [Fact]
         public void NumberToJoulesPerKilogramDegreeCelsiusTest() =>
-            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(2), 2.JoulesPerKilogramDegreeCelsius());
+            Assert.Equal(SpecificEntropy<double>.FromJoulesPerKilogramDegreeCelsius(2), 2.JoulesPerKilogramDegreeCelsius());
 
         [Fact]
         public void NumberToJoulesPerKilogramKelvinTest() =>
-            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramKelvin(2), 2.JoulesPerKilogramKelvin());
+            Assert.Equal(SpecificEntropy<double>.FromJoulesPerKilogramKelvin(2), 2.JoulesPerKilogramKelvin());
 
         [Fact]
         public void NumberToKilocaloriesPerGramKelvinTest() =>
-            Assert.Equal(SpecificEntropy.FromKilocaloriesPerGramKelvin(2), 2.KilocaloriesPerGramKelvin());
+            Assert.Equal(SpecificEntropy<double>.FromKilocaloriesPerGramKelvin(2), 2.KilocaloriesPerGramKelvin());
 
         [Fact]
         public void NumberToKilojoulesPerKilogramDegreeCelsiusTest() =>
-            Assert.Equal(SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(2), 2.KilojoulesPerKilogramDegreeCelsius());
+            Assert.Equal(SpecificEntropy<double>.FromKilojoulesPerKilogramDegreeCelsius(2), 2.KilojoulesPerKilogramDegreeCelsius());
 
         [Fact]
         public void NumberToKilojoulesPerKilogramKelvinTest() =>
-            Assert.Equal(SpecificEntropy.FromKilojoulesPerKilogramKelvin(2), 2.KilojoulesPerKilogramKelvin());
+            Assert.Equal(SpecificEntropy<double>.FromKilojoulesPerKilogramKelvin(2), 2.KilojoulesPerKilogramKelvin());
 
         [Fact]
         public void NumberToMegajoulesPerKilogramDegreeCelsiusTest() =>
-            Assert.Equal(SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(2), 2.MegajoulesPerKilogramDegreeCelsius());
+            Assert.Equal(SpecificEntropy<double>.FromMegajoulesPerKilogramDegreeCelsius(2), 2.MegajoulesPerKilogramDegreeCelsius());
 
         [Fact]
         public void NumberToMegajoulesPerKilogramKelvinTest() =>
-            Assert.Equal(SpecificEntropy.FromMegajoulesPerKilogramKelvin(2), 2.MegajoulesPerKilogramKelvin());
+            Assert.Equal(SpecificEntropy<double>.FromMegajoulesPerKilogramKelvin(2), 2.MegajoulesPerKilogramKelvin());
 
     }
 }

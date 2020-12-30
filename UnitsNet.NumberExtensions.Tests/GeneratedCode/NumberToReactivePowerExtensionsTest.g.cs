@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToReactivePower;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToReactivePowerExtensionsTests
     {
         [Fact]
         public void NumberToGigavoltamperesReactiveTest() =>
-            Assert.Equal(ReactivePower.FromGigavoltamperesReactive(2), 2.GigavoltamperesReactive());
+            Assert.Equal(ReactivePower<double>.FromGigavoltamperesReactive(2), 2.GigavoltamperesReactive());
 
         [Fact]
         public void NumberToKilovoltamperesReactiveTest() =>
-            Assert.Equal(ReactivePower.FromKilovoltamperesReactive(2), 2.KilovoltamperesReactive());
+            Assert.Equal(ReactivePower<double>.FromKilovoltamperesReactive(2), 2.KilovoltamperesReactive());
 
         [Fact]
         public void NumberToMegavoltamperesReactiveTest() =>
-            Assert.Equal(ReactivePower.FromMegavoltamperesReactive(2), 2.MegavoltamperesReactive());
+            Assert.Equal(ReactivePower<double>.FromMegavoltamperesReactive(2), 2.MegavoltamperesReactive());
 
         [Fact]
         public void NumberToVoltamperesReactiveTest() =>
-            Assert.Equal(ReactivePower.FromVoltamperesReactive(2), 2.VoltamperesReactive());
+            Assert.Equal(ReactivePower<double>.FromVoltamperesReactive(2), 2.VoltamperesReactive());
 
     }
 }

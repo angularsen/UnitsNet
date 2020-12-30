@@ -21,28 +21,28 @@ using UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRotationalStiffnessPerLengthExtensionsTests
     {
         [Fact]
         public void NumberToKilonewtonMetersPerRadianPerMeterTest() =>
-            Assert.Equal(RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(2), 2.KilonewtonMetersPerRadianPerMeter());
+            Assert.Equal(RotationalStiffnessPerLength<double>.FromKilonewtonMetersPerRadianPerMeter(2), 2.KilonewtonMetersPerRadianPerMeter());
 
         [Fact]
         public void NumberToKilopoundForceFeetPerDegreesPerFeetTest() =>
-            Assert.Equal(RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(2), 2.KilopoundForceFeetPerDegreesPerFeet());
+            Assert.Equal(RotationalStiffnessPerLength<double>.FromKilopoundForceFeetPerDegreesPerFeet(2), 2.KilopoundForceFeetPerDegreesPerFeet());
 
         [Fact]
         public void NumberToMeganewtonMetersPerRadianPerMeterTest() =>
-            Assert.Equal(RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(2), 2.MeganewtonMetersPerRadianPerMeter());
+            Assert.Equal(RotationalStiffnessPerLength<double>.FromMeganewtonMetersPerRadianPerMeter(2), 2.MeganewtonMetersPerRadianPerMeter());
 
         [Fact]
         public void NumberToNewtonMetersPerRadianPerMeterTest() =>
-            Assert.Equal(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2), 2.NewtonMetersPerRadianPerMeter());
+            Assert.Equal(RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(2), 2.NewtonMetersPerRadianPerMeter());
 
         [Fact]
         public void NumberToPoundForceFeetPerDegreesPerFeetTest() =>
-            Assert.Equal(RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(2), 2.PoundForceFeetPerDegreesPerFeet());
+            Assert.Equal(RotationalStiffnessPerLength<double>.FromPoundForceFeetPerDegreesPerFeet(2), 2.PoundForceFeetPerDegreesPerFeet());
 
     }
 }

@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
     /// </summary>
     public static class NumberToCoefficientOfThermalExpansionExtensions
     {
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseDegreeCelsius<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseDegreeCelsius(Convert.ToDouble(value));
+        /// <inheritdoc cref="CoefficientOfThermalExpansion{T}.FromInverseDegreeCelsius(T)" />
+        public static CoefficientOfThermalExpansion<double> InverseDegreeCelsius<T>(this T value) =>
+            CoefficientOfThermalExpansion<double>.FromInverseDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseDegreeFahrenheit<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(Convert.ToDouble(value));
+        /// <inheritdoc cref="CoefficientOfThermalExpansion{T}.FromInverseDegreeFahrenheit(T)" />
+        public static CoefficientOfThermalExpansion<double> InverseDegreeFahrenheit<T>(this T value) =>
+            CoefficientOfThermalExpansion<double>.FromInverseDegreeFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseKelvin(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseKelvin<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseKelvin(Convert.ToDouble(value));
+        /// <inheritdoc cref="CoefficientOfThermalExpansion{T}.FromInverseKelvin(T)" />
+        public static CoefficientOfThermalExpansion<double> InverseKelvin<T>(this T value) =>
+            CoefficientOfThermalExpansion<double>.FromInverseKelvin(Convert.ToDouble(value));
 
     }
 }

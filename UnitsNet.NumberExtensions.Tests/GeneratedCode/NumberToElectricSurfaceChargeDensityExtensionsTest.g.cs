@@ -21,20 +21,20 @@ using UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricSurfaceChargeDensityExtensionsTests
     {
         [Fact]
         public void NumberToCoulombsPerSquareCentimeterTest() =>
-            Assert.Equal(ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(2), 2.CoulombsPerSquareCentimeter());
+            Assert.Equal(ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareCentimeter(2), 2.CoulombsPerSquareCentimeter());
 
         [Fact]
         public void NumberToCoulombsPerSquareInchTest() =>
-            Assert.Equal(ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(2), 2.CoulombsPerSquareInch());
+            Assert.Equal(ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareInch(2), 2.CoulombsPerSquareInch());
 
         [Fact]
         public void NumberToCoulombsPerSquareMeterTest() =>
-            Assert.Equal(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(2), 2.CoulombsPerSquareMeter());
+            Assert.Equal(ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareMeter(2), 2.CoulombsPerSquareMeter());
 
     }
 }

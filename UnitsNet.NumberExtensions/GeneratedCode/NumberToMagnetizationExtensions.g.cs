@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
     /// </summary>
     public static class NumberToMagnetizationExtensions
     {
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter<T>(this T value) =>
-            Magnetization.FromAmperesPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Magnetization{T}.FromAmperesPerMeter(T)" />
+        public static Magnetization<double> AmperesPerMeter<T>(this T value) =>
+            Magnetization<double>.FromAmperesPerMeter(Convert.ToDouble(value));
 
     }
 }

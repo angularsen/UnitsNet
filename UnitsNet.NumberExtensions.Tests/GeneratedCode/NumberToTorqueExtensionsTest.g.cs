@@ -21,96 +21,96 @@ using UnitsNet.NumberExtensions.NumberToTorque;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTorqueExtensionsTests
     {
         [Fact]
         public void NumberToKilogramForceCentimetersTest() =>
-            Assert.Equal(Torque.FromKilogramForceCentimeters(2), 2.KilogramForceCentimeters());
+            Assert.Equal(Torque<double>.FromKilogramForceCentimeters(2), 2.KilogramForceCentimeters());
 
         [Fact]
         public void NumberToKilogramForceMetersTest() =>
-            Assert.Equal(Torque.FromKilogramForceMeters(2), 2.KilogramForceMeters());
+            Assert.Equal(Torque<double>.FromKilogramForceMeters(2), 2.KilogramForceMeters());
 
         [Fact]
         public void NumberToKilogramForceMillimetersTest() =>
-            Assert.Equal(Torque.FromKilogramForceMillimeters(2), 2.KilogramForceMillimeters());
+            Assert.Equal(Torque<double>.FromKilogramForceMillimeters(2), 2.KilogramForceMillimeters());
 
         [Fact]
         public void NumberToKilonewtonCentimetersTest() =>
-            Assert.Equal(Torque.FromKilonewtonCentimeters(2), 2.KilonewtonCentimeters());
+            Assert.Equal(Torque<double>.FromKilonewtonCentimeters(2), 2.KilonewtonCentimeters());
 
         [Fact]
         public void NumberToKilonewtonMetersTest() =>
-            Assert.Equal(Torque.FromKilonewtonMeters(2), 2.KilonewtonMeters());
+            Assert.Equal(Torque<double>.FromKilonewtonMeters(2), 2.KilonewtonMeters());
 
         [Fact]
         public void NumberToKilonewtonMillimetersTest() =>
-            Assert.Equal(Torque.FromKilonewtonMillimeters(2), 2.KilonewtonMillimeters());
+            Assert.Equal(Torque<double>.FromKilonewtonMillimeters(2), 2.KilonewtonMillimeters());
 
         [Fact]
         public void NumberToKilopoundForceFeetTest() =>
-            Assert.Equal(Torque.FromKilopoundForceFeet(2), 2.KilopoundForceFeet());
+            Assert.Equal(Torque<double>.FromKilopoundForceFeet(2), 2.KilopoundForceFeet());
 
         [Fact]
         public void NumberToKilopoundForceInchesTest() =>
-            Assert.Equal(Torque.FromKilopoundForceInches(2), 2.KilopoundForceInches());
+            Assert.Equal(Torque<double>.FromKilopoundForceInches(2), 2.KilopoundForceInches());
 
         [Fact]
         public void NumberToMeganewtonCentimetersTest() =>
-            Assert.Equal(Torque.FromMeganewtonCentimeters(2), 2.MeganewtonCentimeters());
+            Assert.Equal(Torque<double>.FromMeganewtonCentimeters(2), 2.MeganewtonCentimeters());
 
         [Fact]
         public void NumberToMeganewtonMetersTest() =>
-            Assert.Equal(Torque.FromMeganewtonMeters(2), 2.MeganewtonMeters());
+            Assert.Equal(Torque<double>.FromMeganewtonMeters(2), 2.MeganewtonMeters());
 
         [Fact]
         public void NumberToMeganewtonMillimetersTest() =>
-            Assert.Equal(Torque.FromMeganewtonMillimeters(2), 2.MeganewtonMillimeters());
+            Assert.Equal(Torque<double>.FromMeganewtonMillimeters(2), 2.MeganewtonMillimeters());
 
         [Fact]
         public void NumberToMegapoundForceFeetTest() =>
-            Assert.Equal(Torque.FromMegapoundForceFeet(2), 2.MegapoundForceFeet());
+            Assert.Equal(Torque<double>.FromMegapoundForceFeet(2), 2.MegapoundForceFeet());
 
         [Fact]
         public void NumberToMegapoundForceInchesTest() =>
-            Assert.Equal(Torque.FromMegapoundForceInches(2), 2.MegapoundForceInches());
+            Assert.Equal(Torque<double>.FromMegapoundForceInches(2), 2.MegapoundForceInches());
 
         [Fact]
         public void NumberToNewtonCentimetersTest() =>
-            Assert.Equal(Torque.FromNewtonCentimeters(2), 2.NewtonCentimeters());
+            Assert.Equal(Torque<double>.FromNewtonCentimeters(2), 2.NewtonCentimeters());
 
         [Fact]
         public void NumberToNewtonMetersTest() =>
-            Assert.Equal(Torque.FromNewtonMeters(2), 2.NewtonMeters());
+            Assert.Equal(Torque<double>.FromNewtonMeters(2), 2.NewtonMeters());
 
         [Fact]
         public void NumberToNewtonMillimetersTest() =>
-            Assert.Equal(Torque.FromNewtonMillimeters(2), 2.NewtonMillimeters());
+            Assert.Equal(Torque<double>.FromNewtonMillimeters(2), 2.NewtonMillimeters());
 
         [Fact]
         public void NumberToPoundalFeetTest() =>
-            Assert.Equal(Torque.FromPoundalFeet(2), 2.PoundalFeet());
+            Assert.Equal(Torque<double>.FromPoundalFeet(2), 2.PoundalFeet());
 
         [Fact]
         public void NumberToPoundForceFeetTest() =>
-            Assert.Equal(Torque.FromPoundForceFeet(2), 2.PoundForceFeet());
+            Assert.Equal(Torque<double>.FromPoundForceFeet(2), 2.PoundForceFeet());
 
         [Fact]
         public void NumberToPoundForceInchesTest() =>
-            Assert.Equal(Torque.FromPoundForceInches(2), 2.PoundForceInches());
+            Assert.Equal(Torque<double>.FromPoundForceInches(2), 2.PoundForceInches());
 
         [Fact]
         public void NumberToTonneForceCentimetersTest() =>
-            Assert.Equal(Torque.FromTonneForceCentimeters(2), 2.TonneForceCentimeters());
+            Assert.Equal(Torque<double>.FromTonneForceCentimeters(2), 2.TonneForceCentimeters());
 
         [Fact]
         public void NumberToTonneForceMetersTest() =>
-            Assert.Equal(Torque.FromTonneForceMeters(2), 2.TonneForceMeters());
+            Assert.Equal(Torque<double>.FromTonneForceMeters(2), 2.TonneForceMeters());
 
         [Fact]
         public void NumberToTonneForceMillimetersTest() =>
-            Assert.Equal(Torque.FromTonneForceMillimeters(2), 2.TonneForceMillimeters());
+            Assert.Equal(Torque<double>.FromTonneForceMillimeters(2), 2.TonneForceMillimeters());
 
     }
 }

@@ -21,68 +21,68 @@ using UnitsNet.NumberExtensions.NumberToAmountOfSubstance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAmountOfSubstanceExtensionsTests
     {
         [Fact]
         public void NumberToCentimolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromCentimoles(2), 2.Centimoles());
+            Assert.Equal(AmountOfSubstance<double>.FromCentimoles(2), 2.Centimoles());
 
         [Fact]
         public void NumberToCentipoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromCentipoundMoles(2), 2.CentipoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromCentipoundMoles(2), 2.CentipoundMoles());
 
         [Fact]
         public void NumberToDecimolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromDecimoles(2), 2.Decimoles());
+            Assert.Equal(AmountOfSubstance<double>.FromDecimoles(2), 2.Decimoles());
 
         [Fact]
         public void NumberToDecipoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromDecipoundMoles(2), 2.DecipoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromDecipoundMoles(2), 2.DecipoundMoles());
 
         [Fact]
         public void NumberToKilomolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromKilomoles(2), 2.Kilomoles());
+            Assert.Equal(AmountOfSubstance<double>.FromKilomoles(2), 2.Kilomoles());
 
         [Fact]
         public void NumberToKilopoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromKilopoundMoles(2), 2.KilopoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromKilopoundMoles(2), 2.KilopoundMoles());
 
         [Fact]
         public void NumberToMegamolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMegamoles(2), 2.Megamoles());
+            Assert.Equal(AmountOfSubstance<double>.FromMegamoles(2), 2.Megamoles());
 
         [Fact]
         public void NumberToMicromolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMicromoles(2), 2.Micromoles());
+            Assert.Equal(AmountOfSubstance<double>.FromMicromoles(2), 2.Micromoles());
 
         [Fact]
         public void NumberToMicropoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMicropoundMoles(2), 2.MicropoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromMicropoundMoles(2), 2.MicropoundMoles());
 
         [Fact]
         public void NumberToMillimolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMillimoles(2), 2.Millimoles());
+            Assert.Equal(AmountOfSubstance<double>.FromMillimoles(2), 2.Millimoles());
 
         [Fact]
         public void NumberToMillipoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMillipoundMoles(2), 2.MillipoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromMillipoundMoles(2), 2.MillipoundMoles());
 
         [Fact]
         public void NumberToMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromMoles(2), 2.Moles());
+            Assert.Equal(AmountOfSubstance<double>.FromMoles(2), 2.Moles());
 
         [Fact]
         public void NumberToNanomolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromNanomoles(2), 2.Nanomoles());
+            Assert.Equal(AmountOfSubstance<double>.FromNanomoles(2), 2.Nanomoles());
 
         [Fact]
         public void NumberToNanopoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromNanopoundMoles(2), 2.NanopoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromNanopoundMoles(2), 2.NanopoundMoles());
 
         [Fact]
         public void NumberToPoundMolesTest() =>
-            Assert.Equal(AmountOfSubstance.FromPoundMoles(2), 2.PoundMoles());
+            Assert.Equal(AmountOfSubstance<double>.FromPoundMoles(2), 2.PoundMoles());
 
     }
 }

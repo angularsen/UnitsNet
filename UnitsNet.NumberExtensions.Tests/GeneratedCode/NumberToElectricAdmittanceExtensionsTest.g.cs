@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToElectricAdmittance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricAdmittanceExtensionsTests
     {
         [Fact]
         public void NumberToMicrosiemensTest() =>
-            Assert.Equal(ElectricAdmittance.FromMicrosiemens(2), 2.Microsiemens());
+            Assert.Equal(ElectricAdmittance<double>.FromMicrosiemens(2), 2.Microsiemens());
 
         [Fact]
         public void NumberToMillisiemensTest() =>
-            Assert.Equal(ElectricAdmittance.FromMillisiemens(2), 2.Millisiemens());
+            Assert.Equal(ElectricAdmittance<double>.FromMillisiemens(2), 2.Millisiemens());
 
         [Fact]
         public void NumberToNanosiemensTest() =>
-            Assert.Equal(ElectricAdmittance.FromNanosiemens(2), 2.Nanosiemens());
+            Assert.Equal(ElectricAdmittance<double>.FromNanosiemens(2), 2.Nanosiemens());
 
         [Fact]
         public void NumberToSiemensTest() =>
-            Assert.Equal(ElectricAdmittance.FromSiemens(2), 2.Siemens());
+            Assert.Equal(ElectricAdmittance<double>.FromSiemens(2), 2.Siemens());
 
     }
 }

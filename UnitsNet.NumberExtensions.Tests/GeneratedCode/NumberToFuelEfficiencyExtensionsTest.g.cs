@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToFuelEfficiency;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToFuelEfficiencyExtensionsTests
     {
         [Fact]
         public void NumberToKilometersPerLitersTest() =>
-            Assert.Equal(FuelEfficiency.FromKilometersPerLiters(2), 2.KilometersPerLiters());
+            Assert.Equal(FuelEfficiency<double>.FromKilometersPerLiters(2), 2.KilometersPerLiters());
 
         [Fact]
         public void NumberToLitersPer100KilometersTest() =>
-            Assert.Equal(FuelEfficiency.FromLitersPer100Kilometers(2), 2.LitersPer100Kilometers());
+            Assert.Equal(FuelEfficiency<double>.FromLitersPer100Kilometers(2), 2.LitersPer100Kilometers());
 
         [Fact]
         public void NumberToMilesPerUkGallonTest() =>
-            Assert.Equal(FuelEfficiency.FromMilesPerUkGallon(2), 2.MilesPerUkGallon());
+            Assert.Equal(FuelEfficiency<double>.FromMilesPerUkGallon(2), 2.MilesPerUkGallon());
 
         [Fact]
         public void NumberToMilesPerUsGallonTest() =>
-            Assert.Equal(FuelEfficiency.FromMilesPerUsGallon(2), 2.MilesPerUsGallon());
+            Assert.Equal(FuelEfficiency<double>.FromMilesPerUsGallon(2), 2.MilesPerUsGallon());
 
     }
 }

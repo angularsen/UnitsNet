@@ -28,117 +28,117 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
     /// </summary>
     public static class NumberToMassMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia GramSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromGramSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromGramSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> GramSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromGramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia GramSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromGramSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromGramSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> GramSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromGramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia GramSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromGramSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromGramSquareMeters(T)" />
+        public static MassMomentOfInertia<double> GramSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromGramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia GramSquareMillimeters<T>(this T value) =>
-            MassMomentOfInertia.FromGramSquareMillimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromGramSquareMillimeters(T)" />
+        public static MassMomentOfInertia<double> GramSquareMillimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromGramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilogramSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilogramSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilogramSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> KilogramSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilogramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilogramSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilogramSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilogramSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> KilogramSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilogramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilogramSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilogramSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilogramSquareMeters(T)" />
+        public static MassMomentOfInertia<double> KilogramSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilogramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilogramSquareMillimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilogramSquareMillimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilogramSquareMillimeters(T)" />
+        public static MassMomentOfInertia<double> KilogramSquareMillimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilogramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilotonneSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilotonneSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilotonneSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> KilotonneSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilotonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilotonneSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilotonneSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilotonneSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> KilotonneSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilotonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilotonneSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilotonneSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilotonneSquareMeters(T)" />
+        public static MassMomentOfInertia<double> KilotonneSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilotonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMilimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia KilotonneSquareMilimeters<T>(this T value) =>
-            MassMomentOfInertia.FromKilotonneSquareMilimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromKilotonneSquareMilimeters(T)" />
+        public static MassMomentOfInertia<double> KilotonneSquareMilimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromKilotonneSquareMilimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MegatonneSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMegatonneSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMegatonneSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> MegatonneSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMegatonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MegatonneSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMegatonneSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMegatonneSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> MegatonneSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMegatonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MegatonneSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromMegatonneSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMegatonneSquareMeters(T)" />
+        public static MassMomentOfInertia<double> MegatonneSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMegatonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMilimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MegatonneSquareMilimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMegatonneSquareMilimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMegatonneSquareMilimeters(T)" />
+        public static MassMomentOfInertia<double> MegatonneSquareMilimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMegatonneSquareMilimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MilligramSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMilligramSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMilligramSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> MilligramSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMilligramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MilligramSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMilligramSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMilligramSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> MilligramSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMilligramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MilligramSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromMilligramSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMilligramSquareMeters(T)" />
+        public static MassMomentOfInertia<double> MilligramSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMilligramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia MilligramSquareMillimeters<T>(this T value) =>
-            MassMomentOfInertia.FromMilligramSquareMillimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromMilligramSquareMillimeters(T)" />
+        public static MassMomentOfInertia<double> MilligramSquareMillimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromMilligramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia PoundSquareFeet<T>(this T value) =>
-            MassMomentOfInertia.FromPoundSquareFeet(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromPoundSquareFeet(T)" />
+        public static MassMomentOfInertia<double> PoundSquareFeet<T>(this T value) =>
+            MassMomentOfInertia<double>.FromPoundSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia PoundSquareInches<T>(this T value) =>
-            MassMomentOfInertia.FromPoundSquareInches(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromPoundSquareInches(T)" />
+        public static MassMomentOfInertia<double> PoundSquareInches<T>(this T value) =>
+            MassMomentOfInertia<double>.FromPoundSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia SlugSquareFeet<T>(this T value) =>
-            MassMomentOfInertia.FromSlugSquareFeet(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromSlugSquareFeet(T)" />
+        public static MassMomentOfInertia<double> SlugSquareFeet<T>(this T value) =>
+            MassMomentOfInertia<double>.FromSlugSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia SlugSquareInches<T>(this T value) =>
-            MassMomentOfInertia.FromSlugSquareInches(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromSlugSquareInches(T)" />
+        public static MassMomentOfInertia<double> SlugSquareInches<T>(this T value) =>
+            MassMomentOfInertia<double>.FromSlugSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia TonneSquareCentimeters<T>(this T value) =>
-            MassMomentOfInertia.FromTonneSquareCentimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromTonneSquareCentimeters(T)" />
+        public static MassMomentOfInertia<double> TonneSquareCentimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromTonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia TonneSquareDecimeters<T>(this T value) =>
-            MassMomentOfInertia.FromTonneSquareDecimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromTonneSquareDecimeters(T)" />
+        public static MassMomentOfInertia<double> TonneSquareDecimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromTonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia TonneSquareMeters<T>(this T value) =>
-            MassMomentOfInertia.FromTonneSquareMeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromTonneSquareMeters(T)" />
+        public static MassMomentOfInertia<double> TonneSquareMeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromTonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMilimeters(UnitsNet.QuantityValue)" />
-        public static MassMomentOfInertia TonneSquareMilimeters<T>(this T value) =>
-            MassMomentOfInertia.FromTonneSquareMilimeters(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassMomentOfInertia{T}.FromTonneSquareMilimeters(T)" />
+        public static MassMomentOfInertia<double> TonneSquareMilimeters<T>(this T value) =>
+            MassMomentOfInertia<double>.FromTonneSquareMilimeters(Convert.ToDouble(value));
 
     }
 }

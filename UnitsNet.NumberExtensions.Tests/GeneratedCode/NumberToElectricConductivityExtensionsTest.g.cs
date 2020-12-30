@@ -21,20 +21,20 @@ using UnitsNet.NumberExtensions.NumberToElectricConductivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricConductivityExtensionsTests
     {
         [Fact]
         public void NumberToSiemensPerFootTest() =>
-            Assert.Equal(ElectricConductivity.FromSiemensPerFoot(2), 2.SiemensPerFoot());
+            Assert.Equal(ElectricConductivity<double>.FromSiemensPerFoot(2), 2.SiemensPerFoot());
 
         [Fact]
         public void NumberToSiemensPerInchTest() =>
-            Assert.Equal(ElectricConductivity.FromSiemensPerInch(2), 2.SiemensPerInch());
+            Assert.Equal(ElectricConductivity<double>.FromSiemensPerInch(2), 2.SiemensPerInch());
 
         [Fact]
         public void NumberToSiemensPerMeterTest() =>
-            Assert.Equal(ElectricConductivity.FromSiemensPerMeter(2), 2.SiemensPerMeter());
+            Assert.Equal(ElectricConductivity<double>.FromSiemensPerMeter(2), 2.SiemensPerMeter());
 
     }
 }

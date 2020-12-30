@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
     /// </summary>
     public static class NumberToMolarEntropyExtensions
     {
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin<T>(this T value) =>
-            MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEntropy{T}.FromJoulesPerMoleKelvin(T)" />
+        public static MolarEntropy<double> JoulesPerMoleKelvin<T>(this T value) =>
+            MolarEntropy<double>.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value) =>
-            MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEntropy{T}.FromKilojoulesPerMoleKelvin(T)" />
+        public static MolarEntropy<double> KilojoulesPerMoleKelvin<T>(this T value) =>
+            MolarEntropy<double>.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value) =>
-            MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEntropy{T}.FromMegajoulesPerMoleKelvin(T)" />
+        public static MolarEntropy<double> MegajoulesPerMoleKelvin<T>(this T value) =>
+            MolarEntropy<double>.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
 
     }
 }

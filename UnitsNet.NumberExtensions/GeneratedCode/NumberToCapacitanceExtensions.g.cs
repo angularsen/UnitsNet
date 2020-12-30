@@ -28,33 +28,33 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
     /// </summary>
     public static class NumberToCapacitanceExtensions
     {
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads<T>(this T value) =>
-            Capacitance.FromFarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromFarads(T)" />
+        public static Capacitance<double> Farads<T>(this T value) =>
+            Capacitance<double>.FromFarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromKilofarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Kilofarads<T>(this T value) =>
-            Capacitance.FromKilofarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromKilofarads(T)" />
+        public static Capacitance<double> Kilofarads<T>(this T value) =>
+            Capacitance<double>.FromKilofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMegafarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Megafarads<T>(this T value) =>
-            Capacitance.FromMegafarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromMegafarads(T)" />
+        public static Capacitance<double> Megafarads<T>(this T value) =>
+            Capacitance<double>.FromMegafarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMicrofarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Microfarads<T>(this T value) =>
-            Capacitance.FromMicrofarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromMicrofarads(T)" />
+        public static Capacitance<double> Microfarads<T>(this T value) =>
+            Capacitance<double>.FromMicrofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMillifarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Millifarads<T>(this T value) =>
-            Capacitance.FromMillifarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromMillifarads(T)" />
+        public static Capacitance<double> Millifarads<T>(this T value) =>
+            Capacitance<double>.FromMillifarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromNanofarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Nanofarads<T>(this T value) =>
-            Capacitance.FromNanofarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromNanofarads(T)" />
+        public static Capacitance<double> Nanofarads<T>(this T value) =>
+            Capacitance<double>.FromNanofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromPicofarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Picofarads<T>(this T value) =>
-            Capacitance.FromPicofarads(Convert.ToDouble(value));
+        /// <inheritdoc cref="Capacitance{T}.FromPicofarads(T)" />
+        public static Capacitance<double> Picofarads<T>(this T value) =>
+            Capacitance<double>.FromPicofarads(Convert.ToDouble(value));
 
     }
 }

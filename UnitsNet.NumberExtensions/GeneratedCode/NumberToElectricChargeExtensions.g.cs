@@ -28,25 +28,25 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
     /// </summary>
     public static class NumberToElectricChargeExtensions
     {
-        /// <inheritdoc cref="ElectricCharge.FromAmpereHours(UnitsNet.QuantityValue)" />
-        public static ElectricCharge AmpereHours<T>(this T value) =>
-            ElectricCharge.FromAmpereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCharge{T}.FromAmpereHours(T)" />
+        public static ElectricCharge<double> AmpereHours<T>(this T value) =>
+            ElectricCharge<double>.FromAmpereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs<T>(this T value) =>
-            ElectricCharge.FromCoulombs(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCharge{T}.FromCoulombs(T)" />
+        public static ElectricCharge<double> Coulombs<T>(this T value) =>
+            ElectricCharge<double>.FromCoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(UnitsNet.QuantityValue)" />
-        public static ElectricCharge KiloampereHours<T>(this T value) =>
-            ElectricCharge.FromKiloampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCharge{T}.FromKiloampereHours(T)" />
+        public static ElectricCharge<double> KiloampereHours<T>(this T value) =>
+            ElectricCharge<double>.FromKiloampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(UnitsNet.QuantityValue)" />
-        public static ElectricCharge MegaampereHours<T>(this T value) =>
-            ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCharge{T}.FromMegaampereHours(T)" />
+        public static ElectricCharge<double> MegaampereHours<T>(this T value) =>
+            ElectricCharge<double>.FromMegaampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(UnitsNet.QuantityValue)" />
-        public static ElectricCharge MilliampereHours<T>(this T value) =>
-            ElectricCharge.FromMilliampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCharge{T}.FromMilliampereHours(T)" />
+        public static ElectricCharge<double> MilliampereHours<T>(this T value) =>
+            ElectricCharge<double>.FromMilliampereHours(Convert.ToDouble(value));
 
     }
 }

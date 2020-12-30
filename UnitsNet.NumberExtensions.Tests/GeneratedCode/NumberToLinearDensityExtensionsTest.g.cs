@@ -21,64 +21,64 @@ using UnitsNet.NumberExtensions.NumberToLinearDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLinearDensityExtensionsTests
     {
         [Fact]
         public void NumberToGramsPerCentimeterTest() =>
-            Assert.Equal(LinearDensity.FromGramsPerCentimeter(2), 2.GramsPerCentimeter());
+            Assert.Equal(LinearDensity<double>.FromGramsPerCentimeter(2), 2.GramsPerCentimeter());
 
         [Fact]
         public void NumberToGramsPerMeterTest() =>
-            Assert.Equal(LinearDensity.FromGramsPerMeter(2), 2.GramsPerMeter());
+            Assert.Equal(LinearDensity<double>.FromGramsPerMeter(2), 2.GramsPerMeter());
 
         [Fact]
         public void NumberToGramsPerMillimeterTest() =>
-            Assert.Equal(LinearDensity.FromGramsPerMillimeter(2), 2.GramsPerMillimeter());
+            Assert.Equal(LinearDensity<double>.FromGramsPerMillimeter(2), 2.GramsPerMillimeter());
 
         [Fact]
         public void NumberToKilogramsPerCentimeterTest() =>
-            Assert.Equal(LinearDensity.FromKilogramsPerCentimeter(2), 2.KilogramsPerCentimeter());
+            Assert.Equal(LinearDensity<double>.FromKilogramsPerCentimeter(2), 2.KilogramsPerCentimeter());
 
         [Fact]
         public void NumberToKilogramsPerMeterTest() =>
-            Assert.Equal(LinearDensity.FromKilogramsPerMeter(2), 2.KilogramsPerMeter());
+            Assert.Equal(LinearDensity<double>.FromKilogramsPerMeter(2), 2.KilogramsPerMeter());
 
         [Fact]
         public void NumberToKilogramsPerMillimeterTest() =>
-            Assert.Equal(LinearDensity.FromKilogramsPerMillimeter(2), 2.KilogramsPerMillimeter());
+            Assert.Equal(LinearDensity<double>.FromKilogramsPerMillimeter(2), 2.KilogramsPerMillimeter());
 
         [Fact]
         public void NumberToMicrogramsPerCentimeterTest() =>
-            Assert.Equal(LinearDensity.FromMicrogramsPerCentimeter(2), 2.MicrogramsPerCentimeter());
+            Assert.Equal(LinearDensity<double>.FromMicrogramsPerCentimeter(2), 2.MicrogramsPerCentimeter());
 
         [Fact]
         public void NumberToMicrogramsPerMeterTest() =>
-            Assert.Equal(LinearDensity.FromMicrogramsPerMeter(2), 2.MicrogramsPerMeter());
+            Assert.Equal(LinearDensity<double>.FromMicrogramsPerMeter(2), 2.MicrogramsPerMeter());
 
         [Fact]
         public void NumberToMicrogramsPerMillimeterTest() =>
-            Assert.Equal(LinearDensity.FromMicrogramsPerMillimeter(2), 2.MicrogramsPerMillimeter());
+            Assert.Equal(LinearDensity<double>.FromMicrogramsPerMillimeter(2), 2.MicrogramsPerMillimeter());
 
         [Fact]
         public void NumberToMilligramsPerCentimeterTest() =>
-            Assert.Equal(LinearDensity.FromMilligramsPerCentimeter(2), 2.MilligramsPerCentimeter());
+            Assert.Equal(LinearDensity<double>.FromMilligramsPerCentimeter(2), 2.MilligramsPerCentimeter());
 
         [Fact]
         public void NumberToMilligramsPerMeterTest() =>
-            Assert.Equal(LinearDensity.FromMilligramsPerMeter(2), 2.MilligramsPerMeter());
+            Assert.Equal(LinearDensity<double>.FromMilligramsPerMeter(2), 2.MilligramsPerMeter());
 
         [Fact]
         public void NumberToMilligramsPerMillimeterTest() =>
-            Assert.Equal(LinearDensity.FromMilligramsPerMillimeter(2), 2.MilligramsPerMillimeter());
+            Assert.Equal(LinearDensity<double>.FromMilligramsPerMillimeter(2), 2.MilligramsPerMillimeter());
 
         [Fact]
         public void NumberToPoundsPerFootTest() =>
-            Assert.Equal(LinearDensity.FromPoundsPerFoot(2), 2.PoundsPerFoot());
+            Assert.Equal(LinearDensity<double>.FromPoundsPerFoot(2), 2.PoundsPerFoot());
 
         [Fact]
         public void NumberToPoundsPerInchTest() =>
-            Assert.Equal(LinearDensity.FromPoundsPerInch(2), 2.PoundsPerInch());
+            Assert.Equal(LinearDensity<double>.FromPoundsPerInch(2), 2.PoundsPerInch());
 
     }
 }

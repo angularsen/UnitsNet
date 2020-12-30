@@ -21,120 +21,120 @@ using UnitsNet.NumberExtensions.NumberToMassMomentOfInertia;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMassMomentOfInertiaExtensionsTests
     {
         [Fact]
         public void NumberToGramSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromGramSquareCentimeters(2), 2.GramSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromGramSquareCentimeters(2), 2.GramSquareCentimeters());
 
         [Fact]
         public void NumberToGramSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromGramSquareDecimeters(2), 2.GramSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromGramSquareDecimeters(2), 2.GramSquareDecimeters());
 
         [Fact]
         public void NumberToGramSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromGramSquareMeters(2), 2.GramSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromGramSquareMeters(2), 2.GramSquareMeters());
 
         [Fact]
         public void NumberToGramSquareMillimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromGramSquareMillimeters(2), 2.GramSquareMillimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromGramSquareMillimeters(2), 2.GramSquareMillimeters());
 
         [Fact]
         public void NumberToKilogramSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilogramSquareCentimeters(2), 2.KilogramSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilogramSquareCentimeters(2), 2.KilogramSquareCentimeters());
 
         [Fact]
         public void NumberToKilogramSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilogramSquareDecimeters(2), 2.KilogramSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilogramSquareDecimeters(2), 2.KilogramSquareDecimeters());
 
         [Fact]
         public void NumberToKilogramSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilogramSquareMeters(2), 2.KilogramSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilogramSquareMeters(2), 2.KilogramSquareMeters());
 
         [Fact]
         public void NumberToKilogramSquareMillimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilogramSquareMillimeters(2), 2.KilogramSquareMillimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilogramSquareMillimeters(2), 2.KilogramSquareMillimeters());
 
         [Fact]
         public void NumberToKilotonneSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilotonneSquareCentimeters(2), 2.KilotonneSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilotonneSquareCentimeters(2), 2.KilotonneSquareCentimeters());
 
         [Fact]
         public void NumberToKilotonneSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilotonneSquareDecimeters(2), 2.KilotonneSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilotonneSquareDecimeters(2), 2.KilotonneSquareDecimeters());
 
         [Fact]
         public void NumberToKilotonneSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilotonneSquareMeters(2), 2.KilotonneSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilotonneSquareMeters(2), 2.KilotonneSquareMeters());
 
         [Fact]
         public void NumberToKilotonneSquareMilimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromKilotonneSquareMilimeters(2), 2.KilotonneSquareMilimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromKilotonneSquareMilimeters(2), 2.KilotonneSquareMilimeters());
 
         [Fact]
         public void NumberToMegatonneSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMegatonneSquareCentimeters(2), 2.MegatonneSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMegatonneSquareCentimeters(2), 2.MegatonneSquareCentimeters());
 
         [Fact]
         public void NumberToMegatonneSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMegatonneSquareDecimeters(2), 2.MegatonneSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMegatonneSquareDecimeters(2), 2.MegatonneSquareDecimeters());
 
         [Fact]
         public void NumberToMegatonneSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMegatonneSquareMeters(2), 2.MegatonneSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMegatonneSquareMeters(2), 2.MegatonneSquareMeters());
 
         [Fact]
         public void NumberToMegatonneSquareMilimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMegatonneSquareMilimeters(2), 2.MegatonneSquareMilimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMegatonneSquareMilimeters(2), 2.MegatonneSquareMilimeters());
 
         [Fact]
         public void NumberToMilligramSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMilligramSquareCentimeters(2), 2.MilligramSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMilligramSquareCentimeters(2), 2.MilligramSquareCentimeters());
 
         [Fact]
         public void NumberToMilligramSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMilligramSquareDecimeters(2), 2.MilligramSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMilligramSquareDecimeters(2), 2.MilligramSquareDecimeters());
 
         [Fact]
         public void NumberToMilligramSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMilligramSquareMeters(2), 2.MilligramSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMilligramSquareMeters(2), 2.MilligramSquareMeters());
 
         [Fact]
         public void NumberToMilligramSquareMillimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromMilligramSquareMillimeters(2), 2.MilligramSquareMillimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromMilligramSquareMillimeters(2), 2.MilligramSquareMillimeters());
 
         [Fact]
         public void NumberToPoundSquareFeetTest() =>
-            Assert.Equal(MassMomentOfInertia.FromPoundSquareFeet(2), 2.PoundSquareFeet());
+            Assert.Equal(MassMomentOfInertia<double>.FromPoundSquareFeet(2), 2.PoundSquareFeet());
 
         [Fact]
         public void NumberToPoundSquareInchesTest() =>
-            Assert.Equal(MassMomentOfInertia.FromPoundSquareInches(2), 2.PoundSquareInches());
+            Assert.Equal(MassMomentOfInertia<double>.FromPoundSquareInches(2), 2.PoundSquareInches());
 
         [Fact]
         public void NumberToSlugSquareFeetTest() =>
-            Assert.Equal(MassMomentOfInertia.FromSlugSquareFeet(2), 2.SlugSquareFeet());
+            Assert.Equal(MassMomentOfInertia<double>.FromSlugSquareFeet(2), 2.SlugSquareFeet());
 
         [Fact]
         public void NumberToSlugSquareInchesTest() =>
-            Assert.Equal(MassMomentOfInertia.FromSlugSquareInches(2), 2.SlugSquareInches());
+            Assert.Equal(MassMomentOfInertia<double>.FromSlugSquareInches(2), 2.SlugSquareInches());
 
         [Fact]
         public void NumberToTonneSquareCentimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromTonneSquareCentimeters(2), 2.TonneSquareCentimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromTonneSquareCentimeters(2), 2.TonneSquareCentimeters());
 
         [Fact]
         public void NumberToTonneSquareDecimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromTonneSquareDecimeters(2), 2.TonneSquareDecimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromTonneSquareDecimeters(2), 2.TonneSquareDecimeters());
 
         [Fact]
         public void NumberToTonneSquareMetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromTonneSquareMeters(2), 2.TonneSquareMeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromTonneSquareMeters(2), 2.TonneSquareMeters());
 
         [Fact]
         public void NumberToTonneSquareMilimetersTest() =>
-            Assert.Equal(MassMomentOfInertia.FromTonneSquareMilimeters(2), 2.TonneSquareMilimeters());
+            Assert.Equal(MassMomentOfInertia<double>.FromTonneSquareMilimeters(2), 2.TonneSquareMilimeters());
 
     }
 }

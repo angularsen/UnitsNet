@@ -21,16 +21,16 @@ using UnitsNet.NumberExtensions.NumberToLevel;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLevelExtensionsTests
     {
         [Fact]
         public void NumberToDecibelsTest() =>
-            Assert.Equal(Level.FromDecibels(2), 2.Decibels());
+            Assert.Equal(Level<double>.FromDecibels(2), 2.Decibels());
 
         [Fact]
         public void NumberToNepersTest() =>
-            Assert.Equal(Level.FromNepers(2), 2.Nepers());
+            Assert.Equal(Level<double>.FromNepers(2), 2.Nepers());
 
     }
 }

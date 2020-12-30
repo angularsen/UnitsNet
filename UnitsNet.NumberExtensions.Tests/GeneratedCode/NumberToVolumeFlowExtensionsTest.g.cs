@@ -21,232 +21,232 @@ using UnitsNet.NumberExtensions.NumberToVolumeFlow;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVolumeFlowExtensionsTests
     {
         [Fact]
         public void NumberToAcreFeetPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromAcreFeetPerDay(2), 2.AcreFeetPerDay());
+            Assert.Equal(VolumeFlow<double>.FromAcreFeetPerDay(2), 2.AcreFeetPerDay());
 
         [Fact]
         public void NumberToAcreFeetPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromAcreFeetPerHour(2), 2.AcreFeetPerHour());
+            Assert.Equal(VolumeFlow<double>.FromAcreFeetPerHour(2), 2.AcreFeetPerHour());
 
         [Fact]
         public void NumberToAcreFeetPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromAcreFeetPerMinute(2), 2.AcreFeetPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromAcreFeetPerMinute(2), 2.AcreFeetPerMinute());
 
         [Fact]
         public void NumberToAcreFeetPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromAcreFeetPerSecond(2), 2.AcreFeetPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromAcreFeetPerSecond(2), 2.AcreFeetPerSecond());
 
         [Fact]
         public void NumberToCentilitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromCentilitersPerDay(2), 2.CentilitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromCentilitersPerDay(2), 2.CentilitersPerDay());
 
         [Fact]
         public void NumberToCentilitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCentilitersPerMinute(2), 2.CentilitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCentilitersPerMinute(2), 2.CentilitersPerMinute());
 
         [Fact]
         public void NumberToCentilitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromCentilitersPerSecond(2), 2.CentilitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromCentilitersPerSecond(2), 2.CentilitersPerSecond());
 
         [Fact]
         public void NumberToCubicCentimetersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCubicCentimetersPerMinute(2), 2.CubicCentimetersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCubicCentimetersPerMinute(2), 2.CubicCentimetersPerMinute());
 
         [Fact]
         public void NumberToCubicDecimetersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCubicDecimetersPerMinute(2), 2.CubicDecimetersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCubicDecimetersPerMinute(2), 2.CubicDecimetersPerMinute());
 
         [Fact]
         public void NumberToCubicFeetPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromCubicFeetPerHour(2), 2.CubicFeetPerHour());
+            Assert.Equal(VolumeFlow<double>.FromCubicFeetPerHour(2), 2.CubicFeetPerHour());
 
         [Fact]
         public void NumberToCubicFeetPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCubicFeetPerMinute(2), 2.CubicFeetPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCubicFeetPerMinute(2), 2.CubicFeetPerMinute());
 
         [Fact]
         public void NumberToCubicFeetPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromCubicFeetPerSecond(2), 2.CubicFeetPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromCubicFeetPerSecond(2), 2.CubicFeetPerSecond());
 
         [Fact]
         public void NumberToCubicMetersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromCubicMetersPerDay(2), 2.CubicMetersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromCubicMetersPerDay(2), 2.CubicMetersPerDay());
 
         [Fact]
         public void NumberToCubicMetersPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromCubicMetersPerHour(2), 2.CubicMetersPerHour());
+            Assert.Equal(VolumeFlow<double>.FromCubicMetersPerHour(2), 2.CubicMetersPerHour());
 
         [Fact]
         public void NumberToCubicMetersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCubicMetersPerMinute(2), 2.CubicMetersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCubicMetersPerMinute(2), 2.CubicMetersPerMinute());
 
         [Fact]
         public void NumberToCubicMetersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(2), 2.CubicMetersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromCubicMetersPerSecond(2), 2.CubicMetersPerSecond());
 
         [Fact]
         public void NumberToCubicMillimetersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromCubicMillimetersPerSecond(2), 2.CubicMillimetersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromCubicMillimetersPerSecond(2), 2.CubicMillimetersPerSecond());
 
         [Fact]
         public void NumberToCubicYardsPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromCubicYardsPerDay(2), 2.CubicYardsPerDay());
+            Assert.Equal(VolumeFlow<double>.FromCubicYardsPerDay(2), 2.CubicYardsPerDay());
 
         [Fact]
         public void NumberToCubicYardsPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromCubicYardsPerHour(2), 2.CubicYardsPerHour());
+            Assert.Equal(VolumeFlow<double>.FromCubicYardsPerHour(2), 2.CubicYardsPerHour());
 
         [Fact]
         public void NumberToCubicYardsPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromCubicYardsPerMinute(2), 2.CubicYardsPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromCubicYardsPerMinute(2), 2.CubicYardsPerMinute());
 
         [Fact]
         public void NumberToCubicYardsPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromCubicYardsPerSecond(2), 2.CubicYardsPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromCubicYardsPerSecond(2), 2.CubicYardsPerSecond());
 
         [Fact]
         public void NumberToDecilitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromDecilitersPerDay(2), 2.DecilitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromDecilitersPerDay(2), 2.DecilitersPerDay());
 
         [Fact]
         public void NumberToDecilitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromDecilitersPerMinute(2), 2.DecilitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromDecilitersPerMinute(2), 2.DecilitersPerMinute());
 
         [Fact]
         public void NumberToDecilitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromDecilitersPerSecond(2), 2.DecilitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromDecilitersPerSecond(2), 2.DecilitersPerSecond());
 
         [Fact]
         public void NumberToKilolitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromKilolitersPerDay(2), 2.KilolitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromKilolitersPerDay(2), 2.KilolitersPerDay());
 
         [Fact]
         public void NumberToKilolitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromKilolitersPerMinute(2), 2.KilolitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromKilolitersPerMinute(2), 2.KilolitersPerMinute());
 
         [Fact]
         public void NumberToKilolitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromKilolitersPerSecond(2), 2.KilolitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromKilolitersPerSecond(2), 2.KilolitersPerSecond());
 
         [Fact]
         public void NumberToKilousGallonsPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromKilousGallonsPerMinute(2), 2.KilousGallonsPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromKilousGallonsPerMinute(2), 2.KilousGallonsPerMinute());
 
         [Fact]
         public void NumberToLitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromLitersPerDay(2), 2.LitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromLitersPerDay(2), 2.LitersPerDay());
 
         [Fact]
         public void NumberToLitersPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromLitersPerHour(2), 2.LitersPerHour());
+            Assert.Equal(VolumeFlow<double>.FromLitersPerHour(2), 2.LitersPerHour());
 
         [Fact]
         public void NumberToLitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromLitersPerMinute(2), 2.LitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromLitersPerMinute(2), 2.LitersPerMinute());
 
         [Fact]
         public void NumberToLitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromLitersPerSecond(2), 2.LitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromLitersPerSecond(2), 2.LitersPerSecond());
 
         [Fact]
         public void NumberToMegalitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromMegalitersPerDay(2), 2.MegalitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromMegalitersPerDay(2), 2.MegalitersPerDay());
 
         [Fact]
         public void NumberToMegaukGallonsPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromMegaukGallonsPerSecond(2), 2.MegaukGallonsPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromMegaukGallonsPerSecond(2), 2.MegaukGallonsPerSecond());
 
         [Fact]
         public void NumberToMicrolitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromMicrolitersPerDay(2), 2.MicrolitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromMicrolitersPerDay(2), 2.MicrolitersPerDay());
 
         [Fact]
         public void NumberToMicrolitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromMicrolitersPerMinute(2), 2.MicrolitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromMicrolitersPerMinute(2), 2.MicrolitersPerMinute());
 
         [Fact]
         public void NumberToMicrolitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromMicrolitersPerSecond(2), 2.MicrolitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromMicrolitersPerSecond(2), 2.MicrolitersPerSecond());
 
         [Fact]
         public void NumberToMillilitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromMillilitersPerDay(2), 2.MillilitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromMillilitersPerDay(2), 2.MillilitersPerDay());
 
         [Fact]
         public void NumberToMillilitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromMillilitersPerMinute(2), 2.MillilitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromMillilitersPerMinute(2), 2.MillilitersPerMinute());
 
         [Fact]
         public void NumberToMillilitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromMillilitersPerSecond(2), 2.MillilitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromMillilitersPerSecond(2), 2.MillilitersPerSecond());
 
         [Fact]
         public void NumberToMillionUsGallonsPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromMillionUsGallonsPerDay(2), 2.MillionUsGallonsPerDay());
+            Assert.Equal(VolumeFlow<double>.FromMillionUsGallonsPerDay(2), 2.MillionUsGallonsPerDay());
 
         [Fact]
         public void NumberToNanolitersPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromNanolitersPerDay(2), 2.NanolitersPerDay());
+            Assert.Equal(VolumeFlow<double>.FromNanolitersPerDay(2), 2.NanolitersPerDay());
 
         [Fact]
         public void NumberToNanolitersPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromNanolitersPerMinute(2), 2.NanolitersPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromNanolitersPerMinute(2), 2.NanolitersPerMinute());
 
         [Fact]
         public void NumberToNanolitersPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromNanolitersPerSecond(2), 2.NanolitersPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromNanolitersPerSecond(2), 2.NanolitersPerSecond());
 
         [Fact]
         public void NumberToOilBarrelsPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromOilBarrelsPerDay(2), 2.OilBarrelsPerDay());
+            Assert.Equal(VolumeFlow<double>.FromOilBarrelsPerDay(2), 2.OilBarrelsPerDay());
 
         [Fact]
         public void NumberToOilBarrelsPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromOilBarrelsPerHour(2), 2.OilBarrelsPerHour());
+            Assert.Equal(VolumeFlow<double>.FromOilBarrelsPerHour(2), 2.OilBarrelsPerHour());
 
         [Fact]
         public void NumberToOilBarrelsPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromOilBarrelsPerMinute(2), 2.OilBarrelsPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromOilBarrelsPerMinute(2), 2.OilBarrelsPerMinute());
 
         [Fact]
         public void NumberToOilBarrelsPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromOilBarrelsPerSecond(2), 2.OilBarrelsPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromOilBarrelsPerSecond(2), 2.OilBarrelsPerSecond());
 
         [Fact]
         public void NumberToUkGallonsPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromUkGallonsPerDay(2), 2.UkGallonsPerDay());
+            Assert.Equal(VolumeFlow<double>.FromUkGallonsPerDay(2), 2.UkGallonsPerDay());
 
         [Fact]
         public void NumberToUkGallonsPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromUkGallonsPerHour(2), 2.UkGallonsPerHour());
+            Assert.Equal(VolumeFlow<double>.FromUkGallonsPerHour(2), 2.UkGallonsPerHour());
 
         [Fact]
         public void NumberToUkGallonsPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromUkGallonsPerMinute(2), 2.UkGallonsPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromUkGallonsPerMinute(2), 2.UkGallonsPerMinute());
 
         [Fact]
         public void NumberToUkGallonsPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromUkGallonsPerSecond(2), 2.UkGallonsPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromUkGallonsPerSecond(2), 2.UkGallonsPerSecond());
 
         [Fact]
         public void NumberToUsGallonsPerDayTest() =>
-            Assert.Equal(VolumeFlow.FromUsGallonsPerDay(2), 2.UsGallonsPerDay());
+            Assert.Equal(VolumeFlow<double>.FromUsGallonsPerDay(2), 2.UsGallonsPerDay());
 
         [Fact]
         public void NumberToUsGallonsPerHourTest() =>
-            Assert.Equal(VolumeFlow.FromUsGallonsPerHour(2), 2.UsGallonsPerHour());
+            Assert.Equal(VolumeFlow<double>.FromUsGallonsPerHour(2), 2.UsGallonsPerHour());
 
         [Fact]
         public void NumberToUsGallonsPerMinuteTest() =>
-            Assert.Equal(VolumeFlow.FromUsGallonsPerMinute(2), 2.UsGallonsPerMinute());
+            Assert.Equal(VolumeFlow<double>.FromUsGallonsPerMinute(2), 2.UsGallonsPerMinute());
 
         [Fact]
         public void NumberToUsGallonsPerSecondTest() =>
-            Assert.Equal(VolumeFlow.FromUsGallonsPerSecond(2), 2.UsGallonsPerSecond());
+            Assert.Equal(VolumeFlow<double>.FromUsGallonsPerSecond(2), 2.UsGallonsPerSecond());
 
     }
 }

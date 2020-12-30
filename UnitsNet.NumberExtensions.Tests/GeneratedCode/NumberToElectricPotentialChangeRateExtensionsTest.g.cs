@@ -21,88 +21,88 @@ using UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricPotentialChangeRateExtensionsTests
     {
         [Fact]
         public void NumberToKilovoltsPerHoursTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromKilovoltsPerHours(2), 2.KilovoltsPerHours());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromKilovoltsPerHours(2), 2.KilovoltsPerHours());
 
         [Fact]
         public void NumberToKilovoltsPerMicrosecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromKilovoltsPerMicroseconds(2), 2.KilovoltsPerMicroseconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromKilovoltsPerMicroseconds(2), 2.KilovoltsPerMicroseconds());
 
         [Fact]
         public void NumberToKilovoltsPerMinutesTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromKilovoltsPerMinutes(2), 2.KilovoltsPerMinutes());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromKilovoltsPerMinutes(2), 2.KilovoltsPerMinutes());
 
         [Fact]
         public void NumberToKilovoltsPerSecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromKilovoltsPerSeconds(2), 2.KilovoltsPerSeconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromKilovoltsPerSeconds(2), 2.KilovoltsPerSeconds());
 
         [Fact]
         public void NumberToMegavoltsPerHoursTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMegavoltsPerHours(2), 2.MegavoltsPerHours());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMegavoltsPerHours(2), 2.MegavoltsPerHours());
 
         [Fact]
         public void NumberToMegavoltsPerMicrosecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMegavoltsPerMicroseconds(2), 2.MegavoltsPerMicroseconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMegavoltsPerMicroseconds(2), 2.MegavoltsPerMicroseconds());
 
         [Fact]
         public void NumberToMegavoltsPerMinutesTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMegavoltsPerMinutes(2), 2.MegavoltsPerMinutes());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMegavoltsPerMinutes(2), 2.MegavoltsPerMinutes());
 
         [Fact]
         public void NumberToMegavoltsPerSecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMegavoltsPerSeconds(2), 2.MegavoltsPerSeconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMegavoltsPerSeconds(2), 2.MegavoltsPerSeconds());
 
         [Fact]
         public void NumberToMicrovoltsPerHoursTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMicrovoltsPerHours(2), 2.MicrovoltsPerHours());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMicrovoltsPerHours(2), 2.MicrovoltsPerHours());
 
         [Fact]
         public void NumberToMicrovoltsPerMicrosecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMicrovoltsPerMicroseconds(2), 2.MicrovoltsPerMicroseconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMicrovoltsPerMicroseconds(2), 2.MicrovoltsPerMicroseconds());
 
         [Fact]
         public void NumberToMicrovoltsPerMinutesTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMicrovoltsPerMinutes(2), 2.MicrovoltsPerMinutes());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMicrovoltsPerMinutes(2), 2.MicrovoltsPerMinutes());
 
         [Fact]
         public void NumberToMicrovoltsPerSecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMicrovoltsPerSeconds(2), 2.MicrovoltsPerSeconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMicrovoltsPerSeconds(2), 2.MicrovoltsPerSeconds());
 
         [Fact]
         public void NumberToMillivoltsPerHoursTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMillivoltsPerHours(2), 2.MillivoltsPerHours());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMillivoltsPerHours(2), 2.MillivoltsPerHours());
 
         [Fact]
         public void NumberToMillivoltsPerMicrosecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMillivoltsPerMicroseconds(2), 2.MillivoltsPerMicroseconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMillivoltsPerMicroseconds(2), 2.MillivoltsPerMicroseconds());
 
         [Fact]
         public void NumberToMillivoltsPerMinutesTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMillivoltsPerMinutes(2), 2.MillivoltsPerMinutes());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMillivoltsPerMinutes(2), 2.MillivoltsPerMinutes());
 
         [Fact]
         public void NumberToMillivoltsPerSecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromMillivoltsPerSeconds(2), 2.MillivoltsPerSeconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromMillivoltsPerSeconds(2), 2.MillivoltsPerSeconds());
 
         [Fact]
         public void NumberToVoltsPerHoursTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromVoltsPerHours(2), 2.VoltsPerHours());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromVoltsPerHours(2), 2.VoltsPerHours());
 
         [Fact]
         public void NumberToVoltsPerMicrosecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromVoltsPerMicroseconds(2), 2.VoltsPerMicroseconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromVoltsPerMicroseconds(2), 2.VoltsPerMicroseconds());
 
         [Fact]
         public void NumberToVoltsPerMinutesTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromVoltsPerMinutes(2), 2.VoltsPerMinutes());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromVoltsPerMinutes(2), 2.VoltsPerMinutes());
 
         [Fact]
         public void NumberToVoltsPerSecondsTest() =>
-            Assert.Equal(ElectricPotentialChangeRate.FromVoltsPerSeconds(2), 2.VoltsPerSeconds());
+            Assert.Equal(ElectricPotentialChangeRate<double>.FromVoltsPerSeconds(2), 2.VoltsPerSeconds());
 
     }
 }

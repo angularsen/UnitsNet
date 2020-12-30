@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
     /// </summary>
     public static class NumberToIlluminanceExtensions
     {
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux<T>(this T value) =>
-            Illuminance.FromKilolux(Convert.ToDouble(value));
+        /// <inheritdoc cref="Illuminance{T}.FromKilolux(T)" />
+        public static Illuminance<double> Kilolux<T>(this T value) =>
+            Illuminance<double>.FromKilolux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux<T>(this T value) =>
-            Illuminance.FromLux(Convert.ToDouble(value));
+        /// <inheritdoc cref="Illuminance{T}.FromLux(T)" />
+        public static Illuminance<double> Lux<T>(this T value) =>
+            Illuminance<double>.FromLux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux<T>(this T value) =>
-            Illuminance.FromMegalux(Convert.ToDouble(value));
+        /// <inheritdoc cref="Illuminance{T}.FromMegalux(T)" />
+        public static Illuminance<double> Megalux<T>(this T value) =>
+            Illuminance<double>.FromMegalux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux<T>(this T value) =>
-            Illuminance.FromMillilux(Convert.ToDouble(value));
+        /// <inheritdoc cref="Illuminance{T}.FromMillilux(T)" />
+        public static Illuminance<double> Millilux<T>(this T value) =>
+            Illuminance<double>.FromMillilux(Convert.ToDouble(value));
 
     }
 }

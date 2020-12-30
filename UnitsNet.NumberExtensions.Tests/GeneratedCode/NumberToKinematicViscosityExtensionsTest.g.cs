@@ -21,40 +21,40 @@ using UnitsNet.NumberExtensions.NumberToKinematicViscosity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToKinematicViscosityExtensionsTests
     {
         [Fact]
         public void NumberToCentistokesTest() =>
-            Assert.Equal(KinematicViscosity.FromCentistokes(2), 2.Centistokes());
+            Assert.Equal(KinematicViscosity<double>.FromCentistokes(2), 2.Centistokes());
 
         [Fact]
         public void NumberToDecistokesTest() =>
-            Assert.Equal(KinematicViscosity.FromDecistokes(2), 2.Decistokes());
+            Assert.Equal(KinematicViscosity<double>.FromDecistokes(2), 2.Decistokes());
 
         [Fact]
         public void NumberToKilostokesTest() =>
-            Assert.Equal(KinematicViscosity.FromKilostokes(2), 2.Kilostokes());
+            Assert.Equal(KinematicViscosity<double>.FromKilostokes(2), 2.Kilostokes());
 
         [Fact]
         public void NumberToMicrostokesTest() =>
-            Assert.Equal(KinematicViscosity.FromMicrostokes(2), 2.Microstokes());
+            Assert.Equal(KinematicViscosity<double>.FromMicrostokes(2), 2.Microstokes());
 
         [Fact]
         public void NumberToMillistokesTest() =>
-            Assert.Equal(KinematicViscosity.FromMillistokes(2), 2.Millistokes());
+            Assert.Equal(KinematicViscosity<double>.FromMillistokes(2), 2.Millistokes());
 
         [Fact]
         public void NumberToNanostokesTest() =>
-            Assert.Equal(KinematicViscosity.FromNanostokes(2), 2.Nanostokes());
+            Assert.Equal(KinematicViscosity<double>.FromNanostokes(2), 2.Nanostokes());
 
         [Fact]
         public void NumberToSquareMetersPerSecondTest() =>
-            Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(2), 2.SquareMetersPerSecond());
+            Assert.Equal(KinematicViscosity<double>.FromSquareMetersPerSecond(2), 2.SquareMetersPerSecond());
 
         [Fact]
         public void NumberToStokesTest() =>
-            Assert.Equal(KinematicViscosity.FromStokes(2), 2.Stokes());
+            Assert.Equal(KinematicViscosity<double>.FromStokes(2), 2.Stokes());
 
     }
 }

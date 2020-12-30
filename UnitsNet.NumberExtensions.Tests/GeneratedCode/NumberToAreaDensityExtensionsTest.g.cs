@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToAreaDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAreaDensityExtensionsTests
     {
         [Fact]
         public void NumberToKilogramsPerSquareMeterTest() =>
-            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(2), 2.KilogramsPerSquareMeter());
+            Assert.Equal(AreaDensity<double>.FromKilogramsPerSquareMeter(2), 2.KilogramsPerSquareMeter());
 
     }
 }

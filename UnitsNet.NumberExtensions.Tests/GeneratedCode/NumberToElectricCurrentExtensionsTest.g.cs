@@ -21,40 +21,40 @@ using UnitsNet.NumberExtensions.NumberToElectricCurrent;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricCurrentExtensionsTests
     {
         [Fact]
         public void NumberToAmperesTest() =>
-            Assert.Equal(ElectricCurrent.FromAmperes(2), 2.Amperes());
+            Assert.Equal(ElectricCurrent<double>.FromAmperes(2), 2.Amperes());
 
         [Fact]
         public void NumberToCentiamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromCentiamperes(2), 2.Centiamperes());
+            Assert.Equal(ElectricCurrent<double>.FromCentiamperes(2), 2.Centiamperes());
 
         [Fact]
         public void NumberToKiloamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromKiloamperes(2), 2.Kiloamperes());
+            Assert.Equal(ElectricCurrent<double>.FromKiloamperes(2), 2.Kiloamperes());
 
         [Fact]
         public void NumberToMegaamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromMegaamperes(2), 2.Megaamperes());
+            Assert.Equal(ElectricCurrent<double>.FromMegaamperes(2), 2.Megaamperes());
 
         [Fact]
         public void NumberToMicroamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromMicroamperes(2), 2.Microamperes());
+            Assert.Equal(ElectricCurrent<double>.FromMicroamperes(2), 2.Microamperes());
 
         [Fact]
         public void NumberToMilliamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromMilliamperes(2), 2.Milliamperes());
+            Assert.Equal(ElectricCurrent<double>.FromMilliamperes(2), 2.Milliamperes());
 
         [Fact]
         public void NumberToNanoamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromNanoamperes(2), 2.Nanoamperes());
+            Assert.Equal(ElectricCurrent<double>.FromNanoamperes(2), 2.Nanoamperes());
 
         [Fact]
         public void NumberToPicoamperesTest() =>
-            Assert.Equal(ElectricCurrent.FromPicoamperes(2), 2.Picoamperes());
+            Assert.Equal(ElectricCurrent<double>.FromPicoamperes(2), 2.Picoamperes());
 
     }
 }

@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
     /// </summary>
     public static class NumberToElectricConductivityExtensions
     {
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerFoot<T>(this T value) =>
-            ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductivity{T}.FromSiemensPerFoot(T)" />
+        public static ElectricConductivity<double> SiemensPerFoot<T>(this T value) =>
+            ElectricConductivity<double>.FromSiemensPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerInch<T>(this T value) =>
-            ElectricConductivity.FromSiemensPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductivity{T}.FromSiemensPerInch(T)" />
+        public static ElectricConductivity<double> SiemensPerInch<T>(this T value) =>
+            ElectricConductivity<double>.FromSiemensPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter<T>(this T value) =>
-            ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductivity{T}.FromSiemensPerMeter(T)" />
+        public static ElectricConductivity<double> SiemensPerMeter<T>(this T value) =>
+            ElectricConductivity<double>.FromSiemensPerMeter(Convert.ToDouble(value));
 
     }
 }

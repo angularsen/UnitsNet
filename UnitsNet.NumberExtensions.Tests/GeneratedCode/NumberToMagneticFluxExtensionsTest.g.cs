@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToMagneticFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagneticFluxExtensionsTests
     {
         [Fact]
         public void NumberToWebersTest() =>
-            Assert.Equal(MagneticFlux.FromWebers(2), 2.Webers());
+            Assert.Equal(MagneticFlux<double>.FromWebers(2), 2.Webers());
 
     }
 }

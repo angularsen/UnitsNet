@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
     /// </summary>
     public static class NumberToReactivePowerExtensions
     {
-        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower GigavoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower{T}.FromGigavoltamperesReactive(T)" />
+        public static ReactivePower<double> GigavoltamperesReactive<T>(this T value) =>
+            ReactivePower<double>.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower KilovoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower{T}.FromKilovoltamperesReactive(T)" />
+        public static ReactivePower<double> KilovoltamperesReactive<T>(this T value) =>
+            ReactivePower<double>.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower MegavoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower{T}.FromMegavoltamperesReactive(T)" />
+        public static ReactivePower<double> MegavoltamperesReactive<T>(this T value) =>
+            ReactivePower<double>.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower VoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower{T}.FromVoltamperesReactive(T)" />
+        public static ReactivePower<double> VoltamperesReactive<T>(this T value) =>
+            ReactivePower<double>.FromVoltamperesReactive(Convert.ToDouble(value));
 
     }
 }

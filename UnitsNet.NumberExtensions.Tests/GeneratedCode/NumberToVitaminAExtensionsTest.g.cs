@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToVitaminA;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVitaminAExtensionsTests
     {
         [Fact]
         public void NumberToInternationalUnitsTest() =>
-            Assert.Equal(VitaminA.FromInternationalUnits(2), 2.InternationalUnits());
+            Assert.Equal(VitaminA<double>.FromInternationalUnits(2), 2.InternationalUnits());
 
     }
 }

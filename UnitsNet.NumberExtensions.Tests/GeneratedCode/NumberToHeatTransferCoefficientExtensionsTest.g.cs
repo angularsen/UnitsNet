@@ -21,20 +21,20 @@ using UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToHeatTransferCoefficientExtensionsTests
     {
         [Fact]
         public void NumberToBtusPerSquareFootDegreeFahrenheitTest() =>
-            Assert.Equal(HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(2), 2.BtusPerSquareFootDegreeFahrenheit());
+            Assert.Equal(HeatTransferCoefficient<double>.FromBtusPerSquareFootDegreeFahrenheit(2), 2.BtusPerSquareFootDegreeFahrenheit());
 
         [Fact]
         public void NumberToWattsPerSquareMeterCelsiusTest() =>
-            Assert.Equal(HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(2), 2.WattsPerSquareMeterCelsius());
+            Assert.Equal(HeatTransferCoefficient<double>.FromWattsPerSquareMeterCelsius(2), 2.WattsPerSquareMeterCelsius());
 
         [Fact]
         public void NumberToWattsPerSquareMeterKelvinTest() =>
-            Assert.Equal(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2), 2.WattsPerSquareMeterKelvin());
+            Assert.Equal(HeatTransferCoefficient<double>.FromWattsPerSquareMeterKelvin(2), 2.WattsPerSquareMeterKelvin());
 
     }
 }

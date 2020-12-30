@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToLuminousFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLuminousFluxExtensionsTests
     {
         [Fact]
         public void NumberToLumensTest() =>
-            Assert.Equal(LuminousFlux.FromLumens(2), 2.Lumens());
+            Assert.Equal(LuminousFlux<double>.FromLumens(2), 2.Lumens());
 
     }
 }

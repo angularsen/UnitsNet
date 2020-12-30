@@ -28,133 +28,133 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
     /// </summary>
     public static class NumberToSpeedExtensions
     {
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour<T>(this T value) =>
-            Speed.FromCentimetersPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromCentimetersPerHour(T)" />
+        public static Speed<double> CentimetersPerHour<T>(this T value) =>
+            Speed<double>.FromCentimetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes<T>(this T value) =>
-            Speed.FromCentimetersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromCentimetersPerMinutes(T)" />
+        public static Speed<double> CentimetersPerMinutes<T>(this T value) =>
+            Speed<double>.FromCentimetersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond<T>(this T value) =>
-            Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromCentimetersPerSecond(T)" />
+        public static Speed<double> CentimetersPerSecond<T>(this T value) =>
+            Speed<double>.FromCentimetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes<T>(this T value) =>
-            Speed.FromDecimetersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromDecimetersPerMinutes(T)" />
+        public static Speed<double> DecimetersPerMinutes<T>(this T value) =>
+            Speed<double>.FromDecimetersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond<T>(this T value) =>
-            Speed.FromDecimetersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromDecimetersPerSecond(T)" />
+        public static Speed<double> DecimetersPerSecond<T>(this T value) =>
+            Speed<double>.FromDecimetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour<T>(this T value) =>
-            Speed.FromFeetPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromFeetPerHour(T)" />
+        public static Speed<double> FeetPerHour<T>(this T value) =>
+            Speed<double>.FromFeetPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute<T>(this T value) =>
-            Speed.FromFeetPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromFeetPerMinute(T)" />
+        public static Speed<double> FeetPerMinute<T>(this T value) =>
+            Speed<double>.FromFeetPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond<T>(this T value) =>
-            Speed.FromFeetPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromFeetPerSecond(T)" />
+        public static Speed<double> FeetPerSecond<T>(this T value) =>
+            Speed<double>.FromFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour<T>(this T value) =>
-            Speed.FromInchesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromInchesPerHour(T)" />
+        public static Speed<double> InchesPerHour<T>(this T value) =>
+            Speed<double>.FromInchesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute<T>(this T value) =>
-            Speed.FromInchesPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromInchesPerMinute(T)" />
+        public static Speed<double> InchesPerMinute<T>(this T value) =>
+            Speed<double>.FromInchesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond<T>(this T value) =>
-            Speed.FromInchesPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromInchesPerSecond(T)" />
+        public static Speed<double> InchesPerSecond<T>(this T value) =>
+            Speed<double>.FromInchesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour<T>(this T value) =>
-            Speed.FromKilometersPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromKilometersPerHour(T)" />
+        public static Speed<double> KilometersPerHour<T>(this T value) =>
+            Speed<double>.FromKilometersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes<T>(this T value) =>
-            Speed.FromKilometersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromKilometersPerMinutes(T)" />
+        public static Speed<double> KilometersPerMinutes<T>(this T value) =>
+            Speed<double>.FromKilometersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond<T>(this T value) =>
-            Speed.FromKilometersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromKilometersPerSecond(T)" />
+        public static Speed<double> KilometersPerSecond<T>(this T value) =>
+            Speed<double>.FromKilometersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots<T>(this T value) =>
-            Speed.FromKnots(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromKnots(T)" />
+        public static Speed<double> Knots<T>(this T value) =>
+            Speed<double>.FromKnots(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour<T>(this T value) =>
-            Speed.FromMetersPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMetersPerHour(T)" />
+        public static Speed<double> MetersPerHour<T>(this T value) =>
+            Speed<double>.FromMetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes<T>(this T value) =>
-            Speed.FromMetersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMetersPerMinutes(T)" />
+        public static Speed<double> MetersPerMinutes<T>(this T value) =>
+            Speed<double>.FromMetersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond<T>(this T value) =>
-            Speed.FromMetersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMetersPerSecond(T)" />
+        public static Speed<double> MetersPerSecond<T>(this T value) =>
+            Speed<double>.FromMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes<T>(this T value) =>
-            Speed.FromMicrometersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMicrometersPerMinutes(T)" />
+        public static Speed<double> MicrometersPerMinutes<T>(this T value) =>
+            Speed<double>.FromMicrometersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond<T>(this T value) =>
-            Speed.FromMicrometersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMicrometersPerSecond(T)" />
+        public static Speed<double> MicrometersPerSecond<T>(this T value) =>
+            Speed<double>.FromMicrometersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour<T>(this T value) =>
-            Speed.FromMilesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMilesPerHour(T)" />
+        public static Speed<double> MilesPerHour<T>(this T value) =>
+            Speed<double>.FromMilesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour<T>(this T value) =>
-            Speed.FromMillimetersPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMillimetersPerHour(T)" />
+        public static Speed<double> MillimetersPerHour<T>(this T value) =>
+            Speed<double>.FromMillimetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes<T>(this T value) =>
-            Speed.FromMillimetersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMillimetersPerMinutes(T)" />
+        public static Speed<double> MillimetersPerMinutes<T>(this T value) =>
+            Speed<double>.FromMillimetersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond<T>(this T value) =>
-            Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromMillimetersPerSecond(T)" />
+        public static Speed<double> MillimetersPerSecond<T>(this T value) =>
+            Speed<double>.FromMillimetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes<T>(this T value) =>
-            Speed.FromNanometersPerMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromNanometersPerMinutes(T)" />
+        public static Speed<double> NanometersPerMinutes<T>(this T value) =>
+            Speed<double>.FromNanometersPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond<T>(this T value) =>
-            Speed.FromNanometersPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromNanometersPerSecond(T)" />
+        public static Speed<double> NanometersPerSecond<T>(this T value) =>
+            Speed<double>.FromNanometersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour<T>(this T value) =>
-            Speed.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromUsSurveyFeetPerHour(T)" />
+        public static Speed<double> UsSurveyFeetPerHour<T>(this T value) =>
+            Speed<double>.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute<T>(this T value) =>
-            Speed.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromUsSurveyFeetPerMinute(T)" />
+        public static Speed<double> UsSurveyFeetPerMinute<T>(this T value) =>
+            Speed<double>.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond<T>(this T value) =>
-            Speed.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromUsSurveyFeetPerSecond(T)" />
+        public static Speed<double> UsSurveyFeetPerSecond<T>(this T value) =>
+            Speed<double>.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour<T>(this T value) =>
-            Speed.FromYardsPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromYardsPerHour(T)" />
+        public static Speed<double> YardsPerHour<T>(this T value) =>
+            Speed<double>.FromYardsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute<T>(this T value) =>
-            Speed.FromYardsPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromYardsPerMinute(T)" />
+        public static Speed<double> YardsPerMinute<T>(this T value) =>
+            Speed<double>.FromYardsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond<T>(this T value) =>
-            Speed.FromYardsPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Speed{T}.FromYardsPerSecond(T)" />
+        public static Speed<double> YardsPerSecond<T>(this T value) =>
+            Speed<double>.FromYardsPerSecond(Convert.ToDouble(value));
 
     }
 }

@@ -21,36 +21,36 @@ using UnitsNet.NumberExtensions.NumberToEntropy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToEntropyExtensionsTests
     {
         [Fact]
         public void NumberToCaloriesPerKelvinTest() =>
-            Assert.Equal(Entropy.FromCaloriesPerKelvin(2), 2.CaloriesPerKelvin());
+            Assert.Equal(Entropy<double>.FromCaloriesPerKelvin(2), 2.CaloriesPerKelvin());
 
         [Fact]
         public void NumberToJoulesPerDegreeCelsiusTest() =>
-            Assert.Equal(Entropy.FromJoulesPerDegreeCelsius(2), 2.JoulesPerDegreeCelsius());
+            Assert.Equal(Entropy<double>.FromJoulesPerDegreeCelsius(2), 2.JoulesPerDegreeCelsius());
 
         [Fact]
         public void NumberToJoulesPerKelvinTest() =>
-            Assert.Equal(Entropy.FromJoulesPerKelvin(2), 2.JoulesPerKelvin());
+            Assert.Equal(Entropy<double>.FromJoulesPerKelvin(2), 2.JoulesPerKelvin());
 
         [Fact]
         public void NumberToKilocaloriesPerKelvinTest() =>
-            Assert.Equal(Entropy.FromKilocaloriesPerKelvin(2), 2.KilocaloriesPerKelvin());
+            Assert.Equal(Entropy<double>.FromKilocaloriesPerKelvin(2), 2.KilocaloriesPerKelvin());
 
         [Fact]
         public void NumberToKilojoulesPerDegreeCelsiusTest() =>
-            Assert.Equal(Entropy.FromKilojoulesPerDegreeCelsius(2), 2.KilojoulesPerDegreeCelsius());
+            Assert.Equal(Entropy<double>.FromKilojoulesPerDegreeCelsius(2), 2.KilojoulesPerDegreeCelsius());
 
         [Fact]
         public void NumberToKilojoulesPerKelvinTest() =>
-            Assert.Equal(Entropy.FromKilojoulesPerKelvin(2), 2.KilojoulesPerKelvin());
+            Assert.Equal(Entropy<double>.FromKilojoulesPerKelvin(2), 2.KilojoulesPerKelvin());
 
         [Fact]
         public void NumberToMegajoulesPerKelvinTest() =>
-            Assert.Equal(Entropy.FromMegajoulesPerKelvin(2), 2.MegajoulesPerKelvin());
+            Assert.Equal(Entropy<double>.FromMegajoulesPerKelvin(2), 2.MegajoulesPerKelvin());
 
     }
 }

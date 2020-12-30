@@ -28,157 +28,157 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
     /// </summary>
     public static class NumberToForcePerLengthExtensions
     {
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromCentinewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromCentinewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> CentinewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromCentinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromCentinewtonsPerMeter(T)" />
+        public static ForcePerLength<double> CentinewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromCentinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromCentinewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromCentinewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> CentinewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromCentinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecanewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromDecanewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecanewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> DecanewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecanewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecanewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromDecanewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecanewtonsPerMeter(T)" />
+        public static ForcePerLength<double> DecanewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecanewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecanewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromDecanewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecanewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> DecanewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecanewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromDecinewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecinewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> DecinewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecinewtonsPerMeter(T)" />
+        public static ForcePerLength<double> DecinewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromDecinewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromDecinewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> DecinewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromDecinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerCentimeter<T>(this T value) =>
-            ForcePerLength.FromKilogramsForcePerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilogramsForcePerCentimeter(T)" />
+        public static ForcePerLength<double> KilogramsForcePerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilogramsForcePerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter<T>(this T value) =>
-            ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilogramsForcePerMeter(T)" />
+        public static ForcePerLength<double> KilogramsForcePerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilogramsForcePerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMillimeter<T>(this T value) =>
-            ForcePerLength.FromKilogramsForcePerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilogramsForcePerMillimeter(T)" />
+        public static ForcePerLength<double> KilogramsForcePerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilogramsForcePerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromKilonewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilonewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> KilonewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilonewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilonewtonsPerMeter(T)" />
+        public static ForcePerLength<double> KilonewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromKilonewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilonewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> KilonewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromKilonewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilopoundsForcePerFoot<T>(this T value) =>
-            ForcePerLength.FromKilopoundsForcePerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilopoundsForcePerFoot(T)" />
+        public static ForcePerLength<double> KilopoundsForcePerFoot<T>(this T value) =>
+            ForcePerLength<double>.FromKilopoundsForcePerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilopoundsForcePerInch<T>(this T value) =>
-            ForcePerLength.FromKilopoundsForcePerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromKilopoundsForcePerInch(T)" />
+        public static ForcePerLength<double> KilopoundsForcePerInch<T>(this T value) =>
+            ForcePerLength<double>.FromKilopoundsForcePerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromMeganewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMeganewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> MeganewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMeganewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMeganewtonsPerMeter(T)" />
+        public static ForcePerLength<double> MeganewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromMeganewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromMeganewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMeganewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> MeganewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMeganewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromMicronewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMicronewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> MicronewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMicronewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMicronewtonsPerMeter(T)" />
+        public static ForcePerLength<double> MicronewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromMicronewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromMicronewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMicronewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> MicronewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMicronewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromMillinewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMillinewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> MillinewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMillinewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMillinewtonsPerMeter(T)" />
+        public static ForcePerLength<double> MillinewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromMillinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromMillinewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromMillinewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> MillinewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromMillinewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromNanonewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNanonewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> NanonewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromNanonewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNanonewtonsPerMeter(T)" />
+        public static ForcePerLength<double> NanonewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromNanonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromNanonewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNanonewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> NanonewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromNanonewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerCentimeter<T>(this T value) =>
-            ForcePerLength.FromNewtonsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNewtonsPerCentimeter(T)" />
+        public static ForcePerLength<double> NewtonsPerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromNewtonsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter<T>(this T value) =>
-            ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNewtonsPerMeter(T)" />
+        public static ForcePerLength<double> NewtonsPerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromNewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMillimeter<T>(this T value) =>
-            ForcePerLength.FromNewtonsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromNewtonsPerMillimeter(T)" />
+        public static ForcePerLength<double> NewtonsPerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromNewtonsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(UnitsNet.QuantityValue)" />
-        public static ForcePerLength PoundsForcePerFoot<T>(this T value) =>
-            ForcePerLength.FromPoundsForcePerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromPoundsForcePerFoot(T)" />
+        public static ForcePerLength<double> PoundsForcePerFoot<T>(this T value) =>
+            ForcePerLength<double>.FromPoundsForcePerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(UnitsNet.QuantityValue)" />
-        public static ForcePerLength PoundsForcePerInch<T>(this T value) =>
-            ForcePerLength.FromPoundsForcePerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromPoundsForcePerInch(T)" />
+        public static ForcePerLength<double> PoundsForcePerInch<T>(this T value) =>
+            ForcePerLength<double>.FromPoundsForcePerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(UnitsNet.QuantityValue)" />
-        public static ForcePerLength PoundsForcePerYard<T>(this T value) =>
-            ForcePerLength.FromPoundsForcePerYard(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromPoundsForcePerYard(T)" />
+        public static ForcePerLength<double> PoundsForcePerYard<T>(this T value) =>
+            ForcePerLength<double>.FromPoundsForcePerYard(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength TonnesForcePerCentimeter<T>(this T value) =>
-            ForcePerLength.FromTonnesForcePerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromTonnesForcePerCentimeter(T)" />
+        public static ForcePerLength<double> TonnesForcePerCentimeter<T>(this T value) =>
+            ForcePerLength<double>.FromTonnesForcePerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength TonnesForcePerMeter<T>(this T value) =>
-            ForcePerLength.FromTonnesForcePerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromTonnesForcePerMeter(T)" />
+        public static ForcePerLength<double> TonnesForcePerMeter<T>(this T value) =>
+            ForcePerLength<double>.FromTonnesForcePerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength TonnesForcePerMillimeter<T>(this T value) =>
-            ForcePerLength.FromTonnesForcePerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ForcePerLength{T}.FromTonnesForcePerMillimeter(T)" />
+        public static ForcePerLength<double> TonnesForcePerMillimeter<T>(this T value) =>
+            ForcePerLength<double>.FromTonnesForcePerMillimeter(Convert.ToDouble(value));
 
     }
 }

@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToAmplitudeRatio;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAmplitudeRatioExtensionsTests
     {
         [Fact]
         public void NumberToDecibelMicrovoltsTest() =>
-            Assert.Equal(AmplitudeRatio.FromDecibelMicrovolts(2), 2.DecibelMicrovolts());
+            Assert.Equal(AmplitudeRatio<double>.FromDecibelMicrovolts(2), 2.DecibelMicrovolts());
 
         [Fact]
         public void NumberToDecibelMillivoltsTest() =>
-            Assert.Equal(AmplitudeRatio.FromDecibelMillivolts(2), 2.DecibelMillivolts());
+            Assert.Equal(AmplitudeRatio<double>.FromDecibelMillivolts(2), 2.DecibelMillivolts());
 
         [Fact]
         public void NumberToDecibelsUnloadedTest() =>
-            Assert.Equal(AmplitudeRatio.FromDecibelsUnloaded(2), 2.DecibelsUnloaded());
+            Assert.Equal(AmplitudeRatio<double>.FromDecibelsUnloaded(2), 2.DecibelsUnloaded());
 
         [Fact]
         public void NumberToDecibelVoltsTest() =>
-            Assert.Equal(AmplitudeRatio.FromDecibelVolts(2), 2.DecibelVolts());
+            Assert.Equal(AmplitudeRatio<double>.FromDecibelVolts(2), 2.DecibelVolts());
 
     }
 }

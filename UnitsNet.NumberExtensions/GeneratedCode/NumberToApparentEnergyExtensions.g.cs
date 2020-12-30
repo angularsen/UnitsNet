@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
     /// </summary>
     public static class NumberToApparentEnergyExtensions
     {
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy KilovoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy{T}.FromKilovoltampereHours(T)" />
+        public static ApparentEnergy<double> KilovoltampereHours<T>(this T value) =>
+            ApparentEnergy<double>.FromKilovoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy MegavoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy{T}.FromMegavoltampereHours(T)" />
+        public static ApparentEnergy<double> MegavoltampereHours<T>(this T value) =>
+            ApparentEnergy<double>.FromMegavoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy VoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy{T}.FromVoltampereHours(T)" />
+        public static ApparentEnergy<double> VoltampereHours<T>(this T value) =>
+            ApparentEnergy<double>.FromVoltampereHours(Convert.ToDouble(value));
 
     }
 }

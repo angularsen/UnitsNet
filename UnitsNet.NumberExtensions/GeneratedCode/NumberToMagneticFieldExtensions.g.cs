@@ -28,25 +28,25 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
     /// </summary>
     public static class NumberToMagneticFieldExtensions
     {
-        /// <inheritdoc cref="MagneticField.FromGausses(UnitsNet.QuantityValue)" />
-        public static MagneticField Gausses<T>(this T value) =>
-            MagneticField.FromGausses(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticField{T}.FromGausses(T)" />
+        public static MagneticField<double> Gausses<T>(this T value) =>
+            MagneticField<double>.FromGausses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Microteslas<T>(this T value) =>
-            MagneticField.FromMicroteslas(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticField{T}.FromMicroteslas(T)" />
+        public static MagneticField<double> Microteslas<T>(this T value) =>
+            MagneticField<double>.FromMicroteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Milliteslas<T>(this T value) =>
-            MagneticField.FromMilliteslas(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticField{T}.FromMilliteslas(T)" />
+        public static MagneticField<double> Milliteslas<T>(this T value) =>
+            MagneticField<double>.FromMilliteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromNanoteslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Nanoteslas<T>(this T value) =>
-            MagneticField.FromNanoteslas(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticField{T}.FromNanoteslas(T)" />
+        public static MagneticField<double> Nanoteslas<T>(this T value) =>
+            MagneticField<double>.FromNanoteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas<T>(this T value) =>
-            MagneticField.FromTeslas(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticField{T}.FromTeslas(T)" />
+        public static MagneticField<double> Teslas<T>(this T value) =>
+            MagneticField<double>.FromTeslas(Convert.ToDouble(value));
 
     }
 }

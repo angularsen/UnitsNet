@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToRelativeHumidity
     /// </summary>
     public static class NumberToRelativeHumidityExtensions
     {
-        /// <inheritdoc cref="RelativeHumidity.FromPercent(UnitsNet.QuantityValue)" />
-        public static RelativeHumidity Percent<T>(this T value) =>
-            RelativeHumidity.FromPercent(Convert.ToDouble(value));
+        /// <inheritdoc cref="RelativeHumidity{T}.FromPercent(T)" />
+        public static RelativeHumidity<double> Percent<T>(this T value) =>
+            RelativeHumidity<double>.FromPercent(Convert.ToDouble(value));
 
     }
 }

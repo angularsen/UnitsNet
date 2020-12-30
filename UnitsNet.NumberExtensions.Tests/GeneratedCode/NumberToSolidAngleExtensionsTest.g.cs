@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToSolidAngle;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSolidAngleExtensionsTests
     {
         [Fact]
         public void NumberToSteradiansTest() =>
-            Assert.Equal(SolidAngle.FromSteradians(2), 2.Steradians());
+            Assert.Equal(SolidAngle<double>.FromSteradians(2), 2.Steradians());
 
     }
 }

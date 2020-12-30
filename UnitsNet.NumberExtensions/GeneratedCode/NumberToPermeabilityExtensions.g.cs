@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
     /// </summary>
     public static class NumberToPermeabilityExtensions
     {
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter<T>(this T value) =>
-            Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Permeability{T}.FromHenriesPerMeter(T)" />
+        public static Permeability<double> HenriesPerMeter<T>(this T value) =>
+            Permeability<double>.FromHenriesPerMeter(Convert.ToDouble(value));
 
     }
 }

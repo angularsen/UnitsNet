@@ -21,32 +21,32 @@ using UnitsNet.NumberExtensions.NumberToRatio;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRatioExtensionsTests
     {
         [Fact]
         public void NumberToDecimalFractionsTest() =>
-            Assert.Equal(Ratio.FromDecimalFractions(2), 2.DecimalFractions());
+            Assert.Equal(Ratio<double>.FromDecimalFractions(2), 2.DecimalFractions());
 
         [Fact]
         public void NumberToPartsPerBillionTest() =>
-            Assert.Equal(Ratio.FromPartsPerBillion(2), 2.PartsPerBillion());
+            Assert.Equal(Ratio<double>.FromPartsPerBillion(2), 2.PartsPerBillion());
 
         [Fact]
         public void NumberToPartsPerMillionTest() =>
-            Assert.Equal(Ratio.FromPartsPerMillion(2), 2.PartsPerMillion());
+            Assert.Equal(Ratio<double>.FromPartsPerMillion(2), 2.PartsPerMillion());
 
         [Fact]
         public void NumberToPartsPerThousandTest() =>
-            Assert.Equal(Ratio.FromPartsPerThousand(2), 2.PartsPerThousand());
+            Assert.Equal(Ratio<double>.FromPartsPerThousand(2), 2.PartsPerThousand());
 
         [Fact]
         public void NumberToPartsPerTrillionTest() =>
-            Assert.Equal(Ratio.FromPartsPerTrillion(2), 2.PartsPerTrillion());
+            Assert.Equal(Ratio<double>.FromPartsPerTrillion(2), 2.PartsPerTrillion());
 
         [Fact]
         public void NumberToPercentTest() =>
-            Assert.Equal(Ratio.FromPercent(2), 2.Percent());
+            Assert.Equal(Ratio<double>.FromPercent(2), 2.Percent());
 
     }
 }

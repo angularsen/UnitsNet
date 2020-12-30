@@ -21,108 +21,108 @@ using UnitsNet.NumberExtensions.NumberToLinearPowerDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLinearPowerDensityExtensionsTests
     {
         [Fact]
         public void NumberToGigawattsPerCentimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromGigawattsPerCentimeter(2), 2.GigawattsPerCentimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromGigawattsPerCentimeter(2), 2.GigawattsPerCentimeter());
 
         [Fact]
         public void NumberToGigawattsPerFootTest() =>
-            Assert.Equal(LinearPowerDensity.FromGigawattsPerFoot(2), 2.GigawattsPerFoot());
+            Assert.Equal(LinearPowerDensity<double>.FromGigawattsPerFoot(2), 2.GigawattsPerFoot());
 
         [Fact]
         public void NumberToGigawattsPerInchTest() =>
-            Assert.Equal(LinearPowerDensity.FromGigawattsPerInch(2), 2.GigawattsPerInch());
+            Assert.Equal(LinearPowerDensity<double>.FromGigawattsPerInch(2), 2.GigawattsPerInch());
 
         [Fact]
         public void NumberToGigawattsPerMeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromGigawattsPerMeter(2), 2.GigawattsPerMeter());
+            Assert.Equal(LinearPowerDensity<double>.FromGigawattsPerMeter(2), 2.GigawattsPerMeter());
 
         [Fact]
         public void NumberToGigawattsPerMillimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromGigawattsPerMillimeter(2), 2.GigawattsPerMillimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromGigawattsPerMillimeter(2), 2.GigawattsPerMillimeter());
 
         [Fact]
         public void NumberToKilowattsPerCentimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromKilowattsPerCentimeter(2), 2.KilowattsPerCentimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromKilowattsPerCentimeter(2), 2.KilowattsPerCentimeter());
 
         [Fact]
         public void NumberToKilowattsPerFootTest() =>
-            Assert.Equal(LinearPowerDensity.FromKilowattsPerFoot(2), 2.KilowattsPerFoot());
+            Assert.Equal(LinearPowerDensity<double>.FromKilowattsPerFoot(2), 2.KilowattsPerFoot());
 
         [Fact]
         public void NumberToKilowattsPerInchTest() =>
-            Assert.Equal(LinearPowerDensity.FromKilowattsPerInch(2), 2.KilowattsPerInch());
+            Assert.Equal(LinearPowerDensity<double>.FromKilowattsPerInch(2), 2.KilowattsPerInch());
 
         [Fact]
         public void NumberToKilowattsPerMeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromKilowattsPerMeter(2), 2.KilowattsPerMeter());
+            Assert.Equal(LinearPowerDensity<double>.FromKilowattsPerMeter(2), 2.KilowattsPerMeter());
 
         [Fact]
         public void NumberToKilowattsPerMillimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromKilowattsPerMillimeter(2), 2.KilowattsPerMillimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromKilowattsPerMillimeter(2), 2.KilowattsPerMillimeter());
 
         [Fact]
         public void NumberToMegawattsPerCentimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMegawattsPerCentimeter(2), 2.MegawattsPerCentimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMegawattsPerCentimeter(2), 2.MegawattsPerCentimeter());
 
         [Fact]
         public void NumberToMegawattsPerFootTest() =>
-            Assert.Equal(LinearPowerDensity.FromMegawattsPerFoot(2), 2.MegawattsPerFoot());
+            Assert.Equal(LinearPowerDensity<double>.FromMegawattsPerFoot(2), 2.MegawattsPerFoot());
 
         [Fact]
         public void NumberToMegawattsPerInchTest() =>
-            Assert.Equal(LinearPowerDensity.FromMegawattsPerInch(2), 2.MegawattsPerInch());
+            Assert.Equal(LinearPowerDensity<double>.FromMegawattsPerInch(2), 2.MegawattsPerInch());
 
         [Fact]
         public void NumberToMegawattsPerMeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMegawattsPerMeter(2), 2.MegawattsPerMeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMegawattsPerMeter(2), 2.MegawattsPerMeter());
 
         [Fact]
         public void NumberToMegawattsPerMillimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMegawattsPerMillimeter(2), 2.MegawattsPerMillimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMegawattsPerMillimeter(2), 2.MegawattsPerMillimeter());
 
         [Fact]
         public void NumberToMilliwattsPerCentimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMilliwattsPerCentimeter(2), 2.MilliwattsPerCentimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMilliwattsPerCentimeter(2), 2.MilliwattsPerCentimeter());
 
         [Fact]
         public void NumberToMilliwattsPerFootTest() =>
-            Assert.Equal(LinearPowerDensity.FromMilliwattsPerFoot(2), 2.MilliwattsPerFoot());
+            Assert.Equal(LinearPowerDensity<double>.FromMilliwattsPerFoot(2), 2.MilliwattsPerFoot());
 
         [Fact]
         public void NumberToMilliwattsPerInchTest() =>
-            Assert.Equal(LinearPowerDensity.FromMilliwattsPerInch(2), 2.MilliwattsPerInch());
+            Assert.Equal(LinearPowerDensity<double>.FromMilliwattsPerInch(2), 2.MilliwattsPerInch());
 
         [Fact]
         public void NumberToMilliwattsPerMeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMilliwattsPerMeter(2), 2.MilliwattsPerMeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMilliwattsPerMeter(2), 2.MilliwattsPerMeter());
 
         [Fact]
         public void NumberToMilliwattsPerMillimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromMilliwattsPerMillimeter(2), 2.MilliwattsPerMillimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromMilliwattsPerMillimeter(2), 2.MilliwattsPerMillimeter());
 
         [Fact]
         public void NumberToWattsPerCentimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromWattsPerCentimeter(2), 2.WattsPerCentimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromWattsPerCentimeter(2), 2.WattsPerCentimeter());
 
         [Fact]
         public void NumberToWattsPerFootTest() =>
-            Assert.Equal(LinearPowerDensity.FromWattsPerFoot(2), 2.WattsPerFoot());
+            Assert.Equal(LinearPowerDensity<double>.FromWattsPerFoot(2), 2.WattsPerFoot());
 
         [Fact]
         public void NumberToWattsPerInchTest() =>
-            Assert.Equal(LinearPowerDensity.FromWattsPerInch(2), 2.WattsPerInch());
+            Assert.Equal(LinearPowerDensity<double>.FromWattsPerInch(2), 2.WattsPerInch());
 
         [Fact]
         public void NumberToWattsPerMeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromWattsPerMeter(2), 2.WattsPerMeter());
+            Assert.Equal(LinearPowerDensity<double>.FromWattsPerMeter(2), 2.WattsPerMeter());
 
         [Fact]
         public void NumberToWattsPerMillimeterTest() =>
-            Assert.Equal(LinearPowerDensity.FromWattsPerMillimeter(2), 2.WattsPerMillimeter());
+            Assert.Equal(LinearPowerDensity<double>.FromWattsPerMillimeter(2), 2.WattsPerMillimeter());
 
     }
 }

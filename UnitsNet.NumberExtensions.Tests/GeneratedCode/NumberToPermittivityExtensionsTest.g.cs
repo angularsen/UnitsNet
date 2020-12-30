@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToPermittivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPermittivityExtensionsTests
     {
         [Fact]
         public void NumberToFaradsPerMeterTest() =>
-            Assert.Equal(Permittivity.FromFaradsPerMeter(2), 2.FaradsPerMeter());
+            Assert.Equal(Permittivity<double>.FromFaradsPerMeter(2), 2.FaradsPerMeter());
 
     }
 }

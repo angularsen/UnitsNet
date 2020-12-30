@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToPermeability;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPermeabilityExtensionsTests
     {
         [Fact]
         public void NumberToHenriesPerMeterTest() =>
-            Assert.Equal(Permeability.FromHenriesPerMeter(2), 2.HenriesPerMeter());
+            Assert.Equal(Permeability<double>.FromHenriesPerMeter(2), 2.HenriesPerMeter());
 
     }
 }

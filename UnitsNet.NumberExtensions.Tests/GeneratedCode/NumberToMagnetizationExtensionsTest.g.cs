@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToMagnetization;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagnetizationExtensionsTests
     {
         [Fact]
         public void NumberToAmperesPerMeterTest() =>
-            Assert.Equal(Magnetization.FromAmperesPerMeter(2), 2.AmperesPerMeter());
+            Assert.Equal(Magnetization<double>.FromAmperesPerMeter(2), 2.AmperesPerMeter());
 
     }
 }

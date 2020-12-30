@@ -21,16 +21,16 @@ using UnitsNet.NumberExtensions.NumberToPowerRatio;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPowerRatioExtensionsTests
     {
         [Fact]
         public void NumberToDecibelMilliwattsTest() =>
-            Assert.Equal(PowerRatio.FromDecibelMilliwatts(2), 2.DecibelMilliwatts());
+            Assert.Equal(PowerRatio<double>.FromDecibelMilliwatts(2), 2.DecibelMilliwatts());
 
         [Fact]
         public void NumberToDecibelWattsTest() =>
-            Assert.Equal(PowerRatio.FromDecibelWatts(2), 2.DecibelWatts());
+            Assert.Equal(PowerRatio<double>.FromDecibelWatts(2), 2.DecibelWatts());
 
     }
 }

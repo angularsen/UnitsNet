@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
     /// </summary>
     public static class NumberToElectricInductanceExtensions
     {
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries<T>(this T value) =>
-            ElectricInductance.FromHenries(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricInductance{T}.FromHenries(T)" />
+        public static ElectricInductance<double> Henries<T>(this T value) =>
+            ElectricInductance<double>.FromHenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Microhenries<T>(this T value) =>
-            ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricInductance{T}.FromMicrohenries(T)" />
+        public static ElectricInductance<double> Microhenries<T>(this T value) =>
+            ElectricInductance<double>.FromMicrohenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMillihenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Millihenries<T>(this T value) =>
-            ElectricInductance.FromMillihenries(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricInductance{T}.FromMillihenries(T)" />
+        public static ElectricInductance<double> Millihenries<T>(this T value) =>
+            ElectricInductance<double>.FromMillihenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromNanohenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Nanohenries<T>(this T value) =>
-            ElectricInductance.FromNanohenries(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricInductance{T}.FromNanohenries(T)" />
+        public static ElectricInductance<double> Nanohenries<T>(this T value) =>
+            ElectricInductance<double>.FromNanohenries(Convert.ToDouble(value));
 
     }
 }

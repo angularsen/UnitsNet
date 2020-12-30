@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
     /// </summary>
     public static class NumberToLuminousFluxExtensions
     {
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens<T>(this T value) =>
-            LuminousFlux.FromLumens(Convert.ToDouble(value));
+        /// <inheritdoc cref="LuminousFlux{T}.FromLumens(T)" />
+        public static LuminousFlux<double> Lumens<T>(this T value) =>
+            LuminousFlux<double>.FromLumens(Convert.ToDouble(value));
 
     }
 }

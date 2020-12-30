@@ -21,36 +21,36 @@ using UnitsNet.NumberExtensions.NumberToVolumePerLength;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVolumePerLengthExtensionsTests
     {
         [Fact]
         public void NumberToCubicMetersPerMeterTest() =>
-            Assert.Equal(VolumePerLength.FromCubicMetersPerMeter(2), 2.CubicMetersPerMeter());
+            Assert.Equal(VolumePerLength<double>.FromCubicMetersPerMeter(2), 2.CubicMetersPerMeter());
 
         [Fact]
         public void NumberToCubicYardsPerFootTest() =>
-            Assert.Equal(VolumePerLength.FromCubicYardsPerFoot(2), 2.CubicYardsPerFoot());
+            Assert.Equal(VolumePerLength<double>.FromCubicYardsPerFoot(2), 2.CubicYardsPerFoot());
 
         [Fact]
         public void NumberToCubicYardsPerUsSurveyFootTest() =>
-            Assert.Equal(VolumePerLength.FromCubicYardsPerUsSurveyFoot(2), 2.CubicYardsPerUsSurveyFoot());
+            Assert.Equal(VolumePerLength<double>.FromCubicYardsPerUsSurveyFoot(2), 2.CubicYardsPerUsSurveyFoot());
 
         [Fact]
         public void NumberToLitersPerKilometerTest() =>
-            Assert.Equal(VolumePerLength.FromLitersPerKilometer(2), 2.LitersPerKilometer());
+            Assert.Equal(VolumePerLength<double>.FromLitersPerKilometer(2), 2.LitersPerKilometer());
 
         [Fact]
         public void NumberToLitersPerMeterTest() =>
-            Assert.Equal(VolumePerLength.FromLitersPerMeter(2), 2.LitersPerMeter());
+            Assert.Equal(VolumePerLength<double>.FromLitersPerMeter(2), 2.LitersPerMeter());
 
         [Fact]
         public void NumberToLitersPerMillimeterTest() =>
-            Assert.Equal(VolumePerLength.FromLitersPerMillimeter(2), 2.LitersPerMillimeter());
+            Assert.Equal(VolumePerLength<double>.FromLitersPerMillimeter(2), 2.LitersPerMillimeter());
 
         [Fact]
         public void NumberToOilBarrelsPerFootTest() =>
-            Assert.Equal(VolumePerLength.FromOilBarrelsPerFoot(2), 2.OilBarrelsPerFoot());
+            Assert.Equal(VolumePerLength<double>.FromOilBarrelsPerFoot(2), 2.OilBarrelsPerFoot());
 
     }
 }

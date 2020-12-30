@@ -21,48 +21,48 @@ using UnitsNet.NumberExtensions.NumberToTemperatureChangeRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTemperatureChangeRateExtensionsTests
     {
         [Fact]
         public void NumberToCentidegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(2), 2.CentidegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromCentidegreesCelsiusPerSecond(2), 2.CentidegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToDecadegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(2), 2.DecadegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromDecadegreesCelsiusPerSecond(2), 2.DecadegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToDecidegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(2), 2.DecidegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromDecidegreesCelsiusPerSecond(2), 2.DecidegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToDegreesCelsiusPerMinuteTest() =>
-            Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerMinute(2), 2.DegreesCelsiusPerMinute());
+            Assert.Equal(TemperatureChangeRate<double>.FromDegreesCelsiusPerMinute(2), 2.DegreesCelsiusPerMinute());
 
         [Fact]
         public void NumberToDegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(2), 2.DegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromDegreesCelsiusPerSecond(2), 2.DegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToHectodegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(2), 2.HectodegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromHectodegreesCelsiusPerSecond(2), 2.HectodegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToKilodegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(2), 2.KilodegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromKilodegreesCelsiusPerSecond(2), 2.KilodegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToMicrodegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(2), 2.MicrodegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromMicrodegreesCelsiusPerSecond(2), 2.MicrodegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToMillidegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(2), 2.MillidegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromMillidegreesCelsiusPerSecond(2), 2.MillidegreesCelsiusPerSecond());
 
         [Fact]
         public void NumberToNanodegreesCelsiusPerSecondTest() =>
-            Assert.Equal(TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(2), 2.NanodegreesCelsiusPerSecond());
+            Assert.Equal(TemperatureChangeRate<double>.FromNanodegreesCelsiusPerSecond(2), 2.NanodegreesCelsiusPerSecond());
 
     }
 }

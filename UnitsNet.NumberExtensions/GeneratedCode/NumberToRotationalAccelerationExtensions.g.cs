@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
     /// </summary>
     public static class NumberToRotationalAccelerationExtensions
     {
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalAcceleration{T}.FromDegreesPerSecondSquared(T)" />
+        public static RotationalAcceleration<double> DegreesPerSecondSquared<T>(this T value) =>
+            RotationalAcceleration<double>.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalAcceleration{T}.FromRadiansPerSecondSquared(T)" />
+        public static RotationalAcceleration<double> RadiansPerSecondSquared<T>(this T value) =>
+            RotationalAcceleration<double>.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value) =>
-            RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalAcceleration{T}.FromRevolutionsPerMinutePerSecond(T)" />
+        public static RotationalAcceleration<double> RevolutionsPerMinutePerSecond<T>(this T value) =>
+            RotationalAcceleration<double>.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalAcceleration{T}.FromRevolutionsPerSecondSquared(T)" />
+        public static RotationalAcceleration<double> RevolutionsPerSecondSquared<T>(this T value) =>
+            RotationalAcceleration<double>.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
 
     }
 }

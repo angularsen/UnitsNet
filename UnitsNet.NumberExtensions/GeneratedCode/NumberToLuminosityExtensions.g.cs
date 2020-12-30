@@ -28,61 +28,61 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
     /// </summary>
     public static class NumberToLuminosityExtensions
     {
-        /// <inheritdoc cref="Luminosity.FromDecawatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Decawatts<T>(this T value) =>
-            Luminosity.FromDecawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromDecawatts(T)" />
+        public static Luminosity<double> Decawatts<T>(this T value) =>
+            Luminosity<double>.FromDecawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromDeciwatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Deciwatts<T>(this T value) =>
-            Luminosity.FromDeciwatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromDeciwatts(T)" />
+        public static Luminosity<double> Deciwatts<T>(this T value) =>
+            Luminosity<double>.FromDeciwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromFemtowatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Femtowatts<T>(this T value) =>
-            Luminosity.FromFemtowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromFemtowatts(T)" />
+        public static Luminosity<double> Femtowatts<T>(this T value) =>
+            Luminosity<double>.FromFemtowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromGigawatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Gigawatts<T>(this T value) =>
-            Luminosity.FromGigawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromGigawatts(T)" />
+        public static Luminosity<double> Gigawatts<T>(this T value) =>
+            Luminosity<double>.FromGigawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromKilowatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Kilowatts<T>(this T value) =>
-            Luminosity.FromKilowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromKilowatts(T)" />
+        public static Luminosity<double> Kilowatts<T>(this T value) =>
+            Luminosity<double>.FromKilowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromMegawatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Megawatts<T>(this T value) =>
-            Luminosity.FromMegawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromMegawatts(T)" />
+        public static Luminosity<double> Megawatts<T>(this T value) =>
+            Luminosity<double>.FromMegawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromMicrowatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Microwatts<T>(this T value) =>
-            Luminosity.FromMicrowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromMicrowatts(T)" />
+        public static Luminosity<double> Microwatts<T>(this T value) =>
+            Luminosity<double>.FromMicrowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromMilliwatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Milliwatts<T>(this T value) =>
-            Luminosity.FromMilliwatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromMilliwatts(T)" />
+        public static Luminosity<double> Milliwatts<T>(this T value) =>
+            Luminosity<double>.FromMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromNanowatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Nanowatts<T>(this T value) =>
-            Luminosity.FromNanowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromNanowatts(T)" />
+        public static Luminosity<double> Nanowatts<T>(this T value) =>
+            Luminosity<double>.FromNanowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromPetawatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Petawatts<T>(this T value) =>
-            Luminosity.FromPetawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromPetawatts(T)" />
+        public static Luminosity<double> Petawatts<T>(this T value) =>
+            Luminosity<double>.FromPetawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromPicowatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Picowatts<T>(this T value) =>
-            Luminosity.FromPicowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromPicowatts(T)" />
+        public static Luminosity<double> Picowatts<T>(this T value) =>
+            Luminosity<double>.FromPicowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromSolarLuminosities(UnitsNet.QuantityValue)" />
-        public static Luminosity SolarLuminosities<T>(this T value) =>
-            Luminosity.FromSolarLuminosities(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromSolarLuminosities(T)" />
+        public static Luminosity<double> SolarLuminosities<T>(this T value) =>
+            Luminosity<double>.FromSolarLuminosities(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromTerawatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Terawatts<T>(this T value) =>
-            Luminosity.FromTerawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromTerawatts(T)" />
+        public static Luminosity<double> Terawatts<T>(this T value) =>
+            Luminosity<double>.FromTerawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminosity.FromWatts(UnitsNet.QuantityValue)" />
-        public static Luminosity Watts<T>(this T value) =>
-            Luminosity.FromWatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Luminosity{T}.FromWatts(T)" />
+        public static Luminosity<double> Watts<T>(this T value) =>
+            Luminosity<double>.FromWatts(Convert.ToDouble(value));
 
     }
 }

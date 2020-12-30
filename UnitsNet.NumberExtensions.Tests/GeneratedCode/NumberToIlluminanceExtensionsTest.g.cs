@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToIlluminance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToIlluminanceExtensionsTests
     {
         [Fact]
         public void NumberToKiloluxTest() =>
-            Assert.Equal(Illuminance.FromKilolux(2), 2.Kilolux());
+            Assert.Equal(Illuminance<double>.FromKilolux(2), 2.Kilolux());
 
         [Fact]
         public void NumberToLuxTest() =>
-            Assert.Equal(Illuminance.FromLux(2), 2.Lux());
+            Assert.Equal(Illuminance<double>.FromLux(2), 2.Lux());
 
         [Fact]
         public void NumberToMegaluxTest() =>
-            Assert.Equal(Illuminance.FromMegalux(2), 2.Megalux());
+            Assert.Equal(Illuminance<double>.FromMegalux(2), 2.Megalux());
 
         [Fact]
         public void NumberToMilliluxTest() =>
-            Assert.Equal(Illuminance.FromMillilux(2), 2.Millilux());
+            Assert.Equal(Illuminance<double>.FromMillilux(2), 2.Millilux());
 
     }
 }

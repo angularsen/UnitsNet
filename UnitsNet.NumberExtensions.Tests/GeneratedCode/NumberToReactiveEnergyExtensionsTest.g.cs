@@ -21,20 +21,20 @@ using UnitsNet.NumberExtensions.NumberToReactiveEnergy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToReactiveEnergyExtensionsTests
     {
         [Fact]
         public void NumberToKilovoltampereReactiveHoursTest() =>
-            Assert.Equal(ReactiveEnergy.FromKilovoltampereReactiveHours(2), 2.KilovoltampereReactiveHours());
+            Assert.Equal(ReactiveEnergy<double>.FromKilovoltampereReactiveHours(2), 2.KilovoltampereReactiveHours());
 
         [Fact]
         public void NumberToMegavoltampereReactiveHoursTest() =>
-            Assert.Equal(ReactiveEnergy.FromMegavoltampereReactiveHours(2), 2.MegavoltampereReactiveHours());
+            Assert.Equal(ReactiveEnergy<double>.FromMegavoltampereReactiveHours(2), 2.MegavoltampereReactiveHours());
 
         [Fact]
         public void NumberToVoltampereReactiveHoursTest() =>
-            Assert.Equal(ReactiveEnergy.FromVoltampereReactiveHours(2), 2.VoltampereReactiveHours());
+            Assert.Equal(ReactiveEnergy<double>.FromVoltampereReactiveHours(2), 2.VoltampereReactiveHours());
 
     }
 }

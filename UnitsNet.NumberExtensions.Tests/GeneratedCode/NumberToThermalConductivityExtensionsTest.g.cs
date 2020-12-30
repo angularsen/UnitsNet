@@ -21,16 +21,16 @@ using UnitsNet.NumberExtensions.NumberToThermalConductivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToThermalConductivityExtensionsTests
     {
         [Fact]
         public void NumberToBtusPerHourFootFahrenheitTest() =>
-            Assert.Equal(ThermalConductivity.FromBtusPerHourFootFahrenheit(2), 2.BtusPerHourFootFahrenheit());
+            Assert.Equal(ThermalConductivity<double>.FromBtusPerHourFootFahrenheit(2), 2.BtusPerHourFootFahrenheit());
 
         [Fact]
         public void NumberToWattsPerMeterKelvinTest() =>
-            Assert.Equal(ThermalConductivity.FromWattsPerMeterKelvin(2), 2.WattsPerMeterKelvin());
+            Assert.Equal(ThermalConductivity<double>.FromWattsPerMeterKelvin(2), 2.WattsPerMeterKelvin());
 
     }
 }

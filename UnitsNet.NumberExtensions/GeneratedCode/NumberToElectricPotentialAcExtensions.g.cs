@@ -28,25 +28,25 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
     /// </summary>
     public static class NumberToElectricPotentialAcExtensions
     {
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc<T>(this T value) =>
-            ElectricPotentialAc.FromKilovoltsAc(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricPotentialAc{T}.FromKilovoltsAc(T)" />
+        public static ElectricPotentialAc<double> KilovoltsAc<T>(this T value) =>
+            ElectricPotentialAc<double>.FromKilovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc<T>(this T value) =>
-            ElectricPotentialAc.FromMegavoltsAc(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricPotentialAc{T}.FromMegavoltsAc(T)" />
+        public static ElectricPotentialAc<double> MegavoltsAc<T>(this T value) =>
+            ElectricPotentialAc<double>.FromMegavoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc<T>(this T value) =>
-            ElectricPotentialAc.FromMicrovoltsAc(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricPotentialAc{T}.FromMicrovoltsAc(T)" />
+        public static ElectricPotentialAc<double> MicrovoltsAc<T>(this T value) =>
+            ElectricPotentialAc<double>.FromMicrovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc<T>(this T value) =>
-            ElectricPotentialAc.FromMillivoltsAc(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricPotentialAc{T}.FromMillivoltsAc(T)" />
+        public static ElectricPotentialAc<double> MillivoltsAc<T>(this T value) =>
+            ElectricPotentialAc<double>.FromMillivoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc<T>(this T value) =>
-            ElectricPotentialAc.FromVoltsAc(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricPotentialAc{T}.FromVoltsAc(T)" />
+        public static ElectricPotentialAc<double> VoltsAc<T>(this T value) =>
+            ElectricPotentialAc<double>.FromVoltsAc(Convert.ToDouble(value));
 
     }
 }

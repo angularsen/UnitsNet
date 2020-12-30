@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToApparentPower;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToApparentPowerExtensionsTests
     {
         [Fact]
         public void NumberToGigavoltamperesTest() =>
-            Assert.Equal(ApparentPower.FromGigavoltamperes(2), 2.Gigavoltamperes());
+            Assert.Equal(ApparentPower<double>.FromGigavoltamperes(2), 2.Gigavoltamperes());
 
         [Fact]
         public void NumberToKilovoltamperesTest() =>
-            Assert.Equal(ApparentPower.FromKilovoltamperes(2), 2.Kilovoltamperes());
+            Assert.Equal(ApparentPower<double>.FromKilovoltamperes(2), 2.Kilovoltamperes());
 
         [Fact]
         public void NumberToMegavoltamperesTest() =>
-            Assert.Equal(ApparentPower.FromMegavoltamperes(2), 2.Megavoltamperes());
+            Assert.Equal(ApparentPower<double>.FromMegavoltamperes(2), 2.Megavoltamperes());
 
         [Fact]
         public void NumberToVoltamperesTest() =>
-            Assert.Equal(ApparentPower.FromVoltamperes(2), 2.Voltamperes());
+            Assert.Equal(ApparentPower<double>.FromVoltamperes(2), 2.Voltamperes());
 
     }
 }

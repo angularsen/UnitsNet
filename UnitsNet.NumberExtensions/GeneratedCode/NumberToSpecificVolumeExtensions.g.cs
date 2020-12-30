@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
     /// </summary>
     public static class NumberToSpecificVolumeExtensions
     {
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound<T>(this T value) =>
-            SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
+        /// <inheritdoc cref="SpecificVolume{T}.FromCubicFeetPerPound(T)" />
+        public static SpecificVolume<double> CubicFeetPerPound<T>(this T value) =>
+            SpecificVolume<double>.FromCubicFeetPerPound(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram<T>(this T value) =>
-            SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="SpecificVolume{T}.FromCubicMetersPerKilogram(T)" />
+        public static SpecificVolume<double> CubicMetersPerKilogram<T>(this T value) =>
+            SpecificVolume<double>.FromCubicMetersPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value) =>
-            SpecificVolume.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="SpecificVolume{T}.FromMillicubicMetersPerKilogram(T)" />
+        public static SpecificVolume<double> MillicubicMetersPerKilogram<T>(this T value) =>
+            SpecificVolume<double>.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
 
     }
 }

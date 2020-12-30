@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToLuminousIntensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLuminousIntensityExtensionsTests
     {
         [Fact]
         public void NumberToCandelaTest() =>
-            Assert.Equal(LuminousIntensity.FromCandela(2), 2.Candela());
+            Assert.Equal(LuminousIntensity<double>.FromCandela(2), 2.Candela());
 
     }
 }

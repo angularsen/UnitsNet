@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
     /// </summary>
     public static class NumberToLuminousIntensityExtensions
     {
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela<T>(this T value) =>
-            LuminousIntensity.FromCandela(Convert.ToDouble(value));
+        /// <inheritdoc cref="LuminousIntensity{T}.FromCandela(T)" />
+        public static LuminousIntensity<double> Candela<T>(this T value) =>
+            LuminousIntensity<double>.FromCandela(Convert.ToDouble(value));
 
     }
 }

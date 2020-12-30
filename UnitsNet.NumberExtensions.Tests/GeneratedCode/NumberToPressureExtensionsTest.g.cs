@@ -21,176 +21,176 @@ using UnitsNet.NumberExtensions.NumberToPressure;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPressureExtensionsTests
     {
         [Fact]
         public void NumberToAtmospheresTest() =>
-            Assert.Equal(Pressure.FromAtmospheres(2), 2.Atmospheres());
+            Assert.Equal(Pressure<double>.FromAtmospheres(2), 2.Atmospheres());
 
         [Fact]
         public void NumberToBarsTest() =>
-            Assert.Equal(Pressure.FromBars(2), 2.Bars());
+            Assert.Equal(Pressure<double>.FromBars(2), 2.Bars());
 
         [Fact]
         public void NumberToCentibarsTest() =>
-            Assert.Equal(Pressure.FromCentibars(2), 2.Centibars());
+            Assert.Equal(Pressure<double>.FromCentibars(2), 2.Centibars());
 
         [Fact]
         public void NumberToDecapascalsTest() =>
-            Assert.Equal(Pressure.FromDecapascals(2), 2.Decapascals());
+            Assert.Equal(Pressure<double>.FromDecapascals(2), 2.Decapascals());
 
         [Fact]
         public void NumberToDecibarsTest() =>
-            Assert.Equal(Pressure.FromDecibars(2), 2.Decibars());
+            Assert.Equal(Pressure<double>.FromDecibars(2), 2.Decibars());
 
         [Fact]
         public void NumberToDynesPerSquareCentimeterTest() =>
-            Assert.Equal(Pressure.FromDynesPerSquareCentimeter(2), 2.DynesPerSquareCentimeter());
+            Assert.Equal(Pressure<double>.FromDynesPerSquareCentimeter(2), 2.DynesPerSquareCentimeter());
 
         [Fact]
         public void NumberToFeetOfHeadTest() =>
-            Assert.Equal(Pressure.FromFeetOfHead(2), 2.FeetOfHead());
+            Assert.Equal(Pressure<double>.FromFeetOfHead(2), 2.FeetOfHead());
 
         [Fact]
         public void NumberToGigapascalsTest() =>
-            Assert.Equal(Pressure.FromGigapascals(2), 2.Gigapascals());
+            Assert.Equal(Pressure<double>.FromGigapascals(2), 2.Gigapascals());
 
         [Fact]
         public void NumberToHectopascalsTest() =>
-            Assert.Equal(Pressure.FromHectopascals(2), 2.Hectopascals());
+            Assert.Equal(Pressure<double>.FromHectopascals(2), 2.Hectopascals());
 
         [Fact]
         public void NumberToInchesOfMercuryTest() =>
-            Assert.Equal(Pressure.FromInchesOfMercury(2), 2.InchesOfMercury());
+            Assert.Equal(Pressure<double>.FromInchesOfMercury(2), 2.InchesOfMercury());
 
         [Fact]
         public void NumberToInchesOfWaterColumnTest() =>
-            Assert.Equal(Pressure.FromInchesOfWaterColumn(2), 2.InchesOfWaterColumn());
+            Assert.Equal(Pressure<double>.FromInchesOfWaterColumn(2), 2.InchesOfWaterColumn());
 
         [Fact]
         public void NumberToKilobarsTest() =>
-            Assert.Equal(Pressure.FromKilobars(2), 2.Kilobars());
+            Assert.Equal(Pressure<double>.FromKilobars(2), 2.Kilobars());
 
         [Fact]
         public void NumberToKilogramsForcePerSquareCentimeterTest() =>
-            Assert.Equal(Pressure.FromKilogramsForcePerSquareCentimeter(2), 2.KilogramsForcePerSquareCentimeter());
+            Assert.Equal(Pressure<double>.FromKilogramsForcePerSquareCentimeter(2), 2.KilogramsForcePerSquareCentimeter());
 
         [Fact]
         public void NumberToKilogramsForcePerSquareMeterTest() =>
-            Assert.Equal(Pressure.FromKilogramsForcePerSquareMeter(2), 2.KilogramsForcePerSquareMeter());
+            Assert.Equal(Pressure<double>.FromKilogramsForcePerSquareMeter(2), 2.KilogramsForcePerSquareMeter());
 
         [Fact]
         public void NumberToKilogramsForcePerSquareMillimeterTest() =>
-            Assert.Equal(Pressure.FromKilogramsForcePerSquareMillimeter(2), 2.KilogramsForcePerSquareMillimeter());
+            Assert.Equal(Pressure<double>.FromKilogramsForcePerSquareMillimeter(2), 2.KilogramsForcePerSquareMillimeter());
 
         [Fact]
         public void NumberToKilonewtonsPerSquareCentimeterTest() =>
-            Assert.Equal(Pressure.FromKilonewtonsPerSquareCentimeter(2), 2.KilonewtonsPerSquareCentimeter());
+            Assert.Equal(Pressure<double>.FromKilonewtonsPerSquareCentimeter(2), 2.KilonewtonsPerSquareCentimeter());
 
         [Fact]
         public void NumberToKilonewtonsPerSquareMeterTest() =>
-            Assert.Equal(Pressure.FromKilonewtonsPerSquareMeter(2), 2.KilonewtonsPerSquareMeter());
+            Assert.Equal(Pressure<double>.FromKilonewtonsPerSquareMeter(2), 2.KilonewtonsPerSquareMeter());
 
         [Fact]
         public void NumberToKilonewtonsPerSquareMillimeterTest() =>
-            Assert.Equal(Pressure.FromKilonewtonsPerSquareMillimeter(2), 2.KilonewtonsPerSquareMillimeter());
+            Assert.Equal(Pressure<double>.FromKilonewtonsPerSquareMillimeter(2), 2.KilonewtonsPerSquareMillimeter());
 
         [Fact]
         public void NumberToKilopascalsTest() =>
-            Assert.Equal(Pressure.FromKilopascals(2), 2.Kilopascals());
+            Assert.Equal(Pressure<double>.FromKilopascals(2), 2.Kilopascals());
 
         [Fact]
         public void NumberToKilopoundsForcePerSquareFootTest() =>
-            Assert.Equal(Pressure.FromKilopoundsForcePerSquareFoot(2), 2.KilopoundsForcePerSquareFoot());
+            Assert.Equal(Pressure<double>.FromKilopoundsForcePerSquareFoot(2), 2.KilopoundsForcePerSquareFoot());
 
         [Fact]
         public void NumberToKilopoundsForcePerSquareInchTest() =>
-            Assert.Equal(Pressure.FromKilopoundsForcePerSquareInch(2), 2.KilopoundsForcePerSquareInch());
+            Assert.Equal(Pressure<double>.FromKilopoundsForcePerSquareInch(2), 2.KilopoundsForcePerSquareInch());
 
         [Fact]
         public void NumberToMegabarsTest() =>
-            Assert.Equal(Pressure.FromMegabars(2), 2.Megabars());
+            Assert.Equal(Pressure<double>.FromMegabars(2), 2.Megabars());
 
         [Fact]
         public void NumberToMeganewtonsPerSquareMeterTest() =>
-            Assert.Equal(Pressure.FromMeganewtonsPerSquareMeter(2), 2.MeganewtonsPerSquareMeter());
+            Assert.Equal(Pressure<double>.FromMeganewtonsPerSquareMeter(2), 2.MeganewtonsPerSquareMeter());
 
         [Fact]
         public void NumberToMegapascalsTest() =>
-            Assert.Equal(Pressure.FromMegapascals(2), 2.Megapascals());
+            Assert.Equal(Pressure<double>.FromMegapascals(2), 2.Megapascals());
 
         [Fact]
         public void NumberToMetersOfHeadTest() =>
-            Assert.Equal(Pressure.FromMetersOfHead(2), 2.MetersOfHead());
+            Assert.Equal(Pressure<double>.FromMetersOfHead(2), 2.MetersOfHead());
 
         [Fact]
         public void NumberToMicrobarsTest() =>
-            Assert.Equal(Pressure.FromMicrobars(2), 2.Microbars());
+            Assert.Equal(Pressure<double>.FromMicrobars(2), 2.Microbars());
 
         [Fact]
         public void NumberToMicropascalsTest() =>
-            Assert.Equal(Pressure.FromMicropascals(2), 2.Micropascals());
+            Assert.Equal(Pressure<double>.FromMicropascals(2), 2.Micropascals());
 
         [Fact]
         public void NumberToMillibarsTest() =>
-            Assert.Equal(Pressure.FromMillibars(2), 2.Millibars());
+            Assert.Equal(Pressure<double>.FromMillibars(2), 2.Millibars());
 
         [Fact]
         public void NumberToMillimetersOfMercuryTest() =>
-            Assert.Equal(Pressure.FromMillimetersOfMercury(2), 2.MillimetersOfMercury());
+            Assert.Equal(Pressure<double>.FromMillimetersOfMercury(2), 2.MillimetersOfMercury());
 
         [Fact]
         public void NumberToMillipascalsTest() =>
-            Assert.Equal(Pressure.FromMillipascals(2), 2.Millipascals());
+            Assert.Equal(Pressure<double>.FromMillipascals(2), 2.Millipascals());
 
         [Fact]
         public void NumberToNewtonsPerSquareCentimeterTest() =>
-            Assert.Equal(Pressure.FromNewtonsPerSquareCentimeter(2), 2.NewtonsPerSquareCentimeter());
+            Assert.Equal(Pressure<double>.FromNewtonsPerSquareCentimeter(2), 2.NewtonsPerSquareCentimeter());
 
         [Fact]
         public void NumberToNewtonsPerSquareMeterTest() =>
-            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(2), 2.NewtonsPerSquareMeter());
+            Assert.Equal(Pressure<double>.FromNewtonsPerSquareMeter(2), 2.NewtonsPerSquareMeter());
 
         [Fact]
         public void NumberToNewtonsPerSquareMillimeterTest() =>
-            Assert.Equal(Pressure.FromNewtonsPerSquareMillimeter(2), 2.NewtonsPerSquareMillimeter());
+            Assert.Equal(Pressure<double>.FromNewtonsPerSquareMillimeter(2), 2.NewtonsPerSquareMillimeter());
 
         [Fact]
         public void NumberToPascalsTest() =>
-            Assert.Equal(Pressure.FromPascals(2), 2.Pascals());
+            Assert.Equal(Pressure<double>.FromPascals(2), 2.Pascals());
 
         [Fact]
         public void NumberToPoundsForcePerSquareFootTest() =>
-            Assert.Equal(Pressure.FromPoundsForcePerSquareFoot(2), 2.PoundsForcePerSquareFoot());
+            Assert.Equal(Pressure<double>.FromPoundsForcePerSquareFoot(2), 2.PoundsForcePerSquareFoot());
 
         [Fact]
         public void NumberToPoundsForcePerSquareInchTest() =>
-            Assert.Equal(Pressure.FromPoundsForcePerSquareInch(2), 2.PoundsForcePerSquareInch());
+            Assert.Equal(Pressure<double>.FromPoundsForcePerSquareInch(2), 2.PoundsForcePerSquareInch());
 
         [Fact]
         public void NumberToPoundsPerInchSecondSquaredTest() =>
-            Assert.Equal(Pressure.FromPoundsPerInchSecondSquared(2), 2.PoundsPerInchSecondSquared());
+            Assert.Equal(Pressure<double>.FromPoundsPerInchSecondSquared(2), 2.PoundsPerInchSecondSquared());
 
         [Fact]
         public void NumberToTechnicalAtmospheresTest() =>
-            Assert.Equal(Pressure.FromTechnicalAtmospheres(2), 2.TechnicalAtmospheres());
+            Assert.Equal(Pressure<double>.FromTechnicalAtmospheres(2), 2.TechnicalAtmospheres());
 
         [Fact]
         public void NumberToTonnesForcePerSquareCentimeterTest() =>
-            Assert.Equal(Pressure.FromTonnesForcePerSquareCentimeter(2), 2.TonnesForcePerSquareCentimeter());
+            Assert.Equal(Pressure<double>.FromTonnesForcePerSquareCentimeter(2), 2.TonnesForcePerSquareCentimeter());
 
         [Fact]
         public void NumberToTonnesForcePerSquareMeterTest() =>
-            Assert.Equal(Pressure.FromTonnesForcePerSquareMeter(2), 2.TonnesForcePerSquareMeter());
+            Assert.Equal(Pressure<double>.FromTonnesForcePerSquareMeter(2), 2.TonnesForcePerSquareMeter());
 
         [Fact]
         public void NumberToTonnesForcePerSquareMillimeterTest() =>
-            Assert.Equal(Pressure.FromTonnesForcePerSquareMillimeter(2), 2.TonnesForcePerSquareMillimeter());
+            Assert.Equal(Pressure<double>.FromTonnesForcePerSquareMillimeter(2), 2.TonnesForcePerSquareMillimeter());
 
         [Fact]
         public void NumberToTorrsTest() =>
-            Assert.Equal(Pressure.FromTorrs(2), 2.Torrs());
+            Assert.Equal(Pressure<double>.FromTorrs(2), 2.Torrs());
 
     }
 }

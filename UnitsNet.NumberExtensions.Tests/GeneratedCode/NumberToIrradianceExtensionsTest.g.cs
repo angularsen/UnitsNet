@@ -21,64 +21,64 @@ using UnitsNet.NumberExtensions.NumberToIrradiance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToIrradianceExtensionsTests
     {
         [Fact]
         public void NumberToKilowattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromKilowattsPerSquareCentimeter(2), 2.KilowattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromKilowattsPerSquareCentimeter(2), 2.KilowattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToKilowattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromKilowattsPerSquareMeter(2), 2.KilowattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromKilowattsPerSquareMeter(2), 2.KilowattsPerSquareMeter());
 
         [Fact]
         public void NumberToMegawattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromMegawattsPerSquareCentimeter(2), 2.MegawattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromMegawattsPerSquareCentimeter(2), 2.MegawattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToMegawattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromMegawattsPerSquareMeter(2), 2.MegawattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromMegawattsPerSquareMeter(2), 2.MegawattsPerSquareMeter());
 
         [Fact]
         public void NumberToMicrowattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromMicrowattsPerSquareCentimeter(2), 2.MicrowattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromMicrowattsPerSquareCentimeter(2), 2.MicrowattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToMicrowattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromMicrowattsPerSquareMeter(2), 2.MicrowattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromMicrowattsPerSquareMeter(2), 2.MicrowattsPerSquareMeter());
 
         [Fact]
         public void NumberToMilliwattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromMilliwattsPerSquareCentimeter(2), 2.MilliwattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromMilliwattsPerSquareCentimeter(2), 2.MilliwattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToMilliwattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromMilliwattsPerSquareMeter(2), 2.MilliwattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromMilliwattsPerSquareMeter(2), 2.MilliwattsPerSquareMeter());
 
         [Fact]
         public void NumberToNanowattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromNanowattsPerSquareCentimeter(2), 2.NanowattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromNanowattsPerSquareCentimeter(2), 2.NanowattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToNanowattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromNanowattsPerSquareMeter(2), 2.NanowattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromNanowattsPerSquareMeter(2), 2.NanowattsPerSquareMeter());
 
         [Fact]
         public void NumberToPicowattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromPicowattsPerSquareCentimeter(2), 2.PicowattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromPicowattsPerSquareCentimeter(2), 2.PicowattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToPicowattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromPicowattsPerSquareMeter(2), 2.PicowattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromPicowattsPerSquareMeter(2), 2.PicowattsPerSquareMeter());
 
         [Fact]
         public void NumberToWattsPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiance.FromWattsPerSquareCentimeter(2), 2.WattsPerSquareCentimeter());
+            Assert.Equal(Irradiance<double>.FromWattsPerSquareCentimeter(2), 2.WattsPerSquareCentimeter());
 
         [Fact]
         public void NumberToWattsPerSquareMeterTest() =>
-            Assert.Equal(Irradiance.FromWattsPerSquareMeter(2), 2.WattsPerSquareMeter());
+            Assert.Equal(Irradiance<double>.FromWattsPerSquareMeter(2), 2.WattsPerSquareMeter());
 
     }
 }

@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
     /// </summary>
     public static class NumberToElectricFieldExtensions
     {
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter<T>(this T value) =>
-            ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricField{T}.FromVoltsPerMeter(T)" />
+        public static ElectricField<double> VoltsPerMeter<T>(this T value) =>
+            ElectricField<double>.FromVoltsPerMeter(Convert.ToDouble(value));
 
     }
 }

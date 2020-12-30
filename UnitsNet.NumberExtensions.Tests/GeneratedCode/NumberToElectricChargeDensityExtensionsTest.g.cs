@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToElectricChargeDensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricChargeDensityExtensionsTests
     {
         [Fact]
         public void NumberToCoulombsPerCubicMeterTest() =>
-            Assert.Equal(ElectricChargeDensity.FromCoulombsPerCubicMeter(2), 2.CoulombsPerCubicMeter());
+            Assert.Equal(ElectricChargeDensity<double>.FromCoulombsPerCubicMeter(2), 2.CoulombsPerCubicMeter());
 
     }
 }

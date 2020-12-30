@@ -21,12 +21,12 @@ using UnitsNet.NumberExtensions.NumberToRelativeHumidity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRelativeHumidityExtensionsTests
     {
         [Fact]
         public void NumberToPercentTest() =>
-            Assert.Equal(RelativeHumidity.FromPercent(2), 2.Percent());
+            Assert.Equal(RelativeHumidity<double>.FromPercent(2), 2.Percent());
 
     }
 }

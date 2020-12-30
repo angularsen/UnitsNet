@@ -21,36 +21,36 @@ using UnitsNet.NumberExtensions.NumberToCapacitance;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToCapacitanceExtensionsTests
     {
         [Fact]
         public void NumberToFaradsTest() =>
-            Assert.Equal(Capacitance.FromFarads(2), 2.Farads());
+            Assert.Equal(Capacitance<double>.FromFarads(2), 2.Farads());
 
         [Fact]
         public void NumberToKilofaradsTest() =>
-            Assert.Equal(Capacitance.FromKilofarads(2), 2.Kilofarads());
+            Assert.Equal(Capacitance<double>.FromKilofarads(2), 2.Kilofarads());
 
         [Fact]
         public void NumberToMegafaradsTest() =>
-            Assert.Equal(Capacitance.FromMegafarads(2), 2.Megafarads());
+            Assert.Equal(Capacitance<double>.FromMegafarads(2), 2.Megafarads());
 
         [Fact]
         public void NumberToMicrofaradsTest() =>
-            Assert.Equal(Capacitance.FromMicrofarads(2), 2.Microfarads());
+            Assert.Equal(Capacitance<double>.FromMicrofarads(2), 2.Microfarads());
 
         [Fact]
         public void NumberToMillifaradsTest() =>
-            Assert.Equal(Capacitance.FromMillifarads(2), 2.Millifarads());
+            Assert.Equal(Capacitance<double>.FromMillifarads(2), 2.Millifarads());
 
         [Fact]
         public void NumberToNanofaradsTest() =>
-            Assert.Equal(Capacitance.FromNanofarads(2), 2.Nanofarads());
+            Assert.Equal(Capacitance<double>.FromNanofarads(2), 2.Nanofarads());
 
         [Fact]
         public void NumberToPicofaradsTest() =>
-            Assert.Equal(Capacitance.FromPicofarads(2), 2.Picofarads());
+            Assert.Equal(Capacitance<double>.FromPicofarads(2), 2.Picofarads());
 
     }
 }

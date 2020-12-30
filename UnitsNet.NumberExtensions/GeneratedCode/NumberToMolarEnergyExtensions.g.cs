@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
     /// </summary>
     public static class NumberToMolarEnergyExtensions
     {
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole<T>(this T value) =>
-            MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEnergy{T}.FromJoulesPerMole(T)" />
+        public static MolarEnergy<double> JoulesPerMole<T>(this T value) =>
+            MolarEnergy<double>.FromJoulesPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole<T>(this T value) =>
-            MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEnergy{T}.FromKilojoulesPerMole(T)" />
+        public static MolarEnergy<double> KilojoulesPerMole<T>(this T value) =>
+            MolarEnergy<double>.FromKilojoulesPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole<T>(this T value) =>
-            MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarEnergy{T}.FromMegajoulesPerMole(T)" />
+        public static MolarEnergy<double> MegajoulesPerMole<T>(this T value) =>
+            MolarEnergy<double>.FromMegajoulesPerMole(Convert.ToDouble(value));
 
     }
 }

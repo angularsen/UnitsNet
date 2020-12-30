@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticFlux
     /// </summary>
     public static class NumberToMagneticFluxExtensions
     {
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers<T>(this T value) =>
-            MagneticFlux.FromWebers(Convert.ToDouble(value));
+        /// <inheritdoc cref="MagneticFlux{T}.FromWebers(T)" />
+        public static MagneticFlux<double> Webers<T>(this T value) =>
+            MagneticFlux<double>.FromWebers(Convert.ToDouble(value));
 
     }
 }

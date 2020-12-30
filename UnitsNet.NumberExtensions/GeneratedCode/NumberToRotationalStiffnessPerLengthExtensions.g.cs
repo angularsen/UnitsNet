@@ -28,25 +28,25 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength
     /// </summary>
     public static class NumberToRotationalStiffnessPerLengthExtensions
     {
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
-        public static RotationalStiffnessPerLength KilonewtonMetersPerRadianPerMeter<T>(this T value) =>
-            RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalStiffnessPerLength{T}.FromKilonewtonMetersPerRadianPerMeter(T)" />
+        public static RotationalStiffnessPerLength<double> KilonewtonMetersPerRadianPerMeter<T>(this T value) =>
+            RotationalStiffnessPerLength<double>.FromKilonewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(UnitsNet.QuantityValue)" />
-        public static RotationalStiffnessPerLength KilopoundForceFeetPerDegreesPerFeet<T>(this T value) =>
-            RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalStiffnessPerLength{T}.FromKilopoundForceFeetPerDegreesPerFeet(T)" />
+        public static RotationalStiffnessPerLength<double> KilopoundForceFeetPerDegreesPerFeet<T>(this T value) =>
+            RotationalStiffnessPerLength<double>.FromKilopoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
-        public static RotationalStiffnessPerLength MeganewtonMetersPerRadianPerMeter<T>(this T value) =>
-            RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalStiffnessPerLength{T}.FromMeganewtonMetersPerRadianPerMeter(T)" />
+        public static RotationalStiffnessPerLength<double> MeganewtonMetersPerRadianPerMeter<T>(this T value) =>
+            RotationalStiffnessPerLength<double>.FromMeganewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
-        public static RotationalStiffnessPerLength NewtonMetersPerRadianPerMeter<T>(this T value) =>
-            RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalStiffnessPerLength{T}.FromNewtonMetersPerRadianPerMeter(T)" />
+        public static RotationalStiffnessPerLength<double> NewtonMetersPerRadianPerMeter<T>(this T value) =>
+            RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(UnitsNet.QuantityValue)" />
-        public static RotationalStiffnessPerLength PoundForceFeetPerDegreesPerFeet<T>(this T value) =>
-            RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
+        /// <inheritdoc cref="RotationalStiffnessPerLength{T}.FromPoundForceFeetPerDegreesPerFeet(T)" />
+        public static RotationalStiffnessPerLength<double> PoundForceFeetPerDegreesPerFeet<T>(this T value) =>
+            RotationalStiffnessPerLength<double>.FromPoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
 
     }
 }

@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
     /// </summary>
     public static class NumberToFuelEfficiencyExtensions
     {
-        /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiters(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency KilometersPerLiters<T>(this T value) =>
-            FuelEfficiency.FromKilometersPerLiters(Convert.ToDouble(value));
+        /// <inheritdoc cref="FuelEfficiency{T}.FromKilometersPerLiters(T)" />
+        public static FuelEfficiency<double> KilometersPerLiters<T>(this T value) =>
+            FuelEfficiency<double>.FromKilometersPerLiters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency LitersPer100Kilometers<T>(this T value) =>
-            FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
+        /// <inheritdoc cref="FuelEfficiency{T}.FromLitersPer100Kilometers(T)" />
+        public static FuelEfficiency<double> LitersPer100Kilometers<T>(this T value) =>
+            FuelEfficiency<double>.FromLitersPer100Kilometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency MilesPerUkGallon<T>(this T value) =>
-            FuelEfficiency.FromMilesPerUkGallon(Convert.ToDouble(value));
+        /// <inheritdoc cref="FuelEfficiency{T}.FromMilesPerUkGallon(T)" />
+        public static FuelEfficiency<double> MilesPerUkGallon<T>(this T value) =>
+            FuelEfficiency<double>.FromMilesPerUkGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency MilesPerUsGallon<T>(this T value) =>
-            FuelEfficiency.FromMilesPerUsGallon(Convert.ToDouble(value));
+        /// <inheritdoc cref="FuelEfficiency{T}.FromMilesPerUsGallon(T)" />
+        public static FuelEfficiency<double> MilesPerUsGallon<T>(this T value) =>
+            FuelEfficiency<double>.FromMilesPerUsGallon(Convert.ToDouble(value));
 
     }
 }

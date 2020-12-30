@@ -21,20 +21,20 @@ using UnitsNet.NumberExtensions.NumberToSpecificVolume;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSpecificVolumeExtensionsTests
     {
         [Fact]
         public void NumberToCubicFeetPerPoundTest() =>
-            Assert.Equal(SpecificVolume.FromCubicFeetPerPound(2), 2.CubicFeetPerPound());
+            Assert.Equal(SpecificVolume<double>.FromCubicFeetPerPound(2), 2.CubicFeetPerPound());
 
         [Fact]
         public void NumberToCubicMetersPerKilogramTest() =>
-            Assert.Equal(SpecificVolume.FromCubicMetersPerKilogram(2), 2.CubicMetersPerKilogram());
+            Assert.Equal(SpecificVolume<double>.FromCubicMetersPerKilogram(2), 2.CubicMetersPerKilogram());
 
         [Fact]
         public void NumberToMillicubicMetersPerKilogramTest() =>
-            Assert.Equal(SpecificVolume.FromMillicubicMetersPerKilogram(2), 2.MillicubicMetersPerKilogram());
+            Assert.Equal(SpecificVolume<double>.FromMillicubicMetersPerKilogram(2), 2.MillicubicMetersPerKilogram());
 
     }
 }

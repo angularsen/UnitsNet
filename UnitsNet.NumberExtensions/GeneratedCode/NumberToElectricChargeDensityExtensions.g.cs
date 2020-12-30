@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToElectricChargeDensity
     /// </summary>
     public static class NumberToElectricChargeDensityExtensions
     {
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter<T>(this T value) =>
-            ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricChargeDensity{T}.FromCoulombsPerCubicMeter(T)" />
+        public static ElectricChargeDensity<double> CoulombsPerCubicMeter<T>(this T value) =>
+            ElectricChargeDensity<double>.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
 
     }
 }

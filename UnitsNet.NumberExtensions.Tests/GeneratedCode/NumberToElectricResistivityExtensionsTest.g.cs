@@ -21,64 +21,64 @@ using UnitsNet.NumberExtensions.NumberToElectricResistivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricResistivityExtensionsTests
     {
         [Fact]
         public void NumberToKiloohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromKiloohmsCentimeter(2), 2.KiloohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromKiloohmsCentimeter(2), 2.KiloohmsCentimeter());
 
         [Fact]
         public void NumberToKiloohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromKiloohmMeters(2), 2.KiloohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromKiloohmMeters(2), 2.KiloohmMeters());
 
         [Fact]
         public void NumberToMegaohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromMegaohmsCentimeter(2), 2.MegaohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromMegaohmsCentimeter(2), 2.MegaohmsCentimeter());
 
         [Fact]
         public void NumberToMegaohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromMegaohmMeters(2), 2.MegaohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromMegaohmMeters(2), 2.MegaohmMeters());
 
         [Fact]
         public void NumberToMicroohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromMicroohmsCentimeter(2), 2.MicroohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromMicroohmsCentimeter(2), 2.MicroohmsCentimeter());
 
         [Fact]
         public void NumberToMicroohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromMicroohmMeters(2), 2.MicroohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromMicroohmMeters(2), 2.MicroohmMeters());
 
         [Fact]
         public void NumberToMilliohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromMilliohmsCentimeter(2), 2.MilliohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromMilliohmsCentimeter(2), 2.MilliohmsCentimeter());
 
         [Fact]
         public void NumberToMilliohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromMilliohmMeters(2), 2.MilliohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromMilliohmMeters(2), 2.MilliohmMeters());
 
         [Fact]
         public void NumberToNanoohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromNanoohmsCentimeter(2), 2.NanoohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromNanoohmsCentimeter(2), 2.NanoohmsCentimeter());
 
         [Fact]
         public void NumberToNanoohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromNanoohmMeters(2), 2.NanoohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromNanoohmMeters(2), 2.NanoohmMeters());
 
         [Fact]
         public void NumberToOhmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromOhmsCentimeter(2), 2.OhmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromOhmsCentimeter(2), 2.OhmsCentimeter());
 
         [Fact]
         public void NumberToOhmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromOhmMeters(2), 2.OhmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromOhmMeters(2), 2.OhmMeters());
 
         [Fact]
         public void NumberToPicoohmsCentimeterTest() =>
-            Assert.Equal(ElectricResistivity.FromPicoohmsCentimeter(2), 2.PicoohmsCentimeter());
+            Assert.Equal(ElectricResistivity<double>.FromPicoohmsCentimeter(2), 2.PicoohmsCentimeter());
 
         [Fact]
         public void NumberToPicoohmMetersTest() =>
-            Assert.Equal(ElectricResistivity.FromPicoohmMeters(2), 2.PicoohmMeters());
+            Assert.Equal(ElectricResistivity<double>.FromPicoohmMeters(2), 2.PicoohmMeters());
 
     }
 }

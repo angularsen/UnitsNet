@@ -21,28 +21,28 @@ using UnitsNet.NumberExtensions.NumberToMagneticField;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagneticFieldExtensionsTests
     {
         [Fact]
         public void NumberToGaussesTest() =>
-            Assert.Equal(MagneticField.FromGausses(2), 2.Gausses());
+            Assert.Equal(MagneticField<double>.FromGausses(2), 2.Gausses());
 
         [Fact]
         public void NumberToMicroteslasTest() =>
-            Assert.Equal(MagneticField.FromMicroteslas(2), 2.Microteslas());
+            Assert.Equal(MagneticField<double>.FromMicroteslas(2), 2.Microteslas());
 
         [Fact]
         public void NumberToMilliteslasTest() =>
-            Assert.Equal(MagneticField.FromMilliteslas(2), 2.Milliteslas());
+            Assert.Equal(MagneticField<double>.FromMilliteslas(2), 2.Milliteslas());
 
         [Fact]
         public void NumberToNanoteslasTest() =>
-            Assert.Equal(MagneticField.FromNanoteslas(2), 2.Nanoteslas());
+            Assert.Equal(MagneticField<double>.FromNanoteslas(2), 2.Nanoteslas());
 
         [Fact]
         public void NumberToTeslasTest() =>
-            Assert.Equal(MagneticField.FromTeslas(2), 2.Teslas());
+            Assert.Equal(MagneticField<double>.FromTeslas(2), 2.Teslas());
 
     }
 }

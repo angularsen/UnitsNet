@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
     /// </summary>
     public static class NumberToElectricAdmittanceExtensions
     {
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens<T>(this T value) =>
-            ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricAdmittance{T}.FromMicrosiemens(T)" />
+        public static ElectricAdmittance<double> Microsiemens<T>(this T value) =>
+            ElectricAdmittance<double>.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens<T>(this T value) =>
-            ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricAdmittance{T}.FromMillisiemens(T)" />
+        public static ElectricAdmittance<double> Millisiemens<T>(this T value) =>
+            ElectricAdmittance<double>.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens<T>(this T value) =>
-            ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricAdmittance{T}.FromNanosiemens(T)" />
+        public static ElectricAdmittance<double> Nanosiemens<T>(this T value) =>
+            ElectricAdmittance<double>.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens<T>(this T value) =>
-            ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricAdmittance{T}.FromSiemens(T)" />
+        public static ElectricAdmittance<double> Siemens<T>(this T value) =>
+            ElectricAdmittance<double>.FromSiemens(Convert.ToDouble(value));
 
     }
 }

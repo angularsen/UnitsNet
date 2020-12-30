@@ -21,48 +21,48 @@ using UnitsNet.NumberExtensions.NumberToDuration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToDurationExtensionsTests
     {
         [Fact]
         public void NumberToDaysTest() =>
-            Assert.Equal(Duration.FromDays(2), 2.Days());
+            Assert.Equal(Duration<double>.FromDays(2), 2.Days());
 
         [Fact]
         public void NumberToHoursTest() =>
-            Assert.Equal(Duration.FromHours(2), 2.Hours());
+            Assert.Equal(Duration<double>.FromHours(2), 2.Hours());
 
         [Fact]
         public void NumberToMicrosecondsTest() =>
-            Assert.Equal(Duration.FromMicroseconds(2), 2.Microseconds());
+            Assert.Equal(Duration<double>.FromMicroseconds(2), 2.Microseconds());
 
         [Fact]
         public void NumberToMillisecondsTest() =>
-            Assert.Equal(Duration.FromMilliseconds(2), 2.Milliseconds());
+            Assert.Equal(Duration<double>.FromMilliseconds(2), 2.Milliseconds());
 
         [Fact]
         public void NumberToMinutesTest() =>
-            Assert.Equal(Duration.FromMinutes(2), 2.Minutes());
+            Assert.Equal(Duration<double>.FromMinutes(2), 2.Minutes());
 
         [Fact]
         public void NumberToMonths30Test() =>
-            Assert.Equal(Duration.FromMonths30(2), 2.Months30());
+            Assert.Equal(Duration<double>.FromMonths30(2), 2.Months30());
 
         [Fact]
         public void NumberToNanosecondsTest() =>
-            Assert.Equal(Duration.FromNanoseconds(2), 2.Nanoseconds());
+            Assert.Equal(Duration<double>.FromNanoseconds(2), 2.Nanoseconds());
 
         [Fact]
         public void NumberToSecondsTest() =>
-            Assert.Equal(Duration.FromSeconds(2), 2.Seconds());
+            Assert.Equal(Duration<double>.FromSeconds(2), 2.Seconds());
 
         [Fact]
         public void NumberToWeeksTest() =>
-            Assert.Equal(Duration.FromWeeks(2), 2.Weeks());
+            Assert.Equal(Duration<double>.FromWeeks(2), 2.Weeks());
 
         [Fact]
         public void NumberToYears365Test() =>
-            Assert.Equal(Duration.FromYears365(2), 2.Years365());
+            Assert.Equal(Duration<double>.FromYears365(2), 2.Years365());
 
     }
 }

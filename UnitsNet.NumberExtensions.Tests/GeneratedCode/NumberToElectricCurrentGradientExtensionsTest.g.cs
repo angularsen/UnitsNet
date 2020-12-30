@@ -21,24 +21,24 @@ using UnitsNet.NumberExtensions.NumberToElectricCurrentGradient;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricCurrentGradientExtensionsTests
     {
         [Fact]
         public void NumberToAmperesPerMicrosecondTest() =>
-            Assert.Equal(ElectricCurrentGradient.FromAmperesPerMicrosecond(2), 2.AmperesPerMicrosecond());
+            Assert.Equal(ElectricCurrentGradient<double>.FromAmperesPerMicrosecond(2), 2.AmperesPerMicrosecond());
 
         [Fact]
         public void NumberToAmperesPerMillisecondTest() =>
-            Assert.Equal(ElectricCurrentGradient.FromAmperesPerMillisecond(2), 2.AmperesPerMillisecond());
+            Assert.Equal(ElectricCurrentGradient<double>.FromAmperesPerMillisecond(2), 2.AmperesPerMillisecond());
 
         [Fact]
         public void NumberToAmperesPerNanosecondTest() =>
-            Assert.Equal(ElectricCurrentGradient.FromAmperesPerNanosecond(2), 2.AmperesPerNanosecond());
+            Assert.Equal(ElectricCurrentGradient<double>.FromAmperesPerNanosecond(2), 2.AmperesPerNanosecond());
 
         [Fact]
         public void NumberToAmperesPerSecondTest() =>
-            Assert.Equal(ElectricCurrentGradient.FromAmperesPerSecond(2), 2.AmperesPerSecond());
+            Assert.Equal(ElectricCurrentGradient<double>.FromAmperesPerSecond(2), 2.AmperesPerSecond());
 
     }
 }

@@ -21,28 +21,28 @@ using UnitsNet.NumberExtensions.NumberToElectricPotentialDc;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricPotentialDcExtensionsTests
     {
         [Fact]
         public void NumberToKilovoltsDcTest() =>
-            Assert.Equal(ElectricPotentialDc.FromKilovoltsDc(2), 2.KilovoltsDc());
+            Assert.Equal(ElectricPotentialDc<double>.FromKilovoltsDc(2), 2.KilovoltsDc());
 
         [Fact]
         public void NumberToMegavoltsDcTest() =>
-            Assert.Equal(ElectricPotentialDc.FromMegavoltsDc(2), 2.MegavoltsDc());
+            Assert.Equal(ElectricPotentialDc<double>.FromMegavoltsDc(2), 2.MegavoltsDc());
 
         [Fact]
         public void NumberToMicrovoltsDcTest() =>
-            Assert.Equal(ElectricPotentialDc.FromMicrovoltsDc(2), 2.MicrovoltsDc());
+            Assert.Equal(ElectricPotentialDc<double>.FromMicrovoltsDc(2), 2.MicrovoltsDc());
 
         [Fact]
         public void NumberToMillivoltsDcTest() =>
-            Assert.Equal(ElectricPotentialDc.FromMillivoltsDc(2), 2.MillivoltsDc());
+            Assert.Equal(ElectricPotentialDc<double>.FromMillivoltsDc(2), 2.MillivoltsDc());
 
         [Fact]
         public void NumberToVoltsDcTest() =>
-            Assert.Equal(ElectricPotentialDc.FromVoltsDc(2), 2.VoltsDc());
+            Assert.Equal(ElectricPotentialDc<double>.FromVoltsDc(2), 2.VoltsDc());
 
     }
 }

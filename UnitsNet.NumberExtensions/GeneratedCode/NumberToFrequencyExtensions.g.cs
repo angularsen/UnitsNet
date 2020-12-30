@@ -28,45 +28,45 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
     /// </summary>
     public static class NumberToFrequencyExtensions
     {
-        /// <inheritdoc cref="Frequency.FromBeatsPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency BeatsPerMinute<T>(this T value) =>
-            Frequency.FromBeatsPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromBeatsPerMinute(T)" />
+        public static Frequency<double> BeatsPerMinute<T>(this T value) =>
+            Frequency<double>.FromBeatsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour<T>(this T value) =>
-            Frequency.FromCyclesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromCyclesPerHour(T)" />
+        public static Frequency<double> CyclesPerHour<T>(this T value) =>
+            Frequency<double>.FromCyclesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute<T>(this T value) =>
-            Frequency.FromCyclesPerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromCyclesPerMinute(T)" />
+        public static Frequency<double> CyclesPerMinute<T>(this T value) =>
+            Frequency<double>.FromCyclesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz<T>(this T value) =>
-            Frequency.FromGigahertz(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromGigahertz(T)" />
+        public static Frequency<double> Gigahertz<T>(this T value) =>
+            Frequency<double>.FromGigahertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz<T>(this T value) =>
-            Frequency.FromHertz(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromHertz(T)" />
+        public static Frequency<double> Hertz<T>(this T value) =>
+            Frequency<double>.FromHertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz<T>(this T value) =>
-            Frequency.FromKilohertz(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromKilohertz(T)" />
+        public static Frequency<double> Kilohertz<T>(this T value) =>
+            Frequency<double>.FromKilohertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz<T>(this T value) =>
-            Frequency.FromMegahertz(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromMegahertz(T)" />
+        public static Frequency<double> Megahertz<T>(this T value) =>
+            Frequency<double>.FromMegahertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromPerSecond(UnitsNet.QuantityValue)" />
-        public static Frequency PerSecond<T>(this T value) =>
-            Frequency.FromPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromPerSecond(T)" />
+        public static Frequency<double> PerSecond<T>(this T value) =>
+            Frequency<double>.FromPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
-        public static Frequency RadiansPerSecond<T>(this T value) =>
-            Frequency.FromRadiansPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromRadiansPerSecond(T)" />
+        public static Frequency<double> RadiansPerSecond<T>(this T value) =>
+            Frequency<double>.FromRadiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz<T>(this T value) =>
-            Frequency.FromTerahertz(Convert.ToDouble(value));
+        /// <inheritdoc cref="Frequency{T}.FromTerahertz(T)" />
+        public static Frequency<double> Terahertz<T>(this T value) =>
+            Frequency<double>.FromTerahertz(Convert.ToDouble(value));
 
     }
 }

@@ -21,64 +21,64 @@ using UnitsNet.NumberExtensions.NumberToLuminosity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLuminosityExtensionsTests
     {
         [Fact]
         public void NumberToDecawattsTest() =>
-            Assert.Equal(Luminosity.FromDecawatts(2), 2.Decawatts());
+            Assert.Equal(Luminosity<double>.FromDecawatts(2), 2.Decawatts());
 
         [Fact]
         public void NumberToDeciwattsTest() =>
-            Assert.Equal(Luminosity.FromDeciwatts(2), 2.Deciwatts());
+            Assert.Equal(Luminosity<double>.FromDeciwatts(2), 2.Deciwatts());
 
         [Fact]
         public void NumberToFemtowattsTest() =>
-            Assert.Equal(Luminosity.FromFemtowatts(2), 2.Femtowatts());
+            Assert.Equal(Luminosity<double>.FromFemtowatts(2), 2.Femtowatts());
 
         [Fact]
         public void NumberToGigawattsTest() =>
-            Assert.Equal(Luminosity.FromGigawatts(2), 2.Gigawatts());
+            Assert.Equal(Luminosity<double>.FromGigawatts(2), 2.Gigawatts());
 
         [Fact]
         public void NumberToKilowattsTest() =>
-            Assert.Equal(Luminosity.FromKilowatts(2), 2.Kilowatts());
+            Assert.Equal(Luminosity<double>.FromKilowatts(2), 2.Kilowatts());
 
         [Fact]
         public void NumberToMegawattsTest() =>
-            Assert.Equal(Luminosity.FromMegawatts(2), 2.Megawatts());
+            Assert.Equal(Luminosity<double>.FromMegawatts(2), 2.Megawatts());
 
         [Fact]
         public void NumberToMicrowattsTest() =>
-            Assert.Equal(Luminosity.FromMicrowatts(2), 2.Microwatts());
+            Assert.Equal(Luminosity<double>.FromMicrowatts(2), 2.Microwatts());
 
         [Fact]
         public void NumberToMilliwattsTest() =>
-            Assert.Equal(Luminosity.FromMilliwatts(2), 2.Milliwatts());
+            Assert.Equal(Luminosity<double>.FromMilliwatts(2), 2.Milliwatts());
 
         [Fact]
         public void NumberToNanowattsTest() =>
-            Assert.Equal(Luminosity.FromNanowatts(2), 2.Nanowatts());
+            Assert.Equal(Luminosity<double>.FromNanowatts(2), 2.Nanowatts());
 
         [Fact]
         public void NumberToPetawattsTest() =>
-            Assert.Equal(Luminosity.FromPetawatts(2), 2.Petawatts());
+            Assert.Equal(Luminosity<double>.FromPetawatts(2), 2.Petawatts());
 
         [Fact]
         public void NumberToPicowattsTest() =>
-            Assert.Equal(Luminosity.FromPicowatts(2), 2.Picowatts());
+            Assert.Equal(Luminosity<double>.FromPicowatts(2), 2.Picowatts());
 
         [Fact]
         public void NumberToSolarLuminositiesTest() =>
-            Assert.Equal(Luminosity.FromSolarLuminosities(2), 2.SolarLuminosities());
+            Assert.Equal(Luminosity<double>.FromSolarLuminosities(2), 2.SolarLuminosities());
 
         [Fact]
         public void NumberToTerawattsTest() =>
-            Assert.Equal(Luminosity.FromTerawatts(2), 2.Terawatts());
+            Assert.Equal(Luminosity<double>.FromTerawatts(2), 2.Terawatts());
 
         [Fact]
         public void NumberToWattsTest() =>
-            Assert.Equal(Luminosity.FromWatts(2), 2.Watts());
+            Assert.Equal(Luminosity<double>.FromWatts(2), 2.Watts());
 
     }
 }

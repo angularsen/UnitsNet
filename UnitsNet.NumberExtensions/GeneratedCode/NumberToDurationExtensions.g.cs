@@ -28,45 +28,45 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
     /// </summary>
     public static class NumberToDurationExtensions
     {
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days<T>(this T value) =>
-            Duration.FromDays(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromDays(T)" />
+        public static Duration<double> Days<T>(this T value) =>
+            Duration<double>.FromDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours<T>(this T value) =>
-            Duration.FromHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromHours(T)" />
+        public static Duration<double> Hours<T>(this T value) =>
+            Duration<double>.FromHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds<T>(this T value) =>
-            Duration.FromMicroseconds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromMicroseconds(T)" />
+        public static Duration<double> Microseconds<T>(this T value) =>
+            Duration<double>.FromMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds<T>(this T value) =>
-            Duration.FromMilliseconds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromMilliseconds(T)" />
+        public static Duration<double> Milliseconds<T>(this T value) =>
+            Duration<double>.FromMilliseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes<T>(this T value) =>
-            Duration.FromMinutes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromMinutes(T)" />
+        public static Duration<double> Minutes<T>(this T value) =>
+            Duration<double>.FromMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30<T>(this T value) =>
-            Duration.FromMonths30(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromMonths30(T)" />
+        public static Duration<double> Months30<T>(this T value) =>
+            Duration<double>.FromMonths30(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds<T>(this T value) =>
-            Duration.FromNanoseconds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromNanoseconds(T)" />
+        public static Duration<double> Nanoseconds<T>(this T value) =>
+            Duration<double>.FromNanoseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds<T>(this T value) =>
-            Duration.FromSeconds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromSeconds(T)" />
+        public static Duration<double> Seconds<T>(this T value) =>
+            Duration<double>.FromSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks<T>(this T value) =>
-            Duration.FromWeeks(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromWeeks(T)" />
+        public static Duration<double> Weeks<T>(this T value) =>
+            Duration<double>.FromWeeks(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365<T>(this T value) =>
-            Duration.FromYears365(Convert.ToDouble(value));
+        /// <inheritdoc cref="Duration{T}.FromYears365(T)" />
+        public static Duration<double> Years365<T>(this T value) =>
+            Duration<double>.FromYears365(Convert.ToDouble(value));
 
     }
 }

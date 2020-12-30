@@ -28,13 +28,13 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
     /// </summary>
     public static class NumberToPowerRatioExtensions
     {
-        /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(UnitsNet.QuantityValue)" />
-        public static PowerRatio DecibelMilliwatts<T>(this T value) =>
-            PowerRatio.FromDecibelMilliwatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="PowerRatio{T}.FromDecibelMilliwatts(T)" />
+        public static PowerRatio<double> DecibelMilliwatts<T>(this T value) =>
+            PowerRatio<double>.FromDecibelMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerRatio.FromDecibelWatts(UnitsNet.QuantityValue)" />
-        public static PowerRatio DecibelWatts<T>(this T value) =>
-            PowerRatio.FromDecibelWatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="PowerRatio{T}.FromDecibelWatts(T)" />
+        public static PowerRatio<double> DecibelWatts<T>(this T value) =>
+            PowerRatio<double>.FromDecibelWatts(Convert.ToDouble(value));
 
     }
 }
