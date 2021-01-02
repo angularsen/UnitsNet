@@ -44,35 +44,35 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {
-            Energy energy = Mass.FromKilograms(20.0)*SpecificEnergy.FromJoulesPerKilogram(10.0);
+            var energy = Mass<double>.FromKilograms(20.0)*SpecificEnergy<double>.FromJoulesPerKilogram(10.0);
             Assert.Equal(200d, energy.Joules);
         }
 
         [Fact]
         public void SpecificEnergyTimesMassEqualsEnergy()
         {
-            Energy energy = SpecificEnergy.FromJoulesPerKilogram(10.0)*Mass.FromKilograms(20.0);
+            var energy = SpecificEnergy<double>.FromJoulesPerKilogram(10.0)*Mass<double>.FromKilograms(20.0);
             Assert.Equal(200d, energy.Joules);
         }
 
         [Fact]
         public void DoubleDividedBySpecificEnergyEqualsBrakeSpecificFuelConsumption()
         {
-            BrakeSpecificFuelConsumption bsfc = 2.0 / SpecificEnergy.FromJoulesPerKilogram(4.0);
-            Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
+            var bsfc = 2.0 / SpecificEnergy<double>.FromJoulesPerKilogram(4.0);
+            Assert.Equal(BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(0.5), bsfc);
         }
 
         [Fact]
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
-            Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            var power = SpecificEnergy<double>.FromJoulesPerKilogram(10.0) * MassFlow<double>.FromKilogramsPerSecond(20.0);
             Assert.Equal(200d, power.Watts);
         }
 
         [Fact]
         public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
         {
-            double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
+            double value = SpecificEnergy<double>.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(20.0);
             Assert.Equal(200d, value);
         }
     }

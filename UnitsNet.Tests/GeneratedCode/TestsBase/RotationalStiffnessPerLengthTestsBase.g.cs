@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength((double)0.0, RotationalStiffnessPerLengthUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength<double>((double)0.0, RotationalStiffnessPerLengthUnit.Undefined));
         }
 
         [Fact]
@@ -69,14 +69,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength(double.PositiveInfinity, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
-            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength(double.NegativeInfinity, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength<double>(double.PositiveInfinity, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength<double>(double.NegativeInfinity, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength(double.NaN, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffnessPerLength<double>(double.NaN, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void NewtonMeterPerRadianPerMeterToRotationalStiffnessPerLengthUnits()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             AssertEx.EqualTolerance(KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.KilonewtonMetersPerRadianPerMeter, KilonewtonMetersPerRadianPerMeterTolerance);
             AssertEx.EqualTolerance(KilopoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.KilopoundForceFeetPerDegreesPerFeet, KilopoundForceFeetPerDegreesPerFeetTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.MeganewtonMetersPerRadianPerMeter, MeganewtonMetersPerRadianPerMeterTolerance);
@@ -133,23 +133,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
+            var quantity00 = RotationalStiffnessPerLength<double>.From(1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
             AssertEx.EqualTolerance(1, quantity00.KilonewtonMetersPerRadianPerMeter, KilonewtonMetersPerRadianPerMeterTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, quantity00.Unit);
 
-            var quantity01 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
+            var quantity01 = RotationalStiffnessPerLength<double>.From(1, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
             AssertEx.EqualTolerance(1, quantity01.KilopoundForceFeetPerDegreesPerFeet, KilopoundForceFeetPerDegreesPerFeetTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, quantity01.Unit);
 
-            var quantity02 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
+            var quantity02 = RotationalStiffnessPerLength<double>.From(1, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
             AssertEx.EqualTolerance(1, quantity02.MeganewtonMetersPerRadianPerMeter, MeganewtonMetersPerRadianPerMeterTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, quantity02.Unit);
 
-            var quantity03 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
+            var quantity03 = RotationalStiffnessPerLength<double>.From(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
             AssertEx.EqualTolerance(1, quantity03.NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity03.Unit);
 
-            var quantity04 = RotationalStiffnessPerLength.From(1, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
+            var quantity04 = RotationalStiffnessPerLength<double>.From(1, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
             AssertEx.EqualTolerance(1, quantity04.PoundForceFeetPerDegreesPerFeet, PoundForceFeetPerDegreesPerFeetTolerance);
             Assert.Equal(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, quantity04.Unit);
 
@@ -158,20 +158,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromNewtonMetersPerRadianPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromNewtonMetersPerRadianPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            var newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             AssertEx.EqualTolerance(KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.As(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter), KilonewtonMetersPerRadianPerMeterTolerance);
             AssertEx.EqualTolerance(KilopoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.As(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot), KilopoundForceFeetPerDegreesPerFeetTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, newtonmeterperradianpermeter.As(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter), MeganewtonMetersPerRadianPerMeterTolerance);
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            var newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
 
             var kilonewtonmeterperradianpermeterQuantity = newtonmeterperradianpermeter.ToUnit(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
             AssertEx.EqualTolerance(KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, (double)kilonewtonmeterperradianpermeterQuantity.Value, KilonewtonMetersPerRadianPerMeterTolerance);
@@ -232,32 +232,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.KilonewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, KilonewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(newtonmeterperradianpermeter.KilopoundForceFeetPerDegreesPerFeet).NewtonMetersPerRadianPerMeter, KilopoundForceFeetPerDegreesPerFeetTolerance);
-            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.MeganewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, MeganewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.NewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(newtonmeterperradianpermeter.PoundForceFeetPerDegreesPerFeet).NewtonMetersPerRadianPerMeter, PoundForceFeetPerDegreesPerFeetTolerance);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
+            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength<double>.FromKilonewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.KilonewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, KilonewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength<double>.FromKilopoundForceFeetPerDegreesPerFeet(newtonmeterperradianpermeter.KilopoundForceFeetPerDegreesPerFeet).NewtonMetersPerRadianPerMeter, KilopoundForceFeetPerDegreesPerFeetTolerance);
+            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength<double>.FromMeganewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.MeganewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, MeganewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(newtonmeterperradianpermeter.NewtonMetersPerRadianPerMeter).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(1, RotationalStiffnessPerLength<double>.FromPoundForceFeetPerDegreesPerFeet(newtonmeterperradianpermeter.PoundForceFeetPerDegreesPerFeet).NewtonMetersPerRadianPerMeter, PoundForceFeetPerDegreesPerFeetTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            RotationalStiffnessPerLength v = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> v = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(3)-v).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(3)-v).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(10)/5).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
-            AssertEx.EqualTolerance(2, RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(10)/RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(5), NewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(10)/5).NewtonMetersPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance);
+            AssertEx.EqualTolerance(2, RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(10)/RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(5), NewtonMetersPerRadianPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            RotationalStiffnessPerLength oneNewtonMeterPerRadianPerMeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            RotationalStiffnessPerLength twoNewtonMetersPerRadianPerMeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2);
+            RotationalStiffnessPerLength<double> oneNewtonMeterPerRadianPerMeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> twoNewtonMetersPerRadianPerMeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(2);
 
             Assert.True(oneNewtonMeterPerRadianPerMeter < twoNewtonMetersPerRadianPerMeter);
             Assert.True(oneNewtonMeterPerRadianPerMeter <= twoNewtonMetersPerRadianPerMeter);
@@ -273,31 +273,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             Assert.Equal(0, newtonmeterperradianpermeter.CompareTo(newtonmeterperradianpermeter));
-            Assert.True(newtonmeterperradianpermeter.CompareTo(RotationalStiffnessPerLength.Zero) > 0);
-            Assert.True(RotationalStiffnessPerLength.Zero.CompareTo(newtonmeterperradianpermeter) < 0);
+            Assert.True(newtonmeterperradianpermeter.CompareTo(RotationalStiffnessPerLength<double>.Zero) > 0);
+            Assert.True(RotationalStiffnessPerLength<double>.Zero.CompareTo(newtonmeterperradianpermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             Assert.Throws<ArgumentException>(() => newtonmeterperradianpermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => newtonmeterperradianpermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            var b = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2);
+            var a = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
+            var b = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -316,8 +316,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            var b = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2);
+            var a = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
+            var b = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -337,9 +337,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            Assert.True(v.Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1), NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(RotationalStiffnessPerLength.Zero, NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
+            var v = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
+            Assert.True(v.Equals(RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1), NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(RotationalStiffnessPerLength<double>.Zero, NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -352,21 +352,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             Assert.False(newtonmeterperradianpermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            RotationalStiffnessPerLength newtonmeterperradianpermeter = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
+            RotationalStiffnessPerLength<double> newtonmeterperradianpermeter = RotationalStiffnessPerLength<double>.FromNewtonMetersPerRadianPerMeter(1);
             Assert.False(newtonmeterperradianpermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(RotationalStiffnessPerLengthUnit.Undefined, RotationalStiffnessPerLength.Units);
+            Assert.DoesNotContain(RotationalStiffnessPerLengthUnit.Undefined, RotationalStiffnessPerLength<double>.Units);
         }
 
         [Fact]
@@ -385,7 +385,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(RotationalStiffnessPerLength.BaseDimensions is null);
+            Assert.False(RotationalStiffnessPerLength<double>.BaseDimensions is null);
         }
 
         [Fact]

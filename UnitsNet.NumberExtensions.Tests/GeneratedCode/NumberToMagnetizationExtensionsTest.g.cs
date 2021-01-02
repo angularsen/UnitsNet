@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAmperesPerMeterTest() =>
-            Assert.Equal(Magnetization.FromAmperesPerMeter(2), 2.AmperesPerMeter());
+            Assert.Equal(Magnetization<double>.FromAmperesPerMeter(2), 2.AmperesPerMeter());
 
     }
 }

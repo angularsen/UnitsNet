@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
     /// </summary>
     public static class NumberToElectricSurfaceChargeDensityExtensions
     {
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static ElectricSurfaceChargeDensity CoulombsPerSquareCentimeter<T>(this T value) =>
-            ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity{T}.FromCoulombsPerSquareCentimeter(T)" />
+        public static ElectricSurfaceChargeDensity<double> CoulombsPerSquareCentimeter<T>(this T value) =>
+            ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(UnitsNet.QuantityValue)" />
-        public static ElectricSurfaceChargeDensity CoulombsPerSquareInch<T>(this T value) =>
-            ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity{T}.FromCoulombsPerSquareInch(T)" />
+        public static ElectricSurfaceChargeDensity<double> CoulombsPerSquareInch<T>(this T value) =>
+            ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricSurfaceChargeDensity CoulombsPerSquareMeter<T>(this T value) =>
-            ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity{T}.FromCoulombsPerSquareMeter(T)" />
+        public static ElectricSurfaceChargeDensity<double> CoulombsPerSquareMeter<T>(this T value) =>
+            ElectricSurfaceChargeDensity<double>.FromCoulombsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

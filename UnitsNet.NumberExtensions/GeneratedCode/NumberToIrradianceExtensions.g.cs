@@ -28,61 +28,61 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
     /// </summary>
     public static class NumberToIrradianceExtensions
     {
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromKilowattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromKilowattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> KilowattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromKilowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromKilowattsPerSquareMeter(T)" />
+        public static Irradiance<double> KilowattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MegawattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromMegawattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMegawattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> MegawattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromMegawattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MegawattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromMegawattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMegawattsPerSquareMeter(T)" />
+        public static Irradiance<double> MegawattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromMegawattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MicrowattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromMicrowattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMicrowattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> MicrowattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromMicrowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MicrowattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMicrowattsPerSquareMeter(T)" />
+        public static Irradiance<double> MicrowattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MilliwattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromMilliwattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMilliwattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> MilliwattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromMilliwattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance MilliwattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromMilliwattsPerSquareMeter(T)" />
+        public static Irradiance<double> MilliwattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance NanowattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromNanowattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromNanowattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> NanowattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromNanowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance NanowattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromNanowattsPerSquareMeter(T)" />
+        public static Irradiance<double> NanowattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance PicowattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromPicowattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromPicowattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> PicowattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromPicowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance PicowattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromPicowattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromPicowattsPerSquareMeter(T)" />
+        public static Irradiance<double> PicowattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromPicowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareCentimeter<T>(this T value) =>
-            Irradiance.FromWattsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromWattsPerSquareCentimeter(T)" />
+        public static Irradiance<double> WattsPerSquareCentimeter<T>(this T value) =>
+            Irradiance<double>.FromWattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter<T>(this T value) =>
-            Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance{T}.FromWattsPerSquareMeter(T)" />
+        public static Irradiance<double> WattsPerSquareMeter<T>(this T value) =>
+            Irradiance<double>.FromWattsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

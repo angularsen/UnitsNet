@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
-    public partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
+    public partial struct Frequency<T> : IQuantityT<FrequencyUnit, T>, IEquatable<Frequency<T>>, IComparable, IComparable<Frequency<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -72,12 +68,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Frequency(double value, FrequencyUnit unit)
+        public Frequency(T value, FrequencyUnit unit)
         {
             if(unit == FrequencyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -89,14 +85,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Frequency(double value, UnitSystem unitSystem)
+        public Frequency(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -111,19 +107,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
+        ///     The base unit of <see cref="Frequency{T}" />, which is Hertz. All conversions go via this value.
         /// </summary>
         public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
-        /// Represents the largest possible value of Frequency
+        /// Represents the largest possible value of <see cref="Frequency{T}" />
         /// </summary>
-        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
+        public static Frequency<T> MaxValue { get; } = new Frequency<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Frequency
+        /// Represents the smallest possible value of <see cref="Frequency{T}" />
         /// </summary>
-        public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
+        public static Frequency<T> MinValue { get; } = new Frequency<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -132,14 +128,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Frequency;
 
         /// <summary>
-        ///     All units of measurement for the Frequency quantity.
+        ///     All units of measurement for the <see cref="Frequency{T}" /> quantity.
         /// </summary>
         public static FrequencyUnit[] Units { get; } = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency Zero { get; } = new Frequency(0, BaseUnit);
+        public static Frequency<T> Zero { get; } = new Frequency<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -148,7 +144,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -164,66 +162,66 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Frequency.QuantityType;
+        public QuantityType Type => Frequency<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Frequency.BaseDimensions;
+        public BaseDimensions Dimensions => Frequency<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Frequency in BeatsPerMinute.
+        ///     Get <see cref="Frequency{T}" /> in BeatsPerMinute.
         /// </summary>
-        public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
+        public T BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
-        ///     Get Frequency in CyclesPerHour.
+        ///     Get <see cref="Frequency{T}" /> in CyclesPerHour.
         /// </summary>
-        public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
+        public T CyclesPerHour => As(FrequencyUnit.CyclePerHour);
 
         /// <summary>
-        ///     Get Frequency in CyclesPerMinute.
+        ///     Get <see cref="Frequency{T}" /> in CyclesPerMinute.
         /// </summary>
-        public double CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
+        public T CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
 
         /// <summary>
-        ///     Get Frequency in Gigahertz.
+        ///     Get <see cref="Frequency{T}" /> in Gigahertz.
         /// </summary>
-        public double Gigahertz => As(FrequencyUnit.Gigahertz);
+        public T Gigahertz => As(FrequencyUnit.Gigahertz);
 
         /// <summary>
-        ///     Get Frequency in Hertz.
+        ///     Get <see cref="Frequency{T}" /> in Hertz.
         /// </summary>
-        public double Hertz => As(FrequencyUnit.Hertz);
+        public T Hertz => As(FrequencyUnit.Hertz);
 
         /// <summary>
-        ///     Get Frequency in Kilohertz.
+        ///     Get <see cref="Frequency{T}" /> in Kilohertz.
         /// </summary>
-        public double Kilohertz => As(FrequencyUnit.Kilohertz);
+        public T Kilohertz => As(FrequencyUnit.Kilohertz);
 
         /// <summary>
-        ///     Get Frequency in Megahertz.
+        ///     Get <see cref="Frequency{T}" /> in Megahertz.
         /// </summary>
-        public double Megahertz => As(FrequencyUnit.Megahertz);
+        public T Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
-        ///     Get Frequency in PerSecond.
+        ///     Get <see cref="Frequency{T}" /> in PerSecond.
         /// </summary>
-        public double PerSecond => As(FrequencyUnit.PerSecond);
+        public T PerSecond => As(FrequencyUnit.PerSecond);
 
         /// <summary>
-        ///     Get Frequency in RadiansPerSecond.
+        ///     Get <see cref="Frequency{T}" /> in RadiansPerSecond.
         /// </summary>
-        public double RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
+        public T RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
 
         /// <summary>
-        ///     Get Frequency in Terahertz.
+        ///     Get <see cref="Frequency{T}" /> in Terahertz.
         /// </summary>
-        public double Terahertz => As(FrequencyUnit.Terahertz);
+        public T Terahertz => As(FrequencyUnit.Terahertz);
 
         #endregion
 
@@ -255,105 +253,95 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Frequency from BeatsPerMinute.
+        ///     Get <see cref="Frequency{T}" /> from BeatsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromBeatsPerMinute(QuantityValue beatsperminute)
+        public static Frequency<T> FromBeatsPerMinute(T beatsperminute)
         {
-            double value = (double) beatsperminute;
-            return new Frequency(value, FrequencyUnit.BeatPerMinute);
+            return new Frequency<T>(beatsperminute, FrequencyUnit.BeatPerMinute);
         }
         /// <summary>
-        ///     Get Frequency from CyclesPerHour.
+        ///     Get <see cref="Frequency{T}" /> from CyclesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromCyclesPerHour(QuantityValue cyclesperhour)
+        public static Frequency<T> FromCyclesPerHour(T cyclesperhour)
         {
-            double value = (double) cyclesperhour;
-            return new Frequency(value, FrequencyUnit.CyclePerHour);
+            return new Frequency<T>(cyclesperhour, FrequencyUnit.CyclePerHour);
         }
         /// <summary>
-        ///     Get Frequency from CyclesPerMinute.
+        ///     Get <see cref="Frequency{T}" /> from CyclesPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromCyclesPerMinute(QuantityValue cyclesperminute)
+        public static Frequency<T> FromCyclesPerMinute(T cyclesperminute)
         {
-            double value = (double) cyclesperminute;
-            return new Frequency(value, FrequencyUnit.CyclePerMinute);
+            return new Frequency<T>(cyclesperminute, FrequencyUnit.CyclePerMinute);
         }
         /// <summary>
-        ///     Get Frequency from Gigahertz.
+        ///     Get <see cref="Frequency{T}" /> from Gigahertz.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromGigahertz(QuantityValue gigahertz)
+        public static Frequency<T> FromGigahertz(T gigahertz)
         {
-            double value = (double) gigahertz;
-            return new Frequency(value, FrequencyUnit.Gigahertz);
+            return new Frequency<T>(gigahertz, FrequencyUnit.Gigahertz);
         }
         /// <summary>
-        ///     Get Frequency from Hertz.
+        ///     Get <see cref="Frequency{T}" /> from Hertz.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromHertz(QuantityValue hertz)
+        public static Frequency<T> FromHertz(T hertz)
         {
-            double value = (double) hertz;
-            return new Frequency(value, FrequencyUnit.Hertz);
+            return new Frequency<T>(hertz, FrequencyUnit.Hertz);
         }
         /// <summary>
-        ///     Get Frequency from Kilohertz.
+        ///     Get <see cref="Frequency{T}" /> from Kilohertz.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromKilohertz(QuantityValue kilohertz)
+        public static Frequency<T> FromKilohertz(T kilohertz)
         {
-            double value = (double) kilohertz;
-            return new Frequency(value, FrequencyUnit.Kilohertz);
+            return new Frequency<T>(kilohertz, FrequencyUnit.Kilohertz);
         }
         /// <summary>
-        ///     Get Frequency from Megahertz.
+        ///     Get <see cref="Frequency{T}" /> from Megahertz.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromMegahertz(QuantityValue megahertz)
+        public static Frequency<T> FromMegahertz(T megahertz)
         {
-            double value = (double) megahertz;
-            return new Frequency(value, FrequencyUnit.Megahertz);
+            return new Frequency<T>(megahertz, FrequencyUnit.Megahertz);
         }
         /// <summary>
-        ///     Get Frequency from PerSecond.
+        ///     Get <see cref="Frequency{T}" /> from PerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromPerSecond(QuantityValue persecond)
+        public static Frequency<T> FromPerSecond(T persecond)
         {
-            double value = (double) persecond;
-            return new Frequency(value, FrequencyUnit.PerSecond);
+            return new Frequency<T>(persecond, FrequencyUnit.PerSecond);
         }
         /// <summary>
-        ///     Get Frequency from RadiansPerSecond.
+        ///     Get <see cref="Frequency{T}" /> from RadiansPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromRadiansPerSecond(QuantityValue radianspersecond)
+        public static Frequency<T> FromRadiansPerSecond(T radianspersecond)
         {
-            double value = (double) radianspersecond;
-            return new Frequency(value, FrequencyUnit.RadianPerSecond);
+            return new Frequency<T>(radianspersecond, FrequencyUnit.RadianPerSecond);
         }
         /// <summary>
-        ///     Get Frequency from Terahertz.
+        ///     Get <see cref="Frequency{T}" /> from Terahertz.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromTerahertz(QuantityValue terahertz)
+        public static Frequency<T> FromTerahertz(T terahertz)
         {
-            double value = (double) terahertz;
-            return new Frequency(value, FrequencyUnit.Terahertz);
+            return new Frequency<T>(terahertz, FrequencyUnit.Terahertz);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency" />.
+        ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Frequency unit value.</returns>
-        public static Frequency From(QuantityValue value, FrequencyUnit fromUnit)
+        /// <returns><see cref="Frequency{T}" /> unit value.</returns>
+        public static Frequency<T> From(T value, FrequencyUnit fromUnit)
         {
-            return new Frequency((double)value, fromUnit);
+            return new Frequency<T>(value, fromUnit);
         }
 
         #endregion
@@ -382,7 +370,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Frequency Parse(string str)
+        public static Frequency<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -410,9 +398,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Frequency Parse(string str, IFormatProvider? provider)
+        public static Frequency<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Frequency, FrequencyUnit>(
+            return QuantityParser.Default.Parse<T, Frequency<T>, FrequencyUnit>(
                 str,
                 provider,
                 From);
@@ -426,7 +414,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Frequency result)
+        public static bool TryParse(string? str, out Frequency<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -441,9 +429,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Frequency result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Frequency<T> result)
         {
-            return QuantityParser.Default.TryParse<Frequency, FrequencyUnit>(
+            return QuantityParser.Default.TryParse<T, Frequency<T>, FrequencyUnit>(
                 str,
                 provider,
                 From,
@@ -505,45 +493,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Frequency operator -(Frequency right)
+        public static Frequency<T> operator -(Frequency<T> right)
         {
-            return new Frequency(-right.Value, right.Unit);
+            return new Frequency<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="Frequency"/> from adding two <see cref="Frequency"/>.</summary>
-        public static Frequency operator +(Frequency left, Frequency right)
+        /// <summary>Get <see cref="Frequency{T}"/> from adding two <see cref="Frequency{T}"/>.</summary>
+        public static Frequency<T> operator +(Frequency<T> left, Frequency<T> right)
         {
-            return new Frequency(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Frequency<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Frequency"/> from subtracting two <see cref="Frequency"/>.</summary>
-        public static Frequency operator -(Frequency left, Frequency right)
+        /// <summary>Get <see cref="Frequency{T}"/> from subtracting two <see cref="Frequency{T}"/>.</summary>
+        public static Frequency<T> operator -(Frequency<T> left, Frequency<T> right)
         {
-            return new Frequency(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Frequency<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
-        public static Frequency operator *(double left, Frequency right)
+        /// <summary>Get <see cref="Frequency{T}"/> from multiplying value and <see cref="Frequency{T}"/>.</summary>
+        public static Frequency<T> operator *(T left, Frequency<T> right)
         {
-            return new Frequency(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Frequency<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
-        public static Frequency operator *(Frequency left, double right)
+        /// <summary>Get <see cref="Frequency{T}"/> from multiplying value and <see cref="Frequency{T}"/>.</summary>
+        public static Frequency<T> operator *(Frequency<T> left, T right)
         {
-            return new Frequency(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Frequency<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Frequency"/> from dividing <see cref="Frequency"/> by value.</summary>
-        public static Frequency operator /(Frequency left, double right)
+        /// <summary>Get <see cref="Frequency{T}"/> from dividing <see cref="Frequency{T}"/> by value.</summary>
+        public static Frequency<T> operator /(Frequency<T> left, T right)
         {
-            return new Frequency(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Frequency<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Frequency"/> by <see cref="Frequency"/>.</summary>
-        public static double operator /(Frequency left, Frequency right)
+        /// <summary>Get ratio value from dividing <see cref="Frequency{T}"/> by <see cref="Frequency{T}"/>.</summary>
+        public static T operator /(Frequency<T> left, Frequency<T> right)
         {
-            return left.Hertz / right.Hertz;
+            return CompiledLambdas.Divide(left.Hertz, right.Hertz);
         }
 
         #endregion
@@ -551,39 +544,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Frequency left, Frequency right)
+        public static bool operator <=(Frequency<T> left, Frequency<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Frequency left, Frequency right)
+        public static bool operator >=(Frequency<T> left, Frequency<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Frequency left, Frequency right)
+        public static bool operator <(Frequency<T> left, Frequency<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Frequency left, Frequency right)
+        public static bool operator >(Frequency<T> left, Frequency<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Frequency left, Frequency right)
+        /// <remarks>Consider using <see cref="Equals(Frequency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Frequency<T> left, Frequency<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Frequency left, Frequency right)
+        /// <remarks>Consider using <see cref="Equals(Frequency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Frequency<T> left, Frequency<T> right)
         {
             return !(left == right);
         }
@@ -592,37 +585,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Frequency objFrequency)) throw new ArgumentException("Expected type Frequency.", nameof(obj));
+            if(!(obj is Frequency<T> objFrequency)) throw new ArgumentException("Expected type Frequency.", nameof(obj));
 
             return CompareTo(objFrequency);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Frequency other)
+        public int CompareTo(Frequency<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Frequency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Frequency objFrequency))
+            if(obj is null || !(obj is Frequency<T> objFrequency))
                 return false;
 
             return Equals(objFrequency);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Frequency other)
+        /// <remarks>Consider using <see cref="Equals(Frequency{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Frequency<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Frequency within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Frequency{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -660,21 +653,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Frequency other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Frequency<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Frequency.</returns>
+        /// <returns>A hash code for the current <see cref="Frequency{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -688,17 +679,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(FrequencyUnit unit)
+        public T As(FrequencyUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -718,17 +709,22 @@ namespace UnitsNet
             if(!(unit is FrequencyUnit unitAsFrequencyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
 
-            return As(unitAsFrequencyUnit);
+            var asValue = As(unitAsFrequencyUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<FrequencyUnit>.As(FrequencyUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Frequency{T}" /> to another <see cref="Frequency{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Frequency with the specified unit.</returns>
-        public Frequency ToUnit(FrequencyUnit unit)
+        /// <returns>A <see cref="Frequency{T}" /> with the specified unit.</returns>
+        public Frequency<T> ToUnit(FrequencyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Frequency(convertedValue, unit);
+            return new Frequency<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -741,7 +737,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Frequency ToUnit(UnitSystem unitSystem)
+        public Frequency<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -762,27 +758,33 @@ namespace UnitsNet
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<FrequencyUnit, T> IQuantityT<FrequencyUnit, T>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<FrequencyUnit, T> IQuantityT<FrequencyUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case FrequencyUnit.BeatPerMinute: return _value/60;
-                case FrequencyUnit.CyclePerHour: return _value/3600;
-                case FrequencyUnit.CyclePerMinute: return _value/60;
-                case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
-                case FrequencyUnit.Hertz: return _value;
-                case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
-                case FrequencyUnit.Megahertz: return (_value) * 1e6d;
-                case FrequencyUnit.PerSecond: return _value;
-                case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
-                case FrequencyUnit.Terahertz: return (_value) * 1e12d;
+                case FrequencyUnit.BeatPerMinute: return Value/60;
+                case FrequencyUnit.CyclePerHour: return Value/3600;
+                case FrequencyUnit.CyclePerMinute: return Value/60;
+                case FrequencyUnit.Gigahertz: return (Value) * 1e9d;
+                case FrequencyUnit.Hertz: return Value;
+                case FrequencyUnit.Kilohertz: return (Value) * 1e3d;
+                case FrequencyUnit.Megahertz: return (Value) * 1e6d;
+                case FrequencyUnit.PerSecond: return Value;
+                case FrequencyUnit.RadianPerSecond: return Value/6.2831853072;
+                case FrequencyUnit.Terahertz: return (Value) * 1e12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -793,16 +795,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Frequency ToBaseUnit()
+        internal Frequency<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Frequency(baseUnitValue, BaseUnit);
+            return new Frequency<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(FrequencyUnit unit)
+        private T GetValueAs(FrequencyUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -914,57 +916,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Frequency)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Frequency<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Frequency)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Frequency<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Frequency)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Frequency<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -974,33 +976,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Frequency))
+            if(conversionType == typeof(Frequency<T>))
                 return this;
             else if(conversionType == typeof(FrequencyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Frequency.QuantityType;
+                return Frequency<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return Frequency.Info;
+                return Frequency<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return Frequency.BaseDimensions;
+                return Frequency<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Frequency)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Frequency<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

@@ -53,8 +53,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_GivenAbbreviationsThatAreAmbiguousWhenLowerCase_ReturnsCorrectUnit()
         {
-            Assert.Equal(PressureUnit.Megabar, Pressure.ParseUnit("Mbar"));
-            Assert.Equal(PressureUnit.Millibar, Pressure.ParseUnit("mbar"));
+            Assert.Equal(PressureUnit.Megabar, Pressure<double>.ParseUnit("Mbar"));
+            Assert.Equal(PressureUnit.Millibar, Pressure<double>.ParseUnit("mbar"));
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace UnitsNet.Tests
             var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt"));
 
             // Act 2
-            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));
+            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length<double>.Parse("1 pt"));
 
             // Assert
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);

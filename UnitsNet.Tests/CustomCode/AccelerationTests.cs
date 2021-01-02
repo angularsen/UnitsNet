@@ -40,8 +40,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AccelerationTimesDensityEqualsSpecificWeight()
         {
-            SpecificWeight specificWeight = Acceleration.FromMetersPerSecondSquared(10) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+            var specificWeight = Acceleration<double>.FromMetersPerSecondSquared(10) * Density<double>.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMeter(20), specificWeight);
         }
     }
 }

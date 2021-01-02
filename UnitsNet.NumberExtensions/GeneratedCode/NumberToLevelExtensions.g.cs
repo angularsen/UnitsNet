@@ -28,13 +28,13 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
     /// </summary>
     public static class NumberToLevelExtensions
     {
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels<T>(this T value) =>
-            Level.FromDecibels(Convert.ToDouble(value));
+        /// <inheritdoc cref="Level{T}.FromDecibels(T)" />
+        public static Level<double> Decibels<T>(this T value) =>
+            Level<double>.FromDecibels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers<T>(this T value) =>
-            Level.FromNepers(Convert.ToDouble(value));
+        /// <inheritdoc cref="Level{T}.FromNepers(T)" />
+        public static Level<double> Nepers<T>(this T value) =>
+            Level<double>.FromNepers(Convert.ToDouble(value));
 
     }
 }

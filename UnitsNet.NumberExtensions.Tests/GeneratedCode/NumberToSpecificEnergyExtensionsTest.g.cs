@@ -26,103 +26,103 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToBtuPerPoundTest() =>
-            Assert.Equal(SpecificEnergy.FromBtuPerPound(2), 2.BtuPerPound());
+            Assert.Equal(SpecificEnergy<double>.FromBtuPerPound(2), 2.BtuPerPound());
 
         [Fact]
         public void NumberToCaloriesPerGramTest() =>
-            Assert.Equal(SpecificEnergy.FromCaloriesPerGram(2), 2.CaloriesPerGram());
+            Assert.Equal(SpecificEnergy<double>.FromCaloriesPerGram(2), 2.CaloriesPerGram());
 
         [Fact]
         public void NumberToGigawattDaysPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromGigawattDaysPerKilogram(2), 2.GigawattDaysPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromGigawattDaysPerKilogram(2), 2.GigawattDaysPerKilogram());
 
         [Fact]
         public void NumberToGigawattDaysPerShortTonTest() =>
-            Assert.Equal(SpecificEnergy.FromGigawattDaysPerShortTon(2), 2.GigawattDaysPerShortTon());
+            Assert.Equal(SpecificEnergy<double>.FromGigawattDaysPerShortTon(2), 2.GigawattDaysPerShortTon());
 
         [Fact]
         public void NumberToGigawattDaysPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromGigawattDaysPerTonne(2), 2.GigawattDaysPerTonne());
+            Assert.Equal(SpecificEnergy<double>.FromGigawattDaysPerTonne(2), 2.GigawattDaysPerTonne());
 
         [Fact]
         public void NumberToGigawattHoursPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromGigawattHoursPerKilogram(2), 2.GigawattHoursPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromGigawattHoursPerKilogram(2), 2.GigawattHoursPerKilogram());
 
         [Fact]
         public void NumberToJoulesPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(2), 2.JoulesPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromJoulesPerKilogram(2), 2.JoulesPerKilogram());
 
         [Fact]
         public void NumberToKilocaloriesPerGramTest() =>
-            Assert.Equal(SpecificEnergy.FromKilocaloriesPerGram(2), 2.KilocaloriesPerGram());
+            Assert.Equal(SpecificEnergy<double>.FromKilocaloriesPerGram(2), 2.KilocaloriesPerGram());
 
         [Fact]
         public void NumberToKilojoulesPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromKilojoulesPerKilogram(2), 2.KilojoulesPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromKilojoulesPerKilogram(2), 2.KilojoulesPerKilogram());
 
         [Fact]
         public void NumberToKilowattDaysPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromKilowattDaysPerKilogram(2), 2.KilowattDaysPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromKilowattDaysPerKilogram(2), 2.KilowattDaysPerKilogram());
 
         [Fact]
         public void NumberToKilowattDaysPerShortTonTest() =>
-            Assert.Equal(SpecificEnergy.FromKilowattDaysPerShortTon(2), 2.KilowattDaysPerShortTon());
+            Assert.Equal(SpecificEnergy<double>.FromKilowattDaysPerShortTon(2), 2.KilowattDaysPerShortTon());
 
         [Fact]
         public void NumberToKilowattDaysPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromKilowattDaysPerTonne(2), 2.KilowattDaysPerTonne());
+            Assert.Equal(SpecificEnergy<double>.FromKilowattDaysPerTonne(2), 2.KilowattDaysPerTonne());
 
         [Fact]
         public void NumberToKilowattHoursPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromKilowattHoursPerKilogram(2), 2.KilowattHoursPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromKilowattHoursPerKilogram(2), 2.KilowattHoursPerKilogram());
 
         [Fact]
         public void NumberToMegajoulesPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromMegajoulesPerKilogram(2), 2.MegajoulesPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromMegajoulesPerKilogram(2), 2.MegajoulesPerKilogram());
 
         [Fact]
         public void NumberToMegawattDaysPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromMegawattDaysPerKilogram(2), 2.MegawattDaysPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromMegawattDaysPerKilogram(2), 2.MegawattDaysPerKilogram());
 
         [Fact]
         public void NumberToMegawattDaysPerShortTonTest() =>
-            Assert.Equal(SpecificEnergy.FromMegawattDaysPerShortTon(2), 2.MegawattDaysPerShortTon());
+            Assert.Equal(SpecificEnergy<double>.FromMegawattDaysPerShortTon(2), 2.MegawattDaysPerShortTon());
 
         [Fact]
         public void NumberToMegawattDaysPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromMegawattDaysPerTonne(2), 2.MegawattDaysPerTonne());
+            Assert.Equal(SpecificEnergy<double>.FromMegawattDaysPerTonne(2), 2.MegawattDaysPerTonne());
 
         [Fact]
         public void NumberToMegawattHoursPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromMegawattHoursPerKilogram(2), 2.MegawattHoursPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromMegawattHoursPerKilogram(2), 2.MegawattHoursPerKilogram());
 
         [Fact]
         public void NumberToTerawattDaysPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromTerawattDaysPerKilogram(2), 2.TerawattDaysPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromTerawattDaysPerKilogram(2), 2.TerawattDaysPerKilogram());
 
         [Fact]
         public void NumberToTerawattDaysPerShortTonTest() =>
-            Assert.Equal(SpecificEnergy.FromTerawattDaysPerShortTon(2), 2.TerawattDaysPerShortTon());
+            Assert.Equal(SpecificEnergy<double>.FromTerawattDaysPerShortTon(2), 2.TerawattDaysPerShortTon());
 
         [Fact]
         public void NumberToTerawattDaysPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromTerawattDaysPerTonne(2), 2.TerawattDaysPerTonne());
+            Assert.Equal(SpecificEnergy<double>.FromTerawattDaysPerTonne(2), 2.TerawattDaysPerTonne());
 
         [Fact]
         public void NumberToWattDaysPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromWattDaysPerKilogram(2), 2.WattDaysPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromWattDaysPerKilogram(2), 2.WattDaysPerKilogram());
 
         [Fact]
         public void NumberToWattDaysPerShortTonTest() =>
-            Assert.Equal(SpecificEnergy.FromWattDaysPerShortTon(2), 2.WattDaysPerShortTon());
+            Assert.Equal(SpecificEnergy<double>.FromWattDaysPerShortTon(2), 2.WattDaysPerShortTon());
 
         [Fact]
         public void NumberToWattDaysPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromWattDaysPerTonne(2), 2.WattDaysPerTonne());
+            Assert.Equal(SpecificEnergy<double>.FromWattDaysPerTonne(2), 2.WattDaysPerTonne());
 
         [Fact]
         public void NumberToWattHoursPerKilogramTest() =>
-            Assert.Equal(SpecificEnergy.FromWattHoursPerKilogram(2), 2.WattHoursPerKilogram());
+            Assert.Equal(SpecificEnergy<double>.FromWattHoursPerKilogram(2), 2.WattHoursPerKilogram());
 
     }
 }

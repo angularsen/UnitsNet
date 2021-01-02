@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
     /// </summary>
     public static class NumberToAmplitudeRatioExtensions
     {
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelMicrovolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmplitudeRatio{T}.FromDecibelMicrovolts(T)" />
+        public static AmplitudeRatio<double> DecibelMicrovolts<T>(this T value) =>
+            AmplitudeRatio<double>.FromDecibelMicrovolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelMillivolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmplitudeRatio{T}.FromDecibelMillivolts(T)" />
+        public static AmplitudeRatio<double> DecibelMillivolts<T>(this T value) =>
+            AmplitudeRatio<double>.FromDecibelMillivolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelsUnloaded<T>(this T value) =>
-            AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmplitudeRatio{T}.FromDecibelsUnloaded(T)" />
+        public static AmplitudeRatio<double> DecibelsUnloaded<T>(this T value) =>
+            AmplitudeRatio<double>.FromDecibelsUnloaded(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelVolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmplitudeRatio{T}.FromDecibelVolts(T)" />
+        public static AmplitudeRatio<double> DecibelVolts<T>(this T value) =>
+            AmplitudeRatio<double>.FromDecibelVolts(Convert.ToDouble(value));
 
     }
 }

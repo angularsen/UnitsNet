@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToPercentTest() =>
-            Assert.Equal(RelativeHumidity.FromPercent(2), 2.Percent());
+            Assert.Equal(RelativeHumidity<double>.FromPercent(2), 2.Percent());
 
     }
 }

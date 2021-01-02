@@ -28,29 +28,29 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
     /// </summary>
     public static class NumberToElectricResistanceExtensions
     {
-        /// <inheritdoc cref="ElectricResistance.FromGigaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Gigaohms<T>(this T value) =>
-            ElectricResistance.FromGigaohms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromGigaohms(T)" />
+        public static ElectricResistance<double> Gigaohms<T>(this T value) =>
+            ElectricResistance<double>.FromGigaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms<T>(this T value) =>
-            ElectricResistance.FromKiloohms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromKiloohms(T)" />
+        public static ElectricResistance<double> Kiloohms<T>(this T value) =>
+            ElectricResistance<double>.FromKiloohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms<T>(this T value) =>
-            ElectricResistance.FromMegaohms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromMegaohms(T)" />
+        public static ElectricResistance<double> Megaohms<T>(this T value) =>
+            ElectricResistance<double>.FromMegaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMicroohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Microohms<T>(this T value) =>
-            ElectricResistance.FromMicroohms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromMicroohms(T)" />
+        public static ElectricResistance<double> Microohms<T>(this T value) =>
+            ElectricResistance<double>.FromMicroohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms<T>(this T value) =>
-            ElectricResistance.FromMilliohms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromMilliohms(T)" />
+        public static ElectricResistance<double> Milliohms<T>(this T value) =>
+            ElectricResistance<double>.FromMilliohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms<T>(this T value) =>
-            ElectricResistance.FromOhms(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricResistance{T}.FromOhms(T)" />
+        public static ElectricResistance<double> Ohms<T>(this T value) =>
+            ElectricResistance<double>.FromOhms(Convert.ToDouble(value));
 
     }
 }

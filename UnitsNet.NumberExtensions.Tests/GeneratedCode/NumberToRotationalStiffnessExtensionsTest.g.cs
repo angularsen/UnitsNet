@@ -26,135 +26,135 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentinewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromCentinewtonMetersPerDegree(2), 2.CentinewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromCentinewtonMetersPerDegree(2), 2.CentinewtonMetersPerDegree());
 
         [Fact]
         public void NumberToCentinewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromCentinewtonMillimetersPerDegree(2), 2.CentinewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromCentinewtonMillimetersPerDegree(2), 2.CentinewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToCentinewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromCentinewtonMillimetersPerRadian(2), 2.CentinewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromCentinewtonMillimetersPerRadian(2), 2.CentinewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToDecanewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromDecanewtonMetersPerDegree(2), 2.DecanewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromDecanewtonMetersPerDegree(2), 2.DecanewtonMetersPerDegree());
 
         [Fact]
         public void NumberToDecanewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromDecanewtonMillimetersPerDegree(2), 2.DecanewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromDecanewtonMillimetersPerDegree(2), 2.DecanewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToDecanewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromDecanewtonMillimetersPerRadian(2), 2.DecanewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromDecanewtonMillimetersPerRadian(2), 2.DecanewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToDecinewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromDecinewtonMetersPerDegree(2), 2.DecinewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromDecinewtonMetersPerDegree(2), 2.DecinewtonMetersPerDegree());
 
         [Fact]
         public void NumberToDecinewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromDecinewtonMillimetersPerDegree(2), 2.DecinewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromDecinewtonMillimetersPerDegree(2), 2.DecinewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToDecinewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromDecinewtonMillimetersPerRadian(2), 2.DecinewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromDecinewtonMillimetersPerRadian(2), 2.DecinewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToKilonewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromKilonewtonMetersPerDegree(2), 2.KilonewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromKilonewtonMetersPerDegree(2), 2.KilonewtonMetersPerDegree());
 
         [Fact]
         public void NumberToKilonewtonMetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromKilonewtonMetersPerRadian(2), 2.KilonewtonMetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromKilonewtonMetersPerRadian(2), 2.KilonewtonMetersPerRadian());
 
         [Fact]
         public void NumberToKilonewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromKilonewtonMillimetersPerDegree(2), 2.KilonewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromKilonewtonMillimetersPerDegree(2), 2.KilonewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToKilonewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromKilonewtonMillimetersPerRadian(2), 2.KilonewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromKilonewtonMillimetersPerRadian(2), 2.KilonewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToKilopoundForceFeetPerDegreesTest() =>
-            Assert.Equal(RotationalStiffness.FromKilopoundForceFeetPerDegrees(2), 2.KilopoundForceFeetPerDegrees());
+            Assert.Equal(RotationalStiffness<double>.FromKilopoundForceFeetPerDegrees(2), 2.KilopoundForceFeetPerDegrees());
 
         [Fact]
         public void NumberToMeganewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMeganewtonMetersPerDegree(2), 2.MeganewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMeganewtonMetersPerDegree(2), 2.MeganewtonMetersPerDegree());
 
         [Fact]
         public void NumberToMeganewtonMetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromMeganewtonMetersPerRadian(2), 2.MeganewtonMetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromMeganewtonMetersPerRadian(2), 2.MeganewtonMetersPerRadian());
 
         [Fact]
         public void NumberToMeganewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMeganewtonMillimetersPerDegree(2), 2.MeganewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMeganewtonMillimetersPerDegree(2), 2.MeganewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToMeganewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromMeganewtonMillimetersPerRadian(2), 2.MeganewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromMeganewtonMillimetersPerRadian(2), 2.MeganewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToMicronewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMicronewtonMetersPerDegree(2), 2.MicronewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMicronewtonMetersPerDegree(2), 2.MicronewtonMetersPerDegree());
 
         [Fact]
         public void NumberToMicronewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMicronewtonMillimetersPerDegree(2), 2.MicronewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMicronewtonMillimetersPerDegree(2), 2.MicronewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToMicronewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromMicronewtonMillimetersPerRadian(2), 2.MicronewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromMicronewtonMillimetersPerRadian(2), 2.MicronewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToMillinewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMillinewtonMetersPerDegree(2), 2.MillinewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMillinewtonMetersPerDegree(2), 2.MillinewtonMetersPerDegree());
 
         [Fact]
         public void NumberToMillinewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromMillinewtonMillimetersPerDegree(2), 2.MillinewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromMillinewtonMillimetersPerDegree(2), 2.MillinewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToMillinewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromMillinewtonMillimetersPerRadian(2), 2.MillinewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromMillinewtonMillimetersPerRadian(2), 2.MillinewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToNanonewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromNanonewtonMetersPerDegree(2), 2.NanonewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromNanonewtonMetersPerDegree(2), 2.NanonewtonMetersPerDegree());
 
         [Fact]
         public void NumberToNanonewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromNanonewtonMillimetersPerDegree(2), 2.NanonewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromNanonewtonMillimetersPerDegree(2), 2.NanonewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToNanonewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromNanonewtonMillimetersPerRadian(2), 2.NanonewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromNanonewtonMillimetersPerRadian(2), 2.NanonewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToNewtonMetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromNewtonMetersPerDegree(2), 2.NewtonMetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromNewtonMetersPerDegree(2), 2.NewtonMetersPerDegree());
 
         [Fact]
         public void NumberToNewtonMetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromNewtonMetersPerRadian(2), 2.NewtonMetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromNewtonMetersPerRadian(2), 2.NewtonMetersPerRadian());
 
         [Fact]
         public void NumberToNewtonMillimetersPerDegreeTest() =>
-            Assert.Equal(RotationalStiffness.FromNewtonMillimetersPerDegree(2), 2.NewtonMillimetersPerDegree());
+            Assert.Equal(RotationalStiffness<double>.FromNewtonMillimetersPerDegree(2), 2.NewtonMillimetersPerDegree());
 
         [Fact]
         public void NumberToNewtonMillimetersPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromNewtonMillimetersPerRadian(2), 2.NewtonMillimetersPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromNewtonMillimetersPerRadian(2), 2.NewtonMillimetersPerRadian());
 
         [Fact]
         public void NumberToPoundForceFeetPerRadianTest() =>
-            Assert.Equal(RotationalStiffness.FromPoundForceFeetPerRadian(2), 2.PoundForceFeetPerRadian());
+            Assert.Equal(RotationalStiffness<double>.FromPoundForceFeetPerRadian(2), 2.PoundForceFeetPerRadian());
 
         [Fact]
         public void NumberToPoundForceFeetPerDegreesTest() =>
-            Assert.Equal(RotationalStiffness.FromPoundForceFeetPerDegrees(2), 2.PoundForceFeetPerDegrees());
+            Assert.Equal(RotationalStiffness<double>.FromPoundForceFeetPerDegrees(2), 2.PoundForceFeetPerDegrees());
 
     }
 }

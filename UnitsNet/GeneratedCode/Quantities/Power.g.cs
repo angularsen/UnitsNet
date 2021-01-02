@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
-    public partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+    public partial struct Power<T> : IQuantityT<PowerUnit, T>, IDecimalQuantity, IEquatable<Power<T>>, IComparable, IComparable<Power<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly decimal _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -87,12 +83,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Power(decimal value, PowerUnit unit)
+        public Power(T value, PowerUnit unit)
         {
             if(unit == PowerUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = value;
+            Value = value;
             _unit = unit;
         }
 
@@ -104,14 +100,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Power(decimal value, UnitSystem unitSystem)
+        public Power(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -126,19 +122,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Power, which is Watt. All conversions go via this value.
+        ///     The base unit of <see cref="Power{T}" />, which is Watt. All conversions go via this value.
         /// </summary>
         public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of Power
+        /// Represents the largest possible value of <see cref="Power{T}" />
         /// </summary>
-        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
+        public static Power<T> MaxValue { get; } = new Power<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Power
+        /// Represents the smallest possible value of <see cref="Power{T}" />
         /// </summary>
-        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
+        public static Power<T> MinValue { get; } = new Power<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -147,14 +143,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Power;
 
         /// <summary>
-        ///     All units of measurement for the Power quantity.
+        ///     All units of measurement for the <see cref="Power{T}" /> quantity.
         /// </summary>
         public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; } = new Power(0, BaseUnit);
+        public static Power<T> Zero { get; } = new Power<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -163,9 +159,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public decimal Value => _value;
+        public T Value{ get; }
 
-        double IQuantity.Value => (double) _value;
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         /// <inheritdoc cref="IDecimalQuantity.Value"/>
         decimal IDecimalQuantity.Value => _value;
@@ -184,141 +180,141 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Power.QuantityType;
+        public QuantityType Type => Power<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Power.BaseDimensions;
+        public BaseDimensions Dimensions => Power<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Power in BoilerHorsepower.
+        ///     Get <see cref="Power{T}" /> in BoilerHorsepower.
         /// </summary>
-        public double BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
+        public T BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
 
         /// <summary>
-        ///     Get Power in BritishThermalUnitsPerHour.
+        ///     Get <see cref="Power{T}" /> in BritishThermalUnitsPerHour.
         /// </summary>
-        public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
+        public T BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Get Power in Decawatts.
+        ///     Get <see cref="Power{T}" /> in Decawatts.
         /// </summary>
-        public double Decawatts => As(PowerUnit.Decawatt);
+        public T Decawatts => As(PowerUnit.Decawatt);
 
         /// <summary>
-        ///     Get Power in Deciwatts.
+        ///     Get <see cref="Power{T}" /> in Deciwatts.
         /// </summary>
-        public double Deciwatts => As(PowerUnit.Deciwatt);
+        public T Deciwatts => As(PowerUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Power in ElectricalHorsepower.
+        ///     Get <see cref="Power{T}" /> in ElectricalHorsepower.
         /// </summary>
-        public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
+        public T ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
 
         /// <summary>
-        ///     Get Power in Femtowatts.
+        ///     Get <see cref="Power{T}" /> in Femtowatts.
         /// </summary>
-        public double Femtowatts => As(PowerUnit.Femtowatt);
+        public T Femtowatts => As(PowerUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Power in GigajoulesPerHour.
+        ///     Get <see cref="Power{T}" /> in GigajoulesPerHour.
         /// </summary>
-        public double GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
+        public T GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
 
         /// <summary>
-        ///     Get Power in Gigawatts.
+        ///     Get <see cref="Power{T}" /> in Gigawatts.
         /// </summary>
-        public double Gigawatts => As(PowerUnit.Gigawatt);
+        public T Gigawatts => As(PowerUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Power in HydraulicHorsepower.
+        ///     Get <see cref="Power{T}" /> in HydraulicHorsepower.
         /// </summary>
-        public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
+        public T HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
 
         /// <summary>
-        ///     Get Power in JoulesPerHour.
+        ///     Get <see cref="Power{T}" /> in JoulesPerHour.
         /// </summary>
-        public double JoulesPerHour => As(PowerUnit.JoulePerHour);
+        public T JoulesPerHour => As(PowerUnit.JoulePerHour);
 
         /// <summary>
-        ///     Get Power in KilobritishThermalUnitsPerHour.
+        ///     Get <see cref="Power{T}" /> in KilobritishThermalUnitsPerHour.
         /// </summary>
-        public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
+        public T KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Get Power in KilojoulesPerHour.
+        ///     Get <see cref="Power{T}" /> in KilojoulesPerHour.
         /// </summary>
-        public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
+        public T KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
 
         /// <summary>
-        ///     Get Power in Kilowatts.
+        ///     Get <see cref="Power{T}" /> in Kilowatts.
         /// </summary>
-        public double Kilowatts => As(PowerUnit.Kilowatt);
+        public T Kilowatts => As(PowerUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Power in MechanicalHorsepower.
+        ///     Get <see cref="Power{T}" /> in MechanicalHorsepower.
         /// </summary>
-        public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
+        public T MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
-        ///     Get Power in MegajoulesPerHour.
+        ///     Get <see cref="Power{T}" /> in MegajoulesPerHour.
         /// </summary>
-        public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
+        public T MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
 
         /// <summary>
-        ///     Get Power in Megawatts.
+        ///     Get <see cref="Power{T}" /> in Megawatts.
         /// </summary>
-        public double Megawatts => As(PowerUnit.Megawatt);
+        public T Megawatts => As(PowerUnit.Megawatt);
 
         /// <summary>
-        ///     Get Power in MetricHorsepower.
+        ///     Get <see cref="Power{T}" /> in MetricHorsepower.
         /// </summary>
-        public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
+        public T MetricHorsepower => As(PowerUnit.MetricHorsepower);
 
         /// <summary>
-        ///     Get Power in Microwatts.
+        ///     Get <see cref="Power{T}" /> in Microwatts.
         /// </summary>
-        public double Microwatts => As(PowerUnit.Microwatt);
+        public T Microwatts => As(PowerUnit.Microwatt);
 
         /// <summary>
-        ///     Get Power in MillijoulesPerHour.
+        ///     Get <see cref="Power{T}" /> in MillijoulesPerHour.
         /// </summary>
-        public double MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
+        public T MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
 
         /// <summary>
-        ///     Get Power in Milliwatts.
+        ///     Get <see cref="Power{T}" /> in Milliwatts.
         /// </summary>
-        public double Milliwatts => As(PowerUnit.Milliwatt);
+        public T Milliwatts => As(PowerUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Power in Nanowatts.
+        ///     Get <see cref="Power{T}" /> in Nanowatts.
         /// </summary>
-        public double Nanowatts => As(PowerUnit.Nanowatt);
+        public T Nanowatts => As(PowerUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Power in Petawatts.
+        ///     Get <see cref="Power{T}" /> in Petawatts.
         /// </summary>
-        public double Petawatts => As(PowerUnit.Petawatt);
+        public T Petawatts => As(PowerUnit.Petawatt);
 
         /// <summary>
-        ///     Get Power in Picowatts.
+        ///     Get <see cref="Power{T}" /> in Picowatts.
         /// </summary>
-        public double Picowatts => As(PowerUnit.Picowatt);
+        public T Picowatts => As(PowerUnit.Picowatt);
 
         /// <summary>
-        ///     Get Power in Terawatts.
+        ///     Get <see cref="Power{T}" /> in Terawatts.
         /// </summary>
-        public double Terawatts => As(PowerUnit.Terawatt);
+        public T Terawatts => As(PowerUnit.Terawatt);
 
         /// <summary>
-        ///     Get Power in Watts.
+        ///     Get <see cref="Power{T}" /> in Watts.
         /// </summary>
-        public double Watts => As(PowerUnit.Watt);
+        public T Watts => As(PowerUnit.Watt);
 
         #endregion
 
@@ -350,240 +346,215 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Power from BoilerHorsepower.
+        ///     Get <see cref="Power{T}" /> from BoilerHorsepower.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromBoilerHorsepower(QuantityValue boilerhorsepower)
+        public static Power<T> FromBoilerHorsepower(T boilerhorsepower)
         {
-            decimal value = (decimal) boilerhorsepower;
-            return new Power(value, PowerUnit.BoilerHorsepower);
+            return new Power<T>(boilerhorsepower, PowerUnit.BoilerHorsepower);
         }
         /// <summary>
-        ///     Get Power from BritishThermalUnitsPerHour.
+        ///     Get <see cref="Power{T}" /> from BritishThermalUnitsPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromBritishThermalUnitsPerHour(QuantityValue britishthermalunitsperhour)
+        public static Power<T> FromBritishThermalUnitsPerHour(T britishthermalunitsperhour)
         {
-            decimal value = (decimal) britishthermalunitsperhour;
-            return new Power(value, PowerUnit.BritishThermalUnitPerHour);
+            return new Power<T>(britishthermalunitsperhour, PowerUnit.BritishThermalUnitPerHour);
         }
         /// <summary>
-        ///     Get Power from Decawatts.
+        ///     Get <see cref="Power{T}" /> from Decawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromDecawatts(QuantityValue decawatts)
+        public static Power<T> FromDecawatts(T decawatts)
         {
-            decimal value = (decimal) decawatts;
-            return new Power(value, PowerUnit.Decawatt);
+            return new Power<T>(decawatts, PowerUnit.Decawatt);
         }
         /// <summary>
-        ///     Get Power from Deciwatts.
+        ///     Get <see cref="Power{T}" /> from Deciwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromDeciwatts(QuantityValue deciwatts)
+        public static Power<T> FromDeciwatts(T deciwatts)
         {
-            decimal value = (decimal) deciwatts;
-            return new Power(value, PowerUnit.Deciwatt);
+            return new Power<T>(deciwatts, PowerUnit.Deciwatt);
         }
         /// <summary>
-        ///     Get Power from ElectricalHorsepower.
+        ///     Get <see cref="Power{T}" /> from ElectricalHorsepower.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromElectricalHorsepower(QuantityValue electricalhorsepower)
+        public static Power<T> FromElectricalHorsepower(T electricalhorsepower)
         {
-            decimal value = (decimal) electricalhorsepower;
-            return new Power(value, PowerUnit.ElectricalHorsepower);
+            return new Power<T>(electricalhorsepower, PowerUnit.ElectricalHorsepower);
         }
         /// <summary>
-        ///     Get Power from Femtowatts.
+        ///     Get <see cref="Power{T}" /> from Femtowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromFemtowatts(QuantityValue femtowatts)
+        public static Power<T> FromFemtowatts(T femtowatts)
         {
-            decimal value = (decimal) femtowatts;
-            return new Power(value, PowerUnit.Femtowatt);
+            return new Power<T>(femtowatts, PowerUnit.Femtowatt);
         }
         /// <summary>
-        ///     Get Power from GigajoulesPerHour.
+        ///     Get <see cref="Power{T}" /> from GigajoulesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromGigajoulesPerHour(QuantityValue gigajoulesperhour)
+        public static Power<T> FromGigajoulesPerHour(T gigajoulesperhour)
         {
-            decimal value = (decimal) gigajoulesperhour;
-            return new Power(value, PowerUnit.GigajoulePerHour);
+            return new Power<T>(gigajoulesperhour, PowerUnit.GigajoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Gigawatts.
+        ///     Get <see cref="Power{T}" /> from Gigawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromGigawatts(QuantityValue gigawatts)
+        public static Power<T> FromGigawatts(T gigawatts)
         {
-            decimal value = (decimal) gigawatts;
-            return new Power(value, PowerUnit.Gigawatt);
+            return new Power<T>(gigawatts, PowerUnit.Gigawatt);
         }
         /// <summary>
-        ///     Get Power from HydraulicHorsepower.
+        ///     Get <see cref="Power{T}" /> from HydraulicHorsepower.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromHydraulicHorsepower(QuantityValue hydraulichorsepower)
+        public static Power<T> FromHydraulicHorsepower(T hydraulichorsepower)
         {
-            decimal value = (decimal) hydraulichorsepower;
-            return new Power(value, PowerUnit.HydraulicHorsepower);
+            return new Power<T>(hydraulichorsepower, PowerUnit.HydraulicHorsepower);
         }
         /// <summary>
-        ///     Get Power from JoulesPerHour.
+        ///     Get <see cref="Power{T}" /> from JoulesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromJoulesPerHour(QuantityValue joulesperhour)
+        public static Power<T> FromJoulesPerHour(T joulesperhour)
         {
-            decimal value = (decimal) joulesperhour;
-            return new Power(value, PowerUnit.JoulePerHour);
+            return new Power<T>(joulesperhour, PowerUnit.JoulePerHour);
         }
         /// <summary>
-        ///     Get Power from KilobritishThermalUnitsPerHour.
+        ///     Get <see cref="Power{T}" /> from KilobritishThermalUnitsPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilobritishThermalUnitsPerHour(QuantityValue kilobritishthermalunitsperhour)
+        public static Power<T> FromKilobritishThermalUnitsPerHour(T kilobritishthermalunitsperhour)
         {
-            decimal value = (decimal) kilobritishthermalunitsperhour;
-            return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
+            return new Power<T>(kilobritishthermalunitsperhour, PowerUnit.KilobritishThermalUnitPerHour);
         }
         /// <summary>
-        ///     Get Power from KilojoulesPerHour.
+        ///     Get <see cref="Power{T}" /> from KilojoulesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilojoulesPerHour(QuantityValue kilojoulesperhour)
+        public static Power<T> FromKilojoulesPerHour(T kilojoulesperhour)
         {
-            decimal value = (decimal) kilojoulesperhour;
-            return new Power(value, PowerUnit.KilojoulePerHour);
+            return new Power<T>(kilojoulesperhour, PowerUnit.KilojoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Kilowatts.
+        ///     Get <see cref="Power{T}" /> from Kilowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilowatts(QuantityValue kilowatts)
+        public static Power<T> FromKilowatts(T kilowatts)
         {
-            decimal value = (decimal) kilowatts;
-            return new Power(value, PowerUnit.Kilowatt);
+            return new Power<T>(kilowatts, PowerUnit.Kilowatt);
         }
         /// <summary>
-        ///     Get Power from MechanicalHorsepower.
+        ///     Get <see cref="Power{T}" /> from MechanicalHorsepower.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMechanicalHorsepower(QuantityValue mechanicalhorsepower)
+        public static Power<T> FromMechanicalHorsepower(T mechanicalhorsepower)
         {
-            decimal value = (decimal) mechanicalhorsepower;
-            return new Power(value, PowerUnit.MechanicalHorsepower);
+            return new Power<T>(mechanicalhorsepower, PowerUnit.MechanicalHorsepower);
         }
         /// <summary>
-        ///     Get Power from MegajoulesPerHour.
+        ///     Get <see cref="Power{T}" /> from MegajoulesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMegajoulesPerHour(QuantityValue megajoulesperhour)
+        public static Power<T> FromMegajoulesPerHour(T megajoulesperhour)
         {
-            decimal value = (decimal) megajoulesperhour;
-            return new Power(value, PowerUnit.MegajoulePerHour);
+            return new Power<T>(megajoulesperhour, PowerUnit.MegajoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Megawatts.
+        ///     Get <see cref="Power{T}" /> from Megawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMegawatts(QuantityValue megawatts)
+        public static Power<T> FromMegawatts(T megawatts)
         {
-            decimal value = (decimal) megawatts;
-            return new Power(value, PowerUnit.Megawatt);
+            return new Power<T>(megawatts, PowerUnit.Megawatt);
         }
         /// <summary>
-        ///     Get Power from MetricHorsepower.
+        ///     Get <see cref="Power{T}" /> from MetricHorsepower.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMetricHorsepower(QuantityValue metrichorsepower)
+        public static Power<T> FromMetricHorsepower(T metrichorsepower)
         {
-            decimal value = (decimal) metrichorsepower;
-            return new Power(value, PowerUnit.MetricHorsepower);
+            return new Power<T>(metrichorsepower, PowerUnit.MetricHorsepower);
         }
         /// <summary>
-        ///     Get Power from Microwatts.
+        ///     Get <see cref="Power{T}" /> from Microwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMicrowatts(QuantityValue microwatts)
+        public static Power<T> FromMicrowatts(T microwatts)
         {
-            decimal value = (decimal) microwatts;
-            return new Power(value, PowerUnit.Microwatt);
+            return new Power<T>(microwatts, PowerUnit.Microwatt);
         }
         /// <summary>
-        ///     Get Power from MillijoulesPerHour.
+        ///     Get <see cref="Power{T}" /> from MillijoulesPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMillijoulesPerHour(QuantityValue millijoulesperhour)
+        public static Power<T> FromMillijoulesPerHour(T millijoulesperhour)
         {
-            decimal value = (decimal) millijoulesperhour;
-            return new Power(value, PowerUnit.MillijoulePerHour);
+            return new Power<T>(millijoulesperhour, PowerUnit.MillijoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Milliwatts.
+        ///     Get <see cref="Power{T}" /> from Milliwatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMilliwatts(QuantityValue milliwatts)
+        public static Power<T> FromMilliwatts(T milliwatts)
         {
-            decimal value = (decimal) milliwatts;
-            return new Power(value, PowerUnit.Milliwatt);
+            return new Power<T>(milliwatts, PowerUnit.Milliwatt);
         }
         /// <summary>
-        ///     Get Power from Nanowatts.
+        ///     Get <see cref="Power{T}" /> from Nanowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromNanowatts(QuantityValue nanowatts)
+        public static Power<T> FromNanowatts(T nanowatts)
         {
-            decimal value = (decimal) nanowatts;
-            return new Power(value, PowerUnit.Nanowatt);
+            return new Power<T>(nanowatts, PowerUnit.Nanowatt);
         }
         /// <summary>
-        ///     Get Power from Petawatts.
+        ///     Get <see cref="Power{T}" /> from Petawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromPetawatts(QuantityValue petawatts)
+        public static Power<T> FromPetawatts(T petawatts)
         {
-            decimal value = (decimal) petawatts;
-            return new Power(value, PowerUnit.Petawatt);
+            return new Power<T>(petawatts, PowerUnit.Petawatt);
         }
         /// <summary>
-        ///     Get Power from Picowatts.
+        ///     Get <see cref="Power{T}" /> from Picowatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromPicowatts(QuantityValue picowatts)
+        public static Power<T> FromPicowatts(T picowatts)
         {
-            decimal value = (decimal) picowatts;
-            return new Power(value, PowerUnit.Picowatt);
+            return new Power<T>(picowatts, PowerUnit.Picowatt);
         }
         /// <summary>
-        ///     Get Power from Terawatts.
+        ///     Get <see cref="Power{T}" /> from Terawatts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromTerawatts(QuantityValue terawatts)
+        public static Power<T> FromTerawatts(T terawatts)
         {
-            decimal value = (decimal) terawatts;
-            return new Power(value, PowerUnit.Terawatt);
+            return new Power<T>(terawatts, PowerUnit.Terawatt);
         }
         /// <summary>
-        ///     Get Power from Watts.
+        ///     Get <see cref="Power{T}" /> from Watts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromWatts(QuantityValue watts)
+        public static Power<T> FromWatts(T watts)
         {
-            decimal value = (decimal) watts;
-            return new Power(value, PowerUnit.Watt);
+            return new Power<T>(watts, PowerUnit.Watt);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
+        ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Power unit value.</returns>
-        public static Power From(QuantityValue value, PowerUnit fromUnit)
+        /// <returns><see cref="Power{T}" /> unit value.</returns>
+        public static Power<T> From(T value, PowerUnit fromUnit)
         {
-            return new Power((decimal)value, fromUnit);
+            return new Power<T>(value, fromUnit);
         }
 
         #endregion
@@ -612,7 +583,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Power Parse(string str)
+        public static Power<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -640,9 +611,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Power Parse(string str, IFormatProvider? provider)
+        public static Power<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Power, PowerUnit>(
+            return QuantityParser.Default.Parse<T, Power<T>, PowerUnit>(
                 str,
                 provider,
                 From);
@@ -656,7 +627,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Power result)
+        public static bool TryParse(string? str, out Power<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -671,9 +642,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Power result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Power<T> result)
         {
-            return QuantityParser.Default.TryParse<Power, PowerUnit>(
+            return QuantityParser.Default.TryParse<T, Power<T>, PowerUnit>(
                 str,
                 provider,
                 From,
@@ -735,45 +706,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Power operator -(Power right)
+        public static Power<T> operator -(Power<T> right)
         {
-            return new Power(-right.Value, right.Unit);
+            return new Power<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="Power"/> from adding two <see cref="Power"/>.</summary>
-        public static Power operator +(Power left, Power right)
+        /// <summary>Get <see cref="Power{T}"/> from adding two <see cref="Power{T}"/>.</summary>
+        public static Power<T> operator +(Power<T> left, Power<T> right)
         {
-            return new Power(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Power<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Power"/> from subtracting two <see cref="Power"/>.</summary>
-        public static Power operator -(Power left, Power right)
+        /// <summary>Get <see cref="Power{T}"/> from subtracting two <see cref="Power{T}"/>.</summary>
+        public static Power<T> operator -(Power<T> left, Power<T> right)
         {
-            return new Power(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Power<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
-        public static Power operator *(decimal left, Power right)
+        /// <summary>Get <see cref="Power{T}"/> from multiplying value and <see cref="Power{T}"/>.</summary>
+        public static Power<T> operator *(T left, Power<T> right)
         {
-            return new Power(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Power<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
-        public static Power operator *(Power left, decimal right)
+        /// <summary>Get <see cref="Power{T}"/> from multiplying value and <see cref="Power{T}"/>.</summary>
+        public static Power<T> operator *(Power<T> left, T right)
         {
-            return new Power(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Power<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Power"/> from dividing <see cref="Power"/> by value.</summary>
-        public static Power operator /(Power left, decimal right)
+        /// <summary>Get <see cref="Power{T}"/> from dividing <see cref="Power{T}"/> by value.</summary>
+        public static Power<T> operator /(Power<T> left, T right)
         {
-            return new Power(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Power<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Power"/> by <see cref="Power"/>.</summary>
-        public static double operator /(Power left, Power right)
+        /// <summary>Get ratio value from dividing <see cref="Power{T}"/> by <see cref="Power{T}"/>.</summary>
+        public static T operator /(Power<T> left, Power<T> right)
         {
-            return left.Watts / right.Watts;
+            return CompiledLambdas.Divide(left.Watts, right.Watts);
         }
 
         #endregion
@@ -781,39 +757,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Power left, Power right)
+        public static bool operator <=(Power<T> left, Power<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Power left, Power right)
+        public static bool operator >=(Power<T> left, Power<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Power left, Power right)
+        public static bool operator <(Power<T> left, Power<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Power left, Power right)
+        public static bool operator >(Power<T> left, Power<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Power left, Power right)
+        /// <remarks>Consider using <see cref="Equals(Power{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Power<T> left, Power<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Power left, Power right)
+        /// <remarks>Consider using <see cref="Equals(Power{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Power<T> left, Power<T> right)
         {
             return !(left == right);
         }
@@ -822,37 +798,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Power objPower)) throw new ArgumentException("Expected type Power.", nameof(obj));
+            if(!(obj is Power<T> objPower)) throw new ArgumentException("Expected type Power.", nameof(obj));
 
             return CompareTo(objPower);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Power other)
+        public int CompareTo(Power<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Power{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Power objPower))
+            if(obj is null || !(obj is Power<T> objPower))
                 return false;
 
             return Equals(objPower);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Power other)
+        /// <remarks>Consider using <see cref="Equals(Power{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Power<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Power within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Power{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -890,21 +866,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Power other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Power<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Power.</returns>
+        /// <returns>A hash code for the current <see cref="Power{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -918,17 +892,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(PowerUnit unit)
+        public T As(PowerUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -948,17 +922,22 @@ namespace UnitsNet
             if(!(unit is PowerUnit unitAsPowerUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
-            return As(unitAsPowerUnit);
+            var asValue = As(unitAsPowerUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<PowerUnit>.As(PowerUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Power{T}" /> to another <see cref="Power{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Power with the specified unit.</returns>
-        public Power ToUnit(PowerUnit unit)
+        /// <returns>A <see cref="Power{T}" /> with the specified unit.</returns>
+        public Power<T> ToUnit(PowerUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Power(convertedValue, unit);
+            return new Power<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -971,7 +950,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Power ToUnit(UnitSystem unitSystem)
+        public Power<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -992,42 +971,48 @@ namespace UnitsNet
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<PowerUnit, T> IQuantityT<PowerUnit, T>.ToUnit(PowerUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<PowerUnit, T> IQuantityT<PowerUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case PowerUnit.BoilerHorsepower: return _value*9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return _value*0.293071m;
-                case PowerUnit.Decawatt: return (_value) * 1e1m;
-                case PowerUnit.Deciwatt: return (_value) * 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return _value*746m;
-                case PowerUnit.Femtowatt: return (_value) * 1e-15m;
-                case PowerUnit.GigajoulePerHour: return (_value/3600m) * 1e9m;
-                case PowerUnit.Gigawatt: return (_value) * 1e9m;
-                case PowerUnit.HydraulicHorsepower: return _value*745.69988145m;
-                case PowerUnit.JoulePerHour: return _value/3600m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071m) * 1e3m;
-                case PowerUnit.KilojoulePerHour: return (_value/3600m) * 1e3m;
-                case PowerUnit.Kilowatt: return (_value) * 1e3m;
-                case PowerUnit.MechanicalHorsepower: return _value*745.69m;
-                case PowerUnit.MegajoulePerHour: return (_value/3600m) * 1e6m;
-                case PowerUnit.Megawatt: return (_value) * 1e6m;
-                case PowerUnit.MetricHorsepower: return _value*735.49875m;
-                case PowerUnit.Microwatt: return (_value) * 1e-6m;
-                case PowerUnit.MillijoulePerHour: return (_value/3600m) * 1e-3m;
-                case PowerUnit.Milliwatt: return (_value) * 1e-3m;
-                case PowerUnit.Nanowatt: return (_value) * 1e-9m;
-                case PowerUnit.Petawatt: return (_value) * 1e15m;
-                case PowerUnit.Picowatt: return (_value) * 1e-12m;
-                case PowerUnit.Terawatt: return (_value) * 1e12m;
-                case PowerUnit.Watt: return _value;
+                case PowerUnit.BoilerHorsepower: return Value*9812.5m;
+                case PowerUnit.BritishThermalUnitPerHour: return Value*0.293071m;
+                case PowerUnit.Decawatt: return (Value) * 1e1m;
+                case PowerUnit.Deciwatt: return (Value) * 1e-1m;
+                case PowerUnit.ElectricalHorsepower: return Value*746m;
+                case PowerUnit.Femtowatt: return (Value) * 1e-15m;
+                case PowerUnit.GigajoulePerHour: return (Value/3600m) * 1e9m;
+                case PowerUnit.Gigawatt: return (Value) * 1e9m;
+                case PowerUnit.HydraulicHorsepower: return Value*745.69988145m;
+                case PowerUnit.JoulePerHour: return Value/3600m;
+                case PowerUnit.KilobritishThermalUnitPerHour: return (Value*0.293071m) * 1e3m;
+                case PowerUnit.KilojoulePerHour: return (Value/3600m) * 1e3m;
+                case PowerUnit.Kilowatt: return (Value) * 1e3m;
+                case PowerUnit.MechanicalHorsepower: return Value*745.69m;
+                case PowerUnit.MegajoulePerHour: return (Value/3600m) * 1e6m;
+                case PowerUnit.Megawatt: return (Value) * 1e6m;
+                case PowerUnit.MetricHorsepower: return Value*735.49875m;
+                case PowerUnit.Microwatt: return (Value) * 1e-6m;
+                case PowerUnit.MillijoulePerHour: return (Value/3600m) * 1e-3m;
+                case PowerUnit.Milliwatt: return (Value) * 1e-3m;
+                case PowerUnit.Nanowatt: return (Value) * 1e-9m;
+                case PowerUnit.Petawatt: return (Value) * 1e15m;
+                case PowerUnit.Picowatt: return (Value) * 1e-12m;
+                case PowerUnit.Terawatt: return (Value) * 1e12m;
+                case PowerUnit.Watt: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1038,16 +1023,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Power ToBaseUnit()
+        internal Power<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Power(baseUnitValue, BaseUnit);
+            return new Power<T>(baseUnitValue, BaseUnit);
         }
 
-        private decimal GetValueAs(PowerUnit unit)
+        private T GetValueAs(PowerUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1174,57 +1159,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Power)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Power<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Power)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Power<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Power)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Power<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1234,33 +1219,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Power))
+            if(conversionType == typeof(Power<T>))
                 return this;
             else if(conversionType == typeof(PowerUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Power.QuantityType;
+                return Power<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return Power.Info;
+                return Power<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return Power.BaseDimensions;
+                return Power<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Power)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Power<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

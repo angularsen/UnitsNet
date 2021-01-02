@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
-    public partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRateUnit>, IEquatable<TemperatureChangeRate>, IComparable, IComparable<TemperatureChangeRate>, IConvertible, IFormattable
+    public partial struct TemperatureChangeRate<T> : IQuantityT<TemperatureChangeRateUnit, T>, IEquatable<TemperatureChangeRate<T>>, IComparable, IComparable<TemperatureChangeRate<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -72,12 +68,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public TemperatureChangeRate(double value, TemperatureChangeRateUnit unit)
+        public TemperatureChangeRate(T value, TemperatureChangeRateUnit unit)
         {
             if(unit == TemperatureChangeRateUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -89,14 +85,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureChangeRate(double value, UnitSystem unitSystem)
+        public TemperatureChangeRate(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -111,19 +107,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
+        ///     The base unit of <see cref="TemperatureChangeRate{T}" />, which is DegreeCelsiusPerSecond. All conversions go via this value.
         /// </summary>
         public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of TemperatureChangeRate
+        /// Represents the largest possible value of <see cref="TemperatureChangeRate{T}" />
         /// </summary>
-        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
+        public static TemperatureChangeRate<T> MaxValue { get; } = new TemperatureChangeRate<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of TemperatureChangeRate
+        /// Represents the smallest possible value of <see cref="TemperatureChangeRate{T}" />
         /// </summary>
-        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
+        public static TemperatureChangeRate<T> MinValue { get; } = new TemperatureChangeRate<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -132,14 +128,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.TemperatureChangeRate;
 
         /// <summary>
-        ///     All units of measurement for the TemperatureChangeRate quantity.
+        ///     All units of measurement for the <see cref="TemperatureChangeRate{T}" /> quantity.
         /// </summary>
         public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, BaseUnit);
+        public static TemperatureChangeRate<T> Zero { get; } = new TemperatureChangeRate<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -148,7 +144,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -164,66 +162,66 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => TemperatureChangeRate.QuantityType;
+        public QuantityType Type => TemperatureChangeRate<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => TemperatureChangeRate.BaseDimensions;
+        public BaseDimensions Dimensions => TemperatureChangeRate<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get TemperatureChangeRate in CentidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in CentidegreesCelsiusPerSecond.
         /// </summary>
-        public double CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+        public T CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in DecadegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in DecadegreesCelsiusPerSecond.
         /// </summary>
-        public double DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+        public T DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in DecidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in DecidegreesCelsiusPerSecond.
         /// </summary>
-        public double DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+        public T DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in DegreesCelsiusPerMinute.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in DegreesCelsiusPerMinute.
         /// </summary>
-        public double DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
+        public T DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in DegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in DegreesCelsiusPerSecond.
         /// </summary>
-        public double DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+        public T DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in HectodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in HectodegreesCelsiusPerSecond.
         /// </summary>
-        public double HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+        public T HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in KilodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in KilodegreesCelsiusPerSecond.
         /// </summary>
-        public double KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+        public T KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in MicrodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in MicrodegreesCelsiusPerSecond.
         /// </summary>
-        public double MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+        public T MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in MillidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in MillidegreesCelsiusPerSecond.
         /// </summary>
-        public double MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+        public T MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Get TemperatureChangeRate in NanodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> in NanodegreesCelsiusPerSecond.
         /// </summary>
-        public double NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+        public T NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 
         #endregion
 
@@ -255,105 +253,95 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from CentidegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue centidegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromCentidegreesCelsiusPerSecond(T centidegreescelsiuspersecond)
         {
-            double value = (double) centidegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(centidegreescelsiuspersecond, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from DecadegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue decadegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromDecadegreesCelsiusPerSecond(T decadegreescelsiuspersecond)
         {
-            double value = (double) decadegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(decadegreescelsiuspersecond, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from DecidegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue decidegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromDecidegreesCelsiusPerSecond(T decidegreescelsiuspersecond)
         {
-            double value = (double) decidegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(decidegreescelsiuspersecond, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from DegreesCelsiusPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue degreescelsiusperminute)
+        public static TemperatureChangeRate<T> FromDegreesCelsiusPerMinute(T degreescelsiusperminute)
         {
-            double value = (double) degreescelsiusperminute;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
+            return new TemperatureChangeRate<T>(degreescelsiusperminute, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from DegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue degreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromDegreesCelsiusPerSecond(T degreescelsiuspersecond)
         {
-            double value = (double) degreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(degreescelsiuspersecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from HectodegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue hectodegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromHectodegreesCelsiusPerSecond(T hectodegreescelsiuspersecond)
         {
-            double value = (double) hectodegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(hectodegreescelsiuspersecond, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from KilodegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue kilodegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromKilodegreesCelsiusPerSecond(T kilodegreescelsiuspersecond)
         {
-            double value = (double) kilodegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(kilodegreescelsiuspersecond, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from MicrodegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue microdegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromMicrodegreesCelsiusPerSecond(T microdegreescelsiuspersecond)
         {
-            double value = (double) microdegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(microdegreescelsiuspersecond, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from MillidegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue millidegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromMillidegreesCelsiusPerSecond(T millidegreescelsiuspersecond)
         {
-            double value = (double) millidegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(millidegreescelsiuspersecond, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         }
         /// <summary>
-        ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
+        ///     Get <see cref="TemperatureChangeRate{T}" /> from NanodegreesCelsiusPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue nanodegreescelsiuspersecond)
+        public static TemperatureChangeRate<T> FromNanodegreesCelsiusPerSecond(T nanodegreescelsiuspersecond)
         {
-            double value = (double) nanodegreescelsiuspersecond;
-            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+            return new TemperatureChangeRate<T>(nanodegreescelsiuspersecond, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
+        /// <returns><see cref="TemperatureChangeRate{T}" /> unit value.</returns>
+        public static TemperatureChangeRate<T> From(T value, TemperatureChangeRateUnit fromUnit)
         {
-            return new TemperatureChangeRate((double)value, fromUnit);
+            return new TemperatureChangeRate<T>(value, fromUnit);
         }
 
         #endregion
@@ -382,7 +370,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static TemperatureChangeRate Parse(string str)
+        public static TemperatureChangeRate<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -410,9 +398,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static TemperatureChangeRate Parse(string str, IFormatProvider? provider)
+        public static TemperatureChangeRate<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(
+            return QuantityParser.Default.Parse<T, TemperatureChangeRate<T>, TemperatureChangeRateUnit>(
                 str,
                 provider,
                 From);
@@ -426,7 +414,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out TemperatureChangeRate result)
+        public static bool TryParse(string? str, out TemperatureChangeRate<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -441,9 +429,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out TemperatureChangeRate result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out TemperatureChangeRate<T> result)
         {
-            return QuantityParser.Default.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(
+            return QuantityParser.Default.TryParse<T, TemperatureChangeRate<T>, TemperatureChangeRateUnit>(
                 str,
                 provider,
                 From,
@@ -505,45 +493,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static TemperatureChangeRate operator -(TemperatureChangeRate right)
+        public static TemperatureChangeRate<T> operator -(TemperatureChangeRate<T> right)
         {
-            return new TemperatureChangeRate(-right.Value, right.Unit);
+            return new TemperatureChangeRate<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="TemperatureChangeRate"/> from adding two <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
+        /// <summary>Get <see cref="TemperatureChangeRate{T}"/> from adding two <see cref="TemperatureChangeRate{T}"/>.</summary>
+        public static TemperatureChangeRate<T> operator +(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return new TemperatureChangeRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new TemperatureChangeRate<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="TemperatureChangeRate"/> from subtracting two <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
+        /// <summary>Get <see cref="TemperatureChangeRate{T}"/> from subtracting two <see cref="TemperatureChangeRate{T}"/>.</summary>
+        public static TemperatureChangeRate<T> operator -(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return new TemperatureChangeRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new TemperatureChangeRate<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
+        /// <summary>Get <see cref="TemperatureChangeRate{T}"/> from multiplying value and <see cref="TemperatureChangeRate{T}"/>.</summary>
+        public static TemperatureChangeRate<T> operator *(T left, TemperatureChangeRate<T> right)
         {
-            return new TemperatureChangeRate(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new TemperatureChangeRate<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
+        /// <summary>Get <see cref="TemperatureChangeRate{T}"/> from multiplying value and <see cref="TemperatureChangeRate{T}"/>.</summary>
+        public static TemperatureChangeRate<T> operator *(TemperatureChangeRate<T> left, T right)
         {
-            return new TemperatureChangeRate(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new TemperatureChangeRate<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="TemperatureChangeRate"/> from dividing <see cref="TemperatureChangeRate"/> by value.</summary>
-        public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
+        /// <summary>Get <see cref="TemperatureChangeRate{T}"/> from dividing <see cref="TemperatureChangeRate{T}"/> by value.</summary>
+        public static TemperatureChangeRate<T> operator /(TemperatureChangeRate<T> left, T right)
         {
-            return new TemperatureChangeRate(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new TemperatureChangeRate<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="TemperatureChangeRate"/> by <see cref="TemperatureChangeRate"/>.</summary>
-        public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
+        /// <summary>Get ratio value from dividing <see cref="TemperatureChangeRate{T}"/> by <see cref="TemperatureChangeRate{T}"/>.</summary>
+        public static T operator /(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
+            return CompiledLambdas.Divide(left.DegreesCelsiusPerSecond, right.DegreesCelsiusPerSecond);
         }
 
         #endregion
@@ -551,39 +544,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static bool operator <=(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static bool operator >=(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static bool operator <(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static bool operator >(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(TemperatureChangeRate<T> left, TemperatureChangeRate<T> right)
         {
             return !(left == right);
         }
@@ -592,37 +585,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is TemperatureChangeRate objTemperatureChangeRate)) throw new ArgumentException("Expected type TemperatureChangeRate.", nameof(obj));
+            if(!(obj is TemperatureChangeRate<T> objTemperatureChangeRate)) throw new ArgumentException("Expected type TemperatureChangeRate.", nameof(obj));
 
             return CompareTo(objTemperatureChangeRate);
         }
 
         /// <inheritdoc />
-        public int CompareTo(TemperatureChangeRate other)
+        public int CompareTo(TemperatureChangeRate<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is TemperatureChangeRate objTemperatureChangeRate))
+            if(obj is null || !(obj is TemperatureChangeRate<T> objTemperatureChangeRate))
                 return false;
 
             return Equals(objTemperatureChangeRate);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(TemperatureChangeRate other)
+        /// <remarks>Consider using <see cref="Equals(TemperatureChangeRate{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(TemperatureChangeRate<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another TemperatureChangeRate within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="TemperatureChangeRate{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -660,21 +653,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(TemperatureChangeRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(TemperatureChangeRate<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current TemperatureChangeRate.</returns>
+        /// <returns>A hash code for the current <see cref="TemperatureChangeRate{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -688,17 +679,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureChangeRateUnit unit)
+        public T As(TemperatureChangeRateUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -718,17 +709,22 @@ namespace UnitsNet
             if(!(unit is TemperatureChangeRateUnit unitAsTemperatureChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
 
-            return As(unitAsTemperatureChangeRateUnit);
+            var asValue = As(unitAsTemperatureChangeRateUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<TemperatureChangeRateUnit>.As(TemperatureChangeRateUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="TemperatureChangeRate{T}" /> to another <see cref="TemperatureChangeRate{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A TemperatureChangeRate with the specified unit.</returns>
-        public TemperatureChangeRate ToUnit(TemperatureChangeRateUnit unit)
+        /// <returns>A <see cref="TemperatureChangeRate{T}" /> with the specified unit.</returns>
+        public TemperatureChangeRate<T> ToUnit(TemperatureChangeRateUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new TemperatureChangeRate(convertedValue, unit);
+            return new TemperatureChangeRate<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -741,7 +737,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public TemperatureChangeRate ToUnit(UnitSystem unitSystem)
+        public TemperatureChangeRate<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -762,27 +758,33 @@ namespace UnitsNet
         IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<TemperatureChangeRateUnit, T> IQuantityT<TemperatureChangeRateUnit, T>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<TemperatureChangeRateUnit, T> IQuantityT<TemperatureChangeRateUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (_value) * 1e-2d;
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (_value) * 1e1d;
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (_value) * 1e-1d;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value/60;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return _value;
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (_value) * 1e2d;
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (_value) * 1e3d;
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (_value) * 1e-6d;
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (_value) * 1e-3d;
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (_value) * 1e-9d;
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (Value) * 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (Value) * 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (Value) * 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return Value/60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return Value;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (Value) * 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (Value) * 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (Value) * 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (Value) * 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (Value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -793,16 +795,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal TemperatureChangeRate ToBaseUnit()
+        internal TemperatureChangeRate<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new TemperatureChangeRate(baseUnitValue, BaseUnit);
+            return new TemperatureChangeRate<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(TemperatureChangeRateUnit unit)
+        private T GetValueAs(TemperatureChangeRateUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -914,57 +916,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -974,33 +976,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(TemperatureChangeRate))
+            if(conversionType == typeof(TemperatureChangeRate<T>))
                 return this;
             else if(conversionType == typeof(TemperatureChangeRateUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return TemperatureChangeRate.QuantityType;
+                return TemperatureChangeRate<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return TemperatureChangeRate.Info;
+                return TemperatureChangeRate<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return TemperatureChangeRate.BaseDimensions;
+                return TemperatureChangeRate<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

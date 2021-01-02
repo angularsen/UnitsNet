@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
     /// </summary>
     public static class NumberToSolidAngleExtensions
     {
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians<T>(this T value) =>
-            SolidAngle.FromSteradians(Convert.ToDouble(value));
+        /// <inheritdoc cref="SolidAngle{T}.FromSteradians(T)" />
+        public static SolidAngle<double> Steradians<T>(this T value) =>
+            SolidAngle<double>.FromSteradians(Convert.ToDouble(value));
 
     }
 }

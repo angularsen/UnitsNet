@@ -28,53 +28,53 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
     /// </summary>
     public static class NumberToMassFluxExtensions
     {
-        /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerHourPerSquareCentimeter<T>(this T value) =>
-            MassFlux.FromGramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerHourPerSquareCentimeter(T)" />
+        public static MassFlux<double> GramsPerHourPerSquareCentimeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerHourPerSquareMeter<T>(this T value) =>
-            MassFlux.FromGramsPerHourPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerHourPerSquareMeter(T)" />
+        public static MassFlux<double> GramsPerHourPerSquareMeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerHourPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerHourPerSquareMillimeter<T>(this T value) =>
-            MassFlux.FromGramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerHourPerSquareMillimeter(T)" />
+        public static MassFlux<double> GramsPerHourPerSquareMillimeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareCentimeter<T>(this T value) =>
-            MassFlux.FromGramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerSecondPerSquareCentimeter(T)" />
+        public static MassFlux<double> GramsPerSecondPerSquareCentimeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter<T>(this T value) =>
-            MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerSecondPerSquareMeter(T)" />
+        public static MassFlux<double> GramsPerSecondPerSquareMeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMillimeter<T>(this T value) =>
-            MassFlux.FromGramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromGramsPerSecondPerSquareMillimeter(T)" />
+        public static MassFlux<double> GramsPerSecondPerSquareMillimeter<T>(this T value) =>
+            MassFlux<double>.FromGramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerHourPerSquareCentimeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerHourPerSquareCentimeter(T)" />
+        public static MassFlux<double> KilogramsPerHourPerSquareCentimeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerHourPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerHourPerSquareMeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerHourPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerHourPerSquareMeter(T)" />
+        public static MassFlux<double> KilogramsPerHourPerSquareMeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerHourPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerHourPerSquareMillimeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerHourPerSquareMillimeter(T)" />
+        public static MassFlux<double> KilogramsPerHourPerSquareMillimeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerHourPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareCentimeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerSecondPerSquareCentimeter(T)" />
+        public static MassFlux<double> KilogramsPerSecondPerSquareCentimeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerSecondPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerSecondPerSquareMeter(T)" />
+        public static MassFlux<double> KilogramsPerSecondPerSquareMeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMillimeter<T>(this T value) =>
-            MassFlux.FromKilogramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFlux{T}.FromKilogramsPerSecondPerSquareMillimeter(T)" />
+        public static MassFlux<double> KilogramsPerSecondPerSquareMillimeter<T>(this T value) =>
+            MassFlux<double>.FromKilogramsPerSecondPerSquareMillimeter(Convert.ToDouble(value));
 
     }
 }

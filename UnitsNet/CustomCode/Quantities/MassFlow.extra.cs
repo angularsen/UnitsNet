@@ -5,72 +5,72 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct MassFlow
+    public partial struct MassFlow<T>
     {
-        /// <summary>Get <see cref="Mass"/> from <see cref="MassFlow"/> times <see cref="TimeSpan"/>.</summary>
-        public static Mass operator *(MassFlow massFlow, TimeSpan time)
+        /// <summary>Get <see cref="Mass{T}"/> from <see cref="MassFlow{T}"/> times <see cref="TimeSpan"/>.</summary>
+        public static Mass<T> operator *(MassFlow<T> massFlow, TimeSpan time)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass<T>.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="TimeSpan"/> times <see cref="MassFlow"/>.</summary>
-        public static Mass operator *(TimeSpan time, MassFlow massFlow)
+        /// <summary>Get <see cref="Mass{T}"/> from <see cref="TimeSpan"/> times <see cref="MassFlow{T}"/>.</summary>
+        public static Mass<T> operator *(TimeSpan time, MassFlow<T> massFlow )
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass<T>.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="MassFlow"/> times <see cref="Duration"/>.</summary>
-        public static Mass operator *(MassFlow massFlow, Duration duration)
+        /// <summary>Get <see cref="Mass{T}"/> from <see cref="MassFlow{T}"/> times <see cref="Duration{T}"/>.</summary>
+        public static Mass<T> operator *(MassFlow<T> massFlow, Duration<T> duration )
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass<T>.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="Duration"/> times <see cref="MassFlow"/>.</summary>
-        public static Mass operator *(Duration duration, MassFlow massFlow)
+        /// <summary>Get <see cref="Mass{T}"/> from <see cref="Duration{T}"/> times <see cref="MassFlow{T}"/>.</summary>
+        public static Mass<T> operator *(Duration<T> duration, MassFlow<T> massFlow )
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass<T>.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> divided by <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static Power operator /(MassFlow massFlow, BrakeSpecificFuelConsumption bsfc)
+        /// <summary>Get <see cref="Power{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="BrakeSpecificFuelConsumption{T}"/>.</summary>
+        public static Power<T> operator /(MassFlow<T> massFlow, BrakeSpecificFuelConsumption<T> bsfc )
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond / bsfc.KilogramsPerJoule);
+            return Power<T>.FromWatts(massFlow.KilogramsPerSecond / bsfc.KilogramsPerJoule);
         }
 
-        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="MassFlow"/> divided by <see cref="Power"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator /(MassFlow massFlow, Power power)
+        /// <summary>Get <see cref="BrakeSpecificFuelConsumption{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="Power{T}"/>.</summary>
+        public static BrakeSpecificFuelConsumption<T> operator /(MassFlow<T> massFlow, Power<T> power )
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / power.Watts);
+            return BrakeSpecificFuelConsumption<T>.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / power.Watts);
         }
 
-        /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> times <see cref="SpecificEnergy"/>.</summary>
-        public static Power operator *(MassFlow massFlow, SpecificEnergy specificEnergy)
+        /// <summary>Get <see cref="Power{T}"/> from <see cref="MassFlow{T}"/> times <see cref="SpecificEnergy{T}"/>.</summary>
+        public static Power<T> operator *(MassFlow<T> massFlow, SpecificEnergy<T> specificEnergy )
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
+            return Power<T>.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from <see cref="MassFlow"/> divided by <see cref="Area"/>.</summary>
-        public static MassFlux operator /(MassFlow massFlow, Area area)
+        /// <summary>Get <see cref="MassFlux{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="Area{T}"/>.</summary>
+        public static MassFlux<T> operator /(MassFlow<T> massFlow, Area<T> area )
         {
-            return MassFlux.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
+            return MassFlux<T>.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="MassFlow"/> divided by <see cref="MassFlux"/>.</summary>
-        public static Area operator /(MassFlow massFlow, MassFlux massFlux)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="MassFlux{T}"/>.</summary>
+        public static Area<T> operator /(MassFlow<T> massFlow, MassFlux<T> massFlux )
         {
-            return Area.FromSquareMeters(massFlow.KilogramsPerSecond / massFlux.KilogramsPerSecondPerSquareMeter);
+            return Area<T>.FromSquareMeters(massFlow.KilogramsPerSecond / massFlux.KilogramsPerSecondPerSquareMeter);
         }
 
-        /// <summary>Get <see cref="Density"/> from <see cref="MassFlow"/> divided by <see cref="VolumeFlow"/>.</summary>
-        public static Density operator /(MassFlow massFlow, VolumeFlow volumeFlow)
+        /// <summary>Get <see cref="Density{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="VolumeFlow{T}"/>.</summary>
+        public static Density<T> operator /(MassFlow<T> massFlow, VolumeFlow<T> volumeFlow )
         {
-            return Density.FromKilogramsPerCubicMeter(massFlow.KilogramsPerSecond / volumeFlow.CubicMetersPerSecond);
+            return Density<T>.FromKilogramsPerCubicMeter(massFlow.KilogramsPerSecond / volumeFlow.CubicMetersPerSecond);
         }
 
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="MassFlow"/> divided by <see cref="Density"/>.</summary>
-        public static VolumeFlow operator /(MassFlow massFlow, Density density)
+        /// <summary>Get <see cref="VolumeFlow{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="Density{T}"/>.</summary>
+        public static VolumeFlow<T> operator /(MassFlow<T> massFlow, Density<T> density )
         {
-            return VolumeFlow.FromCubicMetersPerSecond(massFlow.KilogramsPerSecond / density.KilogramsPerCubicMeter);
+            return VolumeFlow<T>.FromCubicMetersPerSecond(massFlow.KilogramsPerSecond / density.KilogramsPerCubicMeter);
         }
     }
 }

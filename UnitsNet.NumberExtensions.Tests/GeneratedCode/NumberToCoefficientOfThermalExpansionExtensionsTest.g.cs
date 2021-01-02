@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToInverseDegreeCelsiusTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseDegreeCelsius(2), 2.InverseDegreeCelsius());
+            Assert.Equal(CoefficientOfThermalExpansion<double>.FromInverseDegreeCelsius(2), 2.InverseDegreeCelsius());
 
         [Fact]
         public void NumberToInverseDegreeFahrenheitTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(2), 2.InverseDegreeFahrenheit());
+            Assert.Equal(CoefficientOfThermalExpansion<double>.FromInverseDegreeFahrenheit(2), 2.InverseDegreeFahrenheit());
 
         [Fact]
         public void NumberToInverseKelvinTest() =>
-            Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(2), 2.InverseKelvin());
+            Assert.Equal(CoefficientOfThermalExpansion<double>.FromInverseKelvin(2), 2.InverseKelvin());
 
     }
 }

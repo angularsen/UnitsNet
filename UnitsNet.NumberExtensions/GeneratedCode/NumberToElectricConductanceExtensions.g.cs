@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens<T>(this T value) =>
-            ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductance{T}.FromMicrosiemens(T)" />
+        public static ElectricConductance<double> Microsiemens<T>(this T value) =>
+            ElectricConductance<double>.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens<T>(this T value) =>
-            ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductance{T}.FromMillisiemens(T)" />
+        public static ElectricConductance<double> Millisiemens<T>(this T value) =>
+            ElectricConductance<double>.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens<T>(this T value) =>
-            ElectricConductance.FromSiemens(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricConductance{T}.FromSiemens(T)" />
+        public static ElectricConductance<double> Siemens<T>(this T value) =>
+            ElectricConductance<double>.FromSiemens(Convert.ToDouble(value));
 
     }
 }

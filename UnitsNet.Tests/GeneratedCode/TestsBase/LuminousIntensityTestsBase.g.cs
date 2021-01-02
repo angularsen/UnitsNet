@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity((double)0.0, LuminousIntensityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new LuminousIntensity<double>((double)0.0, LuminousIntensityUnit.Undefined));
         }
 
         [Fact]
@@ -61,14 +61,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.PositiveInfinity, LuminousIntensityUnit.Candela));
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.NegativeInfinity, LuminousIntensityUnit.Candela));
+            Assert.Throws<ArgumentException>(() => new LuminousIntensity<double>(double.PositiveInfinity, LuminousIntensityUnit.Candela));
+            Assert.Throws<ArgumentException>(() => new LuminousIntensity<double>(double.NegativeInfinity, LuminousIntensityUnit.Candela));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.NaN, LuminousIntensityUnit.Candela));
+            Assert.Throws<ArgumentException>(() => new LuminousIntensity<double>(double.NaN, LuminousIntensityUnit.Candela));
         }
 
         [Fact]
@@ -114,14 +114,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void CandelaToLuminousIntensityUnits()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             AssertEx.EqualTolerance(CandelaInOneCandela, candela.Candela, CandelaTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LuminousIntensity.From(1, LuminousIntensityUnit.Candela);
+            var quantity00 = LuminousIntensity<double>.From(1, LuminousIntensityUnit.Candela);
             AssertEx.EqualTolerance(1, quantity00.Candela, CandelaTolerance);
             Assert.Equal(LuminousIntensityUnit.Candela, quantity00.Unit);
 
@@ -130,20 +130,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromCandela_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => LuminousIntensity<double>.FromCandela(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => LuminousIntensity<double>.FromCandela(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromCandela_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.NaN));
+            Assert.Throws<ArgumentException>(() => LuminousIntensity<double>.FromCandela(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var candela = LuminousIntensity.FromCandela(1);
+            var candela = LuminousIntensity<double>.FromCandela(1);
             AssertEx.EqualTolerance(CandelaInOneCandela, candela.As(LuminousIntensityUnit.Candela), CandelaTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var candela = LuminousIntensity.FromCandela(1);
+            var candela = LuminousIntensity<double>.FromCandela(1);
 
             var candelaQuantity = candela.ToUnit(LuminousIntensityUnit.Candela);
             AssertEx.EqualTolerance(CandelaInOneCandela, (double)candelaQuantity.Value, CandelaTolerance);
@@ -184,28 +184,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
-            AssertEx.EqualTolerance(1, LuminousIntensity.FromCandela(candela.Candela).Candela, CandelaTolerance);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
+            AssertEx.EqualTolerance(1, LuminousIntensity<double>.FromCandela(candela.Candela).Candela, CandelaTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            LuminousIntensity v = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> v = LuminousIntensity<double>.FromCandela(1);
             AssertEx.EqualTolerance(-1, -v.Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(3)-v).Candela, CandelaTolerance);
+            AssertEx.EqualTolerance(2, (LuminousIntensity<double>.FromCandela(3)-v).Candela, CandelaTolerance);
             AssertEx.EqualTolerance(2, (v + v).Candela, CandelaTolerance);
             AssertEx.EqualTolerance(10, (v*10).Candela, CandelaTolerance);
             AssertEx.EqualTolerance(10, (10*v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(10)/5).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, LuminousIntensity.FromCandela(10)/LuminousIntensity.FromCandela(5), CandelaTolerance);
+            AssertEx.EqualTolerance(2, (LuminousIntensity<double>.FromCandela(10)/5).Candela, CandelaTolerance);
+            AssertEx.EqualTolerance(2, LuminousIntensity<double>.FromCandela(10)/LuminousIntensity<double>.FromCandela(5), CandelaTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            LuminousIntensity oneCandela = LuminousIntensity.FromCandela(1);
-            LuminousIntensity twoCandela = LuminousIntensity.FromCandela(2);
+            LuminousIntensity<double> oneCandela = LuminousIntensity<double>.FromCandela(1);
+            LuminousIntensity<double> twoCandela = LuminousIntensity<double>.FromCandela(2);
 
             Assert.True(oneCandela < twoCandela);
             Assert.True(oneCandela <= twoCandela);
@@ -221,31 +221,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             Assert.Equal(0, candela.CompareTo(candela));
-            Assert.True(candela.CompareTo(LuminousIntensity.Zero) > 0);
-            Assert.True(LuminousIntensity.Zero.CompareTo(candela) < 0);
+            Assert.True(candela.CompareTo(LuminousIntensity<double>.Zero) > 0);
+            Assert.True(LuminousIntensity<double>.Zero.CompareTo(candela) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             Assert.Throws<ArgumentException>(() => candela.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             Assert.Throws<ArgumentNullException>(() => candela.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = LuminousIntensity.FromCandela(1);
-            var b = LuminousIntensity.FromCandela(2);
+            var a = LuminousIntensity<double>.FromCandela(1);
+            var b = LuminousIntensity<double>.FromCandela(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -264,8 +264,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = LuminousIntensity.FromCandela(1);
-            var b = LuminousIntensity.FromCandela(2);
+            var a = LuminousIntensity<double>.FromCandela(1);
+            var b = LuminousIntensity<double>.FromCandela(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -285,9 +285,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = LuminousIntensity.FromCandela(1);
-            Assert.True(v.Equals(LuminousIntensity.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(LuminousIntensity.Zero, CandelaTolerance, ComparisonType.Relative));
+            var v = LuminousIntensity<double>.FromCandela(1);
+            Assert.True(v.Equals(LuminousIntensity<double>.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LuminousIntensity<double>.Zero, CandelaTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -300,21 +300,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             Assert.False(candela.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
+            LuminousIntensity<double> candela = LuminousIntensity<double>.FromCandela(1);
             Assert.False(candela.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(LuminousIntensityUnit.Undefined, LuminousIntensity.Units);
+            Assert.DoesNotContain(LuminousIntensityUnit.Undefined, LuminousIntensity<double>.Units);
         }
 
         [Fact]
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(LuminousIntensity.BaseDimensions is null);
+            Assert.False(LuminousIntensity<double>.BaseDimensions is null);
         }
 
         [Fact]

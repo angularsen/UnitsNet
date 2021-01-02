@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricField((double)0.0, ElectricFieldUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricField<double>((double)0.0, ElectricFieldUnit.Undefined));
         }
 
         [Fact]
@@ -61,14 +61,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.PositiveInfinity, ElectricFieldUnit.VoltPerMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.NegativeInfinity, ElectricFieldUnit.VoltPerMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricField<double>(double.PositiveInfinity, ElectricFieldUnit.VoltPerMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricField<double>(double.NegativeInfinity, ElectricFieldUnit.VoltPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.NaN, ElectricFieldUnit.VoltPerMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricField<double>(double.NaN, ElectricFieldUnit.VoltPerMeter));
         }
 
         [Fact]
@@ -114,14 +114,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void VoltPerMeterToElectricFieldUnits()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, voltpermeter.VoltsPerMeter, VoltsPerMeterTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricField.From(1, ElectricFieldUnit.VoltPerMeter);
+            var quantity00 = ElectricField<double>.From(1, ElectricFieldUnit.VoltPerMeter);
             AssertEx.EqualTolerance(1, quantity00.VoltsPerMeter, VoltsPerMeterTolerance);
             Assert.Equal(ElectricFieldUnit.VoltPerMeter, quantity00.Unit);
 
@@ -130,20 +130,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromVoltsPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricField<double>.FromVoltsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricField<double>.FromVoltsPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromVoltsPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricField<double>.FromVoltsPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            var voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, voltpermeter.As(ElectricFieldUnit.VoltPerMeter), VoltsPerMeterTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            var voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
 
             var voltpermeterQuantity = voltpermeter.ToUnit(ElectricFieldUnit.VoltPerMeter);
             AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, (double)voltpermeterQuantity.Value, VoltsPerMeterTolerance);
@@ -184,28 +184,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
-            AssertEx.EqualTolerance(1, ElectricField.FromVoltsPerMeter(voltpermeter.VoltsPerMeter).VoltsPerMeter, VoltsPerMeterTolerance);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
+            AssertEx.EqualTolerance(1, ElectricField<double>.FromVoltsPerMeter(voltpermeter.VoltsPerMeter).VoltsPerMeter, VoltsPerMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricField v = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> v = ElectricField<double>.FromVoltsPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricField.FromVoltsPerMeter(3)-v).VoltsPerMeter, VoltsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricField<double>.FromVoltsPerMeter(3)-v).VoltsPerMeter, VoltsPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).VoltsPerMeter, VoltsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).VoltsPerMeter, VoltsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricField.FromVoltsPerMeter(10)/5).VoltsPerMeter, VoltsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, ElectricField.FromVoltsPerMeter(10)/ElectricField.FromVoltsPerMeter(5), VoltsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricField<double>.FromVoltsPerMeter(10)/5).VoltsPerMeter, VoltsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, ElectricField<double>.FromVoltsPerMeter(10)/ElectricField<double>.FromVoltsPerMeter(5), VoltsPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricField oneVoltPerMeter = ElectricField.FromVoltsPerMeter(1);
-            ElectricField twoVoltsPerMeter = ElectricField.FromVoltsPerMeter(2);
+            ElectricField<double> oneVoltPerMeter = ElectricField<double>.FromVoltsPerMeter(1);
+            ElectricField<double> twoVoltsPerMeter = ElectricField<double>.FromVoltsPerMeter(2);
 
             Assert.True(oneVoltPerMeter < twoVoltsPerMeter);
             Assert.True(oneVoltPerMeter <= twoVoltsPerMeter);
@@ -221,31 +221,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             Assert.Equal(0, voltpermeter.CompareTo(voltpermeter));
-            Assert.True(voltpermeter.CompareTo(ElectricField.Zero) > 0);
-            Assert.True(ElectricField.Zero.CompareTo(voltpermeter) < 0);
+            Assert.True(voltpermeter.CompareTo(ElectricField<double>.Zero) > 0);
+            Assert.True(ElectricField<double>.Zero.CompareTo(voltpermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             Assert.Throws<ArgumentException>(() => voltpermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => voltpermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricField.FromVoltsPerMeter(1);
-            var b = ElectricField.FromVoltsPerMeter(2);
+            var a = ElectricField<double>.FromVoltsPerMeter(1);
+            var b = ElectricField<double>.FromVoltsPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -264,8 +264,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = ElectricField.FromVoltsPerMeter(1);
-            var b = ElectricField.FromVoltsPerMeter(2);
+            var a = ElectricField<double>.FromVoltsPerMeter(1);
+            var b = ElectricField<double>.FromVoltsPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -285,9 +285,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = ElectricField.FromVoltsPerMeter(1);
-            Assert.True(v.Equals(ElectricField.FromVoltsPerMeter(1), VoltsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricField.Zero, VoltsPerMeterTolerance, ComparisonType.Relative));
+            var v = ElectricField<double>.FromVoltsPerMeter(1);
+            Assert.True(v.Equals(ElectricField<double>.FromVoltsPerMeter(1), VoltsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricField<double>.Zero, VoltsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -300,21 +300,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             Assert.False(voltpermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            ElectricField<double> voltpermeter = ElectricField<double>.FromVoltsPerMeter(1);
             Assert.False(voltpermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricFieldUnit.Undefined, ElectricField.Units);
+            Assert.DoesNotContain(ElectricFieldUnit.Undefined, ElectricField<double>.Units);
         }
 
         [Fact]
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricField.BaseDimensions is null);
+            Assert.False(ElectricField<double>.BaseDimensions is null);
         }
 
         [Fact]

@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToNTUTest() =>
-            Assert.Equal(Turbidity.FromNTU(2), 2.NTU());
+            Assert.Equal(Turbidity<double>.FromNTU(2), 2.NTU());
 
     }
 }

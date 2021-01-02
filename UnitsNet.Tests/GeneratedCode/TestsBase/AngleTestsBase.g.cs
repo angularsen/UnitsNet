@@ -72,7 +72,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Angle((double)0.0, AngleUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Angle<double>((double)0.0, AngleUnit.Undefined));
         }
 
         [Fact]
@@ -87,14 +87,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
-            Assert.Throws<ArgumentException>(() => new Angle(double.NegativeInfinity, AngleUnit.Degree));
+            Assert.Throws<ArgumentException>(() => new Angle<double>(double.PositiveInfinity, AngleUnit.Degree));
+            Assert.Throws<ArgumentException>(() => new Angle<double>(double.NegativeInfinity, AngleUnit.Degree));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Angle(double.NaN, AngleUnit.Degree));
+            Assert.Throws<ArgumentException>(() => new Angle<double>(double.NaN, AngleUnit.Degree));
         }
 
         [Fact]
@@ -140,7 +140,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void DegreeToAngleUnits()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             AssertEx.EqualTolerance(ArcminutesInOneDegree, degree.Arcminutes, ArcminutesTolerance);
             AssertEx.EqualTolerance(ArcsecondsInOneDegree, degree.Arcseconds, ArcsecondsTolerance);
             AssertEx.EqualTolerance(CentiradiansInOneDegree, degree.Centiradians, CentiradiansTolerance);
@@ -160,59 +160,59 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Angle.From(1, AngleUnit.Arcminute);
+            var quantity00 = Angle<double>.From(1, AngleUnit.Arcminute);
             AssertEx.EqualTolerance(1, quantity00.Arcminutes, ArcminutesTolerance);
             Assert.Equal(AngleUnit.Arcminute, quantity00.Unit);
 
-            var quantity01 = Angle.From(1, AngleUnit.Arcsecond);
+            var quantity01 = Angle<double>.From(1, AngleUnit.Arcsecond);
             AssertEx.EqualTolerance(1, quantity01.Arcseconds, ArcsecondsTolerance);
             Assert.Equal(AngleUnit.Arcsecond, quantity01.Unit);
 
-            var quantity02 = Angle.From(1, AngleUnit.Centiradian);
+            var quantity02 = Angle<double>.From(1, AngleUnit.Centiradian);
             AssertEx.EqualTolerance(1, quantity02.Centiradians, CentiradiansTolerance);
             Assert.Equal(AngleUnit.Centiradian, quantity02.Unit);
 
-            var quantity03 = Angle.From(1, AngleUnit.Deciradian);
+            var quantity03 = Angle<double>.From(1, AngleUnit.Deciradian);
             AssertEx.EqualTolerance(1, quantity03.Deciradians, DeciradiansTolerance);
             Assert.Equal(AngleUnit.Deciradian, quantity03.Unit);
 
-            var quantity04 = Angle.From(1, AngleUnit.Degree);
+            var quantity04 = Angle<double>.From(1, AngleUnit.Degree);
             AssertEx.EqualTolerance(1, quantity04.Degrees, DegreesTolerance);
             Assert.Equal(AngleUnit.Degree, quantity04.Unit);
 
-            var quantity05 = Angle.From(1, AngleUnit.Gradian);
+            var quantity05 = Angle<double>.From(1, AngleUnit.Gradian);
             AssertEx.EqualTolerance(1, quantity05.Gradians, GradiansTolerance);
             Assert.Equal(AngleUnit.Gradian, quantity05.Unit);
 
-            var quantity06 = Angle.From(1, AngleUnit.Microdegree);
+            var quantity06 = Angle<double>.From(1, AngleUnit.Microdegree);
             AssertEx.EqualTolerance(1, quantity06.Microdegrees, MicrodegreesTolerance);
             Assert.Equal(AngleUnit.Microdegree, quantity06.Unit);
 
-            var quantity07 = Angle.From(1, AngleUnit.Microradian);
+            var quantity07 = Angle<double>.From(1, AngleUnit.Microradian);
             AssertEx.EqualTolerance(1, quantity07.Microradians, MicroradiansTolerance);
             Assert.Equal(AngleUnit.Microradian, quantity07.Unit);
 
-            var quantity08 = Angle.From(1, AngleUnit.Millidegree);
+            var quantity08 = Angle<double>.From(1, AngleUnit.Millidegree);
             AssertEx.EqualTolerance(1, quantity08.Millidegrees, MillidegreesTolerance);
             Assert.Equal(AngleUnit.Millidegree, quantity08.Unit);
 
-            var quantity09 = Angle.From(1, AngleUnit.Milliradian);
+            var quantity09 = Angle<double>.From(1, AngleUnit.Milliradian);
             AssertEx.EqualTolerance(1, quantity09.Milliradians, MilliradiansTolerance);
             Assert.Equal(AngleUnit.Milliradian, quantity09.Unit);
 
-            var quantity10 = Angle.From(1, AngleUnit.Nanodegree);
+            var quantity10 = Angle<double>.From(1, AngleUnit.Nanodegree);
             AssertEx.EqualTolerance(1, quantity10.Nanodegrees, NanodegreesTolerance);
             Assert.Equal(AngleUnit.Nanodegree, quantity10.Unit);
 
-            var quantity11 = Angle.From(1, AngleUnit.Nanoradian);
+            var quantity11 = Angle<double>.From(1, AngleUnit.Nanoradian);
             AssertEx.EqualTolerance(1, quantity11.Nanoradians, NanoradiansTolerance);
             Assert.Equal(AngleUnit.Nanoradian, quantity11.Unit);
 
-            var quantity12 = Angle.From(1, AngleUnit.Radian);
+            var quantity12 = Angle<double>.From(1, AngleUnit.Radian);
             AssertEx.EqualTolerance(1, quantity12.Radians, RadiansTolerance);
             Assert.Equal(AngleUnit.Radian, quantity12.Unit);
 
-            var quantity13 = Angle.From(1, AngleUnit.Revolution);
+            var quantity13 = Angle<double>.From(1, AngleUnit.Revolution);
             AssertEx.EqualTolerance(1, quantity13.Revolutions, RevolutionsTolerance);
             Assert.Equal(AngleUnit.Revolution, quantity13.Unit);
 
@@ -221,20 +221,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromDegrees_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Angle<double>.FromDegrees(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Angle<double>.FromDegrees(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromDegrees_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NaN));
+            Assert.Throws<ArgumentException>(() => Angle<double>.FromDegrees(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var degree = Angle.FromDegrees(1);
+            var degree = Angle<double>.FromDegrees(1);
             AssertEx.EqualTolerance(ArcminutesInOneDegree, degree.As(AngleUnit.Arcminute), ArcminutesTolerance);
             AssertEx.EqualTolerance(ArcsecondsInOneDegree, degree.As(AngleUnit.Arcsecond), ArcsecondsTolerance);
             AssertEx.EqualTolerance(CentiradiansInOneDegree, degree.As(AngleUnit.Centiradian), CentiradiansTolerance);
@@ -271,7 +271,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var degree = Angle.FromDegrees(1);
+            var degree = Angle<double>.FromDegrees(1);
 
             var arcminuteQuantity = degree.ToUnit(AngleUnit.Arcminute);
             AssertEx.EqualTolerance(ArcminutesInOneDegree, (double)arcminuteQuantity.Value, ArcminutesTolerance);
@@ -340,41 +340,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Angle degree = Angle.FromDegrees(1);
-            AssertEx.EqualTolerance(1, Angle.FromArcminutes(degree.Arcminutes).Degrees, ArcminutesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromArcseconds(degree.Arcseconds).Degrees, ArcsecondsTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromCentiradians(degree.Centiradians).Degrees, CentiradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromDeciradians(degree.Deciradians).Degrees, DeciradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromDegrees(degree.Degrees).Degrees, DegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromGradians(degree.Gradians).Degrees, GradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMicrodegrees(degree.Microdegrees).Degrees, MicrodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMicroradians(degree.Microradians).Degrees, MicroradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMillidegrees(degree.Millidegrees).Degrees, MillidegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMilliradians(degree.Milliradians).Degrees, MilliradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromNanodegrees(degree.Nanodegrees).Degrees, NanodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromRevolutions(degree.Revolutions).Degrees, RevolutionsTolerance);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
+            AssertEx.EqualTolerance(1, Angle<double>.FromArcminutes(degree.Arcminutes).Degrees, ArcminutesTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromArcseconds(degree.Arcseconds).Degrees, ArcsecondsTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromCentiradians(degree.Centiradians).Degrees, CentiradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromDeciradians(degree.Deciradians).Degrees, DeciradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromDegrees(degree.Degrees).Degrees, DegreesTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromGradians(degree.Gradians).Degrees, GradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromMicrodegrees(degree.Microdegrees).Degrees, MicrodegreesTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromMicroradians(degree.Microradians).Degrees, MicroradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromMillidegrees(degree.Millidegrees).Degrees, MillidegreesTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromMilliradians(degree.Milliradians).Degrees, MilliradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromNanodegrees(degree.Nanodegrees).Degrees, NanodegreesTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromRadians(degree.Radians).Degrees, RadiansTolerance);
+            AssertEx.EqualTolerance(1, Angle<double>.FromRevolutions(degree.Revolutions).Degrees, RevolutionsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Angle v = Angle.FromDegrees(1);
+            Angle<double> v = Angle<double>.FromDegrees(1);
             AssertEx.EqualTolerance(-1, -v.Degrees, DegreesTolerance);
-            AssertEx.EqualTolerance(2, (Angle.FromDegrees(3)-v).Degrees, DegreesTolerance);
+            AssertEx.EqualTolerance(2, (Angle<double>.FromDegrees(3)-v).Degrees, DegreesTolerance);
             AssertEx.EqualTolerance(2, (v + v).Degrees, DegreesTolerance);
             AssertEx.EqualTolerance(10, (v*10).Degrees, DegreesTolerance);
             AssertEx.EqualTolerance(10, (10*v).Degrees, DegreesTolerance);
-            AssertEx.EqualTolerance(2, (Angle.FromDegrees(10)/5).Degrees, DegreesTolerance);
-            AssertEx.EqualTolerance(2, Angle.FromDegrees(10)/Angle.FromDegrees(5), DegreesTolerance);
+            AssertEx.EqualTolerance(2, (Angle<double>.FromDegrees(10)/5).Degrees, DegreesTolerance);
+            AssertEx.EqualTolerance(2, Angle<double>.FromDegrees(10)/Angle<double>.FromDegrees(5), DegreesTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Angle oneDegree = Angle.FromDegrees(1);
-            Angle twoDegrees = Angle.FromDegrees(2);
+            Angle<double> oneDegree = Angle<double>.FromDegrees(1);
+            Angle<double> twoDegrees = Angle<double>.FromDegrees(2);
 
             Assert.True(oneDegree < twoDegrees);
             Assert.True(oneDegree <= twoDegrees);
@@ -390,31 +390,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             Assert.Equal(0, degree.CompareTo(degree));
-            Assert.True(degree.CompareTo(Angle.Zero) > 0);
-            Assert.True(Angle.Zero.CompareTo(degree) < 0);
+            Assert.True(degree.CompareTo(Angle<double>.Zero) > 0);
+            Assert.True(Angle<double>.Zero.CompareTo(degree) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             Assert.Throws<ArgumentException>(() => degree.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             Assert.Throws<ArgumentNullException>(() => degree.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Angle.FromDegrees(1);
-            var b = Angle.FromDegrees(2);
+            var a = Angle<double>.FromDegrees(1);
+            var b = Angle<double>.FromDegrees(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -433,8 +433,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Angle.FromDegrees(1);
-            var b = Angle.FromDegrees(2);
+            var a = Angle<double>.FromDegrees(1);
+            var b = Angle<double>.FromDegrees(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -454,9 +454,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Angle.FromDegrees(1);
-            Assert.True(v.Equals(Angle.FromDegrees(1), DegreesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Angle.Zero, DegreesTolerance, ComparisonType.Relative));
+            var v = Angle<double>.FromDegrees(1);
+            Assert.True(v.Equals(Angle<double>.FromDegrees(1), DegreesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Angle<double>.Zero, DegreesTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -469,21 +469,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             Assert.False(degree.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Angle degree = Angle.FromDegrees(1);
+            Angle<double> degree = Angle<double>.FromDegrees(1);
             Assert.False(degree.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(AngleUnit.Undefined, Angle.Units);
+            Assert.DoesNotContain(AngleUnit.Undefined, Angle<double>.Units);
         }
 
         [Fact]
@@ -502,7 +502,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Angle.BaseDimensions is null);
+            Assert.False(Angle<double>.BaseDimensions is null);
         }
 
         [Fact]

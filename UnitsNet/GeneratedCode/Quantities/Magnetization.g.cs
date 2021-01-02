@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetization
     /// </remarks>
-    public partial struct Magnetization : IQuantity<MagnetizationUnit>, IEquatable<Magnetization>, IComparable, IComparable<Magnetization>, IConvertible, IFormattable
+    public partial struct Magnetization<T> : IQuantityT<MagnetizationUnit, T>, IEquatable<Magnetization<T>>, IComparable, IComparable<Magnetization<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Magnetization(double value, MagnetizationUnit unit)
+        public Magnetization(T value, MagnetizationUnit unit)
         {
             if(unit == MagnetizationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Magnetization(double value, UnitSystem unitSystem)
+        public Magnetization(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -105,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Magnetization, which is AmperePerMeter. All conversions go via this value.
+        ///     The base unit of <see cref="Magnetization{T}" />, which is AmperePerMeter. All conversions go via this value.
         /// </summary>
         public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Magnetization
+        /// Represents the largest possible value of <see cref="Magnetization{T}" />
         /// </summary>
-        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, BaseUnit);
+        public static Magnetization<T> MaxValue { get; } = new Magnetization<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Magnetization
+        /// Represents the smallest possible value of <see cref="Magnetization{T}" />
         /// </summary>
-        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
+        public static Magnetization<T> MinValue { get; } = new Magnetization<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Magnetization;
 
         /// <summary>
-        ///     All units of measurement for the Magnetization quantity.
+        ///     All units of measurement for the <see cref="Magnetization{T}" /> quantity.
         /// </summary>
         public static MagnetizationUnit[] Units { get; } = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerMeter.
         /// </summary>
-        public static Magnetization Zero { get; } = new Magnetization(0, BaseUnit);
+        public static Magnetization<T> Zero { get; } = new Magnetization<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,21 +156,21 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Magnetization.QuantityType;
+        public QuantityType Type => Magnetization<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Magnetization.BaseDimensions;
+        public BaseDimensions Dimensions => Magnetization<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Magnetization in AmperesPerMeter.
+        ///     Get <see cref="Magnetization{T}" /> in AmperesPerMeter.
         /// </summary>
-        public double AmperesPerMeter => As(MagnetizationUnit.AmperePerMeter);
+        public T AmperesPerMeter => As(MagnetizationUnit.AmperePerMeter);
 
         #endregion
 
@@ -204,24 +202,23 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Magnetization from AmperesPerMeter.
+        ///     Get <see cref="Magnetization{T}" /> from AmperesPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Magnetization FromAmperesPerMeter(QuantityValue amperespermeter)
+        public static Magnetization<T> FromAmperesPerMeter(T amperespermeter)
         {
-            double value = (double) amperespermeter;
-            return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
+            return new Magnetization<T>(amperespermeter, MagnetizationUnit.AmperePerMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
+        ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Magnetization unit value.</returns>
-        public static Magnetization From(QuantityValue value, MagnetizationUnit fromUnit)
+        /// <returns><see cref="Magnetization{T}" /> unit value.</returns>
+        public static Magnetization<T> From(T value, MagnetizationUnit fromUnit)
         {
-            return new Magnetization((double)value, fromUnit);
+            return new Magnetization<T>(value, fromUnit);
         }
 
         #endregion
@@ -250,7 +247,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Magnetization Parse(string str)
+        public static Magnetization<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -278,9 +275,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Magnetization Parse(string str, IFormatProvider? provider)
+        public static Magnetization<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Magnetization, MagnetizationUnit>(
+            return QuantityParser.Default.Parse<T, Magnetization<T>, MagnetizationUnit>(
                 str,
                 provider,
                 From);
@@ -294,7 +291,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Magnetization result)
+        public static bool TryParse(string? str, out Magnetization<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -309,9 +306,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Magnetization result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Magnetization<T> result)
         {
-            return QuantityParser.Default.TryParse<Magnetization, MagnetizationUnit>(
+            return QuantityParser.Default.TryParse<T, Magnetization<T>, MagnetizationUnit>(
                 str,
                 provider,
                 From,
@@ -373,45 +370,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Magnetization operator -(Magnetization right)
+        public static Magnetization<T> operator -(Magnetization<T> right)
         {
-            return new Magnetization(-right.Value, right.Unit);
+            return new Magnetization<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="Magnetization"/> from adding two <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator +(Magnetization left, Magnetization right)
+        /// <summary>Get <see cref="Magnetization{T}"/> from adding two <see cref="Magnetization{T}"/>.</summary>
+        public static Magnetization<T> operator +(Magnetization<T> left, Magnetization<T> right)
         {
-            return new Magnetization(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Magnetization<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Magnetization"/> from subtracting two <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator -(Magnetization left, Magnetization right)
+        /// <summary>Get <see cref="Magnetization{T}"/> from subtracting two <see cref="Magnetization{T}"/>.</summary>
+        public static Magnetization<T> operator -(Magnetization<T> left, Magnetization<T> right)
         {
-            return new Magnetization(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Magnetization<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Magnetization"/> from multiplying value and <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator *(double left, Magnetization right)
+        /// <summary>Get <see cref="Magnetization{T}"/> from multiplying value and <see cref="Magnetization{T}"/>.</summary>
+        public static Magnetization<T> operator *(T left, Magnetization<T> right)
         {
-            return new Magnetization(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Magnetization<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Magnetization"/> from multiplying value and <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator *(Magnetization left, double right)
+        /// <summary>Get <see cref="Magnetization{T}"/> from multiplying value and <see cref="Magnetization{T}"/>.</summary>
+        public static Magnetization<T> operator *(Magnetization<T> left, T right)
         {
-            return new Magnetization(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Magnetization<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Magnetization"/> from dividing <see cref="Magnetization"/> by value.</summary>
-        public static Magnetization operator /(Magnetization left, double right)
+        /// <summary>Get <see cref="Magnetization{T}"/> from dividing <see cref="Magnetization{T}"/> by value.</summary>
+        public static Magnetization<T> operator /(Magnetization<T> left, T right)
         {
-            return new Magnetization(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Magnetization<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Magnetization"/> by <see cref="Magnetization"/>.</summary>
-        public static double operator /(Magnetization left, Magnetization right)
+        /// <summary>Get ratio value from dividing <see cref="Magnetization{T}"/> by <see cref="Magnetization{T}"/>.</summary>
+        public static T operator /(Magnetization<T> left, Magnetization<T> right)
         {
-            return left.AmperesPerMeter / right.AmperesPerMeter;
+            return CompiledLambdas.Divide(left.AmperesPerMeter, right.AmperesPerMeter);
         }
 
         #endregion
@@ -419,39 +421,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Magnetization left, Magnetization right)
+        public static bool operator <=(Magnetization<T> left, Magnetization<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Magnetization left, Magnetization right)
+        public static bool operator >=(Magnetization<T> left, Magnetization<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Magnetization left, Magnetization right)
+        public static bool operator <(Magnetization<T> left, Magnetization<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Magnetization left, Magnetization right)
+        public static bool operator >(Magnetization<T> left, Magnetization<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Magnetization, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Magnetization left, Magnetization right)
+        /// <remarks>Consider using <see cref="Equals(Magnetization{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Magnetization<T> left, Magnetization<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Magnetization, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Magnetization left, Magnetization right)
+        /// <remarks>Consider using <see cref="Equals(Magnetization{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Magnetization<T> left, Magnetization<T> right)
         {
             return !(left == right);
         }
@@ -460,37 +462,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Magnetization objMagnetization)) throw new ArgumentException("Expected type Magnetization.", nameof(obj));
+            if(!(obj is Magnetization<T> objMagnetization)) throw new ArgumentException("Expected type Magnetization.", nameof(obj));
 
             return CompareTo(objMagnetization);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Magnetization other)
+        public int CompareTo(Magnetization<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Magnetization, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Magnetization{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Magnetization objMagnetization))
+            if(obj is null || !(obj is Magnetization<T> objMagnetization))
                 return false;
 
             return Equals(objMagnetization);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Magnetization, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Magnetization other)
+        /// <remarks>Consider using <see cref="Equals(Magnetization{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Magnetization<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Magnetization within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Magnetization{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -528,21 +530,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Magnetization other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Magnetization<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Magnetization.</returns>
+        /// <returns>A hash code for the current <see cref="Magnetization{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -556,17 +556,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MagnetizationUnit unit)
+        public T As(MagnetizationUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -586,17 +586,22 @@ namespace UnitsNet
             if(!(unit is MagnetizationUnit unitAsMagnetizationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMagnetizationUnit);
+            var asValue = As(unitAsMagnetizationUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<MagnetizationUnit>.As(MagnetizationUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Magnetization{T}" /> to another <see cref="Magnetization{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Magnetization with the specified unit.</returns>
-        public Magnetization ToUnit(MagnetizationUnit unit)
+        /// <returns>A <see cref="Magnetization{T}" /> with the specified unit.</returns>
+        public Magnetization<T> ToUnit(MagnetizationUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Magnetization(convertedValue, unit);
+            return new Magnetization<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -609,7 +614,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Magnetization ToUnit(UnitSystem unitSystem)
+        public Magnetization<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -630,18 +635,24 @@ namespace UnitsNet
         IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<MagnetizationUnit, T> IQuantityT<MagnetizationUnit, T>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<MagnetizationUnit, T> IQuantityT<MagnetizationUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MagnetizationUnit.AmperePerMeter: return _value;
+                case MagnetizationUnit.AmperePerMeter: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -652,16 +663,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Magnetization ToBaseUnit()
+        internal Magnetization<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Magnetization(baseUnitValue, BaseUnit);
+            return new Magnetization<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(MagnetizationUnit unit)
+        private T GetValueAs(MagnetizationUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -764,57 +775,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Magnetization)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Magnetization<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Magnetization)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Magnetization<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Magnetization)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Magnetization<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -824,33 +835,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Magnetization))
+            if(conversionType == typeof(Magnetization<T>))
                 return this;
             else if(conversionType == typeof(MagnetizationUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Magnetization.QuantityType;
+                return Magnetization<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return Magnetization.Info;
+                return Magnetization<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return Magnetization.BaseDimensions;
+                return Magnetization<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Magnetization)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Magnetization<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

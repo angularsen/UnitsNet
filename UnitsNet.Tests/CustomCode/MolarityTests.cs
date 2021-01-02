@@ -53,11 +53,11 @@ namespace UnitsNet.Tests.CustomCode
             double componentMolarMassValue, MolarMassUnit compontMolarMassUnit,
             double expectedVolumeConcValue, VolumeConcentrationUnit expectedVolumeConcUnit, double tolerence = 1e-5)
         {
-            var molarity = new Molarity(molarityValue, molarityUnit);
-            var componentDensity = new Density(componentDensityValue, componentDensityUnit);
-            var componentMolarMass = new MolarMass(componentMolarMassValue, compontMolarMassUnit);
+            var molarity = new Molarity<double>( molarityValue, molarityUnit);
+            var componentDensity = new Density<double>( componentDensityValue, componentDensityUnit);
+            var componentMolarMass = new MolarMass<double>( componentMolarMassValue, compontMolarMassUnit);
 
-            VolumeConcentration volumeConcentration = molarity.ToVolumeConcentration(componentDensity, componentMolarMass);
+            var volumeConcentration = molarity.ToVolumeConcentration(componentDensity, componentMolarMass);
 
             AssertEx.EqualTolerance(expectedVolumeConcValue, volumeConcentration.As(expectedVolumeConcUnit), tolerence);
         }
@@ -74,10 +74,10 @@ namespace UnitsNet.Tests.CustomCode
             double componentMolarMassValue, MolarMassUnit compontMolarMassUnit,
             double expectedMassConcValue, MassConcentrationUnit expectedMassConcUnit, double tolerence = 1e-5)
         {
-            var molarity = new Molarity(molarityValue, molarityUnit);
-            var componentMolarMass = new MolarMass(componentMolarMassValue, compontMolarMassUnit);
+            var molarity = new Molarity<double>(molarityValue, molarityUnit);
+            var componentMolarMass = new MolarMass<double>( componentMolarMassValue, compontMolarMassUnit);
 
-            MassConcentration concentration = molarity.ToMassConcentration(componentMolarMass);  // molarity * molarMass
+            var concentration = molarity.ToMassConcentration(componentMolarMass);  // molarity * molarMass
 
             AssertEx.EqualTolerance(expectedMassConcValue, concentration.As(expectedMassConcUnit), tolerence);
         }
@@ -91,10 +91,10 @@ namespace UnitsNet.Tests.CustomCode
             double newConcentration, VolumeConcentrationUnit newConcentrationUnit,
             double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
         {
-            var startingMolarity = new Molarity(startingMolarityValue, startingMolarityUnit);
-            var newVolumeConc = new VolumeConcentration(newConcentration, newConcentrationUnit);
+            var startingMolarity = new Molarity<double>( startingMolarityValue, startingMolarityUnit);
+            var newVolumeConc = new VolumeConcentration<double>( newConcentration, newConcentrationUnit);
 
-            Molarity dilutedMolarity = startingMolarity * newVolumeConc;
+            var dilutedMolarity = startingMolarity * newVolumeConc;
 
             AssertEx.EqualTolerance(expectedMolarityValue, dilutedMolarity.As(expectedMolarityUnit), tolerence);
         }
@@ -102,13 +102,13 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void OneMolarFromStringParsedCorrectly()
         {
-            Assert.Equal(Molarity.Parse("1M"), Molarity.Parse("1 mol/L"));
+            Assert.Equal(Molarity<double>.Parse("1M"), Molarity<double>.Parse("1 mol/L"));
         }
 
         [Fact]
         public void OneMilliMolarFromStringParsedCorrectly()
         {
-            Assert.Equal(1, Molarity.Parse("1000 mM").MolesPerLiter);
+            Assert.Equal(1, Molarity<double>.Parse("1000 mM").MolesPerLiter);
         }
 
     }

@@ -10,7 +10,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct Length
+    public partial struct Length<T>
     {
         private const double InchesInOneFoot = 12;
 
@@ -32,7 +32,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get length from combination of feet and inches.
         /// </summary>
-        public static Length FromFeetInches(double feet, double inches)
+        public static Length<T> FromFeetInches(double feet, double inches)
         {
             return FromInches(InchesInOneFoot*feet + inches);
         }
@@ -47,10 +47,10 @@ namespace UnitsNet
         /// <param name="str"></param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
         /// <returns>Parsed length.</returns>
-        public static Length ParseFeetInches([NotNull] string str, IFormatProvider? formatProvider = null)
+        public static Length<T> ParseFeetInches([NotNull] string str, IFormatProvider? formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
-            if (!TryParseFeetInches(str, out Length result, formatProvider))
+            if (!TryParseFeetInches(str, out Length<T> result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
                 throw new FormatException("Unable to parse feet and inches. Expected format \"2' 4\"\" or \"2 ft 4 in\". Whitespace is optional.");
@@ -69,7 +69,7 @@ namespace UnitsNet
         /// <param name="str"></param>
         /// <param name="result">Parsed length.</param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
-        public static bool TryParseFeetInches(string? str, out Length result, IFormatProvider? formatProvider = null)
+        public static bool TryParseFeetInches(string? str, out Length<T> result, IFormatProvider? formatProvider = null)
         {
             if (str == null)
             {
@@ -98,8 +98,8 @@ namespace UnitsNet
             var feetGroup = match.Groups["feet"];
             var inchesGroup = match.Groups["inches"];
 
-            if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
-                TryParse(inchesGroup.Value, formatProvider, out Length inches))
+            if (TryParse(feetGroup.Value, formatProvider, out Length<T> feet ) &&
+                TryParse(inchesGroup.Value, formatProvider, out Length<T> inches ))
             {
                 result = feet + inches;
 
@@ -113,70 +113,70 @@ namespace UnitsNet
             return false;
         }
 
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static Speed operator /(Length length, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Speed{T}"/> from <see cref="Length{T}"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static Speed<T> operator /(Length<T> length, TimeSpan timeSpan)
         {
-            return Speed.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);
+            return Speed<T>.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="Duration"/>.</summary>
-        public static Speed operator /(Length length, Duration duration)
+        /// <summary>Get <see cref="Speed{T}"/> from <see cref="Length{T}"/> divided by <see cref="Duration{T}"/>.</summary>
+        public static Speed<T> operator /(Length<T> length, Duration<T> duration )
         {
-            return Speed.FromMetersPerSecond(length.Meters/duration.Seconds);
+            return Speed<T>.FromMetersPerSecond(length.Meters/duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> divided by <see cref="Speed"/>.</summary>
-        public static Duration operator /(Length length, Speed speed)
+        /// <summary>Get <see cref="Duration{T}"/> from <see cref="Length{T}"/> divided by <see cref="Speed{T}"/>.</summary>
+        public static Duration<T> operator /(Length<T> length, Speed<T> speed )
         {
-            return Duration.FromSeconds(length.Meters/speed.MetersPerSecond);
+            return Duration<T>.FromSeconds(length.Meters/speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="Length"/> times <see cref="Length"/>.</summary>
-        public static Area operator *(Length length1, Length length2)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="Length{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static Area<T> operator *(Length<T> length1, Length<T> length2 )
         {
-            return Area.FromSquareMeters(length1.Meters*length2.Meters);
+            return Area<T>.FromSquareMeters(length1.Meters*length2.Meters);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> times <see cref="Length"/>.</summary>
-        public static Volume operator *(Area area, Length length)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="Area{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static Volume<T> operator *(Area<T> area, Length<T> length )
         {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
+            return Volume<T>.FromCubicMeters(area.SquareMeters*length.Meters);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> times <see cref="Area"/>.</summary>
-        public static Volume operator *(Length length, Area area)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="Length{T}"/> times <see cref="Area{T}"/>.</summary>
+        public static Volume<T> operator *(Length<T> length, Area<T> area )
         {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
+            return Volume<T>.FromCubicMeters(area.SquareMeters*length.Meters);
         }
 
-        /// <summary>Get <see cref="Torque"/> from <see cref="Force"/> times <see cref="Length"/>.</summary>
-        public static Torque operator *(Force force, Length length)
+        /// <summary>Get <see cref="Torque{T}"/> from <see cref="Force{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static Torque<T> operator *(Force<T> force, Length<T> length )
         {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
+            return Torque<T>.FromNewtonMeters(force.Newtons*length.Meters);
         }
 
-        /// <summary>Get <see cref="Torque"/> from <see cref="Length"/> times <see cref="Force"/>.</summary>
-        public static Torque operator *(Length length, Force force)
+        /// <summary>Get <see cref="Torque{T}"/> from <see cref="Length{T}"/> times <see cref="Force{T}"/>.</summary>
+        public static Torque<T> operator *(Length<T> length, Force<T> force )
         {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
+            return Torque<T>.FromNewtonMeters(force.Newtons*length.Meters);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Length"/> times <see cref="Speed"/>.</summary>
-        public static KinematicViscosity operator *(Length length, Speed speed)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from <see cref="Length{T}"/> times <see cref="Speed{T}"/>.</summary>
+        public static KinematicViscosity<T> operator *(Length<T> length, Speed<T> speed )
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
+            return KinematicViscosity<T>.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="Pressure"/> from <see cref="Length"/> times <see cref="SpecificWeight"/>.</summary>
-        public static Pressure operator *(Length length, SpecificWeight specificWeight)
+        /// <summary>Get <see cref="Pressure{T}"/> from <see cref="Length{T}"/> times <see cref="SpecificWeight{T}"/>.</summary>
+        public static Pressure<T> operator *(Length<T> length, SpecificWeight<T> specificWeight )
         {
-            return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
+            return new Pressure<T>( length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
         }
     }
 
     /// <summary>
-    ///     Representation of feet and inches, used to preserve the original values when constructing <see cref="Length"/> by
-    ///     <see cref="Length.FromFeetInches"/> and later output them unaltered with <see cref="ToString()"/>.
+    ///     Representation of feet and inches, used to preserve the original values when constructing <see cref="Length{T}"/> by
+    ///     <see cref="Length{T}.FromFeetInches"/> and later output them unaltered with <see cref="ToString()"/>.
     /// </summary>
     public sealed class FeetInches
     {

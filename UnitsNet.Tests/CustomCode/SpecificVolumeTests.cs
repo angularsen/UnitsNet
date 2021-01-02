@@ -36,15 +36,15 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void SpecificVolumeTimesMassEqualsVolume()
         {
-            Volume volume = SpecificVolume.FromCubicMetersPerKilogram(5) * Mass.FromKilograms(10);
-            Assert.Equal(volume, Volume.FromCubicMeters(50));
+            var volume = SpecificVolume<double>.FromCubicMetersPerKilogram(5) * Mass<double>.FromKilograms(10);
+            Assert.Equal(volume, Volume<double>.FromCubicMeters(50));
         }
 
         [Fact]
         public static void ConstantOverSpecificVolumeEqualsDensity()
         {
-            Density density = 5 / SpecificVolume.FromCubicMetersPerKilogram(20);
-            Assert.Equal(density, Density.FromKilogramsPerCubicMeter(0.25));
+            var density = 5 / SpecificVolume<double>.FromCubicMetersPerKilogram(20);
+            Assert.Equal(density, Density<double>.FromKilogramsPerCubicMeter(0.25));
         }
     }
 }

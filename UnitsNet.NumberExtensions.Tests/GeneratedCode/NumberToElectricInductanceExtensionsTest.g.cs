@@ -26,19 +26,19 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToHenriesTest() =>
-            Assert.Equal(ElectricInductance.FromHenries(2), 2.Henries());
+            Assert.Equal(ElectricInductance<double>.FromHenries(2), 2.Henries());
 
         [Fact]
         public void NumberToMicrohenriesTest() =>
-            Assert.Equal(ElectricInductance.FromMicrohenries(2), 2.Microhenries());
+            Assert.Equal(ElectricInductance<double>.FromMicrohenries(2), 2.Microhenries());
 
         [Fact]
         public void NumberToMillihenriesTest() =>
-            Assert.Equal(ElectricInductance.FromMillihenries(2), 2.Millihenries());
+            Assert.Equal(ElectricInductance<double>.FromMillihenries(2), 2.Millihenries());
 
         [Fact]
         public void NumberToNanohenriesTest() =>
-            Assert.Equal(ElectricInductance.FromNanohenries(2), 2.Nanohenries());
+            Assert.Equal(ElectricInductance<double>.FromNanohenries(2), 2.Nanohenries());
 
     }
 }

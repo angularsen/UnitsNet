@@ -47,22 +47,22 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassFluxDividedBySpeedEqualsDensity()
         {
-            Density density = MassFlux.FromKilogramsPerSecondPerSquareMeter(20) / Speed.FromMetersPerSecond(2);
-            Assert.Equal(density, Density.FromKilogramsPerCubicMeter(10));
+            var density = MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(20) / Speed<double>.FromMetersPerSecond(2);
+            Assert.Equal(density, Density<double>.FromKilogramsPerCubicMeter(10));
         }
 
         [Fact]
         public void MassFluxDividedByDensityEqualsSpeed()
         {
-            Speed speed = MassFlux.FromKilogramsPerSecondPerSquareMeter(20) / Density.FromKilogramsPerCubicMeter(2);
-            Assert.Equal(speed, Speed.FromMetersPerSecond(10));
+            var speed = MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(20) / Density<double>.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(speed, Speed<double>.FromMetersPerSecond(10));
         }
 
         [Fact]
         public void MassFluxTimesAreaEqualsMassFlow()
         {
-            MassFlow massFlow = MassFlux.FromKilogramsPerSecondPerSquareMeter(20) * Area.FromSquareMeters(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            var massFlow = MassFlux<double>.FromKilogramsPerSecondPerSquareMeter(20) * Area<double>.FromSquareMeters(2);
+            Assert.Equal(massFlow, MassFlow<double>.FromKilogramsPerSecond(40));
         }
     }
 }

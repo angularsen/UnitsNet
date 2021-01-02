@@ -3,24 +3,24 @@
 
 namespace UnitsNet
 {
-    public partial struct MassFlux
+    public partial struct MassFlux<T>
     {
-        /// <summary>Get <see cref="Density"/> from <see cref="MassFlux"/> divided by <see cref="Speed"/>.</summary>
-        public static Density operator /(MassFlux massFlux, Speed speed)
+        /// <summary>Get <see cref="Density{T}"/> from <see cref="MassFlux{T}"/> divided by <see cref="Speed{T}"/>.</summary>
+        public static Density<T> operator /(MassFlux<T> massFlux, Speed<T> speed )
         {
-            return Density.FromKilogramsPerCubicMeter(massFlux.KilogramsPerSecondPerSquareMeter / speed.MetersPerSecond);
+            return Density<T>.FromKilogramsPerCubicMeter(massFlux.KilogramsPerSecondPerSquareMeter / speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="Speed"/> from <see cref="MassFlux"/> divided by <see cref="Density"/>.</summary>
-        public static Speed operator /(MassFlux massFlux, Density density)
+        /// <summary>Get <see cref="Speed{T}"/> from <see cref="MassFlux{T}"/> divided by <see cref="Density{T}"/>.</summary>
+        public static Speed<T> operator /(MassFlux<T> massFlux, Density<T> density )
         {
-            return Speed.FromMetersPerSecond(massFlux.KilogramsPerSecondPerSquareMeter / density.KilogramsPerCubicMeter);
+            return Speed<T>.FromMetersPerSecond(massFlux.KilogramsPerSecondPerSquareMeter / density.KilogramsPerCubicMeter);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="MassFlux"/> times <see cref="Area"/>.</summary>
-        public static MassFlow operator *(MassFlux massFlux, Area area)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="MassFlux{T}"/> times <see cref="Area{T}"/>.</summary>
+        public static MassFlow<T> operator *(MassFlux<T> massFlux, Area<T> area )
         {
-            return MassFlow.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
+            return MassFlow<T>.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
         }
     }
 }

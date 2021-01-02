@@ -26,99 +26,99 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentigramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromCentigramsPerGram(2), 2.CentigramsPerGram());
+            Assert.Equal(MassFraction<double>.FromCentigramsPerGram(2), 2.CentigramsPerGram());
 
         [Fact]
         public void NumberToCentigramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromCentigramsPerKilogram(2), 2.CentigramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromCentigramsPerKilogram(2), 2.CentigramsPerKilogram());
 
         [Fact]
         public void NumberToDecagramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromDecagramsPerGram(2), 2.DecagramsPerGram());
+            Assert.Equal(MassFraction<double>.FromDecagramsPerGram(2), 2.DecagramsPerGram());
 
         [Fact]
         public void NumberToDecagramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromDecagramsPerKilogram(2), 2.DecagramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromDecagramsPerKilogram(2), 2.DecagramsPerKilogram());
 
         [Fact]
         public void NumberToDecigramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromDecigramsPerGram(2), 2.DecigramsPerGram());
+            Assert.Equal(MassFraction<double>.FromDecigramsPerGram(2), 2.DecigramsPerGram());
 
         [Fact]
         public void NumberToDecigramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromDecigramsPerKilogram(2), 2.DecigramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromDecigramsPerKilogram(2), 2.DecigramsPerKilogram());
 
         [Fact]
         public void NumberToDecimalFractionsTest() =>
-            Assert.Equal(MassFraction.FromDecimalFractions(2), 2.DecimalFractions());
+            Assert.Equal(MassFraction<double>.FromDecimalFractions(2), 2.DecimalFractions());
 
         [Fact]
         public void NumberToGramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromGramsPerGram(2), 2.GramsPerGram());
+            Assert.Equal(MassFraction<double>.FromGramsPerGram(2), 2.GramsPerGram());
 
         [Fact]
         public void NumberToGramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromGramsPerKilogram(2), 2.GramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromGramsPerKilogram(2), 2.GramsPerKilogram());
 
         [Fact]
         public void NumberToHectogramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromHectogramsPerGram(2), 2.HectogramsPerGram());
+            Assert.Equal(MassFraction<double>.FromHectogramsPerGram(2), 2.HectogramsPerGram());
 
         [Fact]
         public void NumberToHectogramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromHectogramsPerKilogram(2), 2.HectogramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromHectogramsPerKilogram(2), 2.HectogramsPerKilogram());
 
         [Fact]
         public void NumberToKilogramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromKilogramsPerGram(2), 2.KilogramsPerGram());
+            Assert.Equal(MassFraction<double>.FromKilogramsPerGram(2), 2.KilogramsPerGram());
 
         [Fact]
         public void NumberToKilogramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromKilogramsPerKilogram(2), 2.KilogramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromKilogramsPerKilogram(2), 2.KilogramsPerKilogram());
 
         [Fact]
         public void NumberToMicrogramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromMicrogramsPerGram(2), 2.MicrogramsPerGram());
+            Assert.Equal(MassFraction<double>.FromMicrogramsPerGram(2), 2.MicrogramsPerGram());
 
         [Fact]
         public void NumberToMicrogramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromMicrogramsPerKilogram(2), 2.MicrogramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromMicrogramsPerKilogram(2), 2.MicrogramsPerKilogram());
 
         [Fact]
         public void NumberToMilligramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromMilligramsPerGram(2), 2.MilligramsPerGram());
+            Assert.Equal(MassFraction<double>.FromMilligramsPerGram(2), 2.MilligramsPerGram());
 
         [Fact]
         public void NumberToMilligramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromMilligramsPerKilogram(2), 2.MilligramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromMilligramsPerKilogram(2), 2.MilligramsPerKilogram());
 
         [Fact]
         public void NumberToNanogramsPerGramTest() =>
-            Assert.Equal(MassFraction.FromNanogramsPerGram(2), 2.NanogramsPerGram());
+            Assert.Equal(MassFraction<double>.FromNanogramsPerGram(2), 2.NanogramsPerGram());
 
         [Fact]
         public void NumberToNanogramsPerKilogramTest() =>
-            Assert.Equal(MassFraction.FromNanogramsPerKilogram(2), 2.NanogramsPerKilogram());
+            Assert.Equal(MassFraction<double>.FromNanogramsPerKilogram(2), 2.NanogramsPerKilogram());
 
         [Fact]
         public void NumberToPartsPerBillionTest() =>
-            Assert.Equal(MassFraction.FromPartsPerBillion(2), 2.PartsPerBillion());
+            Assert.Equal(MassFraction<double>.FromPartsPerBillion(2), 2.PartsPerBillion());
 
         [Fact]
         public void NumberToPartsPerMillionTest() =>
-            Assert.Equal(MassFraction.FromPartsPerMillion(2), 2.PartsPerMillion());
+            Assert.Equal(MassFraction<double>.FromPartsPerMillion(2), 2.PartsPerMillion());
 
         [Fact]
         public void NumberToPartsPerThousandTest() =>
-            Assert.Equal(MassFraction.FromPartsPerThousand(2), 2.PartsPerThousand());
+            Assert.Equal(MassFraction<double>.FromPartsPerThousand(2), 2.PartsPerThousand());
 
         [Fact]
         public void NumberToPartsPerTrillionTest() =>
-            Assert.Equal(MassFraction.FromPartsPerTrillion(2), 2.PartsPerTrillion());
+            Assert.Equal(MassFraction<double>.FromPartsPerTrillion(2), 2.PartsPerTrillion());
 
         [Fact]
         public void NumberToPercentTest() =>
-            Assert.Equal(MassFraction.FromPercent(2), 2.Percent());
+            Assert.Equal(MassFraction<double>.FromPercent(2), 2.Percent());
 
     }
 }

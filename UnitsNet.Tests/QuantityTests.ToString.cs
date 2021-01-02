@@ -17,15 +17,15 @@ namespace UnitsNet.Tests
             public void ReturnsTheOriginalValueAndUnit()
             {
                 var culture = CultureInfo.InvariantCulture;
-                Assert.Equal("5 kg", Mass.FromKilograms(5).ToString(culture));
-                Assert.Equal("5,000 g", Mass.FromGrams(5000).ToString(culture));
-                Assert.Equal("1e-04 long tn", Mass.FromLongTons(1e-4).ToString(culture));
-                Assert.Equal("3.46e-04 dN/m", ForcePerLength.FromDecinewtonsPerMeter(0.00034567).ToString(culture));
-                Assert.Equal("0.0069 dB", Level.FromDecibels(0.0069).ToString(culture));
-                Assert.Equal("0.011 kWh/kg", SpecificEnergy.FromKilowattHoursPerKilogram(0.011).ToString(culture));
+                Assert.Equal("5 kg", Mass<double>.FromKilograms(5).ToString(culture));
+                Assert.Equal("5,000 g", Mass<double>.FromGrams(5000).ToString(culture));
+                Assert.Equal("1e-04 long tn", Mass<double>.FromLongTons(1e-4).ToString(culture));
+                Assert.Equal("3.46e-04 dN/m", ForcePerLength<double>.FromDecinewtonsPerMeter(0.00034567).ToString(culture));
+                Assert.Equal("0.0069 dB", Level<double>.FromDecibels(0.0069).ToString(culture));
+                Assert.Equal("0.011 kWh/kg", SpecificEnergy<double>.FromKilowattHoursPerKilogram(0.011).ToString(culture));
                 //                Assert.Equal("0.1 MJ/kg·C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
-                Assert.Equal("0.1 MJ/kg.C", SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
-                Assert.Equal("5 cm", Length.FromCentimeters(5).ToString(culture));
+                Assert.Equal("0.1 MJ/kg.C", SpecificEntropy<double>.FromMegajoulesPerKilogramDegreeCelsius(0.1).ToString(culture));
+                Assert.Equal("5 cm", Length<double>.FromCentimeters(5).ToString(culture));
             }
 
             [Fact]
@@ -35,9 +35,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider)null));
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
-                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider)null));
+                    Assert.Equal("0.05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
+                    Assert.Equal("0,05 m", Length<double>.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
                 }
                 finally
                 {

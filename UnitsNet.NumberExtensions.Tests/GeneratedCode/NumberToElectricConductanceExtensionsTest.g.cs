@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToMicrosiemensTest() =>
-            Assert.Equal(ElectricConductance.FromMicrosiemens(2), 2.Microsiemens());
+            Assert.Equal(ElectricConductance<double>.FromMicrosiemens(2), 2.Microsiemens());
 
         [Fact]
         public void NumberToMillisiemensTest() =>
-            Assert.Equal(ElectricConductance.FromMillisiemens(2), 2.Millisiemens());
+            Assert.Equal(ElectricConductance<double>.FromMillisiemens(2), 2.Millisiemens());
 
         [Fact]
         public void NumberToSiemensTest() =>
-            Assert.Equal(ElectricConductance.FromSiemens(2), 2.Siemens());
+            Assert.Equal(ElectricConductance<double>.FromSiemens(2), 2.Siemens());
 
     }
 }

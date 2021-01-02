@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
     /// </summary>
     public static class NumberToBrakeSpecificFuelConsumptionExtensions
     {
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="BrakeSpecificFuelConsumption{T}.FromGramsPerKiloWattHour(T)" />
+        public static BrakeSpecificFuelConsumption<double> GramsPerKiloWattHour<T>(this T value) =>
+            BrakeSpecificFuelConsumption<double>.FromGramsPerKiloWattHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
+        /// <inheritdoc cref="BrakeSpecificFuelConsumption{T}.FromKilogramsPerJoule(T)" />
+        public static BrakeSpecificFuelConsumption<double> KilogramsPerJoule<T>(this T value) =>
+            BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="BrakeSpecificFuelConsumption{T}.FromPoundsPerMechanicalHorsepowerHour(T)" />
+        public static BrakeSpecificFuelConsumption<double> PoundsPerMechanicalHorsepowerHour<T>(this T value) =>
+            BrakeSpecificFuelConsumption<double>.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
 
     }
 }

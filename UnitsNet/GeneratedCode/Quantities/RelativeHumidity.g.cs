@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
-    public partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
+    public partial struct RelativeHumidity<T> : IQuantityT<RelativeHumidityUnit, T>, IEquatable<RelativeHumidity<T>>, IComparable, IComparable<RelativeHumidity<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -63,12 +59,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RelativeHumidity(double value, RelativeHumidityUnit unit)
+        public RelativeHumidity(T value, RelativeHumidityUnit unit)
         {
             if(unit == RelativeHumidityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -80,14 +76,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RelativeHumidity(double value, UnitSystem unitSystem)
+        public RelativeHumidity(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -102,19 +98,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of RelativeHumidity, which is Percent. All conversions go via this value.
+        ///     The base unit of <see cref="RelativeHumidity{T}" />, which is Percent. All conversions go via this value.
         /// </summary>
         public static RelativeHumidityUnit BaseUnit { get; } = RelativeHumidityUnit.Percent;
 
         /// <summary>
-        /// Represents the largest possible value of RelativeHumidity
+        /// Represents the largest possible value of <see cref="RelativeHumidity{T}" />
         /// </summary>
-        public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, BaseUnit);
+        public static RelativeHumidity<T> MaxValue { get; } = new RelativeHumidity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of RelativeHumidity
+        /// Represents the smallest possible value of <see cref="RelativeHumidity{T}" />
         /// </summary>
-        public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, BaseUnit);
+        public static RelativeHumidity<T> MinValue { get; } = new RelativeHumidity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -123,14 +119,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.RelativeHumidity;
 
         /// <summary>
-        ///     All units of measurement for the RelativeHumidity quantity.
+        ///     All units of measurement for the <see cref="RelativeHumidity{T}" /> quantity.
         /// </summary>
         public static RelativeHumidityUnit[] Units { get; } = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Percent.
         /// </summary>
-        public static RelativeHumidity Zero { get; } = new RelativeHumidity(0, BaseUnit);
+        public static RelativeHumidity<T> Zero { get; } = new RelativeHumidity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -139,7 +135,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -155,21 +153,21 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => RelativeHumidity.QuantityType;
+        public QuantityType Type => RelativeHumidity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => RelativeHumidity.BaseDimensions;
+        public BaseDimensions Dimensions => RelativeHumidity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RelativeHumidity in Percent.
+        ///     Get <see cref="RelativeHumidity{T}" /> in Percent.
         /// </summary>
-        public double Percent => As(RelativeHumidityUnit.Percent);
+        public T Percent => As(RelativeHumidityUnit.Percent);
 
         #endregion
 
@@ -201,24 +199,23 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RelativeHumidity from Percent.
+        ///     Get <see cref="RelativeHumidity{T}" /> from Percent.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RelativeHumidity FromPercent(QuantityValue percent)
+        public static RelativeHumidity<T> FromPercent(T percent)
         {
-            double value = (double) percent;
-            return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
+            return new RelativeHumidity<T>(percent, RelativeHumidityUnit.Percent);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RelativeHumidityUnit" /> to <see cref="RelativeHumidity" />.
+        ///     Dynamically convert from value and unit enum <see cref="RelativeHumidityUnit" /> to <see cref="RelativeHumidity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RelativeHumidity unit value.</returns>
-        public static RelativeHumidity From(QuantityValue value, RelativeHumidityUnit fromUnit)
+        /// <returns><see cref="RelativeHumidity{T}" /> unit value.</returns>
+        public static RelativeHumidity<T> From(T value, RelativeHumidityUnit fromUnit)
         {
-            return new RelativeHumidity((double)value, fromUnit);
+            return new RelativeHumidity<T>(value, fromUnit);
         }
 
         #endregion
@@ -247,7 +244,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RelativeHumidity Parse(string str)
+        public static RelativeHumidity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -275,9 +272,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static RelativeHumidity Parse(string str, IFormatProvider? provider)
+        public static RelativeHumidity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<RelativeHumidity, RelativeHumidityUnit>(
+            return QuantityParser.Default.Parse<T, RelativeHumidity<T>, RelativeHumidityUnit>(
                 str,
                 provider,
                 From);
@@ -291,7 +288,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out RelativeHumidity result)
+        public static bool TryParse(string? str, out RelativeHumidity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -306,9 +303,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out RelativeHumidity result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out RelativeHumidity<T> result)
         {
-            return QuantityParser.Default.TryParse<RelativeHumidity, RelativeHumidityUnit>(
+            return QuantityParser.Default.TryParse<T, RelativeHumidity<T>, RelativeHumidityUnit>(
                 str,
                 provider,
                 From,
@@ -370,45 +367,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static RelativeHumidity operator -(RelativeHumidity right)
+        public static RelativeHumidity<T> operator -(RelativeHumidity<T> right)
         {
-            return new RelativeHumidity(-right.Value, right.Unit);
+            return new RelativeHumidity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="RelativeHumidity"/> from adding two <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator +(RelativeHumidity left, RelativeHumidity right)
+        /// <summary>Get <see cref="RelativeHumidity{T}"/> from adding two <see cref="RelativeHumidity{T}"/>.</summary>
+        public static RelativeHumidity<T> operator +(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return new RelativeHumidity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new RelativeHumidity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="RelativeHumidity"/> from subtracting two <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator -(RelativeHumidity left, RelativeHumidity right)
+        /// <summary>Get <see cref="RelativeHumidity{T}"/> from subtracting two <see cref="RelativeHumidity{T}"/>.</summary>
+        public static RelativeHumidity<T> operator -(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return new RelativeHumidity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new RelativeHumidity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(double left, RelativeHumidity right)
+        /// <summary>Get <see cref="RelativeHumidity{T}"/> from multiplying value and <see cref="RelativeHumidity{T}"/>.</summary>
+        public static RelativeHumidity<T> operator *(T left, RelativeHumidity<T> right)
         {
-            return new RelativeHumidity(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new RelativeHumidity<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(RelativeHumidity left, double right)
+        /// <summary>Get <see cref="RelativeHumidity{T}"/> from multiplying value and <see cref="RelativeHumidity{T}"/>.</summary>
+        public static RelativeHumidity<T> operator *(RelativeHumidity<T> left, T right)
         {
-            return new RelativeHumidity(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new RelativeHumidity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="RelativeHumidity"/> from dividing <see cref="RelativeHumidity"/> by value.</summary>
-        public static RelativeHumidity operator /(RelativeHumidity left, double right)
+        /// <summary>Get <see cref="RelativeHumidity{T}"/> from dividing <see cref="RelativeHumidity{T}"/> by value.</summary>
+        public static RelativeHumidity<T> operator /(RelativeHumidity<T> left, T right)
         {
-            return new RelativeHumidity(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new RelativeHumidity<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="RelativeHumidity"/> by <see cref="RelativeHumidity"/>.</summary>
-        public static double operator /(RelativeHumidity left, RelativeHumidity right)
+        /// <summary>Get ratio value from dividing <see cref="RelativeHumidity{T}"/> by <see cref="RelativeHumidity{T}"/>.</summary>
+        public static T operator /(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return left.Percent / right.Percent;
+            return CompiledLambdas.Divide(left.Percent, right.Percent);
         }
 
         #endregion
@@ -416,39 +418,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(RelativeHumidity left, RelativeHumidity right)
+        public static bool operator <=(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(RelativeHumidity left, RelativeHumidity right)
+        public static bool operator >=(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(RelativeHumidity left, RelativeHumidity right)
+        public static bool operator <(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(RelativeHumidity left, RelativeHumidity right)
+        public static bool operator >(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(RelativeHumidity left, RelativeHumidity right)
+        /// <remarks>Consider using <see cref="Equals(RelativeHumidity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(RelativeHumidity left, RelativeHumidity right)
+        /// <remarks>Consider using <see cref="Equals(RelativeHumidity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(RelativeHumidity<T> left, RelativeHumidity<T> right)
         {
             return !(left == right);
         }
@@ -457,37 +459,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RelativeHumidity objRelativeHumidity)) throw new ArgumentException("Expected type RelativeHumidity.", nameof(obj));
+            if(!(obj is RelativeHumidity<T> objRelativeHumidity)) throw new ArgumentException("Expected type RelativeHumidity.", nameof(obj));
 
             return CompareTo(objRelativeHumidity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(RelativeHumidity other)
+        public int CompareTo(RelativeHumidity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(RelativeHumidity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is RelativeHumidity objRelativeHumidity))
+            if(obj is null || !(obj is RelativeHumidity<T> objRelativeHumidity))
                 return false;
 
             return Equals(objRelativeHumidity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(RelativeHumidity other)
+        /// <remarks>Consider using <see cref="Equals(RelativeHumidity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(RelativeHumidity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another RelativeHumidity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="RelativeHumidity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -525,21 +527,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RelativeHumidity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RelativeHumidity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current RelativeHumidity.</returns>
+        /// <returns>A hash code for the current <see cref="RelativeHumidity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -553,17 +553,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RelativeHumidityUnit unit)
+        public T As(RelativeHumidityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -583,17 +583,22 @@ namespace UnitsNet
             if(!(unit is RelativeHumidityUnit unitAsRelativeHumidityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsRelativeHumidityUnit);
+            var asValue = As(unitAsRelativeHumidityUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<RelativeHumidityUnit>.As(RelativeHumidityUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this RelativeHumidity to another RelativeHumidity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="RelativeHumidity{T}" /> to another <see cref="RelativeHumidity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A RelativeHumidity with the specified unit.</returns>
-        public RelativeHumidity ToUnit(RelativeHumidityUnit unit)
+        /// <returns>A <see cref="RelativeHumidity{T}" /> with the specified unit.</returns>
+        public RelativeHumidity<T> ToUnit(RelativeHumidityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new RelativeHumidity(convertedValue, unit);
+            return new RelativeHumidity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -606,7 +611,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public RelativeHumidity ToUnit(UnitSystem unitSystem)
+        public RelativeHumidity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -627,18 +632,24 @@ namespace UnitsNet
         IQuantity<RelativeHumidityUnit> IQuantity<RelativeHumidityUnit>.ToUnit(RelativeHumidityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<RelativeHumidityUnit, T> IQuantityT<RelativeHumidityUnit, T>.ToUnit(RelativeHumidityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<RelativeHumidityUnit> IQuantity<RelativeHumidityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<RelativeHumidityUnit, T> IQuantityT<RelativeHumidityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case RelativeHumidityUnit.Percent: return _value;
+                case RelativeHumidityUnit.Percent: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -649,16 +660,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RelativeHumidity ToBaseUnit()
+        internal RelativeHumidity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RelativeHumidity(baseUnitValue, BaseUnit);
+            return new RelativeHumidity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(RelativeHumidityUnit unit)
+        private T GetValueAs(RelativeHumidityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -761,57 +772,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RelativeHumidity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RelativeHumidity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RelativeHumidity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RelativeHumidity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(RelativeHumidity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(RelativeHumidity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -821,33 +832,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RelativeHumidity))
+            if(conversionType == typeof(RelativeHumidity<T>))
                 return this;
             else if(conversionType == typeof(RelativeHumidityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return RelativeHumidity.QuantityType;
+                return RelativeHumidity<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return RelativeHumidity.Info;
+                return RelativeHumidity<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return RelativeHumidity.BaseDimensions;
+                return RelativeHumidity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(RelativeHumidity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(RelativeHumidity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

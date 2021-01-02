@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.
     /// </summary>
-    public partial struct ReactivePower : IQuantity<ReactivePowerUnit>, IEquatable<ReactivePower>, IComparable, IComparable<ReactivePower>, IConvertible, IFormattable
+    public partial struct ReactivePower<T> : IQuantityT<ReactivePowerUnit, T>, IEquatable<ReactivePower<T>>, IComparable, IComparable<ReactivePower<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ReactivePower(double value, ReactivePowerUnit unit)
+        public ReactivePower(T value, ReactivePowerUnit unit)
         {
             if(unit == ReactivePowerUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ReactivePower(double value, UnitSystem unitSystem)
+        public ReactivePower(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -105,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ReactivePower, which is VoltampereReactive. All conversions go via this value.
+        ///     The base unit of <see cref="ReactivePower{T}" />, which is VoltampereReactive. All conversions go via this value.
         /// </summary>
         public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
-        /// Represents the largest possible value of ReactivePower
+        /// Represents the largest possible value of <see cref="ReactivePower{T}" />
         /// </summary>
-        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
+        public static ReactivePower<T> MaxValue { get; } = new ReactivePower<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ReactivePower
+        /// Represents the smallest possible value of <see cref="ReactivePower{T}" />
         /// </summary>
-        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+        public static ReactivePower<T> MinValue { get; } = new ReactivePower<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ReactivePower;
 
         /// <summary>
-        ///     All units of measurement for the ReactivePower quantity.
+        ///     All units of measurement for the <see cref="ReactivePower{T}" /> quantity.
         /// </summary>
         public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ReactivePower Zero { get; } = new ReactivePower(0, BaseUnit);
+        public static ReactivePower<T> Zero { get; } = new ReactivePower<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,36 +156,36 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ReactivePower.QuantityType;
+        public QuantityType Type => ReactivePower<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ReactivePower.BaseDimensions;
+        public BaseDimensions Dimensions => ReactivePower<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReactivePower in GigavoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> in GigavoltamperesReactive.
         /// </summary>
-        public double GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
+        public T GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in KilovoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> in KilovoltamperesReactive.
         /// </summary>
-        public double KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
+        public T KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in MegavoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> in MegavoltamperesReactive.
         /// </summary>
-        public double MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
+        public T MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in VoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> in VoltamperesReactive.
         /// </summary>
-        public double VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
+        public T VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
 
         #endregion
 
@@ -219,51 +217,47 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReactivePower from GigavoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> from GigavoltamperesReactive.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
+        public static ReactivePower<T> FromGigavoltamperesReactive(T gigavoltamperesreactive)
         {
-            double value = (double) gigavoltamperesreactive;
-            return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
+            return new ReactivePower<T>(gigavoltamperesreactive, ReactivePowerUnit.GigavoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from KilovoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> from KilovoltamperesReactive.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
+        public static ReactivePower<T> FromKilovoltamperesReactive(T kilovoltamperesreactive)
         {
-            double value = (double) kilovoltamperesreactive;
-            return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
+            return new ReactivePower<T>(kilovoltamperesreactive, ReactivePowerUnit.KilovoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from MegavoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> from MegavoltamperesReactive.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
+        public static ReactivePower<T> FromMegavoltamperesReactive(T megavoltamperesreactive)
         {
-            double value = (double) megavoltamperesreactive;
-            return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
+            return new ReactivePower<T>(megavoltamperesreactive, ReactivePowerUnit.MegavoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from VoltamperesReactive.
+        ///     Get <see cref="ReactivePower{T}" /> from VoltamperesReactive.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)
+        public static ReactivePower<T> FromVoltamperesReactive(T voltamperesreactive)
         {
-            double value = (double) voltamperesreactive;
-            return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
+            return new ReactivePower<T>(voltamperesreactive, ReactivePowerUnit.VoltampereReactive);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower" />.
+        ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ReactivePower unit value.</returns>
-        public static ReactivePower From(QuantityValue value, ReactivePowerUnit fromUnit)
+        /// <returns><see cref="ReactivePower{T}" /> unit value.</returns>
+        public static ReactivePower<T> From(T value, ReactivePowerUnit fromUnit)
         {
-            return new ReactivePower((double)value, fromUnit);
+            return new ReactivePower<T>(value, fromUnit);
         }
 
         #endregion
@@ -292,7 +286,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ReactivePower Parse(string str)
+        public static ReactivePower<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -320,9 +314,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ReactivePower Parse(string str, IFormatProvider? provider)
+        public static ReactivePower<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ReactivePower, ReactivePowerUnit>(
+            return QuantityParser.Default.Parse<T, ReactivePower<T>, ReactivePowerUnit>(
                 str,
                 provider,
                 From);
@@ -336,7 +330,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ReactivePower result)
+        public static bool TryParse(string? str, out ReactivePower<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -351,9 +345,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ReactivePower result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ReactivePower<T> result)
         {
-            return QuantityParser.Default.TryParse<ReactivePower, ReactivePowerUnit>(
+            return QuantityParser.Default.TryParse<T, ReactivePower<T>, ReactivePowerUnit>(
                 str,
                 provider,
                 From,
@@ -415,45 +409,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ReactivePower operator -(ReactivePower right)
+        public static ReactivePower<T> operator -(ReactivePower<T> right)
         {
-            return new ReactivePower(-right.Value, right.Unit);
+            return new ReactivePower<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="ReactivePower"/> from adding two <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator +(ReactivePower left, ReactivePower right)
+        /// <summary>Get <see cref="ReactivePower{T}"/> from adding two <see cref="ReactivePower{T}"/>.</summary>
+        public static ReactivePower<T> operator +(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return new ReactivePower(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ReactivePower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactivePower"/> from subtracting two <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator -(ReactivePower left, ReactivePower right)
+        /// <summary>Get <see cref="ReactivePower{T}"/> from subtracting two <see cref="ReactivePower{T}"/>.</summary>
+        public static ReactivePower<T> operator -(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return new ReactivePower(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ReactivePower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator *(double left, ReactivePower right)
+        /// <summary>Get <see cref="ReactivePower{T}"/> from multiplying value and <see cref="ReactivePower{T}"/>.</summary>
+        public static ReactivePower<T> operator *(T left, ReactivePower<T> right)
         {
-            return new ReactivePower(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ReactivePower<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator *(ReactivePower left, double right)
+        /// <summary>Get <see cref="ReactivePower{T}"/> from multiplying value and <see cref="ReactivePower{T}"/>.</summary>
+        public static ReactivePower<T> operator *(ReactivePower<T> left, T right)
         {
-            return new ReactivePower(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ReactivePower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ReactivePower"/> from dividing <see cref="ReactivePower"/> by value.</summary>
-        public static ReactivePower operator /(ReactivePower left, double right)
+        /// <summary>Get <see cref="ReactivePower{T}"/> from dividing <see cref="ReactivePower{T}"/> by value.</summary>
+        public static ReactivePower<T> operator /(ReactivePower<T> left, T right)
         {
-            return new ReactivePower(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ReactivePower<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ReactivePower"/> by <see cref="ReactivePower"/>.</summary>
-        public static double operator /(ReactivePower left, ReactivePower right)
+        /// <summary>Get ratio value from dividing <see cref="ReactivePower{T}"/> by <see cref="ReactivePower{T}"/>.</summary>
+        public static T operator /(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return left.VoltamperesReactive / right.VoltamperesReactive;
+            return CompiledLambdas.Divide(left.VoltamperesReactive, right.VoltamperesReactive);
         }
 
         #endregion
@@ -461,39 +460,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ReactivePower left, ReactivePower right)
+        public static bool operator <=(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ReactivePower left, ReactivePower right)
+        public static bool operator >=(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ReactivePower left, ReactivePower right)
+        public static bool operator <(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ReactivePower left, ReactivePower right)
+        public static bool operator >(ReactivePower<T> left, ReactivePower<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ReactivePower left, ReactivePower right)
+        /// <remarks>Consider using <see cref="Equals(ReactivePower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ReactivePower<T> left, ReactivePower<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ReactivePower left, ReactivePower right)
+        /// <remarks>Consider using <see cref="Equals(ReactivePower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ReactivePower<T> left, ReactivePower<T> right)
         {
             return !(left == right);
         }
@@ -502,37 +501,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ReactivePower objReactivePower)) throw new ArgumentException("Expected type ReactivePower.", nameof(obj));
+            if(!(obj is ReactivePower<T> objReactivePower)) throw new ArgumentException("Expected type ReactivePower.", nameof(obj));
 
             return CompareTo(objReactivePower);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ReactivePower other)
+        public int CompareTo(ReactivePower<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ReactivePower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ReactivePower objReactivePower))
+            if(obj is null || !(obj is ReactivePower<T> objReactivePower))
                 return false;
 
             return Equals(objReactivePower);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ReactivePower other)
+        /// <remarks>Consider using <see cref="Equals(ReactivePower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ReactivePower<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ReactivePower within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ReactivePower{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -570,21 +569,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ReactivePower other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ReactivePower<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ReactivePower.</returns>
+        /// <returns>A hash code for the current <see cref="ReactivePower{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -598,17 +595,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReactivePowerUnit unit)
+        public T As(ReactivePowerUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -628,17 +625,22 @@ namespace UnitsNet
             if(!(unit is ReactivePowerUnit unitAsReactivePowerUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
 
-            return As(unitAsReactivePowerUnit);
+            var asValue = As(unitAsReactivePowerUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ReactivePowerUnit>.As(ReactivePowerUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this ReactivePower to another ReactivePower with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ReactivePower{T}" /> to another <see cref="ReactivePower{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ReactivePower with the specified unit.</returns>
-        public ReactivePower ToUnit(ReactivePowerUnit unit)
+        /// <returns>A <see cref="ReactivePower{T}" /> with the specified unit.</returns>
+        public ReactivePower<T> ToUnit(ReactivePowerUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ReactivePower(convertedValue, unit);
+            return new ReactivePower<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -651,7 +653,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ReactivePower ToUnit(UnitSystem unitSystem)
+        public ReactivePower<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -672,21 +674,27 @@ namespace UnitsNet
         IQuantity<ReactivePowerUnit> IQuantity<ReactivePowerUnit>.ToUnit(ReactivePowerUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ReactivePowerUnit, T> IQuantityT<ReactivePowerUnit, T>.ToUnit(ReactivePowerUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ReactivePowerUnit> IQuantity<ReactivePowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ReactivePowerUnit, T> IQuantityT<ReactivePowerUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return _value;
+                case ReactivePowerUnit.GigavoltampereReactive: return (Value) * 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (Value) * 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (Value) * 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -697,16 +705,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ReactivePower ToBaseUnit()
+        internal ReactivePower<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ReactivePower(baseUnitValue, BaseUnit);
+            return new ReactivePower<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ReactivePowerUnit unit)
+        private T GetValueAs(ReactivePowerUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -812,57 +820,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactivePower)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactivePower<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactivePower)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactivePower<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ReactivePower)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ReactivePower<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -872,33 +880,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ReactivePower))
+            if(conversionType == typeof(ReactivePower<T>))
                 return this;
             else if(conversionType == typeof(ReactivePowerUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ReactivePower.QuantityType;
+                return ReactivePower<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return ReactivePower.Info;
+                return ReactivePower<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return ReactivePower.BaseDimensions;
+                return ReactivePower<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ReactivePower)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ReactivePower<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

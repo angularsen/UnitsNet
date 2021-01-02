@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
-    public partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
+    public partial struct VitaminA<T> : IQuantityT<VitaminAUnit, T>, IEquatable<VitaminA<T>>, IComparable, IComparable<VitaminA<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -63,12 +59,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public VitaminA(double value, VitaminAUnit unit)
+        public VitaminA(T value, VitaminAUnit unit)
         {
             if(unit == VitaminAUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -80,14 +76,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VitaminA(double value, UnitSystem unitSystem)
+        public VitaminA(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -102,19 +98,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
+        ///     The base unit of <see cref="VitaminA{T}" />, which is InternationalUnit. All conversions go via this value.
         /// </summary>
         public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
-        /// Represents the largest possible value of VitaminA
+        /// Represents the largest possible value of <see cref="VitaminA{T}" />
         /// </summary>
-        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
+        public static VitaminA<T> MaxValue { get; } = new VitaminA<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of VitaminA
+        /// Represents the smallest possible value of <see cref="VitaminA{T}" />
         /// </summary>
-        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
+        public static VitaminA<T> MinValue { get; } = new VitaminA<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -123,14 +119,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.VitaminA;
 
         /// <summary>
-        ///     All units of measurement for the VitaminA quantity.
+        ///     All units of measurement for the <see cref="VitaminA{T}" /> quantity.
         /// </summary>
         public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
+        public static VitaminA<T> Zero { get; } = new VitaminA<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -139,7 +135,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -155,21 +153,21 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => VitaminA.QuantityType;
+        public QuantityType Type => VitaminA<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => VitaminA.BaseDimensions;
+        public BaseDimensions Dimensions => VitaminA<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VitaminA in InternationalUnits.
+        ///     Get <see cref="VitaminA{T}" /> in InternationalUnits.
         /// </summary>
-        public double InternationalUnits => As(VitaminAUnit.InternationalUnit);
+        public T InternationalUnits => As(VitaminAUnit.InternationalUnit);
 
         #endregion
 
@@ -201,24 +199,23 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VitaminA from InternationalUnits.
+        ///     Get <see cref="VitaminA{T}" /> from InternationalUnits.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VitaminA FromInternationalUnits(QuantityValue internationalunits)
+        public static VitaminA<T> FromInternationalUnits(T internationalunits)
         {
-            double value = (double) internationalunits;
-            return new VitaminA(value, VitaminAUnit.InternationalUnit);
+            return new VitaminA<T>(internationalunits, VitaminAUnit.InternationalUnit);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
+        ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>VitaminA unit value.</returns>
-        public static VitaminA From(QuantityValue value, VitaminAUnit fromUnit)
+        /// <returns><see cref="VitaminA{T}" /> unit value.</returns>
+        public static VitaminA<T> From(T value, VitaminAUnit fromUnit)
         {
-            return new VitaminA((double)value, fromUnit);
+            return new VitaminA<T>(value, fromUnit);
         }
 
         #endregion
@@ -247,7 +244,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static VitaminA Parse(string str)
+        public static VitaminA<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -275,9 +272,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static VitaminA Parse(string str, IFormatProvider? provider)
+        public static VitaminA<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<VitaminA, VitaminAUnit>(
+            return QuantityParser.Default.Parse<T, VitaminA<T>, VitaminAUnit>(
                 str,
                 provider,
                 From);
@@ -291,7 +288,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out VitaminA result)
+        public static bool TryParse(string? str, out VitaminA<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -306,9 +303,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out VitaminA result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out VitaminA<T> result)
         {
-            return QuantityParser.Default.TryParse<VitaminA, VitaminAUnit>(
+            return QuantityParser.Default.TryParse<T, VitaminA<T>, VitaminAUnit>(
                 str,
                 provider,
                 From,
@@ -370,45 +367,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static VitaminA operator -(VitaminA right)
+        public static VitaminA<T> operator -(VitaminA<T> right)
         {
-            return new VitaminA(-right.Value, right.Unit);
+            return new VitaminA<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="VitaminA"/> from adding two <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator +(VitaminA left, VitaminA right)
+        /// <summary>Get <see cref="VitaminA{T}"/> from adding two <see cref="VitaminA{T}"/>.</summary>
+        public static VitaminA<T> operator +(VitaminA<T> left, VitaminA<T> right)
         {
-            return new VitaminA(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new VitaminA<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="VitaminA"/> from subtracting two <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator -(VitaminA left, VitaminA right)
+        /// <summary>Get <see cref="VitaminA{T}"/> from subtracting two <see cref="VitaminA{T}"/>.</summary>
+        public static VitaminA<T> operator -(VitaminA<T> left, VitaminA<T> right)
         {
-            return new VitaminA(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new VitaminA<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(double left, VitaminA right)
+        /// <summary>Get <see cref="VitaminA{T}"/> from multiplying value and <see cref="VitaminA{T}"/>.</summary>
+        public static VitaminA<T> operator *(T left, VitaminA<T> right)
         {
-            return new VitaminA(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new VitaminA<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(VitaminA left, double right)
+        /// <summary>Get <see cref="VitaminA{T}"/> from multiplying value and <see cref="VitaminA{T}"/>.</summary>
+        public static VitaminA<T> operator *(VitaminA<T> left, T right)
         {
-            return new VitaminA(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new VitaminA<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="VitaminA"/> from dividing <see cref="VitaminA"/> by value.</summary>
-        public static VitaminA operator /(VitaminA left, double right)
+        /// <summary>Get <see cref="VitaminA{T}"/> from dividing <see cref="VitaminA{T}"/> by value.</summary>
+        public static VitaminA<T> operator /(VitaminA<T> left, T right)
         {
-            return new VitaminA(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new VitaminA<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="VitaminA"/> by <see cref="VitaminA"/>.</summary>
-        public static double operator /(VitaminA left, VitaminA right)
+        /// <summary>Get ratio value from dividing <see cref="VitaminA{T}"/> by <see cref="VitaminA{T}"/>.</summary>
+        public static T operator /(VitaminA<T> left, VitaminA<T> right)
         {
-            return left.InternationalUnits / right.InternationalUnits;
+            return CompiledLambdas.Divide(left.InternationalUnits, right.InternationalUnits);
         }
 
         #endregion
@@ -416,39 +418,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(VitaminA left, VitaminA right)
+        public static bool operator <=(VitaminA<T> left, VitaminA<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(VitaminA left, VitaminA right)
+        public static bool operator >=(VitaminA<T> left, VitaminA<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(VitaminA left, VitaminA right)
+        public static bool operator <(VitaminA<T> left, VitaminA<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(VitaminA left, VitaminA right)
+        public static bool operator >(VitaminA<T> left, VitaminA<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(VitaminA left, VitaminA right)
+        /// <remarks>Consider using <see cref="Equals(VitaminA{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(VitaminA<T> left, VitaminA<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(VitaminA left, VitaminA right)
+        /// <remarks>Consider using <see cref="Equals(VitaminA{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(VitaminA<T> left, VitaminA<T> right)
         {
             return !(left == right);
         }
@@ -457,37 +459,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VitaminA objVitaminA)) throw new ArgumentException("Expected type VitaminA.", nameof(obj));
+            if(!(obj is VitaminA<T> objVitaminA)) throw new ArgumentException("Expected type VitaminA.", nameof(obj));
 
             return CompareTo(objVitaminA);
         }
 
         /// <inheritdoc />
-        public int CompareTo(VitaminA other)
+        public int CompareTo(VitaminA<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(VitaminA{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is VitaminA objVitaminA))
+            if(obj is null || !(obj is VitaminA<T> objVitaminA))
                 return false;
 
             return Equals(objVitaminA);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(VitaminA, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(VitaminA other)
+        /// <remarks>Consider using <see cref="Equals(VitaminA{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(VitaminA<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another VitaminA within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="VitaminA{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -525,21 +527,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(VitaminA other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(VitaminA<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current VitaminA.</returns>
+        /// <returns>A hash code for the current <see cref="VitaminA{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -553,17 +553,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VitaminAUnit unit)
+        public T As(VitaminAUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -583,17 +583,22 @@ namespace UnitsNet
             if(!(unit is VitaminAUnit unitAsVitaminAUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
 
-            return As(unitAsVitaminAUnit);
+            var asValue = As(unitAsVitaminAUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<VitaminAUnit>.As(VitaminAUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this VitaminA to another VitaminA with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="VitaminA{T}" /> to another <see cref="VitaminA{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A VitaminA with the specified unit.</returns>
-        public VitaminA ToUnit(VitaminAUnit unit)
+        /// <returns>A <see cref="VitaminA{T}" /> with the specified unit.</returns>
+        public VitaminA<T> ToUnit(VitaminAUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new VitaminA(convertedValue, unit);
+            return new VitaminA<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -606,7 +611,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public VitaminA ToUnit(UnitSystem unitSystem)
+        public VitaminA<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -627,18 +632,24 @@ namespace UnitsNet
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<VitaminAUnit, T> IQuantityT<VitaminAUnit, T>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<VitaminAUnit, T> IQuantityT<VitaminAUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case VitaminAUnit.InternationalUnit: return _value;
+                case VitaminAUnit.InternationalUnit: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -649,16 +660,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal VitaminA ToBaseUnit()
+        internal VitaminA<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VitaminA(baseUnitValue, BaseUnit);
+            return new VitaminA<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(VitaminAUnit unit)
+        private T GetValueAs(VitaminAUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -761,57 +772,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(VitaminA)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VitaminA<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(VitaminA)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VitaminA<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(VitaminA)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(VitaminA<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -821,33 +832,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(VitaminA))
+            if(conversionType == typeof(VitaminA<T>))
                 return this;
             else if(conversionType == typeof(VitaminAUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return VitaminA.QuantityType;
+                return VitaminA<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return VitaminA.Info;
+                return VitaminA<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return VitaminA.BaseDimensions;
+                return VitaminA<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(VitaminA)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(VitaminA<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

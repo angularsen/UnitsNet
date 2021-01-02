@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Torque((double)0.0, TorqueUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Torque<double>((double)0.0, TorqueUnit.Undefined));
         }
 
         [Fact]
@@ -103,14 +103,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Torque(double.PositiveInfinity, TorqueUnit.NewtonMeter));
-            Assert.Throws<ArgumentException>(() => new Torque(double.NegativeInfinity, TorqueUnit.NewtonMeter));
+            Assert.Throws<ArgumentException>(() => new Torque<double>(double.PositiveInfinity, TorqueUnit.NewtonMeter));
+            Assert.Throws<ArgumentException>(() => new Torque<double>(double.NegativeInfinity, TorqueUnit.NewtonMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Torque(double.NaN, TorqueUnit.NewtonMeter));
+            Assert.Throws<ArgumentException>(() => new Torque<double>(double.NaN, TorqueUnit.NewtonMeter));
         }
 
         [Fact]
@@ -156,7 +156,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void NewtonMeterToTorqueUnits()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             AssertEx.EqualTolerance(KilogramForceCentimetersInOneNewtonMeter, newtonmeter.KilogramForceCentimeters, KilogramForceCentimetersTolerance);
             AssertEx.EqualTolerance(KilogramForceMetersInOneNewtonMeter, newtonmeter.KilogramForceMeters, KilogramForceMetersTolerance);
             AssertEx.EqualTolerance(KilogramForceMillimetersInOneNewtonMeter, newtonmeter.KilogramForceMillimeters, KilogramForceMillimetersTolerance);
@@ -184,91 +184,91 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Torque.From(1, TorqueUnit.KilogramForceCentimeter);
+            var quantity00 = Torque<double>.From(1, TorqueUnit.KilogramForceCentimeter);
             AssertEx.EqualTolerance(1, quantity00.KilogramForceCentimeters, KilogramForceCentimetersTolerance);
             Assert.Equal(TorqueUnit.KilogramForceCentimeter, quantity00.Unit);
 
-            var quantity01 = Torque.From(1, TorqueUnit.KilogramForceMeter);
+            var quantity01 = Torque<double>.From(1, TorqueUnit.KilogramForceMeter);
             AssertEx.EqualTolerance(1, quantity01.KilogramForceMeters, KilogramForceMetersTolerance);
             Assert.Equal(TorqueUnit.KilogramForceMeter, quantity01.Unit);
 
-            var quantity02 = Torque.From(1, TorqueUnit.KilogramForceMillimeter);
+            var quantity02 = Torque<double>.From(1, TorqueUnit.KilogramForceMillimeter);
             AssertEx.EqualTolerance(1, quantity02.KilogramForceMillimeters, KilogramForceMillimetersTolerance);
             Assert.Equal(TorqueUnit.KilogramForceMillimeter, quantity02.Unit);
 
-            var quantity03 = Torque.From(1, TorqueUnit.KilonewtonCentimeter);
+            var quantity03 = Torque<double>.From(1, TorqueUnit.KilonewtonCentimeter);
             AssertEx.EqualTolerance(1, quantity03.KilonewtonCentimeters, KilonewtonCentimetersTolerance);
             Assert.Equal(TorqueUnit.KilonewtonCentimeter, quantity03.Unit);
 
-            var quantity04 = Torque.From(1, TorqueUnit.KilonewtonMeter);
+            var quantity04 = Torque<double>.From(1, TorqueUnit.KilonewtonMeter);
             AssertEx.EqualTolerance(1, quantity04.KilonewtonMeters, KilonewtonMetersTolerance);
             Assert.Equal(TorqueUnit.KilonewtonMeter, quantity04.Unit);
 
-            var quantity05 = Torque.From(1, TorqueUnit.KilonewtonMillimeter);
+            var quantity05 = Torque<double>.From(1, TorqueUnit.KilonewtonMillimeter);
             AssertEx.EqualTolerance(1, quantity05.KilonewtonMillimeters, KilonewtonMillimetersTolerance);
             Assert.Equal(TorqueUnit.KilonewtonMillimeter, quantity05.Unit);
 
-            var quantity06 = Torque.From(1, TorqueUnit.KilopoundForceFoot);
+            var quantity06 = Torque<double>.From(1, TorqueUnit.KilopoundForceFoot);
             AssertEx.EqualTolerance(1, quantity06.KilopoundForceFeet, KilopoundForceFeetTolerance);
             Assert.Equal(TorqueUnit.KilopoundForceFoot, quantity06.Unit);
 
-            var quantity07 = Torque.From(1, TorqueUnit.KilopoundForceInch);
+            var quantity07 = Torque<double>.From(1, TorqueUnit.KilopoundForceInch);
             AssertEx.EqualTolerance(1, quantity07.KilopoundForceInches, KilopoundForceInchesTolerance);
             Assert.Equal(TorqueUnit.KilopoundForceInch, quantity07.Unit);
 
-            var quantity08 = Torque.From(1, TorqueUnit.MeganewtonCentimeter);
+            var quantity08 = Torque<double>.From(1, TorqueUnit.MeganewtonCentimeter);
             AssertEx.EqualTolerance(1, quantity08.MeganewtonCentimeters, MeganewtonCentimetersTolerance);
             Assert.Equal(TorqueUnit.MeganewtonCentimeter, quantity08.Unit);
 
-            var quantity09 = Torque.From(1, TorqueUnit.MeganewtonMeter);
+            var quantity09 = Torque<double>.From(1, TorqueUnit.MeganewtonMeter);
             AssertEx.EqualTolerance(1, quantity09.MeganewtonMeters, MeganewtonMetersTolerance);
             Assert.Equal(TorqueUnit.MeganewtonMeter, quantity09.Unit);
 
-            var quantity10 = Torque.From(1, TorqueUnit.MeganewtonMillimeter);
+            var quantity10 = Torque<double>.From(1, TorqueUnit.MeganewtonMillimeter);
             AssertEx.EqualTolerance(1, quantity10.MeganewtonMillimeters, MeganewtonMillimetersTolerance);
             Assert.Equal(TorqueUnit.MeganewtonMillimeter, quantity10.Unit);
 
-            var quantity11 = Torque.From(1, TorqueUnit.MegapoundForceFoot);
+            var quantity11 = Torque<double>.From(1, TorqueUnit.MegapoundForceFoot);
             AssertEx.EqualTolerance(1, quantity11.MegapoundForceFeet, MegapoundForceFeetTolerance);
             Assert.Equal(TorqueUnit.MegapoundForceFoot, quantity11.Unit);
 
-            var quantity12 = Torque.From(1, TorqueUnit.MegapoundForceInch);
+            var quantity12 = Torque<double>.From(1, TorqueUnit.MegapoundForceInch);
             AssertEx.EqualTolerance(1, quantity12.MegapoundForceInches, MegapoundForceInchesTolerance);
             Assert.Equal(TorqueUnit.MegapoundForceInch, quantity12.Unit);
 
-            var quantity13 = Torque.From(1, TorqueUnit.NewtonCentimeter);
+            var quantity13 = Torque<double>.From(1, TorqueUnit.NewtonCentimeter);
             AssertEx.EqualTolerance(1, quantity13.NewtonCentimeters, NewtonCentimetersTolerance);
             Assert.Equal(TorqueUnit.NewtonCentimeter, quantity13.Unit);
 
-            var quantity14 = Torque.From(1, TorqueUnit.NewtonMeter);
+            var quantity14 = Torque<double>.From(1, TorqueUnit.NewtonMeter);
             AssertEx.EqualTolerance(1, quantity14.NewtonMeters, NewtonMetersTolerance);
             Assert.Equal(TorqueUnit.NewtonMeter, quantity14.Unit);
 
-            var quantity15 = Torque.From(1, TorqueUnit.NewtonMillimeter);
+            var quantity15 = Torque<double>.From(1, TorqueUnit.NewtonMillimeter);
             AssertEx.EqualTolerance(1, quantity15.NewtonMillimeters, NewtonMillimetersTolerance);
             Assert.Equal(TorqueUnit.NewtonMillimeter, quantity15.Unit);
 
-            var quantity16 = Torque.From(1, TorqueUnit.PoundalFoot);
+            var quantity16 = Torque<double>.From(1, TorqueUnit.PoundalFoot);
             AssertEx.EqualTolerance(1, quantity16.PoundalFeet, PoundalFeetTolerance);
             Assert.Equal(TorqueUnit.PoundalFoot, quantity16.Unit);
 
-            var quantity17 = Torque.From(1, TorqueUnit.PoundForceFoot);
+            var quantity17 = Torque<double>.From(1, TorqueUnit.PoundForceFoot);
             AssertEx.EqualTolerance(1, quantity17.PoundForceFeet, PoundForceFeetTolerance);
             Assert.Equal(TorqueUnit.PoundForceFoot, quantity17.Unit);
 
-            var quantity18 = Torque.From(1, TorqueUnit.PoundForceInch);
+            var quantity18 = Torque<double>.From(1, TorqueUnit.PoundForceInch);
             AssertEx.EqualTolerance(1, quantity18.PoundForceInches, PoundForceInchesTolerance);
             Assert.Equal(TorqueUnit.PoundForceInch, quantity18.Unit);
 
-            var quantity19 = Torque.From(1, TorqueUnit.TonneForceCentimeter);
+            var quantity19 = Torque<double>.From(1, TorqueUnit.TonneForceCentimeter);
             AssertEx.EqualTolerance(1, quantity19.TonneForceCentimeters, TonneForceCentimetersTolerance);
             Assert.Equal(TorqueUnit.TonneForceCentimeter, quantity19.Unit);
 
-            var quantity20 = Torque.From(1, TorqueUnit.TonneForceMeter);
+            var quantity20 = Torque<double>.From(1, TorqueUnit.TonneForceMeter);
             AssertEx.EqualTolerance(1, quantity20.TonneForceMeters, TonneForceMetersTolerance);
             Assert.Equal(TorqueUnit.TonneForceMeter, quantity20.Unit);
 
-            var quantity21 = Torque.From(1, TorqueUnit.TonneForceMillimeter);
+            var quantity21 = Torque<double>.From(1, TorqueUnit.TonneForceMillimeter);
             AssertEx.EqualTolerance(1, quantity21.TonneForceMillimeters, TonneForceMillimetersTolerance);
             Assert.Equal(TorqueUnit.TonneForceMillimeter, quantity21.Unit);
 
@@ -277,20 +277,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromNewtonMeters_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Torque<double>.FromNewtonMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Torque<double>.FromNewtonMeters(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromNewtonMeters_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NaN));
+            Assert.Throws<ArgumentException>(() => Torque<double>.FromNewtonMeters(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var newtonmeter = Torque.FromNewtonMeters(1);
+            var newtonmeter = Torque<double>.FromNewtonMeters(1);
             AssertEx.EqualTolerance(KilogramForceCentimetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.KilogramForceCentimeter), KilogramForceCentimetersTolerance);
             AssertEx.EqualTolerance(KilogramForceMetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.KilogramForceMeter), KilogramForceMetersTolerance);
             AssertEx.EqualTolerance(KilogramForceMillimetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.KilogramForceMillimeter), KilogramForceMillimetersTolerance);
@@ -335,7 +335,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var newtonmeter = Torque.FromNewtonMeters(1);
+            var newtonmeter = Torque<double>.FromNewtonMeters(1);
 
             var kilogramforcecentimeterQuantity = newtonmeter.ToUnit(TorqueUnit.KilogramForceCentimeter);
             AssertEx.EqualTolerance(KilogramForceCentimetersInOneNewtonMeter, (double)kilogramforcecentimeterQuantity.Value, KilogramForceCentimetersTolerance);
@@ -436,49 +436,49 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceCentimeters(newtonmeter.KilogramForceCentimeters).NewtonMeters, KilogramForceCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceMeters(newtonmeter.KilogramForceMeters).NewtonMeters, KilogramForceMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceMillimeters(newtonmeter.KilogramForceMillimeters).NewtonMeters, KilogramForceMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonCentimeters(newtonmeter.KilonewtonCentimeters).NewtonMeters, KilonewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonMeters(newtonmeter.KilonewtonMeters).NewtonMeters, KilonewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonMillimeters(newtonmeter.KilonewtonMillimeters).NewtonMeters, KilonewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilopoundForceFeet(newtonmeter.KilopoundForceFeet).NewtonMeters, KilopoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilopoundForceInches(newtonmeter.KilopoundForceInches).NewtonMeters, KilopoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonCentimeters(newtonmeter.MeganewtonCentimeters).NewtonMeters, MeganewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonMeters(newtonmeter.MeganewtonMeters).NewtonMeters, MeganewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonMillimeters(newtonmeter.MeganewtonMillimeters).NewtonMeters, MeganewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMegapoundForceFeet(newtonmeter.MegapoundForceFeet).NewtonMeters, MegapoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMegapoundForceInches(newtonmeter.MegapoundForceInches).NewtonMeters, MegapoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonCentimeters(newtonmeter.NewtonCentimeters).NewtonMeters, NewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonMeters(newtonmeter.NewtonMeters).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonMillimeters(newtonmeter.NewtonMillimeters).NewtonMeters, NewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundalFeet(newtonmeter.PoundalFeet).NewtonMeters, PoundalFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundForceFeet(newtonmeter.PoundForceFeet).NewtonMeters, PoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundForceInches(newtonmeter.PoundForceInches).NewtonMeters, PoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceCentimeters(newtonmeter.TonneForceCentimeters).NewtonMeters, TonneForceCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceMeters(newtonmeter.TonneForceMeters).NewtonMeters, TonneForceMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceMillimeters(newtonmeter.TonneForceMillimeters).NewtonMeters, TonneForceMillimetersTolerance);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilogramForceCentimeters(newtonmeter.KilogramForceCentimeters).NewtonMeters, KilogramForceCentimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilogramForceMeters(newtonmeter.KilogramForceMeters).NewtonMeters, KilogramForceMetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilogramForceMillimeters(newtonmeter.KilogramForceMillimeters).NewtonMeters, KilogramForceMillimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilonewtonCentimeters(newtonmeter.KilonewtonCentimeters).NewtonMeters, KilonewtonCentimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilonewtonMeters(newtonmeter.KilonewtonMeters).NewtonMeters, KilonewtonMetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilonewtonMillimeters(newtonmeter.KilonewtonMillimeters).NewtonMeters, KilonewtonMillimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilopoundForceFeet(newtonmeter.KilopoundForceFeet).NewtonMeters, KilopoundForceFeetTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromKilopoundForceInches(newtonmeter.KilopoundForceInches).NewtonMeters, KilopoundForceInchesTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromMeganewtonCentimeters(newtonmeter.MeganewtonCentimeters).NewtonMeters, MeganewtonCentimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromMeganewtonMeters(newtonmeter.MeganewtonMeters).NewtonMeters, MeganewtonMetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromMeganewtonMillimeters(newtonmeter.MeganewtonMillimeters).NewtonMeters, MeganewtonMillimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromMegapoundForceFeet(newtonmeter.MegapoundForceFeet).NewtonMeters, MegapoundForceFeetTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromMegapoundForceInches(newtonmeter.MegapoundForceInches).NewtonMeters, MegapoundForceInchesTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromNewtonCentimeters(newtonmeter.NewtonCentimeters).NewtonMeters, NewtonCentimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromNewtonMeters(newtonmeter.NewtonMeters).NewtonMeters, NewtonMetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromNewtonMillimeters(newtonmeter.NewtonMillimeters).NewtonMeters, NewtonMillimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromPoundalFeet(newtonmeter.PoundalFeet).NewtonMeters, PoundalFeetTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromPoundForceFeet(newtonmeter.PoundForceFeet).NewtonMeters, PoundForceFeetTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromPoundForceInches(newtonmeter.PoundForceInches).NewtonMeters, PoundForceInchesTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromTonneForceCentimeters(newtonmeter.TonneForceCentimeters).NewtonMeters, TonneForceCentimetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromTonneForceMeters(newtonmeter.TonneForceMeters).NewtonMeters, TonneForceMetersTolerance);
+            AssertEx.EqualTolerance(1, Torque<double>.FromTonneForceMillimeters(newtonmeter.TonneForceMillimeters).NewtonMeters, TonneForceMillimetersTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Torque v = Torque.FromNewtonMeters(1);
+            Torque<double> v = Torque<double>.FromNewtonMeters(1);
             AssertEx.EqualTolerance(-1, -v.NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, (Torque.FromNewtonMeters(3)-v).NewtonMeters, NewtonMetersTolerance);
+            AssertEx.EqualTolerance(2, (Torque<double>.FromNewtonMeters(3)-v).NewtonMeters, NewtonMetersTolerance);
             AssertEx.EqualTolerance(2, (v + v).NewtonMeters, NewtonMetersTolerance);
             AssertEx.EqualTolerance(10, (v*10).NewtonMeters, NewtonMetersTolerance);
             AssertEx.EqualTolerance(10, (10*v).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, (Torque.FromNewtonMeters(10)/5).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, Torque.FromNewtonMeters(10)/Torque.FromNewtonMeters(5), NewtonMetersTolerance);
+            AssertEx.EqualTolerance(2, (Torque<double>.FromNewtonMeters(10)/5).NewtonMeters, NewtonMetersTolerance);
+            AssertEx.EqualTolerance(2, Torque<double>.FromNewtonMeters(10)/Torque<double>.FromNewtonMeters(5), NewtonMetersTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Torque oneNewtonMeter = Torque.FromNewtonMeters(1);
-            Torque twoNewtonMeters = Torque.FromNewtonMeters(2);
+            Torque<double> oneNewtonMeter = Torque<double>.FromNewtonMeters(1);
+            Torque<double> twoNewtonMeters = Torque<double>.FromNewtonMeters(2);
 
             Assert.True(oneNewtonMeter < twoNewtonMeters);
             Assert.True(oneNewtonMeter <= twoNewtonMeters);
@@ -494,31 +494,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             Assert.Equal(0, newtonmeter.CompareTo(newtonmeter));
-            Assert.True(newtonmeter.CompareTo(Torque.Zero) > 0);
-            Assert.True(Torque.Zero.CompareTo(newtonmeter) < 0);
+            Assert.True(newtonmeter.CompareTo(Torque<double>.Zero) > 0);
+            Assert.True(Torque<double>.Zero.CompareTo(newtonmeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             Assert.Throws<ArgumentException>(() => newtonmeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             Assert.Throws<ArgumentNullException>(() => newtonmeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Torque.FromNewtonMeters(1);
-            var b = Torque.FromNewtonMeters(2);
+            var a = Torque<double>.FromNewtonMeters(1);
+            var b = Torque<double>.FromNewtonMeters(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -537,8 +537,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Torque.FromNewtonMeters(1);
-            var b = Torque.FromNewtonMeters(2);
+            var a = Torque<double>.FromNewtonMeters(1);
+            var b = Torque<double>.FromNewtonMeters(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -558,9 +558,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Torque.FromNewtonMeters(1);
-            Assert.True(v.Equals(Torque.FromNewtonMeters(1), NewtonMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Torque.Zero, NewtonMetersTolerance, ComparisonType.Relative));
+            var v = Torque<double>.FromNewtonMeters(1);
+            Assert.True(v.Equals(Torque<double>.FromNewtonMeters(1), NewtonMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Torque<double>.Zero, NewtonMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -573,21 +573,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             Assert.False(newtonmeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
+            Torque<double> newtonmeter = Torque<double>.FromNewtonMeters(1);
             Assert.False(newtonmeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(TorqueUnit.Undefined, Torque.Units);
+            Assert.DoesNotContain(TorqueUnit.Undefined, Torque<double>.Units);
         }
 
         [Fact]
@@ -606,7 +606,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Torque.BaseDimensions is null);
+            Assert.False(Torque<double>.BaseDimensions is null);
         }
 
         [Fact]

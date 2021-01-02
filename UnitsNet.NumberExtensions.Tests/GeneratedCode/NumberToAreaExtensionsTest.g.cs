@@ -26,59 +26,59 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAcresTest() =>
-            Assert.Equal(Area.FromAcres(2), 2.Acres());
+            Assert.Equal(Area<double>.FromAcres(2), 2.Acres());
 
         [Fact]
         public void NumberToHectaresTest() =>
-            Assert.Equal(Area.FromHectares(2), 2.Hectares());
+            Assert.Equal(Area<double>.FromHectares(2), 2.Hectares());
 
         [Fact]
         public void NumberToSquareCentimetersTest() =>
-            Assert.Equal(Area.FromSquareCentimeters(2), 2.SquareCentimeters());
+            Assert.Equal(Area<double>.FromSquareCentimeters(2), 2.SquareCentimeters());
 
         [Fact]
         public void NumberToSquareDecimetersTest() =>
-            Assert.Equal(Area.FromSquareDecimeters(2), 2.SquareDecimeters());
+            Assert.Equal(Area<double>.FromSquareDecimeters(2), 2.SquareDecimeters());
 
         [Fact]
         public void NumberToSquareFeetTest() =>
-            Assert.Equal(Area.FromSquareFeet(2), 2.SquareFeet());
+            Assert.Equal(Area<double>.FromSquareFeet(2), 2.SquareFeet());
 
         [Fact]
         public void NumberToSquareInchesTest() =>
-            Assert.Equal(Area.FromSquareInches(2), 2.SquareInches());
+            Assert.Equal(Area<double>.FromSquareInches(2), 2.SquareInches());
 
         [Fact]
         public void NumberToSquareKilometersTest() =>
-            Assert.Equal(Area.FromSquareKilometers(2), 2.SquareKilometers());
+            Assert.Equal(Area<double>.FromSquareKilometers(2), 2.SquareKilometers());
 
         [Fact]
         public void NumberToSquareMetersTest() =>
-            Assert.Equal(Area.FromSquareMeters(2), 2.SquareMeters());
+            Assert.Equal(Area<double>.FromSquareMeters(2), 2.SquareMeters());
 
         [Fact]
         public void NumberToSquareMicrometersTest() =>
-            Assert.Equal(Area.FromSquareMicrometers(2), 2.SquareMicrometers());
+            Assert.Equal(Area<double>.FromSquareMicrometers(2), 2.SquareMicrometers());
 
         [Fact]
         public void NumberToSquareMilesTest() =>
-            Assert.Equal(Area.FromSquareMiles(2), 2.SquareMiles());
+            Assert.Equal(Area<double>.FromSquareMiles(2), 2.SquareMiles());
 
         [Fact]
         public void NumberToSquareMillimetersTest() =>
-            Assert.Equal(Area.FromSquareMillimeters(2), 2.SquareMillimeters());
+            Assert.Equal(Area<double>.FromSquareMillimeters(2), 2.SquareMillimeters());
 
         [Fact]
         public void NumberToSquareNauticalMilesTest() =>
-            Assert.Equal(Area.FromSquareNauticalMiles(2), 2.SquareNauticalMiles());
+            Assert.Equal(Area<double>.FromSquareNauticalMiles(2), 2.SquareNauticalMiles());
 
         [Fact]
         public void NumberToSquareYardsTest() =>
-            Assert.Equal(Area.FromSquareYards(2), 2.SquareYards());
+            Assert.Equal(Area<double>.FromSquareYards(2), 2.SquareYards());
 
         [Fact]
         public void NumberToUsSurveySquareFeetTest() =>
-            Assert.Equal(Area.FromUsSurveySquareFeet(2), 2.UsSurveySquareFeet());
+            Assert.Equal(Area<double>.FromUsSurveySquareFeet(2), 2.UsSurveySquareFeet());
 
     }
 }

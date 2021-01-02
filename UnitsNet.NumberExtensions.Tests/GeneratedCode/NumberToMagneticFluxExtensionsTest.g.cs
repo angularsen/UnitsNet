@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToWebersTest() =>
-            Assert.Equal(MagneticFlux.FromWebers(2), 2.Webers());
+            Assert.Equal(MagneticFlux<double>.FromWebers(2), 2.Webers());
 
     }
 }

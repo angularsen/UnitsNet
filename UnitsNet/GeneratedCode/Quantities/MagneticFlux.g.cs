@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetic_flux
     /// </remarks>
-    public partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>, IConvertible, IFormattable
+    public partial struct MagneticFlux<T> : IQuantityT<MagneticFluxUnit, T>, IEquatable<MagneticFlux<T>>, IComparable, IComparable<MagneticFlux<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public MagneticFlux(double value, MagneticFluxUnit unit)
+        public MagneticFlux(T value, MagneticFluxUnit unit)
         {
             if(unit == MagneticFluxUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MagneticFlux(double value, UnitSystem unitSystem)
+        public MagneticFlux(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -105,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
+        ///     The base unit of <see cref="MagneticFlux{T}" />, which is Weber. All conversions go via this value.
         /// </summary>
         public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
 
         /// <summary>
-        /// Represents the largest possible value of MagneticFlux
+        /// Represents the largest possible value of <see cref="MagneticFlux{T}" />
         /// </summary>
-        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
+        public static MagneticFlux<T> MaxValue { get; } = new MagneticFlux<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of MagneticFlux
+        /// Represents the smallest possible value of <see cref="MagneticFlux{T}" />
         /// </summary>
-        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
+        public static MagneticFlux<T> MinValue { get; } = new MagneticFlux<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.MagneticFlux;
 
         /// <summary>
-        ///     All units of measurement for the MagneticFlux quantity.
+        ///     All units of measurement for the <see cref="MagneticFlux{T}" /> quantity.
         /// </summary>
         public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Weber.
         /// </summary>
-        public static MagneticFlux Zero { get; } = new MagneticFlux(0, BaseUnit);
+        public static MagneticFlux<T> Zero { get; } = new MagneticFlux<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,21 +156,21 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => MagneticFlux.QuantityType;
+        public QuantityType Type => MagneticFlux<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => MagneticFlux.BaseDimensions;
+        public BaseDimensions Dimensions => MagneticFlux<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MagneticFlux in Webers.
+        ///     Get <see cref="MagneticFlux{T}" /> in Webers.
         /// </summary>
-        public double Webers => As(MagneticFluxUnit.Weber);
+        public T Webers => As(MagneticFluxUnit.Weber);
 
         #endregion
 
@@ -204,24 +202,23 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MagneticFlux from Webers.
+        ///     Get <see cref="MagneticFlux{T}" /> from Webers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticFlux FromWebers(QuantityValue webers)
+        public static MagneticFlux<T> FromWebers(T webers)
         {
-            double value = (double) webers;
-            return new MagneticFlux(value, MagneticFluxUnit.Weber);
+            return new MagneticFlux<T>(webers, MagneticFluxUnit.Weber);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
+        ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MagneticFlux unit value.</returns>
-        public static MagneticFlux From(QuantityValue value, MagneticFluxUnit fromUnit)
+        /// <returns><see cref="MagneticFlux{T}" /> unit value.</returns>
+        public static MagneticFlux<T> From(T value, MagneticFluxUnit fromUnit)
         {
-            return new MagneticFlux((double)value, fromUnit);
+            return new MagneticFlux<T>(value, fromUnit);
         }
 
         #endregion
@@ -250,7 +247,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MagneticFlux Parse(string str)
+        public static MagneticFlux<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -278,9 +275,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MagneticFlux Parse(string str, IFormatProvider? provider)
+        public static MagneticFlux<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MagneticFlux, MagneticFluxUnit>(
+            return QuantityParser.Default.Parse<T, MagneticFlux<T>, MagneticFluxUnit>(
                 str,
                 provider,
                 From);
@@ -294,7 +291,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MagneticFlux result)
+        public static bool TryParse(string? str, out MagneticFlux<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -309,9 +306,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MagneticFlux result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out MagneticFlux<T> result)
         {
-            return QuantityParser.Default.TryParse<MagneticFlux, MagneticFluxUnit>(
+            return QuantityParser.Default.TryParse<T, MagneticFlux<T>, MagneticFluxUnit>(
                 str,
                 provider,
                 From,
@@ -373,45 +370,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static MagneticFlux operator -(MagneticFlux right)
+        public static MagneticFlux<T> operator -(MagneticFlux<T> right)
         {
-            return new MagneticFlux(-right.Value, right.Unit);
+            return new MagneticFlux<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticFlux"/> from adding two <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
+        /// <summary>Get <see cref="MagneticFlux{T}"/> from adding two <see cref="MagneticFlux{T}"/>.</summary>
+        public static MagneticFlux<T> operator +(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return new MagneticFlux(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new MagneticFlux<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticFlux"/> from subtracting two <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
+        /// <summary>Get <see cref="MagneticFlux{T}"/> from subtracting two <see cref="MagneticFlux{T}"/>.</summary>
+        public static MagneticFlux<T> operator -(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return new MagneticFlux(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new MagneticFlux<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(double left, MagneticFlux right)
+        /// <summary>Get <see cref="MagneticFlux{T}"/> from multiplying value and <see cref="MagneticFlux{T}"/>.</summary>
+        public static MagneticFlux<T> operator *(T left, MagneticFlux<T> right)
         {
-            return new MagneticFlux(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new MagneticFlux<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(MagneticFlux left, double right)
+        /// <summary>Get <see cref="MagneticFlux{T}"/> from multiplying value and <see cref="MagneticFlux{T}"/>.</summary>
+        public static MagneticFlux<T> operator *(MagneticFlux<T> left, T right)
         {
-            return new MagneticFlux(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new MagneticFlux<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticFlux"/> from dividing <see cref="MagneticFlux"/> by value.</summary>
-        public static MagneticFlux operator /(MagneticFlux left, double right)
+        /// <summary>Get <see cref="MagneticFlux{T}"/> from dividing <see cref="MagneticFlux{T}"/> by value.</summary>
+        public static MagneticFlux<T> operator /(MagneticFlux<T> left, T right)
         {
-            return new MagneticFlux(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new MagneticFlux<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="MagneticFlux"/> by <see cref="MagneticFlux"/>.</summary>
-        public static double operator /(MagneticFlux left, MagneticFlux right)
+        /// <summary>Get ratio value from dividing <see cref="MagneticFlux{T}"/> by <see cref="MagneticFlux{T}"/>.</summary>
+        public static T operator /(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return left.Webers / right.Webers;
+            return CompiledLambdas.Divide(left.Webers, right.Webers);
         }
 
         #endregion
@@ -419,39 +421,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(MagneticFlux left, MagneticFlux right)
+        public static bool operator <=(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(MagneticFlux left, MagneticFlux right)
+        public static bool operator >=(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(MagneticFlux left, MagneticFlux right)
+        public static bool operator <(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(MagneticFlux left, MagneticFlux right)
+        public static bool operator >(MagneticFlux<T> left, MagneticFlux<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MagneticFlux left, MagneticFlux right)
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MagneticFlux<T> left, MagneticFlux<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MagneticFlux left, MagneticFlux right)
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MagneticFlux<T> left, MagneticFlux<T> right)
         {
             return !(left == right);
         }
@@ -460,37 +462,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MagneticFlux objMagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
+            if(!(obj is MagneticFlux<T> objMagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
 
             return CompareTo(objMagneticFlux);
         }
 
         /// <inheritdoc />
-        public int CompareTo(MagneticFlux other)
+        public int CompareTo(MagneticFlux<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MagneticFlux objMagneticFlux))
+            if(obj is null || !(obj is MagneticFlux<T> objMagneticFlux))
                 return false;
 
             return Equals(objMagneticFlux);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MagneticFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MagneticFlux other)
+        /// <remarks>Consider using <see cref="Equals(MagneticFlux{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MagneticFlux<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another MagneticFlux within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="MagneticFlux{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -528,21 +530,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MagneticFlux other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MagneticFlux<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current MagneticFlux.</returns>
+        /// <returns>A hash code for the current <see cref="MagneticFlux{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -556,17 +556,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MagneticFluxUnit unit)
+        public T As(MagneticFluxUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -586,17 +586,22 @@ namespace UnitsNet
             if(!(unit is MagneticFluxUnit unitAsMagneticFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFluxUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMagneticFluxUnit);
+            var asValue = As(unitAsMagneticFluxUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<MagneticFluxUnit>.As(MagneticFluxUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this MagneticFlux to another MagneticFlux with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="MagneticFlux{T}" /> to another <see cref="MagneticFlux{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A MagneticFlux with the specified unit.</returns>
-        public MagneticFlux ToUnit(MagneticFluxUnit unit)
+        /// <returns>A <see cref="MagneticFlux{T}" /> with the specified unit.</returns>
+        public MagneticFlux<T> ToUnit(MagneticFluxUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new MagneticFlux(convertedValue, unit);
+            return new MagneticFlux<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -609,7 +614,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MagneticFlux ToUnit(UnitSystem unitSystem)
+        public MagneticFlux<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -630,18 +635,24 @@ namespace UnitsNet
         IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<MagneticFluxUnit, T> IQuantityT<MagneticFluxUnit, T>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<MagneticFluxUnit, T> IQuantityT<MagneticFluxUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MagneticFluxUnit.Weber: return _value;
+                case MagneticFluxUnit.Weber: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -652,16 +663,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MagneticFlux ToBaseUnit()
+        internal MagneticFlux<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticFlux(baseUnitValue, BaseUnit);
+            return new MagneticFlux<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(MagneticFluxUnit unit)
+        private T GetValueAs(MagneticFluxUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -764,57 +775,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticFlux<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticFlux<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticFlux<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -824,33 +835,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MagneticFlux))
+            if(conversionType == typeof(MagneticFlux<T>))
                 return this;
             else if(conversionType == typeof(MagneticFluxUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return MagneticFlux.QuantityType;
+                return MagneticFlux<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return MagneticFlux.Info;
+                return MagneticFlux<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return MagneticFlux.BaseDimensions;
+                return MagneticFlux<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MagneticFlux<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

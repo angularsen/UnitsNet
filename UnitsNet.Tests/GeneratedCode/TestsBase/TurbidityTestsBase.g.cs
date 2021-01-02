@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Turbidity((double)0.0, TurbidityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Turbidity<double>((double)0.0, TurbidityUnit.Undefined));
         }
 
         [Fact]
@@ -61,14 +61,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.PositiveInfinity, TurbidityUnit.NTU));
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NegativeInfinity, TurbidityUnit.NTU));
+            Assert.Throws<ArgumentException>(() => new Turbidity<double>(double.PositiveInfinity, TurbidityUnit.NTU));
+            Assert.Throws<ArgumentException>(() => new Turbidity<double>(double.NegativeInfinity, TurbidityUnit.NTU));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NaN, TurbidityUnit.NTU));
+            Assert.Throws<ArgumentException>(() => new Turbidity<double>(double.NaN, TurbidityUnit.NTU));
         }
 
         [Fact]
@@ -114,14 +114,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NTUToTurbidityUnits()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             AssertEx.EqualTolerance(NTUInOneNTU, ntu.NTU, NTUTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Turbidity.From(1, TurbidityUnit.NTU);
+            var quantity00 = Turbidity<double>.From(1, TurbidityUnit.NTU);
             AssertEx.EqualTolerance(1, quantity00.NTU, NTUTolerance);
             Assert.Equal(TurbidityUnit.NTU, quantity00.Unit);
 
@@ -130,20 +130,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromNTU_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Turbidity<double>.FromNTU(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Turbidity<double>.FromNTU(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromNTU_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NaN));
+            Assert.Throws<ArgumentException>(() => Turbidity<double>.FromNTU(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var ntu = Turbidity.FromNTU(1);
+            var ntu = Turbidity<double>.FromNTU(1);
             AssertEx.EqualTolerance(NTUInOneNTU, ntu.As(TurbidityUnit.NTU), NTUTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var ntu = Turbidity.FromNTU(1);
+            var ntu = Turbidity<double>.FromNTU(1);
 
             var ntuQuantity = ntu.ToUnit(TurbidityUnit.NTU);
             AssertEx.EqualTolerance(NTUInOneNTU, (double)ntuQuantity.Value, NTUTolerance);
@@ -184,28 +184,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
-            AssertEx.EqualTolerance(1, Turbidity.FromNTU(ntu.NTU).NTU, NTUTolerance);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
+            AssertEx.EqualTolerance(1, Turbidity<double>.FromNTU(ntu.NTU).NTU, NTUTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Turbidity v = Turbidity.FromNTU(1);
+            Turbidity<double> v = Turbidity<double>.FromNTU(1);
             AssertEx.EqualTolerance(-1, -v.NTU, NTUTolerance);
-            AssertEx.EqualTolerance(2, (Turbidity.FromNTU(3)-v).NTU, NTUTolerance);
+            AssertEx.EqualTolerance(2, (Turbidity<double>.FromNTU(3)-v).NTU, NTUTolerance);
             AssertEx.EqualTolerance(2, (v + v).NTU, NTUTolerance);
             AssertEx.EqualTolerance(10, (v*10).NTU, NTUTolerance);
             AssertEx.EqualTolerance(10, (10*v).NTU, NTUTolerance);
-            AssertEx.EqualTolerance(2, (Turbidity.FromNTU(10)/5).NTU, NTUTolerance);
-            AssertEx.EqualTolerance(2, Turbidity.FromNTU(10)/Turbidity.FromNTU(5), NTUTolerance);
+            AssertEx.EqualTolerance(2, (Turbidity<double>.FromNTU(10)/5).NTU, NTUTolerance);
+            AssertEx.EqualTolerance(2, Turbidity<double>.FromNTU(10)/Turbidity<double>.FromNTU(5), NTUTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Turbidity oneNTU = Turbidity.FromNTU(1);
-            Turbidity twoNTU = Turbidity.FromNTU(2);
+            Turbidity<double> oneNTU = Turbidity<double>.FromNTU(1);
+            Turbidity<double> twoNTU = Turbidity<double>.FromNTU(2);
 
             Assert.True(oneNTU < twoNTU);
             Assert.True(oneNTU <= twoNTU);
@@ -221,31 +221,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             Assert.Equal(0, ntu.CompareTo(ntu));
-            Assert.True(ntu.CompareTo(Turbidity.Zero) > 0);
-            Assert.True(Turbidity.Zero.CompareTo(ntu) < 0);
+            Assert.True(ntu.CompareTo(Turbidity<double>.Zero) > 0);
+            Assert.True(Turbidity<double>.Zero.CompareTo(ntu) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             Assert.Throws<ArgumentException>(() => ntu.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             Assert.Throws<ArgumentNullException>(() => ntu.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Turbidity.FromNTU(1);
-            var b = Turbidity.FromNTU(2);
+            var a = Turbidity<double>.FromNTU(1);
+            var b = Turbidity<double>.FromNTU(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -264,8 +264,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Turbidity.FromNTU(1);
-            var b = Turbidity.FromNTU(2);
+            var a = Turbidity<double>.FromNTU(1);
+            var b = Turbidity<double>.FromNTU(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -285,9 +285,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Turbidity.FromNTU(1);
-            Assert.True(v.Equals(Turbidity.FromNTU(1), NTUTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Turbidity.Zero, NTUTolerance, ComparisonType.Relative));
+            var v = Turbidity<double>.FromNTU(1);
+            Assert.True(v.Equals(Turbidity<double>.FromNTU(1), NTUTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Turbidity<double>.Zero, NTUTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -300,21 +300,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             Assert.False(ntu.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Turbidity ntu = Turbidity.FromNTU(1);
+            Turbidity<double> ntu = Turbidity<double>.FromNTU(1);
             Assert.False(ntu.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(TurbidityUnit.Undefined, Turbidity.Units);
+            Assert.DoesNotContain(TurbidityUnit.Undefined, Turbidity<double>.Units);
         }
 
         [Fact]
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Turbidity.BaseDimensions is null);
+            Assert.False(Turbidity<double>.BaseDimensions is null);
         }
 
         [Fact]

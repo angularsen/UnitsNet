@@ -3,24 +3,24 @@
 
 namespace UnitsNet
 {
-    public partial struct ForcePerLength
+    public partial struct ForcePerLength<T>
     {
-        /// <summary>Get <see cref="Force"/> from <see cref="ForcePerLength"/> multiplied by <see cref="Length"/>.</summary>
-        public static Force operator *(ForcePerLength forcePerLength, Length length)
+        /// <summary>Get <see cref="Force{T}"/> from <see cref="ForcePerLength{T}"/> multiplied by <see cref="Length{T}"/>.</summary>
+        public static Force<T> operator *(ForcePerLength<T> forcePerLength, Length<T> length )
         {
-            return Force.FromNewtons(forcePerLength.NewtonsPerMeter * length.Meters);
+            return Force<T>.FromNewtons(forcePerLength.NewtonsPerMeter * length.Meters);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="Force"/> divided by <see cref="ForcePerLength"/>.</summary>
-        public static Length operator /(Force force, ForcePerLength forcePerLength)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="Force{T}"/> divided by <see cref="ForcePerLength{T}"/>.</summary>
+        public static Length<T> operator /(Force<T> force, ForcePerLength<T> forcePerLength )
         {
-            return Length.FromMeters(force.Newtons / forcePerLength.NewtonsPerMeter);
+            return Length<T>.FromMeters(force.Newtons / forcePerLength.NewtonsPerMeter);
         }
 
-        /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> divided by <see cref="Length"/>.</summary>
-        public static Pressure operator /(ForcePerLength forcePerLength, Length length)
+        /// <summary>Get <see cref="Pressure{T}"/> from <see cref="ForcePerLength{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static Pressure<T> operator /(ForcePerLength<T> forcePerLength, Length<T> length )
         {
-            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter / length.Meters);
+            return Pressure<T>.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter / length.Meters);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="ForcePerLength"/> multiplied by <see cref="Area"/>.</summary>

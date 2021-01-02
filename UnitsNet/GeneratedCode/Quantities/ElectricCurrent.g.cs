@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
-    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
+    public partial struct ElectricCurrent<T> : IQuantityT<ElectricCurrentUnit, T>, IEquatable<ElectricCurrent<T>>, IComparable, IComparable<ElectricCurrent<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -70,12 +66,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricCurrent(double value, ElectricCurrentUnit unit)
+        public ElectricCurrent(T value, ElectricCurrentUnit unit)
         {
             if(unit == ElectricCurrentUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -87,14 +83,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrent(double value, UnitSystem unitSystem)
+        public ElectricCurrent(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -109,19 +105,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
+        ///     The base unit of <see cref="ElectricCurrent{T}" />, which is Ampere. All conversions go via this value.
         /// </summary>
         public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricCurrent
+        /// Represents the largest possible value of <see cref="ElectricCurrent{T}" />
         /// </summary>
-        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent<T> MaxValue { get; } = new ElectricCurrent<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricCurrent
+        /// Represents the smallest possible value of <see cref="ElectricCurrent{T}" />
         /// </summary>
-        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent<T> MinValue { get; } = new ElectricCurrent<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,14 +126,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
 
         /// <summary>
-        ///     All units of measurement for the ElectricCurrent quantity.
+        ///     All units of measurement for the <see cref="ElectricCurrent{T}" /> quantity.
         /// </summary>
         public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent<T> Zero { get; } = new ElectricCurrent<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -146,7 +142,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -162,56 +160,56 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricCurrent.QuantityType;
+        public QuantityType Type => ElectricCurrent<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricCurrent.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricCurrent<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrent in Amperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Amperes.
         /// </summary>
-        public double Amperes => As(ElectricCurrentUnit.Ampere);
+        public T Amperes => As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Centiamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Centiamperes.
         /// </summary>
-        public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
+        public T Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Kiloamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Kiloamperes.
         /// </summary>
-        public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
+        public T Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Megaamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Megaamperes.
         /// </summary>
-        public double Megaamperes => As(ElectricCurrentUnit.Megaampere);
+        public T Megaamperes => As(ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Microamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Microamperes.
         /// </summary>
-        public double Microamperes => As(ElectricCurrentUnit.Microampere);
+        public T Microamperes => As(ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Milliamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Milliamperes.
         /// </summary>
-        public double Milliamperes => As(ElectricCurrentUnit.Milliampere);
+        public T Milliamperes => As(ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Nanoamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Nanoamperes.
         /// </summary>
-        public double Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
+        public T Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Picoamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> in Picoamperes.
         /// </summary>
-        public double Picoamperes => As(ElectricCurrentUnit.Picoampere);
+        public T Picoamperes => As(ElectricCurrentUnit.Picoampere);
 
         #endregion
 
@@ -243,87 +241,79 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrent from Amperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Amperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromAmperes(QuantityValue amperes)
+        public static ElectricCurrent<T> FromAmperes(T amperes)
         {
-            double value = (double) amperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
+            return new ElectricCurrent<T>(amperes, ElectricCurrentUnit.Ampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Centiamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Centiamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromCentiamperes(QuantityValue centiamperes)
+        public static ElectricCurrent<T> FromCentiamperes(T centiamperes)
         {
-            double value = (double) centiamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
+            return new ElectricCurrent<T>(centiamperes, ElectricCurrentUnit.Centiampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Kiloamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Kiloamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromKiloamperes(QuantityValue kiloamperes)
+        public static ElectricCurrent<T> FromKiloamperes(T kiloamperes)
         {
-            double value = (double) kiloamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
+            return new ElectricCurrent<T>(kiloamperes, ElectricCurrentUnit.Kiloampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Megaamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Megaamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMegaamperes(QuantityValue megaamperes)
+        public static ElectricCurrent<T> FromMegaamperes(T megaamperes)
         {
-            double value = (double) megaamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
+            return new ElectricCurrent<T>(megaamperes, ElectricCurrentUnit.Megaampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Microamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Microamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMicroamperes(QuantityValue microamperes)
+        public static ElectricCurrent<T> FromMicroamperes(T microamperes)
         {
-            double value = (double) microamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
+            return new ElectricCurrent<T>(microamperes, ElectricCurrentUnit.Microampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Milliamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Milliamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMilliamperes(QuantityValue milliamperes)
+        public static ElectricCurrent<T> FromMilliamperes(T milliamperes)
         {
-            double value = (double) milliamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
+            return new ElectricCurrent<T>(milliamperes, ElectricCurrentUnit.Milliampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Nanoamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Nanoamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromNanoamperes(QuantityValue nanoamperes)
+        public static ElectricCurrent<T> FromNanoamperes(T nanoamperes)
         {
-            double value = (double) nanoamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
+            return new ElectricCurrent<T>(nanoamperes, ElectricCurrentUnit.Nanoampere);
         }
         /// <summary>
-        ///     Get ElectricCurrent from Picoamperes.
+        ///     Get <see cref="ElectricCurrent{T}" /> from Picoamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromPicoamperes(QuantityValue picoamperes)
+        public static ElectricCurrent<T> FromPicoamperes(T picoamperes)
         {
-            double value = (double) picoamperes;
-            return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
+            return new ElectricCurrent<T>(picoamperes, ElectricCurrentUnit.Picoampere);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent From(QuantityValue value, ElectricCurrentUnit fromUnit)
+        /// <returns><see cref="ElectricCurrent{T}" /> unit value.</returns>
+        public static ElectricCurrent<T> From(T value, ElectricCurrentUnit fromUnit)
         {
-            return new ElectricCurrent((double)value, fromUnit);
+            return new ElectricCurrent<T>(value, fromUnit);
         }
 
         #endregion
@@ -352,7 +342,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricCurrent Parse(string str)
+        public static ElectricCurrent<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -380,9 +370,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricCurrent Parse(string str, IFormatProvider? provider)
+        public static ElectricCurrent<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricCurrent, ElectricCurrentUnit>(
+            return QuantityParser.Default.Parse<T, ElectricCurrent<T>, ElectricCurrentUnit>(
                 str,
                 provider,
                 From);
@@ -396,7 +386,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricCurrent result)
+        public static bool TryParse(string? str, out ElectricCurrent<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -411,9 +401,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrent result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrent<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricCurrent, ElectricCurrentUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricCurrent<T>, ElectricCurrentUnit>(
                 str,
                 provider,
                 From,
@@ -475,45 +465,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ElectricCurrent operator -(ElectricCurrent right)
+        public static ElectricCurrent<T> operator -(ElectricCurrent<T> right)
         {
-            return new ElectricCurrent(-right.Value, right.Unit);
+            return new ElectricCurrent<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from adding two <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
+        /// <summary>Get <see cref="ElectricCurrent{T}"/> from adding two <see cref="ElectricCurrent{T}"/>.</summary>
+        public static ElectricCurrent<T> operator +(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return new ElectricCurrent(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricCurrent<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from subtracting two <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
+        /// <summary>Get <see cref="ElectricCurrent{T}"/> from subtracting two <see cref="ElectricCurrent{T}"/>.</summary>
+        public static ElectricCurrent<T> operator -(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return new ElectricCurrent(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricCurrent<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(double left, ElectricCurrent right)
+        /// <summary>Get <see cref="ElectricCurrent{T}"/> from multiplying value and <see cref="ElectricCurrent{T}"/>.</summary>
+        public static ElectricCurrent<T> operator *(T left, ElectricCurrent<T> right)
         {
-            return new ElectricCurrent(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ElectricCurrent<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(ElectricCurrent left, double right)
+        /// <summary>Get <see cref="ElectricCurrent{T}"/> from multiplying value and <see cref="ElectricCurrent{T}"/>.</summary>
+        public static ElectricCurrent<T> operator *(ElectricCurrent<T> left, T right)
         {
-            return new ElectricCurrent(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ElectricCurrent<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from dividing <see cref="ElectricCurrent"/> by value.</summary>
-        public static ElectricCurrent operator /(ElectricCurrent left, double right)
+        /// <summary>Get <see cref="ElectricCurrent{T}"/> from dividing <see cref="ElectricCurrent{T}"/> by value.</summary>
+        public static ElectricCurrent<T> operator /(ElectricCurrent<T> left, T right)
         {
-            return new ElectricCurrent(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ElectricCurrent<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ElectricCurrent"/> by <see cref="ElectricCurrent"/>.</summary>
-        public static double operator /(ElectricCurrent left, ElectricCurrent right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricCurrent{T}"/> by <see cref="ElectricCurrent{T}"/>.</summary>
+        public static T operator /(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return left.Amperes / right.Amperes;
+            return CompiledLambdas.Divide(left.Amperes, right.Amperes);
         }
 
         #endregion
@@ -521,39 +516,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
+        public static bool operator <=(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
+        public static bool operator >=(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ElectricCurrent left, ElectricCurrent right)
+        public static bool operator <(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ElectricCurrent left, ElectricCurrent right)
+        public static bool operator >(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricCurrent<T> left, ElectricCurrent<T> right)
         {
             return !(left == right);
         }
@@ -562,37 +557,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrent objElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
+            if(!(obj is ElectricCurrent<T> objElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
 
             return CompareTo(objElectricCurrent);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ElectricCurrent other)
+        public int CompareTo(ElectricCurrent<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricCurrent objElectricCurrent))
+            if(obj is null || !(obj is ElectricCurrent<T> objElectricCurrent))
                 return false;
 
             return Equals(objElectricCurrent);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricCurrent other)
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricCurrent<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricCurrent within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ElectricCurrent{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -630,21 +625,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrent other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrent<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricCurrent.</returns>
+        /// <returns>A hash code for the current <see cref="ElectricCurrent{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -658,17 +651,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricCurrentUnit unit)
+        public T As(ElectricCurrentUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -688,17 +681,22 @@ namespace UnitsNet
             if(!(unit is ElectricCurrentUnit unitAsElectricCurrentUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricCurrentUnit);
+            var asValue = As(unitAsElectricCurrentUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ElectricCurrentUnit>.As(ElectricCurrentUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this ElectricCurrent to another ElectricCurrent with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricCurrent{T}" /> to another <see cref="ElectricCurrent{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricCurrent with the specified unit.</returns>
-        public ElectricCurrent ToUnit(ElectricCurrentUnit unit)
+        /// <returns>A <see cref="ElectricCurrent{T}" /> with the specified unit.</returns>
+        public ElectricCurrent<T> ToUnit(ElectricCurrentUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ElectricCurrent(convertedValue, unit);
+            return new ElectricCurrent<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -711,7 +709,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricCurrent ToUnit(UnitSystem unitSystem)
+        public ElectricCurrent<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -732,25 +730,31 @@ namespace UnitsNet
         IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(ElectricCurrentUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ElectricCurrentUnit, T> IQuantityT<ElectricCurrentUnit, T>.ToUnit(ElectricCurrentUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ElectricCurrentUnit, T> IQuantityT<ElectricCurrentUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
+                case ElectricCurrentUnit.Ampere: return Value;
+                case ElectricCurrentUnit.Centiampere: return (Value) * 1e-2d;
+                case ElectricCurrentUnit.Kiloampere: return (Value) * 1e3d;
+                case ElectricCurrentUnit.Megaampere: return (Value) * 1e6d;
+                case ElectricCurrentUnit.Microampere: return (Value) * 1e-6d;
+                case ElectricCurrentUnit.Milliampere: return (Value) * 1e-3d;
+                case ElectricCurrentUnit.Nanoampere: return (Value) * 1e-9d;
+                case ElectricCurrentUnit.Picoampere: return (Value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -761,16 +765,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricCurrent ToBaseUnit()
+        internal ElectricCurrent<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrent(baseUnitValue, BaseUnit);
+            return new ElectricCurrent<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ElectricCurrentUnit unit)
+        private T GetValueAs(ElectricCurrentUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -880,57 +884,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrent<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrent<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricCurrent<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -940,33 +944,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricCurrent))
+            if(conversionType == typeof(ElectricCurrent<T>))
                 return this;
             else if(conversionType == typeof(ElectricCurrentUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ElectricCurrent.QuantityType;
+                return ElectricCurrent<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return ElectricCurrent.Info;
+                return ElectricCurrent<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return ElectricCurrent.BaseDimensions;
+                return ElectricCurrent<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrent<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

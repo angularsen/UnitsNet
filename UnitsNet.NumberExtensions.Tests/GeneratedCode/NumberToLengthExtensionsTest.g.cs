@@ -26,135 +26,135 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAstronomicalUnitsTest() =>
-            Assert.Equal(Length.FromAstronomicalUnits(2), 2.AstronomicalUnits());
+            Assert.Equal(Length<double>.FromAstronomicalUnits(2), 2.AstronomicalUnits());
 
         [Fact]
         public void NumberToCentimetersTest() =>
-            Assert.Equal(Length.FromCentimeters(2), 2.Centimeters());
+            Assert.Equal(Length<double>.FromCentimeters(2), 2.Centimeters());
 
         [Fact]
         public void NumberToChainsTest() =>
-            Assert.Equal(Length.FromChains(2), 2.Chains());
+            Assert.Equal(Length<double>.FromChains(2), 2.Chains());
 
         [Fact]
         public void NumberToDecimetersTest() =>
-            Assert.Equal(Length.FromDecimeters(2), 2.Decimeters());
+            Assert.Equal(Length<double>.FromDecimeters(2), 2.Decimeters());
 
         [Fact]
         public void NumberToDtpPicasTest() =>
-            Assert.Equal(Length.FromDtpPicas(2), 2.DtpPicas());
+            Assert.Equal(Length<double>.FromDtpPicas(2), 2.DtpPicas());
 
         [Fact]
         public void NumberToDtpPointsTest() =>
-            Assert.Equal(Length.FromDtpPoints(2), 2.DtpPoints());
+            Assert.Equal(Length<double>.FromDtpPoints(2), 2.DtpPoints());
 
         [Fact]
         public void NumberToFathomsTest() =>
-            Assert.Equal(Length.FromFathoms(2), 2.Fathoms());
+            Assert.Equal(Length<double>.FromFathoms(2), 2.Fathoms());
 
         [Fact]
         public void NumberToFeetTest() =>
-            Assert.Equal(Length.FromFeet(2), 2.Feet());
+            Assert.Equal(Length<double>.FromFeet(2), 2.Feet());
 
         [Fact]
         public void NumberToHandsTest() =>
-            Assert.Equal(Length.FromHands(2), 2.Hands());
+            Assert.Equal(Length<double>.FromHands(2), 2.Hands());
 
         [Fact]
         public void NumberToHectometersTest() =>
-            Assert.Equal(Length.FromHectometers(2), 2.Hectometers());
+            Assert.Equal(Length<double>.FromHectometers(2), 2.Hectometers());
 
         [Fact]
         public void NumberToInchesTest() =>
-            Assert.Equal(Length.FromInches(2), 2.Inches());
+            Assert.Equal(Length<double>.FromInches(2), 2.Inches());
 
         [Fact]
         public void NumberToKilolightYearsTest() =>
-            Assert.Equal(Length.FromKilolightYears(2), 2.KilolightYears());
+            Assert.Equal(Length<double>.FromKilolightYears(2), 2.KilolightYears());
 
         [Fact]
         public void NumberToKilometersTest() =>
-            Assert.Equal(Length.FromKilometers(2), 2.Kilometers());
+            Assert.Equal(Length<double>.FromKilometers(2), 2.Kilometers());
 
         [Fact]
         public void NumberToKiloparsecsTest() =>
-            Assert.Equal(Length.FromKiloparsecs(2), 2.Kiloparsecs());
+            Assert.Equal(Length<double>.FromKiloparsecs(2), 2.Kiloparsecs());
 
         [Fact]
         public void NumberToLightYearsTest() =>
-            Assert.Equal(Length.FromLightYears(2), 2.LightYears());
+            Assert.Equal(Length<double>.FromLightYears(2), 2.LightYears());
 
         [Fact]
         public void NumberToMegalightYearsTest() =>
-            Assert.Equal(Length.FromMegalightYears(2), 2.MegalightYears());
+            Assert.Equal(Length<double>.FromMegalightYears(2), 2.MegalightYears());
 
         [Fact]
         public void NumberToMegaparsecsTest() =>
-            Assert.Equal(Length.FromMegaparsecs(2), 2.Megaparsecs());
+            Assert.Equal(Length<double>.FromMegaparsecs(2), 2.Megaparsecs());
 
         [Fact]
         public void NumberToMetersTest() =>
-            Assert.Equal(Length.FromMeters(2), 2.Meters());
+            Assert.Equal(Length<double>.FromMeters(2), 2.Meters());
 
         [Fact]
         public void NumberToMicroinchesTest() =>
-            Assert.Equal(Length.FromMicroinches(2), 2.Microinches());
+            Assert.Equal(Length<double>.FromMicroinches(2), 2.Microinches());
 
         [Fact]
         public void NumberToMicrometersTest() =>
-            Assert.Equal(Length.FromMicrometers(2), 2.Micrometers());
+            Assert.Equal(Length<double>.FromMicrometers(2), 2.Micrometers());
 
         [Fact]
         public void NumberToMilsTest() =>
-            Assert.Equal(Length.FromMils(2), 2.Mils());
+            Assert.Equal(Length<double>.FromMils(2), 2.Mils());
 
         [Fact]
         public void NumberToMilesTest() =>
-            Assert.Equal(Length.FromMiles(2), 2.Miles());
+            Assert.Equal(Length<double>.FromMiles(2), 2.Miles());
 
         [Fact]
         public void NumberToMillimetersTest() =>
-            Assert.Equal(Length.FromMillimeters(2), 2.Millimeters());
+            Assert.Equal(Length<double>.FromMillimeters(2), 2.Millimeters());
 
         [Fact]
         public void NumberToNanometersTest() =>
-            Assert.Equal(Length.FromNanometers(2), 2.Nanometers());
+            Assert.Equal(Length<double>.FromNanometers(2), 2.Nanometers());
 
         [Fact]
         public void NumberToNauticalMilesTest() =>
-            Assert.Equal(Length.FromNauticalMiles(2), 2.NauticalMiles());
+            Assert.Equal(Length<double>.FromNauticalMiles(2), 2.NauticalMiles());
 
         [Fact]
         public void NumberToParsecsTest() =>
-            Assert.Equal(Length.FromParsecs(2), 2.Parsecs());
+            Assert.Equal(Length<double>.FromParsecs(2), 2.Parsecs());
 
         [Fact]
         public void NumberToPrinterPicasTest() =>
-            Assert.Equal(Length.FromPrinterPicas(2), 2.PrinterPicas());
+            Assert.Equal(Length<double>.FromPrinterPicas(2), 2.PrinterPicas());
 
         [Fact]
         public void NumberToPrinterPointsTest() =>
-            Assert.Equal(Length.FromPrinterPoints(2), 2.PrinterPoints());
+            Assert.Equal(Length<double>.FromPrinterPoints(2), 2.PrinterPoints());
 
         [Fact]
         public void NumberToShacklesTest() =>
-            Assert.Equal(Length.FromShackles(2), 2.Shackles());
+            Assert.Equal(Length<double>.FromShackles(2), 2.Shackles());
 
         [Fact]
         public void NumberToSolarRadiusesTest() =>
-            Assert.Equal(Length.FromSolarRadiuses(2), 2.SolarRadiuses());
+            Assert.Equal(Length<double>.FromSolarRadiuses(2), 2.SolarRadiuses());
 
         [Fact]
         public void NumberToTwipsTest() =>
-            Assert.Equal(Length.FromTwips(2), 2.Twips());
+            Assert.Equal(Length<double>.FromTwips(2), 2.Twips());
 
         [Fact]
         public void NumberToUsSurveyFeetTest() =>
-            Assert.Equal(Length.FromUsSurveyFeet(2), 2.UsSurveyFeet());
+            Assert.Equal(Length<double>.FromUsSurveyFeet(2), 2.UsSurveyFeet());
 
         [Fact]
         public void NumberToYardsTest() =>
-            Assert.Equal(Length.FromYards(2), 2.Yards());
+            Assert.Equal(Length<double>.FromYards(2), 2.Yards());
 
     }
 }

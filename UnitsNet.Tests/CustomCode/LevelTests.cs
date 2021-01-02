@@ -15,14 +15,14 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override void AssertLogarithmicAddition()
         {
-            Level v = Level.FromDecibels(40);
+            var v = Level<double>.FromDecibels(40);
             AssertEx.EqualTolerance(43.0102999566, (v + v).Decibels, DecibelsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
-            Level v = Level.FromDecibels(40);
-            AssertEx.EqualTolerance(49.5424250944, (Level.FromDecibels(50) - v).Decibels, DecibelsTolerance);
+            var v = Level<double>.FromDecibels(40);
+            AssertEx.EqualTolerance(49.5424250944, (Level<double>.FromDecibels(50) - v).Decibels, DecibelsTolerance);
         }
 
         [Theory]
@@ -31,7 +31,7 @@ namespace UnitsNet.Tests.CustomCode
         public void InvalidQuantity_ExpectArgumentOutOfRangeException(double quantity, double reference)
         {
             // quantity can't be zero or less than zero if reference is positive.
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Level<double>(quantity, reference));
         }
 
         [Theory]
@@ -40,7 +40,7 @@ namespace UnitsNet.Tests.CustomCode
         public void InvalidReference_ExpectArgumentOutOfRangeException(double quantity, double reference)
         {
             // reference can't be zero or less than zero if quantity is postive.
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Level<double>(quantity, reference));
         }
     }
 }

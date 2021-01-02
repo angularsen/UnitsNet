@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
-    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    public partial struct MagneticField<T> : IQuantityT<MagneticFieldUnit, T>, IEquatable<MagneticField<T>>, IComparable, IComparable<MagneticField<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -70,12 +66,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public MagneticField(double value, MagneticFieldUnit unit)
+        public MagneticField(T value, MagneticFieldUnit unit)
         {
             if(unit == MagneticFieldUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -87,14 +83,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MagneticField(double value, UnitSystem unitSystem)
+        public MagneticField(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -109,19 +105,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of MagneticField, which is Tesla. All conversions go via this value.
+        ///     The base unit of <see cref="MagneticField{T}" />, which is Tesla. All conversions go via this value.
         /// </summary>
         public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
 
         /// <summary>
-        /// Represents the largest possible value of MagneticField
+        /// Represents the largest possible value of <see cref="MagneticField{T}" />
         /// </summary>
-        public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
+        public static MagneticField<T> MaxValue { get; } = new MagneticField<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of MagneticField
+        /// Represents the smallest possible value of <see cref="MagneticField{T}" />
         /// </summary>
-        public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, BaseUnit);
+        public static MagneticField<T> MinValue { get; } = new MagneticField<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -130,14 +126,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.MagneticField;
 
         /// <summary>
-        ///     All units of measurement for the MagneticField quantity.
+        ///     All units of measurement for the <see cref="MagneticField{T}" /> quantity.
         /// </summary>
         public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Tesla.
         /// </summary>
-        public static MagneticField Zero { get; } = new MagneticField(0, BaseUnit);
+        public static MagneticField<T> Zero { get; } = new MagneticField<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -146,7 +142,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -162,41 +160,41 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => MagneticField.QuantityType;
+        public QuantityType Type => MagneticField<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => MagneticField.BaseDimensions;
+        public BaseDimensions Dimensions => MagneticField<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MagneticField in Gausses.
+        ///     Get <see cref="MagneticField{T}" /> in Gausses.
         /// </summary>
-        public double Gausses => As(MagneticFieldUnit.Gauss);
+        public T Gausses => As(MagneticFieldUnit.Gauss);
 
         /// <summary>
-        ///     Get MagneticField in Microteslas.
+        ///     Get <see cref="MagneticField{T}" /> in Microteslas.
         /// </summary>
-        public double Microteslas => As(MagneticFieldUnit.Microtesla);
+        public T Microteslas => As(MagneticFieldUnit.Microtesla);
 
         /// <summary>
-        ///     Get MagneticField in Milliteslas.
+        ///     Get <see cref="MagneticField{T}" /> in Milliteslas.
         /// </summary>
-        public double Milliteslas => As(MagneticFieldUnit.Millitesla);
+        public T Milliteslas => As(MagneticFieldUnit.Millitesla);
 
         /// <summary>
-        ///     Get MagneticField in Nanoteslas.
+        ///     Get <see cref="MagneticField{T}" /> in Nanoteslas.
         /// </summary>
-        public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
+        public T Nanoteslas => As(MagneticFieldUnit.Nanotesla);
 
         /// <summary>
-        ///     Get MagneticField in Teslas.
+        ///     Get <see cref="MagneticField{T}" /> in Teslas.
         /// </summary>
-        public double Teslas => As(MagneticFieldUnit.Tesla);
+        public T Teslas => As(MagneticFieldUnit.Tesla);
 
         #endregion
 
@@ -228,60 +226,55 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MagneticField from Gausses.
+        ///     Get <see cref="MagneticField{T}" /> from Gausses.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromGausses(QuantityValue gausses)
+        public static MagneticField<T> FromGausses(T gausses)
         {
-            double value = (double) gausses;
-            return new MagneticField(value, MagneticFieldUnit.Gauss);
+            return new MagneticField<T>(gausses, MagneticFieldUnit.Gauss);
         }
         /// <summary>
-        ///     Get MagneticField from Microteslas.
+        ///     Get <see cref="MagneticField{T}" /> from Microteslas.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromMicroteslas(QuantityValue microteslas)
+        public static MagneticField<T> FromMicroteslas(T microteslas)
         {
-            double value = (double) microteslas;
-            return new MagneticField(value, MagneticFieldUnit.Microtesla);
+            return new MagneticField<T>(microteslas, MagneticFieldUnit.Microtesla);
         }
         /// <summary>
-        ///     Get MagneticField from Milliteslas.
+        ///     Get <see cref="MagneticField{T}" /> from Milliteslas.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromMilliteslas(QuantityValue milliteslas)
+        public static MagneticField<T> FromMilliteslas(T milliteslas)
         {
-            double value = (double) milliteslas;
-            return new MagneticField(value, MagneticFieldUnit.Millitesla);
+            return new MagneticField<T>(milliteslas, MagneticFieldUnit.Millitesla);
         }
         /// <summary>
-        ///     Get MagneticField from Nanoteslas.
+        ///     Get <see cref="MagneticField{T}" /> from Nanoteslas.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromNanoteslas(QuantityValue nanoteslas)
+        public static MagneticField<T> FromNanoteslas(T nanoteslas)
         {
-            double value = (double) nanoteslas;
-            return new MagneticField(value, MagneticFieldUnit.Nanotesla);
+            return new MagneticField<T>(nanoteslas, MagneticFieldUnit.Nanotesla);
         }
         /// <summary>
-        ///     Get MagneticField from Teslas.
+        ///     Get <see cref="MagneticField{T}" /> from Teslas.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromTeslas(QuantityValue teslas)
+        public static MagneticField<T> FromTeslas(T teslas)
         {
-            double value = (double) teslas;
-            return new MagneticField(value, MagneticFieldUnit.Tesla);
+            return new MagneticField<T>(teslas, MagneticFieldUnit.Tesla);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField" />.
+        ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MagneticField unit value.</returns>
-        public static MagneticField From(QuantityValue value, MagneticFieldUnit fromUnit)
+        /// <returns><see cref="MagneticField{T}" /> unit value.</returns>
+        public static MagneticField<T> From(T value, MagneticFieldUnit fromUnit)
         {
-            return new MagneticField((double)value, fromUnit);
+            return new MagneticField<T>(value, fromUnit);
         }
 
         #endregion
@@ -310,7 +303,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MagneticField Parse(string str)
+        public static MagneticField<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -338,9 +331,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MagneticField Parse(string str, IFormatProvider? provider)
+        public static MagneticField<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MagneticField, MagneticFieldUnit>(
+            return QuantityParser.Default.Parse<T, MagneticField<T>, MagneticFieldUnit>(
                 str,
                 provider,
                 From);
@@ -354,7 +347,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MagneticField result)
+        public static bool TryParse(string? str, out MagneticField<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -369,9 +362,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MagneticField result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out MagneticField<T> result)
         {
-            return QuantityParser.Default.TryParse<MagneticField, MagneticFieldUnit>(
+            return QuantityParser.Default.TryParse<T, MagneticField<T>, MagneticFieldUnit>(
                 str,
                 provider,
                 From,
@@ -433,45 +426,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static MagneticField operator -(MagneticField right)
+        public static MagneticField<T> operator -(MagneticField<T> right)
         {
-            return new MagneticField(-right.Value, right.Unit);
+            return new MagneticField<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticField"/> from adding two <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator +(MagneticField left, MagneticField right)
+        /// <summary>Get <see cref="MagneticField{T}"/> from adding two <see cref="MagneticField{T}"/>.</summary>
+        public static MagneticField<T> operator +(MagneticField<T> left, MagneticField<T> right)
         {
-            return new MagneticField(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new MagneticField<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticField"/> from subtracting two <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator -(MagneticField left, MagneticField right)
+        /// <summary>Get <see cref="MagneticField{T}"/> from subtracting two <see cref="MagneticField{T}"/>.</summary>
+        public static MagneticField<T> operator -(MagneticField<T> left, MagneticField<T> right)
         {
-            return new MagneticField(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new MagneticField<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator *(double left, MagneticField right)
+        /// <summary>Get <see cref="MagneticField{T}"/> from multiplying value and <see cref="MagneticField{T}"/>.</summary>
+        public static MagneticField<T> operator *(T left, MagneticField<T> right)
         {
-            return new MagneticField(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new MagneticField<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator *(MagneticField left, double right)
+        /// <summary>Get <see cref="MagneticField{T}"/> from multiplying value and <see cref="MagneticField{T}"/>.</summary>
+        public static MagneticField<T> operator *(MagneticField<T> left, T right)
         {
-            return new MagneticField(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new MagneticField<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MagneticField"/> from dividing <see cref="MagneticField"/> by value.</summary>
-        public static MagneticField operator /(MagneticField left, double right)
+        /// <summary>Get <see cref="MagneticField{T}"/> from dividing <see cref="MagneticField{T}"/> by value.</summary>
+        public static MagneticField<T> operator /(MagneticField<T> left, T right)
         {
-            return new MagneticField(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new MagneticField<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="MagneticField"/> by <see cref="MagneticField"/>.</summary>
-        public static double operator /(MagneticField left, MagneticField right)
+        /// <summary>Get ratio value from dividing <see cref="MagneticField{T}"/> by <see cref="MagneticField{T}"/>.</summary>
+        public static T operator /(MagneticField<T> left, MagneticField<T> right)
         {
-            return left.Teslas / right.Teslas;
+            return CompiledLambdas.Divide(left.Teslas, right.Teslas);
         }
 
         #endregion
@@ -479,39 +477,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(MagneticField left, MagneticField right)
+        public static bool operator <=(MagneticField<T> left, MagneticField<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(MagneticField left, MagneticField right)
+        public static bool operator >=(MagneticField<T> left, MagneticField<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(MagneticField left, MagneticField right)
+        public static bool operator <(MagneticField<T> left, MagneticField<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(MagneticField left, MagneticField right)
+        public static bool operator >(MagneticField<T> left, MagneticField<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MagneticField left, MagneticField right)
+        /// <remarks>Consider using <see cref="Equals(MagneticField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MagneticField<T> left, MagneticField<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MagneticField left, MagneticField right)
+        /// <remarks>Consider using <see cref="Equals(MagneticField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MagneticField<T> left, MagneticField<T> right)
         {
             return !(left == right);
         }
@@ -520,37 +518,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MagneticField objMagneticField)) throw new ArgumentException("Expected type MagneticField.", nameof(obj));
+            if(!(obj is MagneticField<T> objMagneticField)) throw new ArgumentException("Expected type MagneticField.", nameof(obj));
 
             return CompareTo(objMagneticField);
         }
 
         /// <inheritdoc />
-        public int CompareTo(MagneticField other)
+        public int CompareTo(MagneticField<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MagneticField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MagneticField objMagneticField))
+            if(obj is null || !(obj is MagneticField<T> objMagneticField))
                 return false;
 
             return Equals(objMagneticField);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MagneticField other)
+        /// <remarks>Consider using <see cref="Equals(MagneticField{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MagneticField<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another MagneticField within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="MagneticField{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -588,21 +586,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MagneticField other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MagneticField<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current MagneticField.</returns>
+        /// <returns>A hash code for the current <see cref="MagneticField{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -616,17 +612,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MagneticFieldUnit unit)
+        public T As(MagneticFieldUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -646,17 +642,22 @@ namespace UnitsNet
             if(!(unit is MagneticFieldUnit unitAsMagneticFieldUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMagneticFieldUnit);
+            var asValue = As(unitAsMagneticFieldUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<MagneticFieldUnit>.As(MagneticFieldUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this MagneticField to another MagneticField with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="MagneticField{T}" /> to another <see cref="MagneticField{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A MagneticField with the specified unit.</returns>
-        public MagneticField ToUnit(MagneticFieldUnit unit)
+        /// <returns>A <see cref="MagneticField{T}" /> with the specified unit.</returns>
+        public MagneticField<T> ToUnit(MagneticFieldUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new MagneticField(convertedValue, unit);
+            return new MagneticField<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -669,7 +670,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MagneticField ToUnit(UnitSystem unitSystem)
+        public MagneticField<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -690,22 +691,28 @@ namespace UnitsNet
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<MagneticFieldUnit, T> IQuantityT<MagneticFieldUnit, T>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<MagneticFieldUnit, T> IQuantityT<MagneticFieldUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
-                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
-                case MagneticFieldUnit.Tesla: return _value;
+                case MagneticFieldUnit.Gauss: return Value/1e4;
+                case MagneticFieldUnit.Microtesla: return (Value) * 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (Value) * 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (Value) * 1e-9d;
+                case MagneticFieldUnit.Tesla: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -716,16 +723,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MagneticField ToBaseUnit()
+        internal MagneticField<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticField(baseUnitValue, BaseUnit);
+            return new MagneticField<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(MagneticFieldUnit unit)
+        private T GetValueAs(MagneticFieldUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -832,57 +839,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticField)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticField<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticField)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticField<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MagneticField)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MagneticField<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -892,33 +899,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MagneticField))
+            if(conversionType == typeof(MagneticField<T>))
                 return this;
             else if(conversionType == typeof(MagneticFieldUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return MagneticField.QuantityType;
+                return MagneticField<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return MagneticField.Info;
+                return MagneticField<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return MagneticField.BaseDimensions;
+                return MagneticField<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(MagneticField)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MagneticField<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

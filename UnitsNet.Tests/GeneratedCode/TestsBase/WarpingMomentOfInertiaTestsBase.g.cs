@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia((double)0.0, WarpingMomentOfInertiaUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia<double>((double)0.0, WarpingMomentOfInertiaUnit.Undefined));
         }
 
         [Fact]
@@ -71,14 +71,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NegativeInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia<double>(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia<double>(double.NegativeInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia<double>(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MeterToTheSixthToWarpingMomentOfInertiaUnits()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             AssertEx.EqualTolerance(CentimetersToTheSixthInOneMeterToTheSixth, metertothesixth.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
             AssertEx.EqualTolerance(DecimetersToTheSixthInOneMeterToTheSixth, metertothesixth.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
             AssertEx.EqualTolerance(FeetToTheSixthInOneMeterToTheSixth, metertothesixth.FeetToTheSixth, FeetToTheSixthTolerance);
@@ -136,27 +136,27 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
+            var quantity00 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
             AssertEx.EqualTolerance(1, quantity00.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, quantity00.Unit);
 
-            var quantity01 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
+            var quantity01 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
             AssertEx.EqualTolerance(1, quantity01.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, quantity01.Unit);
 
-            var quantity02 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.FootToTheSixth);
+            var quantity02 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.FootToTheSixth);
             AssertEx.EqualTolerance(1, quantity02.FeetToTheSixth, FeetToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, quantity02.Unit);
 
-            var quantity03 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.InchToTheSixth);
+            var quantity03 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.InchToTheSixth);
             AssertEx.EqualTolerance(1, quantity03.InchesToTheSixth, InchesToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, quantity03.Unit);
 
-            var quantity04 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
+            var quantity04 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
             AssertEx.EqualTolerance(1, quantity04.MetersToTheSixth, MetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, quantity04.Unit);
 
-            var quantity05 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
+            var quantity05 = WarpingMomentOfInertia<double>.From(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
             AssertEx.EqualTolerance(1, quantity05.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, quantity05.Unit);
 
@@ -165,20 +165,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromMetersToTheSixth_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia<double>.FromMetersToTheSixth(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia<double>.FromMetersToTheSixth(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMetersToTheSixth_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NaN));
+            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia<double>.FromMetersToTheSixth(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            var metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             AssertEx.EqualTolerance(CentimetersToTheSixthInOneMeterToTheSixth, metertothesixth.As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth), CentimetersToTheSixthTolerance);
             AssertEx.EqualTolerance(DecimetersToTheSixthInOneMeterToTheSixth, metertothesixth.As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth), DecimetersToTheSixthTolerance);
             AssertEx.EqualTolerance(FeetToTheSixthInOneMeterToTheSixth, metertothesixth.As(WarpingMomentOfInertiaUnit.FootToTheSixth), FeetToTheSixthTolerance);
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            var metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
 
             var centimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
             AssertEx.EqualTolerance(CentimetersToTheSixthInOneMeterToTheSixth, (double)centimetertothesixthQuantity.Value, CentimetersToTheSixthTolerance);
@@ -244,33 +244,33 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromCentimetersToTheSixth(metertothesixth.CentimetersToTheSixth).MetersToTheSixth, CentimetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromDecimetersToTheSixth(metertothesixth.DecimetersToTheSixth).MetersToTheSixth, DecimetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromFeetToTheSixth(metertothesixth.FeetToTheSixth).MetersToTheSixth, FeetToTheSixthTolerance);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromInchesToTheSixth(metertothesixth.InchesToTheSixth).MetersToTheSixth, InchesToTheSixthTolerance);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromMetersToTheSixth(metertothesixth.MetersToTheSixth).MetersToTheSixth, MetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(1, WarpingMomentOfInertia.FromMillimetersToTheSixth(metertothesixth.MillimetersToTheSixth).MetersToTheSixth, MillimetersToTheSixthTolerance);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromCentimetersToTheSixth(metertothesixth.CentimetersToTheSixth).MetersToTheSixth, CentimetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromDecimetersToTheSixth(metertothesixth.DecimetersToTheSixth).MetersToTheSixth, DecimetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromFeetToTheSixth(metertothesixth.FeetToTheSixth).MetersToTheSixth, FeetToTheSixthTolerance);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromInchesToTheSixth(metertothesixth.InchesToTheSixth).MetersToTheSixth, InchesToTheSixthTolerance);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromMetersToTheSixth(metertothesixth.MetersToTheSixth).MetersToTheSixth, MetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(1, WarpingMomentOfInertia<double>.FromMillimetersToTheSixth(metertothesixth.MillimetersToTheSixth).MetersToTheSixth, MillimetersToTheSixthTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            WarpingMomentOfInertia v = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> v = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             AssertEx.EqualTolerance(-1, -v.MetersToTheSixth, MetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(2, (WarpingMomentOfInertia.FromMetersToTheSixth(3)-v).MetersToTheSixth, MetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(2, (WarpingMomentOfInertia<double>.FromMetersToTheSixth(3)-v).MetersToTheSixth, MetersToTheSixthTolerance);
             AssertEx.EqualTolerance(2, (v + v).MetersToTheSixth, MetersToTheSixthTolerance);
             AssertEx.EqualTolerance(10, (v*10).MetersToTheSixth, MetersToTheSixthTolerance);
             AssertEx.EqualTolerance(10, (10*v).MetersToTheSixth, MetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(2, (WarpingMomentOfInertia.FromMetersToTheSixth(10)/5).MetersToTheSixth, MetersToTheSixthTolerance);
-            AssertEx.EqualTolerance(2, WarpingMomentOfInertia.FromMetersToTheSixth(10)/WarpingMomentOfInertia.FromMetersToTheSixth(5), MetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(2, (WarpingMomentOfInertia<double>.FromMetersToTheSixth(10)/5).MetersToTheSixth, MetersToTheSixthTolerance);
+            AssertEx.EqualTolerance(2, WarpingMomentOfInertia<double>.FromMetersToTheSixth(10)/WarpingMomentOfInertia<double>.FromMetersToTheSixth(5), MetersToTheSixthTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            WarpingMomentOfInertia oneMeterToTheSixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
-            WarpingMomentOfInertia twoMetersToTheSixth = WarpingMomentOfInertia.FromMetersToTheSixth(2);
+            WarpingMomentOfInertia<double> oneMeterToTheSixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> twoMetersToTheSixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(2);
 
             Assert.True(oneMeterToTheSixth < twoMetersToTheSixth);
             Assert.True(oneMeterToTheSixth <= twoMetersToTheSixth);
@@ -286,31 +286,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             Assert.Equal(0, metertothesixth.CompareTo(metertothesixth));
-            Assert.True(metertothesixth.CompareTo(WarpingMomentOfInertia.Zero) > 0);
-            Assert.True(WarpingMomentOfInertia.Zero.CompareTo(metertothesixth) < 0);
+            Assert.True(metertothesixth.CompareTo(WarpingMomentOfInertia<double>.Zero) > 0);
+            Assert.True(WarpingMomentOfInertia<double>.Zero.CompareTo(metertothesixth) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             Assert.Throws<ArgumentException>(() => metertothesixth.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             Assert.Throws<ArgumentNullException>(() => metertothesixth.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = WarpingMomentOfInertia.FromMetersToTheSixth(1);
-            var b = WarpingMomentOfInertia.FromMetersToTheSixth(2);
+            var a = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
+            var b = WarpingMomentOfInertia<double>.FromMetersToTheSixth(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -329,8 +329,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = WarpingMomentOfInertia.FromMetersToTheSixth(1);
-            var b = WarpingMomentOfInertia.FromMetersToTheSixth(2);
+            var a = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
+            var b = WarpingMomentOfInertia<double>.FromMetersToTheSixth(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -350,9 +350,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = WarpingMomentOfInertia.FromMetersToTheSixth(1);
-            Assert.True(v.Equals(WarpingMomentOfInertia.FromMetersToTheSixth(1), MetersToTheSixthTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(WarpingMomentOfInertia.Zero, MetersToTheSixthTolerance, ComparisonType.Relative));
+            var v = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
+            Assert.True(v.Equals(WarpingMomentOfInertia<double>.FromMetersToTheSixth(1), MetersToTheSixthTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(WarpingMomentOfInertia<double>.Zero, MetersToTheSixthTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -365,21 +365,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             Assert.False(metertothesixth.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            WarpingMomentOfInertia metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            WarpingMomentOfInertia<double> metertothesixth = WarpingMomentOfInertia<double>.FromMetersToTheSixth(1);
             Assert.False(metertothesixth.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(WarpingMomentOfInertiaUnit.Undefined, WarpingMomentOfInertia.Units);
+            Assert.DoesNotContain(WarpingMomentOfInertiaUnit.Undefined, WarpingMomentOfInertia<double>.Units);
         }
 
         [Fact]
@@ -398,7 +398,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(WarpingMomentOfInertia.BaseDimensions is null);
+            Assert.False(WarpingMomentOfInertia<double>.BaseDimensions is null);
         }
 
         [Fact]

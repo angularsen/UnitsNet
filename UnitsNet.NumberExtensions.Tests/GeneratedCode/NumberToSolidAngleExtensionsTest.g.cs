@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToSteradiansTest() =>
-            Assert.Equal(SolidAngle.FromSteradians(2), 2.Steradians());
+            Assert.Equal(SolidAngle<double>.FromSteradians(2), 2.Steradians());
 
     }
 }

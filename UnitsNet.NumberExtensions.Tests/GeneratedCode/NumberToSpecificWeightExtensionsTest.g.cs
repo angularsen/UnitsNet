@@ -26,71 +26,71 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToKilogramsForcePerCubicCentimeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilogramsForcePerCubicCentimeter(2), 2.KilogramsForcePerCubicCentimeter());
+            Assert.Equal(SpecificWeight<double>.FromKilogramsForcePerCubicCentimeter(2), 2.KilogramsForcePerCubicCentimeter());
 
         [Fact]
         public void NumberToKilogramsForcePerCubicMeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilogramsForcePerCubicMeter(2), 2.KilogramsForcePerCubicMeter());
+            Assert.Equal(SpecificWeight<double>.FromKilogramsForcePerCubicMeter(2), 2.KilogramsForcePerCubicMeter());
 
         [Fact]
         public void NumberToKilogramsForcePerCubicMillimeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilogramsForcePerCubicMillimeter(2), 2.KilogramsForcePerCubicMillimeter());
+            Assert.Equal(SpecificWeight<double>.FromKilogramsForcePerCubicMillimeter(2), 2.KilogramsForcePerCubicMillimeter());
 
         [Fact]
         public void NumberToKilonewtonsPerCubicCentimeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilonewtonsPerCubicCentimeter(2), 2.KilonewtonsPerCubicCentimeter());
+            Assert.Equal(SpecificWeight<double>.FromKilonewtonsPerCubicCentimeter(2), 2.KilonewtonsPerCubicCentimeter());
 
         [Fact]
         public void NumberToKilonewtonsPerCubicMeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilonewtonsPerCubicMeter(2), 2.KilonewtonsPerCubicMeter());
+            Assert.Equal(SpecificWeight<double>.FromKilonewtonsPerCubicMeter(2), 2.KilonewtonsPerCubicMeter());
 
         [Fact]
         public void NumberToKilonewtonsPerCubicMillimeterTest() =>
-            Assert.Equal(SpecificWeight.FromKilonewtonsPerCubicMillimeter(2), 2.KilonewtonsPerCubicMillimeter());
+            Assert.Equal(SpecificWeight<double>.FromKilonewtonsPerCubicMillimeter(2), 2.KilonewtonsPerCubicMillimeter());
 
         [Fact]
         public void NumberToKilopoundsForcePerCubicFootTest() =>
-            Assert.Equal(SpecificWeight.FromKilopoundsForcePerCubicFoot(2), 2.KilopoundsForcePerCubicFoot());
+            Assert.Equal(SpecificWeight<double>.FromKilopoundsForcePerCubicFoot(2), 2.KilopoundsForcePerCubicFoot());
 
         [Fact]
         public void NumberToKilopoundsForcePerCubicInchTest() =>
-            Assert.Equal(SpecificWeight.FromKilopoundsForcePerCubicInch(2), 2.KilopoundsForcePerCubicInch());
+            Assert.Equal(SpecificWeight<double>.FromKilopoundsForcePerCubicInch(2), 2.KilopoundsForcePerCubicInch());
 
         [Fact]
         public void NumberToMeganewtonsPerCubicMeterTest() =>
-            Assert.Equal(SpecificWeight.FromMeganewtonsPerCubicMeter(2), 2.MeganewtonsPerCubicMeter());
+            Assert.Equal(SpecificWeight<double>.FromMeganewtonsPerCubicMeter(2), 2.MeganewtonsPerCubicMeter());
 
         [Fact]
         public void NumberToNewtonsPerCubicCentimeterTest() =>
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicCentimeter(2), 2.NewtonsPerCubicCentimeter());
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicCentimeter(2), 2.NewtonsPerCubicCentimeter());
 
         [Fact]
         public void NumberToNewtonsPerCubicMeterTest() =>
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(2), 2.NewtonsPerCubicMeter());
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMeter(2), 2.NewtonsPerCubicMeter());
 
         [Fact]
         public void NumberToNewtonsPerCubicMillimeterTest() =>
-            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMillimeter(2), 2.NewtonsPerCubicMillimeter());
+            Assert.Equal(SpecificWeight<double>.FromNewtonsPerCubicMillimeter(2), 2.NewtonsPerCubicMillimeter());
 
         [Fact]
         public void NumberToPoundsForcePerCubicFootTest() =>
-            Assert.Equal(SpecificWeight.FromPoundsForcePerCubicFoot(2), 2.PoundsForcePerCubicFoot());
+            Assert.Equal(SpecificWeight<double>.FromPoundsForcePerCubicFoot(2), 2.PoundsForcePerCubicFoot());
 
         [Fact]
         public void NumberToPoundsForcePerCubicInchTest() =>
-            Assert.Equal(SpecificWeight.FromPoundsForcePerCubicInch(2), 2.PoundsForcePerCubicInch());
+            Assert.Equal(SpecificWeight<double>.FromPoundsForcePerCubicInch(2), 2.PoundsForcePerCubicInch());
 
         [Fact]
         public void NumberToTonnesForcePerCubicCentimeterTest() =>
-            Assert.Equal(SpecificWeight.FromTonnesForcePerCubicCentimeter(2), 2.TonnesForcePerCubicCentimeter());
+            Assert.Equal(SpecificWeight<double>.FromTonnesForcePerCubicCentimeter(2), 2.TonnesForcePerCubicCentimeter());
 
         [Fact]
         public void NumberToTonnesForcePerCubicMeterTest() =>
-            Assert.Equal(SpecificWeight.FromTonnesForcePerCubicMeter(2), 2.TonnesForcePerCubicMeter());
+            Assert.Equal(SpecificWeight<double>.FromTonnesForcePerCubicMeter(2), 2.TonnesForcePerCubicMeter());
 
         [Fact]
         public void NumberToTonnesForcePerCubicMillimeterTest() =>
-            Assert.Equal(SpecificWeight.FromTonnesForcePerCubicMillimeter(2), 2.TonnesForcePerCubicMillimeter());
+            Assert.Equal(SpecificWeight<double>.FromTonnesForcePerCubicMillimeter(2), 2.TonnesForcePerCubicMillimeter());
 
     }
 }

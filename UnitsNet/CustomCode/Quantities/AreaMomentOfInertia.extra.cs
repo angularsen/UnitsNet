@@ -5,12 +5,12 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct AreaMomentOfInertia
+    public partial struct AreaMomentOfInertia<T>
     {
-        /// <summary>Get <see cref="Volume"/> from <see cref="AreaMomentOfInertia"/> divided by <see cref="Length"/>.</summary>
-        public static Volume operator /(AreaMomentOfInertia areaMomentOfInertia, Length length)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="AreaMomentOfInertia{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static Volume<T> operator /(AreaMomentOfInertia<T> areaMomentOfInertia, Length<T> length )
         {
-            return Volume.FromCubicMeters(areaMomentOfInertia.MetersToTheFourth / length.Meters);
+            return Volume<T>.FromCubicMeters(areaMomentOfInertia.MetersToTheFourth / length.Meters);
         }
     }
 }

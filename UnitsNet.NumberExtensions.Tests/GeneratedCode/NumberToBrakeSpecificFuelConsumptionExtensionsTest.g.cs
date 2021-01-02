@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToGramsPerKiloWattHourTest() =>
-            Assert.Equal(BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(2), 2.GramsPerKiloWattHour());
+            Assert.Equal(BrakeSpecificFuelConsumption<double>.FromGramsPerKiloWattHour(2), 2.GramsPerKiloWattHour());
 
         [Fact]
         public void NumberToKilogramsPerJouleTest() =>
-            Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2), 2.KilogramsPerJoule());
+            Assert.Equal(BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(2), 2.KilogramsPerJoule());
 
         [Fact]
         public void NumberToPoundsPerMechanicalHorsepowerHourTest() =>
-            Assert.Equal(BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(2), 2.PoundsPerMechanicalHorsepowerHour());
+            Assert.Equal(BrakeSpecificFuelConsumption<double>.FromPoundsPerMechanicalHorsepowerHour(2), 2.PoundsPerMechanicalHorsepowerHour());
 
     }
 }

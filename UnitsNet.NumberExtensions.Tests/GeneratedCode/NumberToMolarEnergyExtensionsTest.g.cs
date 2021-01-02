@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToJoulesPerMoleTest() =>
-            Assert.Equal(MolarEnergy.FromJoulesPerMole(2), 2.JoulesPerMole());
+            Assert.Equal(MolarEnergy<double>.FromJoulesPerMole(2), 2.JoulesPerMole());
 
         [Fact]
         public void NumberToKilojoulesPerMoleTest() =>
-            Assert.Equal(MolarEnergy.FromKilojoulesPerMole(2), 2.KilojoulesPerMole());
+            Assert.Equal(MolarEnergy<double>.FromKilojoulesPerMole(2), 2.KilojoulesPerMole());
 
         [Fact]
         public void NumberToMegajoulesPerMoleTest() =>
-            Assert.Equal(MolarEnergy.FromMegajoulesPerMole(2), 2.MegajoulesPerMole());
+            Assert.Equal(MolarEnergy<double>.FromMegajoulesPerMole(2), 2.MegajoulesPerMole());
 
     }
 }

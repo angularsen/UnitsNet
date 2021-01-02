@@ -9,7 +9,7 @@ namespace UnitsNet.Tests
 {
     public class QuantityIFormattableTests
     {
-        private static Length length = Length.FromFeet(1.2345678);
+        private static Length<double> length = Length<double>.FromFeet(1.2345678);
 
         [Fact]
         public void GFormatStringEqualsToString()
@@ -49,7 +49,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void QFormatEqualsQuantityName()
         {
-            Assert.Equal(Length.Info.Name, length.ToString("q"));
+            Assert.Equal(Length<double>.Info.Name, length.ToString("q"));
         }
 
         [Theory]

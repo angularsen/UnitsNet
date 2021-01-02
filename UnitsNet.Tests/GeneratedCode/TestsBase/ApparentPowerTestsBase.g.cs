@@ -52,7 +52,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ApparentPower((double)0.0, ApparentPowerUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ApparentPower<double>((double)0.0, ApparentPowerUnit.Undefined));
         }
 
         [Fact]
@@ -67,14 +67,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.NegativeInfinity, ApparentPowerUnit.Voltampere));
+            Assert.Throws<ArgumentException>(() => new ApparentPower<double>(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
+            Assert.Throws<ArgumentException>(() => new ApparentPower<double>(double.NegativeInfinity, ApparentPowerUnit.Voltampere));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.NaN, ApparentPowerUnit.Voltampere));
+            Assert.Throws<ArgumentException>(() => new ApparentPower<double>(double.NaN, ApparentPowerUnit.Voltampere));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VoltampereToApparentPowerUnits()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             AssertEx.EqualTolerance(GigavoltamperesInOneVoltampere, voltampere.Gigavoltamperes, GigavoltamperesTolerance);
             AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, voltampere.Kilovoltamperes, KilovoltamperesTolerance);
             AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, voltampere.Megavoltamperes, MegavoltamperesTolerance);
@@ -130,19 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ApparentPower.From(1, ApparentPowerUnit.Gigavoltampere);
+            var quantity00 = ApparentPower<double>.From(1, ApparentPowerUnit.Gigavoltampere);
             AssertEx.EqualTolerance(1, quantity00.Gigavoltamperes, GigavoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Gigavoltampere, quantity00.Unit);
 
-            var quantity01 = ApparentPower.From(1, ApparentPowerUnit.Kilovoltampere);
+            var quantity01 = ApparentPower<double>.From(1, ApparentPowerUnit.Kilovoltampere);
             AssertEx.EqualTolerance(1, quantity01.Kilovoltamperes, KilovoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Kilovoltampere, quantity01.Unit);
 
-            var quantity02 = ApparentPower.From(1, ApparentPowerUnit.Megavoltampere);
+            var quantity02 = ApparentPower<double>.From(1, ApparentPowerUnit.Megavoltampere);
             AssertEx.EqualTolerance(1, quantity02.Megavoltamperes, MegavoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Megavoltampere, quantity02.Unit);
 
-            var quantity03 = ApparentPower.From(1, ApparentPowerUnit.Voltampere);
+            var quantity03 = ApparentPower<double>.From(1, ApparentPowerUnit.Voltampere);
             AssertEx.EqualTolerance(1, quantity03.Voltamperes, VoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Voltampere, quantity03.Unit);
 
@@ -151,20 +151,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromVoltamperes_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ApparentPower<double>.FromVoltamperes(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ApparentPower<double>.FromVoltamperes(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromVoltamperes_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.NaN));
+            Assert.Throws<ArgumentException>(() => ApparentPower<double>.FromVoltamperes(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var voltampere = ApparentPower.FromVoltamperes(1);
+            var voltampere = ApparentPower<double>.FromVoltamperes(1);
             AssertEx.EqualTolerance(GigavoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Gigavoltampere), GigavoltamperesTolerance);
             AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Kilovoltampere), KilovoltamperesTolerance);
             AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Megavoltampere), MegavoltamperesTolerance);
@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var voltampere = ApparentPower.FromVoltamperes(1);
+            var voltampere = ApparentPower<double>.FromVoltamperes(1);
 
             var gigavoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Gigavoltampere);
             AssertEx.EqualTolerance(GigavoltamperesInOneVoltampere, (double)gigavoltampereQuantity.Value, GigavoltamperesTolerance);
@@ -220,31 +220,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            AssertEx.EqualTolerance(1, ApparentPower.FromGigavoltamperes(voltampere.Gigavoltamperes).Voltamperes, GigavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes, KilovoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes, MegavoltamperesTolerance);
-            AssertEx.EqualTolerance(1, ApparentPower.FromVoltamperes(voltampere.Voltamperes).Voltamperes, VoltamperesTolerance);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
+            AssertEx.EqualTolerance(1, ApparentPower<double>.FromGigavoltamperes(voltampere.Gigavoltamperes).Voltamperes, GigavoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower<double>.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes, KilovoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower<double>.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes, MegavoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower<double>.FromVoltamperes(voltampere.Voltamperes).Voltamperes, VoltamperesTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ApparentPower v = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> v = ApparentPower<double>.FromVoltamperes(1);
             AssertEx.EqualTolerance(-1, -v.Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, (ApparentPower.FromVoltamperes(3)-v).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, (ApparentPower<double>.FromVoltamperes(3)-v).Voltamperes, VoltamperesTolerance);
             AssertEx.EqualTolerance(2, (v + v).Voltamperes, VoltamperesTolerance);
             AssertEx.EqualTolerance(10, (v*10).Voltamperes, VoltamperesTolerance);
             AssertEx.EqualTolerance(10, (10*v).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, (ApparentPower.FromVoltamperes(10)/5).Voltamperes, VoltamperesTolerance);
-            AssertEx.EqualTolerance(2, ApparentPower.FromVoltamperes(10)/ApparentPower.FromVoltamperes(5), VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, (ApparentPower<double>.FromVoltamperes(10)/5).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, ApparentPower<double>.FromVoltamperes(10)/ApparentPower<double>.FromVoltamperes(5), VoltamperesTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ApparentPower oneVoltampere = ApparentPower.FromVoltamperes(1);
-            ApparentPower twoVoltamperes = ApparentPower.FromVoltamperes(2);
+            ApparentPower<double> oneVoltampere = ApparentPower<double>.FromVoltamperes(1);
+            ApparentPower<double> twoVoltamperes = ApparentPower<double>.FromVoltamperes(2);
 
             Assert.True(oneVoltampere < twoVoltamperes);
             Assert.True(oneVoltampere <= twoVoltamperes);
@@ -260,31 +260,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             Assert.Equal(0, voltampere.CompareTo(voltampere));
-            Assert.True(voltampere.CompareTo(ApparentPower.Zero) > 0);
-            Assert.True(ApparentPower.Zero.CompareTo(voltampere) < 0);
+            Assert.True(voltampere.CompareTo(ApparentPower<double>.Zero) > 0);
+            Assert.True(ApparentPower<double>.Zero.CompareTo(voltampere) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             Assert.Throws<ArgumentException>(() => voltampere.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             Assert.Throws<ArgumentNullException>(() => voltampere.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ApparentPower.FromVoltamperes(1);
-            var b = ApparentPower.FromVoltamperes(2);
+            var a = ApparentPower<double>.FromVoltamperes(1);
+            var b = ApparentPower<double>.FromVoltamperes(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -303,8 +303,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = ApparentPower.FromVoltamperes(1);
-            var b = ApparentPower.FromVoltamperes(2);
+            var a = ApparentPower<double>.FromVoltamperes(1);
+            var b = ApparentPower<double>.FromVoltamperes(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -324,9 +324,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = ApparentPower.FromVoltamperes(1);
-            Assert.True(v.Equals(ApparentPower.FromVoltamperes(1), VoltamperesTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ApparentPower.Zero, VoltamperesTolerance, ComparisonType.Relative));
+            var v = ApparentPower<double>.FromVoltamperes(1);
+            Assert.True(v.Equals(ApparentPower<double>.FromVoltamperes(1), VoltamperesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ApparentPower<double>.Zero, VoltamperesTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -339,21 +339,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             Assert.False(voltampere.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
+            ApparentPower<double> voltampere = ApparentPower<double>.FromVoltamperes(1);
             Assert.False(voltampere.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ApparentPowerUnit.Undefined, ApparentPower.Units);
+            Assert.DoesNotContain(ApparentPowerUnit.Undefined, ApparentPower<double>.Units);
         }
 
         [Fact]
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ApparentPower.BaseDimensions is null);
+            Assert.False(ApparentPower<double>.BaseDimensions is null);
         }
 
         [Fact]

@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCoulombsPerCubicMeterTest() =>
-            Assert.Equal(ElectricChargeDensity.FromCoulombsPerCubicMeter(2), 2.CoulombsPerCubicMeter());
+            Assert.Equal(ElectricChargeDensity<double>.FromCoulombsPerCubicMeter(2), 2.CoulombsPerCubicMeter());
 
     }
 }

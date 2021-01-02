@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permeability((double)0.0, PermeabilityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Permeability<double>((double)0.0, PermeabilityUnit.Undefined));
         }
 
         [Fact]
@@ -61,14 +61,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permeability(double.PositiveInfinity, PermeabilityUnit.HenryPerMeter));
-            Assert.Throws<ArgumentException>(() => new Permeability(double.NegativeInfinity, PermeabilityUnit.HenryPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permeability<double>(double.PositiveInfinity, PermeabilityUnit.HenryPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permeability<double>(double.NegativeInfinity, PermeabilityUnit.HenryPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permeability(double.NaN, PermeabilityUnit.HenryPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permeability<double>(double.NaN, PermeabilityUnit.HenryPerMeter));
         }
 
         [Fact]
@@ -114,14 +114,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void HenryPerMeterToPermeabilityUnits()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, henrypermeter.HenriesPerMeter, HenriesPerMeterTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Permeability.From(1, PermeabilityUnit.HenryPerMeter);
+            var quantity00 = Permeability<double>.From(1, PermeabilityUnit.HenryPerMeter);
             AssertEx.EqualTolerance(1, quantity00.HenriesPerMeter, HenriesPerMeterTolerance);
             Assert.Equal(PermeabilityUnit.HenryPerMeter, quantity00.Unit);
 
@@ -130,20 +130,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromHenriesPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Permeability<double>.FromHenriesPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Permeability<double>.FromHenriesPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromHenriesPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => Permeability<double>.FromHenriesPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var henrypermeter = Permeability.FromHenriesPerMeter(1);
+            var henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.HenryPerMeter), HenriesPerMeterTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var henrypermeter = Permeability.FromHenriesPerMeter(1);
+            var henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
 
             var henrypermeterQuantity = henrypermeter.ToUnit(PermeabilityUnit.HenryPerMeter);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, (double)henrypermeterQuantity.Value, HenriesPerMeterTolerance);
@@ -184,28 +184,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
-            AssertEx.EqualTolerance(1, Permeability.FromHenriesPerMeter(henrypermeter.HenriesPerMeter).HenriesPerMeter, HenriesPerMeterTolerance);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
+            AssertEx.EqualTolerance(1, Permeability<double>.FromHenriesPerMeter(henrypermeter.HenriesPerMeter).HenriesPerMeter, HenriesPerMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Permeability v = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> v = Permeability<double>.FromHenriesPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.HenriesPerMeter, HenriesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Permeability.FromHenriesPerMeter(3)-v).HenriesPerMeter, HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Permeability<double>.FromHenriesPerMeter(3)-v).HenriesPerMeter, HenriesPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).HenriesPerMeter, HenriesPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).HenriesPerMeter, HenriesPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).HenriesPerMeter, HenriesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (Permeability.FromHenriesPerMeter(10)/5).HenriesPerMeter, HenriesPerMeterTolerance);
-            AssertEx.EqualTolerance(2, Permeability.FromHenriesPerMeter(10)/Permeability.FromHenriesPerMeter(5), HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (Permeability<double>.FromHenriesPerMeter(10)/5).HenriesPerMeter, HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(2, Permeability<double>.FromHenriesPerMeter(10)/Permeability<double>.FromHenriesPerMeter(5), HenriesPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Permeability oneHenryPerMeter = Permeability.FromHenriesPerMeter(1);
-            Permeability twoHenriesPerMeter = Permeability.FromHenriesPerMeter(2);
+            Permeability<double> oneHenryPerMeter = Permeability<double>.FromHenriesPerMeter(1);
+            Permeability<double> twoHenriesPerMeter = Permeability<double>.FromHenriesPerMeter(2);
 
             Assert.True(oneHenryPerMeter < twoHenriesPerMeter);
             Assert.True(oneHenryPerMeter <= twoHenriesPerMeter);
@@ -221,31 +221,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             Assert.Equal(0, henrypermeter.CompareTo(henrypermeter));
-            Assert.True(henrypermeter.CompareTo(Permeability.Zero) > 0);
-            Assert.True(Permeability.Zero.CompareTo(henrypermeter) < 0);
+            Assert.True(henrypermeter.CompareTo(Permeability<double>.Zero) > 0);
+            Assert.True(Permeability<double>.Zero.CompareTo(henrypermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             Assert.Throws<ArgumentException>(() => henrypermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => henrypermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Permeability.FromHenriesPerMeter(1);
-            var b = Permeability.FromHenriesPerMeter(2);
+            var a = Permeability<double>.FromHenriesPerMeter(1);
+            var b = Permeability<double>.FromHenriesPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -264,8 +264,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Permeability.FromHenriesPerMeter(1);
-            var b = Permeability.FromHenriesPerMeter(2);
+            var a = Permeability<double>.FromHenriesPerMeter(1);
+            var b = Permeability<double>.FromHenriesPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -285,9 +285,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Permeability.FromHenriesPerMeter(1);
-            Assert.True(v.Equals(Permeability.FromHenriesPerMeter(1), HenriesPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Permeability.Zero, HenriesPerMeterTolerance, ComparisonType.Relative));
+            var v = Permeability<double>.FromHenriesPerMeter(1);
+            Assert.True(v.Equals(Permeability<double>.FromHenriesPerMeter(1), HenriesPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Permeability<double>.Zero, HenriesPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -300,21 +300,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             Assert.False(henrypermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            Permeability<double> henrypermeter = Permeability<double>.FromHenriesPerMeter(1);
             Assert.False(henrypermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(PermeabilityUnit.Undefined, Permeability.Units);
+            Assert.DoesNotContain(PermeabilityUnit.Undefined, Permeability<double>.Units);
         }
 
         [Fact]
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Permeability.BaseDimensions is null);
+            Assert.False(Permeability<double>.BaseDimensions is null);
         }
 
         [Fact]

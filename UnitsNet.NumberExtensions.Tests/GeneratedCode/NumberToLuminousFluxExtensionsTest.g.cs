@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToLumensTest() =>
-            Assert.Equal(LuminousFlux.FromLumens(2), 2.Lumens());
+            Assert.Equal(LuminousFlux<double>.FromLumens(2), 2.Lumens());
 
     }
 }

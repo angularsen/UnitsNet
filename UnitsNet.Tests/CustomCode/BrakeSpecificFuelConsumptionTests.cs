@@ -19,21 +19,21 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
-            MassFlow massFlow = BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0) * Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
+            var massFlow = BrakeSpecificFuelConsumption<double>.FromGramsPerKiloWattHour(180.0) * Power<double>.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
             AssertEx.EqualTolerance(20.0, massFlow.TonnesPerDay, 1e-11);
         }
 
         [Fact]
         public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
-            SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
-            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
+            var specificEnergy = 2.0 / BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(4.0);
+            Assert.Equal(SpecificEnergy<double>.FromJoulesPerKilogram(0.5), specificEnergy);
         }
 
         [Fact]
         public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
         {
-            double value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
+            double value = BrakeSpecificFuelConsumption<double>.FromKilogramsPerJoule(20.0) * SpecificEnergy<double>.FromJoulesPerKilogram(10.0);
             Assert.Equal(200.0, value);
         }
     }

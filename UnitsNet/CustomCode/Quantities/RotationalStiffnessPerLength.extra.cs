@@ -4,12 +4,12 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public partial struct RotationalStiffnessPerLength
+    public partial struct RotationalStiffnessPerLength<T>
     {
-        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessPerLength"/> times <see cref="Length"/>.</summary>
-        public static RotationalStiffness operator *(RotationalStiffnessPerLength rotationalStiffness, Length length)
+        /// <summary>Get <see cref="RotationalStiffness{T}"/> from <see cref="RotationalStiffnessPerLength{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static RotationalStiffness<T> operator *(RotationalStiffnessPerLength<T> rotationalStiffness, Length<T> length )
         {
-            return RotationalStiffness.FromNewtonMetersPerRadian(rotationalStiffness.NewtonMetersPerRadianPerMeter * length.Meters);
+            return RotationalStiffness<T>.FromNewtonMetersPerRadian(rotationalStiffness.NewtonMetersPerRadianPerMeter * length.Meters);
         }
     }
 }

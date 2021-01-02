@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCharge((double)0.0, ElectricChargeUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new ElectricCharge<double>((double)0.0, ElectricChargeUnit.Undefined));
         }
 
         [Fact]
@@ -69,14 +69,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.PositiveInfinity, ElectricChargeUnit.Coulomb));
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.NegativeInfinity, ElectricChargeUnit.Coulomb));
+            Assert.Throws<ArgumentException>(() => new ElectricCharge<double>(double.PositiveInfinity, ElectricChargeUnit.Coulomb));
+            Assert.Throws<ArgumentException>(() => new ElectricCharge<double>(double.NegativeInfinity, ElectricChargeUnit.Coulomb));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCharge(double.NaN, ElectricChargeUnit.Coulomb));
+            Assert.Throws<ArgumentException>(() => new ElectricCharge<double>(double.NaN, ElectricChargeUnit.Coulomb));
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void CoulombToElectricChargeUnits()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, coulomb.AmpereHours, AmpereHoursTolerance);
             AssertEx.EqualTolerance(CoulombsInOneCoulomb, coulomb.Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, coulomb.KiloampereHours, KiloampereHoursTolerance);
@@ -133,23 +133,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCharge.From(1, ElectricChargeUnit.AmpereHour);
+            var quantity00 = ElectricCharge<double>.From(1, ElectricChargeUnit.AmpereHour);
             AssertEx.EqualTolerance(1, quantity00.AmpereHours, AmpereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.AmpereHour, quantity00.Unit);
 
-            var quantity01 = ElectricCharge.From(1, ElectricChargeUnit.Coulomb);
+            var quantity01 = ElectricCharge<double>.From(1, ElectricChargeUnit.Coulomb);
             AssertEx.EqualTolerance(1, quantity01.Coulombs, CoulombsTolerance);
             Assert.Equal(ElectricChargeUnit.Coulomb, quantity01.Unit);
 
-            var quantity02 = ElectricCharge.From(1, ElectricChargeUnit.KiloampereHour);
+            var quantity02 = ElectricCharge<double>.From(1, ElectricChargeUnit.KiloampereHour);
             AssertEx.EqualTolerance(1, quantity02.KiloampereHours, KiloampereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.KiloampereHour, quantity02.Unit);
 
-            var quantity03 = ElectricCharge.From(1, ElectricChargeUnit.MegaampereHour);
+            var quantity03 = ElectricCharge<double>.From(1, ElectricChargeUnit.MegaampereHour);
             AssertEx.EqualTolerance(1, quantity03.MegaampereHours, MegaampereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.MegaampereHour, quantity03.Unit);
 
-            var quantity04 = ElectricCharge.From(1, ElectricChargeUnit.MilliampereHour);
+            var quantity04 = ElectricCharge<double>.From(1, ElectricChargeUnit.MilliampereHour);
             AssertEx.EqualTolerance(1, quantity04.MilliampereHours, MilliampereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.MilliampereHour, quantity04.Unit);
 
@@ -158,20 +158,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromCoulombs_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricCharge<double>.FromCoulombs(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricCharge<double>.FromCoulombs(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromCoulombs_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCharge.FromCoulombs(double.NaN));
+            Assert.Throws<ArgumentException>(() => ElectricCharge<double>.FromCoulombs(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var coulomb = ElectricCharge.FromCoulombs(1);
+            var coulomb = ElectricCharge<double>.FromCoulombs(1);
             AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.AmpereHour), AmpereHoursTolerance);
             AssertEx.EqualTolerance(CoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Coulomb), CoulombsTolerance);
             AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.KiloampereHour), KiloampereHoursTolerance);
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var coulomb = ElectricCharge.FromCoulombs(1);
+            var coulomb = ElectricCharge<double>.FromCoulombs(1);
 
             var amperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.AmpereHour);
             AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, (double)amperehourQuantity.Value, AmpereHoursTolerance);
@@ -232,32 +232,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
-            AssertEx.EqualTolerance(1, ElectricCharge.FromAmpereHours(coulomb.AmpereHours).Coulombs, AmpereHoursTolerance);
-            AssertEx.EqualTolerance(1, ElectricCharge.FromCoulombs(coulomb.Coulombs).Coulombs, CoulombsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCharge.FromKiloampereHours(coulomb.KiloampereHours).Coulombs, KiloampereHoursTolerance);
-            AssertEx.EqualTolerance(1, ElectricCharge.FromMegaampereHours(coulomb.MegaampereHours).Coulombs, MegaampereHoursTolerance);
-            AssertEx.EqualTolerance(1, ElectricCharge.FromMilliampereHours(coulomb.MilliampereHours).Coulombs, MilliampereHoursTolerance);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
+            AssertEx.EqualTolerance(1, ElectricCharge<double>.FromAmpereHours(coulomb.AmpereHours).Coulombs, AmpereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge<double>.FromCoulombs(coulomb.Coulombs).Coulombs, CoulombsTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge<double>.FromKiloampereHours(coulomb.KiloampereHours).Coulombs, KiloampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge<double>.FromMegaampereHours(coulomb.MegaampereHours).Coulombs, MegaampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge<double>.FromMilliampereHours(coulomb.MilliampereHours).Coulombs, MilliampereHoursTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricCharge v = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> v = ElectricCharge<double>.FromCoulombs(1);
             AssertEx.EqualTolerance(-1, -v.Coulombs, CoulombsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricCharge.FromCoulombs(3)-v).Coulombs, CoulombsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricCharge<double>.FromCoulombs(3)-v).Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(2, (v + v).Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(10, (v*10).Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(10, (10*v).Coulombs, CoulombsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricCharge.FromCoulombs(10)/5).Coulombs, CoulombsTolerance);
-            AssertEx.EqualTolerance(2, ElectricCharge.FromCoulombs(10)/ElectricCharge.FromCoulombs(5), CoulombsTolerance);
+            AssertEx.EqualTolerance(2, (ElectricCharge<double>.FromCoulombs(10)/5).Coulombs, CoulombsTolerance);
+            AssertEx.EqualTolerance(2, ElectricCharge<double>.FromCoulombs(10)/ElectricCharge<double>.FromCoulombs(5), CoulombsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricCharge oneCoulomb = ElectricCharge.FromCoulombs(1);
-            ElectricCharge twoCoulombs = ElectricCharge.FromCoulombs(2);
+            ElectricCharge<double> oneCoulomb = ElectricCharge<double>.FromCoulombs(1);
+            ElectricCharge<double> twoCoulombs = ElectricCharge<double>.FromCoulombs(2);
 
             Assert.True(oneCoulomb < twoCoulombs);
             Assert.True(oneCoulomb <= twoCoulombs);
@@ -273,31 +273,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             Assert.Equal(0, coulomb.CompareTo(coulomb));
-            Assert.True(coulomb.CompareTo(ElectricCharge.Zero) > 0);
-            Assert.True(ElectricCharge.Zero.CompareTo(coulomb) < 0);
+            Assert.True(coulomb.CompareTo(ElectricCharge<double>.Zero) > 0);
+            Assert.True(ElectricCharge<double>.Zero.CompareTo(coulomb) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             Assert.Throws<ArgumentException>(() => coulomb.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             Assert.Throws<ArgumentNullException>(() => coulomb.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ElectricCharge.FromCoulombs(1);
-            var b = ElectricCharge.FromCoulombs(2);
+            var a = ElectricCharge<double>.FromCoulombs(1);
+            var b = ElectricCharge<double>.FromCoulombs(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -316,8 +316,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = ElectricCharge.FromCoulombs(1);
-            var b = ElectricCharge.FromCoulombs(2);
+            var a = ElectricCharge<double>.FromCoulombs(1);
+            var b = ElectricCharge<double>.FromCoulombs(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -337,9 +337,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = ElectricCharge.FromCoulombs(1);
-            Assert.True(v.Equals(ElectricCharge.FromCoulombs(1), CoulombsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricCharge.Zero, CoulombsTolerance, ComparisonType.Relative));
+            var v = ElectricCharge<double>.FromCoulombs(1);
+            Assert.True(v.Equals(ElectricCharge<double>.FromCoulombs(1), CoulombsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricCharge<double>.Zero, CoulombsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -352,21 +352,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             Assert.False(coulomb.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
+            ElectricCharge<double> coulomb = ElectricCharge<double>.FromCoulombs(1);
             Assert.False(coulomb.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ElectricChargeUnit.Undefined, ElectricCharge.Units);
+            Assert.DoesNotContain(ElectricChargeUnit.Undefined, ElectricCharge<double>.Units);
         }
 
         [Fact]
@@ -385,7 +385,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(ElectricCharge.BaseDimensions is null);
+            Assert.False(ElectricCharge<double>.BaseDimensions is null);
         }
 
         [Fact]

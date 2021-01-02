@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
     /// </summary>
     public static class NumberToVitaminAExtensions
     {
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits<T>(this T value) =>
-            VitaminA.FromInternationalUnits(Convert.ToDouble(value));
+        /// <inheritdoc cref="VitaminA{T}.FromInternationalUnits(T)" />
+        public static VitaminA<double> InternationalUnits<T>(this T value) =>
+            VitaminA<double>.FromInternationalUnits(Convert.ToDouble(value));
 
     }
 }

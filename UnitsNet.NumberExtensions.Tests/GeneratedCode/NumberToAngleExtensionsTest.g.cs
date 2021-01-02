@@ -26,59 +26,59 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToArcminutesTest() =>
-            Assert.Equal(Angle.FromArcminutes(2), 2.Arcminutes());
+            Assert.Equal(Angle<double>.FromArcminutes(2), 2.Arcminutes());
 
         [Fact]
         public void NumberToArcsecondsTest() =>
-            Assert.Equal(Angle.FromArcseconds(2), 2.Arcseconds());
+            Assert.Equal(Angle<double>.FromArcseconds(2), 2.Arcseconds());
 
         [Fact]
         public void NumberToCentiradiansTest() =>
-            Assert.Equal(Angle.FromCentiradians(2), 2.Centiradians());
+            Assert.Equal(Angle<double>.FromCentiradians(2), 2.Centiradians());
 
         [Fact]
         public void NumberToDeciradiansTest() =>
-            Assert.Equal(Angle.FromDeciradians(2), 2.Deciradians());
+            Assert.Equal(Angle<double>.FromDeciradians(2), 2.Deciradians());
 
         [Fact]
         public void NumberToDegreesTest() =>
-            Assert.Equal(Angle.FromDegrees(2), 2.Degrees());
+            Assert.Equal(Angle<double>.FromDegrees(2), 2.Degrees());
 
         [Fact]
         public void NumberToGradiansTest() =>
-            Assert.Equal(Angle.FromGradians(2), 2.Gradians());
+            Assert.Equal(Angle<double>.FromGradians(2), 2.Gradians());
 
         [Fact]
         public void NumberToMicrodegreesTest() =>
-            Assert.Equal(Angle.FromMicrodegrees(2), 2.Microdegrees());
+            Assert.Equal(Angle<double>.FromMicrodegrees(2), 2.Microdegrees());
 
         [Fact]
         public void NumberToMicroradiansTest() =>
-            Assert.Equal(Angle.FromMicroradians(2), 2.Microradians());
+            Assert.Equal(Angle<double>.FromMicroradians(2), 2.Microradians());
 
         [Fact]
         public void NumberToMillidegreesTest() =>
-            Assert.Equal(Angle.FromMillidegrees(2), 2.Millidegrees());
+            Assert.Equal(Angle<double>.FromMillidegrees(2), 2.Millidegrees());
 
         [Fact]
         public void NumberToMilliradiansTest() =>
-            Assert.Equal(Angle.FromMilliradians(2), 2.Milliradians());
+            Assert.Equal(Angle<double>.FromMilliradians(2), 2.Milliradians());
 
         [Fact]
         public void NumberToNanodegreesTest() =>
-            Assert.Equal(Angle.FromNanodegrees(2), 2.Nanodegrees());
+            Assert.Equal(Angle<double>.FromNanodegrees(2), 2.Nanodegrees());
 
         [Fact]
         public void NumberToNanoradiansTest() =>
-            Assert.Equal(Angle.FromNanoradians(2), 2.Nanoradians());
+            Assert.Equal(Angle<double>.FromNanoradians(2), 2.Nanoradians());
 
         [Fact]
         public void NumberToRadiansTest() =>
-            Assert.Equal(Angle.FromRadians(2), 2.Radians());
+            Assert.Equal(Angle<double>.FromRadians(2), 2.Radians());
 
         [Fact]
         public void NumberToRevolutionsTest() =>
-            Assert.Equal(Angle.FromRevolutions(2), 2.Revolutions());
+            Assert.Equal(Angle<double>.FromRevolutions(2), 2.Revolutions());
 
     }
 }

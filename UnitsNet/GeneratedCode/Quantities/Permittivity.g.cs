@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
-    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
+    public partial struct Permittivity<T> : IQuantityT<PermittivityUnit, T>, IEquatable<Permittivity<T>>, IComparable, IComparable<Permittivity<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Permittivity(double value, PermittivityUnit unit)
+        public Permittivity(T value, PermittivityUnit unit)
         {
             if(unit == PermittivityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Permittivity(double value, UnitSystem unitSystem)
+        public Permittivity(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -105,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
+        ///     The base unit of <see cref="Permittivity{T}" />, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
         public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Permittivity
+        /// Represents the largest possible value of <see cref="Permittivity{T}" />
         /// </summary>
-        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
+        public static Permittivity<T> MaxValue { get; } = new Permittivity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Permittivity
+        /// Represents the smallest possible value of <see cref="Permittivity{T}" />
         /// </summary>
-        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
+        public static Permittivity<T> MinValue { get; } = new Permittivity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
 
         /// <summary>
-        ///     All units of measurement for the Permittivity quantity.
+        ///     All units of measurement for the <see cref="Permittivity{T}" /> quantity.
         /// </summary>
         public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
+        public static Permittivity<T> Zero { get; } = new Permittivity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,21 +156,21 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Permittivity.QuantityType;
+        public QuantityType Type => Permittivity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Permittivity.BaseDimensions;
+        public BaseDimensions Dimensions => Permittivity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Permittivity in FaradsPerMeter.
+        ///     Get <see cref="Permittivity{T}" /> in FaradsPerMeter.
         /// </summary>
-        public double FaradsPerMeter => As(PermittivityUnit.FaradPerMeter);
+        public T FaradsPerMeter => As(PermittivityUnit.FaradPerMeter);
 
         #endregion
 
@@ -204,24 +202,23 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Permittivity from FaradsPerMeter.
+        ///     Get <see cref="Permittivity{T}" /> from FaradsPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Permittivity FromFaradsPerMeter(QuantityValue faradspermeter)
+        public static Permittivity<T> FromFaradsPerMeter(T faradspermeter)
         {
-            double value = (double) faradspermeter;
-            return new Permittivity(value, PermittivityUnit.FaradPerMeter);
+            return new Permittivity<T>(faradspermeter, PermittivityUnit.FaradPerMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity" />.
+        ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Permittivity unit value.</returns>
-        public static Permittivity From(QuantityValue value, PermittivityUnit fromUnit)
+        /// <returns><see cref="Permittivity{T}" /> unit value.</returns>
+        public static Permittivity<T> From(T value, PermittivityUnit fromUnit)
         {
-            return new Permittivity((double)value, fromUnit);
+            return new Permittivity<T>(value, fromUnit);
         }
 
         #endregion
@@ -250,7 +247,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Permittivity Parse(string str)
+        public static Permittivity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -278,9 +275,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Permittivity Parse(string str, IFormatProvider? provider)
+        public static Permittivity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Permittivity, PermittivityUnit>(
+            return QuantityParser.Default.Parse<T, Permittivity<T>, PermittivityUnit>(
                 str,
                 provider,
                 From);
@@ -294,7 +291,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Permittivity result)
+        public static bool TryParse(string? str, out Permittivity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -309,9 +306,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Permittivity result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Permittivity<T> result)
         {
-            return QuantityParser.Default.TryParse<Permittivity, PermittivityUnit>(
+            return QuantityParser.Default.TryParse<T, Permittivity<T>, PermittivityUnit>(
                 str,
                 provider,
                 From,
@@ -373,45 +370,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Permittivity operator -(Permittivity right)
+        public static Permittivity<T> operator -(Permittivity<T> right)
         {
-            return new Permittivity(-right.Value, right.Unit);
+            return new Permittivity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="Permittivity"/> from adding two <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator +(Permittivity left, Permittivity right)
+        /// <summary>Get <see cref="Permittivity{T}"/> from adding two <see cref="Permittivity{T}"/>.</summary>
+        public static Permittivity<T> operator +(Permittivity<T> left, Permittivity<T> right)
         {
-            return new Permittivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Permittivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Permittivity"/> from subtracting two <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator -(Permittivity left, Permittivity right)
+        /// <summary>Get <see cref="Permittivity{T}"/> from subtracting two <see cref="Permittivity{T}"/>.</summary>
+        public static Permittivity<T> operator -(Permittivity<T> left, Permittivity<T> right)
         {
-            return new Permittivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Permittivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator *(double left, Permittivity right)
+        /// <summary>Get <see cref="Permittivity{T}"/> from multiplying value and <see cref="Permittivity{T}"/>.</summary>
+        public static Permittivity<T> operator *(T left, Permittivity<T> right)
         {
-            return new Permittivity(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Permittivity<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator *(Permittivity left, double right)
+        /// <summary>Get <see cref="Permittivity{T}"/> from multiplying value and <see cref="Permittivity{T}"/>.</summary>
+        public static Permittivity<T> operator *(Permittivity<T> left, T right)
         {
-            return new Permittivity(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Permittivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Permittivity"/> from dividing <see cref="Permittivity"/> by value.</summary>
-        public static Permittivity operator /(Permittivity left, double right)
+        /// <summary>Get <see cref="Permittivity{T}"/> from dividing <see cref="Permittivity{T}"/> by value.</summary>
+        public static Permittivity<T> operator /(Permittivity<T> left, T right)
         {
-            return new Permittivity(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Permittivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Permittivity"/> by <see cref="Permittivity"/>.</summary>
-        public static double operator /(Permittivity left, Permittivity right)
+        /// <summary>Get ratio value from dividing <see cref="Permittivity{T}"/> by <see cref="Permittivity{T}"/>.</summary>
+        public static T operator /(Permittivity<T> left, Permittivity<T> right)
         {
-            return left.FaradsPerMeter / right.FaradsPerMeter;
+            return CompiledLambdas.Divide(left.FaradsPerMeter, right.FaradsPerMeter);
         }
 
         #endregion
@@ -419,39 +421,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Permittivity left, Permittivity right)
+        public static bool operator <=(Permittivity<T> left, Permittivity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Permittivity left, Permittivity right)
+        public static bool operator >=(Permittivity<T> left, Permittivity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Permittivity left, Permittivity right)
+        public static bool operator <(Permittivity<T> left, Permittivity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Permittivity left, Permittivity right)
+        public static bool operator >(Permittivity<T> left, Permittivity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Permittivity left, Permittivity right)
+        /// <remarks>Consider using <see cref="Equals(Permittivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Permittivity<T> left, Permittivity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Permittivity left, Permittivity right)
+        /// <remarks>Consider using <see cref="Equals(Permittivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Permittivity<T> left, Permittivity<T> right)
         {
             return !(left == right);
         }
@@ -460,37 +462,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Permittivity objPermittivity)) throw new ArgumentException("Expected type Permittivity.", nameof(obj));
+            if(!(obj is Permittivity<T> objPermittivity)) throw new ArgumentException("Expected type Permittivity.", nameof(obj));
 
             return CompareTo(objPermittivity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Permittivity other)
+        public int CompareTo(Permittivity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Permittivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Permittivity objPermittivity))
+            if(obj is null || !(obj is Permittivity<T> objPermittivity))
                 return false;
 
             return Equals(objPermittivity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Permittivity other)
+        /// <remarks>Consider using <see cref="Equals(Permittivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Permittivity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Permittivity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Permittivity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -528,21 +530,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Permittivity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Permittivity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Permittivity.</returns>
+        /// <returns>A hash code for the current <see cref="Permittivity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -556,17 +556,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(PermittivityUnit unit)
+        public T As(PermittivityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -586,17 +586,22 @@ namespace UnitsNet
             if(!(unit is PermittivityUnit unitAsPermittivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsPermittivityUnit);
+            var asValue = As(unitAsPermittivityUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<PermittivityUnit>.As(PermittivityUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Permittivity{T}" /> to another <see cref="Permittivity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Permittivity with the specified unit.</returns>
-        public Permittivity ToUnit(PermittivityUnit unit)
+        /// <returns>A <see cref="Permittivity{T}" /> with the specified unit.</returns>
+        public Permittivity<T> ToUnit(PermittivityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Permittivity(convertedValue, unit);
+            return new Permittivity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -609,7 +614,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Permittivity ToUnit(UnitSystem unitSystem)
+        public Permittivity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -630,18 +635,24 @@ namespace UnitsNet
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<PermittivityUnit, T> IQuantityT<PermittivityUnit, T>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<PermittivityUnit, T> IQuantityT<PermittivityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case PermittivityUnit.FaradPerMeter: return _value;
+                case PermittivityUnit.FaradPerMeter: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -652,16 +663,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Permittivity ToBaseUnit()
+        internal Permittivity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Permittivity(baseUnitValue, BaseUnit);
+            return new Permittivity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(PermittivityUnit unit)
+        private T GetValueAs(PermittivityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -764,57 +775,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permittivity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permittivity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permittivity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permittivity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Permittivity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Permittivity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -824,33 +835,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Permittivity))
+            if(conversionType == typeof(Permittivity<T>))
                 return this;
             else if(conversionType == typeof(PermittivityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Permittivity.QuantityType;
+                return Permittivity<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return Permittivity.Info;
+                return Permittivity<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return Permittivity.BaseDimensions;
+                return Permittivity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Permittivity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Permittivity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

@@ -26,27 +26,27 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentimetersToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromCentimetersToTheFourth(2), 2.CentimetersToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromCentimetersToTheFourth(2), 2.CentimetersToTheFourth());
 
         [Fact]
         public void NumberToDecimetersToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromDecimetersToTheFourth(2), 2.DecimetersToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromDecimetersToTheFourth(2), 2.DecimetersToTheFourth());
 
         [Fact]
         public void NumberToFeetToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromFeetToTheFourth(2), 2.FeetToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromFeetToTheFourth(2), 2.FeetToTheFourth());
 
         [Fact]
         public void NumberToInchesToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromInchesToTheFourth(2), 2.InchesToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromInchesToTheFourth(2), 2.InchesToTheFourth());
 
         [Fact]
         public void NumberToMetersToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromMetersToTheFourth(2), 2.MetersToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromMetersToTheFourth(2), 2.MetersToTheFourth());
 
         [Fact]
         public void NumberToMillimetersToTheFourthTest() =>
-            Assert.Equal(AreaMomentOfInertia.FromMillimetersToTheFourth(2), 2.MillimetersToTheFourth());
+            Assert.Equal(AreaMomentOfInertia<double>.FromMillimetersToTheFourth(2), 2.MillimetersToTheFourth());
 
     }
 }

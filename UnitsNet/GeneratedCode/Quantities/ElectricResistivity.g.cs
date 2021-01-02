@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
     /// </remarks>
-    public partial struct ElectricResistivity : IQuantity<ElectricResistivityUnit>, IEquatable<ElectricResistivity>, IComparable, IComparable<ElectricResistivity>, IConvertible, IFormattable
+    public partial struct ElectricResistivity<T> : IQuantityT<ElectricResistivityUnit, T>, IEquatable<ElectricResistivity<T>>, IComparable, IComparable<ElectricResistivity<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -79,12 +75,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricResistivity(double value, ElectricResistivityUnit unit)
+        public ElectricResistivity(T value, ElectricResistivityUnit unit)
         {
             if(unit == ElectricResistivityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -96,14 +92,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricResistivity(double value, UnitSystem unitSystem)
+        public ElectricResistivity(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -118,19 +114,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
+        ///     The base unit of <see cref="ElectricResistivity{T}" />, which is OhmMeter. All conversions go via this value.
         /// </summary>
         public static ElectricResistivityUnit BaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
-        /// Represents the largest possible value of ElectricResistivity
+        /// Represents the largest possible value of <see cref="ElectricResistivity{T}" />
         /// </summary>
-        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, BaseUnit);
+        public static ElectricResistivity<T> MaxValue { get; } = new ElectricResistivity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricResistivity
+        /// Represents the smallest possible value of <see cref="ElectricResistivity{T}" />
         /// </summary>
-        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
+        public static ElectricResistivity<T> MinValue { get; } = new ElectricResistivity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,14 +135,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ElectricResistivity;
 
         /// <summary>
-        ///     All units of measurement for the ElectricResistivity quantity.
+        ///     All units of measurement for the <see cref="ElectricResistivity{T}" /> quantity.
         /// </summary>
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().Except(new ElectricResistivityUnit[]{ ElectricResistivityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, BaseUnit);
+        public static ElectricResistivity<T> Zero { get; } = new ElectricResistivity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -155,7 +151,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -171,86 +169,86 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricResistivity.QuantityType;
+        public QuantityType Type => ElectricResistivity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ElectricResistivity.BaseDimensions;
+        public BaseDimensions Dimensions => ElectricResistivity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricResistivity in KiloohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in KiloohmsCentimeter.
         /// </summary>
-        public double KiloohmsCentimeter => As(ElectricResistivityUnit.KiloohmCentimeter);
+        public T KiloohmsCentimeter => As(ElectricResistivityUnit.KiloohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in KiloohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in KiloohmMeters.
         /// </summary>
-        public double KiloohmMeters => As(ElectricResistivityUnit.KiloohmMeter);
+        public T KiloohmMeters => As(ElectricResistivityUnit.KiloohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MegaohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MegaohmsCentimeter.
         /// </summary>
-        public double MegaohmsCentimeter => As(ElectricResistivityUnit.MegaohmCentimeter);
+        public T MegaohmsCentimeter => As(ElectricResistivityUnit.MegaohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MegaohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MegaohmMeters.
         /// </summary>
-        public double MegaohmMeters => As(ElectricResistivityUnit.MegaohmMeter);
+        public T MegaohmMeters => As(ElectricResistivityUnit.MegaohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MicroohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MicroohmsCentimeter.
         /// </summary>
-        public double MicroohmsCentimeter => As(ElectricResistivityUnit.MicroohmCentimeter);
+        public T MicroohmsCentimeter => As(ElectricResistivityUnit.MicroohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MicroohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MicroohmMeters.
         /// </summary>
-        public double MicroohmMeters => As(ElectricResistivityUnit.MicroohmMeter);
+        public T MicroohmMeters => As(ElectricResistivityUnit.MicroohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MilliohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MilliohmsCentimeter.
         /// </summary>
-        public double MilliohmsCentimeter => As(ElectricResistivityUnit.MilliohmCentimeter);
+        public T MilliohmsCentimeter => As(ElectricResistivityUnit.MilliohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MilliohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in MilliohmMeters.
         /// </summary>
-        public double MilliohmMeters => As(ElectricResistivityUnit.MilliohmMeter);
+        public T MilliohmMeters => As(ElectricResistivityUnit.MilliohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in NanoohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in NanoohmsCentimeter.
         /// </summary>
-        public double NanoohmsCentimeter => As(ElectricResistivityUnit.NanoohmCentimeter);
+        public T NanoohmsCentimeter => As(ElectricResistivityUnit.NanoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in NanoohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in NanoohmMeters.
         /// </summary>
-        public double NanoohmMeters => As(ElectricResistivityUnit.NanoohmMeter);
+        public T NanoohmMeters => As(ElectricResistivityUnit.NanoohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in OhmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in OhmsCentimeter.
         /// </summary>
-        public double OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
+        public T OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in OhmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in OhmMeters.
         /// </summary>
-        public double OhmMeters => As(ElectricResistivityUnit.OhmMeter);
+        public T OhmMeters => As(ElectricResistivityUnit.OhmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in PicoohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> in PicoohmsCentimeter.
         /// </summary>
-        public double PicoohmsCentimeter => As(ElectricResistivityUnit.PicoohmCentimeter);
+        public T PicoohmsCentimeter => As(ElectricResistivityUnit.PicoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in PicoohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> in PicoohmMeters.
         /// </summary>
-        public double PicoohmMeters => As(ElectricResistivityUnit.PicoohmMeter);
+        public T PicoohmMeters => As(ElectricResistivityUnit.PicoohmMeter);
 
         #endregion
 
@@ -282,141 +280,127 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricResistivity from KiloohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from KiloohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromKiloohmsCentimeter(QuantityValue kiloohmscentimeter)
+        public static ElectricResistivity<T> FromKiloohmsCentimeter(T kiloohmscentimeter)
         {
-            double value = (double) kiloohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmCentimeter);
+            return new ElectricResistivity<T>(kiloohmscentimeter, ElectricResistivityUnit.KiloohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from KiloohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from KiloohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromKiloohmMeters(QuantityValue kiloohmmeters)
+        public static ElectricResistivity<T> FromKiloohmMeters(T kiloohmmeters)
         {
-            double value = (double) kiloohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmMeter);
+            return new ElectricResistivity<T>(kiloohmmeters, ElectricResistivityUnit.KiloohmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MegaohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MegaohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMegaohmsCentimeter(QuantityValue megaohmscentimeter)
+        public static ElectricResistivity<T> FromMegaohmsCentimeter(T megaohmscentimeter)
         {
-            double value = (double) megaohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmCentimeter);
+            return new ElectricResistivity<T>(megaohmscentimeter, ElectricResistivityUnit.MegaohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MegaohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MegaohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMegaohmMeters(QuantityValue megaohmmeters)
+        public static ElectricResistivity<T> FromMegaohmMeters(T megaohmmeters)
         {
-            double value = (double) megaohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmMeter);
+            return new ElectricResistivity<T>(megaohmmeters, ElectricResistivityUnit.MegaohmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MicroohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MicroohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMicroohmsCentimeter(QuantityValue microohmscentimeter)
+        public static ElectricResistivity<T> FromMicroohmsCentimeter(T microohmscentimeter)
         {
-            double value = (double) microohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmCentimeter);
+            return new ElectricResistivity<T>(microohmscentimeter, ElectricResistivityUnit.MicroohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MicroohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MicroohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMicroohmMeters(QuantityValue microohmmeters)
+        public static ElectricResistivity<T> FromMicroohmMeters(T microohmmeters)
         {
-            double value = (double) microohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmMeter);
+            return new ElectricResistivity<T>(microohmmeters, ElectricResistivityUnit.MicroohmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MilliohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MilliohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMilliohmsCentimeter(QuantityValue milliohmscentimeter)
+        public static ElectricResistivity<T> FromMilliohmsCentimeter(T milliohmscentimeter)
         {
-            double value = (double) milliohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmCentimeter);
+            return new ElectricResistivity<T>(milliohmscentimeter, ElectricResistivityUnit.MilliohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from MilliohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from MilliohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromMilliohmMeters(QuantityValue milliohmmeters)
+        public static ElectricResistivity<T> FromMilliohmMeters(T milliohmmeters)
         {
-            double value = (double) milliohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmMeter);
+            return new ElectricResistivity<T>(milliohmmeters, ElectricResistivityUnit.MilliohmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from NanoohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from NanoohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromNanoohmsCentimeter(QuantityValue nanoohmscentimeter)
+        public static ElectricResistivity<T> FromNanoohmsCentimeter(T nanoohmscentimeter)
         {
-            double value = (double) nanoohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmCentimeter);
+            return new ElectricResistivity<T>(nanoohmscentimeter, ElectricResistivityUnit.NanoohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from NanoohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from NanoohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromNanoohmMeters(QuantityValue nanoohmmeters)
+        public static ElectricResistivity<T> FromNanoohmMeters(T nanoohmmeters)
         {
-            double value = (double) nanoohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmMeter);
+            return new ElectricResistivity<T>(nanoohmmeters, ElectricResistivityUnit.NanoohmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from OhmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from OhmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromOhmsCentimeter(QuantityValue ohmscentimeter)
+        public static ElectricResistivity<T> FromOhmsCentimeter(T ohmscentimeter)
         {
-            double value = (double) ohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.OhmCentimeter);
+            return new ElectricResistivity<T>(ohmscentimeter, ElectricResistivityUnit.OhmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from OhmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from OhmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromOhmMeters(QuantityValue ohmmeters)
+        public static ElectricResistivity<T> FromOhmMeters(T ohmmeters)
         {
-            double value = (double) ohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.OhmMeter);
+            return new ElectricResistivity<T>(ohmmeters, ElectricResistivityUnit.OhmMeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from PicoohmsCentimeter.
+        ///     Get <see cref="ElectricResistivity{T}" /> from PicoohmsCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromPicoohmsCentimeter(QuantityValue picoohmscentimeter)
+        public static ElectricResistivity<T> FromPicoohmsCentimeter(T picoohmscentimeter)
         {
-            double value = (double) picoohmscentimeter;
-            return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmCentimeter);
+            return new ElectricResistivity<T>(picoohmscentimeter, ElectricResistivityUnit.PicoohmCentimeter);
         }
         /// <summary>
-        ///     Get ElectricResistivity from PicoohmMeters.
+        ///     Get <see cref="ElectricResistivity{T}" /> from PicoohmMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistivity FromPicoohmMeters(QuantityValue picoohmmeters)
+        public static ElectricResistivity<T> FromPicoohmMeters(T picoohmmeters)
         {
-            double value = (double) picoohmmeters;
-            return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmMeter);
+            return new ElectricResistivity<T>(picoohmmeters, ElectricResistivityUnit.PicoohmMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistivity unit value.</returns>
-        public static ElectricResistivity From(QuantityValue value, ElectricResistivityUnit fromUnit)
+        /// <returns><see cref="ElectricResistivity{T}" /> unit value.</returns>
+        public static ElectricResistivity<T> From(T value, ElectricResistivityUnit fromUnit)
         {
-            return new ElectricResistivity((double)value, fromUnit);
+            return new ElectricResistivity<T>(value, fromUnit);
         }
 
         #endregion
@@ -445,7 +429,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistivity Parse(string str)
+        public static ElectricResistivity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -473,9 +457,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricResistivity Parse(string str, IFormatProvider? provider)
+        public static ElectricResistivity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricResistivity, ElectricResistivityUnit>(
+            return QuantityParser.Default.Parse<T, ElectricResistivity<T>, ElectricResistivityUnit>(
                 str,
                 provider,
                 From);
@@ -489,7 +473,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricResistivity result)
+        public static bool TryParse(string? str, out ElectricResistivity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -504,9 +488,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistivity result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistivity<T> result)
         {
-            return QuantityParser.Default.TryParse<ElectricResistivity, ElectricResistivityUnit>(
+            return QuantityParser.Default.TryParse<T, ElectricResistivity<T>, ElectricResistivityUnit>(
                 str,
                 provider,
                 From,
@@ -568,45 +552,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ElectricResistivity operator -(ElectricResistivity right)
+        public static ElectricResistivity<T> operator -(ElectricResistivity<T> right)
         {
-            return new ElectricResistivity(-right.Value, right.Unit);
+            return new ElectricResistivity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricResistivity"/> from adding two <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
+        /// <summary>Get <see cref="ElectricResistivity{T}"/> from adding two <see cref="ElectricResistivity{T}"/>.</summary>
+        public static ElectricResistivity<T> operator +(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return new ElectricResistivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricResistivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricResistivity"/> from subtracting two <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
+        /// <summary>Get <see cref="ElectricResistivity{T}"/> from subtracting two <see cref="ElectricResistivity{T}"/>.</summary>
+        public static ElectricResistivity<T> operator -(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return new ElectricResistivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ElectricResistivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator *(double left, ElectricResistivity right)
+        /// <summary>Get <see cref="ElectricResistivity{T}"/> from multiplying value and <see cref="ElectricResistivity{T}"/>.</summary>
+        public static ElectricResistivity<T> operator *(T left, ElectricResistivity<T> right)
         {
-            return new ElectricResistivity(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ElectricResistivity<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator *(ElectricResistivity left, double right)
+        /// <summary>Get <see cref="ElectricResistivity{T}"/> from multiplying value and <see cref="ElectricResistivity{T}"/>.</summary>
+        public static ElectricResistivity<T> operator *(ElectricResistivity<T> left, T right)
         {
-            return new ElectricResistivity(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ElectricResistivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ElectricResistivity"/> from dividing <see cref="ElectricResistivity"/> by value.</summary>
-        public static ElectricResistivity operator /(ElectricResistivity left, double right)
+        /// <summary>Get <see cref="ElectricResistivity{T}"/> from dividing <see cref="ElectricResistivity{T}"/> by value.</summary>
+        public static ElectricResistivity<T> operator /(ElectricResistivity<T> left, T right)
         {
-            return new ElectricResistivity(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ElectricResistivity<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ElectricResistivity"/> by <see cref="ElectricResistivity"/>.</summary>
-        public static double operator /(ElectricResistivity left, ElectricResistivity right)
+        /// <summary>Get ratio value from dividing <see cref="ElectricResistivity{T}"/> by <see cref="ElectricResistivity{T}"/>.</summary>
+        public static T operator /(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return left.OhmMeters / right.OhmMeters;
+            return CompiledLambdas.Divide(left.OhmMeters, right.OhmMeters);
         }
 
         #endregion
@@ -614,39 +603,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ElectricResistivity left, ElectricResistivity right)
+        public static bool operator <=(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ElectricResistivity left, ElectricResistivity right)
+        public static bool operator >=(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ElectricResistivity left, ElectricResistivity right)
+        public static bool operator <(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ElectricResistivity left, ElectricResistivity right)
+        public static bool operator >(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricResistivity<T> left, ElectricResistivity<T> right)
         {
             return !(left == right);
         }
@@ -655,37 +644,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricResistivity objElectricResistivity)) throw new ArgumentException("Expected type ElectricResistivity.", nameof(obj));
+            if(!(obj is ElectricResistivity<T> objElectricResistivity)) throw new ArgumentException("Expected type ElectricResistivity.", nameof(obj));
 
             return CompareTo(objElectricResistivity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ElectricResistivity other)
+        public int CompareTo(ElectricResistivity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricResistivity objElectricResistivity))
+            if(obj is null || !(obj is ElectricResistivity<T> objElectricResistivity))
                 return false;
 
             return Equals(objElectricResistivity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricResistivity other)
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricResistivity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ElectricResistivity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ElectricResistivity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -723,21 +712,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricResistivity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricResistivity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ElectricResistivity.</returns>
+        /// <returns>A hash code for the current <see cref="ElectricResistivity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -751,17 +738,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricResistivityUnit unit)
+        public T As(ElectricResistivityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -781,17 +768,22 @@ namespace UnitsNet
             if(!(unit is ElectricResistivityUnit unitAsElectricResistivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistivityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricResistivityUnit);
+            var asValue = As(unitAsElectricResistivityUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ElectricResistivityUnit>.As(ElectricResistivityUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this ElectricResistivity to another ElectricResistivity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricResistivity{T}" /> to another <see cref="ElectricResistivity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ElectricResistivity with the specified unit.</returns>
-        public ElectricResistivity ToUnit(ElectricResistivityUnit unit)
+        /// <returns>A <see cref="ElectricResistivity{T}" /> with the specified unit.</returns>
+        public ElectricResistivity<T> ToUnit(ElectricResistivityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ElectricResistivity(convertedValue, unit);
+            return new ElectricResistivity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -804,7 +796,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricResistivity ToUnit(UnitSystem unitSystem)
+        public ElectricResistivity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -825,31 +817,37 @@ namespace UnitsNet
         IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ElectricResistivityUnit, T> IQuantityT<ElectricResistivityUnit, T>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ElectricResistivityUnit, T> IQuantityT<ElectricResistivityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
-                case ElectricResistivityUnit.OhmMeter: return _value;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
+                case ElectricResistivityUnit.KiloohmCentimeter: return (Value/100) * 1e3d;
+                case ElectricResistivityUnit.KiloohmMeter: return (Value) * 1e3d;
+                case ElectricResistivityUnit.MegaohmCentimeter: return (Value/100) * 1e6d;
+                case ElectricResistivityUnit.MegaohmMeter: return (Value) * 1e6d;
+                case ElectricResistivityUnit.MicroohmCentimeter: return (Value/100) * 1e-6d;
+                case ElectricResistivityUnit.MicroohmMeter: return (Value) * 1e-6d;
+                case ElectricResistivityUnit.MilliohmCentimeter: return (Value/100) * 1e-3d;
+                case ElectricResistivityUnit.MilliohmMeter: return (Value) * 1e-3d;
+                case ElectricResistivityUnit.NanoohmCentimeter: return (Value/100) * 1e-9d;
+                case ElectricResistivityUnit.NanoohmMeter: return (Value) * 1e-9d;
+                case ElectricResistivityUnit.OhmCentimeter: return Value/100;
+                case ElectricResistivityUnit.OhmMeter: return Value;
+                case ElectricResistivityUnit.PicoohmCentimeter: return (Value/100) * 1e-12d;
+                case ElectricResistivityUnit.PicoohmMeter: return (Value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -860,16 +858,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricResistivity ToBaseUnit()
+        internal ElectricResistivity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricResistivity(baseUnitValue, BaseUnit);
+            return new ElectricResistivity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ElectricResistivityUnit unit)
+        private T GetValueAs(ElectricResistivityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -985,57 +983,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricResistivity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricResistivity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricResistivity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricResistivity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ElectricResistivity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ElectricResistivity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1045,33 +1043,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricResistivity))
+            if(conversionType == typeof(ElectricResistivity<T>))
                 return this;
             else if(conversionType == typeof(ElectricResistivityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ElectricResistivity.QuantityType;
+                return ElectricResistivity<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return ElectricResistivity.Info;
+                return ElectricResistivity<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return ElectricResistivity.BaseDimensions;
+                return ElectricResistivity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ElectricResistivity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ElectricResistivity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

@@ -6,10 +6,10 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct Level
+    public partial struct Level<T>
     {
         /// <summary>
-        ///     Initializes a new instance of the logarithmic <see cref="Level" /> struct which is the ratio of a quantity Q to a
+        ///     Initializes a new instance of the logarithmic <see cref="Level{T}" /> struct which is the ratio of a quantity Q to a
         ///     reference value of that quantity Q0.
         /// </summary>
         /// <param name="quantity">The quantity.</param>
@@ -27,7 +27,7 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
             // ReSharper restore CompareOfFloatsByEqualityOperator
 
-            _value = 10*Math.Log10(quantity/reference);
+            Value = 10*Math.Log10(quantity/reference);
             _unit = LevelUnit.Decibel;
         }
     }

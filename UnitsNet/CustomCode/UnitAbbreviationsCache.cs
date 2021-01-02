@@ -27,7 +27,7 @@ namespace UnitsNet
         ///     if no abbreviations are found with a given culture.
         /// </summary>
         /// <example>
-        ///     User wants to call <see cref="UnitParser.Parse{TUnitType}" /> or <see cref="Length.ToString()" /> with Russian
+        ///     User wants to call <see cref="UnitParser.Parse{TUnitType}" /> or <see cref="Length{T}.ToString()" /> with Russian
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>

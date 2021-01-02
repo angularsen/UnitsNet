@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
     /// </summary>
     public static class NumberToReactiveEnergyExtensions
     {
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours<T>(this T value) =>
-            ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactiveEnergy{T}.FromKilovoltampereReactiveHours(T)" />
+        public static ReactiveEnergy<double> KilovoltampereReactiveHours<T>(this T value) =>
+            ReactiveEnergy<double>.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours<T>(this T value) =>
-            ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactiveEnergy{T}.FromMegavoltampereReactiveHours(T)" />
+        public static ReactiveEnergy<double> MegavoltampereReactiveHours<T>(this T value) =>
+            ReactiveEnergy<double>.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours<T>(this T value) =>
-            ReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactiveEnergy{T}.FromVoltampereReactiveHours(T)" />
+        public static ReactiveEnergy<double> VoltampereReactiveHours<T>(this T value) =>
+            ReactiveEnergy<double>.FromVoltampereReactiveHours(Convert.ToDouble(value));
 
     }
 }

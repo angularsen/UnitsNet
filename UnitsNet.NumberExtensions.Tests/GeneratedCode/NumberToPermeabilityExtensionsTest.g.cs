@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToHenriesPerMeterTest() =>
-            Assert.Equal(Permeability.FromHenriesPerMeter(2), 2.HenriesPerMeter());
+            Assert.Equal(Permeability<double>.FromHenriesPerMeter(2), 2.HenriesPerMeter());
 
     }
 }

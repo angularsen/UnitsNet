@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Force((double)0.0, ForceUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Force<double>((double)0.0, ForceUnit.Undefined));
         }
 
         [Fact]
@@ -89,14 +89,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
-            Assert.Throws<ArgumentException>(() => new Force(double.NegativeInfinity, ForceUnit.Newton));
+            Assert.Throws<ArgumentException>(() => new Force<double>(double.PositiveInfinity, ForceUnit.Newton));
+            Assert.Throws<ArgumentException>(() => new Force<double>(double.NegativeInfinity, ForceUnit.Newton));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Force(double.NaN, ForceUnit.Newton));
+            Assert.Throws<ArgumentException>(() => new Force<double>(double.NaN, ForceUnit.Newton));
         }
 
         [Fact]
@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void NewtonToForceUnits()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             AssertEx.EqualTolerance(DecanewtonsInOneNewton, newton.Decanewtons, DecanewtonsTolerance);
             AssertEx.EqualTolerance(DyneInOneNewton, newton.Dyne, DyneTolerance);
             AssertEx.EqualTolerance(KilogramsForceInOneNewton, newton.KilogramsForce, KilogramsForceTolerance);
@@ -163,63 +163,63 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Force.From(1, ForceUnit.Decanewton);
+            var quantity00 = Force<double>.From(1, ForceUnit.Decanewton);
             AssertEx.EqualTolerance(1, quantity00.Decanewtons, DecanewtonsTolerance);
             Assert.Equal(ForceUnit.Decanewton, quantity00.Unit);
 
-            var quantity01 = Force.From(1, ForceUnit.Dyn);
+            var quantity01 = Force<double>.From(1, ForceUnit.Dyn);
             AssertEx.EqualTolerance(1, quantity01.Dyne, DyneTolerance);
             Assert.Equal(ForceUnit.Dyn, quantity01.Unit);
 
-            var quantity02 = Force.From(1, ForceUnit.KilogramForce);
+            var quantity02 = Force<double>.From(1, ForceUnit.KilogramForce);
             AssertEx.EqualTolerance(1, quantity02.KilogramsForce, KilogramsForceTolerance);
             Assert.Equal(ForceUnit.KilogramForce, quantity02.Unit);
 
-            var quantity03 = Force.From(1, ForceUnit.Kilonewton);
+            var quantity03 = Force<double>.From(1, ForceUnit.Kilonewton);
             AssertEx.EqualTolerance(1, quantity03.Kilonewtons, KilonewtonsTolerance);
             Assert.Equal(ForceUnit.Kilonewton, quantity03.Unit);
 
-            var quantity04 = Force.From(1, ForceUnit.KiloPond);
+            var quantity04 = Force<double>.From(1, ForceUnit.KiloPond);
             AssertEx.EqualTolerance(1, quantity04.KiloPonds, KiloPondsTolerance);
             Assert.Equal(ForceUnit.KiloPond, quantity04.Unit);
 
-            var quantity05 = Force.From(1, ForceUnit.KilopoundForce);
+            var quantity05 = Force<double>.From(1, ForceUnit.KilopoundForce);
             AssertEx.EqualTolerance(1, quantity05.KilopoundsForce, KilopoundsForceTolerance);
             Assert.Equal(ForceUnit.KilopoundForce, quantity05.Unit);
 
-            var quantity06 = Force.From(1, ForceUnit.Meganewton);
+            var quantity06 = Force<double>.From(1, ForceUnit.Meganewton);
             AssertEx.EqualTolerance(1, quantity06.Meganewtons, MeganewtonsTolerance);
             Assert.Equal(ForceUnit.Meganewton, quantity06.Unit);
 
-            var quantity07 = Force.From(1, ForceUnit.Micronewton);
+            var quantity07 = Force<double>.From(1, ForceUnit.Micronewton);
             AssertEx.EqualTolerance(1, quantity07.Micronewtons, MicronewtonsTolerance);
             Assert.Equal(ForceUnit.Micronewton, quantity07.Unit);
 
-            var quantity08 = Force.From(1, ForceUnit.Millinewton);
+            var quantity08 = Force<double>.From(1, ForceUnit.Millinewton);
             AssertEx.EqualTolerance(1, quantity08.Millinewtons, MillinewtonsTolerance);
             Assert.Equal(ForceUnit.Millinewton, quantity08.Unit);
 
-            var quantity09 = Force.From(1, ForceUnit.Newton);
+            var quantity09 = Force<double>.From(1, ForceUnit.Newton);
             AssertEx.EqualTolerance(1, quantity09.Newtons, NewtonsTolerance);
             Assert.Equal(ForceUnit.Newton, quantity09.Unit);
 
-            var quantity10 = Force.From(1, ForceUnit.OunceForce);
+            var quantity10 = Force<double>.From(1, ForceUnit.OunceForce);
             AssertEx.EqualTolerance(1, quantity10.OunceForce, OunceForceTolerance);
             Assert.Equal(ForceUnit.OunceForce, quantity10.Unit);
 
-            var quantity11 = Force.From(1, ForceUnit.Poundal);
+            var quantity11 = Force<double>.From(1, ForceUnit.Poundal);
             AssertEx.EqualTolerance(1, quantity11.Poundals, PoundalsTolerance);
             Assert.Equal(ForceUnit.Poundal, quantity11.Unit);
 
-            var quantity12 = Force.From(1, ForceUnit.PoundForce);
+            var quantity12 = Force<double>.From(1, ForceUnit.PoundForce);
             AssertEx.EqualTolerance(1, quantity12.PoundsForce, PoundsForceTolerance);
             Assert.Equal(ForceUnit.PoundForce, quantity12.Unit);
 
-            var quantity13 = Force.From(1, ForceUnit.ShortTonForce);
+            var quantity13 = Force<double>.From(1, ForceUnit.ShortTonForce);
             AssertEx.EqualTolerance(1, quantity13.ShortTonsForce, ShortTonsForceTolerance);
             Assert.Equal(ForceUnit.ShortTonForce, quantity13.Unit);
 
-            var quantity14 = Force.From(1, ForceUnit.TonneForce);
+            var quantity14 = Force<double>.From(1, ForceUnit.TonneForce);
             AssertEx.EqualTolerance(1, quantity14.TonnesForce, TonnesForceTolerance);
             Assert.Equal(ForceUnit.TonneForce, quantity14.Unit);
 
@@ -228,20 +228,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromNewtons_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Force<double>.FromNewtons(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Force<double>.FromNewtons(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromNewtons_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NaN));
+            Assert.Throws<ArgumentException>(() => Force<double>.FromNewtons(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var newton = Force.FromNewtons(1);
+            var newton = Force<double>.FromNewtons(1);
             AssertEx.EqualTolerance(DecanewtonsInOneNewton, newton.As(ForceUnit.Decanewton), DecanewtonsTolerance);
             AssertEx.EqualTolerance(DyneInOneNewton, newton.As(ForceUnit.Dyn), DyneTolerance);
             AssertEx.EqualTolerance(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), KilogramsForceTolerance);
@@ -279,7 +279,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var newton = Force.FromNewtons(1);
+            var newton = Force<double>.FromNewtons(1);
 
             var decanewtonQuantity = newton.ToUnit(ForceUnit.Decanewton);
             AssertEx.EqualTolerance(DecanewtonsInOneNewton, (double)decanewtonQuantity.Value, DecanewtonsTolerance);
@@ -352,42 +352,42 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Force newton = Force.FromNewtons(1);
-            AssertEx.EqualTolerance(1, Force.FromDecanewtons(newton.Decanewtons).Newtons, DecanewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromDyne(newton.Dyne).Newtons, DyneTolerance);
-            AssertEx.EqualTolerance(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, KilogramsForceTolerance);
-            AssertEx.EqualTolerance(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, KilonewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, KiloPondsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromKilopoundsForce(newton.KilopoundsForce).Newtons, KilopoundsForceTolerance);
-            AssertEx.EqualTolerance(1, Force.FromMeganewtons(newton.Meganewtons).Newtons, MeganewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromMicronewtons(newton.Micronewtons).Newtons, MicronewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromMillinewtons(newton.Millinewtons).Newtons, MillinewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromNewtons(newton.Newtons).Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromOunceForce(newton.OunceForce).Newtons, OunceForceTolerance);
-            AssertEx.EqualTolerance(1, Force.FromPoundals(newton.Poundals).Newtons, PoundalsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromPoundsForce(newton.PoundsForce).Newtons, PoundsForceTolerance);
-            AssertEx.EqualTolerance(1, Force.FromShortTonsForce(newton.ShortTonsForce).Newtons, ShortTonsForceTolerance);
-            AssertEx.EqualTolerance(1, Force.FromTonnesForce(newton.TonnesForce).Newtons, TonnesForceTolerance);
+            Force<double> newton = Force<double>.FromNewtons(1);
+            AssertEx.EqualTolerance(1, Force<double>.FromDecanewtons(newton.Decanewtons).Newtons, DecanewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromDyne(newton.Dyne).Newtons, DyneTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromKilogramsForce(newton.KilogramsForce).Newtons, KilogramsForceTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromKilonewtons(newton.Kilonewtons).Newtons, KilonewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromKiloPonds(newton.KiloPonds).Newtons, KiloPondsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromKilopoundsForce(newton.KilopoundsForce).Newtons, KilopoundsForceTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromMeganewtons(newton.Meganewtons).Newtons, MeganewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromMicronewtons(newton.Micronewtons).Newtons, MicronewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromMillinewtons(newton.Millinewtons).Newtons, MillinewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromNewtons(newton.Newtons).Newtons, NewtonsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromOunceForce(newton.OunceForce).Newtons, OunceForceTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromPoundals(newton.Poundals).Newtons, PoundalsTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromPoundsForce(newton.PoundsForce).Newtons, PoundsForceTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromShortTonsForce(newton.ShortTonsForce).Newtons, ShortTonsForceTolerance);
+            AssertEx.EqualTolerance(1, Force<double>.FromTonnesForce(newton.TonnesForce).Newtons, TonnesForceTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Force v = Force.FromNewtons(1);
+            Force<double> v = Force<double>.FromNewtons(1);
             AssertEx.EqualTolerance(-1, -v.Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(2, (Force.FromNewtons(3)-v).Newtons, NewtonsTolerance);
+            AssertEx.EqualTolerance(2, (Force<double>.FromNewtons(3)-v).Newtons, NewtonsTolerance);
             AssertEx.EqualTolerance(2, (v + v).Newtons, NewtonsTolerance);
             AssertEx.EqualTolerance(10, (v*10).Newtons, NewtonsTolerance);
             AssertEx.EqualTolerance(10, (10*v).Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(2, (Force.FromNewtons(10)/5).Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(2, Force.FromNewtons(10)/Force.FromNewtons(5), NewtonsTolerance);
+            AssertEx.EqualTolerance(2, (Force<double>.FromNewtons(10)/5).Newtons, NewtonsTolerance);
+            AssertEx.EqualTolerance(2, Force<double>.FromNewtons(10)/Force<double>.FromNewtons(5), NewtonsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Force oneNewton = Force.FromNewtons(1);
-            Force twoNewtons = Force.FromNewtons(2);
+            Force<double> oneNewton = Force<double>.FromNewtons(1);
+            Force<double> twoNewtons = Force<double>.FromNewtons(2);
 
             Assert.True(oneNewton < twoNewtons);
             Assert.True(oneNewton <= twoNewtons);
@@ -403,31 +403,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             Assert.Equal(0, newton.CompareTo(newton));
-            Assert.True(newton.CompareTo(Force.Zero) > 0);
-            Assert.True(Force.Zero.CompareTo(newton) < 0);
+            Assert.True(newton.CompareTo(Force<double>.Zero) > 0);
+            Assert.True(Force<double>.Zero.CompareTo(newton) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             Assert.Throws<ArgumentException>(() => newton.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             Assert.Throws<ArgumentNullException>(() => newton.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Force.FromNewtons(1);
-            var b = Force.FromNewtons(2);
+            var a = Force<double>.FromNewtons(1);
+            var b = Force<double>.FromNewtons(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -446,8 +446,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Force.FromNewtons(1);
-            var b = Force.FromNewtons(2);
+            var a = Force<double>.FromNewtons(1);
+            var b = Force<double>.FromNewtons(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -467,9 +467,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Force.FromNewtons(1);
-            Assert.True(v.Equals(Force.FromNewtons(1), NewtonsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Force.Zero, NewtonsTolerance, ComparisonType.Relative));
+            var v = Force<double>.FromNewtons(1);
+            Assert.True(v.Equals(Force<double>.FromNewtons(1), NewtonsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Force<double>.Zero, NewtonsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -482,21 +482,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             Assert.False(newton.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Force newton = Force.FromNewtons(1);
+            Force<double> newton = Force<double>.FromNewtons(1);
             Assert.False(newton.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(ForceUnit.Undefined, Force.Units);
+            Assert.DoesNotContain(ForceUnit.Undefined, Force<double>.Units);
         }
 
         [Fact]
@@ -515,7 +515,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Force.BaseDimensions is null);
+            Assert.False(Force<double>.BaseDimensions is null);
         }
 
         [Fact]

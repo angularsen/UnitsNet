@@ -38,12 +38,12 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
             foreach (var unit in _units)
             {
                 Writer.WL(2, $@"
-/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
+/// <inheritdoc cref=""{_quantityName}{{T}}.From{unit.PluralName}(T)"" />");
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 
-                Writer.WL(2, $@"public static {_quantityName} {unit.PluralName}<T>(this T value) =>
-            {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
+                Writer.WL(2, $@"public static {_quantityName}<double> {unit.PluralName}<T>(this T value) =>
+            {_quantityName}<double>.From{unit.PluralName}(Convert.ToDouble(value));
 ");
             }
 

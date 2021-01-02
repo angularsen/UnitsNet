@@ -28,37 +28,37 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
     /// </summary>
     public static class NumberToElectricCurrentExtensions
     {
-        /// <inheritdoc cref="ElectricCurrent.FromAmperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Amperes<T>(this T value) =>
-            ElectricCurrent.FromAmperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromAmperes(T)" />
+        public static ElectricCurrent<double> Amperes<T>(this T value) =>
+            ElectricCurrent<double>.FromAmperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Centiamperes<T>(this T value) =>
-            ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromCentiamperes(T)" />
+        public static ElectricCurrent<double> Centiamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromCentiamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Kiloamperes<T>(this T value) =>
-            ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromKiloamperes(T)" />
+        public static ElectricCurrent<double> Kiloamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromKiloamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Megaamperes<T>(this T value) =>
-            ElectricCurrent.FromMegaamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromMegaamperes(T)" />
+        public static ElectricCurrent<double> Megaamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromMegaamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Microamperes<T>(this T value) =>
-            ElectricCurrent.FromMicroamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromMicroamperes(T)" />
+        public static ElectricCurrent<double> Microamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromMicroamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Milliamperes<T>(this T value) =>
-            ElectricCurrent.FromMilliamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromMilliamperes(T)" />
+        public static ElectricCurrent<double> Milliamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromMilliamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Nanoamperes<T>(this T value) =>
-            ElectricCurrent.FromNanoamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromNanoamperes(T)" />
+        public static ElectricCurrent<double> Nanoamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromNanoamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(UnitsNet.QuantityValue)" />
-        public static ElectricCurrent Picoamperes<T>(this T value) =>
-            ElectricCurrent.FromPicoamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrent{T}.FromPicoamperes(T)" />
+        public static ElectricCurrent<double> Picoamperes<T>(this T value) =>
+            ElectricCurrent<double>.FromPicoamperes(Convert.ToDouble(value));
 
     }
 }

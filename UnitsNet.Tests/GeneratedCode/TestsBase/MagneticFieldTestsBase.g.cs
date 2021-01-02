@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticField((double)0.0, MagneticFieldUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new MagneticField<double>((double)0.0, MagneticFieldUnit.Undefined));
         }
 
         [Fact]
@@ -69,14 +69,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.NegativeInfinity, MagneticFieldUnit.Tesla));
+            Assert.Throws<ArgumentException>(() => new MagneticField<double>(double.PositiveInfinity, MagneticFieldUnit.Tesla));
+            Assert.Throws<ArgumentException>(() => new MagneticField<double>(double.NegativeInfinity, MagneticFieldUnit.Tesla));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
+            Assert.Throws<ArgumentException>(() => new MagneticField<double>(double.NaN, MagneticFieldUnit.Tesla));
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TeslaToMagneticFieldUnits()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             AssertEx.EqualTolerance(GaussesInOneTesla, tesla.Gausses, GaussesTolerance);
             AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.Microteslas, MicroteslasTolerance);
             AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.Milliteslas, MilliteslasTolerance);
@@ -133,23 +133,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MagneticField.From(1, MagneticFieldUnit.Gauss);
+            var quantity00 = MagneticField<double>.From(1, MagneticFieldUnit.Gauss);
             AssertEx.EqualTolerance(1, quantity00.Gausses, GaussesTolerance);
             Assert.Equal(MagneticFieldUnit.Gauss, quantity00.Unit);
 
-            var quantity01 = MagneticField.From(1, MagneticFieldUnit.Microtesla);
+            var quantity01 = MagneticField<double>.From(1, MagneticFieldUnit.Microtesla);
             AssertEx.EqualTolerance(1, quantity01.Microteslas, MicroteslasTolerance);
             Assert.Equal(MagneticFieldUnit.Microtesla, quantity01.Unit);
 
-            var quantity02 = MagneticField.From(1, MagneticFieldUnit.Millitesla);
+            var quantity02 = MagneticField<double>.From(1, MagneticFieldUnit.Millitesla);
             AssertEx.EqualTolerance(1, quantity02.Milliteslas, MilliteslasTolerance);
             Assert.Equal(MagneticFieldUnit.Millitesla, quantity02.Unit);
 
-            var quantity03 = MagneticField.From(1, MagneticFieldUnit.Nanotesla);
+            var quantity03 = MagneticField<double>.From(1, MagneticFieldUnit.Nanotesla);
             AssertEx.EqualTolerance(1, quantity03.Nanoteslas, NanoteslasTolerance);
             Assert.Equal(MagneticFieldUnit.Nanotesla, quantity03.Unit);
 
-            var quantity04 = MagneticField.From(1, MagneticFieldUnit.Tesla);
+            var quantity04 = MagneticField<double>.From(1, MagneticFieldUnit.Tesla);
             AssertEx.EqualTolerance(1, quantity04.Teslas, TeslasTolerance);
             Assert.Equal(MagneticFieldUnit.Tesla, quantity04.Unit);
 
@@ -158,20 +158,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromTeslas_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticField<double>.FromTeslas(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticField<double>.FromTeslas(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromTeslas_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NaN));
+            Assert.Throws<ArgumentException>(() => MagneticField<double>.FromTeslas(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var tesla = MagneticField.FromTeslas(1);
+            var tesla = MagneticField<double>.FromTeslas(1);
             AssertEx.EqualTolerance(GaussesInOneTesla, tesla.As(MagneticFieldUnit.Gauss), GaussesTolerance);
             AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.As(MagneticFieldUnit.Microtesla), MicroteslasTolerance);
             AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.As(MagneticFieldUnit.Millitesla), MilliteslasTolerance);
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var tesla = MagneticField.FromTeslas(1);
+            var tesla = MagneticField<double>.FromTeslas(1);
 
             var gaussQuantity = tesla.ToUnit(MagneticFieldUnit.Gauss);
             AssertEx.EqualTolerance(GaussesInOneTesla, (double)gaussQuantity.Value, GaussesTolerance);
@@ -232,32 +232,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
-            AssertEx.EqualTolerance(1, MagneticField.FromGausses(tesla.Gausses).Teslas, GaussesTolerance);
-            AssertEx.EqualTolerance(1, MagneticField.FromMicroteslas(tesla.Microteslas).Teslas, MicroteslasTolerance);
-            AssertEx.EqualTolerance(1, MagneticField.FromMilliteslas(tesla.Milliteslas).Teslas, MilliteslasTolerance);
-            AssertEx.EqualTolerance(1, MagneticField.FromNanoteslas(tesla.Nanoteslas).Teslas, NanoteslasTolerance);
-            AssertEx.EqualTolerance(1, MagneticField.FromTeslas(tesla.Teslas).Teslas, TeslasTolerance);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
+            AssertEx.EqualTolerance(1, MagneticField<double>.FromGausses(tesla.Gausses).Teslas, GaussesTolerance);
+            AssertEx.EqualTolerance(1, MagneticField<double>.FromMicroteslas(tesla.Microteslas).Teslas, MicroteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField<double>.FromMilliteslas(tesla.Milliteslas).Teslas, MilliteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField<double>.FromNanoteslas(tesla.Nanoteslas).Teslas, NanoteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField<double>.FromTeslas(tesla.Teslas).Teslas, TeslasTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            MagneticField v = MagneticField.FromTeslas(1);
+            MagneticField<double> v = MagneticField<double>.FromTeslas(1);
             AssertEx.EqualTolerance(-1, -v.Teslas, TeslasTolerance);
-            AssertEx.EqualTolerance(2, (MagneticField.FromTeslas(3)-v).Teslas, TeslasTolerance);
+            AssertEx.EqualTolerance(2, (MagneticField<double>.FromTeslas(3)-v).Teslas, TeslasTolerance);
             AssertEx.EqualTolerance(2, (v + v).Teslas, TeslasTolerance);
             AssertEx.EqualTolerance(10, (v*10).Teslas, TeslasTolerance);
             AssertEx.EqualTolerance(10, (10*v).Teslas, TeslasTolerance);
-            AssertEx.EqualTolerance(2, (MagneticField.FromTeslas(10)/5).Teslas, TeslasTolerance);
-            AssertEx.EqualTolerance(2, MagneticField.FromTeslas(10)/MagneticField.FromTeslas(5), TeslasTolerance);
+            AssertEx.EqualTolerance(2, (MagneticField<double>.FromTeslas(10)/5).Teslas, TeslasTolerance);
+            AssertEx.EqualTolerance(2, MagneticField<double>.FromTeslas(10)/MagneticField<double>.FromTeslas(5), TeslasTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            MagneticField oneTesla = MagneticField.FromTeslas(1);
-            MagneticField twoTeslas = MagneticField.FromTeslas(2);
+            MagneticField<double> oneTesla = MagneticField<double>.FromTeslas(1);
+            MagneticField<double> twoTeslas = MagneticField<double>.FromTeslas(2);
 
             Assert.True(oneTesla < twoTeslas);
             Assert.True(oneTesla <= twoTeslas);
@@ -273,31 +273,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             Assert.Equal(0, tesla.CompareTo(tesla));
-            Assert.True(tesla.CompareTo(MagneticField.Zero) > 0);
-            Assert.True(MagneticField.Zero.CompareTo(tesla) < 0);
+            Assert.True(tesla.CompareTo(MagneticField<double>.Zero) > 0);
+            Assert.True(MagneticField<double>.Zero.CompareTo(tesla) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             Assert.Throws<ArgumentException>(() => tesla.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             Assert.Throws<ArgumentNullException>(() => tesla.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = MagneticField.FromTeslas(1);
-            var b = MagneticField.FromTeslas(2);
+            var a = MagneticField<double>.FromTeslas(1);
+            var b = MagneticField<double>.FromTeslas(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -316,8 +316,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = MagneticField.FromTeslas(1);
-            var b = MagneticField.FromTeslas(2);
+            var a = MagneticField<double>.FromTeslas(1);
+            var b = MagneticField<double>.FromTeslas(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -337,9 +337,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = MagneticField.FromTeslas(1);
-            Assert.True(v.Equals(MagneticField.FromTeslas(1), TeslasTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(MagneticField.Zero, TeslasTolerance, ComparisonType.Relative));
+            var v = MagneticField<double>.FromTeslas(1);
+            Assert.True(v.Equals(MagneticField<double>.FromTeslas(1), TeslasTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MagneticField<double>.Zero, TeslasTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -352,21 +352,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             Assert.False(tesla.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            MagneticField tesla = MagneticField.FromTeslas(1);
+            MagneticField<double> tesla = MagneticField<double>.FromTeslas(1);
             Assert.False(tesla.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MagneticFieldUnit.Undefined, MagneticField.Units);
+            Assert.DoesNotContain(MagneticFieldUnit.Undefined, MagneticField<double>.Units);
         }
 
         [Fact]
@@ -385,7 +385,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(MagneticField.BaseDimensions is null);
+            Assert.False(MagneticField<double>.BaseDimensions is null);
         }
 
         [Fact]

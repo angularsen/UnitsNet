@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
     /// </summary>
     public static class NumberToPermittivityExtensions
     {
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter<T>(this T value) =>
-            Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Permittivity{T}.FromFaradsPerMeter(T)" />
+        public static Permittivity<double> FaradsPerMeter<T>(this T value) =>
+            Permittivity<double>.FromFaradsPerMeter(Convert.ToDouble(value));
 
     }
 }

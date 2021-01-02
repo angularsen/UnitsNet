@@ -16,7 +16,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void StonePoundsFrom()
         {
-            Mass m = Mass.FromStonePounds(2, 3);
+            var m = Mass<double>.FromStonePounds(2, 3);
             double expectedKg = 2/StoneInOneKilogram + 3/PoundsInOneKilogram;
             AssertEx.EqualTolerance(expectedKg, m.Kilograms, StoneTolerance);
         }
@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void StonePoundsRoundTrip()
         {
-            Mass m = Mass.FromStonePounds(2, 3);
+            var m = Mass<double>.FromStonePounds(2, 3);
             StonePounds stonePounds = m.StonePounds;
             AssertEx.EqualTolerance(2, stonePounds.Stone, StoneTolerance);
             AssertEx.EqualTolerance(3, stonePounds.Pounds, PoundsTolerance);
@@ -33,7 +33,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void StonePoundsToString_FormatsNumberInDefaultCulture()
         {
-            Mass m = Mass.FromStonePounds(3500, 1);
+            var m = Mass<double>.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
             string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentUICulture); // Varies between machines, can't hard code it
 
@@ -47,7 +47,7 @@ namespace UnitsNet.Tests.CustomCode
         public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
         {
             var formatProvider = new CultureInfo(cultureName);
-            Mass m = Mass.FromStonePounds(3500, 1);
+            var m = Mass<double>.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
 
             Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));

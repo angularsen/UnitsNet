@@ -26,31 +26,31 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToJoulesPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiation.FromJoulesPerSquareCentimeter(2), 2.JoulesPerSquareCentimeter());
+            Assert.Equal(Irradiation<double>.FromJoulesPerSquareCentimeter(2), 2.JoulesPerSquareCentimeter());
 
         [Fact]
         public void NumberToJoulesPerSquareMeterTest() =>
-            Assert.Equal(Irradiation.FromJoulesPerSquareMeter(2), 2.JoulesPerSquareMeter());
+            Assert.Equal(Irradiation<double>.FromJoulesPerSquareMeter(2), 2.JoulesPerSquareMeter());
 
         [Fact]
         public void NumberToJoulesPerSquareMillimeterTest() =>
-            Assert.Equal(Irradiation.FromJoulesPerSquareMillimeter(2), 2.JoulesPerSquareMillimeter());
+            Assert.Equal(Irradiation<double>.FromJoulesPerSquareMillimeter(2), 2.JoulesPerSquareMillimeter());
 
         [Fact]
         public void NumberToKilojoulesPerSquareMeterTest() =>
-            Assert.Equal(Irradiation.FromKilojoulesPerSquareMeter(2), 2.KilojoulesPerSquareMeter());
+            Assert.Equal(Irradiation<double>.FromKilojoulesPerSquareMeter(2), 2.KilojoulesPerSquareMeter());
 
         [Fact]
         public void NumberToKilowattHoursPerSquareMeterTest() =>
-            Assert.Equal(Irradiation.FromKilowattHoursPerSquareMeter(2), 2.KilowattHoursPerSquareMeter());
+            Assert.Equal(Irradiation<double>.FromKilowattHoursPerSquareMeter(2), 2.KilowattHoursPerSquareMeter());
 
         [Fact]
         public void NumberToMillijoulesPerSquareCentimeterTest() =>
-            Assert.Equal(Irradiation.FromMillijoulesPerSquareCentimeter(2), 2.MillijoulesPerSquareCentimeter());
+            Assert.Equal(Irradiation<double>.FromMillijoulesPerSquareCentimeter(2), 2.MillijoulesPerSquareCentimeter());
 
         [Fact]
         public void NumberToWattHoursPerSquareMeterTest() =>
-            Assert.Equal(Irradiation.FromWattHoursPerSquareMeter(2), 2.WattHoursPerSquareMeter());
+            Assert.Equal(Irradiation<double>.FromWattHoursPerSquareMeter(2), 2.WattHoursPerSquareMeter());
 
     }
 }

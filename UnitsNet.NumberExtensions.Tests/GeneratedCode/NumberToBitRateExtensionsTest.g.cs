@@ -26,107 +26,107 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToBitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromBitsPerSecond(2), 2.BitsPerSecond());
+            Assert.Equal(BitRate<double>.FromBitsPerSecond(2), 2.BitsPerSecond());
 
         [Fact]
         public void NumberToBytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromBytesPerSecond(2), 2.BytesPerSecond());
+            Assert.Equal(BitRate<double>.FromBytesPerSecond(2), 2.BytesPerSecond());
 
         [Fact]
         public void NumberToExabitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromExabitsPerSecond(2), 2.ExabitsPerSecond());
+            Assert.Equal(BitRate<double>.FromExabitsPerSecond(2), 2.ExabitsPerSecond());
 
         [Fact]
         public void NumberToExabytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromExabytesPerSecond(2), 2.ExabytesPerSecond());
+            Assert.Equal(BitRate<double>.FromExabytesPerSecond(2), 2.ExabytesPerSecond());
 
         [Fact]
         public void NumberToExbibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromExbibitsPerSecond(2), 2.ExbibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromExbibitsPerSecond(2), 2.ExbibitsPerSecond());
 
         [Fact]
         public void NumberToExbibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromExbibytesPerSecond(2), 2.ExbibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromExbibytesPerSecond(2), 2.ExbibytesPerSecond());
 
         [Fact]
         public void NumberToGibibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromGibibitsPerSecond(2), 2.GibibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromGibibitsPerSecond(2), 2.GibibitsPerSecond());
 
         [Fact]
         public void NumberToGibibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromGibibytesPerSecond(2), 2.GibibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromGibibytesPerSecond(2), 2.GibibytesPerSecond());
 
         [Fact]
         public void NumberToGigabitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromGigabitsPerSecond(2), 2.GigabitsPerSecond());
+            Assert.Equal(BitRate<double>.FromGigabitsPerSecond(2), 2.GigabitsPerSecond());
 
         [Fact]
         public void NumberToGigabytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromGigabytesPerSecond(2), 2.GigabytesPerSecond());
+            Assert.Equal(BitRate<double>.FromGigabytesPerSecond(2), 2.GigabytesPerSecond());
 
         [Fact]
         public void NumberToKibibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromKibibitsPerSecond(2), 2.KibibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromKibibitsPerSecond(2), 2.KibibitsPerSecond());
 
         [Fact]
         public void NumberToKibibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromKibibytesPerSecond(2), 2.KibibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromKibibytesPerSecond(2), 2.KibibytesPerSecond());
 
         [Fact]
         public void NumberToKilobitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromKilobitsPerSecond(2), 2.KilobitsPerSecond());
+            Assert.Equal(BitRate<double>.FromKilobitsPerSecond(2), 2.KilobitsPerSecond());
 
         [Fact]
         public void NumberToKilobytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromKilobytesPerSecond(2), 2.KilobytesPerSecond());
+            Assert.Equal(BitRate<double>.FromKilobytesPerSecond(2), 2.KilobytesPerSecond());
 
         [Fact]
         public void NumberToMebibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromMebibitsPerSecond(2), 2.MebibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromMebibitsPerSecond(2), 2.MebibitsPerSecond());
 
         [Fact]
         public void NumberToMebibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromMebibytesPerSecond(2), 2.MebibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromMebibytesPerSecond(2), 2.MebibytesPerSecond());
 
         [Fact]
         public void NumberToMegabitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromMegabitsPerSecond(2), 2.MegabitsPerSecond());
+            Assert.Equal(BitRate<double>.FromMegabitsPerSecond(2), 2.MegabitsPerSecond());
 
         [Fact]
         public void NumberToMegabytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromMegabytesPerSecond(2), 2.MegabytesPerSecond());
+            Assert.Equal(BitRate<double>.FromMegabytesPerSecond(2), 2.MegabytesPerSecond());
 
         [Fact]
         public void NumberToPebibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromPebibitsPerSecond(2), 2.PebibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromPebibitsPerSecond(2), 2.PebibitsPerSecond());
 
         [Fact]
         public void NumberToPebibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromPebibytesPerSecond(2), 2.PebibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromPebibytesPerSecond(2), 2.PebibytesPerSecond());
 
         [Fact]
         public void NumberToPetabitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromPetabitsPerSecond(2), 2.PetabitsPerSecond());
+            Assert.Equal(BitRate<double>.FromPetabitsPerSecond(2), 2.PetabitsPerSecond());
 
         [Fact]
         public void NumberToPetabytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromPetabytesPerSecond(2), 2.PetabytesPerSecond());
+            Assert.Equal(BitRate<double>.FromPetabytesPerSecond(2), 2.PetabytesPerSecond());
 
         [Fact]
         public void NumberToTebibitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromTebibitsPerSecond(2), 2.TebibitsPerSecond());
+            Assert.Equal(BitRate<double>.FromTebibitsPerSecond(2), 2.TebibitsPerSecond());
 
         [Fact]
         public void NumberToTebibytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromTebibytesPerSecond(2), 2.TebibytesPerSecond());
+            Assert.Equal(BitRate<double>.FromTebibytesPerSecond(2), 2.TebibytesPerSecond());
 
         [Fact]
         public void NumberToTerabitsPerSecondTest() =>
-            Assert.Equal(BitRate.FromTerabitsPerSecond(2), 2.TerabitsPerSecond());
+            Assert.Equal(BitRate<double>.FromTerabitsPerSecond(2), 2.TerabitsPerSecond());
 
         [Fact]
         public void NumberToTerabytesPerSecondTest() =>
-            Assert.Equal(BitRate.FromTerabytesPerSecond(2), 2.TerabytesPerSecond());
+            Assert.Equal(BitRate<double>.FromTerabytesPerSecond(2), 2.TerabytesPerSecond());
 
     }
 }

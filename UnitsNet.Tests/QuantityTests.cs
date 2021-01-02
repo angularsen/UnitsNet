@@ -12,8 +12,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetHashCodeForDifferentQuantitiesWithSameValuesAreNotEqual()
         {
-            var length = new Length(1.0, (LengthUnit)2);
-            var area = new Area(1.0, (AreaUnit)2);
+            var length = new Length<double>(1.0, (LengthUnit)2);
+            var area = new Area<double>(1.0, (AreaUnit)2);
 
             Assert.NotEqual(length.GetHashCode(), area.GetHashCode());
         }

@@ -28,13 +28,13 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
     /// </summary>
     public static class NumberToThermalConductivityExtensions
     {
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value) =>
-            ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
+        /// <inheritdoc cref="ThermalConductivity{T}.FromBtusPerHourFootFahrenheit(T)" />
+        public static ThermalConductivity<double> BtusPerHourFootFahrenheit<T>(this T value) =>
+            ThermalConductivity<double>.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin<T>(this T value) =>
-            ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
+        /// <inheritdoc cref="ThermalConductivity{T}.FromWattsPerMeterKelvin(T)" />
+        public static ThermalConductivity<double> WattsPerMeterKelvin<T>(this T value) =>
+            ThermalConductivity<double>.FromWattsPerMeterKelvin(Convert.ToDouble(value));
 
     }
 }

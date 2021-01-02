@@ -26,35 +26,35 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentimolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromCentimolesPerLiter(2), 2.CentimolesPerLiter());
+            Assert.Equal(Molarity<double>.FromCentimolesPerLiter(2), 2.CentimolesPerLiter());
 
         [Fact]
         public void NumberToDecimolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromDecimolesPerLiter(2), 2.DecimolesPerLiter());
+            Assert.Equal(Molarity<double>.FromDecimolesPerLiter(2), 2.DecimolesPerLiter());
 
         [Fact]
         public void NumberToMicromolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromMicromolesPerLiter(2), 2.MicromolesPerLiter());
+            Assert.Equal(Molarity<double>.FromMicromolesPerLiter(2), 2.MicromolesPerLiter());
 
         [Fact]
         public void NumberToMillimolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromMillimolesPerLiter(2), 2.MillimolesPerLiter());
+            Assert.Equal(Molarity<double>.FromMillimolesPerLiter(2), 2.MillimolesPerLiter());
 
         [Fact]
         public void NumberToMolesPerCubicMeterTest() =>
-            Assert.Equal(Molarity.FromMolesPerCubicMeter(2), 2.MolesPerCubicMeter());
+            Assert.Equal(Molarity<double>.FromMolesPerCubicMeter(2), 2.MolesPerCubicMeter());
 
         [Fact]
         public void NumberToMolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromMolesPerLiter(2), 2.MolesPerLiter());
+            Assert.Equal(Molarity<double>.FromMolesPerLiter(2), 2.MolesPerLiter());
 
         [Fact]
         public void NumberToNanomolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromNanomolesPerLiter(2), 2.NanomolesPerLiter());
+            Assert.Equal(Molarity<double>.FromNanomolesPerLiter(2), 2.NanomolesPerLiter());
 
         [Fact]
         public void NumberToPicomolesPerLiterTest() =>
-            Assert.Equal(Molarity.FromPicomolesPerLiter(2), 2.PicomolesPerLiter());
+            Assert.Equal(Molarity<double>.FromPicomolesPerLiter(2), 2.PicomolesPerLiter());
 
     }
 }

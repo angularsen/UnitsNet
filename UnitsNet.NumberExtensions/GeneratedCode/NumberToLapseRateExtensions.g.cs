@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToLapseRate
     /// </summary>
     public static class NumberToLapseRateExtensions
     {
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer<T>(this T value) =>
-            LapseRate.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
+        /// <inheritdoc cref="LapseRate{T}.FromDegreesCelciusPerKilometer(T)" />
+        public static LapseRate<double> DegreesCelciusPerKilometer<T>(this T value) =>
+            LapseRate<double>.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
 
     }
 }

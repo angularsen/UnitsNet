@@ -3,36 +3,36 @@
 
 namespace UnitsNet
 {
-    public partial struct SpecificEnergy
+    public partial struct SpecificEnergy<T>
     {
-        /// <summary>Get <see cref="Energy"/> from <see cref="SpecificEnergy"/> times <see cref="Mass"/>.</summary>
-        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
+        /// <summary>Get <see cref="Energy{T}"/> from <see cref="SpecificEnergy{T}"/> times <see cref="Mass{T}"/>.</summary>
+        public static Energy<T> operator *(SpecificEnergy<T> specificEnergy, Mass<T> mass )
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy<T>.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
         }
 
-        /// <summary>Get <see cref="Energy"/> from <see cref="Mass"/> times <see cref="SpecificEnergy"/>.</summary>
-        public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
+        /// <summary>Get <see cref="Energy{T}"/> from <see cref="Mass{T}"/> times <see cref="SpecificEnergy{T}"/>.</summary>
+        public static Energy<T> operator *(Mass<T> mass, SpecificEnergy<T> specificEnergy )
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy<T>.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
         }
 
-        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="double"/> divided by <see cref="SpecificEnergy"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
+        /// <summary>Get <see cref="BrakeSpecificFuelConsumption{T}"/> from <see cref="double"/> divided by <see cref="SpecificEnergy{T}"/>.</summary>
+        public static BrakeSpecificFuelConsumption<T> operator /(double value, SpecificEnergy<T> specificEnergy )
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
+            return BrakeSpecificFuelConsumption<T>.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
         }
 
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> times <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption bsfc)
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy{T}"/> times <see cref="BrakeSpecificFuelConsumption{T}"/>.</summary>
+        public static double operator *(SpecificEnergy<T> specificEnergy, BrakeSpecificFuelConsumption<T> bsfc )
         {
             return specificEnergy.JoulesPerKilogram * bsfc.KilogramsPerJoule;
         }
 
-        /// <summary>Get <see cref="Power"/> from <see cref="SpecificEnergy"/> times <see cref="MassFlow"/>.</summary>
-        public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
+        /// <summary>Get <see cref="Power{T}"/> from <see cref="SpecificEnergy{T}"/> times <see cref="MassFlow{T}"/>.</summary>
+        public static Power<T> operator *(SpecificEnergy<T> specificEnergy, MassFlow<T> massFlow )
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
+            return Power<T>.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
         }
     }
 }

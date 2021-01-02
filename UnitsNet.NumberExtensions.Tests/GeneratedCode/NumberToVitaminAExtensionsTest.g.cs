@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToInternationalUnitsTest() =>
-            Assert.Equal(VitaminA.FromInternationalUnits(2), 2.InternationalUnits());
+            Assert.Equal(VitaminA<double>.FromInternationalUnits(2), 2.InternationalUnits());
 
     }
 }

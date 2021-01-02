@@ -28,105 +28,105 @@ namespace UnitsNet.NumberExtensions.NumberToPower
     /// </summary>
     public static class NumberToPowerExtensions
     {
-        /// <inheritdoc cref="Power.FromBoilerHorsepower(UnitsNet.QuantityValue)" />
-        public static Power BoilerHorsepower<T>(this T value) =>
-            Power.FromBoilerHorsepower(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromBoilerHorsepower(T)" />
+        public static Power<double> BoilerHorsepower<T>(this T value) =>
+            Power<double>.FromBoilerHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
-        public static Power BritishThermalUnitsPerHour<T>(this T value) =>
-            Power.FromBritishThermalUnitsPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromBritishThermalUnitsPerHour(T)" />
+        public static Power<double> BritishThermalUnitsPerHour<T>(this T value) =>
+            Power<double>.FromBritishThermalUnitsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromDecawatts(UnitsNet.QuantityValue)" />
-        public static Power Decawatts<T>(this T value) =>
-            Power.FromDecawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromDecawatts(T)" />
+        public static Power<double> Decawatts<T>(this T value) =>
+            Power<double>.FromDecawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromDeciwatts(UnitsNet.QuantityValue)" />
-        public static Power Deciwatts<T>(this T value) =>
-            Power.FromDeciwatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromDeciwatts(T)" />
+        public static Power<double> Deciwatts<T>(this T value) =>
+            Power<double>.FromDeciwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromElectricalHorsepower(UnitsNet.QuantityValue)" />
-        public static Power ElectricalHorsepower<T>(this T value) =>
-            Power.FromElectricalHorsepower(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromElectricalHorsepower(T)" />
+        public static Power<double> ElectricalHorsepower<T>(this T value) =>
+            Power<double>.FromElectricalHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromFemtowatts(UnitsNet.QuantityValue)" />
-        public static Power Femtowatts<T>(this T value) =>
-            Power.FromFemtowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromFemtowatts(T)" />
+        public static Power<double> Femtowatts<T>(this T value) =>
+            Power<double>.FromFemtowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromGigajoulesPerHour(UnitsNet.QuantityValue)" />
-        public static Power GigajoulesPerHour<T>(this T value) =>
-            Power.FromGigajoulesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromGigajoulesPerHour(T)" />
+        public static Power<double> GigajoulesPerHour<T>(this T value) =>
+            Power<double>.FromGigajoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromGigawatts(UnitsNet.QuantityValue)" />
-        public static Power Gigawatts<T>(this T value) =>
-            Power.FromGigawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromGigawatts(T)" />
+        public static Power<double> Gigawatts<T>(this T value) =>
+            Power<double>.FromGigawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromHydraulicHorsepower(UnitsNet.QuantityValue)" />
-        public static Power HydraulicHorsepower<T>(this T value) =>
-            Power.FromHydraulicHorsepower(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromHydraulicHorsepower(T)" />
+        public static Power<double> HydraulicHorsepower<T>(this T value) =>
+            Power<double>.FromHydraulicHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromJoulesPerHour(UnitsNet.QuantityValue)" />
-        public static Power JoulesPerHour<T>(this T value) =>
-            Power.FromJoulesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromJoulesPerHour(T)" />
+        public static Power<double> JoulesPerHour<T>(this T value) =>
+            Power<double>.FromJoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
-        public static Power KilobritishThermalUnitsPerHour<T>(this T value) =>
-            Power.FromKilobritishThermalUnitsPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromKilobritishThermalUnitsPerHour(T)" />
+        public static Power<double> KilobritishThermalUnitsPerHour<T>(this T value) =>
+            Power<double>.FromKilobritishThermalUnitsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilojoulesPerHour(UnitsNet.QuantityValue)" />
-        public static Power KilojoulesPerHour<T>(this T value) =>
-            Power.FromKilojoulesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromKilojoulesPerHour(T)" />
+        public static Power<double> KilojoulesPerHour<T>(this T value) =>
+            Power<double>.FromKilojoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilowatts(UnitsNet.QuantityValue)" />
-        public static Power Kilowatts<T>(this T value) =>
-            Power.FromKilowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromKilowatts(T)" />
+        public static Power<double> Kilowatts<T>(this T value) =>
+            Power<double>.FromKilowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMechanicalHorsepower(UnitsNet.QuantityValue)" />
-        public static Power MechanicalHorsepower<T>(this T value) =>
-            Power.FromMechanicalHorsepower(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMechanicalHorsepower(T)" />
+        public static Power<double> MechanicalHorsepower<T>(this T value) =>
+            Power<double>.FromMechanicalHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMegajoulesPerHour(UnitsNet.QuantityValue)" />
-        public static Power MegajoulesPerHour<T>(this T value) =>
-            Power.FromMegajoulesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMegajoulesPerHour(T)" />
+        public static Power<double> MegajoulesPerHour<T>(this T value) =>
+            Power<double>.FromMegajoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMegawatts(UnitsNet.QuantityValue)" />
-        public static Power Megawatts<T>(this T value) =>
-            Power.FromMegawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMegawatts(T)" />
+        public static Power<double> Megawatts<T>(this T value) =>
+            Power<double>.FromMegawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMetricHorsepower(UnitsNet.QuantityValue)" />
-        public static Power MetricHorsepower<T>(this T value) =>
-            Power.FromMetricHorsepower(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMetricHorsepower(T)" />
+        public static Power<double> MetricHorsepower<T>(this T value) =>
+            Power<double>.FromMetricHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMicrowatts(UnitsNet.QuantityValue)" />
-        public static Power Microwatts<T>(this T value) =>
-            Power.FromMicrowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMicrowatts(T)" />
+        public static Power<double> Microwatts<T>(this T value) =>
+            Power<double>.FromMicrowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMillijoulesPerHour(UnitsNet.QuantityValue)" />
-        public static Power MillijoulesPerHour<T>(this T value) =>
-            Power.FromMillijoulesPerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMillijoulesPerHour(T)" />
+        public static Power<double> MillijoulesPerHour<T>(this T value) =>
+            Power<double>.FromMillijoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMilliwatts(UnitsNet.QuantityValue)" />
-        public static Power Milliwatts<T>(this T value) =>
-            Power.FromMilliwatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromMilliwatts(T)" />
+        public static Power<double> Milliwatts<T>(this T value) =>
+            Power<double>.FromMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromNanowatts(UnitsNet.QuantityValue)" />
-        public static Power Nanowatts<T>(this T value) =>
-            Power.FromNanowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromNanowatts(T)" />
+        public static Power<double> Nanowatts<T>(this T value) =>
+            Power<double>.FromNanowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromPetawatts(UnitsNet.QuantityValue)" />
-        public static Power Petawatts<T>(this T value) =>
-            Power.FromPetawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromPetawatts(T)" />
+        public static Power<double> Petawatts<T>(this T value) =>
+            Power<double>.FromPetawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromPicowatts(UnitsNet.QuantityValue)" />
-        public static Power Picowatts<T>(this T value) =>
-            Power.FromPicowatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromPicowatts(T)" />
+        public static Power<double> Picowatts<T>(this T value) =>
+            Power<double>.FromPicowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromTerawatts(UnitsNet.QuantityValue)" />
-        public static Power Terawatts<T>(this T value) =>
-            Power.FromTerawatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromTerawatts(T)" />
+        public static Power<double> Terawatts<T>(this T value) =>
+            Power<double>.FromTerawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromWatts(UnitsNet.QuantityValue)" />
-        public static Power Watts<T>(this T value) =>
-            Power.FromWatts(Convert.ToDouble(value));
+        /// <inheritdoc cref="Power{T}.FromWatts(T)" />
+        public static Power<double> Watts<T>(this T value) =>
+            Power<double>.FromWatts(Convert.ToDouble(value));
 
     }
 }

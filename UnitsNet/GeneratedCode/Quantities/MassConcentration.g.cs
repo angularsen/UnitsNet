@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Mass_concentration_(chemistry)
     /// </remarks>
-    public partial struct MassConcentration : IQuantity<MassConcentrationUnit>, IEquatable<MassConcentration>, IComparable, IComparable<MassConcentration>, IConvertible, IFormattable
+    public partial struct MassConcentration<T> : IQuantityT<MassConcentrationUnit, T>, IEquatable<MassConcentration<T>>, IComparable, IComparable<MassConcentration<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -112,12 +108,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public MassConcentration(double value, MassConcentrationUnit unit)
+        public MassConcentration(T value, MassConcentrationUnit unit)
         {
             if(unit == MassConcentrationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -129,14 +125,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassConcentration(double value, UnitSystem unitSystem)
+        public MassConcentration(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -151,19 +147,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of MassConcentration, which is KilogramPerCubicMeter. All conversions go via this value.
+        ///     The base unit of <see cref="MassConcentration{T}" />, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
         public static MassConcentrationUnit BaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of MassConcentration
+        /// Represents the largest possible value of <see cref="MassConcentration{T}" />
         /// </summary>
-        public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, BaseUnit);
+        public static MassConcentration<T> MaxValue { get; } = new MassConcentration<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of MassConcentration
+        /// Represents the smallest possible value of <see cref="MassConcentration{T}" />
         /// </summary>
-        public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, BaseUnit);
+        public static MassConcentration<T> MinValue { get; } = new MassConcentration<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -172,14 +168,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.MassConcentration;
 
         /// <summary>
-        ///     All units of measurement for the MassConcentration quantity.
+        ///     All units of measurement for the <see cref="MassConcentration{T}" /> quantity.
         /// </summary>
         public static MassConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static MassConcentration Zero { get; } = new MassConcentration(0, BaseUnit);
+        public static MassConcentration<T> Zero { get; } = new MassConcentration<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -188,7 +184,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -204,251 +202,251 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => MassConcentration.QuantityType;
+        public QuantityType Type => MassConcentration<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => MassConcentration.BaseDimensions;
+        public BaseDimensions Dimensions => MassConcentration<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassConcentration in CentigramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerDeciliter.
         /// </summary>
-        public double CentigramsPerDeciliter => As(MassConcentrationUnit.CentigramPerDeciliter);
+        public T CentigramsPerDeciliter => As(MassConcentrationUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in CentigramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerLiter.
         /// </summary>
-        public double CentigramsPerLiter => As(MassConcentrationUnit.CentigramPerLiter);
+        public T CentigramsPerLiter => As(MassConcentrationUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in CentigramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerMicroliter.
         /// </summary>
-        public double CentigramsPerMicroliter => As(MassConcentrationUnit.CentigramPerMicroliter);
+        public T CentigramsPerMicroliter => As(MassConcentrationUnit.CentigramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in CentigramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in CentigramsPerMilliliter.
         /// </summary>
-        public double CentigramsPerMilliliter => As(MassConcentrationUnit.CentigramPerMilliliter);
+        public T CentigramsPerMilliliter => As(MassConcentrationUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in DecigramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerDeciliter.
         /// </summary>
-        public double DecigramsPerDeciliter => As(MassConcentrationUnit.DecigramPerDeciliter);
+        public T DecigramsPerDeciliter => As(MassConcentrationUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in DecigramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerLiter.
         /// </summary>
-        public double DecigramsPerLiter => As(MassConcentrationUnit.DecigramPerLiter);
+        public T DecigramsPerLiter => As(MassConcentrationUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in DecigramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerMicroliter.
         /// </summary>
-        public double DecigramsPerMicroliter => As(MassConcentrationUnit.DecigramPerMicroliter);
+        public T DecigramsPerMicroliter => As(MassConcentrationUnit.DecigramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in DecigramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in DecigramsPerMilliliter.
         /// </summary>
-        public double DecigramsPerMilliliter => As(MassConcentrationUnit.DecigramPerMilliliter);
+        public T DecigramsPerMilliliter => As(MassConcentrationUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerCubicCentimeter.
         /// </summary>
-        public double GramsPerCubicCentimeter => As(MassConcentrationUnit.GramPerCubicCentimeter);
+        public T GramsPerCubicCentimeter => As(MassConcentrationUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerCubicMeter.
         /// </summary>
-        public double GramsPerCubicMeter => As(MassConcentrationUnit.GramPerCubicMeter);
+        public T GramsPerCubicMeter => As(MassConcentrationUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerCubicMillimeter.
         /// </summary>
-        public double GramsPerCubicMillimeter => As(MassConcentrationUnit.GramPerCubicMillimeter);
+        public T GramsPerCubicMillimeter => As(MassConcentrationUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerDeciliter.
         /// </summary>
-        public double GramsPerDeciliter => As(MassConcentrationUnit.GramPerDeciliter);
+        public T GramsPerDeciliter => As(MassConcentrationUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerLiter.
         /// </summary>
-        public double GramsPerLiter => As(MassConcentrationUnit.GramPerLiter);
+        public T GramsPerLiter => As(MassConcentrationUnit.GramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerMicroliter.
         /// </summary>
-        public double GramsPerMicroliter => As(MassConcentrationUnit.GramPerMicroliter);
+        public T GramsPerMicroliter => As(MassConcentrationUnit.GramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in GramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in GramsPerMilliliter.
         /// </summary>
-        public double GramsPerMilliliter => As(MassConcentrationUnit.GramPerMilliliter);
+        public T GramsPerMilliliter => As(MassConcentrationUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in KilogramsPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in KilogramsPerCubicCentimeter.
         /// </summary>
-        public double KilogramsPerCubicCentimeter => As(MassConcentrationUnit.KilogramPerCubicCentimeter);
+        public T KilogramsPerCubicCentimeter => As(MassConcentrationUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Get MassConcentration in KilogramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> in KilogramsPerCubicMeter.
         /// </summary>
-        public double KilogramsPerCubicMeter => As(MassConcentrationUnit.KilogramPerCubicMeter);
+        public T KilogramsPerCubicMeter => As(MassConcentrationUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in KilogramsPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in KilogramsPerCubicMillimeter.
         /// </summary>
-        public double KilogramsPerCubicMillimeter => As(MassConcentrationUnit.KilogramPerCubicMillimeter);
+        public T KilogramsPerCubicMillimeter => As(MassConcentrationUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Get MassConcentration in KilogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in KilogramsPerLiter.
         /// </summary>
-        public double KilogramsPerLiter => As(MassConcentrationUnit.KilogramPerLiter);
+        public T KilogramsPerLiter => As(MassConcentrationUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in KilopoundsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> in KilopoundsPerCubicFoot.
         /// </summary>
-        public double KilopoundsPerCubicFoot => As(MassConcentrationUnit.KilopoundPerCubicFoot);
+        public T KilopoundsPerCubicFoot => As(MassConcentrationUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Get MassConcentration in KilopoundsPerCubicInch.
+        ///     Get <see cref="MassConcentration{T}" /> in KilopoundsPerCubicInch.
         /// </summary>
-        public double KilopoundsPerCubicInch => As(MassConcentrationUnit.KilopoundPerCubicInch);
+        public T KilopoundsPerCubicInch => As(MassConcentrationUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerCubicMeter.
         /// </summary>
-        public double MicrogramsPerCubicMeter => As(MassConcentrationUnit.MicrogramPerCubicMeter);
+        public T MicrogramsPerCubicMeter => As(MassConcentrationUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerDeciliter.
         /// </summary>
-        public double MicrogramsPerDeciliter => As(MassConcentrationUnit.MicrogramPerDeciliter);
+        public T MicrogramsPerDeciliter => As(MassConcentrationUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerLiter.
         /// </summary>
-        public double MicrogramsPerLiter => As(MassConcentrationUnit.MicrogramPerLiter);
+        public T MicrogramsPerLiter => As(MassConcentrationUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerMicroliter.
         /// </summary>
-        public double MicrogramsPerMicroliter => As(MassConcentrationUnit.MicrogramPerMicroliter);
+        public T MicrogramsPerMicroliter => As(MassConcentrationUnit.MicrogramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in MicrogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MicrogramsPerMilliliter.
         /// </summary>
-        public double MicrogramsPerMilliliter => As(MassConcentrationUnit.MicrogramPerMilliliter);
+        public T MicrogramsPerMilliliter => As(MassConcentrationUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerCubicMeter.
         /// </summary>
-        public double MilligramsPerCubicMeter => As(MassConcentrationUnit.MilligramPerCubicMeter);
+        public T MilligramsPerCubicMeter => As(MassConcentrationUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerDeciliter.
         /// </summary>
-        public double MilligramsPerDeciliter => As(MassConcentrationUnit.MilligramPerDeciliter);
+        public T MilligramsPerDeciliter => As(MassConcentrationUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerLiter.
         /// </summary>
-        public double MilligramsPerLiter => As(MassConcentrationUnit.MilligramPerLiter);
+        public T MilligramsPerLiter => As(MassConcentrationUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerMicroliter.
         /// </summary>
-        public double MilligramsPerMicroliter => As(MassConcentrationUnit.MilligramPerMicroliter);
+        public T MilligramsPerMicroliter => As(MassConcentrationUnit.MilligramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in MilligramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in MilligramsPerMilliliter.
         /// </summary>
-        public double MilligramsPerMilliliter => As(MassConcentrationUnit.MilligramPerMilliliter);
+        public T MilligramsPerMilliliter => As(MassConcentrationUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in NanogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerDeciliter.
         /// </summary>
-        public double NanogramsPerDeciliter => As(MassConcentrationUnit.NanogramPerDeciliter);
+        public T NanogramsPerDeciliter => As(MassConcentrationUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in NanogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerLiter.
         /// </summary>
-        public double NanogramsPerLiter => As(MassConcentrationUnit.NanogramPerLiter);
+        public T NanogramsPerLiter => As(MassConcentrationUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in NanogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerMicroliter.
         /// </summary>
-        public double NanogramsPerMicroliter => As(MassConcentrationUnit.NanogramPerMicroliter);
+        public T NanogramsPerMicroliter => As(MassConcentrationUnit.NanogramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in NanogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in NanogramsPerMilliliter.
         /// </summary>
-        public double NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
+        public T NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in PicogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerDeciliter.
         /// </summary>
-        public double PicogramsPerDeciliter => As(MassConcentrationUnit.PicogramPerDeciliter);
+        public T PicogramsPerDeciliter => As(MassConcentrationUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Get MassConcentration in PicogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerLiter.
         /// </summary>
-        public double PicogramsPerLiter => As(MassConcentrationUnit.PicogramPerLiter);
+        public T PicogramsPerLiter => As(MassConcentrationUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Get MassConcentration in PicogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerMicroliter.
         /// </summary>
-        public double PicogramsPerMicroliter => As(MassConcentrationUnit.PicogramPerMicroliter);
+        public T PicogramsPerMicroliter => As(MassConcentrationUnit.PicogramPerMicroliter);
 
         /// <summary>
-        ///     Get MassConcentration in PicogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> in PicogramsPerMilliliter.
         /// </summary>
-        public double PicogramsPerMilliliter => As(MassConcentrationUnit.PicogramPerMilliliter);
+        public T PicogramsPerMilliliter => As(MassConcentrationUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Get MassConcentration in PoundsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> in PoundsPerCubicFoot.
         /// </summary>
-        public double PoundsPerCubicFoot => As(MassConcentrationUnit.PoundPerCubicFoot);
+        public T PoundsPerCubicFoot => As(MassConcentrationUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Get MassConcentration in PoundsPerCubicInch.
+        ///     Get <see cref="MassConcentration{T}" /> in PoundsPerCubicInch.
         /// </summary>
-        public double PoundsPerCubicInch => As(MassConcentrationUnit.PoundPerCubicInch);
+        public T PoundsPerCubicInch => As(MassConcentrationUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Get MassConcentration in PoundsPerImperialGallon.
+        ///     Get <see cref="MassConcentration{T}" /> in PoundsPerImperialGallon.
         /// </summary>
-        public double PoundsPerImperialGallon => As(MassConcentrationUnit.PoundPerImperialGallon);
+        public T PoundsPerImperialGallon => As(MassConcentrationUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Get MassConcentration in PoundsPerUSGallon.
+        ///     Get <see cref="MassConcentration{T}" /> in PoundsPerUSGallon.
         /// </summary>
-        public double PoundsPerUSGallon => As(MassConcentrationUnit.PoundPerUSGallon);
+        public T PoundsPerUSGallon => As(MassConcentrationUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Get MassConcentration in SlugsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> in SlugsPerCubicFoot.
         /// </summary>
-        public double SlugsPerCubicFoot => As(MassConcentrationUnit.SlugPerCubicFoot);
+        public T SlugsPerCubicFoot => As(MassConcentrationUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Get MassConcentration in TonnesPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in TonnesPerCubicCentimeter.
         /// </summary>
-        public double TonnesPerCubicCentimeter => As(MassConcentrationUnit.TonnePerCubicCentimeter);
+        public T TonnesPerCubicCentimeter => As(MassConcentrationUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Get MassConcentration in TonnesPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> in TonnesPerCubicMeter.
         /// </summary>
-        public double TonnesPerCubicMeter => As(MassConcentrationUnit.TonnePerCubicMeter);
+        public T TonnesPerCubicMeter => As(MassConcentrationUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Get MassConcentration in TonnesPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> in TonnesPerCubicMillimeter.
         /// </summary>
-        public double TonnesPerCubicMillimeter => As(MassConcentrationUnit.TonnePerCubicMillimeter);
+        public T TonnesPerCubicMillimeter => As(MassConcentrationUnit.TonnePerCubicMillimeter);
 
         #endregion
 
@@ -480,438 +478,391 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassConcentration from CentigramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromCentigramsPerDeciliter(QuantityValue centigramsperdeciliter)
+        public static MassConcentration<T> FromCentigramsPerDeciliter(T centigramsperdeciliter)
         {
-            double value = (double) centigramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.CentigramPerDeciliter);
+            return new MassConcentration<T>(centigramsperdeciliter, MassConcentrationUnit.CentigramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from CentigramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromCentigramsPerLiter(QuantityValue centigramsperliter)
+        public static MassConcentration<T> FromCentigramsPerLiter(T centigramsperliter)
         {
-            double value = (double) centigramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.CentigramPerLiter);
+            return new MassConcentration<T>(centigramsperliter, MassConcentrationUnit.CentigramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from CentigramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromCentigramsPerMicroliter(QuantityValue centigramspermicroliter)
+        public static MassConcentration<T> FromCentigramsPerMicroliter(T centigramspermicroliter)
         {
-            double value = (double) centigramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.CentigramPerMicroliter);
+            return new MassConcentration<T>(centigramspermicroliter, MassConcentrationUnit.CentigramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from CentigramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from CentigramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
+        public static MassConcentration<T> FromCentigramsPerMilliliter(T centigramspermilliliter)
         {
-            double value = (double) centigramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.CentigramPerMilliliter);
+            return new MassConcentration<T>(centigramspermilliliter, MassConcentrationUnit.CentigramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from DecigramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromDecigramsPerDeciliter(QuantityValue decigramsperdeciliter)
+        public static MassConcentration<T> FromDecigramsPerDeciliter(T decigramsperdeciliter)
         {
-            double value = (double) decigramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.DecigramPerDeciliter);
+            return new MassConcentration<T>(decigramsperdeciliter, MassConcentrationUnit.DecigramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from DecigramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromDecigramsPerLiter(QuantityValue decigramsperliter)
+        public static MassConcentration<T> FromDecigramsPerLiter(T decigramsperliter)
         {
-            double value = (double) decigramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.DecigramPerLiter);
+            return new MassConcentration<T>(decigramsperliter, MassConcentrationUnit.DecigramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from DecigramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromDecigramsPerMicroliter(QuantityValue decigramspermicroliter)
+        public static MassConcentration<T> FromDecigramsPerMicroliter(T decigramspermicroliter)
         {
-            double value = (double) decigramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.DecigramPerMicroliter);
+            return new MassConcentration<T>(decigramspermicroliter, MassConcentrationUnit.DecigramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from DecigramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from DecigramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
+        public static MassConcentration<T> FromDecigramsPerMilliliter(T decigramspermilliliter)
         {
-            double value = (double) decigramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.DecigramPerMilliliter);
+            return new MassConcentration<T>(decigramspermilliliter, MassConcentrationUnit.DecigramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
+        public static MassConcentration<T> FromGramsPerCubicCentimeter(T gramspercubiccentimeter)
         {
-            double value = (double) gramspercubiccentimeter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerCubicCentimeter);
+            return new MassConcentration<T>(gramspercubiccentimeter, MassConcentrationUnit.GramPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
+        public static MassConcentration<T> FromGramsPerCubicMeter(T gramspercubicmeter)
         {
-            double value = (double) gramspercubicmeter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMeter);
+            return new MassConcentration<T>(gramspercubicmeter, MassConcentrationUnit.GramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
+        public static MassConcentration<T> FromGramsPerCubicMillimeter(T gramspercubicmillimeter)
         {
-            double value = (double) gramspercubicmillimeter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMillimeter);
+            return new MassConcentration<T>(gramspercubicmillimeter, MassConcentrationUnit.GramPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerDeciliter(QuantityValue gramsperdeciliter)
+        public static MassConcentration<T> FromGramsPerDeciliter(T gramsperdeciliter)
         {
-            double value = (double) gramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerDeciliter);
+            return new MassConcentration<T>(gramsperdeciliter, MassConcentrationUnit.GramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerLiter(QuantityValue gramsperliter)
+        public static MassConcentration<T> FromGramsPerLiter(T gramsperliter)
         {
-            double value = (double) gramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerLiter);
+            return new MassConcentration<T>(gramsperliter, MassConcentrationUnit.GramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerMicroliter(QuantityValue gramspermicroliter)
+        public static MassConcentration<T> FromGramsPerMicroliter(T gramspermicroliter)
         {
-            double value = (double) gramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerMicroliter);
+            return new MassConcentration<T>(gramspermicroliter, MassConcentrationUnit.GramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from GramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from GramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromGramsPerMilliliter(QuantityValue gramspermilliliter)
+        public static MassConcentration<T> FromGramsPerMilliliter(T gramspermilliliter)
         {
-            double value = (double) gramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.GramPerMilliliter);
+            return new MassConcentration<T>(gramspermilliliter, MassConcentrationUnit.GramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from KilogramsPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from KilogramsPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
+        public static MassConcentration<T> FromKilogramsPerCubicCentimeter(T kilogramspercubiccentimeter)
         {
-            double value = (double) kilogramspercubiccentimeter;
-            return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicCentimeter);
+            return new MassConcentration<T>(kilogramspercubiccentimeter, MassConcentrationUnit.KilogramPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from KilogramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> from KilogramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
+        public static MassConcentration<T> FromKilogramsPerCubicMeter(T kilogramspercubicmeter)
         {
-            double value = (double) kilogramspercubicmeter;
-            return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMeter);
+            return new MassConcentration<T>(kilogramspercubicmeter, MassConcentrationUnit.KilogramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from KilogramsPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from KilogramsPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
+        public static MassConcentration<T> FromKilogramsPerCubicMillimeter(T kilogramspercubicmillimeter)
         {
-            double value = (double) kilogramspercubicmillimeter;
-            return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMillimeter);
+            return new MassConcentration<T>(kilogramspercubicmillimeter, MassConcentrationUnit.KilogramPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from KilogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from KilogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilogramsPerLiter(QuantityValue kilogramsperliter)
+        public static MassConcentration<T> FromKilogramsPerLiter(T kilogramsperliter)
         {
-            double value = (double) kilogramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.KilogramPerLiter);
+            return new MassConcentration<T>(kilogramsperliter, MassConcentrationUnit.KilogramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from KilopoundsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> from KilopoundsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
+        public static MassConcentration<T> FromKilopoundsPerCubicFoot(T kilopoundspercubicfoot)
         {
-            double value = (double) kilopoundspercubicfoot;
-            return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicFoot);
+            return new MassConcentration<T>(kilopoundspercubicfoot, MassConcentrationUnit.KilopoundPerCubicFoot);
         }
         /// <summary>
-        ///     Get MassConcentration from KilopoundsPerCubicInch.
+        ///     Get <see cref="MassConcentration{T}" /> from KilopoundsPerCubicInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
+        public static MassConcentration<T> FromKilopoundsPerCubicInch(T kilopoundspercubicinch)
         {
-            double value = (double) kilopoundspercubicinch;
-            return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicInch);
+            return new MassConcentration<T>(kilopoundspercubicinch, MassConcentrationUnit.KilopoundPerCubicInch);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
+        public static MassConcentration<T> FromMicrogramsPerCubicMeter(T microgramspercubicmeter)
         {
-            double value = (double) microgramspercubicmeter;
-            return new MassConcentration(value, MassConcentrationUnit.MicrogramPerCubicMeter);
+            return new MassConcentration<T>(microgramspercubicmeter, MassConcentrationUnit.MicrogramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMicrogramsPerDeciliter(QuantityValue microgramsperdeciliter)
+        public static MassConcentration<T> FromMicrogramsPerDeciliter(T microgramsperdeciliter)
         {
-            double value = (double) microgramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.MicrogramPerDeciliter);
+            return new MassConcentration<T>(microgramsperdeciliter, MassConcentrationUnit.MicrogramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMicrogramsPerLiter(QuantityValue microgramsperliter)
+        public static MassConcentration<T> FromMicrogramsPerLiter(T microgramsperliter)
         {
-            double value = (double) microgramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.MicrogramPerLiter);
+            return new MassConcentration<T>(microgramsperliter, MassConcentrationUnit.MicrogramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMicrogramsPerMicroliter(QuantityValue microgramspermicroliter)
+        public static MassConcentration<T> FromMicrogramsPerMicroliter(T microgramspermicroliter)
         {
-            double value = (double) microgramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMicroliter);
+            return new MassConcentration<T>(microgramspermicroliter, MassConcentrationUnit.MicrogramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from MicrogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MicrogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
+        public static MassConcentration<T> FromMicrogramsPerMilliliter(T microgramspermilliliter)
         {
-            double value = (double) microgramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMilliliter);
+            return new MassConcentration<T>(microgramspermilliliter, MassConcentrationUnit.MicrogramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
+        public static MassConcentration<T> FromMilligramsPerCubicMeter(T milligramspercubicmeter)
         {
-            double value = (double) milligramspercubicmeter;
-            return new MassConcentration(value, MassConcentrationUnit.MilligramPerCubicMeter);
+            return new MassConcentration<T>(milligramspercubicmeter, MassConcentrationUnit.MilligramPerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMilligramsPerDeciliter(QuantityValue milligramsperdeciliter)
+        public static MassConcentration<T> FromMilligramsPerDeciliter(T milligramsperdeciliter)
         {
-            double value = (double) milligramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.MilligramPerDeciliter);
+            return new MassConcentration<T>(milligramsperdeciliter, MassConcentrationUnit.MilligramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMilligramsPerLiter(QuantityValue milligramsperliter)
+        public static MassConcentration<T> FromMilligramsPerLiter(T milligramsperliter)
         {
-            double value = (double) milligramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.MilligramPerLiter);
+            return new MassConcentration<T>(milligramsperliter, MassConcentrationUnit.MilligramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMilligramsPerMicroliter(QuantityValue milligramspermicroliter)
+        public static MassConcentration<T> FromMilligramsPerMicroliter(T milligramspermicroliter)
         {
-            double value = (double) milligramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.MilligramPerMicroliter);
+            return new MassConcentration<T>(milligramspermicroliter, MassConcentrationUnit.MilligramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from MilligramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from MilligramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
+        public static MassConcentration<T> FromMilligramsPerMilliliter(T milligramspermilliliter)
         {
-            double value = (double) milligramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.MilligramPerMilliliter);
+            return new MassConcentration<T>(milligramspermilliliter, MassConcentrationUnit.MilligramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from NanogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromNanogramsPerDeciliter(QuantityValue nanogramsperdeciliter)
+        public static MassConcentration<T> FromNanogramsPerDeciliter(T nanogramsperdeciliter)
         {
-            double value = (double) nanogramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.NanogramPerDeciliter);
+            return new MassConcentration<T>(nanogramsperdeciliter, MassConcentrationUnit.NanogramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from NanogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromNanogramsPerLiter(QuantityValue nanogramsperliter)
+        public static MassConcentration<T> FromNanogramsPerLiter(T nanogramsperliter)
         {
-            double value = (double) nanogramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.NanogramPerLiter);
+            return new MassConcentration<T>(nanogramsperliter, MassConcentrationUnit.NanogramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from NanogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromNanogramsPerMicroliter(QuantityValue nanogramspermicroliter)
+        public static MassConcentration<T> FromNanogramsPerMicroliter(T nanogramspermicroliter)
         {
-            double value = (double) nanogramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.NanogramPerMicroliter);
+            return new MassConcentration<T>(nanogramspermicroliter, MassConcentrationUnit.NanogramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from NanogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from NanogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
+        public static MassConcentration<T> FromNanogramsPerMilliliter(T nanogramspermilliliter)
         {
-            double value = (double) nanogramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.NanogramPerMilliliter);
+            return new MassConcentration<T>(nanogramspermilliliter, MassConcentrationUnit.NanogramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from PicogramsPerDeciliter.
+        ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerDeciliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPicogramsPerDeciliter(QuantityValue picogramsperdeciliter)
+        public static MassConcentration<T> FromPicogramsPerDeciliter(T picogramsperdeciliter)
         {
-            double value = (double) picogramsperdeciliter;
-            return new MassConcentration(value, MassConcentrationUnit.PicogramPerDeciliter);
+            return new MassConcentration<T>(picogramsperdeciliter, MassConcentrationUnit.PicogramPerDeciliter);
         }
         /// <summary>
-        ///     Get MassConcentration from PicogramsPerLiter.
+        ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPicogramsPerLiter(QuantityValue picogramsperliter)
+        public static MassConcentration<T> FromPicogramsPerLiter(T picogramsperliter)
         {
-            double value = (double) picogramsperliter;
-            return new MassConcentration(value, MassConcentrationUnit.PicogramPerLiter);
+            return new MassConcentration<T>(picogramsperliter, MassConcentrationUnit.PicogramPerLiter);
         }
         /// <summary>
-        ///     Get MassConcentration from PicogramsPerMicroliter.
+        ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerMicroliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPicogramsPerMicroliter(QuantityValue picogramspermicroliter)
+        public static MassConcentration<T> FromPicogramsPerMicroliter(T picogramspermicroliter)
         {
-            double value = (double) picogramspermicroliter;
-            return new MassConcentration(value, MassConcentrationUnit.PicogramPerMicroliter);
+            return new MassConcentration<T>(picogramspermicroliter, MassConcentrationUnit.PicogramPerMicroliter);
         }
         /// <summary>
-        ///     Get MassConcentration from PicogramsPerMilliliter.
+        ///     Get <see cref="MassConcentration{T}" /> from PicogramsPerMilliliter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
+        public static MassConcentration<T> FromPicogramsPerMilliliter(T picogramspermilliliter)
         {
-            double value = (double) picogramspermilliliter;
-            return new MassConcentration(value, MassConcentrationUnit.PicogramPerMilliliter);
+            return new MassConcentration<T>(picogramspermilliliter, MassConcentrationUnit.PicogramPerMilliliter);
         }
         /// <summary>
-        ///     Get MassConcentration from PoundsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> from PoundsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
+        public static MassConcentration<T> FromPoundsPerCubicFoot(T poundspercubicfoot)
         {
-            double value = (double) poundspercubicfoot;
-            return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicFoot);
+            return new MassConcentration<T>(poundspercubicfoot, MassConcentrationUnit.PoundPerCubicFoot);
         }
         /// <summary>
-        ///     Get MassConcentration from PoundsPerCubicInch.
+        ///     Get <see cref="MassConcentration{T}" /> from PoundsPerCubicInch.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
+        public static MassConcentration<T> FromPoundsPerCubicInch(T poundspercubicinch)
         {
-            double value = (double) poundspercubicinch;
-            return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicInch);
+            return new MassConcentration<T>(poundspercubicinch, MassConcentrationUnit.PoundPerCubicInch);
         }
         /// <summary>
-        ///     Get MassConcentration from PoundsPerImperialGallon.
+        ///     Get <see cref="MassConcentration{T}" /> from PoundsPerImperialGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
+        public static MassConcentration<T> FromPoundsPerImperialGallon(T poundsperimperialgallon)
         {
-            double value = (double) poundsperimperialgallon;
-            return new MassConcentration(value, MassConcentrationUnit.PoundPerImperialGallon);
+            return new MassConcentration<T>(poundsperimperialgallon, MassConcentrationUnit.PoundPerImperialGallon);
         }
         /// <summary>
-        ///     Get MassConcentration from PoundsPerUSGallon.
+        ///     Get <see cref="MassConcentration{T}" /> from PoundsPerUSGallon.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
+        public static MassConcentration<T> FromPoundsPerUSGallon(T poundsperusgallon)
         {
-            double value = (double) poundsperusgallon;
-            return new MassConcentration(value, MassConcentrationUnit.PoundPerUSGallon);
+            return new MassConcentration<T>(poundsperusgallon, MassConcentrationUnit.PoundPerUSGallon);
         }
         /// <summary>
-        ///     Get MassConcentration from SlugsPerCubicFoot.
+        ///     Get <see cref="MassConcentration{T}" /> from SlugsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
+        public static MassConcentration<T> FromSlugsPerCubicFoot(T slugspercubicfoot)
         {
-            double value = (double) slugspercubicfoot;
-            return new MassConcentration(value, MassConcentrationUnit.SlugPerCubicFoot);
+            return new MassConcentration<T>(slugspercubicfoot, MassConcentrationUnit.SlugPerCubicFoot);
         }
         /// <summary>
-        ///     Get MassConcentration from TonnesPerCubicCentimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from TonnesPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
+        public static MassConcentration<T> FromTonnesPerCubicCentimeter(T tonnespercubiccentimeter)
         {
-            double value = (double) tonnespercubiccentimeter;
-            return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicCentimeter);
+            return new MassConcentration<T>(tonnespercubiccentimeter, MassConcentrationUnit.TonnePerCubicCentimeter);
         }
         /// <summary>
-        ///     Get MassConcentration from TonnesPerCubicMeter.
+        ///     Get <see cref="MassConcentration{T}" /> from TonnesPerCubicMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
+        public static MassConcentration<T> FromTonnesPerCubicMeter(T tonnespercubicmeter)
         {
-            double value = (double) tonnespercubicmeter;
-            return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMeter);
+            return new MassConcentration<T>(tonnespercubicmeter, MassConcentrationUnit.TonnePerCubicMeter);
         }
         /// <summary>
-        ///     Get MassConcentration from TonnesPerCubicMillimeter.
+        ///     Get <see cref="MassConcentration{T}" /> from TonnesPerCubicMillimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassConcentration FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)
+        public static MassConcentration<T> FromTonnesPerCubicMillimeter(T tonnespercubicmillimeter)
         {
-            double value = (double) tonnespercubicmillimeter;
-            return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMillimeter);
+            return new MassConcentration<T>(tonnespercubicmillimeter, MassConcentrationUnit.TonnePerCubicMillimeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassConcentrationUnit" /> to <see cref="MassConcentration" />.
+        ///     Dynamically convert from value and unit enum <see cref="MassConcentrationUnit" /> to <see cref="MassConcentration{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassConcentration unit value.</returns>
-        public static MassConcentration From(QuantityValue value, MassConcentrationUnit fromUnit)
+        /// <returns><see cref="MassConcentration{T}" /> unit value.</returns>
+        public static MassConcentration<T> From(T value, MassConcentrationUnit fromUnit)
         {
-            return new MassConcentration((double)value, fromUnit);
+            return new MassConcentration<T>(value, fromUnit);
         }
 
         #endregion
@@ -940,7 +891,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MassConcentration Parse(string str)
+        public static MassConcentration<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -968,9 +919,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MassConcentration Parse(string str, IFormatProvider? provider)
+        public static MassConcentration<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassConcentration, MassConcentrationUnit>(
+            return QuantityParser.Default.Parse<T, MassConcentration<T>, MassConcentrationUnit>(
                 str,
                 provider,
                 From);
@@ -984,7 +935,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out MassConcentration result)
+        public static bool TryParse(string? str, out MassConcentration<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -999,9 +950,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration<T> result)
         {
-            return QuantityParser.Default.TryParse<MassConcentration, MassConcentrationUnit>(
+            return QuantityParser.Default.TryParse<T, MassConcentration<T>, MassConcentrationUnit>(
                 str,
                 provider,
                 From,
@@ -1063,45 +1014,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static MassConcentration operator -(MassConcentration right)
+        public static MassConcentration<T> operator -(MassConcentration<T> right)
         {
-            return new MassConcentration(-right.Value, right.Unit);
+            return new MassConcentration<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="MassConcentration"/> from adding two <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator +(MassConcentration left, MassConcentration right)
+        /// <summary>Get <see cref="MassConcentration{T}"/> from adding two <see cref="MassConcentration{T}"/>.</summary>
+        public static MassConcentration<T> operator +(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return new MassConcentration(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new MassConcentration<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MassConcentration"/> from subtracting two <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator -(MassConcentration left, MassConcentration right)
+        /// <summary>Get <see cref="MassConcentration{T}"/> from subtracting two <see cref="MassConcentration{T}"/>.</summary>
+        public static MassConcentration<T> operator -(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return new MassConcentration(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new MassConcentration<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MassConcentration"/> from multiplying value and <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator *(double left, MassConcentration right)
+        /// <summary>Get <see cref="MassConcentration{T}"/> from multiplying value and <see cref="MassConcentration{T}"/>.</summary>
+        public static MassConcentration<T> operator *(T left, MassConcentration<T> right)
         {
-            return new MassConcentration(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new MassConcentration<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="MassConcentration"/> from multiplying value and <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator *(MassConcentration left, double right)
+        /// <summary>Get <see cref="MassConcentration{T}"/> from multiplying value and <see cref="MassConcentration{T}"/>.</summary>
+        public static MassConcentration<T> operator *(MassConcentration<T> left, T right)
         {
-            return new MassConcentration(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new MassConcentration<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="MassConcentration"/> from dividing <see cref="MassConcentration"/> by value.</summary>
-        public static MassConcentration operator /(MassConcentration left, double right)
+        /// <summary>Get <see cref="MassConcentration{T}"/> from dividing <see cref="MassConcentration{T}"/> by value.</summary>
+        public static MassConcentration<T> operator /(MassConcentration<T> left, T right)
         {
-            return new MassConcentration(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new MassConcentration<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="MassConcentration"/> by <see cref="MassConcentration"/>.</summary>
-        public static double operator /(MassConcentration left, MassConcentration right)
+        /// <summary>Get ratio value from dividing <see cref="MassConcentration{T}"/> by <see cref="MassConcentration{T}"/>.</summary>
+        public static T operator /(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
+            return CompiledLambdas.Divide(left.KilogramsPerCubicMeter, right.KilogramsPerCubicMeter);
         }
 
         #endregion
@@ -1109,39 +1065,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(MassConcentration left, MassConcentration right)
+        public static bool operator <=(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(MassConcentration left, MassConcentration right)
+        public static bool operator >=(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(MassConcentration left, MassConcentration right)
+        public static bool operator <(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(MassConcentration left, MassConcentration right)
+        public static bool operator >(MassConcentration<T> left, MassConcentration<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MassConcentration left, MassConcentration right)
+        /// <remarks>Consider using <see cref="Equals(MassConcentration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MassConcentration<T> left, MassConcentration<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MassConcentration left, MassConcentration right)
+        /// <remarks>Consider using <see cref="Equals(MassConcentration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MassConcentration<T> left, MassConcentration<T> right)
         {
             return !(left == right);
         }
@@ -1150,37 +1106,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MassConcentration objMassConcentration)) throw new ArgumentException("Expected type MassConcentration.", nameof(obj));
+            if(!(obj is MassConcentration<T> objMassConcentration)) throw new ArgumentException("Expected type MassConcentration.", nameof(obj));
 
             return CompareTo(objMassConcentration);
         }
 
         /// <inheritdoc />
-        public int CompareTo(MassConcentration other)
+        public int CompareTo(MassConcentration<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(MassConcentration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MassConcentration objMassConcentration))
+            if(obj is null || !(obj is MassConcentration<T> objMassConcentration))
                 return false;
 
             return Equals(objMassConcentration);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MassConcentration other)
+        /// <remarks>Consider using <see cref="Equals(MassConcentration{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MassConcentration<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another MassConcentration within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="MassConcentration{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -1218,21 +1174,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(MassConcentration other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(MassConcentration<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current MassConcentration.</returns>
+        /// <returns>A hash code for the current <see cref="MassConcentration{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -1246,17 +1200,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassConcentrationUnit unit)
+        public T As(MassConcentrationUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1276,17 +1230,22 @@ namespace UnitsNet
             if(!(unit is MassConcentrationUnit unitAsMassConcentrationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsMassConcentrationUnit);
+            var asValue = As(unitAsMassConcentrationUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<MassConcentrationUnit>.As(MassConcentrationUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this MassConcentration to another MassConcentration with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="MassConcentration{T}" /> to another <see cref="MassConcentration{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A MassConcentration with the specified unit.</returns>
-        public MassConcentration ToUnit(MassConcentrationUnit unit)
+        /// <returns>A <see cref="MassConcentration{T}" /> with the specified unit.</returns>
+        public MassConcentration<T> ToUnit(MassConcentrationUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new MassConcentration(convertedValue, unit);
+            return new MassConcentration<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -1299,7 +1258,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassConcentration ToUnit(UnitSystem unitSystem)
+        public MassConcentration<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1320,64 +1279,70 @@ namespace UnitsNet
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(MassConcentrationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<MassConcentrationUnit, T> IQuantityT<MassConcentrationUnit, T>.ToUnit(MassConcentrationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<MassConcentrationUnit, T> IQuantityT<MassConcentrationUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MassConcentrationUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
-                case MassConcentrationUnit.CentigramPerLiter: return (_value) * 1e-2d;
-                case MassConcentrationUnit.CentigramPerMicroliter: return (_value/1e-6) * 1e-2d;
-                case MassConcentrationUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
-                case MassConcentrationUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
-                case MassConcentrationUnit.DecigramPerLiter: return (_value) * 1e-1d;
-                case MassConcentrationUnit.DecigramPerMicroliter: return (_value/1e-6) * 1e-1d;
-                case MassConcentrationUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
-                case MassConcentrationUnit.GramPerCubicCentimeter: return _value/1e-3;
-                case MassConcentrationUnit.GramPerCubicMeter: return _value/1e3;
-                case MassConcentrationUnit.GramPerCubicMillimeter: return _value/1e-6;
-                case MassConcentrationUnit.GramPerDeciliter: return _value/1e-1;
-                case MassConcentrationUnit.GramPerLiter: return _value;
-                case MassConcentrationUnit.GramPerMicroliter: return _value/1e-6;
-                case MassConcentrationUnit.GramPerMilliliter: return _value/1e-3;
-                case MassConcentrationUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
-                case MassConcentrationUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
-                case MassConcentrationUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case MassConcentrationUnit.KilogramPerLiter: return (_value) * 1e3d;
-                case MassConcentrationUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
-                case MassConcentrationUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
-                case MassConcentrationUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
-                case MassConcentrationUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
-                case MassConcentrationUnit.MicrogramPerLiter: return (_value) * 1e-6d;
-                case MassConcentrationUnit.MicrogramPerMicroliter: return (_value/1e-6) * 1e-6d;
-                case MassConcentrationUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
-                case MassConcentrationUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
-                case MassConcentrationUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
-                case MassConcentrationUnit.MilligramPerLiter: return (_value) * 1e-3d;
-                case MassConcentrationUnit.MilligramPerMicroliter: return (_value/1e-6) * 1e-3d;
-                case MassConcentrationUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
-                case MassConcentrationUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
-                case MassConcentrationUnit.NanogramPerLiter: return (_value) * 1e-9d;
-                case MassConcentrationUnit.NanogramPerMicroliter: return (_value/1e-6) * 1e-9d;
-                case MassConcentrationUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
-                case MassConcentrationUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
-                case MassConcentrationUnit.PicogramPerLiter: return (_value) * 1e-12d;
-                case MassConcentrationUnit.PicogramPerMicroliter: return (_value/1e-6) * 1e-12d;
-                case MassConcentrationUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
-                case MassConcentrationUnit.PoundPerCubicFoot: return _value/0.062427961;
-                case MassConcentrationUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
-                case MassConcentrationUnit.PoundPerImperialGallon: return _value*9.9776398e1;
-                case MassConcentrationUnit.PoundPerUSGallon: return _value*1.19826427e2;
-                case MassConcentrationUnit.SlugPerCubicFoot: return _value*515.378818;
-                case MassConcentrationUnit.TonnePerCubicCentimeter: return _value/1e-9;
-                case MassConcentrationUnit.TonnePerCubicMeter: return _value/0.001;
-                case MassConcentrationUnit.TonnePerCubicMillimeter: return _value/1e-12;
+                case MassConcentrationUnit.CentigramPerDeciliter: return (Value/1e-1) * 1e-2d;
+                case MassConcentrationUnit.CentigramPerLiter: return (Value) * 1e-2d;
+                case MassConcentrationUnit.CentigramPerMicroliter: return (Value/1e-6) * 1e-2d;
+                case MassConcentrationUnit.CentigramPerMilliliter: return (Value/1e-3) * 1e-2d;
+                case MassConcentrationUnit.DecigramPerDeciliter: return (Value/1e-1) * 1e-1d;
+                case MassConcentrationUnit.DecigramPerLiter: return (Value) * 1e-1d;
+                case MassConcentrationUnit.DecigramPerMicroliter: return (Value/1e-6) * 1e-1d;
+                case MassConcentrationUnit.DecigramPerMilliliter: return (Value/1e-3) * 1e-1d;
+                case MassConcentrationUnit.GramPerCubicCentimeter: return Value/1e-3;
+                case MassConcentrationUnit.GramPerCubicMeter: return Value/1e3;
+                case MassConcentrationUnit.GramPerCubicMillimeter: return Value/1e-6;
+                case MassConcentrationUnit.GramPerDeciliter: return Value/1e-1;
+                case MassConcentrationUnit.GramPerLiter: return Value;
+                case MassConcentrationUnit.GramPerMicroliter: return Value/1e-6;
+                case MassConcentrationUnit.GramPerMilliliter: return Value/1e-3;
+                case MassConcentrationUnit.KilogramPerCubicCentimeter: return (Value/1e-3) * 1e3d;
+                case MassConcentrationUnit.KilogramPerCubicMeter: return (Value/1e3) * 1e3d;
+                case MassConcentrationUnit.KilogramPerCubicMillimeter: return (Value/1e-6) * 1e3d;
+                case MassConcentrationUnit.KilogramPerLiter: return (Value) * 1e3d;
+                case MassConcentrationUnit.KilopoundPerCubicFoot: return (Value/0.062427961) * 1e3d;
+                case MassConcentrationUnit.KilopoundPerCubicInch: return (Value/3.6127298147753e-5) * 1e3d;
+                case MassConcentrationUnit.MicrogramPerCubicMeter: return (Value/1e3) * 1e-6d;
+                case MassConcentrationUnit.MicrogramPerDeciliter: return (Value/1e-1) * 1e-6d;
+                case MassConcentrationUnit.MicrogramPerLiter: return (Value) * 1e-6d;
+                case MassConcentrationUnit.MicrogramPerMicroliter: return (Value/1e-6) * 1e-6d;
+                case MassConcentrationUnit.MicrogramPerMilliliter: return (Value/1e-3) * 1e-6d;
+                case MassConcentrationUnit.MilligramPerCubicMeter: return (Value/1e3) * 1e-3d;
+                case MassConcentrationUnit.MilligramPerDeciliter: return (Value/1e-1) * 1e-3d;
+                case MassConcentrationUnit.MilligramPerLiter: return (Value) * 1e-3d;
+                case MassConcentrationUnit.MilligramPerMicroliter: return (Value/1e-6) * 1e-3d;
+                case MassConcentrationUnit.MilligramPerMilliliter: return (Value/1e-3) * 1e-3d;
+                case MassConcentrationUnit.NanogramPerDeciliter: return (Value/1e-1) * 1e-9d;
+                case MassConcentrationUnit.NanogramPerLiter: return (Value) * 1e-9d;
+                case MassConcentrationUnit.NanogramPerMicroliter: return (Value/1e-6) * 1e-9d;
+                case MassConcentrationUnit.NanogramPerMilliliter: return (Value/1e-3) * 1e-9d;
+                case MassConcentrationUnit.PicogramPerDeciliter: return (Value/1e-1) * 1e-12d;
+                case MassConcentrationUnit.PicogramPerLiter: return (Value) * 1e-12d;
+                case MassConcentrationUnit.PicogramPerMicroliter: return (Value/1e-6) * 1e-12d;
+                case MassConcentrationUnit.PicogramPerMilliliter: return (Value/1e-3) * 1e-12d;
+                case MassConcentrationUnit.PoundPerCubicFoot: return Value/0.062427961;
+                case MassConcentrationUnit.PoundPerCubicInch: return Value/3.6127298147753e-5;
+                case MassConcentrationUnit.PoundPerImperialGallon: return Value*9.9776398e1;
+                case MassConcentrationUnit.PoundPerUSGallon: return Value*1.19826427e2;
+                case MassConcentrationUnit.SlugPerCubicFoot: return Value*515.378818;
+                case MassConcentrationUnit.TonnePerCubicCentimeter: return Value/1e-9;
+                case MassConcentrationUnit.TonnePerCubicMeter: return Value/0.001;
+                case MassConcentrationUnit.TonnePerCubicMillimeter: return Value/1e-12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1388,16 +1353,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MassConcentration ToBaseUnit()
+        internal MassConcentration<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassConcentration(baseUnitValue, BaseUnit);
+            return new MassConcentration<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(MassConcentrationUnit unit)
+        private T GetValueAs(MassConcentrationUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -1546,57 +1511,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassConcentration)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassConcentration<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassConcentration)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassConcentration<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(MassConcentration)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(MassConcentration<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -1606,33 +1571,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MassConcentration))
+            if(conversionType == typeof(MassConcentration<T>))
                 return this;
             else if(conversionType == typeof(MassConcentrationUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return MassConcentration.QuantityType;
+                return MassConcentration<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return MassConcentration.Info;
+                return MassConcentration<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return MassConcentration.BaseDimensions;
+                return MassConcentration<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(MassConcentration)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(MassConcentration<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

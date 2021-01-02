@@ -33,7 +33,7 @@ namespace UnitsNet
         public static string[] Names { get; }
 
         /// <summary>
-        /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
+        /// All quantity information objects, such as <see cref="Length{T}.Info"/> and <see cref="Mass{T}.Info"/>.
         /// </summary>
         public static QuantityInfo[] Infos => InfosLazy.Value;
 
@@ -44,9 +44,9 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public static IQuantity From(QuantityValue value, Enum unit)
+        public static IQuantity From<T>( QuantityValue value, Enum unit)
         {
-            if (TryFrom(value, unit, out IQuantity? quantity))
+            if (TryFrom<T>(value, unit, out IQuantity? quantity))
                 return quantity!;
 
             throw new ArgumentException(
@@ -54,7 +54,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity? quantity)
+        public static bool TryFrom<T>(double value, Enum unit, out IQuantity? quantity)
         {
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
@@ -64,34 +64,34 @@ namespace UnitsNet
                 return false;
             }
 
-            return TryFrom((QuantityValue)value, unit, out quantity);
+            return TryFrom<T>((QuantityValue)value, unit, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-        public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
+        public static IQuantity Parse<T>( Type quantityType, string quantityString) => Parse<T>( null, quantityType, quantityString);
 
         /// <summary>
         ///     Dynamically parse a quantity string representation.
         /// </summary>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
+        /// <param name="quantityType">Type of quantity, such as <see cref="Length{T}"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-        public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
+        public static IQuantity Parse<T>(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
+            if (TryParse<T>(formatProvider, quantityType, quantityString, out IQuantity? quantity))
                 return quantity!;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
+        public static bool TryParse<T>(Type quantityType, string quantityString, out IQuantity? quantity) =>
+            TryParse<T>(null, quantityType, quantityString, out quantity);
 
         /// <summary>
         ///     Get information about the given quantity type.

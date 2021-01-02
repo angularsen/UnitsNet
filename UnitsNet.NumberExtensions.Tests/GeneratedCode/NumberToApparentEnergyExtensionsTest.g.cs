@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToKilovoltampereHoursTest() =>
-            Assert.Equal(ApparentEnergy.FromKilovoltampereHours(2), 2.KilovoltampereHours());
+            Assert.Equal(ApparentEnergy<double>.FromKilovoltampereHours(2), 2.KilovoltampereHours());
 
         [Fact]
         public void NumberToMegavoltampereHoursTest() =>
-            Assert.Equal(ApparentEnergy.FromMegavoltampereHours(2), 2.MegavoltampereHours());
+            Assert.Equal(ApparentEnergy<double>.FromMegavoltampereHours(2), 2.MegavoltampereHours());
 
         [Fact]
         public void NumberToVoltampereHoursTest() =>
-            Assert.Equal(ApparentEnergy.FromVoltampereHours(2), 2.VoltampereHours());
+            Assert.Equal(ApparentEnergy<double>.FromVoltampereHours(2), 2.VoltampereHours());
 
     }
 }

@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToKilogramsPerSquareMeterTest() =>
-            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(2), 2.KilogramsPerSquareMeter());
+            Assert.Equal(AreaDensity<double>.FromKilogramsPerSquareMeter(2), 2.KilogramsPerSquareMeter());
 
     }
 }

@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAmperesPerSquareFootTest() =>
-            Assert.Equal(ElectricCurrentDensity.FromAmperesPerSquareFoot(2), 2.AmperesPerSquareFoot());
+            Assert.Equal(ElectricCurrentDensity<double>.FromAmperesPerSquareFoot(2), 2.AmperesPerSquareFoot());
 
         [Fact]
         public void NumberToAmperesPerSquareInchTest() =>
-            Assert.Equal(ElectricCurrentDensity.FromAmperesPerSquareInch(2), 2.AmperesPerSquareInch());
+            Assert.Equal(ElectricCurrentDensity<double>.FromAmperesPerSquareInch(2), 2.AmperesPerSquareInch());
 
         [Fact]
         public void NumberToAmperesPerSquareMeterTest() =>
-            Assert.Equal(ElectricCurrentDensity.FromAmperesPerSquareMeter(2), 2.AmperesPerSquareMeter());
+            Assert.Equal(ElectricCurrentDensity<double>.FromAmperesPerSquareMeter(2), 2.AmperesPerSquareMeter());
 
     }
 }

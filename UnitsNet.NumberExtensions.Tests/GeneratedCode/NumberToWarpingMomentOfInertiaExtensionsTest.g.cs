@@ -26,27 +26,27 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentimetersToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromCentimetersToTheSixth(2), 2.CentimetersToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromCentimetersToTheSixth(2), 2.CentimetersToTheSixth());
 
         [Fact]
         public void NumberToDecimetersToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromDecimetersToTheSixth(2), 2.DecimetersToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromDecimetersToTheSixth(2), 2.DecimetersToTheSixth());
 
         [Fact]
         public void NumberToFeetToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromFeetToTheSixth(2), 2.FeetToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromFeetToTheSixth(2), 2.FeetToTheSixth());
 
         [Fact]
         public void NumberToInchesToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromInchesToTheSixth(2), 2.InchesToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromInchesToTheSixth(2), 2.InchesToTheSixth());
 
         [Fact]
         public void NumberToMetersToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromMetersToTheSixth(2), 2.MetersToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromMetersToTheSixth(2), 2.MetersToTheSixth());
 
         [Fact]
         public void NumberToMillimetersToTheSixthTest() =>
-            Assert.Equal(WarpingMomentOfInertia.FromMillimetersToTheSixth(2), 2.MillimetersToTheSixth());
+            Assert.Equal(WarpingMomentOfInertia<double>.FromMillimetersToTheSixth(2), 2.MillimetersToTheSixth());
 
     }
 }

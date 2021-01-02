@@ -138,43 +138,43 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(20, 62, 1240)]
         public void VolumeFlowTimesTimeSpanEqualsVolume(double cubicMetersPerSecond, double seconds, double expectedCubicMeters)
         {
-            Volume volume = VolumeFlow.FromCubicMetersPerSecond(cubicMetersPerSecond) * TimeSpan.FromSeconds(seconds);
-            Assert.Equal(Volume.FromCubicMeters(expectedCubicMeters), volume);
+            var volume = VolumeFlow<double>.FromCubicMetersPerSecond(cubicMetersPerSecond) * TimeSpan.FromSeconds(seconds);
+            Assert.Equal(Volume<double>.FromCubicMeters(expectedCubicMeters), volume);
         }
 
         [Fact]
         public void VolumeFlowTimesDurationEqualsVolume()
         {
-            Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * Duration.FromSeconds(2);
-            Assert.Equal(Volume.FromCubicMeters(40), volume);
+            var volume = VolumeFlow<double>.FromCubicMetersPerSecond(20) * Duration<double>.FromSeconds(2);
+            Assert.Equal(Volume<double>.FromCubicMeters(40), volume);
         }
 
         [Fact]
         public void VolumeFlowDividedByAreaEqualsSpeed()
         {
-            Speed speed = VolumeFlow.FromCubicMetersPerSecond(40) / Area.FromSquareMeters(20);
-            Assert.Equal(Speed.FromMetersPerSecond(2), speed);
+            var speed = VolumeFlow<double>.FromCubicMetersPerSecond(40) / Area<double>.FromSquareMeters(20);
+            Assert.Equal(Speed<double>.FromMetersPerSecond(2), speed);
         }
 
         [Fact]
         public void VolumeFlowDividedBySpeedEqualsArea()
         {
-            Area area = VolumeFlow.FromCubicMetersPerSecond(40) / Speed.FromMetersPerSecond(20);
-            Assert.Equal(Area.FromSquareMeters(2), area);
+            var area = VolumeFlow<double>.FromCubicMetersPerSecond(40) / Speed<double>.FromMetersPerSecond(20);
+            Assert.Equal(Area<double>.FromSquareMeters(2), area);
         }
 
         [Fact]
         public void VolumeFlowTimesDensityEqualsMassFlow()
         {
-            MassFlow massFlow = VolumeFlow.FromCubicMetersPerSecond(2) * Density.FromKilogramsPerCubicMeter(3);
-            Assert.Equal(MassFlow.FromKilogramsPerSecond(6), massFlow);
+            var massFlow = VolumeFlow<double>.FromCubicMetersPerSecond(2) * Density<double>.FromKilogramsPerCubicMeter(3);
+            Assert.Equal(MassFlow<double>.FromKilogramsPerSecond(6), massFlow);
         }
 
         [Fact]
         public void DensityTimesVolumeFlowEqualsMassFlow()
         {
-            MassFlow massFlow = Density.FromKilogramsPerCubicMeter(3) * VolumeFlow.FromCubicMetersPerSecond(7);
-            Assert.Equal(MassFlow.FromKilogramsPerSecond(21), massFlow);
+            var massFlow = Density<double>.FromKilogramsPerCubicMeter(3) * VolumeFlow<double>.FromCubicMetersPerSecond(7);
+            Assert.Equal(MassFlow<double>.FromKilogramsPerSecond(21), massFlow);
         }
     }
 }

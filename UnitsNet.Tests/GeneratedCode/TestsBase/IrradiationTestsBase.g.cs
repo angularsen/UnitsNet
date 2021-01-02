@@ -58,7 +58,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiation((double)0.0, IrradiationUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Irradiation<double>((double)0.0, IrradiationUnit.Undefined));
         }
 
         [Fact]
@@ -73,14 +73,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.NegativeInfinity, IrradiationUnit.JoulePerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiation<double>(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiation<double>(double.NegativeInfinity, IrradiationUnit.JoulePerSquareMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.NaN, IrradiationUnit.JoulePerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiation<double>(double.NaN, IrradiationUnit.JoulePerSquareMeter));
         }
 
         [Fact]
@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void JoulePerSquareMeterToIrradiationUnits()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             AssertEx.EqualTolerance(JoulesPerSquareCentimeterInOneJoulePerSquareMeter, joulepersquaremeter.JoulesPerSquareCentimeter, JoulesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(JoulesPerSquareMeterInOneJoulePerSquareMeter, joulepersquaremeter.JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(JoulesPerSquareMillimeterInOneJoulePerSquareMeter, joulepersquaremeter.JoulesPerSquareMillimeter, JoulesPerSquareMillimeterTolerance);
@@ -139,31 +139,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Irradiation.From(1, IrradiationUnit.JoulePerSquareCentimeter);
+            var quantity00 = Irradiation<double>.From(1, IrradiationUnit.JoulePerSquareCentimeter);
             AssertEx.EqualTolerance(1, quantity00.JoulesPerSquareCentimeter, JoulesPerSquareCentimeterTolerance);
             Assert.Equal(IrradiationUnit.JoulePerSquareCentimeter, quantity00.Unit);
 
-            var quantity01 = Irradiation.From(1, IrradiationUnit.JoulePerSquareMeter);
+            var quantity01 = Irradiation<double>.From(1, IrradiationUnit.JoulePerSquareMeter);
             AssertEx.EqualTolerance(1, quantity01.JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             Assert.Equal(IrradiationUnit.JoulePerSquareMeter, quantity01.Unit);
 
-            var quantity02 = Irradiation.From(1, IrradiationUnit.JoulePerSquareMillimeter);
+            var quantity02 = Irradiation<double>.From(1, IrradiationUnit.JoulePerSquareMillimeter);
             AssertEx.EqualTolerance(1, quantity02.JoulesPerSquareMillimeter, JoulesPerSquareMillimeterTolerance);
             Assert.Equal(IrradiationUnit.JoulePerSquareMillimeter, quantity02.Unit);
 
-            var quantity03 = Irradiation.From(1, IrradiationUnit.KilojoulePerSquareMeter);
+            var quantity03 = Irradiation<double>.From(1, IrradiationUnit.KilojoulePerSquareMeter);
             AssertEx.EqualTolerance(1, quantity03.KilojoulesPerSquareMeter, KilojoulesPerSquareMeterTolerance);
             Assert.Equal(IrradiationUnit.KilojoulePerSquareMeter, quantity03.Unit);
 
-            var quantity04 = Irradiation.From(1, IrradiationUnit.KilowattHourPerSquareMeter);
+            var quantity04 = Irradiation<double>.From(1, IrradiationUnit.KilowattHourPerSquareMeter);
             AssertEx.EqualTolerance(1, quantity04.KilowattHoursPerSquareMeter, KilowattHoursPerSquareMeterTolerance);
             Assert.Equal(IrradiationUnit.KilowattHourPerSquareMeter, quantity04.Unit);
 
-            var quantity05 = Irradiation.From(1, IrradiationUnit.MillijoulePerSquareCentimeter);
+            var quantity05 = Irradiation<double>.From(1, IrradiationUnit.MillijoulePerSquareCentimeter);
             AssertEx.EqualTolerance(1, quantity05.MillijoulesPerSquareCentimeter, MillijoulesPerSquareCentimeterTolerance);
             Assert.Equal(IrradiationUnit.MillijoulePerSquareCentimeter, quantity05.Unit);
 
-            var quantity06 = Irradiation.From(1, IrradiationUnit.WattHourPerSquareMeter);
+            var quantity06 = Irradiation<double>.From(1, IrradiationUnit.WattHourPerSquareMeter);
             AssertEx.EqualTolerance(1, quantity06.WattHoursPerSquareMeter, WattHoursPerSquareMeterTolerance);
             Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, quantity06.Unit);
 
@@ -172,20 +172,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromJoulesPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Irradiation<double>.FromJoulesPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Irradiation<double>.FromJoulesPerSquareMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromJoulesPerSquareMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => Irradiation<double>.FromJoulesPerSquareMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            var joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             AssertEx.EqualTolerance(JoulesPerSquareCentimeterInOneJoulePerSquareMeter, joulepersquaremeter.As(IrradiationUnit.JoulePerSquareCentimeter), JoulesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(JoulesPerSquareMeterInOneJoulePerSquareMeter, joulepersquaremeter.As(IrradiationUnit.JoulePerSquareMeter), JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(JoulesPerSquareMillimeterInOneJoulePerSquareMeter, joulepersquaremeter.As(IrradiationUnit.JoulePerSquareMillimeter), JoulesPerSquareMillimeterTolerance);
@@ -215,7 +215,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            var joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
 
             var joulepersquarecentimeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.JoulePerSquareCentimeter);
             AssertEx.EqualTolerance(JoulesPerSquareCentimeterInOneJoulePerSquareMeter, (double)joulepersquarecentimeterQuantity.Value, JoulesPerSquareCentimeterTolerance);
@@ -256,34 +256,34 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
-            AssertEx.EqualTolerance(1, Irradiation.FromJoulesPerSquareCentimeter(joulepersquaremeter.JoulesPerSquareCentimeter).JoulesPerSquareMeter, JoulesPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromJoulesPerSquareMeter(joulepersquaremeter.JoulesPerSquareMeter).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromJoulesPerSquareMillimeter(joulepersquaremeter.JoulesPerSquareMillimeter).JoulesPerSquareMeter, JoulesPerSquareMillimeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromKilojoulesPerSquareMeter(joulepersquaremeter.KilojoulesPerSquareMeter).JoulesPerSquareMeter, KilojoulesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromKilowattHoursPerSquareMeter(joulepersquaremeter.KilowattHoursPerSquareMeter).JoulesPerSquareMeter, KilowattHoursPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromMillijoulesPerSquareCentimeter(joulepersquaremeter.MillijoulesPerSquareCentimeter).JoulesPerSquareMeter, MillijoulesPerSquareCentimeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiation.FromWattHoursPerSquareMeter(joulepersquaremeter.WattHoursPerSquareMeter).JoulesPerSquareMeter, WattHoursPerSquareMeterTolerance);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromJoulesPerSquareCentimeter(joulepersquaremeter.JoulesPerSquareCentimeter).JoulesPerSquareMeter, JoulesPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromJoulesPerSquareMeter(joulepersquaremeter.JoulesPerSquareMeter).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromJoulesPerSquareMillimeter(joulepersquaremeter.JoulesPerSquareMillimeter).JoulesPerSquareMeter, JoulesPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromKilojoulesPerSquareMeter(joulepersquaremeter.KilojoulesPerSquareMeter).JoulesPerSquareMeter, KilojoulesPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromKilowattHoursPerSquareMeter(joulepersquaremeter.KilowattHoursPerSquareMeter).JoulesPerSquareMeter, KilowattHoursPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromMillijoulesPerSquareCentimeter(joulepersquaremeter.MillijoulesPerSquareCentimeter).JoulesPerSquareMeter, MillijoulesPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiation<double>.FromWattHoursPerSquareMeter(joulepersquaremeter.WattHoursPerSquareMeter).JoulesPerSquareMeter, WattHoursPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Irradiation v = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> v = Irradiation<double>.FromJoulesPerSquareMeter(1);
             AssertEx.EqualTolerance(-1, -v.JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Irradiation.FromJoulesPerSquareMeter(3)-v).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (Irradiation<double>.FromJoulesPerSquareMeter(3)-v).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Irradiation.FromJoulesPerSquareMeter(10)/5).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, Irradiation.FromJoulesPerSquareMeter(10)/Irradiation.FromJoulesPerSquareMeter(5), JoulesPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (Irradiation<double>.FromJoulesPerSquareMeter(10)/5).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, Irradiation<double>.FromJoulesPerSquareMeter(10)/Irradiation<double>.FromJoulesPerSquareMeter(5), JoulesPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Irradiation oneJoulePerSquareMeter = Irradiation.FromJoulesPerSquareMeter(1);
-            Irradiation twoJoulesPerSquareMeter = Irradiation.FromJoulesPerSquareMeter(2);
+            Irradiation<double> oneJoulePerSquareMeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
+            Irradiation<double> twoJoulesPerSquareMeter = Irradiation<double>.FromJoulesPerSquareMeter(2);
 
             Assert.True(oneJoulePerSquareMeter < twoJoulesPerSquareMeter);
             Assert.True(oneJoulePerSquareMeter <= twoJoulesPerSquareMeter);
@@ -299,31 +299,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             Assert.Equal(0, joulepersquaremeter.CompareTo(joulepersquaremeter));
-            Assert.True(joulepersquaremeter.CompareTo(Irradiation.Zero) > 0);
-            Assert.True(Irradiation.Zero.CompareTo(joulepersquaremeter) < 0);
+            Assert.True(joulepersquaremeter.CompareTo(Irradiation<double>.Zero) > 0);
+            Assert.True(Irradiation<double>.Zero.CompareTo(joulepersquaremeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             Assert.Throws<ArgumentException>(() => joulepersquaremeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             Assert.Throws<ArgumentNullException>(() => joulepersquaremeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Irradiation.FromJoulesPerSquareMeter(1);
-            var b = Irradiation.FromJoulesPerSquareMeter(2);
+            var a = Irradiation<double>.FromJoulesPerSquareMeter(1);
+            var b = Irradiation<double>.FromJoulesPerSquareMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -342,8 +342,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Irradiation.FromJoulesPerSquareMeter(1);
-            var b = Irradiation.FromJoulesPerSquareMeter(2);
+            var a = Irradiation<double>.FromJoulesPerSquareMeter(1);
+            var b = Irradiation<double>.FromJoulesPerSquareMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -363,9 +363,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Irradiation.FromJoulesPerSquareMeter(1);
-            Assert.True(v.Equals(Irradiation.FromJoulesPerSquareMeter(1), JoulesPerSquareMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Irradiation.Zero, JoulesPerSquareMeterTolerance, ComparisonType.Relative));
+            var v = Irradiation<double>.FromJoulesPerSquareMeter(1);
+            Assert.True(v.Equals(Irradiation<double>.FromJoulesPerSquareMeter(1), JoulesPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Irradiation<double>.Zero, JoulesPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -378,21 +378,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             Assert.False(joulepersquaremeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            Irradiation<double> joulepersquaremeter = Irradiation<double>.FromJoulesPerSquareMeter(1);
             Assert.False(joulepersquaremeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(IrradiationUnit.Undefined, Irradiation.Units);
+            Assert.DoesNotContain(IrradiationUnit.Undefined, Irradiation<double>.Units);
         }
 
         [Fact]
@@ -411,7 +411,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Irradiation.BaseDimensions is null);
+            Assert.False(Irradiation<double>.BaseDimensions is null);
         }
 
         [Fact]

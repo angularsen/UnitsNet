@@ -17,7 +17,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void FeetInchesFrom()
         {
-            Length meter = Length.FromFeetInches(2, 3);
+            var meter = Length<double>.FromFeetInches(2, 3);
             double expectedMeters = 2/FeetInOneMeter + 3/InchesInOneMeter;
             AssertEx.EqualTolerance(expectedMeters, meter.Meters, FeetTolerance);
         }
@@ -25,7 +25,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void FeetInchesRoundTrip()
         {
-            Length meter = Length.FromFeetInches(2, 3);
+            var meter = Length<double>.FromFeetInches(2, 3);
             FeetInches feetInches = meter.FeetInches;
             AssertEx.EqualTolerance(2, feetInches.Feet, FeetTolerance);
             AssertEx.EqualTolerance(3, feetInches.Inches, InchesTolerance);
@@ -75,7 +75,7 @@ namespace UnitsNet.Tests.CustomCode
         [MemberData(nameof(ValidData))]
         public void TryParseFeetInches(string str, double expectedFeet, CultureInfo formatProvider)
         {
-            Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+            Assert.True(Length<double>.TryParseFeetInches(str, out Length<double> result, formatProvider));
             AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
         }
 
@@ -103,8 +103,8 @@ namespace UnitsNet.Tests.CustomCode
         [MemberData(nameof(InvalidData))]
         public void TryParseFeetInches_GivenInvalidString_ReturnsFalseAndZeroOut(string str, CultureInfo formatProvider)
         {
-            Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
-            Assert.Equal(Length.Zero, result);
+            Assert.False(Length<double>.TryParseFeetInches(str, out Length<double> result, formatProvider));
+            Assert.Equal(Length<double>.Zero, result);
         }
     }
 }

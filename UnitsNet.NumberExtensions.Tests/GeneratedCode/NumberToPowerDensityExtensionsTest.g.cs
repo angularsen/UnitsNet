@@ -26,179 +26,179 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDecawattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromDecawattsPerCubicFoot(2), 2.DecawattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromDecawattsPerCubicFoot(2), 2.DecawattsPerCubicFoot());
 
         [Fact]
         public void NumberToDecawattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromDecawattsPerCubicInch(2), 2.DecawattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromDecawattsPerCubicInch(2), 2.DecawattsPerCubicInch());
 
         [Fact]
         public void NumberToDecawattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromDecawattsPerCubicMeter(2), 2.DecawattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromDecawattsPerCubicMeter(2), 2.DecawattsPerCubicMeter());
 
         [Fact]
         public void NumberToDecawattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromDecawattsPerLiter(2), 2.DecawattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromDecawattsPerLiter(2), 2.DecawattsPerLiter());
 
         [Fact]
         public void NumberToDeciwattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromDeciwattsPerCubicFoot(2), 2.DeciwattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromDeciwattsPerCubicFoot(2), 2.DeciwattsPerCubicFoot());
 
         [Fact]
         public void NumberToDeciwattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromDeciwattsPerCubicInch(2), 2.DeciwattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromDeciwattsPerCubicInch(2), 2.DeciwattsPerCubicInch());
 
         [Fact]
         public void NumberToDeciwattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromDeciwattsPerCubicMeter(2), 2.DeciwattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromDeciwattsPerCubicMeter(2), 2.DeciwattsPerCubicMeter());
 
         [Fact]
         public void NumberToDeciwattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromDeciwattsPerLiter(2), 2.DeciwattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromDeciwattsPerLiter(2), 2.DeciwattsPerLiter());
 
         [Fact]
         public void NumberToGigawattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromGigawattsPerCubicFoot(2), 2.GigawattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromGigawattsPerCubicFoot(2), 2.GigawattsPerCubicFoot());
 
         [Fact]
         public void NumberToGigawattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromGigawattsPerCubicInch(2), 2.GigawattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromGigawattsPerCubicInch(2), 2.GigawattsPerCubicInch());
 
         [Fact]
         public void NumberToGigawattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromGigawattsPerCubicMeter(2), 2.GigawattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromGigawattsPerCubicMeter(2), 2.GigawattsPerCubicMeter());
 
         [Fact]
         public void NumberToGigawattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromGigawattsPerLiter(2), 2.GigawattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromGigawattsPerLiter(2), 2.GigawattsPerLiter());
 
         [Fact]
         public void NumberToKilowattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromKilowattsPerCubicFoot(2), 2.KilowattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromKilowattsPerCubicFoot(2), 2.KilowattsPerCubicFoot());
 
         [Fact]
         public void NumberToKilowattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromKilowattsPerCubicInch(2), 2.KilowattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromKilowattsPerCubicInch(2), 2.KilowattsPerCubicInch());
 
         [Fact]
         public void NumberToKilowattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromKilowattsPerCubicMeter(2), 2.KilowattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromKilowattsPerCubicMeter(2), 2.KilowattsPerCubicMeter());
 
         [Fact]
         public void NumberToKilowattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromKilowattsPerLiter(2), 2.KilowattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromKilowattsPerLiter(2), 2.KilowattsPerLiter());
 
         [Fact]
         public void NumberToMegawattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromMegawattsPerCubicFoot(2), 2.MegawattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromMegawattsPerCubicFoot(2), 2.MegawattsPerCubicFoot());
 
         [Fact]
         public void NumberToMegawattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromMegawattsPerCubicInch(2), 2.MegawattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromMegawattsPerCubicInch(2), 2.MegawattsPerCubicInch());
 
         [Fact]
         public void NumberToMegawattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromMegawattsPerCubicMeter(2), 2.MegawattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromMegawattsPerCubicMeter(2), 2.MegawattsPerCubicMeter());
 
         [Fact]
         public void NumberToMegawattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromMegawattsPerLiter(2), 2.MegawattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromMegawattsPerLiter(2), 2.MegawattsPerLiter());
 
         [Fact]
         public void NumberToMicrowattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromMicrowattsPerCubicFoot(2), 2.MicrowattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromMicrowattsPerCubicFoot(2), 2.MicrowattsPerCubicFoot());
 
         [Fact]
         public void NumberToMicrowattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromMicrowattsPerCubicInch(2), 2.MicrowattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromMicrowattsPerCubicInch(2), 2.MicrowattsPerCubicInch());
 
         [Fact]
         public void NumberToMicrowattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromMicrowattsPerCubicMeter(2), 2.MicrowattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromMicrowattsPerCubicMeter(2), 2.MicrowattsPerCubicMeter());
 
         [Fact]
         public void NumberToMicrowattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromMicrowattsPerLiter(2), 2.MicrowattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromMicrowattsPerLiter(2), 2.MicrowattsPerLiter());
 
         [Fact]
         public void NumberToMilliwattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromMilliwattsPerCubicFoot(2), 2.MilliwattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromMilliwattsPerCubicFoot(2), 2.MilliwattsPerCubicFoot());
 
         [Fact]
         public void NumberToMilliwattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromMilliwattsPerCubicInch(2), 2.MilliwattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromMilliwattsPerCubicInch(2), 2.MilliwattsPerCubicInch());
 
         [Fact]
         public void NumberToMilliwattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromMilliwattsPerCubicMeter(2), 2.MilliwattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromMilliwattsPerCubicMeter(2), 2.MilliwattsPerCubicMeter());
 
         [Fact]
         public void NumberToMilliwattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromMilliwattsPerLiter(2), 2.MilliwattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromMilliwattsPerLiter(2), 2.MilliwattsPerLiter());
 
         [Fact]
         public void NumberToNanowattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromNanowattsPerCubicFoot(2), 2.NanowattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromNanowattsPerCubicFoot(2), 2.NanowattsPerCubicFoot());
 
         [Fact]
         public void NumberToNanowattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromNanowattsPerCubicInch(2), 2.NanowattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromNanowattsPerCubicInch(2), 2.NanowattsPerCubicInch());
 
         [Fact]
         public void NumberToNanowattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromNanowattsPerCubicMeter(2), 2.NanowattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromNanowattsPerCubicMeter(2), 2.NanowattsPerCubicMeter());
 
         [Fact]
         public void NumberToNanowattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromNanowattsPerLiter(2), 2.NanowattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromNanowattsPerLiter(2), 2.NanowattsPerLiter());
 
         [Fact]
         public void NumberToPicowattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromPicowattsPerCubicFoot(2), 2.PicowattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromPicowattsPerCubicFoot(2), 2.PicowattsPerCubicFoot());
 
         [Fact]
         public void NumberToPicowattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromPicowattsPerCubicInch(2), 2.PicowattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromPicowattsPerCubicInch(2), 2.PicowattsPerCubicInch());
 
         [Fact]
         public void NumberToPicowattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromPicowattsPerCubicMeter(2), 2.PicowattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromPicowattsPerCubicMeter(2), 2.PicowattsPerCubicMeter());
 
         [Fact]
         public void NumberToPicowattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromPicowattsPerLiter(2), 2.PicowattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromPicowattsPerLiter(2), 2.PicowattsPerLiter());
 
         [Fact]
         public void NumberToTerawattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromTerawattsPerCubicFoot(2), 2.TerawattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromTerawattsPerCubicFoot(2), 2.TerawattsPerCubicFoot());
 
         [Fact]
         public void NumberToTerawattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromTerawattsPerCubicInch(2), 2.TerawattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromTerawattsPerCubicInch(2), 2.TerawattsPerCubicInch());
 
         [Fact]
         public void NumberToTerawattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromTerawattsPerCubicMeter(2), 2.TerawattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromTerawattsPerCubicMeter(2), 2.TerawattsPerCubicMeter());
 
         [Fact]
         public void NumberToTerawattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromTerawattsPerLiter(2), 2.TerawattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromTerawattsPerLiter(2), 2.TerawattsPerLiter());
 
         [Fact]
         public void NumberToWattsPerCubicFootTest() =>
-            Assert.Equal(PowerDensity.FromWattsPerCubicFoot(2), 2.WattsPerCubicFoot());
+            Assert.Equal(PowerDensity<double>.FromWattsPerCubicFoot(2), 2.WattsPerCubicFoot());
 
         [Fact]
         public void NumberToWattsPerCubicInchTest() =>
-            Assert.Equal(PowerDensity.FromWattsPerCubicInch(2), 2.WattsPerCubicInch());
+            Assert.Equal(PowerDensity<double>.FromWattsPerCubicInch(2), 2.WattsPerCubicInch());
 
         [Fact]
         public void NumberToWattsPerCubicMeterTest() =>
-            Assert.Equal(PowerDensity.FromWattsPerCubicMeter(2), 2.WattsPerCubicMeter());
+            Assert.Equal(PowerDensity<double>.FromWattsPerCubicMeter(2), 2.WattsPerCubicMeter());
 
         [Fact]
         public void NumberToWattsPerLiterTest() =>
-            Assert.Equal(PowerDensity.FromWattsPerLiter(2), 2.WattsPerLiter());
+            Assert.Equal(PowerDensity<double>.FromWattsPerLiter(2), 2.WattsPerLiter());
 
     }
 }

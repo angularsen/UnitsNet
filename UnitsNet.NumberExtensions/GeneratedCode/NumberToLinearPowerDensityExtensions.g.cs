@@ -28,105 +28,105 @@ namespace UnitsNet.NumberExtensions.NumberToLinearPowerDensity
     /// </summary>
     public static class NumberToLinearPowerDensityExtensions
     {
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity GigawattsPerCentimeter<T>(this T value) =>
-            LinearPowerDensity.FromGigawattsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromGigawattsPerCentimeter(T)" />
+        public static LinearPowerDensity<double> GigawattsPerCentimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromGigawattsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity GigawattsPerFoot<T>(this T value) =>
-            LinearPowerDensity.FromGigawattsPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromGigawattsPerFoot(T)" />
+        public static LinearPowerDensity<double> GigawattsPerFoot<T>(this T value) =>
+            LinearPowerDensity<double>.FromGigawattsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerInch(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity GigawattsPerInch<T>(this T value) =>
-            LinearPowerDensity.FromGigawattsPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromGigawattsPerInch(T)" />
+        public static LinearPowerDensity<double> GigawattsPerInch<T>(this T value) =>
+            LinearPowerDensity<double>.FromGigawattsPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity GigawattsPerMeter<T>(this T value) =>
-            LinearPowerDensity.FromGigawattsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromGigawattsPerMeter(T)" />
+        public static LinearPowerDensity<double> GigawattsPerMeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromGigawattsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromGigawattsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity GigawattsPerMillimeter<T>(this T value) =>
-            LinearPowerDensity.FromGigawattsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromGigawattsPerMillimeter(T)" />
+        public static LinearPowerDensity<double> GigawattsPerMillimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromGigawattsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity KilowattsPerCentimeter<T>(this T value) =>
-            LinearPowerDensity.FromKilowattsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromKilowattsPerCentimeter(T)" />
+        public static LinearPowerDensity<double> KilowattsPerCentimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromKilowattsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity KilowattsPerFoot<T>(this T value) =>
-            LinearPowerDensity.FromKilowattsPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromKilowattsPerFoot(T)" />
+        public static LinearPowerDensity<double> KilowattsPerFoot<T>(this T value) =>
+            LinearPowerDensity<double>.FromKilowattsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerInch(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity KilowattsPerInch<T>(this T value) =>
-            LinearPowerDensity.FromKilowattsPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromKilowattsPerInch(T)" />
+        public static LinearPowerDensity<double> KilowattsPerInch<T>(this T value) =>
+            LinearPowerDensity<double>.FromKilowattsPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity KilowattsPerMeter<T>(this T value) =>
-            LinearPowerDensity.FromKilowattsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromKilowattsPerMeter(T)" />
+        public static LinearPowerDensity<double> KilowattsPerMeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromKilowattsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromKilowattsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity KilowattsPerMillimeter<T>(this T value) =>
-            LinearPowerDensity.FromKilowattsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromKilowattsPerMillimeter(T)" />
+        public static LinearPowerDensity<double> KilowattsPerMillimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromKilowattsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MegawattsPerCentimeter<T>(this T value) =>
-            LinearPowerDensity.FromMegawattsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMegawattsPerCentimeter(T)" />
+        public static LinearPowerDensity<double> MegawattsPerCentimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMegawattsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MegawattsPerFoot<T>(this T value) =>
-            LinearPowerDensity.FromMegawattsPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMegawattsPerFoot(T)" />
+        public static LinearPowerDensity<double> MegawattsPerFoot<T>(this T value) =>
+            LinearPowerDensity<double>.FromMegawattsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerInch(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MegawattsPerInch<T>(this T value) =>
-            LinearPowerDensity.FromMegawattsPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMegawattsPerInch(T)" />
+        public static LinearPowerDensity<double> MegawattsPerInch<T>(this T value) =>
+            LinearPowerDensity<double>.FromMegawattsPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MegawattsPerMeter<T>(this T value) =>
-            LinearPowerDensity.FromMegawattsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMegawattsPerMeter(T)" />
+        public static LinearPowerDensity<double> MegawattsPerMeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMegawattsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMegawattsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MegawattsPerMillimeter<T>(this T value) =>
-            LinearPowerDensity.FromMegawattsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMegawattsPerMillimeter(T)" />
+        public static LinearPowerDensity<double> MegawattsPerMillimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMegawattsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MilliwattsPerCentimeter<T>(this T value) =>
-            LinearPowerDensity.FromMilliwattsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMilliwattsPerCentimeter(T)" />
+        public static LinearPowerDensity<double> MilliwattsPerCentimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMilliwattsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MilliwattsPerFoot<T>(this T value) =>
-            LinearPowerDensity.FromMilliwattsPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMilliwattsPerFoot(T)" />
+        public static LinearPowerDensity<double> MilliwattsPerFoot<T>(this T value) =>
+            LinearPowerDensity<double>.FromMilliwattsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerInch(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MilliwattsPerInch<T>(this T value) =>
-            LinearPowerDensity.FromMilliwattsPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMilliwattsPerInch(T)" />
+        public static LinearPowerDensity<double> MilliwattsPerInch<T>(this T value) =>
+            LinearPowerDensity<double>.FromMilliwattsPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MilliwattsPerMeter<T>(this T value) =>
-            LinearPowerDensity.FromMilliwattsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMilliwattsPerMeter(T)" />
+        public static LinearPowerDensity<double> MilliwattsPerMeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMilliwattsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromMilliwattsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity MilliwattsPerMillimeter<T>(this T value) =>
-            LinearPowerDensity.FromMilliwattsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromMilliwattsPerMillimeter(T)" />
+        public static LinearPowerDensity<double> MilliwattsPerMillimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromMilliwattsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerCentimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity WattsPerCentimeter<T>(this T value) =>
-            LinearPowerDensity.FromWattsPerCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromWattsPerCentimeter(T)" />
+        public static LinearPowerDensity<double> WattsPerCentimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromWattsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity WattsPerFoot<T>(this T value) =>
-            LinearPowerDensity.FromWattsPerFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromWattsPerFoot(T)" />
+        public static LinearPowerDensity<double> WattsPerFoot<T>(this T value) =>
+            LinearPowerDensity<double>.FromWattsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerInch(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity WattsPerInch<T>(this T value) =>
-            LinearPowerDensity.FromWattsPerInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromWattsPerInch(T)" />
+        public static LinearPowerDensity<double> WattsPerInch<T>(this T value) =>
+            LinearPowerDensity<double>.FromWattsPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity WattsPerMeter<T>(this T value) =>
-            LinearPowerDensity.FromWattsPerMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromWattsPerMeter(T)" />
+        public static LinearPowerDensity<double> WattsPerMeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromWattsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearPowerDensity.FromWattsPerMillimeter(UnitsNet.QuantityValue)" />
-        public static LinearPowerDensity WattsPerMillimeter<T>(this T value) =>
-            LinearPowerDensity.FromWattsPerMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="LinearPowerDensity{T}.FromWattsPerMillimeter(T)" />
+        public static LinearPowerDensity<double> WattsPerMillimeter<T>(this T value) =>
+            LinearPowerDensity<double>.FromWattsPerMillimeter(Convert.ToDouble(value));
 
     }
 }

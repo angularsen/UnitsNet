@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToVoltsPerMeterTest() =>
-            Assert.Equal(ElectricField.FromVoltsPerMeter(2), 2.VoltsPerMeter());
+            Assert.Equal(ElectricField<double>.FromVoltsPerMeter(2), 2.VoltsPerMeter());
 
     }
 }

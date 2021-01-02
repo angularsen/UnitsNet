@@ -26,31 +26,31 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAtmospheresPerSecondTest() =>
-            Assert.Equal(PressureChangeRate.FromAtmospheresPerSecond(2), 2.AtmospheresPerSecond());
+            Assert.Equal(PressureChangeRate<double>.FromAtmospheresPerSecond(2), 2.AtmospheresPerSecond());
 
         [Fact]
         public void NumberToKilopascalsPerMinuteTest() =>
-            Assert.Equal(PressureChangeRate.FromKilopascalsPerMinute(2), 2.KilopascalsPerMinute());
+            Assert.Equal(PressureChangeRate<double>.FromKilopascalsPerMinute(2), 2.KilopascalsPerMinute());
 
         [Fact]
         public void NumberToKilopascalsPerSecondTest() =>
-            Assert.Equal(PressureChangeRate.FromKilopascalsPerSecond(2), 2.KilopascalsPerSecond());
+            Assert.Equal(PressureChangeRate<double>.FromKilopascalsPerSecond(2), 2.KilopascalsPerSecond());
 
         [Fact]
         public void NumberToMegapascalsPerMinuteTest() =>
-            Assert.Equal(PressureChangeRate.FromMegapascalsPerMinute(2), 2.MegapascalsPerMinute());
+            Assert.Equal(PressureChangeRate<double>.FromMegapascalsPerMinute(2), 2.MegapascalsPerMinute());
 
         [Fact]
         public void NumberToMegapascalsPerSecondTest() =>
-            Assert.Equal(PressureChangeRate.FromMegapascalsPerSecond(2), 2.MegapascalsPerSecond());
+            Assert.Equal(PressureChangeRate<double>.FromMegapascalsPerSecond(2), 2.MegapascalsPerSecond());
 
         [Fact]
         public void NumberToPascalsPerMinuteTest() =>
-            Assert.Equal(PressureChangeRate.FromPascalsPerMinute(2), 2.PascalsPerMinute());
+            Assert.Equal(PressureChangeRate<double>.FromPascalsPerMinute(2), 2.PascalsPerMinute());
 
         [Fact]
         public void NumberToPascalsPerSecondTest() =>
-            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(2), 2.PascalsPerSecond());
+            Assert.Equal(PressureChangeRate<double>.FromPascalsPerSecond(2), 2.PascalsPerSecond());
 
     }
 }

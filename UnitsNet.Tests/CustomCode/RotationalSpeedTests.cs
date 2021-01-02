@@ -38,29 +38,29 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationTimesRotationalSpeedEqualsAngle()
         {
-            Angle angle = Duration.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
-            Assert.Equal(angle, Angle.FromRadians(90.0));
+            var angle = Duration<double>.FromSeconds(9.0)*RotationalSpeed<double>.FromRadiansPerSecond(10.0);
+            Assert.Equal(angle, Angle<double>.FromRadians(90.0));
         }
 
         [Fact]
         public void RotationalSpeedTimesDurationEqualsAngle()
         {
-            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*Duration.FromSeconds(9.0);
-            Assert.Equal(angle, Angle.FromRadians(90.0));
+            var angle = RotationalSpeed<double>.FromRadiansPerSecond(10.0)*Duration<double>.FromSeconds(9.0);
+            Assert.Equal(angle, Angle<double>.FromRadians(90.0));
         }
 
         [Fact]
         public void RotationalSpeedTimesTimeSpanEqualsAngle()
         {
-            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
-            Assert.Equal(angle, Angle.FromRadians(90.0));
+            var angle = RotationalSpeed<double>.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
+            Assert.Equal(angle, Angle<double>.FromRadians(90.0));
         }
 
         [Fact]
         public void TimeSpanTimesRotationalSpeedEqualsAngle()
         {
-            Angle angle = TimeSpan.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
-            Assert.Equal(angle, Angle.FromRadians(90.0));
+            var angle = TimeSpan.FromSeconds(9.0)*RotationalSpeed<double>.FromRadiansPerSecond(10.0);
+            Assert.Equal(angle, Angle<double>.FromRadians(90.0));
         }
     }
 }

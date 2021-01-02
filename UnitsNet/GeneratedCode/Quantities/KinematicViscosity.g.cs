@@ -37,13 +37,9 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Viscosity
     /// </remarks>
-    public partial struct KinematicViscosity : IQuantity<KinematicViscosityUnit>, IEquatable<KinematicViscosity>, IComparable, IComparable<KinematicViscosity>, IConvertible, IFormattable
+    public partial struct KinematicViscosity<T> : IQuantityT<KinematicViscosityUnit, T>, IEquatable<KinematicViscosity<T>>, IComparable, IComparable<KinematicViscosity<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -73,12 +69,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public KinematicViscosity(double value, KinematicViscosityUnit unit)
+        public KinematicViscosity(T value, KinematicViscosityUnit unit)
         {
             if(unit == KinematicViscosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -90,14 +86,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public KinematicViscosity(double value, UnitSystem unitSystem)
+        public KinematicViscosity(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -112,19 +108,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of KinematicViscosity, which is SquareMeterPerSecond. All conversions go via this value.
+        ///     The base unit of <see cref="KinematicViscosity{T}" />, which is SquareMeterPerSecond. All conversions go via this value.
         /// </summary>
         public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of KinematicViscosity
+        /// Represents the largest possible value of <see cref="KinematicViscosity{T}" />
         /// </summary>
-        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, BaseUnit);
+        public static KinematicViscosity<T> MaxValue { get; } = new KinematicViscosity<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of KinematicViscosity
+        /// Represents the smallest possible value of <see cref="KinematicViscosity{T}" />
         /// </summary>
-        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
+        public static KinematicViscosity<T> MinValue { get; } = new KinematicViscosity<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -133,14 +129,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.KinematicViscosity;
 
         /// <summary>
-        ///     All units of measurement for the KinematicViscosity quantity.
+        ///     All units of measurement for the <see cref="KinematicViscosity{T}" /> quantity.
         /// </summary>
         public static KinematicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().Except(new KinematicViscosityUnit[]{ KinematicViscosityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterPerSecond.
         /// </summary>
-        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, BaseUnit);
+        public static KinematicViscosity<T> Zero { get; } = new KinematicViscosity<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -149,7 +145,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -165,56 +163,56 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => KinematicViscosity.QuantityType;
+        public QuantityType Type => KinematicViscosity<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => KinematicViscosity.BaseDimensions;
+        public BaseDimensions Dimensions => KinematicViscosity<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get KinematicViscosity in Centistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Centistokes.
         /// </summary>
-        public double Centistokes => As(KinematicViscosityUnit.Centistokes);
+        public T Centistokes => As(KinematicViscosityUnit.Centistokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in Decistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Decistokes.
         /// </summary>
-        public double Decistokes => As(KinematicViscosityUnit.Decistokes);
+        public T Decistokes => As(KinematicViscosityUnit.Decistokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in Kilostokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Kilostokes.
         /// </summary>
-        public double Kilostokes => As(KinematicViscosityUnit.Kilostokes);
+        public T Kilostokes => As(KinematicViscosityUnit.Kilostokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in Microstokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Microstokes.
         /// </summary>
-        public double Microstokes => As(KinematicViscosityUnit.Microstokes);
+        public T Microstokes => As(KinematicViscosityUnit.Microstokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in Millistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Millistokes.
         /// </summary>
-        public double Millistokes => As(KinematicViscosityUnit.Millistokes);
+        public T Millistokes => As(KinematicViscosityUnit.Millistokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in Nanostokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Nanostokes.
         /// </summary>
-        public double Nanostokes => As(KinematicViscosityUnit.Nanostokes);
+        public T Nanostokes => As(KinematicViscosityUnit.Nanostokes);
 
         /// <summary>
-        ///     Get KinematicViscosity in SquareMetersPerSecond.
+        ///     Get <see cref="KinematicViscosity{T}" /> in SquareMetersPerSecond.
         /// </summary>
-        public double SquareMetersPerSecond => As(KinematicViscosityUnit.SquareMeterPerSecond);
+        public T SquareMetersPerSecond => As(KinematicViscosityUnit.SquareMeterPerSecond);
 
         /// <summary>
-        ///     Get KinematicViscosity in Stokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> in Stokes.
         /// </summary>
-        public double Stokes => As(KinematicViscosityUnit.Stokes);
+        public T Stokes => As(KinematicViscosityUnit.Stokes);
 
         #endregion
 
@@ -246,87 +244,79 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get KinematicViscosity from Centistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Centistokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromCentistokes(QuantityValue centistokes)
+        public static KinematicViscosity<T> FromCentistokes(T centistokes)
         {
-            double value = (double) centistokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Centistokes);
+            return new KinematicViscosity<T>(centistokes, KinematicViscosityUnit.Centistokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Decistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Decistokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromDecistokes(QuantityValue decistokes)
+        public static KinematicViscosity<T> FromDecistokes(T decistokes)
         {
-            double value = (double) decistokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
+            return new KinematicViscosity<T>(decistokes, KinematicViscosityUnit.Decistokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Kilostokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Kilostokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromKilostokes(QuantityValue kilostokes)
+        public static KinematicViscosity<T> FromKilostokes(T kilostokes)
         {
-            double value = (double) kilostokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Kilostokes);
+            return new KinematicViscosity<T>(kilostokes, KinematicViscosityUnit.Kilostokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Microstokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Microstokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromMicrostokes(QuantityValue microstokes)
+        public static KinematicViscosity<T> FromMicrostokes(T microstokes)
         {
-            double value = (double) microstokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
+            return new KinematicViscosity<T>(microstokes, KinematicViscosityUnit.Microstokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Millistokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Millistokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromMillistokes(QuantityValue millistokes)
+        public static KinematicViscosity<T> FromMillistokes(T millistokes)
         {
-            double value = (double) millistokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Millistokes);
+            return new KinematicViscosity<T>(millistokes, KinematicViscosityUnit.Millistokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Nanostokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Nanostokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromNanostokes(QuantityValue nanostokes)
+        public static KinematicViscosity<T> FromNanostokes(T nanostokes)
         {
-            double value = (double) nanostokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
+            return new KinematicViscosity<T>(nanostokes, KinematicViscosityUnit.Nanostokes);
         }
         /// <summary>
-        ///     Get KinematicViscosity from SquareMetersPerSecond.
+        ///     Get <see cref="KinematicViscosity{T}" /> from SquareMetersPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromSquareMetersPerSecond(QuantityValue squaremeterspersecond)
+        public static KinematicViscosity<T> FromSquareMetersPerSecond(T squaremeterspersecond)
         {
-            double value = (double) squaremeterspersecond;
-            return new KinematicViscosity(value, KinematicViscosityUnit.SquareMeterPerSecond);
+            return new KinematicViscosity<T>(squaremeterspersecond, KinematicViscosityUnit.SquareMeterPerSecond);
         }
         /// <summary>
-        ///     Get KinematicViscosity from Stokes.
+        ///     Get <see cref="KinematicViscosity{T}" /> from Stokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static KinematicViscosity FromStokes(QuantityValue stokes)
+        public static KinematicViscosity<T> FromStokes(T stokes)
         {
-            double value = (double) stokes;
-            return new KinematicViscosity(value, KinematicViscosityUnit.Stokes);
+            return new KinematicViscosity<T>(stokes, KinematicViscosityUnit.Stokes);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
+        ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>KinematicViscosity unit value.</returns>
-        public static KinematicViscosity From(QuantityValue value, KinematicViscosityUnit fromUnit)
+        /// <returns><see cref="KinematicViscosity{T}" /> unit value.</returns>
+        public static KinematicViscosity<T> From(T value, KinematicViscosityUnit fromUnit)
         {
-            return new KinematicViscosity((double)value, fromUnit);
+            return new KinematicViscosity<T>(value, fromUnit);
         }
 
         #endregion
@@ -355,7 +345,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static KinematicViscosity Parse(string str)
+        public static KinematicViscosity<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -383,9 +373,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static KinematicViscosity Parse(string str, IFormatProvider? provider)
+        public static KinematicViscosity<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<KinematicViscosity, KinematicViscosityUnit>(
+            return QuantityParser.Default.Parse<T, KinematicViscosity<T>, KinematicViscosityUnit>(
                 str,
                 provider,
                 From);
@@ -399,7 +389,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out KinematicViscosity result)
+        public static bool TryParse(string? str, out KinematicViscosity<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -414,9 +404,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out KinematicViscosity result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out KinematicViscosity<T> result)
         {
-            return QuantityParser.Default.TryParse<KinematicViscosity, KinematicViscosityUnit>(
+            return QuantityParser.Default.TryParse<T, KinematicViscosity<T>, KinematicViscosityUnit>(
                 str,
                 provider,
                 From,
@@ -478,45 +468,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static KinematicViscosity operator -(KinematicViscosity right)
+        public static KinematicViscosity<T> operator -(KinematicViscosity<T> right)
         {
-            return new KinematicViscosity(-right.Value, right.Unit);
+            return new KinematicViscosity<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from adding two <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator +(KinematicViscosity left, KinematicViscosity right)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from adding two <see cref="KinematicViscosity{T}"/>.</summary>
+        public static KinematicViscosity<T> operator +(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return new KinematicViscosity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new KinematicViscosity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from subtracting two <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator -(KinematicViscosity left, KinematicViscosity right)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from subtracting two <see cref="KinematicViscosity{T}"/>.</summary>
+        public static KinematicViscosity<T> operator -(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return new KinematicViscosity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new KinematicViscosity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from multiplying value and <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator *(double left, KinematicViscosity right)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from multiplying value and <see cref="KinematicViscosity{T}"/>.</summary>
+        public static KinematicViscosity<T> operator *(T left, KinematicViscosity<T> right)
         {
-            return new KinematicViscosity(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new KinematicViscosity<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from multiplying value and <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator *(KinematicViscosity left, double right)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from multiplying value and <see cref="KinematicViscosity{T}"/>.</summary>
+        public static KinematicViscosity<T> operator *(KinematicViscosity<T> left, T right)
         {
-            return new KinematicViscosity(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new KinematicViscosity<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="KinematicViscosity"/> from dividing <see cref="KinematicViscosity"/> by value.</summary>
-        public static KinematicViscosity operator /(KinematicViscosity left, double right)
+        /// <summary>Get <see cref="KinematicViscosity{T}"/> from dividing <see cref="KinematicViscosity{T}"/> by value.</summary>
+        public static KinematicViscosity<T> operator /(KinematicViscosity<T> left, T right)
         {
-            return new KinematicViscosity(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new KinematicViscosity<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="KinematicViscosity"/> by <see cref="KinematicViscosity"/>.</summary>
-        public static double operator /(KinematicViscosity left, KinematicViscosity right)
+        /// <summary>Get ratio value from dividing <see cref="KinematicViscosity{T}"/> by <see cref="KinematicViscosity{T}"/>.</summary>
+        public static T operator /(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return left.SquareMetersPerSecond / right.SquareMetersPerSecond;
+            return CompiledLambdas.Divide(left.SquareMetersPerSecond, right.SquareMetersPerSecond);
         }
 
         #endregion
@@ -524,39 +519,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(KinematicViscosity left, KinematicViscosity right)
+        public static bool operator <=(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(KinematicViscosity left, KinematicViscosity right)
+        public static bool operator >=(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(KinematicViscosity left, KinematicViscosity right)
+        public static bool operator <(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(KinematicViscosity left, KinematicViscosity right)
+        public static bool operator >(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(KinematicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)
+        /// <remarks>Consider using <see cref="Equals(KinematicViscosity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(KinematicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)
+        /// <remarks>Consider using <see cref="Equals(KinematicViscosity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(KinematicViscosity<T> left, KinematicViscosity<T> right)
         {
             return !(left == right);
         }
@@ -565,37 +560,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is KinematicViscosity objKinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
+            if(!(obj is KinematicViscosity<T> objKinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
 
             return CompareTo(objKinematicViscosity);
         }
 
         /// <inheritdoc />
-        public int CompareTo(KinematicViscosity other)
+        public int CompareTo(KinematicViscosity<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(KinematicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(KinematicViscosity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is KinematicViscosity objKinematicViscosity))
+            if(obj is null || !(obj is KinematicViscosity<T> objKinematicViscosity))
                 return false;
 
             return Equals(objKinematicViscosity);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(KinematicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(KinematicViscosity other)
+        /// <remarks>Consider using <see cref="Equals(KinematicViscosity{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(KinematicViscosity<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another KinematicViscosity within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="KinematicViscosity{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -633,21 +628,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(KinematicViscosity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(KinematicViscosity<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current KinematicViscosity.</returns>
+        /// <returns>A hash code for the current <see cref="KinematicViscosity{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -661,17 +654,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(KinematicViscosityUnit unit)
+        public T As(KinematicViscosityUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -691,17 +684,22 @@ namespace UnitsNet
             if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsKinematicViscosityUnit);
+            var asValue = As(unitAsKinematicViscosityUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<KinematicViscosityUnit>.As(KinematicViscosityUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="KinematicViscosity{T}" /> to another <see cref="KinematicViscosity{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A KinematicViscosity with the specified unit.</returns>
-        public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
+        /// <returns>A <see cref="KinematicViscosity{T}" /> with the specified unit.</returns>
+        public KinematicViscosity<T> ToUnit(KinematicViscosityUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new KinematicViscosity(convertedValue, unit);
+            return new KinematicViscosity<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -714,7 +712,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public KinematicViscosity ToUnit(UnitSystem unitSystem)
+        public KinematicViscosity<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -735,25 +733,31 @@ namespace UnitsNet
         IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<KinematicViscosityUnit, T> IQuantityT<KinematicViscosityUnit, T>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<KinematicViscosityUnit, T> IQuantityT<KinematicViscosityUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
-                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
-                case KinematicViscosityUnit.Stokes: return _value/1e4;
+                case KinematicViscosityUnit.Centistokes: return (Value/1e4) * 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (Value/1e4) * 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (Value/1e4) * 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (Value/1e4) * 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (Value/1e4) * 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (Value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return Value;
+                case KinematicViscosityUnit.Stokes: return Value/1e4;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -764,16 +768,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal KinematicViscosity ToBaseUnit()
+        internal KinematicViscosity<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new KinematicViscosity(baseUnitValue, BaseUnit);
+            return new KinematicViscosity<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(KinematicViscosityUnit unit)
+        private T GetValueAs(KinematicViscosityUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -883,57 +887,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(KinematicViscosity<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(KinematicViscosity<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(KinematicViscosity<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -943,33 +947,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(KinematicViscosity))
+            if(conversionType == typeof(KinematicViscosity<T>))
                 return this;
             else if(conversionType == typeof(KinematicViscosityUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return KinematicViscosity.QuantityType;
+                return KinematicViscosity<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return KinematicViscosity.Info;
+                return KinematicViscosity<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return KinematicViscosity.BaseDimensions;
+                return KinematicViscosity<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(KinematicViscosity<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

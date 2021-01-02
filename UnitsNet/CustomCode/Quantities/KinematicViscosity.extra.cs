@@ -5,42 +5,42 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct KinematicViscosity
+    public partial struct KinematicViscosity<T>
     {
-        /// <summary>Get <see cref="Speed"/> from <see cref="KinematicViscosity"/> divided by <see cref="Length"/>.</summary>
-        public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
+        /// <summary>Get <see cref="Speed{T}"/> from <see cref="KinematicViscosity{T}"/> divided by <see cref="Length{T}"/>.</summary>
+        public static Speed<T> operator /(KinematicViscosity<T> kinematicViscosity, Length<T> length )
         {
-            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
+            return Speed<T>.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="KinematicViscosity"/> times <see cref="TimeSpan"/>.</summary>
-        public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="KinematicViscosity{T}"/> times <see cref="TimeSpan"/>.</summary>
+        public static Area<T> operator *(KinematicViscosity<T> kinematicViscosity, TimeSpan timeSpan)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area<T>.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="TimeSpan"/> times <see cref="KinematicViscosity"/>.</summary>
-        public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="TimeSpan"/> times <see cref="KinematicViscosity{T}"/>.</summary>
+        public static Area<T> operator *(TimeSpan timeSpan, KinematicViscosity<T> kinematicViscosity )
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area<T>.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="KinematicViscosity"/> times <see cref="Duration"/>.</summary>
-        public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="KinematicViscosity{T}"/> times <see cref="Duration{T}"/>.</summary>
+        public static Area<T> operator *(KinematicViscosity<T> kinematicViscosity, Duration<T> duration )
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area<T>.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="Duration"/> times <see cref="KinematicViscosity"/>.</summary>
-        public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="Duration{T}"/> times <see cref="KinematicViscosity{T}"/>.</summary>
+        public static Area<T> operator *(Duration<T> duration, KinematicViscosity<T> kinematicViscosity )
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area<T>.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="KinematicViscosity"/> times <see cref="Density"/>.</summary>
-        public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
+        /// <summary>Get <see cref="DynamicViscosity{T}"/> from <see cref="KinematicViscosity{T}"/> times <see cref="Density{T}"/>.</summary>
+        public static DynamicViscosity<T> operator *(KinematicViscosity<T> kinematicViscosity, Density<T> density )
         {
-            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+            return DynamicViscosity<T>.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
         }
     }
 }

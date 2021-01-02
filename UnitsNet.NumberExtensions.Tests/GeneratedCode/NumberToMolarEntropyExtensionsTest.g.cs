@@ -26,15 +26,15 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToJoulesPerMoleKelvinTest() =>
-            Assert.Equal(MolarEntropy.FromJoulesPerMoleKelvin(2), 2.JoulesPerMoleKelvin());
+            Assert.Equal(MolarEntropy<double>.FromJoulesPerMoleKelvin(2), 2.JoulesPerMoleKelvin());
 
         [Fact]
         public void NumberToKilojoulesPerMoleKelvinTest() =>
-            Assert.Equal(MolarEntropy.FromKilojoulesPerMoleKelvin(2), 2.KilojoulesPerMoleKelvin());
+            Assert.Equal(MolarEntropy<double>.FromKilojoulesPerMoleKelvin(2), 2.KilojoulesPerMoleKelvin());
 
         [Fact]
         public void NumberToMegajoulesPerMoleKelvinTest() =>
-            Assert.Equal(MolarEntropy.FromMegajoulesPerMoleKelvin(2), 2.MegajoulesPerMoleKelvin());
+            Assert.Equal(MolarEntropy<double>.FromMegajoulesPerMoleKelvin(2), 2.MegajoulesPerMoleKelvin());
 
     }
 }

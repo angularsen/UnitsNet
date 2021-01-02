@@ -62,7 +62,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificEntropy((double)0.0, SpecificEntropyUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy<double>((double)0.0, SpecificEntropyUnit.Undefined));
         }
 
         [Fact]
@@ -77,14 +77,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.PositiveInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
-            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.NegativeInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy<double>(double.PositiveInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy<double>(double.NegativeInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.NaN, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy<double>(double.NaN, SpecificEntropyUnit.JoulePerKilogramKelvin));
         }
 
         [Fact]
@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void JoulePerKilogramKelvinToSpecificEntropyUnits()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             AssertEx.EqualTolerance(BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
             AssertEx.EqualTolerance(CaloriesPerGramKelvinInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
             AssertEx.EqualTolerance(JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.JoulesPerKilogramDegreeCelsius, JoulesPerKilogramDegreeCelsiusTolerance);
@@ -145,39 +145,39 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificEntropy.From(1, SpecificEntropyUnit.BtuPerPoundFahrenheit);
+            var quantity00 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.BtuPerPoundFahrenheit);
             AssertEx.EqualTolerance(1, quantity00.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
             Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, quantity00.Unit);
 
-            var quantity01 = SpecificEntropy.From(1, SpecificEntropyUnit.CaloriePerGramKelvin);
+            var quantity01 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.CaloriePerGramKelvin);
             AssertEx.EqualTolerance(1, quantity01.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
             Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, quantity01.Unit);
 
-            var quantity02 = SpecificEntropy.From(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
+            var quantity02 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
             AssertEx.EqualTolerance(1, quantity02.JoulesPerKilogramDegreeCelsius, JoulesPerKilogramDegreeCelsiusTolerance);
             Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, quantity02.Unit);
 
-            var quantity03 = SpecificEntropy.From(1, SpecificEntropyUnit.JoulePerKilogramKelvin);
+            var quantity03 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.JoulePerKilogramKelvin);
             AssertEx.EqualTolerance(1, quantity03.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
             Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, quantity03.Unit);
 
-            var quantity04 = SpecificEntropy.From(1, SpecificEntropyUnit.KilocaloriePerGramKelvin);
+            var quantity04 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.KilocaloriePerGramKelvin);
             AssertEx.EqualTolerance(1, quantity04.KilocaloriesPerGramKelvin, KilocaloriesPerGramKelvinTolerance);
             Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, quantity04.Unit);
 
-            var quantity05 = SpecificEntropy.From(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
+            var quantity05 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
             AssertEx.EqualTolerance(1, quantity05.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
             Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, quantity05.Unit);
 
-            var quantity06 = SpecificEntropy.From(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+            var quantity06 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin);
             AssertEx.EqualTolerance(1, quantity06.KilojoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
             Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, quantity06.Unit);
 
-            var quantity07 = SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
+            var quantity07 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
             AssertEx.EqualTolerance(1, quantity07.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
             Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, quantity07.Unit);
 
-            var quantity08 = SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin);
+            var quantity08 = SpecificEntropy<double>.From(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin);
             AssertEx.EqualTolerance(1, quantity08.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
             Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity08.Unit);
 
@@ -186,20 +186,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromJoulesPerKilogramKelvin_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificEntropy<double>.FromJoulesPerKilogramKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificEntropy<double>.FromJoulesPerKilogramKelvin(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromJoulesPerKilogramKelvin_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.NaN));
+            Assert.Throws<ArgumentException>(() => SpecificEntropy<double>.FromJoulesPerKilogramKelvin(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            var jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             AssertEx.EqualTolerance(BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.As(SpecificEntropyUnit.BtuPerPoundFahrenheit), BtusPerPoundFahrenheitTolerance);
             AssertEx.EqualTolerance(CaloriesPerGramKelvinInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.As(SpecificEntropyUnit.CaloriePerGramKelvin), CaloriesPerGramKelvinTolerance);
             AssertEx.EqualTolerance(JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, jouleperkilogramkelvin.As(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius), JoulesPerKilogramDegreeCelsiusTolerance);
@@ -231,7 +231,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            var jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
 
             var btuperpoundfahrenheitQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.BtuPerPoundFahrenheit);
             AssertEx.EqualTolerance(BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin, (double)btuperpoundfahrenheitQuantity.Value, BtusPerPoundFahrenheitTolerance);
@@ -280,36 +280,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromBtusPerPoundFahrenheit(jouleperkilogramkelvin.BtusPerPoundFahrenheit).JoulesPerKilogramKelvin, BtusPerPoundFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromCaloriesPerGramKelvin(jouleperkilogramkelvin.CaloriesPerGramKelvin).JoulesPerKilogramKelvin, CaloriesPerGramKelvinTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.JoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, JoulesPerKilogramDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromJoulesPerKilogramKelvin(jouleperkilogramkelvin.JoulesPerKilogramKelvin).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromKilocaloriesPerGramKelvin(jouleperkilogramkelvin.KilocaloriesPerGramKelvin).JoulesPerKilogramKelvin, KilocaloriesPerGramKelvinTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.KilojoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, KilojoulesPerKilogramDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromKilojoulesPerKilogramKelvin(jouleperkilogramkelvin.KilojoulesPerKilogramKelvin).JoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.MegajoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, MegajoulesPerKilogramDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, SpecificEntropy.FromMegajoulesPerKilogramKelvin(jouleperkilogramkelvin.MegajoulesPerKilogramKelvin).JoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromBtusPerPoundFahrenheit(jouleperkilogramkelvin.BtusPerPoundFahrenheit).JoulesPerKilogramKelvin, BtusPerPoundFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromCaloriesPerGramKelvin(jouleperkilogramkelvin.CaloriesPerGramKelvin).JoulesPerKilogramKelvin, CaloriesPerGramKelvinTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromJoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.JoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, JoulesPerKilogramDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromJoulesPerKilogramKelvin(jouleperkilogramkelvin.JoulesPerKilogramKelvin).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromKilocaloriesPerGramKelvin(jouleperkilogramkelvin.KilocaloriesPerGramKelvin).JoulesPerKilogramKelvin, KilocaloriesPerGramKelvinTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromKilojoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.KilojoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, KilojoulesPerKilogramDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromKilojoulesPerKilogramKelvin(jouleperkilogramkelvin.KilojoulesPerKilogramKelvin).JoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromMegajoulesPerKilogramDegreeCelsius(jouleperkilogramkelvin.MegajoulesPerKilogramDegreeCelsius).JoulesPerKilogramKelvin, MegajoulesPerKilogramDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, SpecificEntropy<double>.FromMegajoulesPerKilogramKelvin(jouleperkilogramkelvin.MegajoulesPerKilogramKelvin).JoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            SpecificEntropy v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> v = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             AssertEx.EqualTolerance(-1, -v.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
-            AssertEx.EqualTolerance(2, (SpecificEntropy.FromJoulesPerKilogramKelvin(3)-v).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
+            AssertEx.EqualTolerance(2, (SpecificEntropy<double>.FromJoulesPerKilogramKelvin(3)-v).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
             AssertEx.EqualTolerance(2, (v + v).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
             AssertEx.EqualTolerance(10, (v*10).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
             AssertEx.EqualTolerance(10, (10*v).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
-            AssertEx.EqualTolerance(2, (SpecificEntropy.FromJoulesPerKilogramKelvin(10)/5).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
-            AssertEx.EqualTolerance(2, SpecificEntropy.FromJoulesPerKilogramKelvin(10)/SpecificEntropy.FromJoulesPerKilogramKelvin(5), JoulesPerKilogramKelvinTolerance);
+            AssertEx.EqualTolerance(2, (SpecificEntropy<double>.FromJoulesPerKilogramKelvin(10)/5).JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
+            AssertEx.EqualTolerance(2, SpecificEntropy<double>.FromJoulesPerKilogramKelvin(10)/SpecificEntropy<double>.FromJoulesPerKilogramKelvin(5), JoulesPerKilogramKelvinTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            SpecificEntropy oneJoulePerKilogramKelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            SpecificEntropy twoJoulesPerKilogramKelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(2);
+            SpecificEntropy<double> oneJoulePerKilogramKelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> twoJoulesPerKilogramKelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(2);
 
             Assert.True(oneJoulePerKilogramKelvin < twoJoulesPerKilogramKelvin);
             Assert.True(oneJoulePerKilogramKelvin <= twoJoulesPerKilogramKelvin);
@@ -325,31 +325,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             Assert.Equal(0, jouleperkilogramkelvin.CompareTo(jouleperkilogramkelvin));
-            Assert.True(jouleperkilogramkelvin.CompareTo(SpecificEntropy.Zero) > 0);
-            Assert.True(SpecificEntropy.Zero.CompareTo(jouleperkilogramkelvin) < 0);
+            Assert.True(jouleperkilogramkelvin.CompareTo(SpecificEntropy<double>.Zero) > 0);
+            Assert.True(SpecificEntropy<double>.Zero.CompareTo(jouleperkilogramkelvin) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             Assert.Throws<ArgumentException>(() => jouleperkilogramkelvin.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             Assert.Throws<ArgumentNullException>(() => jouleperkilogramkelvin.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            var b = SpecificEntropy.FromJoulesPerKilogramKelvin(2);
+            var a = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
+            var b = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -368,8 +368,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            var b = SpecificEntropy.FromJoulesPerKilogramKelvin(2);
+            var a = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
+            var b = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -389,9 +389,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SpecificEntropy.Zero, JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
+            var v = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
+            Assert.True(v.Equals(SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1), JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificEntropy<double>.Zero, JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -404,21 +404,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             Assert.False(jouleperkilogramkelvin.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            SpecificEntropy<double> jouleperkilogramkelvin = SpecificEntropy<double>.FromJoulesPerKilogramKelvin(1);
             Assert.False(jouleperkilogramkelvin.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(SpecificEntropyUnit.Undefined, SpecificEntropy.Units);
+            Assert.DoesNotContain(SpecificEntropyUnit.Undefined, SpecificEntropy<double>.Units);
         }
 
         [Fact]
@@ -437,7 +437,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(SpecificEntropy.BaseDimensions is null);
+            Assert.False(SpecificEntropy<double>.BaseDimensions is null);
         }
 
         [Fact]

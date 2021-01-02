@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDegreesCelciusPerKilometerTest() =>
-            Assert.Equal(LapseRate.FromDegreesCelciusPerKilometer(2), 2.DegreesCelciusPerKilometer());
+            Assert.Equal(LapseRate<double>.FromDegreesCelciusPerKilometer(2), 2.DegreesCelciusPerKilometer());
 
     }
 }

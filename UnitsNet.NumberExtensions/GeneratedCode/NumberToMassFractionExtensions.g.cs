@@ -28,101 +28,101 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
     /// </summary>
     public static class NumberToMassFractionExtensions
     {
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction CentigramsPerGram<T>(this T value) =>
-            MassFraction.FromCentigramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromCentigramsPerGram(T)" />
+        public static MassFraction<double> CentigramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromCentigramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction CentigramsPerKilogram<T>(this T value) =>
-            MassFraction.FromCentigramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromCentigramsPerKilogram(T)" />
+        public static MassFraction<double> CentigramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromCentigramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction DecagramsPerGram<T>(this T value) =>
-            MassFraction.FromDecagramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromDecagramsPerGram(T)" />
+        public static MassFraction<double> DecagramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromDecagramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction DecagramsPerKilogram<T>(this T value) =>
-            MassFraction.FromDecagramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromDecagramsPerKilogram(T)" />
+        public static MassFraction<double> DecagramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromDecagramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction DecigramsPerGram<T>(this T value) =>
-            MassFraction.FromDecigramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromDecigramsPerGram(T)" />
+        public static MassFraction<double> DecigramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromDecigramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction DecigramsPerKilogram<T>(this T value) =>
-            MassFraction.FromDecigramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromDecigramsPerKilogram(T)" />
+        public static MassFraction<double> DecigramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromDecigramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static MassFraction DecimalFractions<T>(this T value) =>
-            MassFraction.FromDecimalFractions(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromDecimalFractions(T)" />
+        public static MassFraction<double> DecimalFractions<T>(this T value) =>
+            MassFraction<double>.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction GramsPerGram<T>(this T value) =>
-            MassFraction.FromGramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromGramsPerGram(T)" />
+        public static MassFraction<double> GramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromGramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction GramsPerKilogram<T>(this T value) =>
-            MassFraction.FromGramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromGramsPerKilogram(T)" />
+        public static MassFraction<double> GramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromGramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction HectogramsPerGram<T>(this T value) =>
-            MassFraction.FromHectogramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromHectogramsPerGram(T)" />
+        public static MassFraction<double> HectogramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromHectogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction HectogramsPerKilogram<T>(this T value) =>
-            MassFraction.FromHectogramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromHectogramsPerKilogram(T)" />
+        public static MassFraction<double> HectogramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromHectogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction KilogramsPerGram<T>(this T value) =>
-            MassFraction.FromKilogramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromKilogramsPerGram(T)" />
+        public static MassFraction<double> KilogramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromKilogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction KilogramsPerKilogram<T>(this T value) =>
-            MassFraction.FromKilogramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromKilogramsPerKilogram(T)" />
+        public static MassFraction<double> KilogramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromKilogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction MicrogramsPerGram<T>(this T value) =>
-            MassFraction.FromMicrogramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromMicrogramsPerGram(T)" />
+        public static MassFraction<double> MicrogramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromMicrogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction MicrogramsPerKilogram<T>(this T value) =>
-            MassFraction.FromMicrogramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromMicrogramsPerKilogram(T)" />
+        public static MassFraction<double> MicrogramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromMicrogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction MilligramsPerGram<T>(this T value) =>
-            MassFraction.FromMilligramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromMilligramsPerGram(T)" />
+        public static MassFraction<double> MilligramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromMilligramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction MilligramsPerKilogram<T>(this T value) =>
-            MassFraction.FromMilligramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromMilligramsPerKilogram(T)" />
+        public static MassFraction<double> MilligramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromMilligramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(UnitsNet.QuantityValue)" />
-        public static MassFraction NanogramsPerGram<T>(this T value) =>
-            MassFraction.FromNanogramsPerGram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromNanogramsPerGram(T)" />
+        public static MassFraction<double> NanogramsPerGram<T>(this T value) =>
+            MassFraction<double>.FromNanogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(UnitsNet.QuantityValue)" />
-        public static MassFraction NanogramsPerKilogram<T>(this T value) =>
-            MassFraction.FromNanogramsPerKilogram(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromNanogramsPerKilogram(T)" />
+        public static MassFraction<double> NanogramsPerKilogram<T>(this T value) =>
+            MassFraction<double>.FromNanogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static MassFraction PartsPerBillion<T>(this T value) =>
-            MassFraction.FromPartsPerBillion(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromPartsPerBillion(T)" />
+        public static MassFraction<double> PartsPerBillion<T>(this T value) =>
+            MassFraction<double>.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static MassFraction PartsPerMillion<T>(this T value) =>
-            MassFraction.FromPartsPerMillion(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromPartsPerMillion(T)" />
+        public static MassFraction<double> PartsPerMillion<T>(this T value) =>
+            MassFraction<double>.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static MassFraction PartsPerThousand<T>(this T value) =>
-            MassFraction.FromPartsPerThousand(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromPartsPerThousand(T)" />
+        public static MassFraction<double> PartsPerThousand<T>(this T value) =>
+            MassFraction<double>.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static MassFraction PartsPerTrillion<T>(this T value) =>
-            MassFraction.FromPartsPerTrillion(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromPartsPerTrillion(T)" />
+        public static MassFraction<double> PartsPerTrillion<T>(this T value) =>
+            MassFraction<double>.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPercent(UnitsNet.QuantityValue)" />
-        public static MassFraction Percent<T>(this T value) =>
-            MassFraction.FromPercent(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassFraction{T}.FromPercent(T)" />
+        public static MassFraction<double> Percent<T>(this T value) =>
+            MassFraction<double>.FromPercent(Convert.ToDouble(value));
 
     }
 }

@@ -26,207 +26,207 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAcreFeetTest() =>
-            Assert.Equal(Volume.FromAcreFeet(2), 2.AcreFeet());
+            Assert.Equal(Volume<double>.FromAcreFeet(2), 2.AcreFeet());
 
         [Fact]
         public void NumberToAuTablespoonsTest() =>
-            Assert.Equal(Volume.FromAuTablespoons(2), 2.AuTablespoons());
+            Assert.Equal(Volume<double>.FromAuTablespoons(2), 2.AuTablespoons());
 
         [Fact]
         public void NumberToBoardFeetTest() =>
-            Assert.Equal(Volume.FromBoardFeet(2), 2.BoardFeet());
+            Assert.Equal(Volume<double>.FromBoardFeet(2), 2.BoardFeet());
 
         [Fact]
         public void NumberToCentilitersTest() =>
-            Assert.Equal(Volume.FromCentiliters(2), 2.Centiliters());
+            Assert.Equal(Volume<double>.FromCentiliters(2), 2.Centiliters());
 
         [Fact]
         public void NumberToCubicCentimetersTest() =>
-            Assert.Equal(Volume.FromCubicCentimeters(2), 2.CubicCentimeters());
+            Assert.Equal(Volume<double>.FromCubicCentimeters(2), 2.CubicCentimeters());
 
         [Fact]
         public void NumberToCubicDecimetersTest() =>
-            Assert.Equal(Volume.FromCubicDecimeters(2), 2.CubicDecimeters());
+            Assert.Equal(Volume<double>.FromCubicDecimeters(2), 2.CubicDecimeters());
 
         [Fact]
         public void NumberToCubicFeetTest() =>
-            Assert.Equal(Volume.FromCubicFeet(2), 2.CubicFeet());
+            Assert.Equal(Volume<double>.FromCubicFeet(2), 2.CubicFeet());
 
         [Fact]
         public void NumberToCubicHectometersTest() =>
-            Assert.Equal(Volume.FromCubicHectometers(2), 2.CubicHectometers());
+            Assert.Equal(Volume<double>.FromCubicHectometers(2), 2.CubicHectometers());
 
         [Fact]
         public void NumberToCubicInchesTest() =>
-            Assert.Equal(Volume.FromCubicInches(2), 2.CubicInches());
+            Assert.Equal(Volume<double>.FromCubicInches(2), 2.CubicInches());
 
         [Fact]
         public void NumberToCubicKilometersTest() =>
-            Assert.Equal(Volume.FromCubicKilometers(2), 2.CubicKilometers());
+            Assert.Equal(Volume<double>.FromCubicKilometers(2), 2.CubicKilometers());
 
         [Fact]
         public void NumberToCubicMetersTest() =>
-            Assert.Equal(Volume.FromCubicMeters(2), 2.CubicMeters());
+            Assert.Equal(Volume<double>.FromCubicMeters(2), 2.CubicMeters());
 
         [Fact]
         public void NumberToCubicMicrometersTest() =>
-            Assert.Equal(Volume.FromCubicMicrometers(2), 2.CubicMicrometers());
+            Assert.Equal(Volume<double>.FromCubicMicrometers(2), 2.CubicMicrometers());
 
         [Fact]
         public void NumberToCubicMilesTest() =>
-            Assert.Equal(Volume.FromCubicMiles(2), 2.CubicMiles());
+            Assert.Equal(Volume<double>.FromCubicMiles(2), 2.CubicMiles());
 
         [Fact]
         public void NumberToCubicMillimetersTest() =>
-            Assert.Equal(Volume.FromCubicMillimeters(2), 2.CubicMillimeters());
+            Assert.Equal(Volume<double>.FromCubicMillimeters(2), 2.CubicMillimeters());
 
         [Fact]
         public void NumberToCubicYardsTest() =>
-            Assert.Equal(Volume.FromCubicYards(2), 2.CubicYards());
+            Assert.Equal(Volume<double>.FromCubicYards(2), 2.CubicYards());
 
         [Fact]
         public void NumberToDecausGallonsTest() =>
-            Assert.Equal(Volume.FromDecausGallons(2), 2.DecausGallons());
+            Assert.Equal(Volume<double>.FromDecausGallons(2), 2.DecausGallons());
 
         [Fact]
         public void NumberToDecilitersTest() =>
-            Assert.Equal(Volume.FromDeciliters(2), 2.Deciliters());
+            Assert.Equal(Volume<double>.FromDeciliters(2), 2.Deciliters());
 
         [Fact]
         public void NumberToDeciusGallonsTest() =>
-            Assert.Equal(Volume.FromDeciusGallons(2), 2.DeciusGallons());
+            Assert.Equal(Volume<double>.FromDeciusGallons(2), 2.DeciusGallons());
 
         [Fact]
         public void NumberToHectocubicFeetTest() =>
-            Assert.Equal(Volume.FromHectocubicFeet(2), 2.HectocubicFeet());
+            Assert.Equal(Volume<double>.FromHectocubicFeet(2), 2.HectocubicFeet());
 
         [Fact]
         public void NumberToHectocubicMetersTest() =>
-            Assert.Equal(Volume.FromHectocubicMeters(2), 2.HectocubicMeters());
+            Assert.Equal(Volume<double>.FromHectocubicMeters(2), 2.HectocubicMeters());
 
         [Fact]
         public void NumberToHectolitersTest() =>
-            Assert.Equal(Volume.FromHectoliters(2), 2.Hectoliters());
+            Assert.Equal(Volume<double>.FromHectoliters(2), 2.Hectoliters());
 
         [Fact]
         public void NumberToHectousGallonsTest() =>
-            Assert.Equal(Volume.FromHectousGallons(2), 2.HectousGallons());
+            Assert.Equal(Volume<double>.FromHectousGallons(2), 2.HectousGallons());
 
         [Fact]
         public void NumberToImperialBeerBarrelsTest() =>
-            Assert.Equal(Volume.FromImperialBeerBarrels(2), 2.ImperialBeerBarrels());
+            Assert.Equal(Volume<double>.FromImperialBeerBarrels(2), 2.ImperialBeerBarrels());
 
         [Fact]
         public void NumberToImperialGallonsTest() =>
-            Assert.Equal(Volume.FromImperialGallons(2), 2.ImperialGallons());
+            Assert.Equal(Volume<double>.FromImperialGallons(2), 2.ImperialGallons());
 
         [Fact]
         public void NumberToImperialOuncesTest() =>
-            Assert.Equal(Volume.FromImperialOunces(2), 2.ImperialOunces());
+            Assert.Equal(Volume<double>.FromImperialOunces(2), 2.ImperialOunces());
 
         [Fact]
         public void NumberToImperialPintsTest() =>
-            Assert.Equal(Volume.FromImperialPints(2), 2.ImperialPints());
+            Assert.Equal(Volume<double>.FromImperialPints(2), 2.ImperialPints());
 
         [Fact]
         public void NumberToKilocubicFeetTest() =>
-            Assert.Equal(Volume.FromKilocubicFeet(2), 2.KilocubicFeet());
+            Assert.Equal(Volume<double>.FromKilocubicFeet(2), 2.KilocubicFeet());
 
         [Fact]
         public void NumberToKilocubicMetersTest() =>
-            Assert.Equal(Volume.FromKilocubicMeters(2), 2.KilocubicMeters());
+            Assert.Equal(Volume<double>.FromKilocubicMeters(2), 2.KilocubicMeters());
 
         [Fact]
         public void NumberToKiloimperialGallonsTest() =>
-            Assert.Equal(Volume.FromKiloimperialGallons(2), 2.KiloimperialGallons());
+            Assert.Equal(Volume<double>.FromKiloimperialGallons(2), 2.KiloimperialGallons());
 
         [Fact]
         public void NumberToKilolitersTest() =>
-            Assert.Equal(Volume.FromKiloliters(2), 2.Kiloliters());
+            Assert.Equal(Volume<double>.FromKiloliters(2), 2.Kiloliters());
 
         [Fact]
         public void NumberToKilousGallonsTest() =>
-            Assert.Equal(Volume.FromKilousGallons(2), 2.KilousGallons());
+            Assert.Equal(Volume<double>.FromKilousGallons(2), 2.KilousGallons());
 
         [Fact]
         public void NumberToLitersTest() =>
-            Assert.Equal(Volume.FromLiters(2), 2.Liters());
+            Assert.Equal(Volume<double>.FromLiters(2), 2.Liters());
 
         [Fact]
         public void NumberToMegacubicFeetTest() =>
-            Assert.Equal(Volume.FromMegacubicFeet(2), 2.MegacubicFeet());
+            Assert.Equal(Volume<double>.FromMegacubicFeet(2), 2.MegacubicFeet());
 
         [Fact]
         public void NumberToMegaimperialGallonsTest() =>
-            Assert.Equal(Volume.FromMegaimperialGallons(2), 2.MegaimperialGallons());
+            Assert.Equal(Volume<double>.FromMegaimperialGallons(2), 2.MegaimperialGallons());
 
         [Fact]
         public void NumberToMegalitersTest() =>
-            Assert.Equal(Volume.FromMegaliters(2), 2.Megaliters());
+            Assert.Equal(Volume<double>.FromMegaliters(2), 2.Megaliters());
 
         [Fact]
         public void NumberToMegausGallonsTest() =>
-            Assert.Equal(Volume.FromMegausGallons(2), 2.MegausGallons());
+            Assert.Equal(Volume<double>.FromMegausGallons(2), 2.MegausGallons());
 
         [Fact]
         public void NumberToMetricCupsTest() =>
-            Assert.Equal(Volume.FromMetricCups(2), 2.MetricCups());
+            Assert.Equal(Volume<double>.FromMetricCups(2), 2.MetricCups());
 
         [Fact]
         public void NumberToMetricTeaspoonsTest() =>
-            Assert.Equal(Volume.FromMetricTeaspoons(2), 2.MetricTeaspoons());
+            Assert.Equal(Volume<double>.FromMetricTeaspoons(2), 2.MetricTeaspoons());
 
         [Fact]
         public void NumberToMicrolitersTest() =>
-            Assert.Equal(Volume.FromMicroliters(2), 2.Microliters());
+            Assert.Equal(Volume<double>.FromMicroliters(2), 2.Microliters());
 
         [Fact]
         public void NumberToMillilitersTest() =>
-            Assert.Equal(Volume.FromMilliliters(2), 2.Milliliters());
+            Assert.Equal(Volume<double>.FromMilliliters(2), 2.Milliliters());
 
         [Fact]
         public void NumberToOilBarrelsTest() =>
-            Assert.Equal(Volume.FromOilBarrels(2), 2.OilBarrels());
+            Assert.Equal(Volume<double>.FromOilBarrels(2), 2.OilBarrels());
 
         [Fact]
         public void NumberToUkTablespoonsTest() =>
-            Assert.Equal(Volume.FromUkTablespoons(2), 2.UkTablespoons());
+            Assert.Equal(Volume<double>.FromUkTablespoons(2), 2.UkTablespoons());
 
         [Fact]
         public void NumberToUsBeerBarrelsTest() =>
-            Assert.Equal(Volume.FromUsBeerBarrels(2), 2.UsBeerBarrels());
+            Assert.Equal(Volume<double>.FromUsBeerBarrels(2), 2.UsBeerBarrels());
 
         [Fact]
         public void NumberToUsCustomaryCupsTest() =>
-            Assert.Equal(Volume.FromUsCustomaryCups(2), 2.UsCustomaryCups());
+            Assert.Equal(Volume<double>.FromUsCustomaryCups(2), 2.UsCustomaryCups());
 
         [Fact]
         public void NumberToUsGallonsTest() =>
-            Assert.Equal(Volume.FromUsGallons(2), 2.UsGallons());
+            Assert.Equal(Volume<double>.FromUsGallons(2), 2.UsGallons());
 
         [Fact]
         public void NumberToUsLegalCupsTest() =>
-            Assert.Equal(Volume.FromUsLegalCups(2), 2.UsLegalCups());
+            Assert.Equal(Volume<double>.FromUsLegalCups(2), 2.UsLegalCups());
 
         [Fact]
         public void NumberToUsOuncesTest() =>
-            Assert.Equal(Volume.FromUsOunces(2), 2.UsOunces());
+            Assert.Equal(Volume<double>.FromUsOunces(2), 2.UsOunces());
 
         [Fact]
         public void NumberToUsPintsTest() =>
-            Assert.Equal(Volume.FromUsPints(2), 2.UsPints());
+            Assert.Equal(Volume<double>.FromUsPints(2), 2.UsPints());
 
         [Fact]
         public void NumberToUsQuartsTest() =>
-            Assert.Equal(Volume.FromUsQuarts(2), 2.UsQuarts());
+            Assert.Equal(Volume<double>.FromUsQuarts(2), 2.UsQuarts());
 
         [Fact]
         public void NumberToUsTablespoonsTest() =>
-            Assert.Equal(Volume.FromUsTablespoons(2), 2.UsTablespoons());
+            Assert.Equal(Volume<double>.FromUsTablespoons(2), 2.UsTablespoons());
 
         [Fact]
         public void NumberToUsTeaspoonsTest() =>
-            Assert.Equal(Volume.FromUsTeaspoons(2), 2.UsTeaspoons());
+            Assert.Equal(Volume<double>.FromUsTeaspoons(2), 2.UsTeaspoons());
 
     }
 }

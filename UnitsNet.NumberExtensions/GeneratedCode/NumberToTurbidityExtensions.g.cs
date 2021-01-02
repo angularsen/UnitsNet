@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
     /// </summary>
     public static class NumberToTurbidityExtensions
     {
-        /// <inheritdoc cref="Turbidity.FromNTU(UnitsNet.QuantityValue)" />
-        public static Turbidity NTU<T>(this T value) =>
-            Turbidity.FromNTU(Convert.ToDouble(value));
+        /// <inheritdoc cref="Turbidity{T}.FromNTU(T)" />
+        public static Turbidity<double> NTU<T>(this T value) =>
+            Turbidity<double>.FromNTU(Convert.ToDouble(value));
 
     }
 }

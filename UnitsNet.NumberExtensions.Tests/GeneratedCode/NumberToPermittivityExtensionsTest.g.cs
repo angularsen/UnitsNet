@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToFaradsPerMeterTest() =>
-            Assert.Equal(Permittivity.FromFaradsPerMeter(2), 2.FaradsPerMeter());
+            Assert.Equal(Permittivity<double>.FromFaradsPerMeter(2), 2.FaradsPerMeter());
 
     }
 }

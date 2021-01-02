@@ -50,7 +50,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion((double)0.0, CoefficientOfThermalExpansionUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion<double>((double)0.0, CoefficientOfThermalExpansionUnit.Undefined));
         }
 
         [Fact]
@@ -65,14 +65,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.PositiveInfinity, CoefficientOfThermalExpansionUnit.InverseKelvin));
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.NegativeInfinity, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion<double>(double.PositiveInfinity, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion<double>(double.NegativeInfinity, CoefficientOfThermalExpansionUnit.InverseKelvin));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion(double.NaN, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            Assert.Throws<ArgumentException>(() => new CoefficientOfThermalExpansion<double>(double.NaN, CoefficientOfThermalExpansionUnit.InverseKelvin));
         }
 
         [Fact]
@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void InverseKelvinToCoefficientOfThermalExpansionUnits()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, inversekelvin.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, inversekelvin.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, inversekelvin.InverseKelvin, InverseKelvinTolerance);
@@ -127,15 +127,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
+            var quantity00 = CoefficientOfThermalExpansion<double>.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
             AssertEx.EqualTolerance(1, quantity00.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
             Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity00.Unit);
 
-            var quantity01 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
+            var quantity01 = CoefficientOfThermalExpansion<double>.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
             AssertEx.EqualTolerance(1, quantity01.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
             Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity01.Unit);
 
-            var quantity02 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseKelvin);
+            var quantity02 = CoefficientOfThermalExpansion<double>.From(1, CoefficientOfThermalExpansionUnit.InverseKelvin);
             AssertEx.EqualTolerance(1, quantity02.InverseKelvin, InverseKelvinTolerance);
             Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, quantity02.Unit);
 
@@ -144,20 +144,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromInverseKelvin_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromInverseKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromInverseKelvin(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion<double>.FromInverseKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion<double>.FromInverseKelvin(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromInverseKelvin_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion.FromInverseKelvin(double.NaN));
+            Assert.Throws<ArgumentException>(() => CoefficientOfThermalExpansion<double>.FromInverseKelvin(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            var inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius), InverseDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit), InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseKelvin), InverseKelvinTolerance);
@@ -183,7 +183,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            var inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
 
             var inversedegreecelsiusQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
             AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, (double)inversedegreecelsiusQuantity.Value, InverseDegreeCelsiusTolerance);
@@ -208,30 +208,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeCelsius(inversekelvin.InverseDegreeCelsius).InverseKelvin, InverseDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(inversekelvin.InverseDegreeFahrenheit).InverseKelvin, InverseDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseKelvin(inversekelvin.InverseKelvin).InverseKelvin, InverseKelvinTolerance);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion<double>.FromInverseDegreeCelsius(inversekelvin.InverseDegreeCelsius).InverseKelvin, InverseDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion<double>.FromInverseDegreeFahrenheit(inversekelvin.InverseDegreeFahrenheit).InverseKelvin, InverseDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion<double>.FromInverseKelvin(inversekelvin.InverseKelvin).InverseKelvin, InverseKelvinTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            CoefficientOfThermalExpansion v = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> v = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             AssertEx.EqualTolerance(-1, -v.InverseKelvin, InverseKelvinTolerance);
-            AssertEx.EqualTolerance(2, (CoefficientOfThermalExpansion.FromInverseKelvin(3)-v).InverseKelvin, InverseKelvinTolerance);
+            AssertEx.EqualTolerance(2, (CoefficientOfThermalExpansion<double>.FromInverseKelvin(3)-v).InverseKelvin, InverseKelvinTolerance);
             AssertEx.EqualTolerance(2, (v + v).InverseKelvin, InverseKelvinTolerance);
             AssertEx.EqualTolerance(10, (v*10).InverseKelvin, InverseKelvinTolerance);
             AssertEx.EqualTolerance(10, (10*v).InverseKelvin, InverseKelvinTolerance);
-            AssertEx.EqualTolerance(2, (CoefficientOfThermalExpansion.FromInverseKelvin(10)/5).InverseKelvin, InverseKelvinTolerance);
-            AssertEx.EqualTolerance(2, CoefficientOfThermalExpansion.FromInverseKelvin(10)/CoefficientOfThermalExpansion.FromInverseKelvin(5), InverseKelvinTolerance);
+            AssertEx.EqualTolerance(2, (CoefficientOfThermalExpansion<double>.FromInverseKelvin(10)/5).InverseKelvin, InverseKelvinTolerance);
+            AssertEx.EqualTolerance(2, CoefficientOfThermalExpansion<double>.FromInverseKelvin(10)/CoefficientOfThermalExpansion<double>.FromInverseKelvin(5), InverseKelvinTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            CoefficientOfThermalExpansion oneInverseKelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            CoefficientOfThermalExpansion twoInverseKelvin = CoefficientOfThermalExpansion.FromInverseKelvin(2);
+            CoefficientOfThermalExpansion<double> oneInverseKelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> twoInverseKelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(2);
 
             Assert.True(oneInverseKelvin < twoInverseKelvin);
             Assert.True(oneInverseKelvin <= twoInverseKelvin);
@@ -247,31 +247,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             Assert.Equal(0, inversekelvin.CompareTo(inversekelvin));
-            Assert.True(inversekelvin.CompareTo(CoefficientOfThermalExpansion.Zero) > 0);
-            Assert.True(CoefficientOfThermalExpansion.Zero.CompareTo(inversekelvin) < 0);
+            Assert.True(inversekelvin.CompareTo(CoefficientOfThermalExpansion<double>.Zero) > 0);
+            Assert.True(CoefficientOfThermalExpansion<double>.Zero.CompareTo(inversekelvin) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             Assert.Throws<ArgumentException>(() => inversekelvin.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             Assert.Throws<ArgumentNullException>(() => inversekelvin.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            var b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
+            var a = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
+            var b = CoefficientOfThermalExpansion<double>.FromInverseKelvin(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -290,8 +290,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            var b = CoefficientOfThermalExpansion.FromInverseKelvin(2);
+            var a = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
+            var b = CoefficientOfThermalExpansion<double>.FromInverseKelvin(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -311,9 +311,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            Assert.True(v.Equals(CoefficientOfThermalExpansion.FromInverseKelvin(1), InverseKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(CoefficientOfThermalExpansion.Zero, InverseKelvinTolerance, ComparisonType.Relative));
+            var v = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
+            Assert.True(v.Equals(CoefficientOfThermalExpansion<double>.FromInverseKelvin(1), InverseKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(CoefficientOfThermalExpansion<double>.Zero, InverseKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -326,21 +326,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             Assert.False(inversekelvin.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            CoefficientOfThermalExpansion<double> inversekelvin = CoefficientOfThermalExpansion<double>.FromInverseKelvin(1);
             Assert.False(inversekelvin.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(CoefficientOfThermalExpansionUnit.Undefined, CoefficientOfThermalExpansion.Units);
+            Assert.DoesNotContain(CoefficientOfThermalExpansionUnit.Undefined, CoefficientOfThermalExpansion<double>.Units);
         }
 
         [Fact]
@@ -359,7 +359,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(CoefficientOfThermalExpansion.BaseDimensions is null);
+            Assert.False(CoefficientOfThermalExpansion<double>.BaseDimensions is null);
         }
 
         [Fact]

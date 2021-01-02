@@ -26,23 +26,23 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToAmpereHoursTest() =>
-            Assert.Equal(ElectricCharge.FromAmpereHours(2), 2.AmpereHours());
+            Assert.Equal(ElectricCharge<double>.FromAmpereHours(2), 2.AmpereHours());
 
         [Fact]
         public void NumberToCoulombsTest() =>
-            Assert.Equal(ElectricCharge.FromCoulombs(2), 2.Coulombs());
+            Assert.Equal(ElectricCharge<double>.FromCoulombs(2), 2.Coulombs());
 
         [Fact]
         public void NumberToKiloampereHoursTest() =>
-            Assert.Equal(ElectricCharge.FromKiloampereHours(2), 2.KiloampereHours());
+            Assert.Equal(ElectricCharge<double>.FromKiloampereHours(2), 2.KiloampereHours());
 
         [Fact]
         public void NumberToMegaampereHoursTest() =>
-            Assert.Equal(ElectricCharge.FromMegaampereHours(2), 2.MegaampereHours());
+            Assert.Equal(ElectricCharge<double>.FromMegaampereHours(2), 2.MegaampereHours());
 
         [Fact]
         public void NumberToMilliampereHoursTest() =>
-            Assert.Equal(ElectricCharge.FromMilliampereHours(2), 2.MilliampereHours());
+            Assert.Equal(ElectricCharge<double>.FromMilliampereHours(2), 2.MilliampereHours());
 
     }
 }

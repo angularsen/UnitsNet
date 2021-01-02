@@ -26,43 +26,43 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToBeatsPerMinuteTest() =>
-            Assert.Equal(Frequency.FromBeatsPerMinute(2), 2.BeatsPerMinute());
+            Assert.Equal(Frequency<double>.FromBeatsPerMinute(2), 2.BeatsPerMinute());
 
         [Fact]
         public void NumberToCyclesPerHourTest() =>
-            Assert.Equal(Frequency.FromCyclesPerHour(2), 2.CyclesPerHour());
+            Assert.Equal(Frequency<double>.FromCyclesPerHour(2), 2.CyclesPerHour());
 
         [Fact]
         public void NumberToCyclesPerMinuteTest() =>
-            Assert.Equal(Frequency.FromCyclesPerMinute(2), 2.CyclesPerMinute());
+            Assert.Equal(Frequency<double>.FromCyclesPerMinute(2), 2.CyclesPerMinute());
 
         [Fact]
         public void NumberToGigahertzTest() =>
-            Assert.Equal(Frequency.FromGigahertz(2), 2.Gigahertz());
+            Assert.Equal(Frequency<double>.FromGigahertz(2), 2.Gigahertz());
 
         [Fact]
         public void NumberToHertzTest() =>
-            Assert.Equal(Frequency.FromHertz(2), 2.Hertz());
+            Assert.Equal(Frequency<double>.FromHertz(2), 2.Hertz());
 
         [Fact]
         public void NumberToKilohertzTest() =>
-            Assert.Equal(Frequency.FromKilohertz(2), 2.Kilohertz());
+            Assert.Equal(Frequency<double>.FromKilohertz(2), 2.Kilohertz());
 
         [Fact]
         public void NumberToMegahertzTest() =>
-            Assert.Equal(Frequency.FromMegahertz(2), 2.Megahertz());
+            Assert.Equal(Frequency<double>.FromMegahertz(2), 2.Megahertz());
 
         [Fact]
         public void NumberToPerSecondTest() =>
-            Assert.Equal(Frequency.FromPerSecond(2), 2.PerSecond());
+            Assert.Equal(Frequency<double>.FromPerSecond(2), 2.PerSecond());
 
         [Fact]
         public void NumberToRadiansPerSecondTest() =>
-            Assert.Equal(Frequency.FromRadiansPerSecond(2), 2.RadiansPerSecond());
+            Assert.Equal(Frequency<double>.FromRadiansPerSecond(2), 2.RadiansPerSecond());
 
         [Fact]
         public void NumberToTerahertzTest() =>
-            Assert.Equal(Frequency.FromTerahertz(2), 2.Terahertz());
+            Assert.Equal(Frequency<double>.FromTerahertz(2), 2.Terahertz());
 
     }
 }

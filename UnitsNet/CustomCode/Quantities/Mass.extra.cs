@@ -9,12 +9,12 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial struct Mass
+    public partial struct Mass<T>
     {
-        /// <summary>Get <see cref="Mass"/> from <see cref="Force"/> of gravity.</summary>
-        public static Mass FromGravitationalForce(Force f)
+        /// <summary>Get <see cref="Mass{T}"/> from <see cref="Force{T}"/> of gravity.</summary>
+        public static Mass<T> FromGravitationalForce(Force<T> f )
         {
-            return new Mass(f.KilogramsForce, MassUnit.Kilogram);
+            return new Mass<T>( f.KilogramsForce, MassUnit.Kilogram);
         }
 
         /// <summary>
@@ -42,57 +42,57 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from combination of stone and pounds.
         /// </summary>
-        public static Mass FromStonePounds(double stone, double pounds)
+        public static Mass<T> FromStonePounds(double stone, double pounds)
         {
             return FromPounds(StonesInOnePound*stone + pounds);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="Mass{T}"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static MassFlow<T> operator /(Mass<T> mass, TimeSpan timeSpan)
         {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
+            return MassFlow<T>.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="Duration"/>.</summary>
-        public static MassFlow operator /(Mass mass, Duration duration)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="Mass{T}"/> divided by <see cref="Duration{T}"/>.</summary>
+        public static MassFlow<T> operator /(Mass<T> mass, Duration<T> duration )
         {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
+            return MassFlow<T>.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Density"/> from <see cref="MassFlow"/> divided by <see cref="Volume"/>.</summary>
-        public static Density operator /(Mass mass, Volume volume)
+        /// <summary>Get <see cref="Density{T}"/> from <see cref="MassFlow{T}"/> divided by <see cref="Volume{T}"/>.</summary>
+        public static Density<T> operator /(Mass<T> mass, Volume<T> volume )
         {
-            return Density.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
+            return Density<T>.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> divided by <see cref="Density"/>.</summary>
-        public static Volume operator /(Mass mass, Density density)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="Mass{T}"/> divided by <see cref="Density{T}"/>.</summary>
+        public static Volume<T> operator /(Mass<T> mass, Density<T> density )
         {
-            return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
+            return Volume<T>.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="MolarMass" /> divided by <see cref="Mass" />.</summary>
-        public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
+        /// <summary>Get <see cref="AmountOfSubstance{T}" /> from <see cref="MolarMass{T}" /> divided by <see cref="Mass{T}" />.</summary>
+        public static AmountOfSubstance<T> operator /(Mass<T> mass, MolarMass<T> molarMass )
         {
-            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
+            return AmountOfSubstance<T>.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
-        /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
-        public static Force operator *(Mass mass, Acceleration acceleration)
+        /// <summary>Get <see cref="Force{T}"/> from <see cref="Mass{T}"/> times <see cref="Acceleration{T}"/>.</summary>
+        public static Force<T> operator *(Mass<T> mass, Acceleration<T> acceleration )
         {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
+            return Force<T>.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
 
-        /// <summary>Get <see cref="Force"/> from <see cref="Acceleration"/> times <see cref="Mass"/>.</summary>
-        public static Force operator *(Acceleration acceleration, Mass mass)
+        /// <summary>Get <see cref="Force{T}"/> from <see cref="Acceleration{T}"/> times <see cref="Mass{T}"/>.</summary>
+        public static Force<T> operator *(Acceleration<T> acceleration, Mass<T> mass )
         {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
+            return Force<T>.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
     }
 
     /// <summary>
-    ///     Representation of stone and pounds, used to preserve the original values when constructing <see cref="Mass"/> by
-    ///     <see cref="Mass.FromStonePounds"/> and later output them unaltered with <see cref="ToString()"/>.
+    ///     Representation of stone and pounds, used to preserve the original values when constructing <see cref="Mass{T}"/> by
+    ///     <see cref="Mass{T}.FromStonePounds"/> and later output them unaltered with <see cref="ToString()"/>.
     /// </summary>
     public sealed class StonePounds
     {

@@ -28,21 +28,21 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
     /// </summary>
     public static class NumberToApparentPowerExtensions
     {
-        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Gigavoltamperes<T>(this T value) =>
-            ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentPower{T}.FromGigavoltamperes(T)" />
+        public static ApparentPower<double> Gigavoltamperes<T>(this T value) =>
+            ApparentPower<double>.FromGigavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Kilovoltamperes<T>(this T value) =>
-            ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentPower{T}.FromKilovoltamperes(T)" />
+        public static ApparentPower<double> Kilovoltamperes<T>(this T value) =>
+            ApparentPower<double>.FromKilovoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Megavoltamperes<T>(this T value) =>
-            ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentPower{T}.FromMegavoltamperes(T)" />
+        public static ApparentPower<double> Megavoltamperes<T>(this T value) =>
+            ApparentPower<double>.FromMegavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromVoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Voltamperes<T>(this T value) =>
-            ApparentPower.FromVoltamperes(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentPower{T}.FromVoltamperes(T)" />
+        public static ApparentPower<double> Voltamperes<T>(this T value) =>
+            ApparentPower<double>.FromVoltamperes(Convert.ToDouble(value));
 
     }
 }

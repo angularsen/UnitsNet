@@ -26,87 +26,87 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToKilogramForceCentimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilogramForceCentimetersPerMeter(2), 2.KilogramForceCentimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilogramForceCentimetersPerMeter(2), 2.KilogramForceCentimetersPerMeter());
 
         [Fact]
         public void NumberToKilogramForceMetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilogramForceMetersPerMeter(2), 2.KilogramForceMetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilogramForceMetersPerMeter(2), 2.KilogramForceMetersPerMeter());
 
         [Fact]
         public void NumberToKilogramForceMillimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilogramForceMillimetersPerMeter(2), 2.KilogramForceMillimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilogramForceMillimetersPerMeter(2), 2.KilogramForceMillimetersPerMeter());
 
         [Fact]
         public void NumberToKilonewtonCentimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilonewtonCentimetersPerMeter(2), 2.KilonewtonCentimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilonewtonCentimetersPerMeter(2), 2.KilonewtonCentimetersPerMeter());
 
         [Fact]
         public void NumberToKilonewtonMetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilonewtonMetersPerMeter(2), 2.KilonewtonMetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilonewtonMetersPerMeter(2), 2.KilonewtonMetersPerMeter());
 
         [Fact]
         public void NumberToKilonewtonMillimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromKilonewtonMillimetersPerMeter(2), 2.KilonewtonMillimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromKilonewtonMillimetersPerMeter(2), 2.KilonewtonMillimetersPerMeter());
 
         [Fact]
         public void NumberToKilopoundForceFeetPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromKilopoundForceFeetPerFoot(2), 2.KilopoundForceFeetPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromKilopoundForceFeetPerFoot(2), 2.KilopoundForceFeetPerFoot());
 
         [Fact]
         public void NumberToKilopoundForceInchesPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromKilopoundForceInchesPerFoot(2), 2.KilopoundForceInchesPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromKilopoundForceInchesPerFoot(2), 2.KilopoundForceInchesPerFoot());
 
         [Fact]
         public void NumberToMeganewtonCentimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromMeganewtonCentimetersPerMeter(2), 2.MeganewtonCentimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromMeganewtonCentimetersPerMeter(2), 2.MeganewtonCentimetersPerMeter());
 
         [Fact]
         public void NumberToMeganewtonMetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromMeganewtonMetersPerMeter(2), 2.MeganewtonMetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromMeganewtonMetersPerMeter(2), 2.MeganewtonMetersPerMeter());
 
         [Fact]
         public void NumberToMeganewtonMillimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromMeganewtonMillimetersPerMeter(2), 2.MeganewtonMillimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromMeganewtonMillimetersPerMeter(2), 2.MeganewtonMillimetersPerMeter());
 
         [Fact]
         public void NumberToMegapoundForceFeetPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromMegapoundForceFeetPerFoot(2), 2.MegapoundForceFeetPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromMegapoundForceFeetPerFoot(2), 2.MegapoundForceFeetPerFoot());
 
         [Fact]
         public void NumberToMegapoundForceInchesPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromMegapoundForceInchesPerFoot(2), 2.MegapoundForceInchesPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromMegapoundForceInchesPerFoot(2), 2.MegapoundForceInchesPerFoot());
 
         [Fact]
         public void NumberToNewtonCentimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromNewtonCentimetersPerMeter(2), 2.NewtonCentimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromNewtonCentimetersPerMeter(2), 2.NewtonCentimetersPerMeter());
 
         [Fact]
         public void NumberToNewtonMetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromNewtonMetersPerMeter(2), 2.NewtonMetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromNewtonMetersPerMeter(2), 2.NewtonMetersPerMeter());
 
         [Fact]
         public void NumberToNewtonMillimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromNewtonMillimetersPerMeter(2), 2.NewtonMillimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromNewtonMillimetersPerMeter(2), 2.NewtonMillimetersPerMeter());
 
         [Fact]
         public void NumberToPoundForceFeetPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromPoundForceFeetPerFoot(2), 2.PoundForceFeetPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromPoundForceFeetPerFoot(2), 2.PoundForceFeetPerFoot());
 
         [Fact]
         public void NumberToPoundForceInchesPerFootTest() =>
-            Assert.Equal(TorquePerLength.FromPoundForceInchesPerFoot(2), 2.PoundForceInchesPerFoot());
+            Assert.Equal(TorquePerLength<double>.FromPoundForceInchesPerFoot(2), 2.PoundForceInchesPerFoot());
 
         [Fact]
         public void NumberToTonneForceCentimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromTonneForceCentimetersPerMeter(2), 2.TonneForceCentimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromTonneForceCentimetersPerMeter(2), 2.TonneForceCentimetersPerMeter());
 
         [Fact]
         public void NumberToTonneForceMetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromTonneForceMetersPerMeter(2), 2.TonneForceMetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromTonneForceMetersPerMeter(2), 2.TonneForceMetersPerMeter());
 
         [Fact]
         public void NumberToTonneForceMillimetersPerMeterTest() =>
-            Assert.Equal(TorquePerLength.FromTonneForceMillimetersPerMeter(2), 2.TonneForceMillimetersPerMeter());
+            Assert.Equal(TorquePerLength<double>.FromTonneForceMillimetersPerMeter(2), 2.TonneForceMillimetersPerMeter());
 
     }
 }

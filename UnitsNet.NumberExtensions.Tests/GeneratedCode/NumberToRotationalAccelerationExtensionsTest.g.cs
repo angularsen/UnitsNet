@@ -26,19 +26,19 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDegreesPerSecondSquaredTest() =>
-            Assert.Equal(RotationalAcceleration.FromDegreesPerSecondSquared(2), 2.DegreesPerSecondSquared());
+            Assert.Equal(RotationalAcceleration<double>.FromDegreesPerSecondSquared(2), 2.DegreesPerSecondSquared());
 
         [Fact]
         public void NumberToRadiansPerSecondSquaredTest() =>
-            Assert.Equal(RotationalAcceleration.FromRadiansPerSecondSquared(2), 2.RadiansPerSecondSquared());
+            Assert.Equal(RotationalAcceleration<double>.FromRadiansPerSecondSquared(2), 2.RadiansPerSecondSquared());
 
         [Fact]
         public void NumberToRevolutionsPerMinutePerSecondTest() =>
-            Assert.Equal(RotationalAcceleration.FromRevolutionsPerMinutePerSecond(2), 2.RevolutionsPerMinutePerSecond());
+            Assert.Equal(RotationalAcceleration<double>.FromRevolutionsPerMinutePerSecond(2), 2.RevolutionsPerMinutePerSecond());
 
         [Fact]
         public void NumberToRevolutionsPerSecondSquaredTest() =>
-            Assert.Equal(RotationalAcceleration.FromRevolutionsPerSecondSquared(2), 2.RevolutionsPerSecondSquared());
+            Assert.Equal(RotationalAcceleration<double>.FromRevolutionsPerSecondSquared(2), 2.RevolutionsPerSecondSquared());
 
     }
 }

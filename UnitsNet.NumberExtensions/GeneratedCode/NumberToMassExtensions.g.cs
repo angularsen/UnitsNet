@@ -28,105 +28,105 @@ namespace UnitsNet.NumberExtensions.NumberToMass
     /// </summary>
     public static class NumberToMassExtensions
     {
-        /// <inheritdoc cref="Mass.FromCentigrams(UnitsNet.QuantityValue)" />
-        public static Mass Centigrams<T>(this T value) =>
-            Mass.FromCentigrams(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromCentigrams(T)" />
+        public static Mass<double> Centigrams<T>(this T value) =>
+            Mass<double>.FromCentigrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromDecagrams(UnitsNet.QuantityValue)" />
-        public static Mass Decagrams<T>(this T value) =>
-            Mass.FromDecagrams(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromDecagrams(T)" />
+        public static Mass<double> Decagrams<T>(this T value) =>
+            Mass<double>.FromDecagrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromDecigrams(UnitsNet.QuantityValue)" />
-        public static Mass Decigrams<T>(this T value) =>
-            Mass.FromDecigrams(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromDecigrams(T)" />
+        public static Mass<double> Decigrams<T>(this T value) =>
+            Mass<double>.FromDecigrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromEarthMasses(UnitsNet.QuantityValue)" />
-        public static Mass EarthMasses<T>(this T value) =>
-            Mass.FromEarthMasses(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromEarthMasses(T)" />
+        public static Mass<double> EarthMasses<T>(this T value) =>
+            Mass<double>.FromEarthMasses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromGrains(UnitsNet.QuantityValue)" />
-        public static Mass Grains<T>(this T value) =>
-            Mass.FromGrains(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromGrains(T)" />
+        public static Mass<double> Grains<T>(this T value) =>
+            Mass<double>.FromGrains(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromGrams(UnitsNet.QuantityValue)" />
-        public static Mass Grams<T>(this T value) =>
-            Mass.FromGrams(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromGrams(T)" />
+        public static Mass<double> Grams<T>(this T value) =>
+            Mass<double>.FromGrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromHectograms(UnitsNet.QuantityValue)" />
-        public static Mass Hectograms<T>(this T value) =>
-            Mass.FromHectograms(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromHectograms(T)" />
+        public static Mass<double> Hectograms<T>(this T value) =>
+            Mass<double>.FromHectograms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromKilograms(UnitsNet.QuantityValue)" />
-        public static Mass Kilograms<T>(this T value) =>
-            Mass.FromKilograms(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromKilograms(T)" />
+        public static Mass<double> Kilograms<T>(this T value) =>
+            Mass<double>.FromKilograms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromKilopounds(UnitsNet.QuantityValue)" />
-        public static Mass Kilopounds<T>(this T value) =>
-            Mass.FromKilopounds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromKilopounds(T)" />
+        public static Mass<double> Kilopounds<T>(this T value) =>
+            Mass<double>.FromKilopounds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromKilotonnes(UnitsNet.QuantityValue)" />
-        public static Mass Kilotonnes<T>(this T value) =>
-            Mass.FromKilotonnes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromKilotonnes(T)" />
+        public static Mass<double> Kilotonnes<T>(this T value) =>
+            Mass<double>.FromKilotonnes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromLongHundredweight(UnitsNet.QuantityValue)" />
-        public static Mass LongHundredweight<T>(this T value) =>
-            Mass.FromLongHundredweight(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromLongHundredweight(T)" />
+        public static Mass<double> LongHundredweight<T>(this T value) =>
+            Mass<double>.FromLongHundredweight(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromLongTons(UnitsNet.QuantityValue)" />
-        public static Mass LongTons<T>(this T value) =>
-            Mass.FromLongTons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromLongTons(T)" />
+        public static Mass<double> LongTons<T>(this T value) =>
+            Mass<double>.FromLongTons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromMegapounds(UnitsNet.QuantityValue)" />
-        public static Mass Megapounds<T>(this T value) =>
-            Mass.FromMegapounds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromMegapounds(T)" />
+        public static Mass<double> Megapounds<T>(this T value) =>
+            Mass<double>.FromMegapounds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromMegatonnes(UnitsNet.QuantityValue)" />
-        public static Mass Megatonnes<T>(this T value) =>
-            Mass.FromMegatonnes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromMegatonnes(T)" />
+        public static Mass<double> Megatonnes<T>(this T value) =>
+            Mass<double>.FromMegatonnes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromMicrograms(UnitsNet.QuantityValue)" />
-        public static Mass Micrograms<T>(this T value) =>
-            Mass.FromMicrograms(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromMicrograms(T)" />
+        public static Mass<double> Micrograms<T>(this T value) =>
+            Mass<double>.FromMicrograms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromMilligrams(UnitsNet.QuantityValue)" />
-        public static Mass Milligrams<T>(this T value) =>
-            Mass.FromMilligrams(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromMilligrams(T)" />
+        public static Mass<double> Milligrams<T>(this T value) =>
+            Mass<double>.FromMilligrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromNanograms(UnitsNet.QuantityValue)" />
-        public static Mass Nanograms<T>(this T value) =>
-            Mass.FromNanograms(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromNanograms(T)" />
+        public static Mass<double> Nanograms<T>(this T value) =>
+            Mass<double>.FromNanograms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromOunces(UnitsNet.QuantityValue)" />
-        public static Mass Ounces<T>(this T value) =>
-            Mass.FromOunces(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromOunces(T)" />
+        public static Mass<double> Ounces<T>(this T value) =>
+            Mass<double>.FromOunces(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromPounds(UnitsNet.QuantityValue)" />
-        public static Mass Pounds<T>(this T value) =>
-            Mass.FromPounds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromPounds(T)" />
+        public static Mass<double> Pounds<T>(this T value) =>
+            Mass<double>.FromPounds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromShortHundredweight(UnitsNet.QuantityValue)" />
-        public static Mass ShortHundredweight<T>(this T value) =>
-            Mass.FromShortHundredweight(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromShortHundredweight(T)" />
+        public static Mass<double> ShortHundredweight<T>(this T value) =>
+            Mass<double>.FromShortHundredweight(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromShortTons(UnitsNet.QuantityValue)" />
-        public static Mass ShortTons<T>(this T value) =>
-            Mass.FromShortTons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromShortTons(T)" />
+        public static Mass<double> ShortTons<T>(this T value) =>
+            Mass<double>.FromShortTons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs<T>(this T value) =>
-            Mass.FromSlugs(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromSlugs(T)" />
+        public static Mass<double> Slugs<T>(this T value) =>
+            Mass<double>.FromSlugs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromSolarMasses(UnitsNet.QuantityValue)" />
-        public static Mass SolarMasses<T>(this T value) =>
-            Mass.FromSolarMasses(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromSolarMasses(T)" />
+        public static Mass<double> SolarMasses<T>(this T value) =>
+            Mass<double>.FromSolarMasses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromStone(UnitsNet.QuantityValue)" />
-        public static Mass Stone<T>(this T value) =>
-            Mass.FromStone(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromStone(T)" />
+        public static Mass<double> Stone<T>(this T value) =>
+            Mass<double>.FromStone(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromTonnes(UnitsNet.QuantityValue)" />
-        public static Mass Tonnes<T>(this T value) =>
-            Mass.FromTonnes(Convert.ToDouble(value));
+        /// <inheritdoc cref="Mass{T}.FromTonnes(T)" />
+        public static Mass<double> Tonnes<T>(this T value) =>
+            Mass<double>.FromTonnes(Convert.ToDouble(value));
 
     }
 }

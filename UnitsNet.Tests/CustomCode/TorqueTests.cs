@@ -55,15 +55,15 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TorqueDividedByForceEqualsLength()
         {
-            Length length = Torque.FromNewtonMeters(4)/Force.FromNewtons(2);
-            Assert.Equal(length, Length.FromMeters(2));
+            var length = Torque<double>.FromNewtonMeters(4)/Force<double>.FromNewtons(2);
+            Assert.Equal(length, Length<double>.FromMeters(2));
         }
 
         [Fact]
         public void TorqueDividedByLengthEqualsForce()
         {
-            Force force = Torque.FromNewtonMeters(4)/Length.FromMeters(2);
-            Assert.Equal(force, Force.FromNewtons(2));
+            var force = Torque<double>.FromNewtonMeters(4)/Length<double>.FromMeters(2);
+            Assert.Equal(force, Force<double>.FromNewtons(2));
         }
     }
 }

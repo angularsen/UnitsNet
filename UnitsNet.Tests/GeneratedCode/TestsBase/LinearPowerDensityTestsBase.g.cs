@@ -94,7 +94,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity((double)0.0, LinearPowerDensityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity<double>((double)0.0, LinearPowerDensityUnit.Undefined));
         }
 
         [Fact]
@@ -109,14 +109,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NegativeInfinity, LinearPowerDensityUnit.WattPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity<double>(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity<double>(double.NegativeInfinity, LinearPowerDensityUnit.WattPerMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NaN, LinearPowerDensityUnit.WattPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity<double>(double.NaN, LinearPowerDensityUnit.WattPerMeter));
         }
 
         [Fact]
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void WattPerMeterToLinearPowerDensityUnits()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             AssertEx.EqualTolerance(GigawattsPerCentimeterInOneWattPerMeter, wattpermeter.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
             AssertEx.EqualTolerance(GigawattsPerFootInOneWattPerMeter, wattpermeter.GigawattsPerFoot, GigawattsPerFootTolerance);
             AssertEx.EqualTolerance(GigawattsPerInchInOneWattPerMeter, wattpermeter.GigawattsPerInch, GigawattsPerInchTolerance);
@@ -193,103 +193,103 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerCentimeter);
+            var quantity00 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.GigawattPerCentimeter);
             AssertEx.EqualTolerance(1, quantity00.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, quantity00.Unit);
 
-            var quantity01 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerFoot);
+            var quantity01 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.GigawattPerFoot);
             AssertEx.EqualTolerance(1, quantity01.GigawattsPerFoot, GigawattsPerFootTolerance);
             Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, quantity01.Unit);
 
-            var quantity02 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerInch);
+            var quantity02 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.GigawattPerInch);
             AssertEx.EqualTolerance(1, quantity02.GigawattsPerInch, GigawattsPerInchTolerance);
             Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, quantity02.Unit);
 
-            var quantity03 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerMeter);
+            var quantity03 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.GigawattPerMeter);
             AssertEx.EqualTolerance(1, quantity03.GigawattsPerMeter, GigawattsPerMeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, quantity03.Unit);
 
-            var quantity04 = LinearPowerDensity.From(1, LinearPowerDensityUnit.GigawattPerMillimeter);
+            var quantity04 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.GigawattPerMillimeter);
             AssertEx.EqualTolerance(1, quantity04.GigawattsPerMillimeter, GigawattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, quantity04.Unit);
 
-            var quantity05 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerCentimeter);
+            var quantity05 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.KilowattPerCentimeter);
             AssertEx.EqualTolerance(1, quantity05.KilowattsPerCentimeter, KilowattsPerCentimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, quantity05.Unit);
 
-            var quantity06 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerFoot);
+            var quantity06 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.KilowattPerFoot);
             AssertEx.EqualTolerance(1, quantity06.KilowattsPerFoot, KilowattsPerFootTolerance);
             Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, quantity06.Unit);
 
-            var quantity07 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerInch);
+            var quantity07 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.KilowattPerInch);
             AssertEx.EqualTolerance(1, quantity07.KilowattsPerInch, KilowattsPerInchTolerance);
             Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, quantity07.Unit);
 
-            var quantity08 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerMeter);
+            var quantity08 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.KilowattPerMeter);
             AssertEx.EqualTolerance(1, quantity08.KilowattsPerMeter, KilowattsPerMeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, quantity08.Unit);
 
-            var quantity09 = LinearPowerDensity.From(1, LinearPowerDensityUnit.KilowattPerMillimeter);
+            var quantity09 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.KilowattPerMillimeter);
             AssertEx.EqualTolerance(1, quantity09.KilowattsPerMillimeter, KilowattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, quantity09.Unit);
 
-            var quantity10 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerCentimeter);
+            var quantity10 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MegawattPerCentimeter);
             AssertEx.EqualTolerance(1, quantity10.MegawattsPerCentimeter, MegawattsPerCentimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, quantity10.Unit);
 
-            var quantity11 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerFoot);
+            var quantity11 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MegawattPerFoot);
             AssertEx.EqualTolerance(1, quantity11.MegawattsPerFoot, MegawattsPerFootTolerance);
             Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, quantity11.Unit);
 
-            var quantity12 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerInch);
+            var quantity12 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MegawattPerInch);
             AssertEx.EqualTolerance(1, quantity12.MegawattsPerInch, MegawattsPerInchTolerance);
             Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, quantity12.Unit);
 
-            var quantity13 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerMeter);
+            var quantity13 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MegawattPerMeter);
             AssertEx.EqualTolerance(1, quantity13.MegawattsPerMeter, MegawattsPerMeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, quantity13.Unit);
 
-            var quantity14 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MegawattPerMillimeter);
+            var quantity14 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MegawattPerMillimeter);
             AssertEx.EqualTolerance(1, quantity14.MegawattsPerMillimeter, MegawattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, quantity14.Unit);
 
-            var quantity15 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerCentimeter);
+            var quantity15 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MilliwattPerCentimeter);
             AssertEx.EqualTolerance(1, quantity15.MilliwattsPerCentimeter, MilliwattsPerCentimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, quantity15.Unit);
 
-            var quantity16 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerFoot);
+            var quantity16 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MilliwattPerFoot);
             AssertEx.EqualTolerance(1, quantity16.MilliwattsPerFoot, MilliwattsPerFootTolerance);
             Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, quantity16.Unit);
 
-            var quantity17 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerInch);
+            var quantity17 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MilliwattPerInch);
             AssertEx.EqualTolerance(1, quantity17.MilliwattsPerInch, MilliwattsPerInchTolerance);
             Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, quantity17.Unit);
 
-            var quantity18 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerMeter);
+            var quantity18 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MilliwattPerMeter);
             AssertEx.EqualTolerance(1, quantity18.MilliwattsPerMeter, MilliwattsPerMeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, quantity18.Unit);
 
-            var quantity19 = LinearPowerDensity.From(1, LinearPowerDensityUnit.MilliwattPerMillimeter);
+            var quantity19 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.MilliwattPerMillimeter);
             AssertEx.EqualTolerance(1, quantity19.MilliwattsPerMillimeter, MilliwattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, quantity19.Unit);
 
-            var quantity20 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerCentimeter);
+            var quantity20 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.WattPerCentimeter);
             AssertEx.EqualTolerance(1, quantity20.WattsPerCentimeter, WattsPerCentimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, quantity20.Unit);
 
-            var quantity21 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerFoot);
+            var quantity21 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.WattPerFoot);
             AssertEx.EqualTolerance(1, quantity21.WattsPerFoot, WattsPerFootTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerFoot, quantity21.Unit);
 
-            var quantity22 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerInch);
+            var quantity22 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.WattPerInch);
             AssertEx.EqualTolerance(1, quantity22.WattsPerInch, WattsPerInchTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerInch, quantity22.Unit);
 
-            var quantity23 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerMeter);
+            var quantity23 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.WattPerMeter);
             AssertEx.EqualTolerance(1, quantity23.WattsPerMeter, WattsPerMeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerMeter, quantity23.Unit);
 
-            var quantity24 = LinearPowerDensity.From(1, LinearPowerDensityUnit.WattPerMillimeter);
+            var quantity24 = LinearPowerDensity<double>.From(1, LinearPowerDensityUnit.WattPerMillimeter);
             AssertEx.EqualTolerance(1, quantity24.WattsPerMillimeter, WattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, quantity24.Unit);
 
@@ -298,20 +298,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromWattsPerMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity<double>.FromWattsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity<double>.FromWattsPerMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromWattsPerMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity<double>.FromWattsPerMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            var wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             AssertEx.EqualTolerance(GigawattsPerCentimeterInOneWattPerMeter, wattpermeter.As(LinearPowerDensityUnit.GigawattPerCentimeter), GigawattsPerCentimeterTolerance);
             AssertEx.EqualTolerance(GigawattsPerFootInOneWattPerMeter, wattpermeter.As(LinearPowerDensityUnit.GigawattPerFoot), GigawattsPerFootTolerance);
             AssertEx.EqualTolerance(GigawattsPerInchInOneWattPerMeter, wattpermeter.As(LinearPowerDensityUnit.GigawattPerInch), GigawattsPerInchTolerance);
@@ -359,7 +359,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            var wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
 
             var gigawattpercentimeterQuantity = wattpermeter.ToUnit(LinearPowerDensityUnit.GigawattPerCentimeter);
             AssertEx.EqualTolerance(GigawattsPerCentimeterInOneWattPerMeter, (double)gigawattpercentimeterQuantity.Value, GigawattsPerCentimeterTolerance);
@@ -472,52 +472,52 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromGigawattsPerCentimeter(wattpermeter.GigawattsPerCentimeter).WattsPerMeter, GigawattsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromGigawattsPerFoot(wattpermeter.GigawattsPerFoot).WattsPerMeter, GigawattsPerFootTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromGigawattsPerInch(wattpermeter.GigawattsPerInch).WattsPerMeter, GigawattsPerInchTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromGigawattsPerMeter(wattpermeter.GigawattsPerMeter).WattsPerMeter, GigawattsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromGigawattsPerMillimeter(wattpermeter.GigawattsPerMillimeter).WattsPerMeter, GigawattsPerMillimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromKilowattsPerCentimeter(wattpermeter.KilowattsPerCentimeter).WattsPerMeter, KilowattsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromKilowattsPerFoot(wattpermeter.KilowattsPerFoot).WattsPerMeter, KilowattsPerFootTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromKilowattsPerInch(wattpermeter.KilowattsPerInch).WattsPerMeter, KilowattsPerInchTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromKilowattsPerMeter(wattpermeter.KilowattsPerMeter).WattsPerMeter, KilowattsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromKilowattsPerMillimeter(wattpermeter.KilowattsPerMillimeter).WattsPerMeter, KilowattsPerMillimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMegawattsPerCentimeter(wattpermeter.MegawattsPerCentimeter).WattsPerMeter, MegawattsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMegawattsPerFoot(wattpermeter.MegawattsPerFoot).WattsPerMeter, MegawattsPerFootTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMegawattsPerInch(wattpermeter.MegawattsPerInch).WattsPerMeter, MegawattsPerInchTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMegawattsPerMeter(wattpermeter.MegawattsPerMeter).WattsPerMeter, MegawattsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMegawattsPerMillimeter(wattpermeter.MegawattsPerMillimeter).WattsPerMeter, MegawattsPerMillimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMilliwattsPerCentimeter(wattpermeter.MilliwattsPerCentimeter).WattsPerMeter, MilliwattsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMilliwattsPerFoot(wattpermeter.MilliwattsPerFoot).WattsPerMeter, MilliwattsPerFootTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMilliwattsPerInch(wattpermeter.MilliwattsPerInch).WattsPerMeter, MilliwattsPerInchTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMilliwattsPerMeter(wattpermeter.MilliwattsPerMeter).WattsPerMeter, MilliwattsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromMilliwattsPerMillimeter(wattpermeter.MilliwattsPerMillimeter).WattsPerMeter, MilliwattsPerMillimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromWattsPerCentimeter(wattpermeter.WattsPerCentimeter).WattsPerMeter, WattsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromWattsPerFoot(wattpermeter.WattsPerFoot).WattsPerMeter, WattsPerFootTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromWattsPerInch(wattpermeter.WattsPerInch).WattsPerMeter, WattsPerInchTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromWattsPerMeter(wattpermeter.WattsPerMeter).WattsPerMeter, WattsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LinearPowerDensity.FromWattsPerMillimeter(wattpermeter.WattsPerMillimeter).WattsPerMeter, WattsPerMillimeterTolerance);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromGigawattsPerCentimeter(wattpermeter.GigawattsPerCentimeter).WattsPerMeter, GigawattsPerCentimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromGigawattsPerFoot(wattpermeter.GigawattsPerFoot).WattsPerMeter, GigawattsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromGigawattsPerInch(wattpermeter.GigawattsPerInch).WattsPerMeter, GigawattsPerInchTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromGigawattsPerMeter(wattpermeter.GigawattsPerMeter).WattsPerMeter, GigawattsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromGigawattsPerMillimeter(wattpermeter.GigawattsPerMillimeter).WattsPerMeter, GigawattsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromKilowattsPerCentimeter(wattpermeter.KilowattsPerCentimeter).WattsPerMeter, KilowattsPerCentimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromKilowattsPerFoot(wattpermeter.KilowattsPerFoot).WattsPerMeter, KilowattsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromKilowattsPerInch(wattpermeter.KilowattsPerInch).WattsPerMeter, KilowattsPerInchTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromKilowattsPerMeter(wattpermeter.KilowattsPerMeter).WattsPerMeter, KilowattsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromKilowattsPerMillimeter(wattpermeter.KilowattsPerMillimeter).WattsPerMeter, KilowattsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMegawattsPerCentimeter(wattpermeter.MegawattsPerCentimeter).WattsPerMeter, MegawattsPerCentimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMegawattsPerFoot(wattpermeter.MegawattsPerFoot).WattsPerMeter, MegawattsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMegawattsPerInch(wattpermeter.MegawattsPerInch).WattsPerMeter, MegawattsPerInchTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMegawattsPerMeter(wattpermeter.MegawattsPerMeter).WattsPerMeter, MegawattsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMegawattsPerMillimeter(wattpermeter.MegawattsPerMillimeter).WattsPerMeter, MegawattsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMilliwattsPerCentimeter(wattpermeter.MilliwattsPerCentimeter).WattsPerMeter, MilliwattsPerCentimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMilliwattsPerFoot(wattpermeter.MilliwattsPerFoot).WattsPerMeter, MilliwattsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMilliwattsPerInch(wattpermeter.MilliwattsPerInch).WattsPerMeter, MilliwattsPerInchTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMilliwattsPerMeter(wattpermeter.MilliwattsPerMeter).WattsPerMeter, MilliwattsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromMilliwattsPerMillimeter(wattpermeter.MilliwattsPerMillimeter).WattsPerMeter, MilliwattsPerMillimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromWattsPerCentimeter(wattpermeter.WattsPerCentimeter).WattsPerMeter, WattsPerCentimeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromWattsPerFoot(wattpermeter.WattsPerFoot).WattsPerMeter, WattsPerFootTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromWattsPerInch(wattpermeter.WattsPerInch).WattsPerMeter, WattsPerInchTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromWattsPerMeter(wattpermeter.WattsPerMeter).WattsPerMeter, WattsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LinearPowerDensity<double>.FromWattsPerMillimeter(wattpermeter.WattsPerMillimeter).WattsPerMeter, WattsPerMillimeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            LinearPowerDensity v = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> v = LinearPowerDensity<double>.FromWattsPerMeter(1);
             AssertEx.EqualTolerance(-1, -v.WattsPerMeter, WattsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LinearPowerDensity.FromWattsPerMeter(3)-v).WattsPerMeter, WattsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (LinearPowerDensity<double>.FromWattsPerMeter(3)-v).WattsPerMeter, WattsPerMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).WattsPerMeter, WattsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).WattsPerMeter, WattsPerMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).WattsPerMeter, WattsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LinearPowerDensity.FromWattsPerMeter(10)/5).WattsPerMeter, WattsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, LinearPowerDensity.FromWattsPerMeter(10)/LinearPowerDensity.FromWattsPerMeter(5), WattsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (LinearPowerDensity<double>.FromWattsPerMeter(10)/5).WattsPerMeter, WattsPerMeterTolerance);
+            AssertEx.EqualTolerance(2, LinearPowerDensity<double>.FromWattsPerMeter(10)/LinearPowerDensity<double>.FromWattsPerMeter(5), WattsPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            LinearPowerDensity oneWattPerMeter = LinearPowerDensity.FromWattsPerMeter(1);
-            LinearPowerDensity twoWattsPerMeter = LinearPowerDensity.FromWattsPerMeter(2);
+            LinearPowerDensity<double> oneWattPerMeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
+            LinearPowerDensity<double> twoWattsPerMeter = LinearPowerDensity<double>.FromWattsPerMeter(2);
 
             Assert.True(oneWattPerMeter < twoWattsPerMeter);
             Assert.True(oneWattPerMeter <= twoWattsPerMeter);
@@ -533,31 +533,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             Assert.Equal(0, wattpermeter.CompareTo(wattpermeter));
-            Assert.True(wattpermeter.CompareTo(LinearPowerDensity.Zero) > 0);
-            Assert.True(LinearPowerDensity.Zero.CompareTo(wattpermeter) < 0);
+            Assert.True(wattpermeter.CompareTo(LinearPowerDensity<double>.Zero) > 0);
+            Assert.True(LinearPowerDensity<double>.Zero.CompareTo(wattpermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             Assert.Throws<ArgumentException>(() => wattpermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             Assert.Throws<ArgumentNullException>(() => wattpermeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
+            var a = LinearPowerDensity<double>.FromWattsPerMeter(1);
+            var b = LinearPowerDensity<double>.FromWattsPerMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -576,8 +576,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
+            var a = LinearPowerDensity<double>.FromWattsPerMeter(1);
+            var b = LinearPowerDensity<double>.FromWattsPerMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -597,9 +597,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = LinearPowerDensity.FromWattsPerMeter(1);
-            Assert.True(v.Equals(LinearPowerDensity.FromWattsPerMeter(1), WattsPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(LinearPowerDensity.Zero, WattsPerMeterTolerance, ComparisonType.Relative));
+            var v = LinearPowerDensity<double>.FromWattsPerMeter(1);
+            Assert.True(v.Equals(LinearPowerDensity<double>.FromWattsPerMeter(1), WattsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LinearPowerDensity<double>.Zero, WattsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -612,21 +612,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             Assert.False(wattpermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            LinearPowerDensity wattpermeter = LinearPowerDensity.FromWattsPerMeter(1);
+            LinearPowerDensity<double> wattpermeter = LinearPowerDensity<double>.FromWattsPerMeter(1);
             Assert.False(wattpermeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(LinearPowerDensityUnit.Undefined, LinearPowerDensity.Units);
+            Assert.DoesNotContain(LinearPowerDensityUnit.Undefined, LinearPowerDensity<double>.Units);
         }
 
         [Fact]
@@ -645,7 +645,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(LinearPowerDensity.BaseDimensions is null);
+            Assert.False(LinearPowerDensity<double>.BaseDimensions is null);
         }
 
         [Fact]

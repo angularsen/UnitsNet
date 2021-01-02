@@ -68,48 +68,48 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
-            Force force = Acceleration.FromMetersPerSecondSquared(3)*Mass.FromKilograms(18);
-            Assert.Equal(force, Force.FromNewtons(54));
+            var force = Acceleration<double>.FromMetersPerSecondSquared(3)*Mass<double>.FromKilograms(18);
+            Assert.Equal(force, Force<double>.FromNewtons(54));
         }
 
         [Fact]
         public void MassDividedByDurationEqualsMassFlow()
         {
-            MassFlow massFlow = Mass.FromKilograms(18.0)/Duration.FromSeconds(6);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+            var massFlow = Mass<double>.FromKilograms(18.0)/Duration<double>.FromSeconds(6);
+            Assert.Equal(massFlow, MassFlow<double>.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByTimeSpanEqualsMassFlow()
         {
-            MassFlow massFlow = Mass.FromKilograms(18.0)/TimeSpan.FromSeconds(6);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+            var massFlow = Mass<double>.FromKilograms(18.0)/TimeSpan.FromSeconds(6);
+            Assert.Equal(massFlow, MassFlow<double>.FromKilogramsPerSecond(3.0));
         }
 
         [Fact]
         public void MassDividedByVolumeEqualsDensity()
         {
-            Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);
-            Assert.Equal(density, Density.FromKilogramsPerCubicMeter(6));
+            var density = Mass<double>.FromKilograms(18)/Volume<double>.FromCubicMeters(3);
+            Assert.Equal(density, Density<double>.FromKilogramsPerCubicMeter(6));
         }
 
         [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
-            Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
-            Assert.Equal(force, Force.FromNewtons(54));
+            var force = Mass<double>.FromKilograms(18)*Acceleration<double>.FromMetersPerSecondSquared(3);
+            Assert.Equal(force, Force<double>.FromNewtons(54));
         }
 
         [Fact]
         public void NegativeMassToStonePoundsReturnsCorrectValues()
         {
-            var negativeMass = Mass.FromPounds(-1.0);
+            var negativeMass = Mass<double>.FromPounds(-1.0);
             var stonePounds = negativeMass.StonePounds;
 
             Assert.Equal(0, stonePounds.Stone);
             Assert.Equal(-1.0, stonePounds.Pounds);
 
-            negativeMass = Mass.FromPounds(-25.0);
+            negativeMass = Mass<double>.FromPounds(-25.0);
             stonePounds = negativeMass.StonePounds;
 
             Assert.Equal(-1.0, stonePounds.Stone);
@@ -125,10 +125,10 @@ namespace UnitsNet.Tests.CustomCode
             double molarMassValue, MolarMassUnit molarMassUnit,
             double expectedAmountOfSubstanceValue, AmountOfSubstanceUnit expectedAmountOfSubstanceUnit, double tolerence = 1e-5)
         {
-            var mass = new Mass(massValue, massUnit);
-            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
+            var mass = new Mass<double>(massValue, massUnit);
+            var molarMass = new MolarMass<double>(molarMassValue, molarMassUnit);
 
-            AmountOfSubstance amountOfSubstance = mass / molarMass;
+            var amountOfSubstance = mass / molarMass;
 
             AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }

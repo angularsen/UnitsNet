@@ -5,42 +5,42 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct VolumeFlow
+    public partial struct VolumeFlow<T>
     {
-        /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> times <see cref="TimeSpan"/>.</summary>
-        public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="VolumeFlow{T}"/> times <see cref="TimeSpan"/>.</summary>
+        public static Volume<T> operator *(VolumeFlow<T> volumeFlow, TimeSpan timeSpan)
         {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
+            return Volume<T>.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> times <see cref="Duration"/>.</summary>
-        public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="VolumeFlow{T}"/> times <see cref="Duration{T}"/>.</summary>
+        public static Volume<T> operator *(VolumeFlow<T> volumeFlow, Duration<T> duration )
         {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+            return Volume<T>.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Speed"/> from <see cref="VolumeFlow"/> divided by <see cref="Area"/>.</summary>
-        public static Speed operator /(VolumeFlow volumeFlow, Area area)
+        /// <summary>Get <see cref="Speed{T}"/> from <see cref="VolumeFlow{T}"/> divided by <see cref="Area{T}"/>.</summary>
+        public static Speed<T> operator /(VolumeFlow<T> volumeFlow, Area<T> area )
         {
-            return Speed.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
+            return Speed<T>.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="VolumeFlow"/> divided by <see cref="Speed"/>.</summary>
-        public static Area operator /(VolumeFlow volumeFlow, Speed speed)
+        /// <summary>Get <see cref="Area{T}"/> from <see cref="VolumeFlow{T}"/> divided by <see cref="Speed{T}"/>.</summary>
+        public static Area<T> operator /(VolumeFlow<T> volumeFlow, Speed<T> speed )
         {
-            return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
+            return Area<T>.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="VolumeFlow"/> times <see cref="Density"/>.</summary>
-        public static MassFlow operator *(VolumeFlow volumeFlow, Density density)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="VolumeFlow{T}"/> times <see cref="Density{T}"/>.</summary>
+        public static MassFlow<T> operator *(VolumeFlow<T> volumeFlow, Density<T> density )
         {
-            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+            return MassFlow<T>.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Density"/> times <see cref="VolumeFlow"/>.</summary>
-        public static MassFlow operator *(Density density, VolumeFlow volumeFlow)
+        /// <summary>Get <see cref="MassFlow{T}"/> from <see cref="Density{T}"/> times <see cref="VolumeFlow{T}"/>.</summary>
+        public static MassFlow<T> operator *(Density<T> density, VolumeFlow<T> volumeFlow )
         {
-            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+            return MassFlow<T>.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
         }
     }
 }

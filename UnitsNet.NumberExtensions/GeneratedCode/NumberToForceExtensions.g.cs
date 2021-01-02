@@ -28,65 +28,65 @@ namespace UnitsNet.NumberExtensions.NumberToForce
     /// </summary>
     public static class NumberToForceExtensions
     {
-        /// <inheritdoc cref="Force.FromDecanewtons(UnitsNet.QuantityValue)" />
-        public static Force Decanewtons<T>(this T value) =>
-            Force.FromDecanewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromDecanewtons(T)" />
+        public static Force<double> Decanewtons<T>(this T value) =>
+            Force<double>.FromDecanewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromDyne(UnitsNet.QuantityValue)" />
-        public static Force Dyne<T>(this T value) =>
-            Force.FromDyne(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromDyne(T)" />
+        public static Force<double> Dyne<T>(this T value) =>
+            Force<double>.FromDyne(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilogramsForce(UnitsNet.QuantityValue)" />
-        public static Force KilogramsForce<T>(this T value) =>
-            Force.FromKilogramsForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromKilogramsForce(T)" />
+        public static Force<double> KilogramsForce<T>(this T value) =>
+            Force<double>.FromKilogramsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilonewtons(UnitsNet.QuantityValue)" />
-        public static Force Kilonewtons<T>(this T value) =>
-            Force.FromKilonewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromKilonewtons(T)" />
+        public static Force<double> Kilonewtons<T>(this T value) =>
+            Force<double>.FromKilonewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKiloPonds(UnitsNet.QuantityValue)" />
-        public static Force KiloPonds<T>(this T value) =>
-            Force.FromKiloPonds(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromKiloPonds(T)" />
+        public static Force<double> KiloPonds<T>(this T value) =>
+            Force<double>.FromKiloPonds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilopoundsForce(UnitsNet.QuantityValue)" />
-        public static Force KilopoundsForce<T>(this T value) =>
-            Force.FromKilopoundsForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromKilopoundsForce(T)" />
+        public static Force<double> KilopoundsForce<T>(this T value) =>
+            Force<double>.FromKilopoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMeganewtons(UnitsNet.QuantityValue)" />
-        public static Force Meganewtons<T>(this T value) =>
-            Force.FromMeganewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromMeganewtons(T)" />
+        public static Force<double> Meganewtons<T>(this T value) =>
+            Force<double>.FromMeganewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMicronewtons(UnitsNet.QuantityValue)" />
-        public static Force Micronewtons<T>(this T value) =>
-            Force.FromMicronewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromMicronewtons(T)" />
+        public static Force<double> Micronewtons<T>(this T value) =>
+            Force<double>.FromMicronewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMillinewtons(UnitsNet.QuantityValue)" />
-        public static Force Millinewtons<T>(this T value) =>
-            Force.FromMillinewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromMillinewtons(T)" />
+        public static Force<double> Millinewtons<T>(this T value) =>
+            Force<double>.FromMillinewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromNewtons(UnitsNet.QuantityValue)" />
-        public static Force Newtons<T>(this T value) =>
-            Force.FromNewtons(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromNewtons(T)" />
+        public static Force<double> Newtons<T>(this T value) =>
+            Force<double>.FromNewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
-        public static Force OunceForce<T>(this T value) =>
-            Force.FromOunceForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromOunceForce(T)" />
+        public static Force<double> OunceForce<T>(this T value) =>
+            Force<double>.FromOunceForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromPoundals(UnitsNet.QuantityValue)" />
-        public static Force Poundals<T>(this T value) =>
-            Force.FromPoundals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromPoundals(T)" />
+        public static Force<double> Poundals<T>(this T value) =>
+            Force<double>.FromPoundals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromPoundsForce(UnitsNet.QuantityValue)" />
-        public static Force PoundsForce<T>(this T value) =>
-            Force.FromPoundsForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromPoundsForce(T)" />
+        public static Force<double> PoundsForce<T>(this T value) =>
+            Force<double>.FromPoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromShortTonsForce(UnitsNet.QuantityValue)" />
-        public static Force ShortTonsForce<T>(this T value) =>
-            Force.FromShortTonsForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromShortTonsForce(T)" />
+        public static Force<double> ShortTonsForce<T>(this T value) =>
+            Force<double>.FromShortTonsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromTonnesForce(UnitsNet.QuantityValue)" />
-        public static Force TonnesForce<T>(this T value) =>
-            Force.FromTonnesForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force{T}.FromTonnesForce(T)" />
+        public static Force<double> TonnesForce<T>(this T value) =>
+            Force<double>.FromTonnesForce(Convert.ToDouble(value));
 
     }
 }

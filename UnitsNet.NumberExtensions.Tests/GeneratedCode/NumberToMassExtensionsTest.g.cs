@@ -26,103 +26,103 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentigramsTest() =>
-            Assert.Equal(Mass.FromCentigrams(2), 2.Centigrams());
+            Assert.Equal(Mass<double>.FromCentigrams(2), 2.Centigrams());
 
         [Fact]
         public void NumberToDecagramsTest() =>
-            Assert.Equal(Mass.FromDecagrams(2), 2.Decagrams());
+            Assert.Equal(Mass<double>.FromDecagrams(2), 2.Decagrams());
 
         [Fact]
         public void NumberToDecigramsTest() =>
-            Assert.Equal(Mass.FromDecigrams(2), 2.Decigrams());
+            Assert.Equal(Mass<double>.FromDecigrams(2), 2.Decigrams());
 
         [Fact]
         public void NumberToEarthMassesTest() =>
-            Assert.Equal(Mass.FromEarthMasses(2), 2.EarthMasses());
+            Assert.Equal(Mass<double>.FromEarthMasses(2), 2.EarthMasses());
 
         [Fact]
         public void NumberToGrainsTest() =>
-            Assert.Equal(Mass.FromGrains(2), 2.Grains());
+            Assert.Equal(Mass<double>.FromGrains(2), 2.Grains());
 
         [Fact]
         public void NumberToGramsTest() =>
-            Assert.Equal(Mass.FromGrams(2), 2.Grams());
+            Assert.Equal(Mass<double>.FromGrams(2), 2.Grams());
 
         [Fact]
         public void NumberToHectogramsTest() =>
-            Assert.Equal(Mass.FromHectograms(2), 2.Hectograms());
+            Assert.Equal(Mass<double>.FromHectograms(2), 2.Hectograms());
 
         [Fact]
         public void NumberToKilogramsTest() =>
-            Assert.Equal(Mass.FromKilograms(2), 2.Kilograms());
+            Assert.Equal(Mass<double>.FromKilograms(2), 2.Kilograms());
 
         [Fact]
         public void NumberToKilopoundsTest() =>
-            Assert.Equal(Mass.FromKilopounds(2), 2.Kilopounds());
+            Assert.Equal(Mass<double>.FromKilopounds(2), 2.Kilopounds());
 
         [Fact]
         public void NumberToKilotonnesTest() =>
-            Assert.Equal(Mass.FromKilotonnes(2), 2.Kilotonnes());
+            Assert.Equal(Mass<double>.FromKilotonnes(2), 2.Kilotonnes());
 
         [Fact]
         public void NumberToLongHundredweightTest() =>
-            Assert.Equal(Mass.FromLongHundredweight(2), 2.LongHundredweight());
+            Assert.Equal(Mass<double>.FromLongHundredweight(2), 2.LongHundredweight());
 
         [Fact]
         public void NumberToLongTonsTest() =>
-            Assert.Equal(Mass.FromLongTons(2), 2.LongTons());
+            Assert.Equal(Mass<double>.FromLongTons(2), 2.LongTons());
 
         [Fact]
         public void NumberToMegapoundsTest() =>
-            Assert.Equal(Mass.FromMegapounds(2), 2.Megapounds());
+            Assert.Equal(Mass<double>.FromMegapounds(2), 2.Megapounds());
 
         [Fact]
         public void NumberToMegatonnesTest() =>
-            Assert.Equal(Mass.FromMegatonnes(2), 2.Megatonnes());
+            Assert.Equal(Mass<double>.FromMegatonnes(2), 2.Megatonnes());
 
         [Fact]
         public void NumberToMicrogramsTest() =>
-            Assert.Equal(Mass.FromMicrograms(2), 2.Micrograms());
+            Assert.Equal(Mass<double>.FromMicrograms(2), 2.Micrograms());
 
         [Fact]
         public void NumberToMilligramsTest() =>
-            Assert.Equal(Mass.FromMilligrams(2), 2.Milligrams());
+            Assert.Equal(Mass<double>.FromMilligrams(2), 2.Milligrams());
 
         [Fact]
         public void NumberToNanogramsTest() =>
-            Assert.Equal(Mass.FromNanograms(2), 2.Nanograms());
+            Assert.Equal(Mass<double>.FromNanograms(2), 2.Nanograms());
 
         [Fact]
         public void NumberToOuncesTest() =>
-            Assert.Equal(Mass.FromOunces(2), 2.Ounces());
+            Assert.Equal(Mass<double>.FromOunces(2), 2.Ounces());
 
         [Fact]
         public void NumberToPoundsTest() =>
-            Assert.Equal(Mass.FromPounds(2), 2.Pounds());
+            Assert.Equal(Mass<double>.FromPounds(2), 2.Pounds());
 
         [Fact]
         public void NumberToShortHundredweightTest() =>
-            Assert.Equal(Mass.FromShortHundredweight(2), 2.ShortHundredweight());
+            Assert.Equal(Mass<double>.FromShortHundredweight(2), 2.ShortHundredweight());
 
         [Fact]
         public void NumberToShortTonsTest() =>
-            Assert.Equal(Mass.FromShortTons(2), 2.ShortTons());
+            Assert.Equal(Mass<double>.FromShortTons(2), 2.ShortTons());
 
         [Fact]
         public void NumberToSlugsTest() =>
-            Assert.Equal(Mass.FromSlugs(2), 2.Slugs());
+            Assert.Equal(Mass<double>.FromSlugs(2), 2.Slugs());
 
         [Fact]
         public void NumberToSolarMassesTest() =>
-            Assert.Equal(Mass.FromSolarMasses(2), 2.SolarMasses());
+            Assert.Equal(Mass<double>.FromSolarMasses(2), 2.SolarMasses());
 
         [Fact]
         public void NumberToStoneTest() =>
-            Assert.Equal(Mass.FromStone(2), 2.Stone());
+            Assert.Equal(Mass<double>.FromStone(2), 2.Stone());
 
         [Fact]
         public void NumberToTonnesTest() =>
-            Assert.Equal(Mass.FromTonnes(2), 2.Tonnes());
+            Assert.Equal(Mass<double>.FromTonnes(2), 2.Tonnes());
 
     }
 }

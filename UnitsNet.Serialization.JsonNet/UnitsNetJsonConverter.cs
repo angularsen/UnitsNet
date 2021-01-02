@@ -89,7 +89,7 @@ namespace UnitsNet.Serialization.JsonNet
             double value = vu.Value;
             Enum unitValue = (Enum)Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
 
-            return Quantity.From(value, unitValue);
+            return Quantity.From<double>(value, unitValue);
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)

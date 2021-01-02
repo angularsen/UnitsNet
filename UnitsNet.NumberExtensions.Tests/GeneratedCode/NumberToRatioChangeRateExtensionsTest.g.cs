@@ -26,11 +26,11 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDecimalFractionsPerSecondTest() =>
-            Assert.Equal(RatioChangeRate.FromDecimalFractionsPerSecond(2), 2.DecimalFractionsPerSecond());
+            Assert.Equal(RatioChangeRate<double>.FromDecimalFractionsPerSecond(2), 2.DecimalFractionsPerSecond());
 
         [Fact]
         public void NumberToPercentsPerSecondTest() =>
-            Assert.Equal(RatioChangeRate.FromPercentsPerSecond(2), 2.PercentsPerSecond());
+            Assert.Equal(RatioChangeRate<double>.FromPercentsPerSecond(2), 2.PercentsPerSecond());
 
     }
 }

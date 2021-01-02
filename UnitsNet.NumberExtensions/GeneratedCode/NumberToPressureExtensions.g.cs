@@ -28,173 +28,173 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
     /// </summary>
     public static class NumberToPressureExtensions
     {
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres<T>(this T value) =>
-            Pressure.FromAtmospheres(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromAtmospheres(T)" />
+        public static Pressure<double> Atmospheres<T>(this T value) =>
+            Pressure<double>.FromAtmospheres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars<T>(this T value) =>
-            Pressure.FromBars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromBars(T)" />
+        public static Pressure<double> Bars<T>(this T value) =>
+            Pressure<double>.FromBars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars<T>(this T value) =>
-            Pressure.FromCentibars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromCentibars(T)" />
+        public static Pressure<double> Centibars<T>(this T value) =>
+            Pressure<double>.FromCentibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals<T>(this T value) =>
-            Pressure.FromDecapascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromDecapascals(T)" />
+        public static Pressure<double> Decapascals<T>(this T value) =>
+            Pressure<double>.FromDecapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars<T>(this T value) =>
-            Pressure.FromDecibars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromDecibars(T)" />
+        public static Pressure<double> Decibars<T>(this T value) =>
+            Pressure<double>.FromDecibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure DynesPerSquareCentimeter<T>(this T value) =>
-            Pressure.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromDynesPerSquareCentimeter(T)" />
+        public static Pressure<double> DynesPerSquareCentimeter<T>(this T value) =>
+            Pressure<double>.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead<T>(this T value) =>
-            Pressure.FromFeetOfHead(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromFeetOfHead(T)" />
+        public static Pressure<double> FeetOfHead<T>(this T value) =>
+            Pressure<double>.FromFeetOfHead(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals<T>(this T value) =>
-            Pressure.FromGigapascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromGigapascals(T)" />
+        public static Pressure<double> Gigapascals<T>(this T value) =>
+            Pressure<double>.FromGigapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals<T>(this T value) =>
-            Pressure.FromHectopascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromHectopascals(T)" />
+        public static Pressure<double> Hectopascals<T>(this T value) =>
+            Pressure<double>.FromHectopascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury<T>(this T value) =>
-            Pressure.FromInchesOfMercury(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromInchesOfMercury(T)" />
+        public static Pressure<double> InchesOfMercury<T>(this T value) =>
+            Pressure<double>.FromInchesOfMercury(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfWaterColumn<T>(this T value) =>
-            Pressure.FromInchesOfWaterColumn(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromInchesOfWaterColumn(T)" />
+        public static Pressure<double> InchesOfWaterColumn<T>(this T value) =>
+            Pressure<double>.FromInchesOfWaterColumn(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars<T>(this T value) =>
-            Pressure.FromKilobars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilobars(T)" />
+        public static Pressure<double> Kilobars<T>(this T value) =>
+            Pressure<double>.FromKilobars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter<T>(this T value) =>
-            Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilogramsForcePerSquareCentimeter(T)" />
+        public static Pressure<double> KilogramsForcePerSquareCentimeter<T>(this T value) =>
+            Pressure<double>.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter<T>(this T value) =>
-            Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilogramsForcePerSquareMeter(T)" />
+        public static Pressure<double> KilogramsForcePerSquareMeter<T>(this T value) =>
+            Pressure<double>.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter<T>(this T value) =>
-            Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilogramsForcePerSquareMillimeter(T)" />
+        public static Pressure<double> KilogramsForcePerSquareMillimeter<T>(this T value) =>
+            Pressure<double>.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter<T>(this T value) =>
-            Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilonewtonsPerSquareCentimeter(T)" />
+        public static Pressure<double> KilonewtonsPerSquareCentimeter<T>(this T value) =>
+            Pressure<double>.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter<T>(this T value) =>
-            Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilonewtonsPerSquareMeter(T)" />
+        public static Pressure<double> KilonewtonsPerSquareMeter<T>(this T value) =>
+            Pressure<double>.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter<T>(this T value) =>
-            Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilonewtonsPerSquareMillimeter(T)" />
+        public static Pressure<double> KilonewtonsPerSquareMillimeter<T>(this T value) =>
+            Pressure<double>.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals<T>(this T value) =>
-            Pressure.FromKilopascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilopascals(T)" />
+        public static Pressure<double> Kilopascals<T>(this T value) =>
+            Pressure<double>.FromKilopascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot<T>(this T value) =>
-            Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilopoundsForcePerSquareFoot(T)" />
+        public static Pressure<double> KilopoundsForcePerSquareFoot<T>(this T value) =>
+            Pressure<double>.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch<T>(this T value) =>
-            Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromKilopoundsForcePerSquareInch(T)" />
+        public static Pressure<double> KilopoundsForcePerSquareInch<T>(this T value) =>
+            Pressure<double>.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars<T>(this T value) =>
-            Pressure.FromMegabars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMegabars(T)" />
+        public static Pressure<double> Megabars<T>(this T value) =>
+            Pressure<double>.FromMegabars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter<T>(this T value) =>
-            Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMeganewtonsPerSquareMeter(T)" />
+        public static Pressure<double> MeganewtonsPerSquareMeter<T>(this T value) =>
+            Pressure<double>.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals<T>(this T value) =>
-            Pressure.FromMegapascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMegapascals(T)" />
+        public static Pressure<double> Megapascals<T>(this T value) =>
+            Pressure<double>.FromMegapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead<T>(this T value) =>
-            Pressure.FromMetersOfHead(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMetersOfHead(T)" />
+        public static Pressure<double> MetersOfHead<T>(this T value) =>
+            Pressure<double>.FromMetersOfHead(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
-        public static Pressure Microbars<T>(this T value) =>
-            Pressure.FromMicrobars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMicrobars(T)" />
+        public static Pressure<double> Microbars<T>(this T value) =>
+            Pressure<double>.FromMicrobars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals<T>(this T value) =>
-            Pressure.FromMicropascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMicropascals(T)" />
+        public static Pressure<double> Micropascals<T>(this T value) =>
+            Pressure<double>.FromMicropascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars<T>(this T value) =>
-            Pressure.FromMillibars(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMillibars(T)" />
+        public static Pressure<double> Millibars<T>(this T value) =>
+            Pressure<double>.FromMillibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury<T>(this T value) =>
-            Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMillimetersOfMercury(T)" />
+        public static Pressure<double> MillimetersOfMercury<T>(this T value) =>
+            Pressure<double>.FromMillimetersOfMercury(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillipascals(UnitsNet.QuantityValue)" />
-        public static Pressure Millipascals<T>(this T value) =>
-            Pressure.FromMillipascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromMillipascals(T)" />
+        public static Pressure<double> Millipascals<T>(this T value) =>
+            Pressure<double>.FromMillipascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter<T>(this T value) =>
-            Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromNewtonsPerSquareCentimeter(T)" />
+        public static Pressure<double> NewtonsPerSquareCentimeter<T>(this T value) =>
+            Pressure<double>.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter<T>(this T value) =>
-            Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromNewtonsPerSquareMeter(T)" />
+        public static Pressure<double> NewtonsPerSquareMeter<T>(this T value) =>
+            Pressure<double>.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter<T>(this T value) =>
-            Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromNewtonsPerSquareMillimeter(T)" />
+        public static Pressure<double> NewtonsPerSquareMillimeter<T>(this T value) =>
+            Pressure<double>.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals<T>(this T value) =>
-            Pressure.FromPascals(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromPascals(T)" />
+        public static Pressure<double> Pascals<T>(this T value) =>
+            Pressure<double>.FromPascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot<T>(this T value) =>
-            Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromPoundsForcePerSquareFoot(T)" />
+        public static Pressure<double> PoundsForcePerSquareFoot<T>(this T value) =>
+            Pressure<double>.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch<T>(this T value) =>
-            Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromPoundsForcePerSquareInch(T)" />
+        public static Pressure<double> PoundsForcePerSquareInch<T>(this T value) =>
+            Pressure<double>.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsPerInchSecondSquared<T>(this T value) =>
-            Pressure.FromPoundsPerInchSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromPoundsPerInchSecondSquared(T)" />
+        public static Pressure<double> PoundsPerInchSecondSquared<T>(this T value) =>
+            Pressure<double>.FromPoundsPerInchSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres<T>(this T value) =>
-            Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromTechnicalAtmospheres(T)" />
+        public static Pressure<double> TechnicalAtmospheres<T>(this T value) =>
+            Pressure<double>.FromTechnicalAtmospheres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter<T>(this T value) =>
-            Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromTonnesForcePerSquareCentimeter(T)" />
+        public static Pressure<double> TonnesForcePerSquareCentimeter<T>(this T value) =>
+            Pressure<double>.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter<T>(this T value) =>
-            Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromTonnesForcePerSquareMeter(T)" />
+        public static Pressure<double> TonnesForcePerSquareMeter<T>(this T value) =>
+            Pressure<double>.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter<T>(this T value) =>
-            Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromTonnesForcePerSquareMillimeter(T)" />
+        public static Pressure<double> TonnesForcePerSquareMillimeter<T>(this T value) =>
+            Pressure<double>.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs<T>(this T value) =>
-            Pressure.FromTorrs(Convert.ToDouble(value));
+        /// <inheritdoc cref="Pressure{T}.FromTorrs(T)" />
+        public static Pressure<double> Torrs<T>(this T value) =>
+            Pressure<double>.FromTorrs(Convert.ToDouble(value));
 
     }
 }

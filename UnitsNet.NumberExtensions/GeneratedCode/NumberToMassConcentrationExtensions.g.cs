@@ -28,193 +28,193 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
     /// </summary>
     public static class NumberToMassConcentrationExtensions
     {
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration CentigramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromCentigramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromCentigramsPerDeciliter(T)" />
+        public static MassConcentration<double> CentigramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromCentigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration CentigramsPerLiter<T>(this T value) =>
-            MassConcentration.FromCentigramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromCentigramsPerLiter(T)" />
+        public static MassConcentration<double> CentigramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromCentigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration CentigramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromCentigramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromCentigramsPerMicroliter(T)" />
+        public static MassConcentration<double> CentigramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromCentigramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration CentigramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromCentigramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromCentigramsPerMilliliter(T)" />
+        public static MassConcentration<double> CentigramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromCentigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration DecigramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromDecigramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromDecigramsPerDeciliter(T)" />
+        public static MassConcentration<double> DecigramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromDecigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration DecigramsPerLiter<T>(this T value) =>
-            MassConcentration.FromDecigramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromDecigramsPerLiter(T)" />
+        public static MassConcentration<double> DecigramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromDecigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration DecigramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromDecigramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromDecigramsPerMicroliter(T)" />
+        public static MassConcentration<double> DecigramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromDecigramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration DecigramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromDecigramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromDecigramsPerMilliliter(T)" />
+        public static MassConcentration<double> DecigramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerCubicCentimeter<T>(this T value) =>
-            MassConcentration.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerCubicCentimeter(T)" />
+        public static MassConcentration<double> GramsPerCubicCentimeter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerCubicMeter<T>(this T value) =>
-            MassConcentration.FromGramsPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerCubicMeter(T)" />
+        public static MassConcentration<double> GramsPerCubicMeter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerCubicMillimeter<T>(this T value) =>
-            MassConcentration.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerCubicMillimeter(T)" />
+        public static MassConcentration<double> GramsPerCubicMillimeter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromGramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerDeciliter(T)" />
+        public static MassConcentration<double> GramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerLiter<T>(this T value) =>
-            MassConcentration.FromGramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerLiter(T)" />
+        public static MassConcentration<double> GramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromGramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerMicroliter(T)" />
+        public static MassConcentration<double> GramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration GramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromGramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromGramsPerMilliliter(T)" />
+        public static MassConcentration<double> GramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromGramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilogramsPerCubicCentimeter<T>(this T value) =>
-            MassConcentration.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilogramsPerCubicCentimeter(T)" />
+        public static MassConcentration<double> KilogramsPerCubicCentimeter<T>(this T value) =>
+            MassConcentration<double>.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilogramsPerCubicMeter<T>(this T value) =>
-            MassConcentration.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilogramsPerCubicMeter(T)" />
+        public static MassConcentration<double> KilogramsPerCubicMeter<T>(this T value) =>
+            MassConcentration<double>.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilogramsPerCubicMillimeter<T>(this T value) =>
-            MassConcentration.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilogramsPerCubicMillimeter(T)" />
+        public static MassConcentration<double> KilogramsPerCubicMillimeter<T>(this T value) =>
+            MassConcentration<double>.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilogramsPerLiter<T>(this T value) =>
-            MassConcentration.FromKilogramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilogramsPerLiter(T)" />
+        public static MassConcentration<double> KilogramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromKilogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilopoundsPerCubicFoot<T>(this T value) =>
-            MassConcentration.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilopoundsPerCubicFoot(T)" />
+        public static MassConcentration<double> KilopoundsPerCubicFoot<T>(this T value) =>
+            MassConcentration<double>.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static MassConcentration KilopoundsPerCubicInch<T>(this T value) =>
-            MassConcentration.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromKilopoundsPerCubicInch(T)" />
+        public static MassConcentration<double> KilopoundsPerCubicInch<T>(this T value) =>
+            MassConcentration<double>.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MicrogramsPerCubicMeter<T>(this T value) =>
-            MassConcentration.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMicrogramsPerCubicMeter(T)" />
+        public static MassConcentration<double> MicrogramsPerCubicMeter<T>(this T value) =>
+            MassConcentration<double>.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MicrogramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMicrogramsPerDeciliter(T)" />
+        public static MassConcentration<double> MicrogramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MicrogramsPerLiter<T>(this T value) =>
-            MassConcentration.FromMicrogramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMicrogramsPerLiter(T)" />
+        public static MassConcentration<double> MicrogramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromMicrogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MicrogramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromMicrogramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMicrogramsPerMicroliter(T)" />
+        public static MassConcentration<double> MicrogramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromMicrogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MicrogramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMicrogramsPerMilliliter(T)" />
+        public static MassConcentration<double> MicrogramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MilligramsPerCubicMeter<T>(this T value) =>
-            MassConcentration.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMilligramsPerCubicMeter(T)" />
+        public static MassConcentration<double> MilligramsPerCubicMeter<T>(this T value) =>
+            MassConcentration<double>.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MilligramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromMilligramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMilligramsPerDeciliter(T)" />
+        public static MassConcentration<double> MilligramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromMilligramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MilligramsPerLiter<T>(this T value) =>
-            MassConcentration.FromMilligramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMilligramsPerLiter(T)" />
+        public static MassConcentration<double> MilligramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromMilligramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MilligramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromMilligramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMilligramsPerMicroliter(T)" />
+        public static MassConcentration<double> MilligramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromMilligramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration MilligramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromMilligramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromMilligramsPerMilliliter(T)" />
+        public static MassConcentration<double> MilligramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromMilligramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration NanogramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromNanogramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromNanogramsPerDeciliter(T)" />
+        public static MassConcentration<double> NanogramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromNanogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration NanogramsPerLiter<T>(this T value) =>
-            MassConcentration.FromNanogramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromNanogramsPerLiter(T)" />
+        public static MassConcentration<double> NanogramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromNanogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration NanogramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromNanogramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromNanogramsPerMicroliter(T)" />
+        public static MassConcentration<double> NanogramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromNanogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration NanogramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromNanogramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromNanogramsPerMilliliter(T)" />
+        public static MassConcentration<double> NanogramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration PicogramsPerDeciliter<T>(this T value) =>
-            MassConcentration.FromPicogramsPerDeciliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPicogramsPerDeciliter(T)" />
+        public static MassConcentration<double> PicogramsPerDeciliter<T>(this T value) =>
+            MassConcentration<double>.FromPicogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static MassConcentration PicogramsPerLiter<T>(this T value) =>
-            MassConcentration.FromPicogramsPerLiter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPicogramsPerLiter(T)" />
+        public static MassConcentration<double> PicogramsPerLiter<T>(this T value) =>
+            MassConcentration<double>.FromPicogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMicroliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration PicogramsPerMicroliter<T>(this T value) =>
-            MassConcentration.FromPicogramsPerMicroliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPicogramsPerMicroliter(T)" />
+        public static MassConcentration<double> PicogramsPerMicroliter<T>(this T value) =>
+            MassConcentration<double>.FromPicogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static MassConcentration PicogramsPerMilliliter<T>(this T value) =>
-            MassConcentration.FromPicogramsPerMilliliter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPicogramsPerMilliliter(T)" />
+        public static MassConcentration<double> PicogramsPerMilliliter<T>(this T value) =>
+            MassConcentration<double>.FromPicogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static MassConcentration PoundsPerCubicFoot<T>(this T value) =>
-            MassConcentration.FromPoundsPerCubicFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPoundsPerCubicFoot(T)" />
+        public static MassConcentration<double> PoundsPerCubicFoot<T>(this T value) =>
+            MassConcentration<double>.FromPoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static MassConcentration PoundsPerCubicInch<T>(this T value) =>
-            MassConcentration.FromPoundsPerCubicInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPoundsPerCubicInch(T)" />
+        public static MassConcentration<double> PoundsPerCubicInch<T>(this T value) =>
+            MassConcentration<double>.FromPoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static MassConcentration PoundsPerImperialGallon<T>(this T value) =>
-            MassConcentration.FromPoundsPerImperialGallon(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPoundsPerImperialGallon(T)" />
+        public static MassConcentration<double> PoundsPerImperialGallon<T>(this T value) =>
+            MassConcentration<double>.FromPoundsPerImperialGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static MassConcentration PoundsPerUSGallon<T>(this T value) =>
-            MassConcentration.FromPoundsPerUSGallon(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromPoundsPerUSGallon(T)" />
+        public static MassConcentration<double> PoundsPerUSGallon<T>(this T value) =>
+            MassConcentration<double>.FromPoundsPerUSGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static MassConcentration SlugsPerCubicFoot<T>(this T value) =>
-            MassConcentration.FromSlugsPerCubicFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromSlugsPerCubicFoot(T)" />
+        public static MassConcentration<double> SlugsPerCubicFoot<T>(this T value) =>
+            MassConcentration<double>.FromSlugsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration TonnesPerCubicCentimeter<T>(this T value) =>
-            MassConcentration.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromTonnesPerCubicCentimeter(T)" />
+        public static MassConcentration<double> TonnesPerCubicCentimeter<T>(this T value) =>
+            MassConcentration<double>.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration TonnesPerCubicMeter<T>(this T value) =>
-            MassConcentration.FromTonnesPerCubicMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromTonnesPerCubicMeter(T)" />
+        public static MassConcentration<double> TonnesPerCubicMeter<T>(this T value) =>
+            MassConcentration<double>.FromTonnesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static MassConcentration TonnesPerCubicMillimeter<T>(this T value) =>
-            MassConcentration.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="MassConcentration{T}.FromTonnesPerCubicMillimeter(T)" />
+        public static MassConcentration<double> TonnesPerCubicMillimeter<T>(this T value) =>
+            MassConcentration<double>.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
 
     }
 }

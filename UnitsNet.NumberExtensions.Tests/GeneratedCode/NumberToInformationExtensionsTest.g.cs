@@ -26,107 +26,107 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToBitsTest() =>
-            Assert.Equal(Information.FromBits(2), 2.Bits());
+            Assert.Equal(Information<double>.FromBits(2), 2.Bits());
 
         [Fact]
         public void NumberToBytesTest() =>
-            Assert.Equal(Information.FromBytes(2), 2.Bytes());
+            Assert.Equal(Information<double>.FromBytes(2), 2.Bytes());
 
         [Fact]
         public void NumberToExabitsTest() =>
-            Assert.Equal(Information.FromExabits(2), 2.Exabits());
+            Assert.Equal(Information<double>.FromExabits(2), 2.Exabits());
 
         [Fact]
         public void NumberToExabytesTest() =>
-            Assert.Equal(Information.FromExabytes(2), 2.Exabytes());
+            Assert.Equal(Information<double>.FromExabytes(2), 2.Exabytes());
 
         [Fact]
         public void NumberToExbibitsTest() =>
-            Assert.Equal(Information.FromExbibits(2), 2.Exbibits());
+            Assert.Equal(Information<double>.FromExbibits(2), 2.Exbibits());
 
         [Fact]
         public void NumberToExbibytesTest() =>
-            Assert.Equal(Information.FromExbibytes(2), 2.Exbibytes());
+            Assert.Equal(Information<double>.FromExbibytes(2), 2.Exbibytes());
 
         [Fact]
         public void NumberToGibibitsTest() =>
-            Assert.Equal(Information.FromGibibits(2), 2.Gibibits());
+            Assert.Equal(Information<double>.FromGibibits(2), 2.Gibibits());
 
         [Fact]
         public void NumberToGibibytesTest() =>
-            Assert.Equal(Information.FromGibibytes(2), 2.Gibibytes());
+            Assert.Equal(Information<double>.FromGibibytes(2), 2.Gibibytes());
 
         [Fact]
         public void NumberToGigabitsTest() =>
-            Assert.Equal(Information.FromGigabits(2), 2.Gigabits());
+            Assert.Equal(Information<double>.FromGigabits(2), 2.Gigabits());
 
         [Fact]
         public void NumberToGigabytesTest() =>
-            Assert.Equal(Information.FromGigabytes(2), 2.Gigabytes());
+            Assert.Equal(Information<double>.FromGigabytes(2), 2.Gigabytes());
 
         [Fact]
         public void NumberToKibibitsTest() =>
-            Assert.Equal(Information.FromKibibits(2), 2.Kibibits());
+            Assert.Equal(Information<double>.FromKibibits(2), 2.Kibibits());
 
         [Fact]
         public void NumberToKibibytesTest() =>
-            Assert.Equal(Information.FromKibibytes(2), 2.Kibibytes());
+            Assert.Equal(Information<double>.FromKibibytes(2), 2.Kibibytes());
 
         [Fact]
         public void NumberToKilobitsTest() =>
-            Assert.Equal(Information.FromKilobits(2), 2.Kilobits());
+            Assert.Equal(Information<double>.FromKilobits(2), 2.Kilobits());
 
         [Fact]
         public void NumberToKilobytesTest() =>
-            Assert.Equal(Information.FromKilobytes(2), 2.Kilobytes());
+            Assert.Equal(Information<double>.FromKilobytes(2), 2.Kilobytes());
 
         [Fact]
         public void NumberToMebibitsTest() =>
-            Assert.Equal(Information.FromMebibits(2), 2.Mebibits());
+            Assert.Equal(Information<double>.FromMebibits(2), 2.Mebibits());
 
         [Fact]
         public void NumberToMebibytesTest() =>
-            Assert.Equal(Information.FromMebibytes(2), 2.Mebibytes());
+            Assert.Equal(Information<double>.FromMebibytes(2), 2.Mebibytes());
 
         [Fact]
         public void NumberToMegabitsTest() =>
-            Assert.Equal(Information.FromMegabits(2), 2.Megabits());
+            Assert.Equal(Information<double>.FromMegabits(2), 2.Megabits());
 
         [Fact]
         public void NumberToMegabytesTest() =>
-            Assert.Equal(Information.FromMegabytes(2), 2.Megabytes());
+            Assert.Equal(Information<double>.FromMegabytes(2), 2.Megabytes());
 
         [Fact]
         public void NumberToPebibitsTest() =>
-            Assert.Equal(Information.FromPebibits(2), 2.Pebibits());
+            Assert.Equal(Information<double>.FromPebibits(2), 2.Pebibits());
 
         [Fact]
         public void NumberToPebibytesTest() =>
-            Assert.Equal(Information.FromPebibytes(2), 2.Pebibytes());
+            Assert.Equal(Information<double>.FromPebibytes(2), 2.Pebibytes());
 
         [Fact]
         public void NumberToPetabitsTest() =>
-            Assert.Equal(Information.FromPetabits(2), 2.Petabits());
+            Assert.Equal(Information<double>.FromPetabits(2), 2.Petabits());
 
         [Fact]
         public void NumberToPetabytesTest() =>
-            Assert.Equal(Information.FromPetabytes(2), 2.Petabytes());
+            Assert.Equal(Information<double>.FromPetabytes(2), 2.Petabytes());
 
         [Fact]
         public void NumberToTebibitsTest() =>
-            Assert.Equal(Information.FromTebibits(2), 2.Tebibits());
+            Assert.Equal(Information<double>.FromTebibits(2), 2.Tebibits());
 
         [Fact]
         public void NumberToTebibytesTest() =>
-            Assert.Equal(Information.FromTebibytes(2), 2.Tebibytes());
+            Assert.Equal(Information<double>.FromTebibytes(2), 2.Tebibytes());
 
         [Fact]
         public void NumberToTerabitsTest() =>
-            Assert.Equal(Information.FromTerabits(2), 2.Terabits());
+            Assert.Equal(Information<double>.FromTerabits(2), 2.Terabits());
 
         [Fact]
         public void NumberToTerabytesTest() =>
-            Assert.Equal(Information.FromTerabytes(2), 2.Terabytes());
+            Assert.Equal(Information<double>.FromTerabytes(2), 2.Terabytes());
 
     }
 }

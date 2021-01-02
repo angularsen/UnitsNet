@@ -26,39 +26,39 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesCelsius(2), 2.DegreesCelsius());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesCelsius(2), 2.DegreesCelsius());
 
         [Fact]
         public void NumberToDegreesDelisleTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesDelisle(2), 2.DegreesDelisle());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesDelisle(2), 2.DegreesDelisle());
 
         [Fact]
         public void NumberToDegreesFahrenheitTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesFahrenheit(2), 2.DegreesFahrenheit());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesFahrenheit(2), 2.DegreesFahrenheit());
 
         [Fact]
         public void NumberToDegreesNewtonTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesNewton(2), 2.DegreesNewton());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesNewton(2), 2.DegreesNewton());
 
         [Fact]
         public void NumberToDegreesRankineTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesRankine(2), 2.DegreesRankine());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesRankine(2), 2.DegreesRankine());
 
         [Fact]
         public void NumberToDegreesReaumurTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesReaumur(2), 2.DegreesReaumur());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesReaumur(2), 2.DegreesReaumur());
 
         [Fact]
         public void NumberToDegreesRoemerTest() =>
-            Assert.Equal(TemperatureDelta.FromDegreesRoemer(2), 2.DegreesRoemer());
+            Assert.Equal(TemperatureDelta<double>.FromDegreesRoemer(2), 2.DegreesRoemer());
 
         [Fact]
         public void NumberToKelvinsTest() =>
-            Assert.Equal(TemperatureDelta.FromKelvins(2), 2.Kelvins());
+            Assert.Equal(TemperatureDelta<double>.FromKelvins(2), 2.Kelvins());
 
         [Fact]
         public void NumberToMillidegreesCelsiusTest() =>
-            Assert.Equal(TemperatureDelta.FromMillidegreesCelsius(2), 2.MillidegreesCelsius());
+            Assert.Equal(TemperatureDelta<double>.FromMillidegreesCelsius(2), 2.MillidegreesCelsius());
 
     }
 }

@@ -103,7 +103,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.BaseType})0.0, {_unitEnumName}.Undefined));
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}<double>(({_quantity.BaseType})0.0, {_unitEnumName}.Undefined));
         }}
 
         [Fact]
@@ -122,14 +122,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.PositiveInfinity, {_baseUnitFullName}));
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NegativeInfinity, {_baseUnitFullName}));
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}<double>(double.PositiveInfinity, {_baseUnitFullName}));
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}<double>(double.NegativeInfinity, {_baseUnitFullName}));
         }}
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}<double>(double.NaN, {_baseUnitFullName}));
         }}
 "); Writer.WL($@"
 
@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void {_baseUnit.SingularName}To{_quantity.Name}Units()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);");
 
             foreach (var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);");
@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
             {
                 var quantityVariable = $"quantity{i++:D2}";
                 Writer.WL($@"
-            var {quantityVariable} = {_quantity.Name}.From(1, {GetUnitFullName(unit)});
+            var {quantityVariable} = {_quantity.Name}<double>.From(1, {GetUnitFullName(unit)});
             AssertEx.EqualTolerance(1, {quantityVariable}.{unit.PluralName}, {unit.PluralName}Tolerance);
             Assert.Equal({GetUnitFullName(unit)}, {quantityVariable}.Unit);
 ");
@@ -204,21 +204,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => {_quantity.Name}<double>.From{_baseUnit.PluralName}(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => {_quantity.Name}<double>.From{_baseUnit.PluralName}(double.NegativeInfinity));
         }}
 
         [Fact]
         public void From{_baseUnit.PluralName}_WithNanValue_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
+            Assert.Throws<ArgumentException>(() => {_quantity.Name}<double>.From{_baseUnit.PluralName}(double.NaN));
         }}
 "); Writer.WL($@"
 
         [Fact]
         public void As()
         {{
-            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            var {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);");
             foreach (var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName(unit)}), {unit.PluralName}Tolerance);");
             Writer.WL($@"
@@ -244,7 +244,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {{
-            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            var {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);");
             foreach (var unit in _quantity.Units)
             {
                 var asQuantityVariableName = $"{unit.SingularName.ToLowerInvariant()}Quantity";
@@ -269,9 +269,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);");
             foreach (var unit in _quantity.Units) Writer.WL($@"
-            AssertEx.EqualTolerance(1, {_quantity.Name}.From{unit.PluralName}({baseUnitVariableName}.{unit.PluralName}).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);");
+            AssertEx.EqualTolerance(1, {_quantity.Name}<double>.From{unit.PluralName}({baseUnitVariableName}.{unit.PluralName}).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
 ");
@@ -282,14 +282,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void LogarithmicArithmeticOperators()
         {{
-            {_quantity.Name} v = {_quantity.Name}.From{_baseUnit.PluralName}(40);
+            {_quantity.Name}<double> v = {_quantity.Name}<double>.From{_baseUnit.PluralName}(40);
             AssertEx.EqualTolerance(-40, -v.{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
             AssertEx.EqualTolerance(50, (v*10).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
             AssertEx.EqualTolerance(50, (10*v).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
             AssertEx.EqualTolerance(35, (v/5).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(35, v/{_quantity.Name}.From{_baseUnit.PluralName}(5), {unit.PluralName}Tolerance);
+            AssertEx.EqualTolerance(35, v/{_quantity.Name}<double>.From{_baseUnit.PluralName}(5), {unit.PluralName}Tolerance);
         }}
 
         protected abstract void AssertLogarithmicAddition();
@@ -303,14 +303,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void ArithmeticOperators()
         {{
-            {_quantity.Name} v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> v = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             AssertEx.EqualTolerance(-1, -v.{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, ({_quantity.Name}.From{_baseUnit.PluralName}(3)-v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
+            AssertEx.EqualTolerance(2, ({_quantity.Name}<double>.From{_baseUnit.PluralName}(3)-v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
             AssertEx.EqualTolerance(2, (v + v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
             AssertEx.EqualTolerance(10, (v*10).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
             AssertEx.EqualTolerance(10, (10*v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, ({_quantity.Name}.From{_baseUnit.PluralName}(10)/5).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, {_quantity.Name}.From{_baseUnit.PluralName}(10)/{_quantity.Name}.From{_baseUnit.PluralName}(5), {_baseUnit.PluralName}Tolerance);
+            AssertEx.EqualTolerance(2, ({_quantity.Name}<double>.From{_baseUnit.PluralName}(10)/5).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
+            AssertEx.EqualTolerance(2, {_quantity.Name}<double>.From{_baseUnit.PluralName}(10)/{_quantity.Name}<double>.From{_baseUnit.PluralName}(5), {_baseUnit.PluralName}Tolerance);
         }}
 ");
             }
@@ -323,8 +323,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ComparisonOperators()
         {{
-            {_quantity.Name} one{_baseUnit.SingularName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            {_quantity.Name} two{_baseUnit.PluralName} = {_quantity.Name}.From{_baseUnit.PluralName}(2);
+            {_quantity.Name}<double> one{_baseUnit.SingularName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> two{_baseUnit.PluralName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(2);
 
             Assert.True(one{_baseUnit.SingularName} < two{_baseUnit.PluralName});
             Assert.True(one{_baseUnit.SingularName} <= two{_baseUnit.PluralName});
@@ -340,31 +340,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             Assert.Equal(0, {baseUnitVariableName}.CompareTo({baseUnitVariableName}));
-            Assert.True({baseUnitVariableName}.CompareTo({_quantity.Name}.Zero) > 0);
-            Assert.True({_quantity.Name}.Zero.CompareTo({baseUnitVariableName}) < 0);
+            Assert.True({baseUnitVariableName}.CompareTo({_quantity.Name}<double>.Zero) > 0);
+            Assert.True({_quantity.Name}<double>.Zero.CompareTo({baseUnitVariableName}) < 0);
         }}
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             Assert.Throws<ArgumentException>(() => {baseUnitVariableName}.CompareTo(new object()));
         }}
 
         [Fact]
         public void CompareToThrowsOnNull()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             Assert.Throws<ArgumentNullException>(() => {baseUnitVariableName}.CompareTo(null));
         }}
 
         [Fact]
         public void EqualityOperators()
         {{
-            var a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            var b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
+            var a = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
+            var b = {_quantity.Name}<double>.From{_baseUnit.PluralName}(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -383,8 +383,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {{
-            var a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            var b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
+            var a = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
+            var b = {_quantity.Name}<double>.From{_baseUnit.PluralName}(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -404,9 +404,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {{
-            var v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            Assert.True(v.Equals({_quantity.Name}.From{_baseUnit.PluralName}(1), {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
-            Assert.False(v.Equals({_quantity.Name}.Zero, {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
+            var v = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
+            Assert.True(v.Equals({_quantity.Name}<double>.From{_baseUnit.PluralName}(1), {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
+            Assert.False(v.Equals({_quantity.Name}<double>.Zero, {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
         }}
 
         [Fact]
@@ -419,21 +419,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             Assert.False({baseUnitVariableName}.Equals(new object()));
         }}
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {_quantity.Name}<double> {baseUnitVariableName} = {_quantity.Name}<double>.From{_baseUnit.PluralName}(1);
             Assert.False({baseUnitVariableName}.Equals(null));
         }}
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {{
-            Assert.DoesNotContain({_unitEnumName}.Undefined, {_quantity.Name}.Units);
+            Assert.DoesNotContain({_unitEnumName}.Undefined, {_quantity.Name}<double>.Units);
         }}
 
         [Fact]
@@ -452,7 +452,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {{
-            Assert.False({_quantity.Name}.BaseDimensions is null);
+            Assert.False({_quantity.Name}<double>.BaseDimensions is null);
         }}
 
         [Fact]

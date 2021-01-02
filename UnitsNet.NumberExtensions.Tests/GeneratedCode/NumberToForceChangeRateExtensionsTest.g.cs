@@ -26,47 +26,47 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentinewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromCentinewtonsPerSecond(2), 2.CentinewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromCentinewtonsPerSecond(2), 2.CentinewtonsPerSecond());
 
         [Fact]
         public void NumberToDecanewtonsPerMinuteTest() =>
-            Assert.Equal(ForceChangeRate.FromDecanewtonsPerMinute(2), 2.DecanewtonsPerMinute());
+            Assert.Equal(ForceChangeRate<double>.FromDecanewtonsPerMinute(2), 2.DecanewtonsPerMinute());
 
         [Fact]
         public void NumberToDecanewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromDecanewtonsPerSecond(2), 2.DecanewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromDecanewtonsPerSecond(2), 2.DecanewtonsPerSecond());
 
         [Fact]
         public void NumberToDecinewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromDecinewtonsPerSecond(2), 2.DecinewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromDecinewtonsPerSecond(2), 2.DecinewtonsPerSecond());
 
         [Fact]
         public void NumberToKilonewtonsPerMinuteTest() =>
-            Assert.Equal(ForceChangeRate.FromKilonewtonsPerMinute(2), 2.KilonewtonsPerMinute());
+            Assert.Equal(ForceChangeRate<double>.FromKilonewtonsPerMinute(2), 2.KilonewtonsPerMinute());
 
         [Fact]
         public void NumberToKilonewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromKilonewtonsPerSecond(2), 2.KilonewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromKilonewtonsPerSecond(2), 2.KilonewtonsPerSecond());
 
         [Fact]
         public void NumberToMicronewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromMicronewtonsPerSecond(2), 2.MicronewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromMicronewtonsPerSecond(2), 2.MicronewtonsPerSecond());
 
         [Fact]
         public void NumberToMillinewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromMillinewtonsPerSecond(2), 2.MillinewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromMillinewtonsPerSecond(2), 2.MillinewtonsPerSecond());
 
         [Fact]
         public void NumberToNanonewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromNanonewtonsPerSecond(2), 2.NanonewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromNanonewtonsPerSecond(2), 2.NanonewtonsPerSecond());
 
         [Fact]
         public void NumberToNewtonsPerMinuteTest() =>
-            Assert.Equal(ForceChangeRate.FromNewtonsPerMinute(2), 2.NewtonsPerMinute());
+            Assert.Equal(ForceChangeRate<double>.FromNewtonsPerMinute(2), 2.NewtonsPerMinute());
 
         [Fact]
         public void NumberToNewtonsPerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromNewtonsPerSecond(2), 2.NewtonsPerSecond());
+            Assert.Equal(ForceChangeRate<double>.FromNewtonsPerSecond(2), 2.NewtonsPerSecond());
 
     }
 }

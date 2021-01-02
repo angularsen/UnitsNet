@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
-    public partial struct Entropy : IQuantity<EntropyUnit>, IEquatable<Entropy>, IComparable, IComparable<Entropy>, IConvertible, IFormattable
+    public partial struct Entropy<T> : IQuantityT<EntropyUnit, T>, IEquatable<Entropy<T>>, IComparable, IComparable<Entropy<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -69,12 +65,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Entropy(double value, EntropyUnit unit)
+        public Entropy(T value, EntropyUnit unit)
         {
             if(unit == EntropyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -86,14 +82,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Entropy(double value, UnitSystem unitSystem)
+        public Entropy(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -108,19 +104,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
+        ///     The base unit of <see cref="Entropy{T}" />, which is JoulePerKelvin. All conversions go via this value.
         /// </summary>
         public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Entropy
+        /// Represents the largest possible value of <see cref="Entropy{T}" />
         /// </summary>
-        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy<T> MaxValue { get; } = new Entropy<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Entropy
+        /// Represents the smallest possible value of <see cref="Entropy{T}" />
         /// </summary>
-        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+        public static Entropy<T> MinValue { get; } = new Entropy<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -129,14 +125,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.Entropy;
 
         /// <summary>
-        ///     All units of measurement for the Entropy quantity.
+        ///     All units of measurement for the <see cref="Entropy{T}" /> quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
+        public static Entropy<T> Zero { get; } = new Entropy<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -145,7 +141,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -161,51 +159,51 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Entropy.QuantityType;
+        public QuantityType Type => Entropy<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => Entropy.BaseDimensions;
+        public BaseDimensions Dimensions => Entropy<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Entropy in CaloriesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> in CaloriesPerKelvin.
         /// </summary>
-        public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
+        public T CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in JoulesPerDegreeCelsius.
+        ///     Get <see cref="Entropy{T}" /> in JoulesPerDegreeCelsius.
         /// </summary>
-        public double JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
+        public T JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Get Entropy in JoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> in JoulesPerKelvin.
         /// </summary>
-        public double JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
+        public T JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in KilocaloriesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> in KilocaloriesPerKelvin.
         /// </summary>
-        public double KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
+        public T KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in KilojoulesPerDegreeCelsius.
+        ///     Get <see cref="Entropy{T}" /> in KilojoulesPerDegreeCelsius.
         /// </summary>
-        public double KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
+        public T KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Get Entropy in KilojoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> in KilojoulesPerKelvin.
         /// </summary>
-        public double KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
+        public T KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in MegajoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> in MegajoulesPerKelvin.
         /// </summary>
-        public double MegajoulesPerKelvin => As(EntropyUnit.MegajoulePerKelvin);
+        public T MegajoulesPerKelvin => As(EntropyUnit.MegajoulePerKelvin);
 
         #endregion
 
@@ -237,78 +235,71 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Entropy from CaloriesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> from CaloriesPerKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromCaloriesPerKelvin(QuantityValue caloriesperkelvin)
+        public static Entropy<T> FromCaloriesPerKelvin(T caloriesperkelvin)
         {
-            double value = (double) caloriesperkelvin;
-            return new Entropy(value, EntropyUnit.CaloriePerKelvin);
+            return new Entropy<T>(caloriesperkelvin, EntropyUnit.CaloriePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from JoulesPerDegreeCelsius.
+        ///     Get <see cref="Entropy{T}" /> from JoulesPerDegreeCelsius.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerDegreeCelsius(QuantityValue joulesperdegreecelsius)
+        public static Entropy<T> FromJoulesPerDegreeCelsius(T joulesperdegreecelsius)
         {
-            double value = (double) joulesperdegreecelsius;
-            return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
+            return new Entropy<T>(joulesperdegreecelsius, EntropyUnit.JoulePerDegreeCelsius);
         }
         /// <summary>
-        ///     Get Entropy from JoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> from JoulesPerKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerKelvin(QuantityValue joulesperkelvin)
+        public static Entropy<T> FromJoulesPerKelvin(T joulesperkelvin)
         {
-            double value = (double) joulesperkelvin;
-            return new Entropy(value, EntropyUnit.JoulePerKelvin);
+            return new Entropy<T>(joulesperkelvin, EntropyUnit.JoulePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from KilocaloriesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> from KilocaloriesPerKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilocaloriesPerKelvin(QuantityValue kilocaloriesperkelvin)
+        public static Entropy<T> FromKilocaloriesPerKelvin(T kilocaloriesperkelvin)
         {
-            double value = (double) kilocaloriesperkelvin;
-            return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
+            return new Entropy<T>(kilocaloriesperkelvin, EntropyUnit.KilocaloriePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from KilojoulesPerDegreeCelsius.
+        ///     Get <see cref="Entropy{T}" /> from KilojoulesPerDegreeCelsius.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue kilojoulesperdegreecelsius)
+        public static Entropy<T> FromKilojoulesPerDegreeCelsius(T kilojoulesperdegreecelsius)
         {
-            double value = (double) kilojoulesperdegreecelsius;
-            return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
+            return new Entropy<T>(kilojoulesperdegreecelsius, EntropyUnit.KilojoulePerDegreeCelsius);
         }
         /// <summary>
-        ///     Get Entropy from KilojoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> from KilojoulesPerKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerKelvin(QuantityValue kilojoulesperkelvin)
+        public static Entropy<T> FromKilojoulesPerKelvin(T kilojoulesperkelvin)
         {
-            double value = (double) kilojoulesperkelvin;
-            return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
+            return new Entropy<T>(kilojoulesperkelvin, EntropyUnit.KilojoulePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from MegajoulesPerKelvin.
+        ///     Get <see cref="Entropy{T}" /> from MegajoulesPerKelvin.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromMegajoulesPerKelvin(QuantityValue megajoulesperkelvin)
+        public static Entropy<T> FromMegajoulesPerKelvin(T megajoulesperkelvin)
         {
-            double value = (double) megajoulesperkelvin;
-            return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
+            return new Entropy<T>(megajoulesperkelvin, EntropyUnit.MegajoulePerKelvin);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
+        ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Entropy unit value.</returns>
-        public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
+        /// <returns><see cref="Entropy{T}" /> unit value.</returns>
+        public static Entropy<T> From(T value, EntropyUnit fromUnit)
         {
-            return new Entropy((double)value, fromUnit);
+            return new Entropy<T>(value, fromUnit);
         }
 
         #endregion
@@ -337,7 +328,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Entropy Parse(string str)
+        public static Entropy<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -365,9 +356,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Entropy Parse(string str, IFormatProvider? provider)
+        public static Entropy<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Entropy, EntropyUnit>(
+            return QuantityParser.Default.Parse<T, Entropy<T>, EntropyUnit>(
                 str,
                 provider,
                 From);
@@ -381,7 +372,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Entropy result)
+        public static bool TryParse(string? str, out Entropy<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -396,9 +387,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Entropy result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Entropy<T> result)
         {
-            return QuantityParser.Default.TryParse<Entropy, EntropyUnit>(
+            return QuantityParser.Default.TryParse<T, Entropy<T>, EntropyUnit>(
                 str,
                 provider,
                 From,
@@ -460,45 +451,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Entropy operator -(Entropy right)
+        public static Entropy<T> operator -(Entropy<T> right)
         {
-            return new Entropy(-right.Value, right.Unit);
+            return new Entropy<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="Entropy"/> from adding two <see cref="Entropy"/>.</summary>
-        public static Entropy operator +(Entropy left, Entropy right)
+        /// <summary>Get <see cref="Entropy{T}"/> from adding two <see cref="Entropy{T}"/>.</summary>
+        public static Entropy<T> operator +(Entropy<T> left, Entropy<T> right)
         {
-            return new Entropy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new Entropy<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Entropy"/> from subtracting two <see cref="Entropy"/>.</summary>
-        public static Entropy operator -(Entropy left, Entropy right)
+        /// <summary>Get <see cref="Entropy{T}"/> from subtracting two <see cref="Entropy{T}"/>.</summary>
+        public static Entropy<T> operator -(Entropy<T> left, Entropy<T> right)
         {
-            return new Entropy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new Entropy<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
-        public static Entropy operator *(double left, Entropy right)
+        /// <summary>Get <see cref="Entropy{T}"/> from multiplying value and <see cref="Entropy{T}"/>.</summary>
+        public static Entropy<T> operator *(T left, Entropy<T> right)
         {
-            return new Entropy(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new Entropy<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
-        public static Entropy operator *(Entropy left, double right)
+        /// <summary>Get <see cref="Entropy{T}"/> from multiplying value and <see cref="Entropy{T}"/>.</summary>
+        public static Entropy<T> operator *(Entropy<T> left, T right)
         {
-            return new Entropy(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new Entropy<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="Entropy"/> from dividing <see cref="Entropy"/> by value.</summary>
-        public static Entropy operator /(Entropy left, double right)
+        /// <summary>Get <see cref="Entropy{T}"/> from dividing <see cref="Entropy{T}"/> by value.</summary>
+        public static Entropy<T> operator /(Entropy<T> left, T right)
         {
-            return new Entropy(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new Entropy<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="Entropy"/> by <see cref="Entropy"/>.</summary>
-        public static double operator /(Entropy left, Entropy right)
+        /// <summary>Get ratio value from dividing <see cref="Entropy{T}"/> by <see cref="Entropy{T}"/>.</summary>
+        public static T operator /(Entropy<T> left, Entropy<T> right)
         {
-            return left.JoulesPerKelvin / right.JoulesPerKelvin;
+            return CompiledLambdas.Divide(left.JoulesPerKelvin, right.JoulesPerKelvin);
         }
 
         #endregion
@@ -506,39 +502,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(Entropy left, Entropy right)
+        public static bool operator <=(Entropy<T> left, Entropy<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(Entropy left, Entropy right)
+        public static bool operator >=(Entropy<T> left, Entropy<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(Entropy left, Entropy right)
+        public static bool operator <(Entropy<T> left, Entropy<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(Entropy left, Entropy right)
+        public static bool operator >(Entropy<T> left, Entropy<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Entropy left, Entropy right)
+        /// <remarks>Consider using <see cref="Equals(Entropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Entropy<T> left, Entropy<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Entropy left, Entropy right)
+        /// <remarks>Consider using <see cref="Equals(Entropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Entropy<T> left, Entropy<T> right)
         {
             return !(left == right);
         }
@@ -547,37 +543,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Entropy objEntropy)) throw new ArgumentException("Expected type Entropy.", nameof(obj));
+            if(!(obj is Entropy<T> objEntropy)) throw new ArgumentException("Expected type Entropy.", nameof(obj));
 
             return CompareTo(objEntropy);
         }
 
         /// <inheritdoc />
-        public int CompareTo(Entropy other)
+        public int CompareTo(Entropy<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(Entropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Entropy objEntropy))
+            if(obj is null || !(obj is Entropy<T> objEntropy))
                 return false;
 
             return Equals(objEntropy);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Entropy other)
+        /// <remarks>Consider using <see cref="Equals(Entropy{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Entropy<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another Entropy within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="Entropy{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -615,21 +611,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Entropy other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Entropy<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current Entropy.</returns>
+        /// <returns>A hash code for the current <see cref="Entropy{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -643,17 +637,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(EntropyUnit unit)
+        public T As(EntropyUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -673,17 +667,22 @@ namespace UnitsNet
             if(!(unit is EntropyUnit unitAsEntropyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
-            return As(unitAsEntropyUnit);
+            var asValue = As(unitAsEntropyUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<EntropyUnit>.As(EntropyUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this Entropy to another Entropy with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Entropy{T}" /> to another <see cref="Entropy{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A Entropy with the specified unit.</returns>
-        public Entropy ToUnit(EntropyUnit unit)
+        /// <returns>A <see cref="Entropy{T}" /> with the specified unit.</returns>
+        public Entropy<T> ToUnit(EntropyUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new Entropy(convertedValue, unit);
+            return new Entropy<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -696,7 +695,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Entropy ToUnit(UnitSystem unitSystem)
+        public Entropy<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -717,24 +716,30 @@ namespace UnitsNet
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<EntropyUnit, T> IQuantityT<EntropyUnit, T>.ToUnit(EntropyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<EntropyUnit, T> IQuantityT<EntropyUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
-                case EntropyUnit.JoulePerDegreeCelsius: return _value;
-                case EntropyUnit.JoulePerKelvin: return _value;
-                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
-                case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
-                case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
-                case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
+                case EntropyUnit.CaloriePerKelvin: return Value*4.184;
+                case EntropyUnit.JoulePerDegreeCelsius: return Value;
+                case EntropyUnit.JoulePerKelvin: return Value;
+                case EntropyUnit.KilocaloriePerKelvin: return (Value*4.184) * 1e3d;
+                case EntropyUnit.KilojoulePerDegreeCelsius: return (Value) * 1e3d;
+                case EntropyUnit.KilojoulePerKelvin: return (Value) * 1e3d;
+                case EntropyUnit.MegajoulePerKelvin: return (Value) * 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -745,16 +750,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Entropy ToBaseUnit()
+        internal Entropy<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Entropy(baseUnitValue, BaseUnit);
+            return new Entropy<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(EntropyUnit unit)
+        private T GetValueAs(EntropyUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -863,57 +868,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Entropy)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Entropy<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Entropy)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Entropy<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(Entropy)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(Entropy<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -923,33 +928,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Entropy))
+            if(conversionType == typeof(Entropy<T>))
                 return this;
             else if(conversionType == typeof(EntropyUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return Entropy.QuantityType;
+                return Entropy<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return Entropy.Info;
+                return Entropy<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return Entropy.BaseDimensions;
+                return Entropy<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(Entropy)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(Entropy<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

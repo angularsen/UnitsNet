@@ -40,7 +40,7 @@ namespace UnitsNet.Tests
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 
                 Writer.WL(2, $@"public void NumberTo{unit.PluralName}Test() =>
-            Assert.Equal({_quantityName}.From{unit.PluralName}(2), 2.{unit.PluralName}());
+            Assert.Equal({_quantityName}<double>.From{unit.PluralName}(2), 2.{unit.PluralName}());
 ");
             }
 

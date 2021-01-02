@@ -26,43 +26,43 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentipoiseTest() =>
-            Assert.Equal(DynamicViscosity.FromCentipoise(2), 2.Centipoise());
+            Assert.Equal(DynamicViscosity<double>.FromCentipoise(2), 2.Centipoise());
 
         [Fact]
         public void NumberToMicropascalSecondsTest() =>
-            Assert.Equal(DynamicViscosity.FromMicropascalSeconds(2), 2.MicropascalSeconds());
+            Assert.Equal(DynamicViscosity<double>.FromMicropascalSeconds(2), 2.MicropascalSeconds());
 
         [Fact]
         public void NumberToMillipascalSecondsTest() =>
-            Assert.Equal(DynamicViscosity.FromMillipascalSeconds(2), 2.MillipascalSeconds());
+            Assert.Equal(DynamicViscosity<double>.FromMillipascalSeconds(2), 2.MillipascalSeconds());
 
         [Fact]
         public void NumberToNewtonSecondsPerMeterSquaredTest() =>
-            Assert.Equal(DynamicViscosity.FromNewtonSecondsPerMeterSquared(2), 2.NewtonSecondsPerMeterSquared());
+            Assert.Equal(DynamicViscosity<double>.FromNewtonSecondsPerMeterSquared(2), 2.NewtonSecondsPerMeterSquared());
 
         [Fact]
         public void NumberToPascalSecondsTest() =>
-            Assert.Equal(DynamicViscosity.FromPascalSeconds(2), 2.PascalSeconds());
+            Assert.Equal(DynamicViscosity<double>.FromPascalSeconds(2), 2.PascalSeconds());
 
         [Fact]
         public void NumberToPoiseTest() =>
-            Assert.Equal(DynamicViscosity.FromPoise(2), 2.Poise());
+            Assert.Equal(DynamicViscosity<double>.FromPoise(2), 2.Poise());
 
         [Fact]
         public void NumberToPoundsForceSecondPerSquareFootTest() =>
-            Assert.Equal(DynamicViscosity.FromPoundsForceSecondPerSquareFoot(2), 2.PoundsForceSecondPerSquareFoot());
+            Assert.Equal(DynamicViscosity<double>.FromPoundsForceSecondPerSquareFoot(2), 2.PoundsForceSecondPerSquareFoot());
 
         [Fact]
         public void NumberToPoundsForceSecondPerSquareInchTest() =>
-            Assert.Equal(DynamicViscosity.FromPoundsForceSecondPerSquareInch(2), 2.PoundsForceSecondPerSquareInch());
+            Assert.Equal(DynamicViscosity<double>.FromPoundsForceSecondPerSquareInch(2), 2.PoundsForceSecondPerSquareInch());
 
         [Fact]
         public void NumberToPoundsPerFootSecondTest() =>
-            Assert.Equal(DynamicViscosity.FromPoundsPerFootSecond(2), 2.PoundsPerFootSecond());
+            Assert.Equal(DynamicViscosity<double>.FromPoundsPerFootSecond(2), 2.PoundsPerFootSecond());
 
         [Fact]
         public void NumberToReynsTest() =>
-            Assert.Equal(DynamicViscosity.FromReyns(2), 2.Reyns());
+            Assert.Equal(DynamicViscosity<double>.FromReyns(2), 2.Reyns());
 
     }
 }

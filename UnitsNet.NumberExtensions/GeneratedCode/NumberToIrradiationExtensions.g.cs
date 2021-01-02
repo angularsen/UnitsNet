@@ -28,33 +28,33 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
     /// </summary>
     public static class NumberToIrradiationExtensions
     {
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiation JoulesPerSquareCentimeter<T>(this T value) =>
-            Irradiation.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromJoulesPerSquareCentimeter(T)" />
+        public static Irradiation<double> JoulesPerSquareCentimeter<T>(this T value) =>
+            Irradiation<double>.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiation JoulesPerSquareMeter<T>(this T value) =>
-            Irradiation.FromJoulesPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromJoulesPerSquareMeter(T)" />
+        public static Irradiation<double> JoulesPerSquareMeter<T>(this T value) =>
+            Irradiation<double>.FromJoulesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Irradiation JoulesPerSquareMillimeter<T>(this T value) =>
-            Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromJoulesPerSquareMillimeter(T)" />
+        public static Irradiation<double> JoulesPerSquareMillimeter<T>(this T value) =>
+            Irradiation<double>.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiation KilojoulesPerSquareMeter<T>(this T value) =>
-            Irradiation.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromKilojoulesPerSquareMeter(T)" />
+        public static Irradiation<double> KilojoulesPerSquareMeter<T>(this T value) =>
+            Irradiation<double>.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiation KilowattHoursPerSquareMeter<T>(this T value) =>
-            Irradiation.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromKilowattHoursPerSquareMeter(T)" />
+        public static Irradiation<double> KilowattHoursPerSquareMeter<T>(this T value) =>
+            Irradiation<double>.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Irradiation MillijoulesPerSquareCentimeter<T>(this T value) =>
-            Irradiation.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromMillijoulesPerSquareCentimeter(T)" />
+        public static Irradiation<double> MillijoulesPerSquareCentimeter<T>(this T value) =>
+            Irradiation<double>.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiation WattHoursPerSquareMeter<T>(this T value) =>
-            Irradiation.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiation{T}.FromWattHoursPerSquareMeter(T)" />
+        public static Irradiation<double> WattHoursPerSquareMeter<T>(this T value) =>
+            Irradiation<double>.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

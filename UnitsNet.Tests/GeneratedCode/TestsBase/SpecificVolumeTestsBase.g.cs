@@ -50,7 +50,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificVolume((double)0.0, SpecificVolumeUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume<double>((double)0.0, SpecificVolumeUnit.Undefined));
         }
 
         [Fact]
@@ -65,14 +65,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificVolume(double.PositiveInfinity, SpecificVolumeUnit.CubicMeterPerKilogram));
-            Assert.Throws<ArgumentException>(() => new SpecificVolume(double.NegativeInfinity, SpecificVolumeUnit.CubicMeterPerKilogram));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume<double>(double.PositiveInfinity, SpecificVolumeUnit.CubicMeterPerKilogram));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume<double>(double.NegativeInfinity, SpecificVolumeUnit.CubicMeterPerKilogram));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificVolume(double.NaN, SpecificVolumeUnit.CubicMeterPerKilogram));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume<double>(double.NaN, SpecificVolumeUnit.CubicMeterPerKilogram));
         }
 
         [Fact]
@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void CubicMeterPerKilogramToSpecificVolumeUnits()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicFeetPerPound, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
@@ -127,15 +127,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound);
+            var quantity00 = SpecificVolume<double>.From(1, SpecificVolumeUnit.CubicFootPerPound);
             AssertEx.EqualTolerance(1, quantity00.CubicFeetPerPound, CubicFeetPerPoundTolerance);
             Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, quantity00.Unit);
 
-            var quantity01 = SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerKilogram);
+            var quantity01 = SpecificVolume<double>.From(1, SpecificVolumeUnit.CubicMeterPerKilogram);
             AssertEx.EqualTolerance(1, quantity01.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
             Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, quantity01.Unit);
 
-            var quantity02 = SpecificVolume.From(1, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+            var quantity02 = SpecificVolume<double>.From(1, SpecificVolumeUnit.MillicubicMeterPerKilogram);
             AssertEx.EqualTolerance(1, quantity02.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
             Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity02.Unit);
 
@@ -144,20 +144,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromCubicMetersPerKilogram_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificVolume.FromCubicMetersPerKilogram(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => SpecificVolume.FromCubicMetersPerKilogram(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificVolume<double>.FromCubicMetersPerKilogram(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificVolume<double>.FromCubicMetersPerKilogram(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromCubicMetersPerKilogram_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificVolume.FromCubicMetersPerKilogram(double.NaN));
+            Assert.Throws<ArgumentException>(() => SpecificVolume<double>.FromCubicMetersPerKilogram(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            var cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicFootPerPound), CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMeterPerKilogram), CubicMetersPerKilogramTolerance);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.MillicubicMeterPerKilogram), MillicubicMetersPerKilogramTolerance);
@@ -183,7 +183,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            var cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
 
             var cubicfootperpoundQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicFootPerPound);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, (double)cubicfootperpoundQuantity.Value, CubicFeetPerPoundTolerance);
@@ -208,30 +208,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
-            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicFeetPerPound(cubicmeterperkilogram.CubicFeetPerPound).CubicMetersPerKilogram, CubicFeetPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicMetersPerKilogram(cubicmeterperkilogram.CubicMetersPerKilogram).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificVolume.FromMillicubicMetersPerKilogram(cubicmeterperkilogram.MillicubicMetersPerKilogram).CubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
+            AssertEx.EqualTolerance(1, SpecificVolume<double>.FromCubicFeetPerPound(cubicmeterperkilogram.CubicFeetPerPound).CubicMetersPerKilogram, CubicFeetPerPoundTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume<double>.FromCubicMetersPerKilogram(cubicmeterperkilogram.CubicMetersPerKilogram).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume<double>.FromMillicubicMetersPerKilogram(cubicmeterperkilogram.MillicubicMetersPerKilogram).CubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            SpecificVolume v = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> v = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             AssertEx.EqualTolerance(-1, -v.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, (SpecificVolume.FromCubicMetersPerKilogram(3)-v).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(2, (SpecificVolume<double>.FromCubicMetersPerKilogram(3)-v).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
             AssertEx.EqualTolerance(2, (v + v).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
             AssertEx.EqualTolerance(10, (v*10).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
             AssertEx.EqualTolerance(10, (10*v).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, (SpecificVolume.FromCubicMetersPerKilogram(10)/5).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, SpecificVolume.FromCubicMetersPerKilogram(10)/SpecificVolume.FromCubicMetersPerKilogram(5), CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(2, (SpecificVolume<double>.FromCubicMetersPerKilogram(10)/5).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(2, SpecificVolume<double>.FromCubicMetersPerKilogram(10)/SpecificVolume<double>.FromCubicMetersPerKilogram(5), CubicMetersPerKilogramTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            SpecificVolume oneCubicMeterPerKilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
-            SpecificVolume twoCubicMetersPerKilogram = SpecificVolume.FromCubicMetersPerKilogram(2);
+            SpecificVolume<double> oneCubicMeterPerKilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> twoCubicMetersPerKilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(2);
 
             Assert.True(oneCubicMeterPerKilogram < twoCubicMetersPerKilogram);
             Assert.True(oneCubicMeterPerKilogram <= twoCubicMetersPerKilogram);
@@ -247,31 +247,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             Assert.Equal(0, cubicmeterperkilogram.CompareTo(cubicmeterperkilogram));
-            Assert.True(cubicmeterperkilogram.CompareTo(SpecificVolume.Zero) > 0);
-            Assert.True(SpecificVolume.Zero.CompareTo(cubicmeterperkilogram) < 0);
+            Assert.True(cubicmeterperkilogram.CompareTo(SpecificVolume<double>.Zero) > 0);
+            Assert.True(SpecificVolume<double>.Zero.CompareTo(cubicmeterperkilogram) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             Assert.Throws<ArgumentNullException>(() => cubicmeterperkilogram.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = SpecificVolume.FromCubicMetersPerKilogram(1);
-            var b = SpecificVolume.FromCubicMetersPerKilogram(2);
+            var a = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
+            var b = SpecificVolume<double>.FromCubicMetersPerKilogram(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -290,8 +290,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = SpecificVolume.FromCubicMetersPerKilogram(1);
-            var b = SpecificVolume.FromCubicMetersPerKilogram(2);
+            var a = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
+            var b = SpecificVolume<double>.FromCubicMetersPerKilogram(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -311,9 +311,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = SpecificVolume.FromCubicMetersPerKilogram(1);
-            Assert.True(v.Equals(SpecificVolume.FromCubicMetersPerKilogram(1), CubicMetersPerKilogramTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SpecificVolume.Zero, CubicMetersPerKilogramTolerance, ComparisonType.Relative));
+            var v = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
+            Assert.True(v.Equals(SpecificVolume<double>.FromCubicMetersPerKilogram(1), CubicMetersPerKilogramTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificVolume<double>.Zero, CubicMetersPerKilogramTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -326,21 +326,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             Assert.False(cubicmeterperkilogram.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            SpecificVolume<double> cubicmeterperkilogram = SpecificVolume<double>.FromCubicMetersPerKilogram(1);
             Assert.False(cubicmeterperkilogram.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(SpecificVolumeUnit.Undefined, SpecificVolume.Units);
+            Assert.DoesNotContain(SpecificVolumeUnit.Undefined, SpecificVolume<double>.Units);
         }
 
         [Fact]
@@ -359,7 +359,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(SpecificVolume.BaseDimensions is null);
+            Assert.False(SpecificVolume<double>.BaseDimensions is null);
         }
 
         [Fact]

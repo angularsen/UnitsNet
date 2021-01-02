@@ -28,13 +28,13 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
     /// </summary>
     public static class NumberToRatioChangeRateExtensions
     {
-        /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(UnitsNet.QuantityValue)" />
-        public static RatioChangeRate DecimalFractionsPerSecond<T>(this T value) =>
-            RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="RatioChangeRate{T}.FromDecimalFractionsPerSecond(T)" />
+        public static RatioChangeRate<double> DecimalFractionsPerSecond<T>(this T value) =>
+            RatioChangeRate<double>.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(UnitsNet.QuantityValue)" />
-        public static RatioChangeRate PercentsPerSecond<T>(this T value) =>
-            RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="RatioChangeRate{T}.FromPercentsPerSecond(T)" />
+        public static RatioChangeRate<double> PercentsPerSecond<T>(this T value) =>
+            RatioChangeRate<double>.FromPercentsPerSecond(Convert.ToDouble(value));
 
     }
 }

@@ -3,12 +3,12 @@
 
 namespace UnitsNet
 {
-    public partial struct HeatFlux
+    public partial struct HeatFlux<T>
     {
-        /// <summary>Get <see cref="Power"/> from <see cref="HeatFlux"/> times <see cref="Area"/>.</summary>
-        public static Power operator *(HeatFlux heatFlux, Area area)
+        /// <summary>Get <see cref="Power{T}"/> from <see cref="HeatFlux{T}"/> times <see cref="Area{T}"/>.</summary>
+        public static Power<T> operator *(HeatFlux<T> heatFlux, Area<T> area )
         {
-            return Power.FromWatts(heatFlux.WattsPerSquareMeter * area.SquareMeters);
+            return Power<T>.FromWatts(heatFlux.WattsPerSquareMeter * area.SquareMeters);
         }
     }
 }

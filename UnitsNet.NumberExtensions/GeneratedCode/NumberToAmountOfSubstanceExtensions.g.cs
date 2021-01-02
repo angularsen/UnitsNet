@@ -28,65 +28,65 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
     /// </summary>
     public static class NumberToAmountOfSubstanceExtensions
     {
-        /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Centimoles<T>(this T value) =>
-            AmountOfSubstance.FromCentimoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromCentimoles(T)" />
+        public static AmountOfSubstance<double> Centimoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromCentimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance CentipoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromCentipoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromCentipoundMoles(T)" />
+        public static AmountOfSubstance<double> CentipoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromCentipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Decimoles<T>(this T value) =>
-            AmountOfSubstance.FromDecimoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromDecimoles(T)" />
+        public static AmountOfSubstance<double> Decimoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromDecimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance DecipoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromDecipoundMoles(T)" />
+        public static AmountOfSubstance<double> DecipoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromDecipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Kilomoles<T>(this T value) =>
-            AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromKilomoles(T)" />
+        public static AmountOfSubstance<double> Kilomoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromKilomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance KilopoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromKilopoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromKilopoundMoles(T)" />
+        public static AmountOfSubstance<double> KilopoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromKilopoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Megamoles<T>(this T value) =>
-            AmountOfSubstance.FromMegamoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMegamoles(T)" />
+        public static AmountOfSubstance<double> Megamoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMegamoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Micromoles<T>(this T value) =>
-            AmountOfSubstance.FromMicromoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMicromoles(T)" />
+        public static AmountOfSubstance<double> Micromoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMicromoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance MicropoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromMicropoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMicropoundMoles(T)" />
+        public static AmountOfSubstance<double> MicropoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMicropoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Millimoles<T>(this T value) =>
-            AmountOfSubstance.FromMillimoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMillimoles(T)" />
+        public static AmountOfSubstance<double> Millimoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMillimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance MillipoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromMillipoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMillipoundMoles(T)" />
+        public static AmountOfSubstance<double> MillipoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMillipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Moles<T>(this T value) =>
-            AmountOfSubstance.FromMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromMoles(T)" />
+        public static AmountOfSubstance<double> Moles<T>(this T value) =>
+            AmountOfSubstance<double>.FromMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance Nanomoles<T>(this T value) =>
-            AmountOfSubstance.FromNanomoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromNanomoles(T)" />
+        public static AmountOfSubstance<double> Nanomoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromNanomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance NanopoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromNanopoundMoles(T)" />
+        public static AmountOfSubstance<double> NanopoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromNanopoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
-        public static AmountOfSubstance PoundMoles<T>(this T value) =>
-            AmountOfSubstance.FromPoundMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="AmountOfSubstance{T}.FromPoundMoles(T)" />
+        public static AmountOfSubstance<double> PoundMoles<T>(this T value) =>
+            AmountOfSubstance<double>.FromPoundMoles(Convert.ToDouble(value));
 
     }
 }

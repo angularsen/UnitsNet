@@ -28,9 +28,9 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
     /// </summary>
     public static class NumberToAreaDensityExtensions
     {
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static AreaDensity KilogramsPerSquareMeter<T>(this T value) =>
-            AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="AreaDensity{T}.FromKilogramsPerSquareMeter(T)" />
+        public static AreaDensity<double> KilogramsPerSquareMeter<T>(this T value) =>
+            AreaDensity<double>.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

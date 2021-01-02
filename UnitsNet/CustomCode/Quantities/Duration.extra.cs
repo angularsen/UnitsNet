@@ -5,7 +5,7 @@ using System;
 
 namespace UnitsNet
 {
-    public partial struct Duration
+    public partial struct Duration<T>
     {
         /// <summary>
         ///     Convert a Duration to a TimeSpan.
@@ -16,86 +16,87 @@ namespace UnitsNet
         {
             if( Seconds > TimeSpan.MaxValue.TotalSeconds ||
                 Seconds < TimeSpan.MinValue.TotalSeconds )
-                throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
+                throw new ArgumentOutOfRangeException( nameof( Duration<T> ), "The duration is too large or small to fit in a TimeSpan" );
             return TimeSpan.FromSeconds( Seconds );
         }
 
-        /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration"/>.</summary>
-        public static DateTime operator +(DateTime time, Duration duration)
+        /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration{T}"/>.</summary>
+        public static DateTime operator +(DateTime time, Duration<T> duration)
         {
             return time.AddSeconds(duration.Seconds);
         }
 
-        /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> minus <see cref="Duration"/>.</summary>
-        public static DateTime operator -(DateTime time, Duration duration)
+        /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> minus <see cref="Duration{T}"/>.</summary>
+        public static DateTime operator -(DateTime time, Duration<T> duration)
         {
             return time.AddSeconds(-duration.Seconds);
         }
 
-        /// <summary>Explicitly cast <see cref="Duration"/> to <see cref="TimeSpan"/>.</summary>
-        public static explicit operator TimeSpan(Duration duration)
+        /// <summary>Explicitly cast <see cref="Duration{T}"/> to <see cref="TimeSpan"/>.</summary>
+        public static explicit operator TimeSpan(Duration<T> duration)
         {
             return duration.ToTimeSpan();
         }
 
-        /// <summary>Explicitly cast <see cref="TimeSpan"/> to <see cref="Duration"/>.</summary>
-        public static explicit operator Duration(TimeSpan duration)
+        /// <summary>Explicitly cast <see cref="TimeSpan"/> to <see cref="Duration{T}"/>.</summary>
+        public static explicit operator Duration<T>(TimeSpan duration)
         {
             return FromSeconds(duration.TotalSeconds);
         }
 
-        /// <summary>True if <see cref="Duration"/> is less than <see cref="TimeSpan"/>.</summary>
-        public static bool operator <(Duration duration, TimeSpan timeSpan)
+        /// <summary>True if <see cref="Duration{T}"/> is less than <see cref="TimeSpan"/>.</summary>
+        public static bool operator <(Duration<T> duration, TimeSpan timeSpan)
         {
-            return duration.Seconds < timeSpan.TotalSeconds;
+            return CompiledLambdas.LessThan(duration.Seconds, timeSpan.TotalSeconds);
         }
 
-        /// <summary>True if <see cref="Duration"/> is greater than <see cref="TimeSpan"/>.</summary>
-        public static bool operator >(Duration duration, TimeSpan timeSpan)
+        /// <summary>True if <see cref="Duration{T}"/> is greater than <see cref="TimeSpan"/>.</summary>
+        public static bool operator >(Duration<T> duration, TimeSpan timeSpan)
         {
-            return duration.Seconds > timeSpan.TotalSeconds;
+            return CompiledLambdas.GreaterThan(duration.Seconds, timeSpan.TotalSeconds);
         }
 
-        /// <summary>True if <see cref="Duration"/> is less than or equal to <see cref="TimeSpan"/>.</summary>
-        public static bool operator <=(Duration duration, TimeSpan timeSpan)
+        /// <summary>True if <see cref="Duration{T}"/> is less than or equal to <see cref="TimeSpan"/>.</summary>
+        public static bool operator <=(Duration<T> duration, TimeSpan timeSpan)
         {
-            return duration.Seconds <= timeSpan.TotalSeconds;
+            return CompiledLambdas.LessThanOrEqual( duration.Seconds, timeSpan.TotalSeconds);
         }
 
-        /// <summary>True if <see cref="Duration"/> is greater than or equal to <see cref="TimeSpan"/>.</summary>
-        public static bool operator >=(Duration duration, TimeSpan timeSpan)
+        /// <summary>True if <see cref="Duration{T}"/> is greater than or equal to <see cref="TimeSpan"/>.</summary>
+        public static bool operator >=(Duration<T> duration, TimeSpan timeSpan)
         {
-            return duration.Seconds >= timeSpan.TotalSeconds;
+            return CompiledLambdas.GreaterThanOrEqual(duration.Seconds, timeSpan.TotalSeconds);
         }
 
-        /// <summary>True if <see cref="TimeSpan"/> is less than <see cref="Duration"/>.</summary>
-        public static bool operator <(TimeSpan timeSpan, Duration duration)
+        /// <summary>True if <see cref="TimeSpan"/> is less than <see cref="Duration{T}"/>.</summary>
+        public static bool operator <(TimeSpan timeSpan, Duration<T> duration )
         {
-            return timeSpan.TotalSeconds < duration.Seconds;
+            return CompiledLambdas.LessThan(timeSpan.TotalSeconds, duration.Seconds);
         }
 
-        /// <summary>True if <see cref="TimeSpan"/> is greater than <see cref="Duration"/>.</summary>
-        public static bool operator >(TimeSpan timeSpan, Duration duration)
+        /// <summary>True if <see cref="TimeSpan"/> is greater than <see cref="Duration{T}"/>.</summary>
+        public static bool operator >(TimeSpan timeSpan, Duration<T> duration )
         {
-            return timeSpan.TotalSeconds > duration.Seconds;
+            return CompiledLambdas.GreaterThan(timeSpan.TotalSeconds, duration.Seconds);
         }
 
-        /// <summary>True if <see cref="TimeSpan"/> is less than or equal to <see cref="Duration"/>.</summary>
-        public static bool operator <=(TimeSpan timeSpan, Duration duration)
+        /// <summary>True if <see cref="TimeSpan"/> is less than or equal to <see cref="Duration{T}"/>.</summary>
+        public static bool operator <=(TimeSpan timeSpan, Duration<T> duration )
         {
-            return timeSpan.TotalSeconds <= duration.Seconds;
+            return CompiledLambdas.LessThanOrEqual(timeSpan.TotalSeconds, duration.Seconds);
         }
 
-        /// <summary>True if <see cref="TimeSpan"/> is greater than or equal to <see cref="Duration"/>.</summary>
-        public static bool operator >=(TimeSpan timeSpan, Duration duration)
+        /// <summary>True if <see cref="TimeSpan"/> is greater than or equal to <see cref="Duration{T}"/>.</summary>
+        public static bool operator >=(TimeSpan timeSpan, Duration<T> duration )
         {
-            return timeSpan.TotalSeconds >= duration.Seconds;
+            return CompiledLambdas.GreaterThanOrEqual(timeSpan.TotalSeconds, duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> times <see cref="VolumeFlow"/>.</summary>
-        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
+        /// <summary>Get <see cref="Volume{T}"/> from <see cref="Duration{T}"/> times <see cref="VolumeFlow{T}"/>.</summary>
+        public static Volume<T> operator *(Duration<T> duration, VolumeFlow<T> volumeFlow )
         {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+            var value = CompiledLambdas.Multiply(volumeFlow.CubicMetersPerSecond, duration.Seconds);
+            return Volume<T>.FromCubicMeters(value);
         }
 
         /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>

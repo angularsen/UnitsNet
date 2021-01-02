@@ -40,8 +40,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaTimesSpecificEntropyEqualsSpecificEnergy()
         {
-            SpecificEnergy specificEnergy =  SpecificEntropy.FromJoulesPerKilogramKelvin(10) * TemperatureDelta.FromKelvins(6);
-            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(60));
+            var specificEnergy =  SpecificEntropy<double>.FromJoulesPerKilogramKelvin(10) * TemperatureDelta<double>.FromKelvins(6);
+            Assert.Equal(specificEnergy, SpecificEnergy<double>.FromJoulesPerKilogram(60));
         }
     }
 }

@@ -46,7 +46,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VitaminA((double)0.0, VitaminAUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new VitaminA<double>((double)0.0, VitaminAUnit.Undefined));
         }
 
         [Fact]
@@ -61,14 +61,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.PositiveInfinity, VitaminAUnit.InternationalUnit));
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.NegativeInfinity, VitaminAUnit.InternationalUnit));
+            Assert.Throws<ArgumentException>(() => new VitaminA<double>(double.PositiveInfinity, VitaminAUnit.InternationalUnit));
+            Assert.Throws<ArgumentException>(() => new VitaminA<double>(double.NegativeInfinity, VitaminAUnit.InternationalUnit));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.NaN, VitaminAUnit.InternationalUnit));
+            Assert.Throws<ArgumentException>(() => new VitaminA<double>(double.NaN, VitaminAUnit.InternationalUnit));
         }
 
         [Fact]
@@ -114,14 +114,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void InternationalUnitToVitaminAUnits()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, internationalunit.InternationalUnits, InternationalUnitsTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VitaminA.From(1, VitaminAUnit.InternationalUnit);
+            var quantity00 = VitaminA<double>.From(1, VitaminAUnit.InternationalUnit);
             AssertEx.EqualTolerance(1, quantity00.InternationalUnits, InternationalUnitsTolerance);
             Assert.Equal(VitaminAUnit.InternationalUnit, quantity00.Unit);
 
@@ -130,20 +130,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromInternationalUnits_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => VitaminA<double>.FromInternationalUnits(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => VitaminA<double>.FromInternationalUnits(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromInternationalUnits_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NaN));
+            Assert.Throws<ArgumentException>(() => VitaminA<double>.FromInternationalUnits(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var internationalunit = VitaminA.FromInternationalUnits(1);
+            var internationalunit = VitaminA<double>.FromInternationalUnits(1);
             AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, internationalunit.As(VitaminAUnit.InternationalUnit), InternationalUnitsTolerance);
         }
 
@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var internationalunit = VitaminA.FromInternationalUnits(1);
+            var internationalunit = VitaminA<double>.FromInternationalUnits(1);
 
             var internationalunitQuantity = internationalunit.ToUnit(VitaminAUnit.InternationalUnit);
             AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, (double)internationalunitQuantity.Value, InternationalUnitsTolerance);
@@ -184,28 +184,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            AssertEx.EqualTolerance(1, VitaminA.FromInternationalUnits(internationalunit.InternationalUnits).InternationalUnits, InternationalUnitsTolerance);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
+            AssertEx.EqualTolerance(1, VitaminA<double>.FromInternationalUnits(internationalunit.InternationalUnits).InternationalUnits, InternationalUnitsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            VitaminA v = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> v = VitaminA<double>.FromInternationalUnits(1);
             AssertEx.EqualTolerance(-1, -v.InternationalUnits, InternationalUnitsTolerance);
-            AssertEx.EqualTolerance(2, (VitaminA.FromInternationalUnits(3)-v).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, (VitaminA<double>.FromInternationalUnits(3)-v).InternationalUnits, InternationalUnitsTolerance);
             AssertEx.EqualTolerance(2, (v + v).InternationalUnits, InternationalUnitsTolerance);
             AssertEx.EqualTolerance(10, (v*10).InternationalUnits, InternationalUnitsTolerance);
             AssertEx.EqualTolerance(10, (10*v).InternationalUnits, InternationalUnitsTolerance);
-            AssertEx.EqualTolerance(2, (VitaminA.FromInternationalUnits(10)/5).InternationalUnits, InternationalUnitsTolerance);
-            AssertEx.EqualTolerance(2, VitaminA.FromInternationalUnits(10)/VitaminA.FromInternationalUnits(5), InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, (VitaminA<double>.FromInternationalUnits(10)/5).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, VitaminA<double>.FromInternationalUnits(10)/VitaminA<double>.FromInternationalUnits(5), InternationalUnitsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            VitaminA oneInternationalUnit = VitaminA.FromInternationalUnits(1);
-            VitaminA twoInternationalUnits = VitaminA.FromInternationalUnits(2);
+            VitaminA<double> oneInternationalUnit = VitaminA<double>.FromInternationalUnits(1);
+            VitaminA<double> twoInternationalUnits = VitaminA<double>.FromInternationalUnits(2);
 
             Assert.True(oneInternationalUnit < twoInternationalUnits);
             Assert.True(oneInternationalUnit <= twoInternationalUnits);
@@ -221,31 +221,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             Assert.Equal(0, internationalunit.CompareTo(internationalunit));
-            Assert.True(internationalunit.CompareTo(VitaminA.Zero) > 0);
-            Assert.True(VitaminA.Zero.CompareTo(internationalunit) < 0);
+            Assert.True(internationalunit.CompareTo(VitaminA<double>.Zero) > 0);
+            Assert.True(VitaminA<double>.Zero.CompareTo(internationalunit) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             Assert.Throws<ArgumentException>(() => internationalunit.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             Assert.Throws<ArgumentNullException>(() => internationalunit.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = VitaminA.FromInternationalUnits(1);
-            var b = VitaminA.FromInternationalUnits(2);
+            var a = VitaminA<double>.FromInternationalUnits(1);
+            var b = VitaminA<double>.FromInternationalUnits(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -264,8 +264,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = VitaminA.FromInternationalUnits(1);
-            var b = VitaminA.FromInternationalUnits(2);
+            var a = VitaminA<double>.FromInternationalUnits(1);
+            var b = VitaminA<double>.FromInternationalUnits(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -285,9 +285,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = VitaminA.FromInternationalUnits(1);
-            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1), InternationalUnitsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(VitaminA.Zero, InternationalUnitsTolerance, ComparisonType.Relative));
+            var v = VitaminA<double>.FromInternationalUnits(1);
+            Assert.True(v.Equals(VitaminA<double>.FromInternationalUnits(1), InternationalUnitsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(VitaminA<double>.Zero, InternationalUnitsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -300,21 +300,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             Assert.False(internationalunit.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
+            VitaminA<double> internationalunit = VitaminA<double>.FromInternationalUnits(1);
             Assert.False(internationalunit.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(VitaminAUnit.Undefined, VitaminA.Units);
+            Assert.DoesNotContain(VitaminAUnit.Undefined, VitaminA<double>.Units);
         }
 
         [Fact]
@@ -333,7 +333,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(VitaminA.BaseDimensions is null);
+            Assert.False(VitaminA<double>.BaseDimensions is null);
         }
 
         [Fact]

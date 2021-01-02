@@ -3,21 +3,21 @@
 
 namespace UnitsNet
 {
-    public partial struct LapseRate
+    public partial struct LapseRate<T>
     {
-        /// <summary>Get <see cref="Length"/> from <see cref="TemperatureDelta"/> divided by <see cref="LapseRate"/>.</summary>
-        public static Length operator /(TemperatureDelta left, LapseRate right)
+        /// <summary>Get <see cref="Length{T}"/> from <see cref="TemperatureDelta{T}"/> divided by <see cref="LapseRate{T}"/>.</summary>
+        public static Length<T> operator /(TemperatureDelta<T> left, LapseRate<T> right )
         {
-            return Length.FromKilometers(left.Kelvins / right.DegreesCelciusPerKilometer);
+            return Length<T>.FromKilometers(left.Kelvins / right.DegreesCelciusPerKilometer);
         }
 
-        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Length"/> times <see cref="LapseRate"/>.</summary>
-        public static TemperatureDelta operator *(Length left, LapseRate right) => right * left;
+        /// <summary>Get <see cref="TemperatureDelta{T}"/> from <see cref="Length{T}"/> times <see cref="LapseRate{T}"/>.</summary>
+        public static TemperatureDelta<T> operator *(Length<T> left, LapseRate<T> right ) => right * left;
 
-        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="LapseRate"/> times <see cref="Length"/>.</summary>
-        public static TemperatureDelta operator *(LapseRate left, Length right)
+        /// <summary>Get <see cref="TemperatureDelta{T}"/> from <see cref="LapseRate{T}"/> times <see cref="Length{T}"/>.</summary>
+        public static TemperatureDelta<T> operator *(LapseRate<T> left, Length<T> right )
         {
-            return TemperatureDelta.FromDegreesCelsius(left.DegreesCelciusPerKilometer * right.Kilometers);
+            return TemperatureDelta<T>.FromDegreesCelsius(left.DegreesCelciusPerKilometer * right.Kilometers);
         }
     }
 }

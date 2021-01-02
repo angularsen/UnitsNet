@@ -26,59 +26,59 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCentimetersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromCentimetersPerSecondSquared(2), 2.CentimetersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromCentimetersPerSecondSquared(2), 2.CentimetersPerSecondSquared());
 
         [Fact]
         public void NumberToDecimetersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromDecimetersPerSecondSquared(2), 2.DecimetersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromDecimetersPerSecondSquared(2), 2.DecimetersPerSecondSquared());
 
         [Fact]
         public void NumberToFeetPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromFeetPerSecondSquared(2), 2.FeetPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromFeetPerSecondSquared(2), 2.FeetPerSecondSquared());
 
         [Fact]
         public void NumberToInchesPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromInchesPerSecondSquared(2), 2.InchesPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromInchesPerSecondSquared(2), 2.InchesPerSecondSquared());
 
         [Fact]
         public void NumberToKilometersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromKilometersPerSecondSquared(2), 2.KilometersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromKilometersPerSecondSquared(2), 2.KilometersPerSecondSquared());
 
         [Fact]
         public void NumberToKnotsPerHourTest() =>
-            Assert.Equal(Acceleration.FromKnotsPerHour(2), 2.KnotsPerHour());
+            Assert.Equal(Acceleration<double>.FromKnotsPerHour(2), 2.KnotsPerHour());
 
         [Fact]
         public void NumberToKnotsPerMinuteTest() =>
-            Assert.Equal(Acceleration.FromKnotsPerMinute(2), 2.KnotsPerMinute());
+            Assert.Equal(Acceleration<double>.FromKnotsPerMinute(2), 2.KnotsPerMinute());
 
         [Fact]
         public void NumberToKnotsPerSecondTest() =>
-            Assert.Equal(Acceleration.FromKnotsPerSecond(2), 2.KnotsPerSecond());
+            Assert.Equal(Acceleration<double>.FromKnotsPerSecond(2), 2.KnotsPerSecond());
 
         [Fact]
         public void NumberToMetersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromMetersPerSecondSquared(2), 2.MetersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromMetersPerSecondSquared(2), 2.MetersPerSecondSquared());
 
         [Fact]
         public void NumberToMicrometersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromMicrometersPerSecondSquared(2), 2.MicrometersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromMicrometersPerSecondSquared(2), 2.MicrometersPerSecondSquared());
 
         [Fact]
         public void NumberToMillimetersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromMillimetersPerSecondSquared(2), 2.MillimetersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromMillimetersPerSecondSquared(2), 2.MillimetersPerSecondSquared());
 
         [Fact]
         public void NumberToMillistandardGravityTest() =>
-            Assert.Equal(Acceleration.FromMillistandardGravity(2), 2.MillistandardGravity());
+            Assert.Equal(Acceleration<double>.FromMillistandardGravity(2), 2.MillistandardGravity());
 
         [Fact]
         public void NumberToNanometersPerSecondSquaredTest() =>
-            Assert.Equal(Acceleration.FromNanometersPerSecondSquared(2), 2.NanometersPerSecondSquared());
+            Assert.Equal(Acceleration<double>.FromNanometersPerSecondSquared(2), 2.NanometersPerSecondSquared());
 
         [Fact]
         public void NumberToStandardGravityTest() =>
-            Assert.Equal(Acceleration.FromStandardGravity(2), 2.StandardGravity());
+            Assert.Equal(Acceleration<double>.FromStandardGravity(2), 2.StandardGravity());
 
     }
 }

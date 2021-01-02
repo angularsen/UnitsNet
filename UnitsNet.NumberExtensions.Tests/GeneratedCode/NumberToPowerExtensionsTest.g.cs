@@ -26,103 +26,103 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToBoilerHorsepowerTest() =>
-            Assert.Equal(Power.FromBoilerHorsepower(2), 2.BoilerHorsepower());
+            Assert.Equal(Power<double>.FromBoilerHorsepower(2), 2.BoilerHorsepower());
 
         [Fact]
         public void NumberToBritishThermalUnitsPerHourTest() =>
-            Assert.Equal(Power.FromBritishThermalUnitsPerHour(2), 2.BritishThermalUnitsPerHour());
+            Assert.Equal(Power<double>.FromBritishThermalUnitsPerHour(2), 2.BritishThermalUnitsPerHour());
 
         [Fact]
         public void NumberToDecawattsTest() =>
-            Assert.Equal(Power.FromDecawatts(2), 2.Decawatts());
+            Assert.Equal(Power<double>.FromDecawatts(2), 2.Decawatts());
 
         [Fact]
         public void NumberToDeciwattsTest() =>
-            Assert.Equal(Power.FromDeciwatts(2), 2.Deciwatts());
+            Assert.Equal(Power<double>.FromDeciwatts(2), 2.Deciwatts());
 
         [Fact]
         public void NumberToElectricalHorsepowerTest() =>
-            Assert.Equal(Power.FromElectricalHorsepower(2), 2.ElectricalHorsepower());
+            Assert.Equal(Power<double>.FromElectricalHorsepower(2), 2.ElectricalHorsepower());
 
         [Fact]
         public void NumberToFemtowattsTest() =>
-            Assert.Equal(Power.FromFemtowatts(2), 2.Femtowatts());
+            Assert.Equal(Power<double>.FromFemtowatts(2), 2.Femtowatts());
 
         [Fact]
         public void NumberToGigajoulesPerHourTest() =>
-            Assert.Equal(Power.FromGigajoulesPerHour(2), 2.GigajoulesPerHour());
+            Assert.Equal(Power<double>.FromGigajoulesPerHour(2), 2.GigajoulesPerHour());
 
         [Fact]
         public void NumberToGigawattsTest() =>
-            Assert.Equal(Power.FromGigawatts(2), 2.Gigawatts());
+            Assert.Equal(Power<double>.FromGigawatts(2), 2.Gigawatts());
 
         [Fact]
         public void NumberToHydraulicHorsepowerTest() =>
-            Assert.Equal(Power.FromHydraulicHorsepower(2), 2.HydraulicHorsepower());
+            Assert.Equal(Power<double>.FromHydraulicHorsepower(2), 2.HydraulicHorsepower());
 
         [Fact]
         public void NumberToJoulesPerHourTest() =>
-            Assert.Equal(Power.FromJoulesPerHour(2), 2.JoulesPerHour());
+            Assert.Equal(Power<double>.FromJoulesPerHour(2), 2.JoulesPerHour());
 
         [Fact]
         public void NumberToKilobritishThermalUnitsPerHourTest() =>
-            Assert.Equal(Power.FromKilobritishThermalUnitsPerHour(2), 2.KilobritishThermalUnitsPerHour());
+            Assert.Equal(Power<double>.FromKilobritishThermalUnitsPerHour(2), 2.KilobritishThermalUnitsPerHour());
 
         [Fact]
         public void NumberToKilojoulesPerHourTest() =>
-            Assert.Equal(Power.FromKilojoulesPerHour(2), 2.KilojoulesPerHour());
+            Assert.Equal(Power<double>.FromKilojoulesPerHour(2), 2.KilojoulesPerHour());
 
         [Fact]
         public void NumberToKilowattsTest() =>
-            Assert.Equal(Power.FromKilowatts(2), 2.Kilowatts());
+            Assert.Equal(Power<double>.FromKilowatts(2), 2.Kilowatts());
 
         [Fact]
         public void NumberToMechanicalHorsepowerTest() =>
-            Assert.Equal(Power.FromMechanicalHorsepower(2), 2.MechanicalHorsepower());
+            Assert.Equal(Power<double>.FromMechanicalHorsepower(2), 2.MechanicalHorsepower());
 
         [Fact]
         public void NumberToMegajoulesPerHourTest() =>
-            Assert.Equal(Power.FromMegajoulesPerHour(2), 2.MegajoulesPerHour());
+            Assert.Equal(Power<double>.FromMegajoulesPerHour(2), 2.MegajoulesPerHour());
 
         [Fact]
         public void NumberToMegawattsTest() =>
-            Assert.Equal(Power.FromMegawatts(2), 2.Megawatts());
+            Assert.Equal(Power<double>.FromMegawatts(2), 2.Megawatts());
 
         [Fact]
         public void NumberToMetricHorsepowerTest() =>
-            Assert.Equal(Power.FromMetricHorsepower(2), 2.MetricHorsepower());
+            Assert.Equal(Power<double>.FromMetricHorsepower(2), 2.MetricHorsepower());
 
         [Fact]
         public void NumberToMicrowattsTest() =>
-            Assert.Equal(Power.FromMicrowatts(2), 2.Microwatts());
+            Assert.Equal(Power<double>.FromMicrowatts(2), 2.Microwatts());
 
         [Fact]
         public void NumberToMillijoulesPerHourTest() =>
-            Assert.Equal(Power.FromMillijoulesPerHour(2), 2.MillijoulesPerHour());
+            Assert.Equal(Power<double>.FromMillijoulesPerHour(2), 2.MillijoulesPerHour());
 
         [Fact]
         public void NumberToMilliwattsTest() =>
-            Assert.Equal(Power.FromMilliwatts(2), 2.Milliwatts());
+            Assert.Equal(Power<double>.FromMilliwatts(2), 2.Milliwatts());
 
         [Fact]
         public void NumberToNanowattsTest() =>
-            Assert.Equal(Power.FromNanowatts(2), 2.Nanowatts());
+            Assert.Equal(Power<double>.FromNanowatts(2), 2.Nanowatts());
 
         [Fact]
         public void NumberToPetawattsTest() =>
-            Assert.Equal(Power.FromPetawatts(2), 2.Petawatts());
+            Assert.Equal(Power<double>.FromPetawatts(2), 2.Petawatts());
 
         [Fact]
         public void NumberToPicowattsTest() =>
-            Assert.Equal(Power.FromPicowatts(2), 2.Picowatts());
+            Assert.Equal(Power<double>.FromPicowatts(2), 2.Picowatts());
 
         [Fact]
         public void NumberToTerawattsTest() =>
-            Assert.Equal(Power.FromTerawatts(2), 2.Terawatts());
+            Assert.Equal(Power<double>.FromTerawatts(2), 2.Terawatts());
 
         [Fact]
         public void NumberToWattsTest() =>
-            Assert.Equal(Power.FromWatts(2), 2.Watts());
+            Assert.Equal(Power<double>.FromWatts(2), 2.Watts());
 
     }
 }

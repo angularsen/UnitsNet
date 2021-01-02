@@ -52,7 +52,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration((double)0.0, RotationalAccelerationUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new RotationalAcceleration<double>((double)0.0, RotationalAccelerationUnit.Undefined));
         }
 
         [Fact]
@@ -67,14 +67,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            Assert.Throws<ArgumentException>(() => new RotationalAcceleration<double>(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            Assert.Throws<ArgumentException>(() => new RotationalAcceleration<double>(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
+            Assert.Throws<ArgumentException>(() => new RotationalAcceleration<double>(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadianPerSecondSquaredToRotationalAccelerationUnits()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, radianpersecondsquared.RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
@@ -130,19 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalAcceleration.From(1, RotationalAccelerationUnit.DegreePerSecondSquared);
+            var quantity00 = RotationalAcceleration<double>.From(1, RotationalAccelerationUnit.DegreePerSecondSquared);
             AssertEx.EqualTolerance(1, quantity00.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
             Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, quantity00.Unit);
 
-            var quantity01 = RotationalAcceleration.From(1, RotationalAccelerationUnit.RadianPerSecondSquared);
+            var quantity01 = RotationalAcceleration<double>.From(1, RotationalAccelerationUnit.RadianPerSecondSquared);
             AssertEx.EqualTolerance(1, quantity01.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, quantity01.Unit);
 
-            var quantity02 = RotationalAcceleration.From(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+            var quantity02 = RotationalAcceleration<double>.From(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
             AssertEx.EqualTolerance(1, quantity02.RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
             Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, quantity02.Unit);
 
-            var quantity03 = RotationalAcceleration.From(1, RotationalAccelerationUnit.RevolutionPerSecondSquared);
+            var quantity03 = RotationalAcceleration<double>.From(1, RotationalAccelerationUnit.RevolutionPerSecondSquared);
             AssertEx.EqualTolerance(1, quantity03.RevolutionsPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
             Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity03.Unit);
 
@@ -151,20 +151,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromRadiansPerSecondSquared_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalAcceleration<double>.FromRadiansPerSecondSquared(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalAcceleration<double>.FromRadiansPerSecondSquared(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromRadiansPerSecondSquared_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
+            Assert.Throws<ArgumentException>(() => RotationalAcceleration<double>.FromRadiansPerSecondSquared(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            var radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.DegreePerSecondSquared), DegreesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RadianPerSecondSquared), RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, radianpersecondsquared.As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond), RevolutionsPerMinutePerSecondTolerance);
@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            var radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
 
             var degreepersecondsquaredQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared);
             AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, (double)degreepersecondsquaredQuantity.Value, DegreesPerSecondSquaredTolerance);
@@ -220,31 +220,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromDegreesPerSecondSquared(radianpersecondsquared.DegreesPerSecondSquared).RadiansPerSecondSquared, DegreesPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRadiansPerSecondSquared(radianpersecondsquared.RadiansPerSecondSquared).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerMinutePerSecond(radianpersecondsquared.RevolutionsPerMinutePerSecond).RadiansPerSecondSquared, RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerSecondSquared(radianpersecondsquared.RevolutionsPerSecondSquared).RadiansPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
+            AssertEx.EqualTolerance(1, RotationalAcceleration<double>.FromDegreesPerSecondSquared(radianpersecondsquared.DegreesPerSecondSquared).RadiansPerSecondSquared, DegreesPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(1, RotationalAcceleration<double>.FromRadiansPerSecondSquared(radianpersecondsquared.RadiansPerSecondSquared).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(1, RotationalAcceleration<double>.FromRevolutionsPerMinutePerSecond(radianpersecondsquared.RevolutionsPerMinutePerSecond).RadiansPerSecondSquared, RevolutionsPerMinutePerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalAcceleration<double>.FromRevolutionsPerSecondSquared(radianpersecondsquared.RevolutionsPerSecondSquared).RadiansPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            RotationalAcceleration v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> v = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             AssertEx.EqualTolerance(-1, -v.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (RotationalAcceleration.FromRadiansPerSecondSquared(3)-v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(2, (RotationalAcceleration<double>.FromRadiansPerSecondSquared(3)-v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(2, (v + v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(10, (v*10).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(10, (10*v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (RotationalAcceleration.FromRadiansPerSecondSquared(10)/5).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, RotationalAcceleration.FromRadiansPerSecondSquared(10)/RotationalAcceleration.FromRadiansPerSecondSquared(5), RadiansPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(2, (RotationalAcceleration<double>.FromRadiansPerSecondSquared(10)/5).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(2, RotationalAcceleration<double>.FromRadiansPerSecondSquared(10)/RotationalAcceleration<double>.FromRadiansPerSecondSquared(5), RadiansPerSecondSquaredTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            RotationalAcceleration oneRadianPerSecondSquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            RotationalAcceleration twoRadiansPerSecondSquared = RotationalAcceleration.FromRadiansPerSecondSquared(2);
+            RotationalAcceleration<double> oneRadianPerSecondSquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> twoRadiansPerSecondSquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(2);
 
             Assert.True(oneRadianPerSecondSquared < twoRadiansPerSecondSquared);
             Assert.True(oneRadianPerSecondSquared <= twoRadiansPerSecondSquared);
@@ -260,31 +260,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             Assert.Equal(0, radianpersecondsquared.CompareTo(radianpersecondsquared));
-            Assert.True(radianpersecondsquared.CompareTo(RotationalAcceleration.Zero) > 0);
-            Assert.True(RotationalAcceleration.Zero.CompareTo(radianpersecondsquared) < 0);
+            Assert.True(radianpersecondsquared.CompareTo(RotationalAcceleration<double>.Zero) > 0);
+            Assert.True(RotationalAcceleration<double>.Zero.CompareTo(radianpersecondsquared) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             Assert.Throws<ArgumentException>(() => radianpersecondsquared.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             Assert.Throws<ArgumentNullException>(() => radianpersecondsquared.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            var b = RotationalAcceleration.FromRadiansPerSecondSquared(2);
+            var a = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
+            var b = RotationalAcceleration<double>.FromRadiansPerSecondSquared(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -303,8 +303,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            var b = RotationalAcceleration.FromRadiansPerSecondSquared(2);
+            var a = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
+            var b = RotationalAcceleration<double>.FromRadiansPerSecondSquared(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -324,9 +324,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            Assert.True(v.Equals(RotationalAcceleration.FromRadiansPerSecondSquared(1), RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(RotationalAcceleration.Zero, RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
+            var v = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
+            Assert.True(v.Equals(RotationalAcceleration<double>.FromRadiansPerSecondSquared(1), RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(RotationalAcceleration<double>.Zero, RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -339,21 +339,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             Assert.False(radianpersecondsquared.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            RotationalAcceleration<double> radianpersecondsquared = RotationalAcceleration<double>.FromRadiansPerSecondSquared(1);
             Assert.False(radianpersecondsquared.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(RotationalAccelerationUnit.Undefined, RotationalAcceleration.Units);
+            Assert.DoesNotContain(RotationalAccelerationUnit.Undefined, RotationalAcceleration<double>.Units);
         }
 
         [Fact]
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(RotationalAcceleration.BaseDimensions is null);
+            Assert.False(RotationalAcceleration<double>.BaseDimensions is null);
         }
 
         [Fact]

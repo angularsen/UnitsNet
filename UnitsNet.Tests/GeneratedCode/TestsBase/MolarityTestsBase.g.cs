@@ -60,7 +60,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molarity((double)0.0, MolarityUnit.Undefined));
+            Assert.Throws<ArgumentException>(() => new Molarity<double>((double)0.0, MolarityUnit.Undefined));
         }
 
         [Fact]
@@ -75,14 +75,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolesPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new Molarity(double.NegativeInfinity, MolarityUnit.MolesPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Molarity<double>(double.PositiveInfinity, MolarityUnit.MolesPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Molarity<double>(double.NegativeInfinity, MolarityUnit.MolesPerCubicMeter));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molarity(double.NaN, MolarityUnit.MolesPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Molarity<double>(double.NaN, MolarityUnit.MolesPerCubicMeter));
         }
 
         [Fact]
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolesPerCubicMeterToMolarityUnits()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             AssertEx.EqualTolerance(CentimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.CentimolesPerLiter, CentimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.DecimolesPerLiter, DecimolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.MicromolesPerLiter, MicromolesPerLiterTolerance);
@@ -142,35 +142,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Molarity.From(1, MolarityUnit.CentimolesPerLiter);
+            var quantity00 = Molarity<double>.From(1, MolarityUnit.CentimolesPerLiter);
             AssertEx.EqualTolerance(1, quantity00.CentimolesPerLiter, CentimolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.CentimolesPerLiter, quantity00.Unit);
 
-            var quantity01 = Molarity.From(1, MolarityUnit.DecimolesPerLiter);
+            var quantity01 = Molarity<double>.From(1, MolarityUnit.DecimolesPerLiter);
             AssertEx.EqualTolerance(1, quantity01.DecimolesPerLiter, DecimolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.DecimolesPerLiter, quantity01.Unit);
 
-            var quantity02 = Molarity.From(1, MolarityUnit.MicromolesPerLiter);
+            var quantity02 = Molarity<double>.From(1, MolarityUnit.MicromolesPerLiter);
             AssertEx.EqualTolerance(1, quantity02.MicromolesPerLiter, MicromolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.MicromolesPerLiter, quantity02.Unit);
 
-            var quantity03 = Molarity.From(1, MolarityUnit.MillimolesPerLiter);
+            var quantity03 = Molarity<double>.From(1, MolarityUnit.MillimolesPerLiter);
             AssertEx.EqualTolerance(1, quantity03.MillimolesPerLiter, MillimolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.MillimolesPerLiter, quantity03.Unit);
 
-            var quantity04 = Molarity.From(1, MolarityUnit.MolesPerCubicMeter);
+            var quantity04 = Molarity<double>.From(1, MolarityUnit.MolesPerCubicMeter);
             AssertEx.EqualTolerance(1, quantity04.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
             Assert.Equal(MolarityUnit.MolesPerCubicMeter, quantity04.Unit);
 
-            var quantity05 = Molarity.From(1, MolarityUnit.MolesPerLiter);
+            var quantity05 = Molarity<double>.From(1, MolarityUnit.MolesPerLiter);
             AssertEx.EqualTolerance(1, quantity05.MolesPerLiter, MolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.MolesPerLiter, quantity05.Unit);
 
-            var quantity06 = Molarity.From(1, MolarityUnit.NanomolesPerLiter);
+            var quantity06 = Molarity<double>.From(1, MolarityUnit.NanomolesPerLiter);
             AssertEx.EqualTolerance(1, quantity06.NanomolesPerLiter, NanomolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.NanomolesPerLiter, quantity06.Unit);
 
-            var quantity07 = Molarity.From(1, MolarityUnit.PicomolesPerLiter);
+            var quantity07 = Molarity<double>.From(1, MolarityUnit.PicomolesPerLiter);
             AssertEx.EqualTolerance(1, quantity07.PicomolesPerLiter, PicomolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.PicomolesPerLiter, quantity07.Unit);
 
@@ -179,20 +179,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromMolesPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => Molarity<double>.FromMolesPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Molarity<double>.FromMolesPerCubicMeter(double.NegativeInfinity));
         }
 
         [Fact]
         public void FromMolesPerCubicMeter_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => Molarity<double>.FromMolesPerCubicMeter(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            var molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             AssertEx.EqualTolerance(CentimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.CentimolesPerLiter), CentimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.DecimolesPerLiter), DecimolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.MicromolesPerLiter), MicromolesPerLiterTolerance);
@@ -223,7 +223,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            var molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
 
             var centimolesperliterQuantity = molespercubicmeter.ToUnit(MolarityUnit.CentimolesPerLiter);
             AssertEx.EqualTolerance(CentimolesPerLiterInOneMolesPerCubicMeter, (double)centimolesperliterQuantity.Value, CentimolesPerLiterTolerance);
@@ -268,35 +268,35 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConversionRoundTrip()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, Molarity.FromCentimolesPerLiter(molespercubicmeter.CentimolesPerLiter).MolesPerCubicMeter, CentimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromDecimolesPerLiter(molespercubicmeter.DecimolesPerLiter).MolesPerCubicMeter, DecimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromMicromolesPerLiter(molespercubicmeter.MicromolesPerLiter).MolesPerCubicMeter, MicromolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromMillimolesPerLiter(molespercubicmeter.MillimolesPerLiter).MolesPerCubicMeter, MillimolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromMolesPerCubicMeter(molespercubicmeter.MolesPerCubicMeter).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromMolesPerLiter(molespercubicmeter.MolesPerLiter).MolesPerCubicMeter, MolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromNanomolesPerLiter(molespercubicmeter.NanomolesPerLiter).MolesPerCubicMeter, NanomolesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, Molarity.FromPicomolesPerLiter(molespercubicmeter.PicomolesPerLiter).MolesPerCubicMeter, PicomolesPerLiterTolerance);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromCentimolesPerLiter(molespercubicmeter.CentimolesPerLiter).MolesPerCubicMeter, CentimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromDecimolesPerLiter(molespercubicmeter.DecimolesPerLiter).MolesPerCubicMeter, DecimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromMicromolesPerLiter(molespercubicmeter.MicromolesPerLiter).MolesPerCubicMeter, MicromolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromMillimolesPerLiter(molespercubicmeter.MillimolesPerLiter).MolesPerCubicMeter, MillimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromMolesPerCubicMeter(molespercubicmeter.MolesPerCubicMeter).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromMolesPerLiter(molespercubicmeter.MolesPerLiter).MolesPerCubicMeter, MolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromNanomolesPerLiter(molespercubicmeter.NanomolesPerLiter).MolesPerCubicMeter, NanomolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity<double>.FromPicomolesPerLiter(molespercubicmeter.PicomolesPerLiter).MolesPerCubicMeter, PicomolesPerLiterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Molarity v = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> v = Molarity<double>.FromMolesPerCubicMeter(1);
             AssertEx.EqualTolerance(-1, -v.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (Molarity.FromMolesPerCubicMeter(3)-v).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (Molarity<double>.FromMolesPerCubicMeter(3)-v).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
             AssertEx.EqualTolerance(2, (v + v).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
             AssertEx.EqualTolerance(10, (v*10).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
             AssertEx.EqualTolerance(10, (10*v).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (Molarity.FromMolesPerCubicMeter(10)/5).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, Molarity.FromMolesPerCubicMeter(10)/Molarity.FromMolesPerCubicMeter(5), MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (Molarity<double>.FromMolesPerCubicMeter(10)/5).MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, Molarity<double>.FromMolesPerCubicMeter(10)/Molarity<double>.FromMolesPerCubicMeter(5), MolesPerCubicMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Molarity oneMolesPerCubicMeter = Molarity.FromMolesPerCubicMeter(1);
-            Molarity twoMolesPerCubicMeter = Molarity.FromMolesPerCubicMeter(2);
+            Molarity<double> oneMolesPerCubicMeter = Molarity<double>.FromMolesPerCubicMeter(1);
+            Molarity<double> twoMolesPerCubicMeter = Molarity<double>.FromMolesPerCubicMeter(2);
 
             Assert.True(oneMolesPerCubicMeter < twoMolesPerCubicMeter);
             Assert.True(oneMolesPerCubicMeter <= twoMolesPerCubicMeter);
@@ -312,31 +312,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             Assert.Equal(0, molespercubicmeter.CompareTo(molespercubicmeter));
-            Assert.True(molespercubicmeter.CompareTo(Molarity.Zero) > 0);
-            Assert.True(Molarity.Zero.CompareTo(molespercubicmeter) < 0);
+            Assert.True(molespercubicmeter.CompareTo(Molarity<double>.Zero) > 0);
+            Assert.True(Molarity<double>.Zero.CompareTo(molespercubicmeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             Assert.Throws<ArgumentException>(() => molespercubicmeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             Assert.Throws<ArgumentNullException>(() => molespercubicmeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = Molarity.FromMolesPerCubicMeter(1);
-            var b = Molarity.FromMolesPerCubicMeter(2);
+            var a = Molarity<double>.FromMolesPerCubicMeter(1);
+            var b = Molarity<double>.FromMolesPerCubicMeter(2);
 
  // ReSharper disable EqualExpressionComparison
 
@@ -355,8 +355,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = Molarity.FromMolesPerCubicMeter(1);
-            var b = Molarity.FromMolesPerCubicMeter(2);
+            var a = Molarity<double>.FromMolesPerCubicMeter(1);
+            var b = Molarity<double>.FromMolesPerCubicMeter(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -376,9 +376,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = Molarity.FromMolesPerCubicMeter(1);
-            Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), MolesPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Molarity.Zero, MolesPerCubicMeterTolerance, ComparisonType.Relative));
+            var v = Molarity<double>.FromMolesPerCubicMeter(1);
+            Assert.True(v.Equals(Molarity<double>.FromMolesPerCubicMeter(1), MolesPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Molarity<double>.Zero, MolesPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -391,21 +391,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             Assert.False(molespercubicmeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+            Molarity<double> molespercubicmeter = Molarity<double>.FromMolesPerCubicMeter(1);
             Assert.False(molespercubicmeter.Equals(null));
         }
 
         [Fact]
         public void UnitsDoesNotContainUndefined()
         {
-            Assert.DoesNotContain(MolarityUnit.Undefined, Molarity.Units);
+            Assert.DoesNotContain(MolarityUnit.Undefined, Molarity<double>.Units);
         }
 
         [Fact]
@@ -424,7 +424,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BaseDimensionsShouldNeverBeNull()
         {
-            Assert.False(Molarity.BaseDimensions is null);
+            Assert.False(Molarity<double>.BaseDimensions is null);
         }
 
         [Fact]

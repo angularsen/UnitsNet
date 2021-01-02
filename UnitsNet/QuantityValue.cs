@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -88,6 +89,16 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// Converts the value to type T.
+        /// </summary>
+        /// <typeparam name="T">The type to convert to.</typeparam>
+        /// <returns>The value as T.</returns>
+        public T ConvertTo<T>()
+        {
+            return _value.HasValue ? (T)Convert.ChangeType(_value, typeof(T)) : (T)Convert.ChangeType(_valueDecimal, typeof(T));
+        }
 
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()

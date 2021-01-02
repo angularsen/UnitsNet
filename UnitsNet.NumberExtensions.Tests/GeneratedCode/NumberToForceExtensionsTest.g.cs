@@ -26,63 +26,63 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToDecanewtonsTest() =>
-            Assert.Equal(Force.FromDecanewtons(2), 2.Decanewtons());
+            Assert.Equal(Force<double>.FromDecanewtons(2), 2.Decanewtons());
 
         [Fact]
         public void NumberToDyneTest() =>
-            Assert.Equal(Force.FromDyne(2), 2.Dyne());
+            Assert.Equal(Force<double>.FromDyne(2), 2.Dyne());
 
         [Fact]
         public void NumberToKilogramsForceTest() =>
-            Assert.Equal(Force.FromKilogramsForce(2), 2.KilogramsForce());
+            Assert.Equal(Force<double>.FromKilogramsForce(2), 2.KilogramsForce());
 
         [Fact]
         public void NumberToKilonewtonsTest() =>
-            Assert.Equal(Force.FromKilonewtons(2), 2.Kilonewtons());
+            Assert.Equal(Force<double>.FromKilonewtons(2), 2.Kilonewtons());
 
         [Fact]
         public void NumberToKiloPondsTest() =>
-            Assert.Equal(Force.FromKiloPonds(2), 2.KiloPonds());
+            Assert.Equal(Force<double>.FromKiloPonds(2), 2.KiloPonds());
 
         [Fact]
         public void NumberToKilopoundsForceTest() =>
-            Assert.Equal(Force.FromKilopoundsForce(2), 2.KilopoundsForce());
+            Assert.Equal(Force<double>.FromKilopoundsForce(2), 2.KilopoundsForce());
 
         [Fact]
         public void NumberToMeganewtonsTest() =>
-            Assert.Equal(Force.FromMeganewtons(2), 2.Meganewtons());
+            Assert.Equal(Force<double>.FromMeganewtons(2), 2.Meganewtons());
 
         [Fact]
         public void NumberToMicronewtonsTest() =>
-            Assert.Equal(Force.FromMicronewtons(2), 2.Micronewtons());
+            Assert.Equal(Force<double>.FromMicronewtons(2), 2.Micronewtons());
 
         [Fact]
         public void NumberToMillinewtonsTest() =>
-            Assert.Equal(Force.FromMillinewtons(2), 2.Millinewtons());
+            Assert.Equal(Force<double>.FromMillinewtons(2), 2.Millinewtons());
 
         [Fact]
         public void NumberToNewtonsTest() =>
-            Assert.Equal(Force.FromNewtons(2), 2.Newtons());
+            Assert.Equal(Force<double>.FromNewtons(2), 2.Newtons());
 
         [Fact]
         public void NumberToOunceForceTest() =>
-            Assert.Equal(Force.FromOunceForce(2), 2.OunceForce());
+            Assert.Equal(Force<double>.FromOunceForce(2), 2.OunceForce());
 
         [Fact]
         public void NumberToPoundalsTest() =>
-            Assert.Equal(Force.FromPoundals(2), 2.Poundals());
+            Assert.Equal(Force<double>.FromPoundals(2), 2.Poundals());
 
         [Fact]
         public void NumberToPoundsForceTest() =>
-            Assert.Equal(Force.FromPoundsForce(2), 2.PoundsForce());
+            Assert.Equal(Force<double>.FromPoundsForce(2), 2.PoundsForce());
 
         [Fact]
         public void NumberToShortTonsForceTest() =>
-            Assert.Equal(Force.FromShortTonsForce(2), 2.ShortTonsForce());
+            Assert.Equal(Force<double>.FromShortTonsForce(2), 2.ShortTonsForce());
 
         [Fact]
         public void NumberToTonnesForceTest() =>
-            Assert.Equal(Force.FromTonnesForce(2), 2.TonnesForce());
+            Assert.Equal(Force<double>.FromTonnesForce(2), 2.TonnesForce());
 
     }
 }

@@ -10,14 +10,14 @@ namespace UnitsNet.Tests
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromIntReturnsCorrectValue()
         {
-            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(1);
+            var acceleration = Acceleration<double>.FromMetersPerSecondSquared(1);
             Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithIntBackingFieldFromIntReturnsCorrectValue()
         {
-            Power power = Power.FromWatts(1);
+            var power = Power<double>.FromWatts(1);
             Assert.Equal(1.0, power.Watts);
         }
     }

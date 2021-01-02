@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
     {
         [Fact]
         public void NumberToCandelaTest() =>
-            Assert.Equal(LuminousIntensity.FromCandela(2), 2.Candela());
+            Assert.Equal(LuminousIntensity<double>.FromCandela(2), 2.Candela());
 
     }
 }

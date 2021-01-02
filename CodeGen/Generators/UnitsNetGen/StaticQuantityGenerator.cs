@@ -60,7 +60,7 @@ namespace UnitsNet
         /// <param name=""value"">The value to construct the quantity with.</param>
         /// <returns>The created quantity.</returns>
         [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
+        public static IQuantity FromQuantityType<T>(QuantityType quantityType, QuantityValue value)
         {
             switch(quantityType)
             {");
@@ -69,7 +69,7 @@ namespace UnitsNet
                 var quantityName = quantity.Name;
                 Writer.WL($@"
                 case QuantityType.{quantityName}:
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+                    return {quantityName}<T>.From(value, {quantityName}<T>.BaseUnit);");
             }
 
             Writer.WL(@"
@@ -109,7 +109,7 @@ namespace UnitsNet
         /// <param name=""unit"">Unit enum value.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity? quantity)
+        public static bool TryFrom<T>(QuantityValue value, Enum unit, out IQuantity? quantity)
         {
             switch (unit)
             {");
@@ -120,7 +120,7 @@ namespace UnitsNet
                 var unitValue = unitTypeName.ToCamelCase();
                 Writer.WL($@"
                 case {unitTypeName} {unitValue}:
-                    quantity = {quantityName}.From(value, {unitValue});
+                    quantity = {quantityName}<T>.From(value, {unitValue});
                     return true;");
             }
 
@@ -137,11 +137,11 @@ namespace UnitsNet
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
         /// <param name=""formatProvider"">The format provider to use for lookup. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        /// <param name=""quantityType"">Type of quantity, such as <see cref=""Length""/>.</param>
+        /// <param name=""quantityType"">Type of quantity, such as <see cref=""Length{T}""/>.</param>
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
+        public static bool TryParse<T>(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 
@@ -156,8 +156,8 @@ namespace UnitsNet
             {
                 var quantityName = quantity.Name;
                 Writer.WL($@"
-                case Type _ when quantityType == typeof({quantityName}):
-                    return parser.TryParse<{quantityName}, {quantityName}Unit>(quantityString, formatProvider, {quantityName}.From, out quantity);");
+                case Type _ when quantityType == typeof({quantityName}<T>):
+                    return parser.TryParse<{quantityName}<T>, {quantityName}Unit>(quantityString, formatProvider, {quantityName}<T>.From, out quantity);");
             }
 
             Writer.WL(@"

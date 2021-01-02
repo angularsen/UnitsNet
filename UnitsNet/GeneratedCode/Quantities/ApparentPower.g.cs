@@ -34,13 +34,9 @@ namespace UnitsNet
     /// <summary>
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
-    public partial struct ApparentPower : IQuantity<ApparentPowerUnit>, IEquatable<ApparentPower>, IComparable, IComparable<ApparentPower>, IConvertible, IFormattable
+    public partial struct ApparentPower<T> : IQuantityT<ApparentPowerUnit, T>, IEquatable<ApparentPower<T>>, IComparable, IComparable<ApparentPower<T>>, IConvertible, IFormattable
+        where T : struct
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
@@ -66,12 +62,12 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ApparentPower(double value, ApparentPowerUnit unit)
+        public ApparentPower(T value, ApparentPowerUnit unit)
         {
             if(unit == ApparentPowerUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = unit;
         }
 
@@ -83,14 +79,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ApparentPower(double value, UnitSystem unitSystem)
+        public ApparentPower(T value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            Value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -105,19 +101,19 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ApparentPower, which is Voltampere. All conversions go via this value.
+        ///     The base unit of <see cref="ApparentPower{T}" />, which is Voltampere. All conversions go via this value.
         /// </summary>
         public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
-        /// Represents the largest possible value of ApparentPower
+        /// Represents the largest possible value of <see cref="ApparentPower{T}" />
         /// </summary>
-        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
+        public static ApparentPower<T> MaxValue { get; } = new ApparentPower<T>(GenericNumberHelper<T>.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of ApparentPower
+        /// Represents the smallest possible value of <see cref="ApparentPower{T}" />
         /// </summary>
-        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
+        public static ApparentPower<T> MinValue { get; } = new ApparentPower<T>(GenericNumberHelper<T>.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -126,14 +122,14 @@ namespace UnitsNet
         public static QuantityType QuantityType { get; } = QuantityType.ApparentPower;
 
         /// <summary>
-        ///     All units of measurement for the ApparentPower quantity.
+        ///     All units of measurement for the <see cref="ApparentPower{T}" /> quantity.
         /// </summary>
         public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Voltampere.
         /// </summary>
-        public static ApparentPower Zero { get; } = new ApparentPower(0, BaseUnit);
+        public static ApparentPower<T> Zero { get; } = new ApparentPower<T>(default(T), BaseUnit);
 
         #endregion
 
@@ -142,7 +138,9 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public T Value{ get; }
+
+        double IQuantity.Value => Convert.ToDouble(Value);
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,36 +156,36 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ApparentPower.QuantityType;
+        public QuantityType Type => ApparentPower<T>.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ApparentPower.BaseDimensions;
+        public BaseDimensions Dimensions => ApparentPower<T>.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ApparentPower in Gigavoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> in Gigavoltamperes.
         /// </summary>
-        public double Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
+        public T Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Kilovoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> in Kilovoltamperes.
         /// </summary>
-        public double Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
+        public T Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Megavoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> in Megavoltamperes.
         /// </summary>
-        public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
+        public T Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Voltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> in Voltamperes.
         /// </summary>
-        public double Voltamperes => As(ApparentPowerUnit.Voltampere);
+        public T Voltamperes => As(ApparentPowerUnit.Voltampere);
 
         #endregion
 
@@ -219,51 +217,47 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ApparentPower from Gigavoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> from Gigavoltamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromGigavoltamperes(QuantityValue gigavoltamperes)
+        public static ApparentPower<T> FromGigavoltamperes(T gigavoltamperes)
         {
-            double value = (double) gigavoltamperes;
-            return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
+            return new ApparentPower<T>(gigavoltamperes, ApparentPowerUnit.Gigavoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Kilovoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> from Kilovoltamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromKilovoltamperes(QuantityValue kilovoltamperes)
+        public static ApparentPower<T> FromKilovoltamperes(T kilovoltamperes)
         {
-            double value = (double) kilovoltamperes;
-            return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
+            return new ApparentPower<T>(kilovoltamperes, ApparentPowerUnit.Kilovoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Megavoltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> from Megavoltamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMegavoltamperes(QuantityValue megavoltamperes)
+        public static ApparentPower<T> FromMegavoltamperes(T megavoltamperes)
         {
-            double value = (double) megavoltamperes;
-            return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
+            return new ApparentPower<T>(megavoltamperes, ApparentPowerUnit.Megavoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Voltamperes.
+        ///     Get <see cref="ApparentPower{T}" /> from Voltamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromVoltamperes(QuantityValue voltamperes)
+        public static ApparentPower<T> FromVoltamperes(T voltamperes)
         {
-            double value = (double) voltamperes;
-            return new ApparentPower(value, ApparentPowerUnit.Voltampere);
+            return new ApparentPower<T>(voltamperes, ApparentPowerUnit.Voltampere);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
+        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower{T}" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ApparentPower unit value.</returns>
-        public static ApparentPower From(QuantityValue value, ApparentPowerUnit fromUnit)
+        /// <returns><see cref="ApparentPower{T}" /> unit value.</returns>
+        public static ApparentPower<T> From(T value, ApparentPowerUnit fromUnit)
         {
-            return new ApparentPower((double)value, fromUnit);
+            return new ApparentPower<T>(value, fromUnit);
         }
 
         #endregion
@@ -292,7 +286,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ApparentPower Parse(string str)
+        public static ApparentPower<T> Parse(string str)
         {
             return Parse(str, null);
         }
@@ -320,9 +314,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ApparentPower Parse(string str, IFormatProvider? provider)
+        public static ApparentPower<T> Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ApparentPower, ApparentPowerUnit>(
+            return QuantityParser.Default.Parse<T, ApparentPower<T>, ApparentPowerUnit>(
                 str,
                 provider,
                 From);
@@ -336,7 +330,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ApparentPower result)
+        public static bool TryParse(string? str, out ApparentPower<T> result)
         {
             return TryParse(str, null, out result);
         }
@@ -351,9 +345,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ApparentPower result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ApparentPower<T> result)
         {
-            return QuantityParser.Default.TryParse<ApparentPower, ApparentPowerUnit>(
+            return QuantityParser.Default.TryParse<T, ApparentPower<T>, ApparentPowerUnit>(
                 str,
                 provider,
                 From,
@@ -415,45 +409,50 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ApparentPower operator -(ApparentPower right)
+        public static ApparentPower<T> operator -(ApparentPower<T> right)
         {
-            return new ApparentPower(-right.Value, right.Unit);
+            return new ApparentPower<T>(CompiledLambdas.Negate(right.Value), right.Unit);
         }
 
-        /// <summary>Get <see cref="ApparentPower"/> from adding two <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator +(ApparentPower left, ApparentPower right)
+        /// <summary>Get <see cref="ApparentPower{T}"/> from adding two <see cref="ApparentPower{T}"/>.</summary>
+        public static ApparentPower<T> operator +(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return new ApparentPower(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Add(left.Value, right.GetValueAs(left.Unit));
+            return new ApparentPower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ApparentPower"/> from subtracting two <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator -(ApparentPower left, ApparentPower right)
+        /// <summary>Get <see cref="ApparentPower{T}"/> from subtracting two <see cref="ApparentPower{T}"/>.</summary>
+        public static ApparentPower<T> operator -(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return new ApparentPower(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            var value = CompiledLambdas.Subtract(left.Value, right.GetValueAs(left.Unit));
+            return new ApparentPower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator *(double left, ApparentPower right)
+        /// <summary>Get <see cref="ApparentPower{T}"/> from multiplying value and <see cref="ApparentPower{T}"/>.</summary>
+        public static ApparentPower<T> operator *(T left, ApparentPower<T> right)
         {
-            return new ApparentPower(left * right.Value, right.Unit);
+            var value = CompiledLambdas.Multiply(left, right.Value);
+            return new ApparentPower<T>(value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator *(ApparentPower left, double right)
+        /// <summary>Get <see cref="ApparentPower{T}"/> from multiplying value and <see cref="ApparentPower{T}"/>.</summary>
+        public static ApparentPower<T> operator *(ApparentPower<T> left, T right)
         {
-            return new ApparentPower(left.Value * right, left.Unit);
+            var value = CompiledLambdas.Multiply(left.Value, right);
+            return new ApparentPower<T>(value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ApparentPower"/> from dividing <see cref="ApparentPower"/> by value.</summary>
-        public static ApparentPower operator /(ApparentPower left, double right)
+        /// <summary>Get <see cref="ApparentPower{T}"/> from dividing <see cref="ApparentPower{T}"/> by value.</summary>
+        public static ApparentPower<T> operator /(ApparentPower<T> left, T right)
         {
-            return new ApparentPower(left.Value / right, left.Unit);
+            var value = CompiledLambdas.Divide(left.Value, right);
+            return new ApparentPower<T>(value, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ApparentPower"/> by <see cref="ApparentPower"/>.</summary>
-        public static double operator /(ApparentPower left, ApparentPower right)
+        /// <summary>Get ratio value from dividing <see cref="ApparentPower{T}"/> by <see cref="ApparentPower{T}"/>.</summary>
+        public static T operator /(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return left.Voltamperes / right.Voltamperes;
+            return CompiledLambdas.Divide(left.Voltamperes, right.Voltamperes);
         }
 
         #endregion
@@ -461,39 +460,39 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ApparentPower left, ApparentPower right)
+        public static bool operator <=(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ApparentPower left, ApparentPower right)
+        public static bool operator >=(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThanOrEqual(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ApparentPower left, ApparentPower right)
+        public static bool operator <(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return CompiledLambdas.LessThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ApparentPower left, ApparentPower right)
+        public static bool operator >(ApparentPower<T> left, ApparentPower<T> right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return CompiledLambdas.GreaterThan(left.Value, right.GetValueAs(left.Unit));
         }
 
         /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ApparentPower left, ApparentPower right)
+        /// <remarks>Consider using <see cref="Equals(ApparentPower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ApparentPower<T> left, ApparentPower<T> right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ApparentPower left, ApparentPower right)
+        /// <remarks>Consider using <see cref="Equals(ApparentPower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ApparentPower<T> left, ApparentPower<T> right)
         {
             return !(left == right);
         }
@@ -502,37 +501,37 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ApparentPower objApparentPower)) throw new ArgumentException("Expected type ApparentPower.", nameof(obj));
+            if(!(obj is ApparentPower<T> objApparentPower)) throw new ArgumentException("Expected type ApparentPower.", nameof(obj));
 
             return CompareTo(objApparentPower);
         }
 
         /// <inheritdoc />
-        public int CompareTo(ApparentPower other)
+        public int CompareTo(ApparentPower<T> other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return System.Collections.Generic.Comparer<T>.Default.Compare(Value, other.GetValueAs(this.Unit));
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ApparentPower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ApparentPower objApparentPower))
+            if(obj is null || !(obj is ApparentPower<T> objApparentPower))
                 return false;
 
             return Equals(objApparentPower);
         }
 
         /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ApparentPower other)
+        /// <remarks>Consider using <see cref="Equals(ApparentPower{T}, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ApparentPower<T> other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return Value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ApparentPower within the given absolute or relative tolerance.
+        ///     Compare equality to another <see cref="ApparentPower{T}" /> within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -570,21 +569,19 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ApparentPower other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ApparentPower<T> other, T tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+            if (CompiledLambdas.LessThan(tolerance, 0))
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            var otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(Value, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ApparentPower.</returns>
+        /// <returns>A hash code for the current <see cref="ApparentPower{T}" />.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -598,17 +595,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ApparentPowerUnit unit)
+        public T As(ApparentPowerUnit unit)
         {
             if(Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public T As(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -628,17 +625,22 @@ namespace UnitsNet
             if(!(unit is ApparentPowerUnit unitAsApparentPowerUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
 
-            return As(unitAsApparentPowerUnit);
+            var asValue = As(unitAsApparentPowerUnit);
+            return Convert.ToDouble(asValue);
         }
 
+        double IQuantity.As(UnitSystem unitSystem) => Convert.ToDouble(As(unitSystem));
+
+        double IQuantity<ApparentPowerUnit>.As(ApparentPowerUnit unit) => Convert.ToDouble(As(unit));
+
         /// <summary>
-        ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ApparentPower{T}" /> to another <see cref="ApparentPower{T}" /> with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A ApparentPower with the specified unit.</returns>
-        public ApparentPower ToUnit(ApparentPowerUnit unit)
+        /// <returns>A <see cref="ApparentPower{T}" /> with the specified unit.</returns>
+        public ApparentPower<T> ToUnit(ApparentPowerUnit unit)
         {
             var convertedValue = GetValueAs(unit);
-            return new ApparentPower(convertedValue, unit);
+            return new ApparentPower<T>(convertedValue, unit);
         }
 
         /// <inheritdoc />
@@ -651,7 +653,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ApparentPower ToUnit(UnitSystem unitSystem)
+        public ApparentPower<T> ToUnit(UnitSystem unitSystem)
         {
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -672,21 +674,27 @@ namespace UnitsNet
         IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantityT<ApparentPowerUnit, T> IQuantityT<ApparentPowerUnit, T>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
         IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IQuantityT<ApparentPowerUnit, T> IQuantityT<ApparentPowerUnit, T>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private T GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ApparentPowerUnit.Gigavoltampere: return (_value) * 1e9d;
-                case ApparentPowerUnit.Kilovoltampere: return (_value) * 1e3d;
-                case ApparentPowerUnit.Megavoltampere: return (_value) * 1e6d;
-                case ApparentPowerUnit.Voltampere: return _value;
+                case ApparentPowerUnit.Gigavoltampere: return (Value) * 1e9d;
+                case ApparentPowerUnit.Kilovoltampere: return (Value) * 1e3d;
+                case ApparentPowerUnit.Megavoltampere: return (Value) * 1e6d;
+                case ApparentPowerUnit.Voltampere: return Value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -697,16 +705,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ApparentPower ToBaseUnit()
+        internal ApparentPower<T> ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ApparentPower(baseUnitValue, BaseUnit);
+            return new ApparentPower<T>(baseUnitValue, BaseUnit);
         }
 
-        private double GetValueAs(ApparentPowerUnit unit)
+        private T GetValueAs(ApparentPowerUnit unit)
         {
             if(Unit == unit)
-                return _value;
+                return Value;
 
             var baseUnitValue = GetValueInBaseUnit();
 
@@ -812,57 +820,57 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ApparentPower)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ApparentPower<T>)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
         {
-            return Convert.ToByte(_value);
+            return Convert.ToByte(Value);
         }
 
         char IConvertible.ToChar(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ApparentPower)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ApparentPower<T>)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ApparentPower)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ApparentPower<T>)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
-            return Convert.ToDecimal(_value);
+            return Convert.ToDecimal(Value);
         }
 
         double IConvertible.ToDouble(IFormatProvider provider)
         {
-            return Convert.ToDouble(_value);
+            return Convert.ToDouble(Value);
         }
 
         short IConvertible.ToInt16(IFormatProvider provider)
         {
-            return Convert.ToInt16(_value);
+            return Convert.ToInt16(Value);
         }
 
         int IConvertible.ToInt32(IFormatProvider provider)
         {
-            return Convert.ToInt32(_value);
+            return Convert.ToInt32(Value);
         }
 
         long IConvertible.ToInt64(IFormatProvider provider)
         {
-            return Convert.ToInt64(_value);
+            return Convert.ToInt64(Value);
         }
 
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
-            return Convert.ToSByte(_value);
+            return Convert.ToSByte(Value);
         }
 
         float IConvertible.ToSingle(IFormatProvider provider)
         {
-            return Convert.ToSingle(_value);
+            return Convert.ToSingle(Value);
         }
 
         string IConvertible.ToString(IFormatProvider provider)
@@ -872,33 +880,33 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ApparentPower))
+            if(conversionType == typeof(ApparentPower<T>))
                 return this;
             else if(conversionType == typeof(ApparentPowerUnit))
                 return Unit;
             else if(conversionType == typeof(QuantityType))
-                return ApparentPower.QuantityType;
+                return ApparentPower<T>.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
-                return ApparentPower.Info;
+                return ApparentPower<T>.Info;
             else if(conversionType == typeof(BaseDimensions))
-                return ApparentPower.BaseDimensions;
+                return ApparentPower<T>.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ApparentPower)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ApparentPower<T>)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
-            return Convert.ToUInt16(_value);
+            return Convert.ToUInt16(Value);
         }
 
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
-            return Convert.ToUInt32(_value);
+            return Convert.ToUInt32(Value);
         }
 
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
-            return Convert.ToUInt64(_value);
+            return Convert.ToUInt64(Value);
         }
 
         #endregion

@@ -15,14 +15,14 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override void AssertLogarithmicAddition()
         {
-            PowerRatio v = PowerRatio.FromDecibelWatts(40);
+            var v = PowerRatio<double>.FromDecibelWatts(40);
             AssertEx.EqualTolerance(43.0102999566, (v + v).DecibelWatts, DecibelWattsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
-            PowerRatio v = PowerRatio.FromDecibelWatts(40);
-            AssertEx.EqualTolerance(49.5424250944, (PowerRatio.FromDecibelWatts(50) - v).DecibelWatts, DecibelWattsTolerance);
+            var v = PowerRatio<double>.FromDecibelWatts(40);
+            AssertEx.EqualTolerance(49.5424250944, (PowerRatio<double>.FromDecibelWatts(50) - v).DecibelWatts, DecibelWattsTolerance);
         }
 
         [Theory]
@@ -31,7 +31,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10)]
         public void InvalidPower_ExpectArgumentOutOfRangeException(double power)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => PowerRatio.FromPower(Power.FromWatts(power)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => PowerRatio<double>.FromPower(Power<double>.FromWatts(power)));
         }
 
         [Theory]
@@ -40,8 +40,8 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(100, 20)]
         public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
-            Power p = Power.FromWatts(power);
-            double actual = PowerRatio.FromPower(p).DecibelWatts;
+            var p = Power<double>.FromWatts(power);
+            double actual = PowerRatio<double>.FromPower(p).DecibelWatts;
             Assert.Equal(expected, actual);
         }
 
@@ -53,7 +53,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(20, 100)]
         public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
-            PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
+            var pr = PowerRatio<double>.FromDecibelWatts(powerRatio);
             double actual = pr.ToPower().Watts;
             Assert.Equal(expected, actual);
         }
@@ -67,9 +67,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-6.99, 40)]
         public void PowerRatioToAmplitudeRatio_50OhmImpedance(double dBmW, double expected)
         {
-            PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+            var powerRatio = PowerRatio<double>.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance<double>.FromOhms(50)).DecibelMillivolts, 2);
             Assert.Equal(expected, actual);
         }
 
@@ -80,9 +80,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-8.75, 40)]
         public void PowerRatioToAmplitudeRatio_75OhmImpedance(double dBmW, double expected)
         {
-            PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+            var powerRatio = PowerRatio<double>.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance<double>.FromOhms(75)).DecibelMillivolts, 2);
             Assert.Equal(expected, actual);
         }
     }
