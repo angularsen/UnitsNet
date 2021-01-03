@@ -44,7 +44,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             var result = Assert.Throws<ArgumentNullException>(() => _sut.Test_ConvertDoubleIQuantity(null));
 
-            Assert.Equal("Value cannot be null.\r\nParameter name: quantity", result.Message);
+            Assert.Equal($"Value cannot be null.{Environment.NewLine}Parameter name: quantity", result.Message);
         }
 
         [Fact]
