@@ -293,6 +293,9 @@ namespace UnitsNet
                 case RotationalStiffnessPerLengthUnit rotationalStiffnessPerLengthUnit:
                     quantity = RotationalStiffnessPerLength.From(value, rotationalStiffnessPerLengthUnit);
                     return true;
+                case ScalarUnit scalarUnit:
+                    quantity = Scalar.From(value, scalarUnit);
+                    return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
                     return true;
@@ -654,6 +657,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(RotationalStiffnessPerLength))
                 return parser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(quantityString, formatProvider, RotationalStiffnessPerLength.From, out quantity);
+
+            if (quantityType == typeof(Scalar))
+                return parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity);
 
             if (quantityType == typeof(SolidAngle))
                 return parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity);

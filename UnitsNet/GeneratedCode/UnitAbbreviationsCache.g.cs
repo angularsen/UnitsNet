@@ -1244,6 +1244,7 @@ namespace UnitsNet
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, new string[]{"MN·m/rad/m", "MNm/rad/m"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, new string[]{"N·m/rad/m", "Nm/rad/m"}),
                 ("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, new string[]{"lbf·ft/deg/ft"}),
+                ("en-US", typeof(ScalarUnit), (int)ScalarUnit.Amount, new string[]{""}),
                 ("en-US", typeof(SolidAngleUnit), (int)SolidAngleUnit.Steradian, new string[]{"sr"}),
                 ("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.BtuPerPound, new string[]{"btu/lb"}),
                 ("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.CaloriePerGram, new string[]{"cal/g"}),

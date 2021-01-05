@@ -115,6 +115,7 @@ namespace UnitsNet
         RotationalSpeed,
         RotationalStiffness,
         RotationalStiffnessPerLength,
+        Scalar,
         SolidAngle,
         SpecificEnergy,
         SpecificEntropy,
