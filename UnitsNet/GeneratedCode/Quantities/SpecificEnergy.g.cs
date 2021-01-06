@@ -136,11 +136,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of SpecificEnergy
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
 
         /// <summary>

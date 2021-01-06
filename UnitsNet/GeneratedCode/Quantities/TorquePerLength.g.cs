@@ -129,11 +129,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of TorquePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TorquePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
 
         /// <summary>

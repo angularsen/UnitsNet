@@ -114,11 +114,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 
         /// <summary>

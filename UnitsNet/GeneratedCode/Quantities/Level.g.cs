@@ -110,11 +110,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Level
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Level
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 
         /// <summary>

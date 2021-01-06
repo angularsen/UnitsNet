@@ -112,11 +112,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of SolidAngle
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SolidAngle
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
 
         /// <summary>
