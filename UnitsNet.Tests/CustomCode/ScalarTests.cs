@@ -27,42 +27,6 @@ namespace UnitsNet.Tests.CustomCode
         // Override properties in base class here
         protected override double AmountInOneAmount => 1;
         protected override bool SupportsSIUnitSystem => false;
-
-        /// <summary>
-        /// Purposely did not call it an Int as it is not an int underneath.
-        /// </summary>
-        [Fact]
-        public void ScalarWholeNumberEqualsScalarWholeNumber()
-        {
-            int i = 1;
-            var scalar = Scalar.FromAmount(i);
-            Assert.Equal(i, scalar.Amount);
-            var scalar2 = Scalar.FromAmount(1000000000);
-            Assert.Equal(1000000000, scalar2.Amount);
-        }
-
-        [Fact]
-        public void ScalarDoubleEqualsScalarDouble()
-        {
-            var scalar = Scalar.FromAmount(1.123456789);
-            IQuantity quantity = scalar;
-            Assert.Equal(1.123456789, scalar.Amount);
-            var scalar2 = Scalar.FromAmount(0.0000000012345);
-            Assert.Equal(0.0000000012345, scalar2.Amount);
-        }
-
-
-        
-        [Fact]
-        public void ScalarMathsAddition()
-        {
-            var scalar = Scalar.FromAmount(10.111111111);
-            var scalar2 = Scalar.FromAmount(10.111111111);
-            var scalar3 = scalar + scalar2;
-            Assert.Equal(20.222222222, scalar3.Amount);
-        }
-
-
-
+       
     }
 }
