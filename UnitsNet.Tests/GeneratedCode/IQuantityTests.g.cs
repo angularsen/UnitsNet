@@ -118,6 +118,7 @@ namespace UnitsNet.Tests
             Assertion(3, RotationalSpeedUnit.RevolutionPerSecond, Quantity.From(3, RotationalSpeedUnit.RevolutionPerSecond));
             Assertion(3, RotationalStiffnessUnit.PoundForceFootPerDegrees, Quantity.From(3, RotationalStiffnessUnit.PoundForceFootPerDegrees));
             Assertion(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, Quantity.From(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
+            Assertion(3, ScalarUnit.Amount, Quantity.From(3, ScalarUnit.Amount));
             Assertion(3, SolidAngleUnit.Steradian, Quantity.From(3, SolidAngleUnit.Steradian));
             Assertion(3, SpecificEnergyUnit.WattHourPerKilogram, Quantity.From(3, SpecificEnergyUnit.WattHourPerKilogram));
             Assertion(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin, Quantity.From(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
@@ -229,6 +230,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalSpeed.Info, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.Info, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.Info, RotationalStiffnessPerLength.Zero);
+            Assertion(Scalar.Info, Scalar.Zero);
             Assertion(SolidAngle.Info, SolidAngle.Zero);
             Assertion(SpecificEnergy.Info, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.Info, SpecificEntropy.Zero);
@@ -340,6 +342,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalSpeed.QuantityType, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.QuantityType, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.QuantityType, RotationalStiffnessPerLength.Zero);
+            Assertion(Scalar.QuantityType, Scalar.Zero);
             Assertion(SolidAngle.QuantityType, SolidAngle.Zero);
             Assertion(SpecificEnergy.QuantityType, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.QuantityType, SpecificEntropy.Zero);
@@ -451,6 +454,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalSpeed.BaseDimensions, RotationalSpeed.Zero);
             Assertion(RotationalStiffness.BaseDimensions, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.BaseDimensions, RotationalStiffnessPerLength.Zero);
+            Assertion(Scalar.BaseDimensions, Scalar.Zero);
             Assertion(SolidAngle.BaseDimensions, SolidAngle.Zero);
             Assertion(SpecificEnergy.BaseDimensions, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.BaseDimensions, SpecificEntropy.Zero);

@@ -1,0 +1,19 @@
+{
+  "Name": "Scalar",
+  "BaseUnit": "Amount",
+  "XmlDoc": "A way of representing a number of items.",
+  "Units": [
+    {
+      "SingularName": "Amount",
+      "PluralName": "Amount",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    }
+  ]
+}

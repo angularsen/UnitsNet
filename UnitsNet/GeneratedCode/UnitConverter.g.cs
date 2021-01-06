@@ -1858,6 +1858,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLength.BaseUnit, q => q);
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, q => q.ToUnit(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Scalar>(Scalar.BaseUnit, Scalar.BaseUnit, q => q);
             unitConverter.SetConversionFunction<SolidAngle>(SolidAngle.BaseUnit, SolidAngle.BaseUnit, q => q);
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.BtuPerPound, q => q.ToUnit(SpecificEnergyUnit.BtuPerPound));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.BtuPerPound, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());

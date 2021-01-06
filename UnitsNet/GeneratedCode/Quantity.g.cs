@@ -122,6 +122,7 @@ namespace UnitsNet
             { "RotationalSpeed", RotationalSpeed.Info },
             { "RotationalStiffness", RotationalStiffness.Info },
             { "RotationalStiffnessPerLength", RotationalStiffnessPerLength.Info },
+            { "Scalar", Scalar.Info },
             { "SolidAngle", SolidAngle.Info },
             { "SpecificEnergy", SpecificEnergy.Info },
             { "SpecificEntropy", SpecificEntropy.Info },
@@ -232,6 +233,7 @@ namespace UnitsNet
             { "RotationalSpeed", QuantityType.RotationalSpeed },
             { "RotationalStiffness", QuantityType.RotationalStiffness },
             { "RotationalStiffnessPerLength", QuantityType.RotationalStiffnessPerLength },
+            { "Scalar", QuantityType.Scalar },
             { "SolidAngle", QuantityType.SolidAngle },
             { "SpecificEnergy", QuantityType.SpecificEnergy },
             { "SpecificEntropy", QuantityType.SpecificEntropy },
@@ -433,6 +435,8 @@ namespace UnitsNet
                     return RotationalStiffness.From(value, RotationalStiffness.BaseUnit);
                 case QuantityType.RotationalStiffnessPerLength:
                     return RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit);
+                case QuantityType.Scalar:
+                    return Scalar.From(value, Scalar.BaseUnit);
                 case QuantityType.SolidAngle:
                     return SolidAngle.From(value, SolidAngle.BaseUnit);
                 case QuantityType.SpecificEnergy:
@@ -656,6 +660,8 @@ namespace UnitsNet
                     return RotationalStiffness.From(value, RotationalStiffness.BaseUnit);
                 case "RotationalStiffnessPerLength":
                     return RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit);
+                case "Scalar":
+                    return Scalar.From(value, Scalar.BaseUnit);
                 case "SolidAngle":
                     return SolidAngle.From(value, SolidAngle.BaseUnit);
                 case "SpecificEnergy":
@@ -964,6 +970,9 @@ namespace UnitsNet
                 case RotationalStiffnessPerLengthUnit rotationalStiffnessPerLengthUnit:
                     quantity = RotationalStiffnessPerLength.From(value, rotationalStiffnessPerLengthUnit);
                     return true;
+                case ScalarUnit scalarUnit:
+                    quantity = Scalar.From(value, scalarUnit);
+                    return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
                     return true;
@@ -1219,6 +1228,8 @@ namespace UnitsNet
                     return parser.TryParse<RotationalStiffness, RotationalStiffnessUnit>(quantityString, formatProvider, RotationalStiffness.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalStiffnessPerLength):
                     return parser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(quantityString, formatProvider, RotationalStiffnessPerLength.From, out quantity);
+                case Type _ when quantityType == typeof(Scalar):
+                    return parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity);
                 case Type _ when quantityType == typeof(SolidAngle):
                     return parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity);
                 case Type _ when quantityType == typeof(SpecificEnergy):
