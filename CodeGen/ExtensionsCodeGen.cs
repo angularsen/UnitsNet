@@ -209,7 +209,7 @@ namespace UnitsNet.CodeGen
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath, string name, string namespaceName, bool useNullity, IEnumerable<string> usingNamespaces)
         {
-            var content = new StaticQuantityGenerator(quantities, false, name, namespaceName, useNullity, usingNamespaces).Generate();
+            var content = new StaticQuantityGenerator(quantities, false, name, namespaceName, useNullity, usingNamespaces, false).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             Log.Information("Quantity.g.cs: ".PadRight(UnitsNetGenerator.AlignPad) + "(OK)");
         }
