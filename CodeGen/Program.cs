@@ -60,7 +60,8 @@ namespace CodeGen
                 if (verbose) Log.Debug($"verbose: {true}", ConsoleColor.Blue);
 
                 var sw = Stopwatch.StartNew();
-                var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
+                var quantitiesFolder = Path.Combine(repositoryRoot.FullName, "Common/UnitDefinitions");
+                var quantities = QuantityJsonFilesParser.ParseQuantities(quantitiesFolder);
 
                 UnitsNetGenerator.Generate(rootDir, quantities);
 

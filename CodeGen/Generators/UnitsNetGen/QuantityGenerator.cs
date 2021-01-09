@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
@@ -11,16 +12,22 @@ namespace CodeGen.Generators.UnitsNetGen
     internal class QuantityGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
-
+        private readonly bool _useNullability;
+        private readonly bool _useQuantityType;
+        private readonly string _namespaceName;
+        private readonly IEnumerable<string> _usingNamespaces;
         private readonly bool _isDimensionless;
         private readonly string _unitEnumName;
         private readonly string _valueType;
         private readonly Unit _baseUnit;
 
-        public QuantityGenerator(Quantity quantity)
+        public QuantityGenerator(Quantity quantity, bool useNullability, bool useQuantityType, string namespaceName, IEnumerable<string> usingNamespaces)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
-
+            _useNullability = useNullability;
+            _useQuantityType = useQuantityType;
+            _namespaceName = namespaceName;
+            _usingNamespaces = usingNamespaces ?? Enumerable.Empty<string>();
             _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
                         throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
                             nameof(quantity));
@@ -37,26 +44,27 @@ namespace CodeGen.Generators.UnitsNetGen
                               baseDimensions.Θ == 0 &&
                               baseDimensions.N == 0 &&
                               baseDimensions.J == 0;
-
         }
 
         public override string Generate()
         {
+            string nullability = _useNullability ? "#nullable enable" : "";
+            string usingNamespaces = string.Join(Environment.NewLine, _usingNamespaces.Select(ns => $@"using {ns};"));
             Writer.WL(GeneratedFileHeader);
-            Writer.WL(@"
+            Writer.WL($@"
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-
-#nullable enable
+{usingNamespaces}
+{nullability}
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
-{");
+namespace {_namespaceName}
+{{");
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
             Writer.WL($@"
     /// <inheritdoc />
@@ -122,7 +130,6 @@ namespace UnitsNet
                 : $@"
             BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
 ");
-
             Writer.WL($@"
             Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
                 new UnitInfo<{_unitEnumName}>[] {{");
@@ -153,10 +160,10 @@ namespace UnitsNet
                     new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, new BaseUnits({baseUnitsCtorArgs})),");
                 }
             }
-
+            string quantityType = _useQuantityType ? $", QuantityType.{_quantity.Name}" : "";
             Writer.WL($@"
                 }},
-                BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+                BaseUnit, Zero, BaseDimensions{quantityType});
         }}
 ");
         }
@@ -214,6 +221,7 @@ namespace UnitsNet
 
         private void GenerateStaticProperties()
         {
+            var quantityType = _useQuantityType ? $"QuantityType.{_quantity.Name}" : "QuantityType.Undefined";
             Writer.WL($@"
         #region Static Properties
 
@@ -246,7 +254,7 @@ namespace UnitsNet
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
         [Obsolete(""QuantityType will be removed in the future. Use Info property instead."")]
-        public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
+        public static QuantityType QuantityType {{ get; }} = {quantityType};
 
         /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
@@ -273,6 +281,7 @@ namespace UnitsNet
         public {_valueType} Value => _value;
 ");
 
+            var quantityType = _useQuantityType ? $"{_quantity.Name}.QuantityType" : "QuantityType.Undefined";
             // Need to provide explicit interface implementation for decimal quantities like Information
             if (_quantity.BaseType != "double")
                 Writer.WL(@"
@@ -299,7 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
-        public QuantityType Type => {_quantity.Name}.QuantityType;
+        public QuantityType Type => {quantityType};
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -335,6 +344,7 @@ namespace UnitsNet
 
         private void GenerateStaticMethods()
         {
+            var n = _useNullability ? "?" : "";
             Writer.WL($@"
 
         #region Static Methods
@@ -355,7 +365,7 @@ namespace UnitsNet
         /// <param name=""unit"">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name=""provider"">Format to use for localization. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static string GetAbbreviation({_unitEnumName} unit, IFormatProvider? provider)
+        public static string GetAbbreviation({_unitEnumName} unit, IFormatProvider{n} provider)
         {{
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }}
@@ -405,6 +415,7 @@ namespace UnitsNet
 
         private void GenerateStaticParseMethods()
         {
+            var n = _useNullability ? "?" : "";
             Writer.WL($@"
         #region Static Parse Methods
 
@@ -458,7 +469,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static {_quantity.Name} Parse(string str, IFormatProvider? provider)
+        public static {_quantity.Name} Parse(string str, IFormatProvider{n} provider)
         {{
             return QuantityParser.Default.Parse<{_quantity.Name}, {_unitEnumName}>(
                 str,
@@ -474,7 +485,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
         /// </example>
-        public static bool TryParse(string? str, out {_quantity.Name} result)
+        public static bool TryParse(string{n} str, out {_quantity.Name} result)
         {{
             return TryParse(str, null, out result);
         }}
@@ -489,7 +500,7 @@ namespace UnitsNet
         ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out {_quantity.Name} result)
+        public static bool TryParse(string{n} str, IFormatProvider{n} provider, out {_quantity.Name} result)
         {{
             return QuantityParser.Default.TryParse<{_quantity.Name}, {_unitEnumName}>(
                 str,
@@ -522,7 +533,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
-        public static {_unitEnumName} ParseUnit(string str, IFormatProvider? provider)
+        public static {_unitEnumName} ParseUnit(string str, IFormatProvider{n} provider)
         {{
             return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
         }}
@@ -543,7 +554,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out {_unitEnumName} unit)
+        public static bool TryParseUnit(string str, IFormatProvider{n} provider, out {_unitEnumName} unit)
         {{
             return UnitParser.Default.TryParse<{_unitEnumName}>(str, provider, out unit);
         }}
@@ -960,6 +971,7 @@ namespace UnitsNet
 
         private void GenerateToString()
         {
+            var n = _useNullability ? "?" : "";
             Writer.WL($@"
         #region ToString Methods
 
@@ -977,7 +989,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
+        public string ToString(IFormatProvider{n} provider)
         {{
             return ToString(""g"", provider);
         }}
@@ -989,7 +1001,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         [Obsolete(@""This method is deprecated and will be removed at a future release. Please use ToString(""""s2"""") or ToString(""""s2"""", provider) where 2 is an example of the number passed to significantDigitsAfterRadix."")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider{n} provider, int significantDigitsAfterRadix)
         {{
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1004,7 +1016,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider{n} provider, [NotNull] string format, [NotNull] params object[] args)
         {{
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1034,7 +1046,7 @@ namespace UnitsNet
         /// <param name=""format"">The format string.</param>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider? provider)
+        public string ToString(string format, IFormatProvider{n} provider)
         {{
             return QuantityFormatter.Format<{_unitEnumName}>(this, format, provider);
         }}

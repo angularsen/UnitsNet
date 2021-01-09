@@ -15,7 +15,7 @@ namespace CodeGen.Generators
     /// </summary>
     internal static class UnitsNetGenerator
     {
-        private const int AlignPad = 35;
+        internal const int AlignPad = 35;
 
         /// <summary>
         ///     Generate source code for UnitsNet project for the given parsed quantities.
@@ -73,7 +73,7 @@ namespace CodeGen.Generators
             Log.Information("");
             GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
-            GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
+            GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs", "Quantity", "UnitsNet");
             GenerateUnitConverter(quantities, $"{outputDir}/UnitConverter.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
@@ -97,7 +97,7 @@ namespace CodeGen.Generators
 
         private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
         {
-            var content = new QuantityGenerator(quantity).Generate();
+            var content = new QuantityGenerator(quantity, true, true, "UnitsNet", null).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("quantity(OK) ");
         }
@@ -118,7 +118,7 @@ namespace CodeGen.Generators
 
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
         {
-            var content = new UnitTypeGenerator(quantity).Generate();
+            var content = new UnitTypeGenerator(quantity, "UnitsNet.Units").Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("unit(OK) ");
         }
@@ -151,9 +151,9 @@ namespace CodeGen.Generators
             Log.Information("QuantityType.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
-        private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
+        private static void GenerateStaticQuantity(Quantity[] quantities, string filePath, string name, string namespaceName)
         {
-            var content = new StaticQuantityGenerator(quantities).Generate();
+            var content = new StaticQuantityGenerator(quantities, true, name, namespaceName, true, null).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             Log.Information("Quantity.g.cs: ".PadRight(AlignPad) + "(OK)");
         }

@@ -28,9 +28,9 @@ using System.Collections.Generic;
 
 namespace UnitsNet
 {
-    /// <summary>
-    ///     Dynamically parse or construct quantities when types are only known at runtime.
-    /// </summary>
+            /// <summary>
+            ///     Dynamically parse or construct quantities when types are only known at runtime.
+            /// </summary>
     public static partial class Quantity
     {
         /// <summary>
@@ -1053,7 +1053,7 @@ namespace UnitsNet
         {
             quantity = default(IQuantity);
 
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+                if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
                 return false;
 
             var parser = QuantityParser.Default;

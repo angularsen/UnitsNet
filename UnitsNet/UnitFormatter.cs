@@ -11,7 +11,7 @@ namespace UnitsNet
     /// <summary>
     ///     Utility class for formatting units and values.
     /// </summary>
-    internal static class UnitFormatter
+    public static class UnitFormatter
     {
         /// <summary>
         ///     Gets the default ToString format for the specified value.

@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -28,12 +28,11 @@ namespace CodeGen.Generators
         /// <summary>
         ///     Parses JSON files that define quantities and their units.
         /// </summary>
-        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\UnitsNet".</param>
+        /// <param name="directory">Repository root directory, where you cloned the repo to such as "c:\dev\UnitsNet".</param>
         /// <returns>The parsed quantities and their units.</returns>
-        public static Quantity[] ParseQuantities(string rootDir)
+        public static Quantity[] ParseQuantities(string directory)
         {
-            var jsonDir = Path.Combine(rootDir, "Common/UnitDefinitions");
-            var jsonFiles = Directory.GetFiles(jsonDir, "*.json");
+            var jsonFiles = Directory.GetFiles(directory, "*.json");
             return jsonFiles.Select(ParseQuantityFile).ToArray();
         }
 

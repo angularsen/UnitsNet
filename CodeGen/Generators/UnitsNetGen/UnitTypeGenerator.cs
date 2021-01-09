@@ -1,4 +1,4 @@
-using CodeGen.Helpers;
+﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
@@ -6,11 +6,13 @@ namespace CodeGen.Generators.UnitsNetGen
     internal class UnitTypeGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
+        private readonly string _namespaceName;
         private readonly string _unitEnumName;
 
-        public UnitTypeGenerator(Quantity quantity)
+        public UnitTypeGenerator(Quantity quantity, string namespaceName)
         {
             _quantity = quantity;
+            _namespaceName = namespaceName;
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
@@ -19,7 +21,7 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 // ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+namespace {_namespaceName}
 {{
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
