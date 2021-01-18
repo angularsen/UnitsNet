@@ -50,7 +50,8 @@ namespace UnitsNet.Tests.CustomCode
             Mass m = Mass.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
 
-            Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));
+            string gs = formatProvider.NumberFormat.NumberGroupSeparator;
+            Assert.Equal($"3{gs}500 st 1 lb", stonePounds.ToString(formatProvider));
         }
     }
 }
