@@ -314,6 +314,9 @@ namespace UnitsNet
                 case SpeedUnit speedUnit:
                     quantity = Speed.From(value, speedUnit);
                     return true;
+                case StandardVolumeFlowUnit standardVolumeFlowUnit:
+                    quantity = StandardVolumeFlow.From(value, standardVolumeFlowUnit);
+                    return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
                     return true;
@@ -678,6 +681,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Speed))
                 return parser.TryParse<Speed, SpeedUnit>(quantityString, formatProvider, Speed.From, out quantity);
+
+            if (quantityType == typeof(StandardVolumeFlow))
+                return parser.TryParse<StandardVolumeFlow, StandardVolumeFlowUnit>(quantityString, formatProvider, StandardVolumeFlow.From, out quantity);
 
             if (quantityType == typeof(Temperature))
                 return parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity);
