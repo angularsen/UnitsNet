@@ -26,11 +26,12 @@ namespace UnitsNet.Tests.CustomQuantities
         public QuantityType Type => QuantityType.Undefined;
         public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
 
-        public QuantityInfo QuantityInfo => new QuantityInfo("HowMuch",
+        public QuantityInfo QuantityInfo => new QuantityInfo(
+            nameof(HowMuch),
+            typeof(HowMuchUnit),
             new UnitInfo[]
             {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined), new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
                 new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, BaseUnits.Undefined),
             },
             HowMuchUnit.Some,
