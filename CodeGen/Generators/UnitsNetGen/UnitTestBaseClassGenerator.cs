@@ -91,7 +91,7 @@ namespace UnitsNet.Tests
     public abstract partial class {_quantity.Name}TestsBase : QuantityTestsBase
     {{");
             foreach (var unit in _quantity.Units) Writer.WL($@"
-        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+        protected virtual double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
 
             Writer.WL("");
             Writer.WL($@"
