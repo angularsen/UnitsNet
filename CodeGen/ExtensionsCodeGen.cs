@@ -15,6 +15,8 @@ namespace UnitsNet.CodeGen
         public string TargetFolderPath { get; set; }
         public string TargetFilename { get; set; }
         public string NamespaceName { get; set; } // TODO
+        public string ClassName { get; set; } // TODO
+        public IEnumerable<string> UsingNamespaces { get; set; }
     }
 
     /// <summary>
@@ -41,6 +43,8 @@ namespace UnitsNet.CodeGen
         public GenerateOptions QuantityFactory { get; set; }
         public bool GenerateQuantityFactory => QuantityFactory != null;
         public GenerateOptions StaticQuantityFactory { get; set; }
+        public GenerateOptions UnitAbbreviations { get; set; }
+        public bool GenerateUnitAbbreviations => UnitAbbreviations != null;
     }
 
     /// <summary>
@@ -77,6 +81,7 @@ namespace UnitsNet.CodeGen
                 var quantityFile = $"{quantity.Name}.g.cs";
                 var quantityFullFilePath = Path.Combine(_options.Quantities.TargetFolderPath, quantityFile);
                 var usingNamespaces = new List<string> { "UnitsNet", _options.Units.NamespaceName };
+                usingNamespaces.AddRange(_options.Quantities.UsingNamespaces);
                 GenerateQuantity(sb, quantity, quantityFullFilePath, _options.Quantities.NamespaceName, usingNamespaces);
 
                 var unitsFile = $"{quantity.Name}Unit.g.cs";
@@ -136,7 +141,16 @@ namespace UnitsNet.CodeGen
                 //var staticQuantityFullFilePath = Path.Combine(_options.StaticQuantityFactory.TargetFolderPath, file);
                 //GenerateStaticQuantity(quantities, staticQuantityFullFilePath, _options.StaticQuantityFactory.NamespaceName);
             }
-            //GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
+            if (_options.GenerateUnitAbbreviations)
+            {
+                var file = _options.UnitAbbreviations.TargetFilename ?? "UnitAbbreviationsCache.g.cs";
+                var targetFilePath = Path.Combine(_options.UnitAbbreviations.TargetFolderPath, file);
+                var usingNamespaces = new List<string> { _options.Units.NamespaceName };
+                var content = new UnitAbbreviationsCacheGenerator(quantities, _options.UnitAbbreviations.ClassName, _options.UnitAbbreviations.NamespaceName, usingNamespaces).Generate();
+                File.WriteAllText(targetFilePath, content, Encoding.UTF8);
+                Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(UnitsNetGenerator.AlignPad) + "(OK)");
+
+            }
             //GenerateUnitConverter(quantities, $"{outputDir}/UnitConverter.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
@@ -202,9 +216,6 @@ namespace UnitsNet.CodeGen
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
-            var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
-            Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(UnitsNetGenerator.AlignPad) + "(OK)");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath, string name, string namespaceName, bool useNullity, IEnumerable<string> usingNamespaces)

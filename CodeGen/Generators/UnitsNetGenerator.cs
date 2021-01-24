@@ -139,7 +139,7 @@ namespace CodeGen.Generators
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
-            var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
+            var content = new UnitAbbreviationsCacheGenerator(quantities, null, null, null).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(AlignPad) + "(OK)");
         }

@@ -49,22 +49,24 @@ namespace CodeGen.Generators.UnitsNetGen
         public override string Generate()
         {
             string nullability = _useNullability ? "#nullable enable" : "";
-            string usingNamespaces = string.Join(Environment.NewLine, _usingNamespaces.Select(ns => $@"using {ns};"));
+            string usingNamespaces = string.Join(Environment.NewLine, _usingNamespaces.Select(ns => $@"    using {ns};"));
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-{usingNamespaces}
+
 {nullability}
 
 // ReSharper disable once CheckNamespace
 
 namespace {_namespaceName}
-{{");
+{{
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    {usingNamespaces}
+");
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
             Writer.WL($@"
     /// <inheritdoc />

@@ -66,7 +66,7 @@ namespace UnitsNet
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
 
             Name = name;
-            UnitType = UnitEnumTypes.First(t => t.Name == $"{name}Unit");
+            UnitType = UnitEnumTypes.FirstOrDefault(t => t.Name == $"{name}Unit") ?? GetUnitType(zero);
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
@@ -78,6 +78,15 @@ namespace UnitsNet
             Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
             BaseUnit = BaseUnitInfo.Value;
             QuantityType = quantityType;
+        }
+
+        private static Type GetUnitType(IQuantity quantity)
+        {
+            var quantityType = quantity.GetType();
+            var implementedInterfaces = quantityType.GetInterfaces();
+            var iquantityOfUnit = implementedInterfaces.FirstOrDefault(i => i.Name == "IQuantity`1");
+            var iquantityType = iquantityOfUnit.GetGenericArguments().First();
+            return iquantityType;
         }
 
         /// <summary>
