@@ -239,11 +239,17 @@ namespace UnitsNet
                 case MolarEntropyUnit molarEntropyUnit:
                     quantity = MolarEntropy.From(value, molarEntropyUnit);
                     return true;
+                case MolarFlowUnit molarFlowUnit:
+                    quantity = MolarFlow.From(value, molarFlowUnit);
+                    return true;
                 case MolarityUnit molarityUnit:
                     quantity = Molarity.From(value, molarityUnit);
                     return true;
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
+                    return true;
+                case MolarMaximumRateOfReactionUnit molarMaximumRateOfReactionUnit:
+                    quantity = MolarMaximumRateOfReaction.From(value, molarMaximumRateOfReactionUnit);
                     return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
@@ -607,11 +613,17 @@ namespace UnitsNet
             if (quantityType == typeof(MolarEntropy))
                 return parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity);
 
+            if (quantityType == typeof(MolarFlow))
+                return parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity);
+
             if (quantityType == typeof(Molarity))
                 return parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity);
 
             if (quantityType == typeof(MolarMass))
                 return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
+
+            if (quantityType == typeof(MolarMaximumRateOfReaction))
+                return parser.TryParse<MolarMaximumRateOfReaction, MolarMaximumRateOfReactionUnit>(quantityString, formatProvider, MolarMaximumRateOfReaction.From, out quantity);
 
             if (quantityType == typeof(Permeability))
                 return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);

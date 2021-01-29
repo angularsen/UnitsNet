@@ -1,0 +1,130 @@
+{
+  "Name": "MolarMaximumRateOfReaction",
+  "BaseUnit": "MolePerSecondPerGram",
+  "XmlDoc": "In Michaelis–Menten kinetics, which describes the rate of enzymatic reactions, Vmax represents the maximum rate achieved by the system, happening at saturating substrate concentration.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Michaelis–Menten_kinetics",
+  "BaseDimensions": {
+    "N": 1,
+    "T": -1,
+    "M": -1
+  },
+  "Units": [
+    {
+      "SingularName": "MolePerSecondPerGram",
+      "PluralName": "MolesPerSecondPerGram",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/s/g", "mol/S/g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerMinutePerGram",
+      "PluralName": "MolesPerMinutePerGram",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/min/g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerHourPerGram",
+      "PluralName": "MolesPerHourPerGram",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/h/g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerSecondPerMilligram",
+      "PluralName": "MolesPerSecondPerMilligram",
+      "FromUnitToBaseFunc": "x*1000",
+      "FromBaseToUnitFunc": "x/1000",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/s/mg", "mol/S/mg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerMinutePerMilligram",
+      "PluralName": "MolesPerMinutePerMilligram",
+      "FromUnitToBaseFunc": "x*1000/60",
+      "FromBaseToUnitFunc": "x/1000*60",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/min/mg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerHourPerMilligram",
+      "PluralName": "MolesPerHourPerMilligram",
+      "FromUnitToBaseFunc": "x*1000/3600",
+      "FromBaseToUnitFunc": "x/1000*3600",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/h/mg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerSecondPerMicrogram",
+      "PluralName": "MolesPerSecondPerMicrogram",
+      "FromUnitToBaseFunc": "x*1e6",
+      "FromBaseToUnitFunc": "x/1e6",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/s/µg", "mol/S/µg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerMinutePerMicrogram",
+      "PluralName": "MolesPerMinutePerMicrogram",
+      "FromUnitToBaseFunc": "x*1e6/60",
+      "FromBaseToUnitFunc": "x/1e6*60",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/min/µg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerHourPerMicrogram",
+      "PluralName": "MolesPerHourPerMicrogram",
+      "FromUnitToBaseFunc": "x*1e6/3600",
+      "FromBaseToUnitFunc": "x/1e6*3600",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/h/µg" ]
+        }
+      ]
+    }
+  ]
+}

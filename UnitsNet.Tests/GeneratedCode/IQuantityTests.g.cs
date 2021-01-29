@@ -100,8 +100,10 @@ namespace UnitsNet.Tests
             Assertion(3, MassMomentOfInertiaUnit.TonneSquareMilimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMilimeter));
             Assertion(3, MolarEnergyUnit.MegajoulePerMole, Quantity.From(3, MolarEnergyUnit.MegajoulePerMole));
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
+            Assertion(3, MolarFlowUnit.NanomolePerSecond, Quantity.From(3, MolarFlowUnit.NanomolePerSecond));
             Assertion(3, MolarityUnit.PicomolesPerLiter, Quantity.From(3, MolarityUnit.PicomolesPerLiter));
             Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
+            Assertion(3, MolarMaximumRateOfReactionUnit.NanomolePerSecondPerMilligram, Quantity.From(3, MolarMaximumRateOfReactionUnit.NanomolePerSecondPerMilligram));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
             Assertion(3, PowerUnit.Watt, Quantity.From(3, PowerUnit.Watt));
@@ -213,8 +215,10 @@ namespace UnitsNet.Tests
             Assertion(MassMomentOfInertia.Info, MassMomentOfInertia.Zero);
             Assertion(MolarEnergy.Info, MolarEnergy.Zero);
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
+            Assertion(MolarFlow.Info, MolarFlow.Zero);
             Assertion(Molarity.Info, Molarity.Zero);
             Assertion(MolarMass.Info, MolarMass.Zero);
+            Assertion(MolarMaximumRateOfReaction.Info, MolarMaximumRateOfReaction.Zero);
             Assertion(Permeability.Info, Permeability.Zero);
             Assertion(Permittivity.Info, Permittivity.Zero);
             Assertion(Power.Info, Power.Zero);
@@ -326,8 +330,10 @@ namespace UnitsNet.Tests
             Assertion(MassMomentOfInertia.QuantityType, MassMomentOfInertia.Zero);
             Assertion(MolarEnergy.QuantityType, MolarEnergy.Zero);
             Assertion(MolarEntropy.QuantityType, MolarEntropy.Zero);
+            Assertion(MolarFlow.QuantityType, MolarFlow.Zero);
             Assertion(Molarity.QuantityType, Molarity.Zero);
             Assertion(MolarMass.QuantityType, MolarMass.Zero);
+            Assertion(MolarMaximumRateOfReaction.QuantityType, MolarMaximumRateOfReaction.Zero);
             Assertion(Permeability.QuantityType, Permeability.Zero);
             Assertion(Permittivity.QuantityType, Permittivity.Zero);
             Assertion(Power.QuantityType, Power.Zero);
@@ -439,8 +445,10 @@ namespace UnitsNet.Tests
             Assertion(MassMomentOfInertia.BaseDimensions, MassMomentOfInertia.Zero);
             Assertion(MolarEnergy.BaseDimensions, MolarEnergy.Zero);
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
+            Assertion(MolarFlow.BaseDimensions, MolarFlow.Zero);
             Assertion(Molarity.BaseDimensions, Molarity.Zero);
             Assertion(MolarMass.BaseDimensions, MolarMass.Zero);
+            Assertion(MolarMaximumRateOfReaction.BaseDimensions, MolarMaximumRateOfReaction.Zero);
             Assertion(Permeability.BaseDimensions, Permeability.Zero);
             Assertion(Permittivity.BaseDimensions, Permittivity.Zero);
             Assertion(Power.BaseDimensions, Power.Zero);

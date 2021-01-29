@@ -1,0 +1,73 @@
+{
+  "Name": "MolarFlow",
+  "BaseUnit": "MolePerSecond",
+  "XmlDoc": "Molar flow is the ratio of the mole change to the time during which the change occurred (value of mole changes per unit time).",
+  "BaseDimensions": {
+    "N": 1,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "MolePerSecond",
+      "PluralName": "MolesPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/s", "mol/S" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerDay",
+      "PluralName": "MolesPerDay",
+      "FromUnitToBaseFunc": "x/86400",
+      "FromBaseToUnitFunc": "x*86400",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerHour",
+      "PluralName": "MolesPerHour",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilomolePerHour",
+      "PluralName": "KilomolesPerHour",
+      "FromUnitToBaseFunc": "x/3.6",
+      "FromBaseToUnitFunc": "x*3.6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kmol/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilomolePerMinute",
+      "PluralName": "KilomolesPerMinute",
+      "FromUnitToBaseFunc": "x/0.06",
+      "FromBaseToUnitFunc": "x*0.06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kmol/min" ]
+        }
+      ]
+    }
+  ]
+}

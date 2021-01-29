@@ -104,8 +104,10 @@ namespace UnitsNet
             { "MassMomentOfInertia", MassMomentOfInertia.Info },
             { "MolarEnergy", MolarEnergy.Info },
             { "MolarEntropy", MolarEntropy.Info },
+            { "MolarFlow", MolarFlow.Info },
             { "Molarity", Molarity.Info },
             { "MolarMass", MolarMass.Info },
+            { "MolarMaximumRateOfReaction", MolarMaximumRateOfReaction.Info },
             { "Permeability", Permeability.Info },
             { "Permittivity", Permittivity.Info },
             { "Power", Power.Info },
@@ -216,8 +218,10 @@ namespace UnitsNet
             { "MassMomentOfInertia", QuantityType.MassMomentOfInertia },
             { "MolarEnergy", QuantityType.MolarEnergy },
             { "MolarEntropy", QuantityType.MolarEntropy },
+            { "MolarFlow", QuantityType.MolarFlow },
             { "Molarity", QuantityType.Molarity },
             { "MolarMass", QuantityType.MolarMass },
+            { "MolarMaximumRateOfReaction", QuantityType.MolarMaximumRateOfReaction },
             { "Permeability", QuantityType.Permeability },
             { "Permittivity", QuantityType.Permittivity },
             { "Power", QuantityType.Power },
@@ -401,10 +405,14 @@ namespace UnitsNet
                     return MolarEnergy.From(value, MolarEnergy.BaseUnit);
                 case QuantityType.MolarEntropy:
                     return MolarEntropy.From(value, MolarEntropy.BaseUnit);
+                case QuantityType.MolarFlow:
+                    return MolarFlow.From(value, MolarFlow.BaseUnit);
                 case QuantityType.Molarity:
                     return Molarity.From(value, Molarity.BaseUnit);
                 case QuantityType.MolarMass:
                     return MolarMass.From(value, MolarMass.BaseUnit);
+                case QuantityType.MolarMaximumRateOfReaction:
+                    return MolarMaximumRateOfReaction.From(value, MolarMaximumRateOfReaction.BaseUnit);
                 case QuantityType.Permeability:
                     return Permeability.From(value, Permeability.BaseUnit);
                 case QuantityType.Permittivity:
@@ -628,10 +636,14 @@ namespace UnitsNet
                     return MolarEnergy.From(value, MolarEnergy.BaseUnit);
                 case "MolarEntropy":
                     return MolarEntropy.From(value, MolarEntropy.BaseUnit);
+                case "MolarFlow":
+                    return MolarFlow.From(value, MolarFlow.BaseUnit);
                 case "Molarity":
                     return Molarity.From(value, Molarity.BaseUnit);
                 case "MolarMass":
                     return MolarMass.From(value, MolarMass.BaseUnit);
+                case "MolarMaximumRateOfReaction":
+                    return MolarMaximumRateOfReaction.From(value, MolarMaximumRateOfReaction.BaseUnit);
                 case "Permeability":
                     return Permeability.From(value, Permeability.BaseUnit);
                 case "Permittivity":
@@ -922,11 +934,17 @@ namespace UnitsNet
                 case MolarEntropyUnit molarEntropyUnit:
                     quantity = MolarEntropy.From(value, molarEntropyUnit);
                     return true;
+                case MolarFlowUnit molarFlowUnit:
+                    quantity = MolarFlow.From(value, molarFlowUnit);
+                    return true;
                 case MolarityUnit molarityUnit:
                     quantity = Molarity.From(value, molarityUnit);
                     return true;
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
+                    return true;
+                case MolarMaximumRateOfReactionUnit molarMaximumRateOfReactionUnit:
+                    quantity = MolarMaximumRateOfReaction.From(value, molarMaximumRateOfReactionUnit);
                     return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
@@ -1201,10 +1219,14 @@ namespace UnitsNet
                     return parser.TryParse<MolarEnergy, MolarEnergyUnit>(quantityString, formatProvider, MolarEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(MolarEntropy):
                     return parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity);
+                case Type _ when quantityType == typeof(MolarFlow):
+                    return parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity);
                 case Type _ when quantityType == typeof(Molarity):
                     return parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity);
                 case Type _ when quantityType == typeof(MolarMass):
                     return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
+                case Type _ when quantityType == typeof(MolarMaximumRateOfReaction):
+                    return parser.TryParse<MolarMaximumRateOfReaction, MolarMaximumRateOfReactionUnit>(quantityString, formatProvider, MolarMaximumRateOfReaction.From, out quantity);
                 case Type _ when quantityType == typeof(Permeability):
                     return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);
                 case Type _ when quantityType == typeof(Permittivity):
