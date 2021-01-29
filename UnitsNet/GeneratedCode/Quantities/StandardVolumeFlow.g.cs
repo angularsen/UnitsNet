@@ -50,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<StandardVolumeFlowUnit>(QuantityType.StandardVolumeFlow,
+            Info = new QuantityInfo<StandardVolumeFlowUnit>("StandardVolumeFlow",
                 new UnitInfo<StandardVolumeFlowUnit>[] {
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, BaseUnits.Undefined),
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerHour, BaseUnits.Undefined),
@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
         }
 
         /// <summary>
@@ -117,16 +117,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of StandardVolumeFlow
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static StandardVolumeFlow MaxValue { get; } = new StandardVolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of StandardVolumeFlow
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.StandardVolumeFlow;
 
         /// <summary>
@@ -661,7 +664,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current StandardVolumeFlow.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -962,6 +965,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return StandardVolumeFlow.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return StandardVolumeFlow.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return StandardVolumeFlow.BaseDimensions;
             else
