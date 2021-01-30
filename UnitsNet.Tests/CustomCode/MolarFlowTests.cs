@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -47,5 +48,33 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MolesPerSecondInOneMolePerSecond => 1d;
         protected override double NanomolesPerDayInOneMolePerSecond => 1_000_000_000d * 60d * 60d * 24d;
         protected override double NanomolesPerSecondInOneMolePerSecond => 1_000_000_000d;
+
+        [Fact]
+        public void DurationTimesMolarFlowEqualsAmountOfSubstance()
+        {
+            AmountOfSubstance amountOfSubstance = Duration.FromSeconds(4.0) * MolarFlow.FromMolesPerSecond(20.0);
+            Assert.Equal(amountOfSubstance, AmountOfSubstance.FromMoles(80.0));
+        }
+
+        [Fact]
+        public void MolarFlowTimesDurationEqualsAmountOfSubstance()
+        {
+            AmountOfSubstance amountOfSubstance = MolarFlow.FromMolesPerSecond(20.0) * Duration.FromSeconds(4.0);
+            Assert.Equal(amountOfSubstance, AmountOfSubstance.FromMoles(80.0));
+        }
+
+        [Fact]
+        public void MolarFlowTimesTimeSpanEqualsAmountOfSubstance()
+        {
+            AmountOfSubstance amountOfSubstance = MolarFlow.FromMolesPerSecond(20.0) * TimeSpan.FromSeconds(4.0);
+            Assert.Equal(amountOfSubstance, AmountOfSubstance.FromMoles(80.0));
+        }
+
+        [Fact]
+        public void TimeSpanTimesMolarFlowEqualsAmountOfSubstance()
+        {
+            AmountOfSubstance amountOfSubstance = TimeSpan.FromSeconds(4.0) * MolarFlow.FromMolesPerSecond(20.0);
+            Assert.Equal(amountOfSubstance, AmountOfSubstance.FromMoles(80.0));
+        }
     }
 }

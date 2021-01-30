@@ -91,13 +91,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CentilitersPerDayInOneCubicMeterPerSecond => 8.64e9;
 
+        protected override double CentilitersPerHourInOneCubicMeterPerSecond => 100_000d * 60d * 60d;
+
         protected override double CubicMetersPerDayInOneCubicMeterPerSecond => 8.64e4;
 
         protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 1.13007e5;
 
         protected override double DecilitersPerDayInOneCubicMeterPerSecond => 8.64e8;
 
+        protected override double DecilitersPerHourInOneCubicMeterPerSecond => 10_000d * 60d * 60d;
+
         protected override double KilolitersPerDayInOneCubicMeterPerSecond => 8.64e4;
+
+        protected override double KilolitersPerHourInOneCubicMeterPerSecond => 60d * 60d;
 
         protected override double LitersPerDayInOneCubicMeterPerSecond => 8.64e7;
 
@@ -105,9 +111,15 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
 
+        protected override double MicrolitersPerHourInOneCubicMeterPerSecond => 1000_000_000d * 60d * 60d;
+
         protected override double MillilitersPerDayInOneCubicMeterPerSecond => 8.64e+10;
 
+        protected override double MillilitersPerHourInOneCubicMeterPerSecond => 1000_000d * 60d * 60d;
+
         protected override double NanolitersPerDayInOneCubicMeterPerSecond => 8.64e+16;
+
+        protected override double NanolitersPerHourInOneCubicMeterPerSecond => 1000_000_000_000d * 60d * 60d;
 
         protected override double OilBarrelsPerSecondInOneCubicMeterPerSecond => 6.28981;
 

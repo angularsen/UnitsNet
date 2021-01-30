@@ -3,6 +3,7 @@
 
 // ReSharper disable once CheckNamespace
 
+using System;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -63,6 +64,18 @@ namespace UnitsNet
         public static Volume operator /(AmountOfSubstance amountOfSubstance, Molarity molarity)
         {
             return Volume.FromCubicMeters(amountOfSubstance.Moles / molarity.MolesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, TimeSpan timeSpan)
+        {
+            return MolarFlow.FromMolesPerSecond(amountOfSubstance.Moles / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> divided by <see cref="Duration"/>.</summary>
+        public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, Duration duration)
+        {
+            return MolarFlow.FromMolesPerSecond(amountOfSubstance.Moles / duration.Seconds);
         }
 
     }
