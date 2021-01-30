@@ -10,6 +10,11 @@ namespace UnitsNet
     {
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IQuantityFactory Factory = new QuantityFactory();
+
         static Quantity()
         {
             ICollection<QuantityInfo> quantityInfos = ByName.Values;
@@ -46,28 +51,17 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
-            if (TryFrom(value, unit, out IQuantity? quantity))
-                return quantity!;
-
-            throw new ArgumentException(
-                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+            Factory.TryFrom(value, unit, out IQuantity? quantity);
+            return quantity!;
         }
 
-        /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="TryFrom(QuantityValue, Enum, out IQuantity)"/>
         public static bool TryFrom(double value, Enum unit, out IQuantity? quantity)
         {
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                quantity = default(IQuantity);
-                return false;
-            }
-
-            return TryFrom((QuantityValue)value, unit, out quantity);
+            return Factory.TryFrom((QuantityValue)value, unit, out quantity);
         }
 
-        /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
+        /// <inheritdoc cref="Parse(IFormatProvider, Type, string)"/>
         public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
 
         /// <summary>
@@ -80,18 +74,16 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
+            if (Factory.TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
+            {
                 return quantity!;
-
+            }
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
-        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="TryParse(IFormatProvider, Type, string, out IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
+            Factory.TryParse(null, quantityType, quantityString, out quantity);
 
         /// <summary>
         ///     Get information about the given quantity type.
