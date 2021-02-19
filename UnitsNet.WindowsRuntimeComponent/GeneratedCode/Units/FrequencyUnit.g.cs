@@ -27,6 +27,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         BeatPerMinute,
+        BUnit,
         CyclePerHour,
         CyclePerMinute,
         Gigahertz,

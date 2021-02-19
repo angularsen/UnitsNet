@@ -129,6 +129,7 @@ namespace UnitsNet
             { "SpecificVolume", SpecificVolume.Info },
             { "SpecificWeight", SpecificWeight.Info },
             { "Speed", Speed.Info },
+            { "StandardVolumeFlow", StandardVolumeFlow.Info },
             { "Temperature", Temperature.Info },
             { "TemperatureChangeRate", TemperatureChangeRate.Info },
             { "TemperatureDelta", TemperatureDelta.Info },
@@ -240,6 +241,7 @@ namespace UnitsNet
             { "SpecificVolume", QuantityType.SpecificVolume },
             { "SpecificWeight", QuantityType.SpecificWeight },
             { "Speed", QuantityType.Speed },
+            { "StandardVolumeFlow", QuantityType.StandardVolumeFlow },
             { "Temperature", QuantityType.Temperature },
             { "TemperatureChangeRate", QuantityType.TemperatureChangeRate },
             { "TemperatureDelta", QuantityType.TemperatureDelta },
@@ -676,6 +678,8 @@ namespace UnitsNet
                     return SpecificWeight.From(value, SpecificWeight.BaseUnit);
                 case "Speed":
                     return Speed.From(value, Speed.BaseUnit);
+                case "StandardVolumeFlow":
+                    return StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit);
                 case "Temperature":
                     return Temperature.From(value, Temperature.BaseUnit);
                 case "TemperatureChangeRate":

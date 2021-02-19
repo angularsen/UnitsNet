@@ -517,6 +517,7 @@ namespace UnitsNet
                 ("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.TonneForcePerMillimeter, new string[]{"tf/mm"}),
                 ("ru-RU", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.TonneForcePerMillimeter, new string[]{"тс/мм"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.BeatPerMinute, new string[]{"bpm"}),
+                ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.BUnit, new string[]{"B Units"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerHour, new string[]{"cph"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerMinute, new string[]{"cpm"}),
                 ("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Gigahertz, new string[]{"GHz"}),
