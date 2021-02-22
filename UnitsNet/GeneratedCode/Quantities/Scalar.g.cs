@@ -109,11 +109,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Scalar
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Scalar
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
 
         /// <summary>
