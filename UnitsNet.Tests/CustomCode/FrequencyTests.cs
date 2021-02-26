@@ -28,6 +28,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BeatsPerMinuteInOneHertz => 60;
 
-        protected override double BUnitsInOneHertz => Math.Sqrt(1000);
+        protected override double BUnitsInOneHertz => 31.622776601683793; // = Math.Sqrt(1000);
     }
 }
