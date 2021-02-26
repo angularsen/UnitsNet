@@ -53,6 +53,7 @@ namespace UnitsNet
             Info = new QuantityInfo<FrequencyUnit>("Frequency",
                 new UnitInfo<FrequencyUnit>[] {
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, BaseUnits.Undefined),
@@ -183,6 +184,11 @@ namespace UnitsNet
         public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
+        ///     Get Frequency in BUnits.
+        /// </summary>
+        public double BUnits => As(FrequencyUnit.BUnit);
+
+        /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
@@ -264,6 +270,15 @@ namespace UnitsNet
         {
             double value = (double) beatsperminute;
             return new Frequency(value, FrequencyUnit.BeatPerMinute);
+        }
+        /// <summary>
+        ///     Get Frequency from BUnits.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromBUnits(QuantityValue bunits)
+        {
+            double value = (double) bunits;
+            return new Frequency(value, FrequencyUnit.BUnit);
         }
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
@@ -776,6 +791,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case FrequencyUnit.BeatPerMinute: return _value/60;
+                case FrequencyUnit.BUnit: return _value * _value * 1e-3;
                 case FrequencyUnit.CyclePerHour: return _value/3600;
                 case FrequencyUnit.CyclePerMinute: return _value/60;
                 case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
@@ -811,6 +827,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case FrequencyUnit.BeatPerMinute: return baseUnitValue*60;
+                case FrequencyUnit.BUnit: return Math.Sqrt(baseUnitValue * 1e3);
                 case FrequencyUnit.CyclePerHour: return baseUnitValue*3600;
                 case FrequencyUnit.CyclePerMinute: return baseUnitValue*60;
                 case FrequencyUnit.Gigahertz: return (baseUnitValue) / 1e9d;

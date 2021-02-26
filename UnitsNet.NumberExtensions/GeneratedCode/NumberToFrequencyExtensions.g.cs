@@ -32,6 +32,10 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
         public static Frequency BeatsPerMinute<T>(this T value) =>
             Frequency.FromBeatsPerMinute(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Frequency.FromBUnits(UnitsNet.QuantityValue)" />
+        public static Frequency BUnits<T>(this T value) =>
+            Frequency.FromBUnits(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
         public static Frequency CyclesPerHour<T>(this T value) =>
             Frequency.FromCyclesPerHour(Convert.ToDouble(value));
