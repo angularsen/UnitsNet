@@ -642,7 +642,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case FrequencyUnit.BeatPerMinute: return _value/60;
-                case FrequencyUnit.BUnit: return _value * _value * 1e-3;
+                case FrequencyUnit.BUnit: return Math.Sqrt(_value * 1e3);
                 case FrequencyUnit.CyclePerHour: return _value/3600;
                 case FrequencyUnit.CyclePerMinute: return _value/60;
                 case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
@@ -667,7 +667,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case FrequencyUnit.BeatPerMinute: return baseUnitValue*60;
-                case FrequencyUnit.BUnit: return Math.Sqrt(baseUnitValue * 1e3);
+                case FrequencyUnit.BUnit: return baseUnitValue * baseUnitValue * 1e-3;
                 case FrequencyUnit.CyclePerHour: return baseUnitValue*3600;
                 case FrequencyUnit.CyclePerMinute: return baseUnitValue*60;
                 case FrequencyUnit.Gigahertz: return (baseUnitValue) / 1e9d;
