@@ -518,7 +518,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Turbidity.FromNTU(1.0);
-            Assert.Equal(new {Turbidity.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Turbidity.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

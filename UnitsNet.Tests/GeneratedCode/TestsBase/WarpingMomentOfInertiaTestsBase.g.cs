@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
-            Assert.Equal(new {WarpingMomentOfInertia.QuantityType, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(WarpingMomentOfInertia.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]
