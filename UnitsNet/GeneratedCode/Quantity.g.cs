@@ -234,6 +234,8 @@ namespace UnitsNet
                     return Torque.From(value, Torque.BaseUnit);
                 case QuantityType.TorquePerLength:
                     return TorquePerLength.From(value, TorquePerLength.BaseUnit);
+                case QuantityType.Turbidity:
+                    return Turbidity.From(value, Turbidity.BaseUnit);
                 case QuantityType.VitaminA:
                     return VitaminA.From(value, VitaminA.BaseUnit);
                 case QuantityType.Volume:
@@ -244,6 +246,8 @@ namespace UnitsNet
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
                 case QuantityType.VolumePerLength:
                     return VolumePerLength.From(value, VolumePerLength.BaseUnit);
+                case QuantityType.WarpingMomentOfInertia:
+                    return WarpingMomentOfInertia.From(value, WarpingMomentOfInertia.BaseUnit);
                 default:
                     throw new ArgumentException($"{quantityType} is not a supported quantity type.");
             }
@@ -548,6 +552,9 @@ namespace UnitsNet
                 case TorquePerLengthUnit torquePerLengthUnit:
                     quantity = TorquePerLength.From(value, torquePerLengthUnit);
                     return true;
+                case TurbidityUnit turbidityUnit:
+                    quantity = Turbidity.From(value, turbidityUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
                     return true;
@@ -562,6 +569,9 @@ namespace UnitsNet
                     return true;
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
+                case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
+                    quantity = WarpingMomentOfInertia.From(value, warpingMomentOfInertiaUnit);
                     return true;
                 default:
                 {
@@ -782,6 +792,8 @@ namespace UnitsNet
                     return parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity);
                 case Type _ when quantityType == typeof(TorquePerLength):
                     return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
+                case Type _ when quantityType == typeof(Turbidity):
+                    return parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity);
                 case Type _ when quantityType == typeof(VitaminA):
                     return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
                 case Type _ when quantityType == typeof(Volume):
@@ -792,6 +804,8 @@ namespace UnitsNet
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
                 case Type _ when quantityType == typeof(VolumePerLength):
                     return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
+                case Type _ when quantityType == typeof(WarpingMomentOfInertia):
+                    return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);
                 default:
                     return false;
             }

@@ -30,26 +30,33 @@ namespace UnitsNet.Tests.CustomCode
     {
         #region Unit Conversion Coefficients
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
+        protected override double PicogramsPerMicroliterInOneKilogramPerCubicMeter => 1e6;
         protected override double PicogramsPerDeciliterInOneKilogramPerCubicMeter => 1e11;
         protected override double NanogramsPerLiterInOneKilogramPerCubicMeter => 1e9;
+        protected override double NanogramsPerMicroliterInOneKilogramPerCubicMeter => 1e3;
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
         protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
         protected override double NanogramsPerDeciliterInOneKilogramPerCubicMeter => 1e8;
         protected override double NanogramsPerMilliliterInOneKilogramPerCubicMeter => 1e6;
         protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6;
+        protected override double MicrogramsPerMicroliterInOneKilogramPerCubicMeter => 1;
         protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
         protected override double MicrogramsPerDeciliterInOneKilogramPerCubicMeter => 1e5;
         protected override double MicrogramsPerMilliliterInOneKilogramPerCubicMeter => 1e3;
         protected override double GramsPerCubicMeterInOneKilogramPerCubicMeter => 1e3;
         protected override double MilligramsPerLiterInOneKilogramPerCubicMeter => 1e3;
+        protected override double MilligramsPerMicroliterInOneKilogramPerCubicMeter => 1e-3;
         protected override double CentigramsPerLiterInOneKilogramPerCubicMeter => 1e2;
+        protected override double CentigramsPerMicroliterInOneKilogramPerCubicMeter => 1e-4;
         protected override double MilligramsPerDeciliterInOneKilogramPerCubicMeter => 1e2;
         protected override double MilligramsPerMilliliterInOneKilogramPerCubicMeter => 1;
         protected override double GramsPerLiterInOneKilogramPerCubicMeter => 1;
+        protected override double GramsPerMicroliterInOneKilogramPerCubicMeter => 1e-6;
         protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
         protected override double CentigramsPerDeciliterInOneKilogramPerCubicMeter => 1e1;
         protected override double DecigramsPerDeciliterInOneKilogramPerCubicMeter => 1;
         protected override double DecigramsPerLiterInOneKilogramPerCubicMeter => 1e1;
+        protected override double DecigramsPerMicroliterInOneKilogramPerCubicMeter => 1e-5;
         protected override double CentigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-1;
         protected override double GramsPerDeciliterInOneKilogramPerCubicMeter => 1e-1;
         protected override double DecigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-2;

@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.FromCentigramsPerLiter(2), 2.CentigramsPerLiter());
 
         [Fact]
+        public void NumberToCentigramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromCentigramsPerMicroliter(2), 2.CentigramsPerMicroliter());
+
+        [Fact]
         public void NumberToCentigramsPerMilliliterTest() =>
             Assert.Equal(MassConcentration.FromCentigramsPerMilliliter(2), 2.CentigramsPerMilliliter());
 
@@ -43,6 +47,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToDecigramsPerLiterTest() =>
             Assert.Equal(MassConcentration.FromDecigramsPerLiter(2), 2.DecigramsPerLiter());
+
+        [Fact]
+        public void NumberToDecigramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromDecigramsPerMicroliter(2), 2.DecigramsPerMicroliter());
 
         [Fact]
         public void NumberToDecigramsPerMilliliterTest() =>
@@ -67,6 +75,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToGramsPerLiterTest() =>
             Assert.Equal(MassConcentration.FromGramsPerLiter(2), 2.GramsPerLiter());
+
+        [Fact]
+        public void NumberToGramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromGramsPerMicroliter(2), 2.GramsPerMicroliter());
 
         [Fact]
         public void NumberToGramsPerMilliliterTest() =>
@@ -109,6 +121,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.FromMicrogramsPerLiter(2), 2.MicrogramsPerLiter());
 
         [Fact]
+        public void NumberToMicrogramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromMicrogramsPerMicroliter(2), 2.MicrogramsPerMicroliter());
+
+        [Fact]
         public void NumberToMicrogramsPerMilliliterTest() =>
             Assert.Equal(MassConcentration.FromMicrogramsPerMilliliter(2), 2.MicrogramsPerMilliliter());
 
@@ -125,6 +141,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.FromMilligramsPerLiter(2), 2.MilligramsPerLiter());
 
         [Fact]
+        public void NumberToMilligramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromMilligramsPerMicroliter(2), 2.MilligramsPerMicroliter());
+
+        [Fact]
         public void NumberToMilligramsPerMilliliterTest() =>
             Assert.Equal(MassConcentration.FromMilligramsPerMilliliter(2), 2.MilligramsPerMilliliter());
 
@@ -137,6 +157,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.FromNanogramsPerLiter(2), 2.NanogramsPerLiter());
 
         [Fact]
+        public void NumberToNanogramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromNanogramsPerMicroliter(2), 2.NanogramsPerMicroliter());
+
+        [Fact]
         public void NumberToNanogramsPerMilliliterTest() =>
             Assert.Equal(MassConcentration.FromNanogramsPerMilliliter(2), 2.NanogramsPerMilliliter());
 
@@ -147,6 +171,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPicogramsPerLiterTest() =>
             Assert.Equal(MassConcentration.FromPicogramsPerLiter(2), 2.PicogramsPerLiter());
+
+        [Fact]
+        public void NumberToPicogramsPerMicroliterTest() =>
+            Assert.Equal(MassConcentration.FromPicogramsPerMicroliter(2), 2.PicogramsPerMicroliter());
 
         [Fact]
         public void NumberToPicogramsPerMilliliterTest() =>

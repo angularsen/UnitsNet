@@ -125,10 +125,12 @@ namespace UnitsNet
         ThermalResistance,
         Torque,
         TorquePerLength,
+        Turbidity,
         VitaminA,
         Volume,
         VolumeConcentration,
         VolumeFlow,
         VolumePerLength,
+        WarpingMomentOfInertia,
     }
 }

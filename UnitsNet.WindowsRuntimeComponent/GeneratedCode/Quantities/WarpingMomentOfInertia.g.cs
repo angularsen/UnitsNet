@@ -29,12 +29,12 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Difference between two temperatures. The conversions are different than for Temperature.
+    ///     A geometric property of an area that is used to determine the warping stress.
     /// </summary>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class TemperatureDelta : IQuantity
+    public sealed partial class WarpingMomentOfInertia : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,21 +44,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly TemperatureDeltaUnit? _unit;
+        private readonly WarpingMomentOfInertiaUnit? _unit;
 
-        static TemperatureDelta()
+        static WarpingMomentOfInertia()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo(QuantityType.TemperatureDelta, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.WarpingMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit Kelvin.
+        ///     Creates the quantity with a value of 0 in the base unit MeterToTheSixth.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public TemperatureDelta()
+        public WarpingMomentOfInertia()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -71,9 +71,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private TemperatureDelta(double value, TemperatureDeltaUnit unit)
+        private WarpingMomentOfInertia(double value, WarpingMomentOfInertiaUnit unit)
         {
-            if(unit == TemperatureDeltaUnit.Undefined)
+            if(unit == WarpingMomentOfInertiaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -93,34 +93,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of TemperatureDelta, which is Kelvin. All conversions go via this value.
+        ///     The base unit of WarpingMomentOfInertia, which is MeterToTheSixth. All conversions go via this value.
         /// </summary>
-        public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+        public static WarpingMomentOfInertiaUnit BaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
 
         /// <summary>
-        /// Represents the largest possible value of TemperatureDelta
+        /// Represents the largest possible value of WarpingMomentOfInertia
         /// </summary>
-        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
+        public static WarpingMomentOfInertia MaxValue { get; } = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of TemperatureDelta
+        /// Represents the smallest possible value of WarpingMomentOfInertia
         /// </summary>
-        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
+        public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
+        public static QuantityType QuantityType { get; } = QuantityType.WarpingMomentOfInertia;
 
         /// <summary>
-        ///     All units of measurement for the TemperatureDelta quantity.
+        ///     All units of measurement for the WarpingMomentOfInertia quantity.
         /// </summary>
-        public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
+        public static WarpingMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheSixth.
         /// </summary>
-        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, BaseUnit);
+        public static WarpingMomentOfInertia Zero { get; } = new WarpingMomentOfInertia(0, BaseUnit);
 
         #endregion
 
@@ -137,68 +137,53 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public WarpingMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => TemperatureDelta.QuantityType;
+        public QuantityType Type => WarpingMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => TemperatureDelta.BaseDimensions;
+        public BaseDimensions Dimensions => WarpingMomentOfInertia.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesCelsius.
+        ///     Get WarpingMomentOfInertia in CentimetersToTheSixth.
         /// </summary>
-        public double DegreesCelsius => As(TemperatureDeltaUnit.DegreeCelsius);
+        public double CentimetersToTheSixth => As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesDelisle.
+        ///     Get WarpingMomentOfInertia in DecimetersToTheSixth.
         /// </summary>
-        public double DegreesDelisle => As(TemperatureDeltaUnit.DegreeDelisle);
+        public double DecimetersToTheSixth => As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesFahrenheit.
+        ///     Get WarpingMomentOfInertia in FeetToTheSixth.
         /// </summary>
-        public double DegreesFahrenheit => As(TemperatureDeltaUnit.DegreeFahrenheit);
+        public double FeetToTheSixth => As(WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesNewton.
+        ///     Get WarpingMomentOfInertia in InchesToTheSixth.
         /// </summary>
-        public double DegreesNewton => As(TemperatureDeltaUnit.DegreeNewton);
+        public double InchesToTheSixth => As(WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesRankine.
+        ///     Get WarpingMomentOfInertia in MetersToTheSixth.
         /// </summary>
-        public double DegreesRankine => As(TemperatureDeltaUnit.DegreeRankine);
+        public double MetersToTheSixth => As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesReaumur.
+        ///     Get WarpingMomentOfInertia in MillimetersToTheSixth.
         /// </summary>
-        public double DegreesReaumur => As(TemperatureDeltaUnit.DegreeReaumur);
-
-        /// <summary>
-        ///     Get TemperatureDelta in DegreesRoemer.
-        /// </summary>
-        public double DegreesRoemer => As(TemperatureDeltaUnit.DegreeRoemer);
-
-        /// <summary>
-        ///     Get TemperatureDelta in Kelvins.
-        /// </summary>
-        public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
-
-        /// <summary>
-        ///     Get TemperatureDelta in MillidegreesCelsius.
-        /// </summary>
-        public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
+        public double MillimetersToTheSixth => As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
         #endregion
 
@@ -209,7 +194,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(TemperatureDeltaUnit unit)
+        public static string GetAbbreviation(WarpingMomentOfInertiaUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -220,7 +205,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(TemperatureDeltaUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(WarpingMomentOfInertiaUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -231,107 +216,77 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get TemperatureDelta from DegreesCelsius.
+        ///     Get WarpingMomentOfInertia from CentimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesCelsius(double degreescelsius)
+        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double centimeterstothesixth)
         {
-            double value = (double) degreescelsius;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
+            double value = (double) centimeterstothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesDelisle.
+        ///     Get WarpingMomentOfInertia from DecimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesDelisle(double degreesdelisle)
+        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double decimeterstothesixth)
         {
-            double value = (double) degreesdelisle;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
+            double value = (double) decimeterstothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesFahrenheit.
+        ///     Get WarpingMomentOfInertia from FeetToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesFahrenheit(double degreesfahrenheit)
+        public static WarpingMomentOfInertia FromFeetToTheSixth(double feettothesixth)
         {
-            double value = (double) degreesfahrenheit;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
+            double value = (double) feettothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesNewton.
+        ///     Get WarpingMomentOfInertia from InchesToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesNewton(double degreesnewton)
+        public static WarpingMomentOfInertia FromInchesToTheSixth(double inchestothesixth)
         {
-            double value = (double) degreesnewton;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
+            double value = (double) inchestothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesRankine.
+        ///     Get WarpingMomentOfInertia from MetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesRankine(double degreesrankine)
+        public static WarpingMomentOfInertia FromMetersToTheSixth(double meterstothesixth)
         {
-            double value = (double) degreesrankine;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
+            double value = (double) meterstothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesReaumur.
+        ///     Get WarpingMomentOfInertia from MillimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesReaumur(double degreesreaumur)
+        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double millimeterstothesixth)
         {
-            double value = (double) degreesreaumur;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from DegreesRoemer.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromDegreesRoemer(double degreesroemer)
-        {
-            double value = (double) degreesroemer;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from Kelvins.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromKelvins(double kelvins)
-        {
-            double value = (double) kelvins;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
-        }
-        /// <summary>
-        ///     Get TemperatureDelta from MillidegreesCelsius.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static TemperatureDelta FromMillidegreesCelsius(double millidegreescelsius)
-        {
-            double value = (double) millidegreescelsius;
-            return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
+            double value = (double) millimeterstothesixth;
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="TemperatureDeltaUnit" /> to <see cref="TemperatureDelta" />.
+        ///     Dynamically convert from value and unit enum <see cref="WarpingMomentOfInertiaUnit" /> to <see cref="WarpingMomentOfInertia" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>TemperatureDelta unit value.</returns>
+        /// <returns>WarpingMomentOfInertia unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static TemperatureDelta From(double value, TemperatureDeltaUnit fromUnit)
+        public static WarpingMomentOfInertia From(double value, WarpingMomentOfInertiaUnit fromUnit)
         {
-            return new TemperatureDelta((double)value, fromUnit);
+            return new WarpingMomentOfInertia((double)value, fromUnit);
         }
 
         #endregion
@@ -360,7 +315,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static TemperatureDelta Parse(string str)
+        public static WarpingMomentOfInertia Parse(string str)
         {
             return Parse(str, null);
         }
@@ -388,10 +343,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static TemperatureDelta Parse(string str, [CanBeNull] string cultureName)
+        public static WarpingMomentOfInertia Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<TemperatureDelta, TemperatureDeltaUnit>(
+            return QuantityParser.Default.Parse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
                 str,
                 provider,
                 From);
@@ -405,7 +360,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out TemperatureDelta result)
+        public static bool TryParse([CanBeNull] string str, out WarpingMomentOfInertia result)
         {
             return TryParse(str, null, out result);
         }
@@ -420,10 +375,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out TemperatureDelta result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out WarpingMomentOfInertia result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<TemperatureDelta, TemperatureDeltaUnit>(
+            return QuantityParser.Default.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(
                 str,
                 provider,
                 From,
@@ -439,7 +394,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static TemperatureDeltaUnit ParseUnit(string str)
+        public static WarpingMomentOfInertiaUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -454,13 +409,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static TemperatureDeltaUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static WarpingMomentOfInertiaUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<TemperatureDeltaUnit>(str, provider);
+            return UnitParser.Default.Parse<WarpingMomentOfInertiaUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit(string str, out WarpingMomentOfInertiaUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -475,10 +430,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out TemperatureDeltaUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out WarpingMomentOfInertiaUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<TemperatureDeltaUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<WarpingMomentOfInertiaUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -488,13 +443,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is TemperatureDelta objTemperatureDelta)) throw new ArgumentException("Expected type TemperatureDelta.", nameof(obj));
+            if(!(obj is WarpingMomentOfInertia objWarpingMomentOfInertia)) throw new ArgumentException("Expected type WarpingMomentOfInertia.", nameof(obj));
 
-            return CompareTo(objTemperatureDelta);
+            return CompareTo(objWarpingMomentOfInertia);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(TemperatureDelta other)
+        internal int CompareTo(WarpingMomentOfInertia other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -502,20 +457,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is TemperatureDelta objTemperatureDelta))
+            if(obj is null || !(obj is WarpingMomentOfInertia objWarpingMomentOfInertia))
                 return false;
 
-            return Equals(objTemperatureDelta);
+            return Equals(objWarpingMomentOfInertia);
         }
 
-        public bool Equals(TemperatureDelta other)
+        public bool Equals(WarpingMomentOfInertia other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another TemperatureDelta within the given absolute or relative tolerance.
+        ///     Compare equality to another WarpingMomentOfInertia within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -553,7 +508,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(TemperatureDelta other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(WarpingMomentOfInertia other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -567,7 +522,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current TemperatureDelta.</returns>
+        /// <returns>A hash code for the current WarpingMomentOfInertia.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -577,13 +532,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((TemperatureDeltaUnit)unit);
+        double IQuantity.As(object unit) => As((WarpingMomentOfInertiaUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureDeltaUnit unit)
+        public double As(WarpingMomentOfInertiaUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -593,13 +548,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
+        ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A TemperatureDelta with the specified unit.</returns>
-        public TemperatureDelta ToUnit(TemperatureDeltaUnit unit)
+        /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
+        public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new TemperatureDelta(convertedValue, unit);
+            return new WarpingMomentOfInertia(convertedValue, unit);
         }
 
         /// <summary>
@@ -611,21 +566,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return _value/1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return _value/1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return _value*Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return _value*Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.MeterToTheSixth: return _value;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return _value/1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(TemperatureDeltaUnit unit)
+        private double AsBaseNumericType(WarpingMomentOfInertiaUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -634,15 +586,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
-                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue*33/100;
-                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
-                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
-                case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return baseUnitValue*1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return baseUnitValue*1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return baseUnitValue/Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return baseUnitValue/Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.MeterToTheSixth: return baseUnitValue;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return baseUnitValue*1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

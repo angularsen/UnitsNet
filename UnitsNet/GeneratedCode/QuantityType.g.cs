@@ -127,11 +127,13 @@ namespace UnitsNet
         ThermalResistance,
         Torque,
         TorquePerLength,
+        Turbidity,
         VitaminA,
         Volume,
         VolumeConcentration,
         VolumeFlow,
         VolumePerLength,
+        WarpingMomentOfInertia,
 // Missing XML comment for public type or member
 #pragma warning restore CS1591
     }

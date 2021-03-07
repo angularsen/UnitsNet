@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -108,7 +109,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format($"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = string.Format(CultureInfo.CurrentUICulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
             Assert.Equal(expected, QuantityFormatter.Format(length, format));
         }
 
@@ -132,7 +133,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format($"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = string.Format(CultureInfo.CurrentUICulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
             Assert.Equal(expected, QuantityFormatter.Format(length, format));
         }
     }

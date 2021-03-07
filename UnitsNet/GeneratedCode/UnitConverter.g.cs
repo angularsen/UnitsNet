@@ -1153,12 +1153,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.CentigramPerLiter, q => q.ToUnit(MassConcentrationUnit.CentigramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.CentigramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.CentigramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.CentigramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.CentigramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.DecigramPerDeciliter, q => q.ToUnit(MassConcentrationUnit.DecigramPerDeciliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.DecigramPerLiter, q => q.ToUnit(MassConcentrationUnit.DecigramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.DecigramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.DecigramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.DecigramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.DecigramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.GramPerCubicCentimeter, q => q.ToUnit(MassConcentrationUnit.GramPerCubicCentimeter));
@@ -1171,6 +1175,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.GramPerLiter, q => q.ToUnit(MassConcentrationUnit.GramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.GramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.GramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.GramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.GramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.KilogramPerCubicCentimeter, q => q.ToUnit(MassConcentrationUnit.KilogramPerCubicCentimeter));
@@ -1190,6 +1196,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MicrogramPerLiter, q => q.ToUnit(MassConcentrationUnit.MicrogramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MicrogramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.MicrogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MicrogramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.MicrogramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MilligramPerCubicMeter, q => q.ToUnit(MassConcentrationUnit.MilligramPerCubicMeter));
@@ -1198,18 +1206,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MilligramPerLiter, q => q.ToUnit(MassConcentrationUnit.MilligramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MilligramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.MilligramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.MilligramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.MilligramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.NanogramPerDeciliter, q => q.ToUnit(MassConcentrationUnit.NanogramPerDeciliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.NanogramPerLiter, q => q.ToUnit(MassConcentrationUnit.NanogramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.NanogramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.NanogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.NanogramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.NanogramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerDeciliter, q => q.ToUnit(MassConcentrationUnit.PicogramPerDeciliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerLiter, q => q.ToUnit(MassConcentrationUnit.PicogramPerLiter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerLiter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerMicroliter, q => q.ToUnit(MassConcentrationUnit.PicogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.PicogramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PoundPerCubicFoot, q => q.ToUnit(MassConcentrationUnit.PoundPerCubicFoot));
@@ -2152,6 +2166,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLength.BaseUnit, TorquePerLengthUnit.TonneForceMillimeterPerMeter, q => q.ToUnit(TorquePerLengthUnit.TonneForceMillimeterPerMeter));
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Turbidity>(Turbidity.BaseUnit, Turbidity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<VitaminA>(VitaminA.BaseUnit, VitaminA.BaseUnit, q => q);
             unitConverter.SetConversionFunction<Volume>(Volume.BaseUnit, VolumeUnit.AcreFoot, q => q.ToUnit(VolumeUnit.AcreFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, Volume.BaseUnit, q => q.ToBaseUnit());
@@ -2403,6 +2418,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMillimeter, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.OilBarrelPerFoot, q => q.ToUnit(VolumePerLengthUnit.OilBarrelPerFoot));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.CentimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth));
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.DecimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth));
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.FootToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth));
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.FootToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.InchToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth));
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.InchToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
+            unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
         }
     }
 }

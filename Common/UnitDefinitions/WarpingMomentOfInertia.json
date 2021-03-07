@@ -1,0 +1,100 @@
+{
+  "Name": "WarpingMomentOfInertia",
+  "BaseUnit": "MeterToTheSixth",
+  "XmlDoc": "A geometric property of an area that is used to determine the warping stress.",
+  "BaseDimensions": {
+    "L": 6
+  },
+  "Units": [
+    {
+      "SingularName": "MeterToTheSixth",
+      "PluralName": "MetersToTheSixth",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁶", "m^6" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecimeterToTheSixth",
+      "PluralName": "DecimetersToTheSixth",
+      "BaseUnits": {
+        "L": "Decimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dm⁶", "dm^6" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CentimeterToTheSixth",
+      "PluralName": "CentimetersToTheSixth",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e12",
+      "FromBaseToUnitFunc": "x*1e12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁶", "cm^6" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterToTheSixth",
+      "PluralName": "MillimetersToTheSixth",
+      "BaseUnits": {
+        "L": "Millimeter"
+      },
+      "FromUnitToBaseFunc": "x/1e18",
+      "FromBaseToUnitFunc": "x*1e18",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁶", "mm^6" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootToTheSixth",
+      "PluralName": "FeetToTheSixth",
+      "BaseUnits": {
+        "L": "Foot"
+      },
+      "FromUnitToBaseFunc": "x*Math.Pow(0.3048, 6)",
+      "FromBaseToUnitFunc": "x/Math.Pow(0.3048, 6)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft⁶", "ft^6" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchToTheSixth",
+      "PluralName": "InchesToTheSixth",
+      "BaseUnits": {
+        "L": "Inch"
+      },
+      "FromUnitToBaseFunc": "x*Math.Pow(2.54e-2, 6)",
+      "FromBaseToUnitFunc": "x/Math.Pow(2.54e-2, 6)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in⁶", "in^6" ]
+        }
+      ]
+    }
+  ]
+}
