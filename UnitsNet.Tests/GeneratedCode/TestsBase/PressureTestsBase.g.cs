@@ -1133,8 +1133,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Pressure.FromPascals(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Pressure.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Pressure.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

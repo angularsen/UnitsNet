@@ -548,8 +548,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = CoefficientOfThermalExpansion.FromInverseKelvin(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {CoefficientOfThermalExpansion.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(CoefficientOfThermalExpansion.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

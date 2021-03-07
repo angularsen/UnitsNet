@@ -518,8 +518,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {AreaDensity.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(AreaDensity.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

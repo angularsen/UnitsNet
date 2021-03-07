@@ -593,8 +593,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Ratio.FromDecimalFractions(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Ratio.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Ratio.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

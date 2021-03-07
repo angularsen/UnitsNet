@@ -803,8 +803,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {VolumeConcentration.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(VolumeConcentration.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

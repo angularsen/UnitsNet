@@ -1163,8 +1163,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {PowerDensity.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(PowerDensity.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

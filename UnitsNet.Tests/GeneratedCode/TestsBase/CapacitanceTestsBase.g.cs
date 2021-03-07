@@ -608,8 +608,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Capacitance.FromFarads(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Capacitance.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Capacitance.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

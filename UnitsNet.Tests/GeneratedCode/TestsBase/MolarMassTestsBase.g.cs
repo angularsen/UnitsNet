@@ -683,8 +683,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarMass.FromKilogramsPerMole(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {MolarMass.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MolarMass.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

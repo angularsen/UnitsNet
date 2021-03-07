@@ -983,8 +983,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Speed.FromMetersPerSecond(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Speed.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Speed.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

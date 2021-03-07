@@ -563,8 +563,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Illuminance.FromLux(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Illuminance.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Illuminance.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

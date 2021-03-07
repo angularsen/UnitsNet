@@ -518,8 +518,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LuminousFlux.FromLumens(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {LuminousFlux.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(LuminousFlux.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

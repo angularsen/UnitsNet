@@ -563,8 +563,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {ReactivePower.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(ReactivePower.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -548,8 +548,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {MolarEntropy.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MolarEntropy.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

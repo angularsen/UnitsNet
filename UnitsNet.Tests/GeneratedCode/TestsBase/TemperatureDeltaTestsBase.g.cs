@@ -638,8 +638,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {TemperatureDelta.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(TemperatureDelta.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -1103,8 +1103,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {MassConcentration.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MassConcentration.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

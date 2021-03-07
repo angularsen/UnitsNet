@@ -1238,8 +1238,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {VolumeFlow.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(VolumeFlow.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

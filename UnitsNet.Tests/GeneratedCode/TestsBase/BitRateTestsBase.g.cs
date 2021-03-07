@@ -861,8 +861,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {BitRate.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(BitRate.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

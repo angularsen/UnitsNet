@@ -713,8 +713,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Irradiance.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Irradiance.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

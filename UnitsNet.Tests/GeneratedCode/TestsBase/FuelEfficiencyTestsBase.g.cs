@@ -563,8 +563,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {FuelEfficiency.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(FuelEfficiency.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

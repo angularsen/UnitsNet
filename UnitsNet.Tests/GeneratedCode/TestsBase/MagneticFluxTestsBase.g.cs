@@ -518,8 +518,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MagneticFlux.FromWebers(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {MagneticFlux.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MagneticFlux.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

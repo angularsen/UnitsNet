@@ -623,8 +623,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Molarity.FromMolesPerCubicMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {Molarity.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Molarity.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

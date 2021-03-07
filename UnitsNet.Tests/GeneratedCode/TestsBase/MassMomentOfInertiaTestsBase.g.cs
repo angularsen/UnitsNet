@@ -923,8 +923,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {MassMomentOfInertia.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MassMomentOfInertia.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -773,8 +773,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {HeatFlux.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(HeatFlux.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

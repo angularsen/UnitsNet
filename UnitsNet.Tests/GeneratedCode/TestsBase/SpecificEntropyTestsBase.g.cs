@@ -638,8 +638,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {SpecificEntropy.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(SpecificEntropy.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

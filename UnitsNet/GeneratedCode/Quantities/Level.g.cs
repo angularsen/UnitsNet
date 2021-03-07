@@ -506,7 +506,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Level, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Level other)
         {
-            return CompareTo(other) == 0;
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -566,8 +566,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Level.</returns>
         public override int GetHashCode()
         {
-            var roundedBaseValue = Math.Round(GetValueInBaseUnit(), 5);
-            return new { QuantityType, roundedBaseValue }.GetHashCode();
+            return QuantityType.GetHashCode();
         }
 
         #endregion

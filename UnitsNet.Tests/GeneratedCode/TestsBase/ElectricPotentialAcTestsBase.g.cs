@@ -578,8 +578,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialAc.FromVoltsAc(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {ElectricPotentialAc.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(ElectricPotentialAc.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

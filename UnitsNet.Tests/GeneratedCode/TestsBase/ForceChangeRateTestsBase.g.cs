@@ -668,8 +668,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {ForceChangeRate.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(ForceChangeRate.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

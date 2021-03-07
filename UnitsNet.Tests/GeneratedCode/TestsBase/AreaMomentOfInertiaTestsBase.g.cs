@@ -593,8 +593,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {AreaMomentOfInertia.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(AreaMomentOfInertia.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

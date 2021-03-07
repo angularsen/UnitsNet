@@ -608,8 +608,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
-            var roundedBaseValue = Math.Round(quantity.ToBaseUnit().Value, 5);
-            Assert.Equal(new {PressureChangeRate.QuantityType, roundedBaseValue}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(PressureChangeRate.QuantityType.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]
