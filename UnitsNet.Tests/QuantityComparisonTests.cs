@@ -28,12 +28,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_WithSameQuantityInAnotherUnit_ReturnsTrue()
+        public void Equals_WithSameQuantityInAnotherUnit_IsNotReflexive()
         {
             var firstMass = Mass.FromGrams(0.001);
             var secondMass = firstMass.ToUnit(MassUnit.Microgram);
 
-            Assert.Equal(firstMass, secondMass);
+            Assert.NotEqual(firstMass, secondMass);
             Assert.Equal(secondMass, firstMass);
         }
 
@@ -66,15 +66,19 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Contains_CollectionWithMixedUnits_ReturnsTrueIfValuesAreStrictlyEqual()
+        public void Contains_CollectionWithMixedUnits_DependsOnTheOrderOfInsertion()
         {
             var firstMass = Mass.FromGrams(0.001);
             var secondMass = firstMass.ToUnit(MassUnit.Microgram);
 
-            var collection = new HashSet<Mass> {firstMass};
+            var collectionWithFirst = new HashSet<Mass> {firstMass};
+            var collectionWithSecond = new HashSet<Mass> {secondMass};
 
-            Assert.Contains(firstMass, collection);
-            Assert.Contains(secondMass, collection);
+            Assert.Contains(firstMass, collectionWithFirst);
+            Assert.DoesNotContain(secondMass, collectionWithFirst);
+
+            Assert.Contains(firstMass, collectionWithSecond);
+            Assert.Contains(secondMass, collectionWithSecond);
         }
 
         [Fact]
