@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;net48</TargetFrameworks>
     <RootNamespace>UnitsNet.Serialization.JsonNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
+    <ProjectReference Include="..\UnitsNet.Tests\UnitsNet.Tests.csproj" />
   </ItemGroup>
 
 </Project>

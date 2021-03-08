@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
-    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MolarEntropyUnit? _unit;
 
         static MolarEntropy()

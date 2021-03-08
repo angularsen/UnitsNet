@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     The amount of power in a volume.
     /// </summary>
-    public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerDensityUnit? _unit;
 
         static PowerDensity()

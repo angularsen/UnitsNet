@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -37,16 +38,19 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Concentration#Volume_concentration
     /// </remarks>
-    public partial struct VolumeConcentration : IQuantity<VolumeConcentrationUnit>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct VolumeConcentration : IQuantity<VolumeConcentrationUnit>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly VolumeConcentrationUnit? _unit;
 
         static VolumeConcentration()

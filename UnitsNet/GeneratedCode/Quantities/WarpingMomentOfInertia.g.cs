@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     A geometric property of an area that is used to determine the warping stress.
     /// </summary>
-    public partial struct WarpingMomentOfInertia : IQuantity<WarpingMomentOfInertiaUnit>, IEquatable<WarpingMomentOfInertia>, IComparable, IComparable<WarpingMomentOfInertia>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct WarpingMomentOfInertia : IQuantity<WarpingMomentOfInertiaUnit>, IEquatable<WarpingMomentOfInertia>, IComparable, IComparable<WarpingMomentOfInertia>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly WarpingMomentOfInertiaUnit? _unit;
 
         static WarpingMomentOfInertia()

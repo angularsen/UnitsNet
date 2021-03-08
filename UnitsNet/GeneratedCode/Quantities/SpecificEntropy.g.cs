@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
-    public partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IEquatable<SpecificEntropy>, IComparable, IComparable<SpecificEntropy>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IEquatable<SpecificEntropy>, IComparable, IComparable<SpecificEntropy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificEntropyUnit? _unit;
 
         static SpecificEntropy()

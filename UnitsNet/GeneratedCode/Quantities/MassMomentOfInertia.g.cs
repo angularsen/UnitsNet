@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     A property of body reflects how its mass is distributed with regard to an axis.
     /// </summary>
-    public partial struct MassMomentOfInertia : IQuantity<MassMomentOfInertiaUnit>, IEquatable<MassMomentOfInertia>, IComparable, IComparable<MassMomentOfInertia>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct MassMomentOfInertia : IQuantity<MassMomentOfInertiaUnit>, IEquatable<MassMomentOfInertia>, IComparable, IComparable<MassMomentOfInertia>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MassMomentOfInertiaUnit? _unit;
 
         static MassMomentOfInertia()

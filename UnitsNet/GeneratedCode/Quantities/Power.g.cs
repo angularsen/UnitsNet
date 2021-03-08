@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
-    public partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+        [DataContract]
+        public partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 1)]
         private readonly decimal _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerUnit? _unit;
 
         static Power()

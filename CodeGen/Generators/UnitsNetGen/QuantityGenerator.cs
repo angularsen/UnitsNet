@@ -47,6 +47,7 @@ namespace CodeGen.Generators.UnitsNetGen
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -70,7 +71,8 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.W(@$"
-    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
+        [DataContract]
+        public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
             if (_quantity.BaseType == "decimal")
             {
                 Writer.W("IDecimalQuantity, ");
@@ -82,11 +84,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = ""Value"", Order = 1)]
         private readonly {_quantity.BaseType} _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = ""Unit"", Order = 2)]
         private readonly {_unitEnumName}? _unit;
 ");
             GenerateStaticConstructor();
