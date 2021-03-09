@@ -1,13 +1,16 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
-#if NETFRAMEWORK
+
 using System.Runtime.Serialization.Json;
 using UnitsNet.Serialization.Surrogates;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.DataContractJsonSerializerTests.Surrogates
+namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests.Surrogates
 {
+    /// <summary>
+    ///     Tests the extended decimal support contracts (compatible with the new UnitsNet.Json converter)
+    /// </summary>
     public class ExtendedDataContractJsonSerializerTests : StringUnitJsonDataContractSerializerTestsBase
     {
         public ExtendedDataContractJsonSerializerTests()
@@ -38,4 +41,3 @@ namespace UnitsNet.Tests.Serialization.DataContractJsonSerializerTests.Surrogate
         }
     }
 }
-#endif

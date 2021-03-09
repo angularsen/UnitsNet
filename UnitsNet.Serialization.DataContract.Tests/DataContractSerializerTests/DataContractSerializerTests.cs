@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.DataContractSerializerTests
+namespace UnitsNet.Serialization.DataContract.Tests.DataContractSerializerTests
 {
     public class DataContractSerializerTests : SerializationTestsBase<string>
     {

@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.DataContract.Tests", "UnitsNet.Serialization.DataContract.Tests\UnitsNet.Serialization.DataContract.Tests.csproj", "{76EC50D7-3697-4BD9-A76C-E463E6369F19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.DataContract.Compatibility.JsonNetTests", "UnitsNet.Serialization.DataContract.Compatibility.JsonNetTests\UnitsNet.Serialization.DataContract.Compatibility.JsonNetTests.csproj", "{3821A28F-8661-4507-A83B-725B111CA63E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76EC50D7-3697-4BD9-A76C-E463E6369F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EC50D7-3697-4BD9-A76C-E463E6369F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76EC50D7-3697-4BD9-A76C-E463E6369F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EC50D7-3697-4BD9-A76C-E463E6369F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3821A28F-8661-4507-A83B-725B111CA63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3821A28F-8661-4507-A83B-725B111CA63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3821A28F-8661-4507-A83B-725B111CA63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3821A28F-8661-4507-A83B-725B111CA63E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

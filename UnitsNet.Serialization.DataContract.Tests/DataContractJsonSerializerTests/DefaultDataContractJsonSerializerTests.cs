@@ -1,8 +1,14 @@
 ﻿using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.DataContractJsonSerializerTests
+namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests
 {
+    /// <summary>
+    ///     These tests demonstrate the default behavior of the DataContractJsonSerializer when dealing with quantities
+    ///     <remarks>
+    ///         <para>Note that the produced schema is different from the one generated using the UnitsNet.Json package</para>
+    ///     </remarks>
+    /// </summary>
     public class DefaultDataContractJsonSerializerTests : DataContractJsonSerializerTestsBase
     {
         [Fact]

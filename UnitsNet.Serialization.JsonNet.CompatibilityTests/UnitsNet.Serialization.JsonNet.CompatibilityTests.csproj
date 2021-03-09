@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net48</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Serialization.JsonNet.CompatibilityTests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>

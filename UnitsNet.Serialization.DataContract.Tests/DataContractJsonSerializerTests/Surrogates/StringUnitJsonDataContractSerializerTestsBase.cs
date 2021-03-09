@@ -5,8 +5,12 @@ using System.Runtime.Serialization.Json;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.DataContractJsonSerializerTests.Surrogates
+namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests.Surrogates
 {
+    /// <summary>
+    /// This is a test-bed for any serializers that use the <i>standard</i> format of encoding the Unit & Value:
+    /// https://github.com/angularsen/UnitsNet#serialization
+    /// </summary>
     public abstract class StringUnitJsonDataContractSerializerTestsBase : DataContractJsonSerializerTestsBase
     {
         protected StringUnitJsonDataContractSerializerTestsBase(DataContractJsonSerializerSettings settings) : base(settings)

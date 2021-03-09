@@ -4,7 +4,7 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 
-namespace UnitsNet.Tests.Serialization.DataContractJsonSerializerTests
+namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests
 {
     public abstract class DataContractJsonSerializerTestsBase : SerializationTestsBase<string>
     {

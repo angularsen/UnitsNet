@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization
+namespace UnitsNet.Serialization.DataContract.Tests
 {
     public abstract class SerializationTestsBase<TPayload>
     {

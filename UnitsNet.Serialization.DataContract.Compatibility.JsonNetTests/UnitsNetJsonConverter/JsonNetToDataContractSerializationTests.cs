@@ -1,15 +1,14 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-#if NETFRAMEWORK
 using System.IO;
 using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
+using UnitsNet.Serialization.DataContract.Tests;
 using UnitsNet.Serialization.Surrogates;
-using UnitsNet.Tests.Serialization;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests.Compatibility
+namespace UnitsNet.Serialization.DataContract.Compatibility.JsonNetTests.UnitsNetJsonConverter
 {
     public class JsonNetToDataContractSerializationTests : SerializationTestsBase<string>
     {
@@ -19,9 +18,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Compatibility
 
         public JsonNetToDataContractSerializationTests()
         {
-            _jsonNetSerializerSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.None};
-            _jsonNetSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
-            _dataContractJsonSerializerSettings = new DataContractJsonSerializerSettings {DataContractSurrogate = new ExtendedQuantityDataContractSurrogate()};
+            _jsonNetSerializerSettings = new JsonSerializerSettings();
+            _jsonNetSerializerSettings.Converters.Add(new JsonNet.UnitsNetJsonConverter());
+            _dataContractJsonSerializerSettings = new DataContractJsonSerializerSettings {DataContractSurrogate = new BasicQuantityContractSurrogate()};
         }
 
         protected override string SerializeObject(object obj)
@@ -40,23 +39,40 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Compatibility
             return (T) serializer.ReadObject(stream);
         }
 
-        [Fact(Skip = "Tuples are currently not supported by the UnitsNetIQuantityJsonConverter")]
+        [Fact(Skip = "Arrays are currently not supported by the UnitsNetJsonConverter")]
+        public override void ArrayOfDoubleValueQuantities_SerializationRoundTrips()
+        {
+            base.ArrayOfDoubleValueQuantities_SerializationRoundTrips();
+        }
+
+        [Fact(Skip = "Arrays are currently not supported by the UnitsNetJsonConverter")]
+        public override void ArrayOfDecimalValueQuantities_SerializationRoundTrips()
+        {
+            base.ArrayOfDecimalValueQuantities_SerializationRoundTrips();
+        }
+
+        [Fact(Skip = "Arrays are currently not supported by the UnitsNetJsonConverter")]
+        public override void EmptyArray_RoundTripsEmpty()
+        {
+            base.EmptyArray_RoundTripsEmpty();
+        }
+
+        [Fact(Skip = "Tuples are currently not supported by the UnitsNetJsonConverter")]
         public override void TupleOfMixedValueQuantities_SerializationRoundTrips()
         {
             base.TupleOfMixedValueQuantities_SerializationRoundTrips();
         }
 
-        [Fact(Skip = "Tuples are currently not supported by the UnitsNetIQuantityJsonConverter")]
+        [Fact(Skip = "Tuples are currently not supported by the UnitsNetJsonConverter")]
         public override void TupleOfDoubleAndNullQuantities_SerializationRoundTrips()
         {
             base.TupleOfDoubleAndNullQuantities_SerializationRoundTrips();
         }
 
-        [Fact(Skip = "Tuples are currently not supported by the UnitsNetIQuantityJsonConverter")]
+        [Fact(Skip = "Tuples are currently not supported by the UnitsNetJsonConverter")]
         public override void TupleOfDecimalAndNullQuantities_SerializationRoundTrips()
         {
             base.TupleOfDecimalAndNullQuantities_SerializationRoundTrips();
         }
     }
 }
-#endif
