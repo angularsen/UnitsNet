@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using UnitsNet.Units;
@@ -105,6 +106,52 @@ namespace UnitsNet.Serialization.DataContract.Tests
                 Assert.Equal(quantities[1].Unit, result.Unit);
                 Assert.Equal(quantities[1].Value, result.Value);
                 Assert.Equal(quantities[1], result);
+            });
+        }
+
+        [Fact]
+        public virtual void EnumerableOfDoubleValueQuantities_SerializationRoundTrips()
+        {
+            var firstQuantity = new Mass(1.2, MassUnit.Milligram);
+            var secondQuantity = new Mass(2, MassUnit.Gram);
+            IEnumerable<Mass> quantities = new List<Mass> {firstQuantity, secondQuantity};
+            var payload = SerializeObject(quantities);
+
+            var results = DeserializeObject<IEnumerable<Mass>>(payload);
+
+            Assert.Collection(results, result =>
+            {
+                Assert.Equal(firstQuantity.Unit, result.Unit);
+                Assert.Equal(firstQuantity.Value, result.Value);
+                Assert.Equal(firstQuantity, result);
+            }, result =>
+            {
+                Assert.Equal(secondQuantity.Unit, result.Unit);
+                Assert.Equal(secondQuantity.Value, result.Value);
+                Assert.Equal(secondQuantity, result);
+            });
+        }
+
+        [Fact]
+        public virtual void EnumerableOfDecimalValueQuantities_SerializationRoundTrips()
+        {
+            var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
+            var secondQuantity = new Information(2, InformationUnit.Exabyte);
+            IEnumerable<Information> quantities = new List<Information> {firstQuantity, secondQuantity};
+            var payload = SerializeObject(quantities);
+
+            var results = DeserializeObject<IEnumerable<Information>>(payload);
+
+            Assert.Collection(results, result =>
+            {
+                Assert.Equal(firstQuantity.Unit, result.Unit);
+                Assert.Equal(firstQuantity.Value, result.Value);
+                Assert.Equal(firstQuantity, result);
+            }, result =>
+            {
+                Assert.Equal(secondQuantity.Unit, result.Unit);
+                Assert.Equal(secondQuantity.Value, result.Value);
+                Assert.Equal(secondQuantity, result);
             });
         }
 
