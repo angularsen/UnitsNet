@@ -52,6 +52,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         public static Pressure DynesPerSquareCentimeter<T>(this T value) =>
             Pressure.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Pressure.FromFeetOfElevation(UnitsNet.QuantityValue)" />
+        public static Pressure FeetOfElevation<T>(this T value) =>
+            Pressure.FromFeetOfElevation(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
         public static Pressure FeetOfHead<T>(this T value) =>
             Pressure.FromFeetOfHead(Convert.ToDouble(value));
@@ -123,6 +127,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
         public static Pressure Megapascals<T>(this T value) =>
             Pressure.FromMegapascals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMetersOfElevation(UnitsNet.QuantityValue)" />
+        public static Pressure MetersOfElevation<T>(this T value) =>
+            Pressure.FromMetersOfElevation(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
         public static Pressure MetersOfHead<T>(this T value) =>
