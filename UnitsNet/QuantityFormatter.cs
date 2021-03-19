@@ -125,12 +125,6 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            return FormatUntrimmed(quantity, format, formatProvider).Trim();
-        }
-
-        private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
-            where TUnitType : Enum
-        {
             formatProvider ??= CultureInfo.CurrentUICulture;
 
             if(string.IsNullOrWhiteSpace(format))
