@@ -27,6 +27,17 @@ namespace UnitsNet.Tests.CustomCode
         // Override properties in base class here
         protected override double AmountInOneAmount => 1;
         protected override bool SupportsSIUnitSystem => false;
-       
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1.0)]
+        [InlineData(-Math.PI)]
+        public void ImplicitCast_ToDouble_IsAmount(double amount)
+        {
+            var scalar = Scalar.FromAmount(amount);
+            double asDouble = scalar;
+
+            Assert.Equal(asDouble, scalar.Amount);
+        }
     }
 }
