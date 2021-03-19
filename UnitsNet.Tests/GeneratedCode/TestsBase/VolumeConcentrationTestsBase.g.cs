@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cL/mL", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString());
                 Assert.Equal("1 dL/L", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString());
                 Assert.Equal("1 dL/mL", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString());
-                Assert.Equal("1 ", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
+                Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString());
                 Assert.Equal("1 L/L", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString());
                 Assert.Equal("1 L/mL", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString());
                 Assert.Equal("1 µL/L", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString());
@@ -626,7 +626,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 cL/mL", new VolumeConcentration(1, VolumeConcentrationUnit.CentilitersPerMililiter).ToString(swedishCulture));
             Assert.Equal("1 dL/L", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerLiter).ToString(swedishCulture));
             Assert.Equal("1 dL/mL", new VolumeConcentration(1, VolumeConcentrationUnit.DecilitersPerMililiter).ToString(swedishCulture));
-            Assert.Equal("1 ", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString(swedishCulture));
+            Assert.Equal("1", new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction).ToString(swedishCulture));
             Assert.Equal("1 L/L", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerLiter).ToString(swedishCulture));
             Assert.Equal("1 L/mL", new VolumeConcentration(1, VolumeConcentrationUnit.LitersPerMililiter).ToString(swedishCulture));
             Assert.Equal("1 µL/L", new VolumeConcentration(1, VolumeConcentrationUnit.MicrolitersPerLiter).ToString(swedishCulture));
@@ -651,10 +651,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
+                Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1"));
+                Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
+                Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
+                Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
             }
             finally
             {
@@ -666,10 +666,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1", culture));
-            Assert.Equal("0.12 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2", culture));
-            Assert.Equal("0.123 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4", culture));
+            Assert.Equal("0.1", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s1", culture));
+            Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2", culture));
+            Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3", culture));
+            Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4", culture));
         }
 
 

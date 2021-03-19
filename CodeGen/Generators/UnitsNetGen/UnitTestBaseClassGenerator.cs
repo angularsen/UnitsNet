@@ -31,7 +31,7 @@ namespace CodeGen.Generators.UnitsNetGen
         private readonly string _unitEnumName;
 
         /// <summary>
-        /// Example: "m" for Length quantity.
+        /// Example: " m" for Length quantity with leading whitespace or "" for Ratio quantity where base unit does not have an abbreviation.
         /// </summary>
         private readonly string _baseUnitEnglishAbbreviation;
 
@@ -61,8 +61,13 @@ namespace CodeGen.Generators.UnitsNetGen
 
         /// <summary>
         /// Gets the first en-US abbreviation for the unit -or- empty string if none is defined.
+        /// If a unit abbreviation exists, a leading whitespace is added to separate the number and the abbreviation like "1 m".
         /// </summary>
-        private static string GetEnglishAbbreviation(Unit unit) => unit.Localization.First(l => l.Culture == "en-US").Abbreviations.FirstOrDefault() ?? "";
+        private static string GetEnglishAbbreviation(Unit unit)
+        {
+            var unitAbbreviation = unit.Localization.First(l => l.Culture == "en-US").Abbreviations.FirstOrDefault();
+            return string.IsNullOrEmpty(unitAbbreviation) ? "" : $" {unitAbbreviation}";
+        }
 
         public override string Generate()
         {
@@ -464,7 +469,7 @@ namespace UnitsNet.Tests
             foreach (var unit in _quantity.Units)
             {
                 Writer.WL($@"
-                Assert.Equal(""1 {GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString());");
+                Assert.Equal(""1{GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString());");
             }
             Writer.WL($@"
             }}
@@ -483,7 +488,7 @@ namespace UnitsNet.Tests
             foreach (var unit in _quantity.Units)
             {
                 Writer.WL($@"
-            Assert.Equal(""1 {GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString(swedishCulture));");
+            Assert.Equal(""1{GetEnglishAbbreviation(unit)}"", new {_quantity.Name}(1, {GetUnitFullName(unit)}).ToString(swedishCulture));");
             }
             Writer.WL($@"
         }}
@@ -495,10 +500,10 @@ namespace UnitsNet.Tests
             try
             {{
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal(""0.1 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1""));
-                Assert.Equal(""0.12 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
-                Assert.Equal(""0.123 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
-                Assert.Equal(""0.1235 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4""));
+                Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1""));
+                Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
+                Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
+                Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4""));
             }}
             finally
             {{
@@ -510,10 +515,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {{
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal(""0.1 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1"", culture));
-            Assert.Equal(""0.12 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2"", culture));
-            Assert.Equal(""0.123 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3"", culture));
-            Assert.Equal(""0.1235 {_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
+            Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1"", culture));
+            Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2"", culture));
+            Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3"", culture));
+            Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
         }}
 
 

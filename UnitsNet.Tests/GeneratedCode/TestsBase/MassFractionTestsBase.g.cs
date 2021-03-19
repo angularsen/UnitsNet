@@ -647,7 +647,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString());
                 Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString());
                 Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString());
-                Assert.Equal("1 ", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
+                Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
                 Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString());
                 Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString());
                 Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString());
@@ -684,7 +684,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString(swedishCulture));
             Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 ", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString(swedishCulture));
+            Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString(swedishCulture));
             Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString(swedishCulture));
             Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString(swedishCulture));
@@ -711,10 +711,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
+                Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
+                Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
+                Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
+                Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
             }
             finally
             {
@@ -726,10 +726,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1", culture));
-            Assert.Equal("0.12 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2", culture));
-            Assert.Equal("0.123 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4", culture));
+            Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1", culture));
+            Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2", culture));
+            Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3", culture));
+            Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4", culture));
         }
 
 
