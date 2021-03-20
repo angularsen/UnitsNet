@@ -125,11 +125,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Luminosity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Luminosity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
 
         /// <summary>

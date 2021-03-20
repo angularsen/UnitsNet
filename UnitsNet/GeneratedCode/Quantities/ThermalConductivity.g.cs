@@ -113,11 +113,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of ThermalConductivity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ThermalConductivity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
 
         /// <summary>

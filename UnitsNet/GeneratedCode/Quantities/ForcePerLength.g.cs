@@ -146,11 +146,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of ForcePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForcePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
 
         /// <summary>

@@ -122,12 +122,14 @@ namespace UnitsNet
             { "RotationalSpeed", RotationalSpeed.Info },
             { "RotationalStiffness", RotationalStiffness.Info },
             { "RotationalStiffnessPerLength", RotationalStiffnessPerLength.Info },
+            { "Scalar", Scalar.Info },
             { "SolidAngle", SolidAngle.Info },
             { "SpecificEnergy", SpecificEnergy.Info },
             { "SpecificEntropy", SpecificEntropy.Info },
             { "SpecificVolume", SpecificVolume.Info },
             { "SpecificWeight", SpecificWeight.Info },
             { "Speed", Speed.Info },
+            { "StandardVolumeFlow", StandardVolumeFlow.Info },
             { "Temperature", Temperature.Info },
             { "TemperatureChangeRate", TemperatureChangeRate.Info },
             { "TemperatureDelta", TemperatureDelta.Info },
@@ -232,12 +234,14 @@ namespace UnitsNet
             { "RotationalSpeed", QuantityType.RotationalSpeed },
             { "RotationalStiffness", QuantityType.RotationalStiffness },
             { "RotationalStiffnessPerLength", QuantityType.RotationalStiffnessPerLength },
+            { "Scalar", QuantityType.Scalar },
             { "SolidAngle", QuantityType.SolidAngle },
             { "SpecificEnergy", QuantityType.SpecificEnergy },
             { "SpecificEntropy", QuantityType.SpecificEntropy },
             { "SpecificVolume", QuantityType.SpecificVolume },
             { "SpecificWeight", QuantityType.SpecificWeight },
             { "Speed", QuantityType.Speed },
+            { "StandardVolumeFlow", QuantityType.StandardVolumeFlow },
             { "Temperature", QuantityType.Temperature },
             { "TemperatureChangeRate", QuantityType.TemperatureChangeRate },
             { "TemperatureDelta", QuantityType.TemperatureDelta },
@@ -433,6 +437,8 @@ namespace UnitsNet
                     return RotationalStiffness.From(value, RotationalStiffness.BaseUnit);
                 case QuantityType.RotationalStiffnessPerLength:
                     return RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit);
+                case QuantityType.Scalar:
+                    return Scalar.From(value, Scalar.BaseUnit);
                 case QuantityType.SolidAngle:
                     return SolidAngle.From(value, SolidAngle.BaseUnit);
                 case QuantityType.SpecificEnergy:
@@ -445,6 +451,8 @@ namespace UnitsNet
                     return SpecificWeight.From(value, SpecificWeight.BaseUnit);
                 case QuantityType.Speed:
                     return Speed.From(value, Speed.BaseUnit);
+                case QuantityType.StandardVolumeFlow:
+                    return StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit);
                 case QuantityType.Temperature:
                     return Temperature.From(value, Temperature.BaseUnit);
                 case QuantityType.TemperatureChangeRate:
@@ -656,6 +664,8 @@ namespace UnitsNet
                     return RotationalStiffness.From(value, RotationalStiffness.BaseUnit);
                 case "RotationalStiffnessPerLength":
                     return RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit);
+                case "Scalar":
+                    return Scalar.From(value, Scalar.BaseUnit);
                 case "SolidAngle":
                     return SolidAngle.From(value, SolidAngle.BaseUnit);
                 case "SpecificEnergy":
@@ -668,6 +678,8 @@ namespace UnitsNet
                     return SpecificWeight.From(value, SpecificWeight.BaseUnit);
                 case "Speed":
                     return Speed.From(value, Speed.BaseUnit);
+                case "StandardVolumeFlow":
+                    return StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit);
                 case "Temperature":
                     return Temperature.From(value, Temperature.BaseUnit);
                 case "TemperatureChangeRate":
@@ -964,6 +976,9 @@ namespace UnitsNet
                 case RotationalStiffnessPerLengthUnit rotationalStiffnessPerLengthUnit:
                     quantity = RotationalStiffnessPerLength.From(value, rotationalStiffnessPerLengthUnit);
                     return true;
+                case ScalarUnit scalarUnit:
+                    quantity = Scalar.From(value, scalarUnit);
+                    return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
                     return true;
@@ -981,6 +996,9 @@ namespace UnitsNet
                     return true;
                 case SpeedUnit speedUnit:
                     quantity = Speed.From(value, speedUnit);
+                    return true;
+                case StandardVolumeFlowUnit standardVolumeFlowUnit:
+                    quantity = StandardVolumeFlow.From(value, standardVolumeFlowUnit);
                     return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
@@ -1219,6 +1237,8 @@ namespace UnitsNet
                     return parser.TryParse<RotationalStiffness, RotationalStiffnessUnit>(quantityString, formatProvider, RotationalStiffness.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalStiffnessPerLength):
                     return parser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(quantityString, formatProvider, RotationalStiffnessPerLength.From, out quantity);
+                case Type _ when quantityType == typeof(Scalar):
+                    return parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity);
                 case Type _ when quantityType == typeof(SolidAngle):
                     return parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity);
                 case Type _ when quantityType == typeof(SpecificEnergy):
@@ -1231,6 +1251,8 @@ namespace UnitsNet
                     return parser.TryParse<SpecificWeight, SpecificWeightUnit>(quantityString, formatProvider, SpecificWeight.From, out quantity);
                 case Type _ when quantityType == typeof(Speed):
                     return parser.TryParse<Speed, SpeedUnit>(quantityString, formatProvider, Speed.From, out quantity);
+                case Type _ when quantityType == typeof(StandardVolumeFlow):
+                    return parser.TryParse<StandardVolumeFlow, StandardVolumeFlowUnit>(quantityString, formatProvider, StandardVolumeFlow.From, out quantity);
                 case Type _ when quantityType == typeof(Temperature):
                     return parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity);
                 case Type _ when quantityType == typeof(TemperatureChangeRate):

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToPressure;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPressureExtensionsTests
     {
         [Fact]
@@ -47,6 +47,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToDynesPerSquareCentimeterTest() =>
             Assert.Equal(Pressure.FromDynesPerSquareCentimeter(2), 2.DynesPerSquareCentimeter());
+
+        [Fact]
+        public void NumberToFeetOfElevationTest() =>
+            Assert.Equal(Pressure.FromFeetOfElevation(2), 2.FeetOfElevation());
 
         [Fact]
         public void NumberToFeetOfHeadTest() =>
@@ -119,6 +123,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMegapascalsTest() =>
             Assert.Equal(Pressure.FromMegapascals(2), 2.Megapascals());
+
+        [Fact]
+        public void NumberToMetersOfElevationTest() =>
+            Assert.Equal(Pressure.FromMetersOfElevation(2), 2.MetersOfElevation());
 
         [Fact]
         public void NumberToMetersOfHeadTest() =>

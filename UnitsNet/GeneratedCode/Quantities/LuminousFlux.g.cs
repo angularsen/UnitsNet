@@ -112,11 +112,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of LuminousFlux
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousFlux
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
 
         /// <summary>

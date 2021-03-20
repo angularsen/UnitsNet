@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToTemperatureDelta;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTemperatureDeltaExtensionsTests
     {
         [Fact]

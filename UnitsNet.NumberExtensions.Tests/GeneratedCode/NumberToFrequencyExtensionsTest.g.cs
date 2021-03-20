@@ -21,12 +21,16 @@ using UnitsNet.NumberExtensions.NumberToFrequency;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToFrequencyExtensionsTests
     {
         [Fact]
         public void NumberToBeatsPerMinuteTest() =>
             Assert.Equal(Frequency.FromBeatsPerMinute(2), 2.BeatsPerMinute());
+
+        [Fact]
+        public void NumberToBUnitsTest() =>
+            Assert.Equal(Frequency.FromBUnits(2), 2.BUnits());
 
         [Fact]
         public void NumberToCyclesPerHourTest() =>

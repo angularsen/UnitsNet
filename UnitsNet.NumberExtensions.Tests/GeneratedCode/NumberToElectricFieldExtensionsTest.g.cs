@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricField;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricFieldExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToPowerRatio;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPowerRatioExtensionsTests
     {
         [Fact]

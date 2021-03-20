@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToEntropy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToEntropyExtensionsTests
     {
         [Fact]

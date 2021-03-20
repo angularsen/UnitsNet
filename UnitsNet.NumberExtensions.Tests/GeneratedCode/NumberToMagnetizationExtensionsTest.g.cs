@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMagnetization;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagnetizationExtensionsTests
     {
         [Fact]

@@ -50,70 +50,50 @@ namespace UnitsNet.Tests
             // ReSharper restore UnusedMember.Local
         }
 
-        // These cultures all use a comma for the radix point
         [Theory]
         [InlineData("de-DE")]
         [InlineData("da-DK")]
         [InlineData("es-AR")]
         [InlineData("es-ES")]
         [InlineData("it-IT")]
-        public void CommaRadixPointCultureFormatting(string culture)
-        {
-            Assert.Equal("0,12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
-        }
-
-        // These cultures all use a decimal point for the radix point
-        [Theory]
         [InlineData("en-CA")]
         [InlineData("en-US")]
         [InlineData("ar-EG")]
         [InlineData("en-GB")]
         [InlineData("es-MX")]
-        public void DecimalRadixPointCultureFormatting(string culture)
-        {
-            Assert.Equal("0.12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
-        }
-
-        // These cultures all use a comma in digit grouping
-        [Theory]
-        [InlineData("en-CA")]
-        [InlineData("en-US")]
-        [InlineData("ar-EG")]
-        [InlineData("en-GB")]
-        [InlineData("es-MX")]
-        public void CommaDigitGroupingCultureFormatting(string cultureName)
+        public void RadixPointCultureFormatting(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
-            Assert.Equal("1,111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(culture));
-
-            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
-            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
-            Assert.Equal("2,222 ft 3 in",
-                Length.FromFeetInches(2222, 3).FeetInches.ToString(culture));
-            Assert.Equal("3,333 st 7 lb",
-                Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
+            string ds = culture.NumberFormat.NumberDecimalSeparator;
+            Assert.Equal($"0{ds}12 m", Length.FromMeters(0.12).ToUnit(LengthUnit.Meter).ToString(culture));
         }
 
-        // These cultures use a thin space in digit grouping
         [Theory]
+        [InlineData("en-CA")]
+        [InlineData("en-GB")]
+        [InlineData("en-US")]
+        [InlineData("ar-EG")]
+        [InlineData("es-MX")]
         [InlineData("nn-NO")]
         [InlineData("fr-FR")]
-        public void SpaceDigitGroupingCultureFormatting(string culture)
-        {
-            // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
-            Assert.Equal("1 111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
-        }
-
-        // These cultures all use a decimal point in digit grouping
-        [Theory]
         [InlineData("de-DE")]
         [InlineData("da-DK")]
         [InlineData("es-AR")]
         [InlineData("es-ES")]
         [InlineData("it-IT")]
-        public void DecimalPointDigitGroupingCultureFormatting(string culture)
+        public void DigitGroupingCultureFormatting(string cultureName)
         {
-            Assert.Equal("1.111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(GetCulture(culture)));
+            CultureInfo culture = GetCulture(cultureName);
+            string gs = culture.NumberFormat.NumberGroupSeparator;
+
+            Assert.Equal($"1{gs}111 m", Length.FromMeters(1111).ToUnit(LengthUnit.Meter).ToString(culture));
+
+            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
+            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
+            Assert.Equal($"2{gs}222 ft 3 in",
+                Length.FromFeetInches(2222, 3).FeetInches.ToString(culture));
+            Assert.Equal($"3{gs}333 st 7 lb",
+                Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
 
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToTorquePerLength;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTorquePerLengthExtensionsTests
     {
         [Fact]

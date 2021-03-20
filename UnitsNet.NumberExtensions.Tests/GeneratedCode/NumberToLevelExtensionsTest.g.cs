@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToLevel;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLevelExtensionsTests
     {
         [Fact]

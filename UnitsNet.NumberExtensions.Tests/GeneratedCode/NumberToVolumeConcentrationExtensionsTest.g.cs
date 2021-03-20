@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToVolumeConcentration;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVolumeConcentrationExtensionsTests
     {
         [Fact]

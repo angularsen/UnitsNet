@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToSolidAngle;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSolidAngleExtensionsTests
     {
         [Fact]

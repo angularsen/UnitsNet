@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToForceChangeRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToForceChangeRateExtensionsTests
     {
         [Fact]

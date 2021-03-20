@@ -115,11 +115,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of VolumePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumePerLength
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 
         /// <summary>

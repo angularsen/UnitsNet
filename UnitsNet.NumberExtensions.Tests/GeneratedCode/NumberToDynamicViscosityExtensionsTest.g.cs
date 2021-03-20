@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToDynamicViscosity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToDynamicViscosityExtensionsTests
     {
         [Fact]

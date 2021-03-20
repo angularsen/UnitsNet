@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToLapseRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLapseRateExtensionsTests
     {
         [Fact]

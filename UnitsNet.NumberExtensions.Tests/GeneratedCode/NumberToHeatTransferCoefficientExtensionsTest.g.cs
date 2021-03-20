@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToHeatTransferCoefficientExtensionsTests
     {
         [Fact]

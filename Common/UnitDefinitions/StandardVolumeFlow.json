@@ -1,0 +1,119 @@
+{
+  "Name": "StandardVolumeFlow",
+  "BaseUnit": "StandardCubicMeterPerSecond",
+  "XmlDoc": "The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.",
+  "BaseDimensions": {
+    "M": 1,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "StandardCubicMeterPerSecond",
+      "PluralName": "StandardCubicMetersPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sm³/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicMeterPerMinute",
+      "PluralName": "StandardCubicMetersPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sm³/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicMeterPerHour",
+      "PluralName": "StandardCubicMetersPerHour",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sm³/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicMeterPerDay",
+      "PluralName": "StandardCubicMetersPerDay",
+      "FromUnitToBaseFunc": "x/86400",
+      "FromBaseToUnitFunc": "x*86400",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sm³/d" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicCentimeterPerMinute",
+      "PluralName": "StandardCubicCentimetersPerMinute",
+      "FromUnitToBaseFunc": "x/6e7",
+      "FromBaseToUnitFunc": "x*6e7",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sccm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardLiterPerMinute",
+      "PluralName": "StandardLitersPerMinute",
+      "FromUnitToBaseFunc": "x/60000",
+      "FromBaseToUnitFunc": "x*60000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFootPerSecond",
+      "PluralName": "StandardCubicFeetPerSecond",
+      "FromUnitToBaseFunc": "x/35.314666721",
+      "FromBaseToUnitFunc": "x*35.314666721",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sft³/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFootPerMinute",
+      "PluralName": "StandardCubicFeetPerMinute",
+      "FromUnitToBaseFunc": "x/2118.88000326",
+      "FromBaseToUnitFunc": "x*2118.88000326",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "scfm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFootPerHour",
+      "PluralName": "StandardCubicFeetPerHour",
+      "FromUnitToBaseFunc": "x*7.8657907199999087346816086183876e-6",
+      "FromBaseToUnitFunc": "x/7.8657907199999087346816086183876e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "scfh" ]
+        }
+      ]
+    }
+  ]
+}

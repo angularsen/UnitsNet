@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToThermalConductivity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToThermalConductivityExtensionsTests
     {
         [Fact]

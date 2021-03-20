@@ -152,11 +152,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of PowerDensity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerDensity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
 
         /// <summary>

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToRatioChangeRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToRatioChangeRateExtensionsTests
     {
         [Fact]

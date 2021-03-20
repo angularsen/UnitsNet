@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToAmplitudeRatio;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToAmplitudeRatioExtensionsTests
     {
         [Fact]

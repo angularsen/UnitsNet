@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToVolumePerLength;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVolumePerLengthExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToPower;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToPowerExtensionsTests
     {
         [Fact]

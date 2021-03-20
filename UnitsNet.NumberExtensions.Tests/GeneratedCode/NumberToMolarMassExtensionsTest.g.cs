@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMolarMass;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMolarMassExtensionsTests
     {
         [Fact]

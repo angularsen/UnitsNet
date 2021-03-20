@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToBrakeSpecificFuelConsumptionExtensionsTests
     {
         [Fact]

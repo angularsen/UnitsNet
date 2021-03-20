@@ -112,11 +112,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Permittivity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permittivity
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 
         /// <summary>

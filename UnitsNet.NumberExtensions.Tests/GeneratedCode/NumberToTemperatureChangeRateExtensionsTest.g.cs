@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToTemperatureChangeRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTemperatureChangeRateExtensionsTests
     {
         [Fact]

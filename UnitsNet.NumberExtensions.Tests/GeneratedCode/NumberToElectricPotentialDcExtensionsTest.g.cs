@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricPotentialDc;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricPotentialDcExtensionsTests
     {
         [Fact]

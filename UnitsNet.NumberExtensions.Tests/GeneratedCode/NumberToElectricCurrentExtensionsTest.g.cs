@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricCurrent;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricCurrentExtensionsTests
     {
         [Fact]

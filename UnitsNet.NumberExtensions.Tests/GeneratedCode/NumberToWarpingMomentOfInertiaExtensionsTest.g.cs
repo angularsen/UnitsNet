@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToWarpingMomentOfInertiaExtensionsTests
     {
         [Fact]

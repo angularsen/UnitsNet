@@ -131,11 +131,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of VolumeConcentration
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumeConcentration
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
 
         /// <summary>

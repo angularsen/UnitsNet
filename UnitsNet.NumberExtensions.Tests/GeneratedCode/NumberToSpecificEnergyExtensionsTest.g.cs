@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToSpecificEnergy;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToSpecificEnergyExtensionsTests
     {
         [Fact]

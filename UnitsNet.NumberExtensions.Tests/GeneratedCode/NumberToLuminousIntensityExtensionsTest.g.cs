@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToLuminousIntensity;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToLuminousIntensityExtensionsTests
     {
         [Fact]

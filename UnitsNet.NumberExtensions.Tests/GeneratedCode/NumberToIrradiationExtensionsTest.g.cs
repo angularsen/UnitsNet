@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToIrradiation;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToIrradiationExtensionsTests
     {
         [Fact]

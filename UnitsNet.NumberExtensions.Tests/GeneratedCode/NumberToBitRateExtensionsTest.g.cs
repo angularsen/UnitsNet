@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToBitRate;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToBitRateExtensionsTests
     {
         [Fact]

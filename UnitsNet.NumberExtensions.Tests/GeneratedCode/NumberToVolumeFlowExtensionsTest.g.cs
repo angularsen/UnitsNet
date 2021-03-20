@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToVolumeFlow;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToVolumeFlowExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToElectricCharge;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToElectricChargeExtensionsTests
     {
         [Fact]

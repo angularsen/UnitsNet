@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToTemperature;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToTemperatureExtensionsTests
     {
         [Fact]

@@ -21,7 +21,7 @@ using UnitsNet.NumberExtensions.NumberToMagneticFlux;
 using Xunit;
 
 namespace UnitsNet.Tests
-{    
+{
     public class NumberToMagneticFluxExtensionsTests
     {
         [Fact]
