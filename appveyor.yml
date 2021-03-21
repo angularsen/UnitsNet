@@ -63,7 +63,6 @@ build_script:
 after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-    wget https://codecov.io/bash -OutFile Build/codecov.sh
     bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
