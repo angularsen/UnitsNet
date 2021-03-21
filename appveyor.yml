@@ -60,10 +60,11 @@ build_script:
     }
 
 # Upload code coverage reports to codecov.io.
-# PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
 after_test:
 - ps: |
-    bash <(curl -s https://codecov.io/bash) -s "Artifacts/Coverage" -t $env:codecov_upload_token
+    $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+    wget https://codecov.io/bash -OutFile Build/codecov.sh
+    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
