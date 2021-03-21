@@ -31,7 +31,8 @@ namespace UnitsNet.Tests.CustomQuantities
             typeof(HowMuchUnit),
             new UnitInfo[]
             {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined), new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, BaseUnits.Undefined),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, BaseUnits.Undefined),
                 new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, BaseUnits.Undefined),
             },
             HowMuchUnit.Some,
