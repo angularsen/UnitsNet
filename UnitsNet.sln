@@ -21,6 +21,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Files", "_Files", "{B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	.gitattributes = .gitattributes
+	.gitignore = .gitignore
+	appveyor.yml = appveyor.yml
+	build.bat = build.bat
+	build-with-wrc.bat = build-with-wrc.bat
+	clean.bat = clean.bat
+	CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+	CONTRIBUTING.md = CONTRIBUTING.md
+	Directory.Build.props = Directory.Build.props
+	generate-code.bat = generate-code.bat
+	init.bat = init.bat
+	LICENSE = LICENSE
+	nuget.config = nuget.config
+	publish-unitsnet.bat = publish-unitsnet.bat
+	README.md = README.md
+	test.bat = test.bat
+	UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
+	UnitsNet.snk = UnitsNet.snk
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

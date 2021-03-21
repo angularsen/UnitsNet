@@ -10,8 +10,7 @@ namespace CodeGen.Generators.UnitsNetGen
 
         public NumberExtensionsTestClassGenerator(Quantity quantity)
         {
-            if (quantity is null)
-                throw new ArgumentNullException(nameof(quantity));
+            if (quantity is null) throw new ArgumentNullException(nameof(quantity));
 
             _units = quantity.Units;
             _quantityName = quantity.Name;

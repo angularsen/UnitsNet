@@ -204,7 +204,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions,
             QuantityType quantityType = QuantityType.Undefined)
-            : base(name, typeof(TUnit), unitInfos, baseUnit, zero, baseDimensions, quantityType)
+            : base(name, typeof(TUnit), unitInfos.ToArray<UnitInfo>(), baseUnit, zero, baseDimensions, quantityType)
         {
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
