@@ -63,8 +63,7 @@ build_script:
 # PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
 after_test:
 - ps: |
-    $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
+    bash <(curl -s https://codecov.io/bash) -s "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip
