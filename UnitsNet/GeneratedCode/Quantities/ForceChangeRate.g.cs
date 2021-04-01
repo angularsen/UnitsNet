@@ -55,14 +55,20 @@ namespace UnitsNet
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecapoundForcePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecapoundForcePerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
         }
@@ -194,6 +200,16 @@ namespace UnitsNet
         public double DecanewtonsPerSecond => As(ForceChangeRateUnit.DecanewtonPerSecond);
 
         /// <summary>
+        ///     Get ForceChangeRate in DecapoundsForcePerMinute.
+        /// </summary>
+        public double DecapoundsForcePerMinute => As(ForceChangeRateUnit.DecapoundForcePerMinute);
+
+        /// <summary>
+        ///     Get ForceChangeRate in DecapoundsForcePerSecond.
+        /// </summary>
+        public double DecapoundsForcePerSecond => As(ForceChangeRateUnit.DecapoundForcePerSecond);
+
+        /// <summary>
         ///     Get ForceChangeRate in DecinewtonsPerSecond.
         /// </summary>
         public double DecinewtonsPerSecond => As(ForceChangeRateUnit.DecinewtonPerSecond);
@@ -207,6 +223,16 @@ namespace UnitsNet
         ///     Get ForceChangeRate in KilonewtonsPerSecond.
         /// </summary>
         public double KilonewtonsPerSecond => As(ForceChangeRateUnit.KilonewtonPerSecond);
+
+        /// <summary>
+        ///     Get ForceChangeRate in KilopoundsForcePerMinute.
+        /// </summary>
+        public double KilopoundsForcePerMinute => As(ForceChangeRateUnit.KilopoundForcePerMinute);
+
+        /// <summary>
+        ///     Get ForceChangeRate in KilopoundsForcePerSecond.
+        /// </summary>
+        public double KilopoundsForcePerSecond => As(ForceChangeRateUnit.KilopoundForcePerSecond);
 
         /// <summary>
         ///     Get ForceChangeRate in MicronewtonsPerSecond.
@@ -232,6 +258,16 @@ namespace UnitsNet
         ///     Get ForceChangeRate in NewtonsPerSecond.
         /// </summary>
         public double NewtonsPerSecond => As(ForceChangeRateUnit.NewtonPerSecond);
+
+        /// <summary>
+        ///     Get ForceChangeRate in PoundsForcePerMinute.
+        /// </summary>
+        public double PoundsForcePerMinute => As(ForceChangeRateUnit.PoundForcePerMinute);
+
+        /// <summary>
+        ///     Get ForceChangeRate in PoundsForcePerSecond.
+        /// </summary>
+        public double PoundsForcePerSecond => As(ForceChangeRateUnit.PoundForcePerSecond);
 
         #endregion
 
@@ -290,6 +326,24 @@ namespace UnitsNet
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerSecond);
         }
         /// <summary>
+        ///     Get ForceChangeRate from DecapoundsForcePerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromDecapoundsForcePerMinute(QuantityValue decapoundsforceperminute)
+        {
+            double value = (double) decapoundsforceperminute;
+            return new ForceChangeRate(value, ForceChangeRateUnit.DecapoundForcePerMinute);
+        }
+        /// <summary>
+        ///     Get ForceChangeRate from DecapoundsForcePerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromDecapoundsForcePerSecond(QuantityValue decapoundsforcepersecond)
+        {
+            double value = (double) decapoundsforcepersecond;
+            return new ForceChangeRate(value, ForceChangeRateUnit.DecapoundForcePerSecond);
+        }
+        /// <summary>
         ///     Get ForceChangeRate from DecinewtonsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -315,6 +369,24 @@ namespace UnitsNet
         {
             double value = (double) kilonewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerSecond);
+        }
+        /// <summary>
+        ///     Get ForceChangeRate from KilopoundsForcePerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromKilopoundsForcePerMinute(QuantityValue kilopoundsforceperminute)
+        {
+            double value = (double) kilopoundsforceperminute;
+            return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerMinute);
+        }
+        /// <summary>
+        ///     Get ForceChangeRate from KilopoundsForcePerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromKilopoundsForcePerSecond(QuantityValue kilopoundsforcepersecond)
+        {
+            double value = (double) kilopoundsforcepersecond;
+            return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerSecond);
         }
         /// <summary>
         ///     Get ForceChangeRate from MicronewtonsPerSecond.
@@ -360,6 +432,24 @@ namespace UnitsNet
         {
             double value = (double) newtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerSecond);
+        }
+        /// <summary>
+        ///     Get ForceChangeRate from PoundsForcePerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromPoundsForcePerMinute(QuantityValue poundsforceperminute)
+        {
+            double value = (double) poundsforceperminute;
+            return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerMinute);
+        }
+        /// <summary>
+        ///     Get ForceChangeRate from PoundsForcePerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ForceChangeRate FromPoundsForcePerSecond(QuantityValue poundsforcepersecond)
+        {
+            double value = (double) poundsforcepersecond;
+            return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerSecond);
         }
 
         /// <summary>
@@ -793,14 +883,20 @@ namespace UnitsNet
                 case ForceChangeRateUnit.CentinewtonPerSecond: return (_value) * 1e-2d;
                 case ForceChangeRateUnit.DecanewtonPerMinute: return (_value/60) * 1e1d;
                 case ForceChangeRateUnit.DecanewtonPerSecond: return (_value) * 1e1d;
+                case ForceChangeRateUnit.DecapoundForcePerMinute: return (_value*4.4482216152605095551842641431421/60) * 1e1d;
+                case ForceChangeRateUnit.DecapoundForcePerSecond: return (_value*4.4482216152605095551842641431421) * 1e1d;
                 case ForceChangeRateUnit.DecinewtonPerSecond: return (_value) * 1e-1d;
                 case ForceChangeRateUnit.KilonewtonPerMinute: return (_value/60) * 1e3d;
                 case ForceChangeRateUnit.KilonewtonPerSecond: return (_value) * 1e3d;
+                case ForceChangeRateUnit.KilopoundForcePerMinute: return (_value*4.4482216152605095551842641431421/60) * 1e3d;
+                case ForceChangeRateUnit.KilopoundForcePerSecond: return (_value*4.4482216152605095551842641431421) * 1e3d;
                 case ForceChangeRateUnit.MicronewtonPerSecond: return (_value) * 1e-6d;
                 case ForceChangeRateUnit.MillinewtonPerSecond: return (_value) * 1e-3d;
                 case ForceChangeRateUnit.NanonewtonPerSecond: return (_value) * 1e-9d;
                 case ForceChangeRateUnit.NewtonPerMinute: return _value/60;
                 case ForceChangeRateUnit.NewtonPerSecond: return _value;
+                case ForceChangeRateUnit.PoundForcePerMinute: return _value*4.4482216152605095551842641431421/60;
+                case ForceChangeRateUnit.PoundForcePerSecond: return _value*4.4482216152605095551842641431421;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -829,14 +925,20 @@ namespace UnitsNet
                 case ForceChangeRateUnit.CentinewtonPerSecond: return (baseUnitValue) / 1e-2d;
                 case ForceChangeRateUnit.DecanewtonPerMinute: return (baseUnitValue*60) / 1e1d;
                 case ForceChangeRateUnit.DecanewtonPerSecond: return (baseUnitValue) / 1e1d;
+                case ForceChangeRateUnit.DecapoundForcePerMinute: return (baseUnitValue/4.4482216152605095551842641431421*60) / 1e1d;
+                case ForceChangeRateUnit.DecapoundForcePerSecond: return (baseUnitValue/4.4482216152605095551842641431421) / 1e1d;
                 case ForceChangeRateUnit.DecinewtonPerSecond: return (baseUnitValue) / 1e-1d;
                 case ForceChangeRateUnit.KilonewtonPerMinute: return (baseUnitValue*60) / 1e3d;
                 case ForceChangeRateUnit.KilonewtonPerSecond: return (baseUnitValue) / 1e3d;
+                case ForceChangeRateUnit.KilopoundForcePerMinute: return (baseUnitValue/4.4482216152605095551842641431421*60) / 1e3d;
+                case ForceChangeRateUnit.KilopoundForcePerSecond: return (baseUnitValue/4.4482216152605095551842641431421) / 1e3d;
                 case ForceChangeRateUnit.MicronewtonPerSecond: return (baseUnitValue) / 1e-6d;
                 case ForceChangeRateUnit.MillinewtonPerSecond: return (baseUnitValue) / 1e-3d;
                 case ForceChangeRateUnit.NanonewtonPerSecond: return (baseUnitValue) / 1e-9d;
                 case ForceChangeRateUnit.NewtonPerMinute: return baseUnitValue*60;
                 case ForceChangeRateUnit.NewtonPerSecond: return baseUnitValue;
+                case ForceChangeRateUnit.PoundForcePerMinute: return baseUnitValue/4.4482216152605095551842641431421*60;
+                case ForceChangeRateUnit.PoundForcePerSecond: return baseUnitValue/4.4482216152605095551842641431421;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

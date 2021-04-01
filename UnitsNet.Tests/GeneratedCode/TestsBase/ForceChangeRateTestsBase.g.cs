@@ -40,27 +40,39 @@ namespace UnitsNet.Tests
         protected abstract double CentinewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double DecanewtonsPerMinuteInOneNewtonPerSecond { get; }
         protected abstract double DecanewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double DecapoundsForcePerMinuteInOneNewtonPerSecond { get; }
+        protected abstract double DecapoundsForcePerSecondInOneNewtonPerSecond { get; }
         protected abstract double DecinewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double KilonewtonsPerMinuteInOneNewtonPerSecond { get; }
         protected abstract double KilonewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double KilopoundsForcePerMinuteInOneNewtonPerSecond { get; }
+        protected abstract double KilopoundsForcePerSecondInOneNewtonPerSecond { get; }
         protected abstract double MicronewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double MillinewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double NanonewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double NewtonsPerMinuteInOneNewtonPerSecond { get; }
         protected abstract double NewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double PoundsForcePerMinuteInOneNewtonPerSecond { get; }
+        protected abstract double PoundsForcePerSecondInOneNewtonPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentinewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecanewtonsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double DecanewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecapoundsForcePerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double DecapoundsForcePerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecinewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicronewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MillinewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanonewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -138,14 +150,20 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.CentinewtonsPerSecond, CentinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(DecanewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.DecanewtonsPerMinute, DecanewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(DecanewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.DecanewtonsPerSecond, DecanewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(DecapoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.DecapoundsForcePerMinute, DecapoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(DecapoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.DecapoundsForcePerSecond, DecapoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(DecinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.KilonewtonsPerMinute, KilonewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(NewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.NewtonsPerMinute, NewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(NewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.NewtonsPerSecond, NewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.PoundsForcePerMinute, PoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.PoundsForcePerSecond, PoundsForcePerSecondTolerance);
         }
 
         [Fact]
@@ -163,37 +181,61 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.DecanewtonsPerSecond, DecanewtonsPerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, quantity02.Unit);
 
-            var quantity03 = ForceChangeRate.From(1, ForceChangeRateUnit.DecinewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity03.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, quantity03.Unit);
+            var quantity03 = ForceChangeRate.From(1, ForceChangeRateUnit.DecapoundForcePerMinute);
+            AssertEx.EqualTolerance(1, quantity03.DecapoundsForcePerMinute, DecapoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.DecapoundForcePerMinute, quantity03.Unit);
 
-            var quantity04 = ForceChangeRate.From(1, ForceChangeRateUnit.KilonewtonPerMinute);
-            AssertEx.EqualTolerance(1, quantity04.KilonewtonsPerMinute, KilonewtonsPerMinuteTolerance);
-            Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, quantity04.Unit);
+            var quantity04 = ForceChangeRate.From(1, ForceChangeRateUnit.DecapoundForcePerSecond);
+            AssertEx.EqualTolerance(1, quantity04.DecapoundsForcePerSecond, DecapoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.DecapoundForcePerSecond, quantity04.Unit);
 
-            var quantity05 = ForceChangeRate.From(1, ForceChangeRateUnit.KilonewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, quantity05.Unit);
+            var quantity05 = ForceChangeRate.From(1, ForceChangeRateUnit.DecinewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity05.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, quantity05.Unit);
 
-            var quantity06 = ForceChangeRate.From(1, ForceChangeRateUnit.MicronewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity06.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, quantity06.Unit);
+            var quantity06 = ForceChangeRate.From(1, ForceChangeRateUnit.KilonewtonPerMinute);
+            AssertEx.EqualTolerance(1, quantity06.KilonewtonsPerMinute, KilonewtonsPerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, quantity06.Unit);
 
-            var quantity07 = ForceChangeRate.From(1, ForceChangeRateUnit.MillinewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, quantity07.Unit);
+            var quantity07 = ForceChangeRate.From(1, ForceChangeRateUnit.KilonewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity07.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, quantity07.Unit);
 
-            var quantity08 = ForceChangeRate.From(1, ForceChangeRateUnit.NanonewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity08.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, quantity08.Unit);
+            var quantity08 = ForceChangeRate.From(1, ForceChangeRateUnit.KilopoundForcePerMinute);
+            AssertEx.EqualTolerance(1, quantity08.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, quantity08.Unit);
 
-            var quantity09 = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerMinute);
-            AssertEx.EqualTolerance(1, quantity09.NewtonsPerMinute, NewtonsPerMinuteTolerance);
-            Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, quantity09.Unit);
+            var quantity09 = ForceChangeRate.From(1, ForceChangeRateUnit.KilopoundForcePerSecond);
+            AssertEx.EqualTolerance(1, quantity09.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, quantity09.Unit);
 
-            var quantity10 = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.NewtonsPerSecond, NewtonsPerSecondTolerance);
-            Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, quantity10.Unit);
+            var quantity10 = ForceChangeRate.From(1, ForceChangeRateUnit.MicronewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity10.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, quantity10.Unit);
+
+            var quantity11 = ForceChangeRate.From(1, ForceChangeRateUnit.MillinewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity11.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, quantity11.Unit);
+
+            var quantity12 = ForceChangeRate.From(1, ForceChangeRateUnit.NanonewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity12.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, quantity12.Unit);
+
+            var quantity13 = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerMinute);
+            AssertEx.EqualTolerance(1, quantity13.NewtonsPerMinute, NewtonsPerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, quantity13.Unit);
+
+            var quantity14 = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerSecond);
+            AssertEx.EqualTolerance(1, quantity14.NewtonsPerSecond, NewtonsPerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, quantity14.Unit);
+
+            var quantity15 = ForceChangeRate.From(1, ForceChangeRateUnit.PoundForcePerMinute);
+            AssertEx.EqualTolerance(1, quantity15.PoundsForcePerMinute, PoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, quantity15.Unit);
+
+            var quantity16 = ForceChangeRate.From(1, ForceChangeRateUnit.PoundForcePerSecond);
+            AssertEx.EqualTolerance(1, quantity16.PoundsForcePerSecond, PoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, quantity16.Unit);
 
         }
 
@@ -217,14 +259,20 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.CentinewtonPerSecond), CentinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(DecanewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecanewtonPerMinute), DecanewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(DecanewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecanewtonPerSecond), DecanewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(DecapoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecapoundForcePerMinute), DecapoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(DecapoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecapoundForcePerSecond), DecapoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(DecinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecinewtonPerSecond), DecinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.KilonewtonPerMinute), KilonewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.KilonewtonPerSecond), KilonewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.KilopoundForcePerMinute), KilopoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.KilopoundForcePerSecond), KilopoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.MicronewtonPerSecond), MicronewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.MillinewtonPerSecond), MillinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.NanonewtonPerSecond), NanonewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(NewtonsPerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.NewtonPerMinute), NewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(NewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.NewtonPerSecond), NewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerMinuteInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.PoundForcePerMinute), PoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.PoundForcePerSecond), PoundsForcePerSecondTolerance);
         }
 
         [Fact]
@@ -261,6 +309,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecanewtonsPerSecondInOneNewtonPerSecond, (double)decanewtonpersecondQuantity.Value, DecanewtonsPerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, decanewtonpersecondQuantity.Unit);
 
+            var decapoundforceperminuteQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.DecapoundForcePerMinute);
+            AssertEx.EqualTolerance(DecapoundsForcePerMinuteInOneNewtonPerSecond, (double)decapoundforceperminuteQuantity.Value, DecapoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.DecapoundForcePerMinute, decapoundforceperminuteQuantity.Unit);
+
+            var decapoundforcepersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.DecapoundForcePerSecond);
+            AssertEx.EqualTolerance(DecapoundsForcePerSecondInOneNewtonPerSecond, (double)decapoundforcepersecondQuantity.Value, DecapoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.DecapoundForcePerSecond, decapoundforcepersecondQuantity.Unit);
+
             var decinewtonpersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.DecinewtonPerSecond);
             AssertEx.EqualTolerance(DecinewtonsPerSecondInOneNewtonPerSecond, (double)decinewtonpersecondQuantity.Value, DecinewtonsPerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, decinewtonpersecondQuantity.Unit);
@@ -272,6 +328,14 @@ namespace UnitsNet.Tests
             var kilonewtonpersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.KilonewtonPerSecond);
             AssertEx.EqualTolerance(KilonewtonsPerSecondInOneNewtonPerSecond, (double)kilonewtonpersecondQuantity.Value, KilonewtonsPerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, kilonewtonpersecondQuantity.Unit);
+
+            var kilopoundforceperminuteQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.KilopoundForcePerMinute);
+            AssertEx.EqualTolerance(KilopoundsForcePerMinuteInOneNewtonPerSecond, (double)kilopoundforceperminuteQuantity.Value, KilopoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, kilopoundforceperminuteQuantity.Unit);
+
+            var kilopoundforcepersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.KilopoundForcePerSecond);
+            AssertEx.EqualTolerance(KilopoundsForcePerSecondInOneNewtonPerSecond, (double)kilopoundforcepersecondQuantity.Value, KilopoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, kilopoundforcepersecondQuantity.Unit);
 
             var micronewtonpersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.MicronewtonPerSecond);
             AssertEx.EqualTolerance(MicronewtonsPerSecondInOneNewtonPerSecond, (double)micronewtonpersecondQuantity.Value, MicronewtonsPerSecondTolerance);
@@ -292,6 +356,14 @@ namespace UnitsNet.Tests
             var newtonpersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.NewtonPerSecond);
             AssertEx.EqualTolerance(NewtonsPerSecondInOneNewtonPerSecond, (double)newtonpersecondQuantity.Value, NewtonsPerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, newtonpersecondQuantity.Unit);
+
+            var poundforceperminuteQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.PoundForcePerMinute);
+            AssertEx.EqualTolerance(PoundsForcePerMinuteInOneNewtonPerSecond, (double)poundforceperminuteQuantity.Value, PoundsForcePerMinuteTolerance);
+            Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, poundforceperminuteQuantity.Unit);
+
+            var poundforcepersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.PoundForcePerSecond);
+            AssertEx.EqualTolerance(PoundsForcePerSecondInOneNewtonPerSecond, (double)poundforcepersecondQuantity.Value, PoundsForcePerSecondTolerance);
+            Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, poundforcepersecondQuantity.Unit);
         }
 
         [Fact]
@@ -308,14 +380,20 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForceChangeRate.FromCentinewtonsPerSecond(newtonpersecond.CentinewtonsPerSecond).NewtonsPerSecond, CentinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromDecanewtonsPerMinute(newtonpersecond.DecanewtonsPerMinute).NewtonsPerSecond, DecanewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromDecanewtonsPerSecond(newtonpersecond.DecanewtonsPerSecond).NewtonsPerSecond, DecanewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromDecapoundsForcePerMinute(newtonpersecond.DecapoundsForcePerMinute).NewtonsPerSecond, DecapoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromDecapoundsForcePerSecond(newtonpersecond.DecapoundsForcePerSecond).NewtonsPerSecond, DecapoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromDecinewtonsPerSecond(newtonpersecond.DecinewtonsPerSecond).NewtonsPerSecond, DecinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromKilonewtonsPerMinute(newtonpersecond.KilonewtonsPerMinute).NewtonsPerSecond, KilonewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromKilonewtonsPerSecond(newtonpersecond.KilonewtonsPerSecond).NewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilopoundsForcePerMinute(newtonpersecond.KilopoundsForcePerMinute).NewtonsPerSecond, KilopoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilopoundsForcePerSecond(newtonpersecond.KilopoundsForcePerSecond).NewtonsPerSecond, KilopoundsForcePerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromMicronewtonsPerSecond(newtonpersecond.MicronewtonsPerSecond).NewtonsPerSecond, MicronewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromMillinewtonsPerSecond(newtonpersecond.MillinewtonsPerSecond).NewtonsPerSecond, MillinewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromNanonewtonsPerSecond(newtonpersecond.NanonewtonsPerSecond).NewtonsPerSecond, NanonewtonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromNewtonsPerMinute(newtonpersecond.NewtonsPerMinute).NewtonsPerSecond, NewtonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, ForceChangeRate.FromNewtonsPerSecond(newtonpersecond.NewtonsPerSecond).NewtonsPerSecond, NewtonsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromPoundsForcePerMinute(newtonpersecond.PoundsForcePerMinute).NewtonsPerSecond, PoundsForcePerMinuteTolerance);
+            AssertEx.EqualTolerance(1, ForceChangeRate.FromPoundsForcePerSecond(newtonpersecond.PoundsForcePerSecond).NewtonsPerSecond, PoundsForcePerSecondTolerance);
         }
 
         [Fact]
@@ -475,14 +553,20 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString());
                 Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString());
                 Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString());
+                Assert.Equal("1 dalbf/min", new ForceChangeRate(1, ForceChangeRateUnit.DecapoundForcePerMinute).ToString());
+                Assert.Equal("1 dalbf/s", new ForceChangeRate(1, ForceChangeRateUnit.DecapoundForcePerSecond).ToString());
                 Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString());
                 Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString());
                 Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString());
+                Assert.Equal("1 klbf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString());
+                Assert.Equal("1 klbf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString());
                 Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString());
                 Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString());
                 Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString());
                 Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString());
                 Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString());
+                Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
+                Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
             }
             finally
             {
@@ -499,14 +583,20 @@ namespace UnitsNet.Tests
             Assert.Equal("1 cN/s", new ForceChangeRate(1, ForceChangeRateUnit.CentinewtonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 daN/min", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerMinute).ToString(swedishCulture));
             Assert.Equal("1 daN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecanewtonPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 dalbf/min", new ForceChangeRate(1, ForceChangeRateUnit.DecapoundForcePerMinute).ToString(swedishCulture));
+            Assert.Equal("1 dalbf/s", new ForceChangeRate(1, ForceChangeRateUnit.DecapoundForcePerSecond).ToString(swedishCulture));
             Assert.Equal("1 dN/s", new ForceChangeRate(1, ForceChangeRateUnit.DecinewtonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kN/min", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerMinute).ToString(swedishCulture));
             Assert.Equal("1 kN/s", new ForceChangeRate(1, ForceChangeRateUnit.KilonewtonPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 klbf/min", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerMinute).ToString(swedishCulture));
+            Assert.Equal("1 klbf/s", new ForceChangeRate(1, ForceChangeRateUnit.KilopoundForcePerSecond).ToString(swedishCulture));
             Assert.Equal("1 µN/s", new ForceChangeRate(1, ForceChangeRateUnit.MicronewtonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 mN/s", new ForceChangeRate(1, ForceChangeRateUnit.MillinewtonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 nN/s", new ForceChangeRate(1, ForceChangeRateUnit.NanonewtonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 N/min", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerMinute).ToString(swedishCulture));
             Assert.Equal("1 N/s", new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString(swedishCulture));
+            Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString(swedishCulture));
         }
 
         [Fact]

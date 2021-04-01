@@ -33,6 +33,32 @@
           "Abbreviations": [ "N/s" ]
         }
       ]
+    },
+	{
+      "SingularName": "PoundForcePerMinute",
+      "PluralName": "PoundsForcePerMinute",
+      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421/60",
+      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421*60",
+      "Prefixes": [ "Deca", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/min" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "PoundForcePerSecond",
+      "PluralName": "PoundsForcePerSecond",
+      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "Prefixes": [ "Deca", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/s" ]
+        }
+      ]
     }
   ]
 }
