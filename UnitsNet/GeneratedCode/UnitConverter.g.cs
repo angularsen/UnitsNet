@@ -654,10 +654,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.DecanewtonPerMinute, ForceChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.DecanewtonPerSecond, q => q.ToUnit(ForceChangeRateUnit.DecanewtonPerSecond));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.DecanewtonPerSecond, ForceChangeRate.BaseUnit, q => q.ToBaseUnit());
-            unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.DecapoundForcePerMinute, q => q.ToUnit(ForceChangeRateUnit.DecapoundForcePerMinute));
-            unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.DecapoundForcePerMinute, ForceChangeRate.BaseUnit, q => q.ToBaseUnit());
-            unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.DecapoundForcePerSecond, q => q.ToUnit(ForceChangeRateUnit.DecapoundForcePerSecond));
-            unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.DecapoundForcePerSecond, ForceChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.DecinewtonPerSecond, q => q.ToUnit(ForceChangeRateUnit.DecinewtonPerSecond));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.DecinewtonPerSecond, ForceChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRate.BaseUnit, ForceChangeRateUnit.KilonewtonPerMinute, q => q.ToUnit(ForceChangeRateUnit.KilonewtonPerMinute));

@@ -29,8 +29,6 @@ namespace UnitsNet.Units
         CentinewtonPerSecond,
         DecanewtonPerMinute,
         DecanewtonPerSecond,
-        DecapoundForcePerMinute,
-        DecapoundForcePerSecond,
         DecinewtonPerSecond,
         KilonewtonPerMinute,
         KilonewtonPerSecond,

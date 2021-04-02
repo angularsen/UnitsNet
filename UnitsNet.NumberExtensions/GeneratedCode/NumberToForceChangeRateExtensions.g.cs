@@ -40,14 +40,6 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
         public static ForceChangeRate DecanewtonsPerSecond<T>(this T value) =>
             ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecapoundsForcePerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecapoundsForcePerMinute<T>(this T value) =>
-            ForceChangeRate.FromDecapoundsForcePerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecapoundsForcePerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecapoundsForcePerSecond<T>(this T value) =>
-            ForceChangeRate.FromDecapoundsForcePerSecond(Convert.ToDouble(value));
-
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
         public static ForceChangeRate DecinewtonsPerSecond<T>(this T value) =>
             ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));

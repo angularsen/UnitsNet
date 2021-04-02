@@ -125,14 +125,17 @@
       "PluralName": "PoundsForce",
       "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
       "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf" ]
+          "Abbreviations": [ "lbf" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf", "kip", "k" ] }
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фунт-сила" ]
+          "Abbreviations": [ "фунт-сила" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "кипф", "койка", "К" ] }
         }
       ]
     },
@@ -145,22 +148,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ozf" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "KilopoundForce",
-      "PluralName": "KilopoundsForce",
-      "FromUnitToBaseFunc": "x*4448.2216152605095551842641431421",
-      "FromBaseToUnitFunc": "x/4448.2216152605095551842641431421",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "kipf", "kip", "k" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "кипф", "койка", "К" ]
         }
       ]
     },

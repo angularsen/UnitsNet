@@ -37,14 +37,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceChangeRate.FromDecanewtonsPerSecond(2), 2.DecanewtonsPerSecond());
 
         [Fact]
-        public void NumberToDecapoundsForcePerMinuteTest() =>
-            Assert.Equal(ForceChangeRate.FromDecapoundsForcePerMinute(2), 2.DecapoundsForcePerMinute());
-
-        [Fact]
-        public void NumberToDecapoundsForcePerSecondTest() =>
-            Assert.Equal(ForceChangeRate.FromDecapoundsForcePerSecond(2), 2.DecapoundsForcePerSecond());
-
-        [Fact]
         public void NumberToDecinewtonsPerSecondTest() =>
             Assert.Equal(ForceChangeRate.FromDecinewtonsPerSecond(2), 2.DecinewtonsPerSecond());
 

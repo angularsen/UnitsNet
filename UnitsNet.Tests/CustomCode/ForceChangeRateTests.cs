@@ -13,8 +13,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilopoundsForcePerMinuteInOneNewtonPerSecond => 0.22481e-3*60;
         protected override double KilopoundsForcePerSecondInOneNewtonPerSecond => 0.22481e-3;
         protected override double DecanewtonsPerSecondInOneNewtonPerSecond => 1E-1;
-        protected override double DecapoundsForcePerMinuteInOneNewtonPerSecond => 0.22481e-1*60;
-        protected override double DecapoundsForcePerSecondInOneNewtonPerSecond => 0.22481e-1;
         protected override double NewtonsPerSecondInOneNewtonPerSecond => 1;
         protected override double PoundsForcePerMinuteInOneNewtonPerSecond => 0.22481 * 60;
         protected override double PoundsForcePerSecondInOneNewtonPerSecond => 0.22481;
