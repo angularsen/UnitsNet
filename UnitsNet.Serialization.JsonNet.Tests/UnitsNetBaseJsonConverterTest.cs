@@ -239,7 +239,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var result = ConvertIQuantity(value);
                 if (result is ExtendedValueUnit {ValueType: "decimal"} decimalResult)
                 {
-                    return (result.Unit, decimal.Parse(decimalResult.ValueString));
+                    return (result.Unit, decimal.Parse(decimalResult.ValueString, CultureInfo.InvariantCulture));
                 }
 
                 throw new ArgumentException("The quantity does not have a decimal value", nameof(value));
@@ -274,7 +274,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 if (result is ExtendedValueUnit {ValueType: "decimal"} decimalResult)
                 {
-                    return (result.Unit, decimal.Parse(decimalResult.ValueString));
+                    return (result.Unit, decimal.Parse(decimalResult.ValueString, CultureInfo.InvariantCulture));
                 }
 
                 return null;

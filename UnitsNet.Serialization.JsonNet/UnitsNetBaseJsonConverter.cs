@@ -82,7 +82,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit switch
             {
-                ExtendedValueUnit {ValueType: "decimal"} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString), unit),
+                ExtendedValueUnit {ValueType: "decimal"} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
                 _ => Quantity.From(valueUnit.Value, unit)
             };
         }
