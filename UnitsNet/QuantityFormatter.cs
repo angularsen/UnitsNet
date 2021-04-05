@@ -125,7 +125,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            return FormatUntrimmed(quantity, format, formatProvider).Trim();
+            return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
         }
 
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
